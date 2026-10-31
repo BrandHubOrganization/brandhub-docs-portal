@@ -1,0 +1,1242 @@
+[
+  {
+    "code": "3.8.1",
+    "title": "Connect Social Account",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-107",
+    "ucName": "Connect Social Account",
+    "ucDescription": "(3.8.1) Cho phép Client hoặc Manager kết nối các tài khoản mạng xã hội chính thức của nhãn hàng (gồm 4 nền tảng: Facebook Page, Instagram Business, TikTok và Threads) vào Workspace để phục vụ đăng bài tự động.",
+    "figureId": "r3-fig-116",
+    "figureNumber": 116,
+    "figureCaption": "Figure 116 - Connect Social Account",
+    "sequenceFigureId": "seq-3.8.1",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager mở màn hình Kết nối Mạng xã hội (/social-accounts), chọn nền tảng cần liên kết và xác nhận cấp quyền trên cửa sổ đăng nhập của nền tảng đó.",
+    "purpose": "Cho phép Client hoặc Manager kết nối các tài khoản mạng xã hội chính thức của nhãn hàng (gồm 4 nền tảng: Facebook Page, Instagram Business, TikTok và Threads) vào Workspace để phục vụ đăng bài tự động.",
+    "viSummary": "Cho phép Client hoặc Manager kết nối các tài khoản mạng xã hội chính thức của nhãn hàng (gồm 4 nền tảng: Facebook Page, Instagram Business, TikTok và Threads) vào Workspace để phục vụ đăng bài tự động.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Màn hình Kết nối Mạng xã hội (/social-accounts) hiển thị 4 thẻ nền tảng (Facebook, Instagram, TikTok, Threads), trạng thái kết nối hiện tại, danh sách các trang/kênh đã liên kết và nút Kết nối thêm tài khoản.",
+    "dataProcessing": "Sau khi người dùng đăng nhập và cấp quyền trên cửa sổ chính thức của mạng xã hội (chuẩn OAuth 2.0), hệ thống kiểm tra giới hạn số lượng kênh kết nối theo gói dịch vụ của Agency, lưu khóa kết nối đã mã hóa an toàn vào Workspace hiện tại và tự động duy trì làm mới phiên kết nối (BR-53).",
+    "dataSpecs": {
+      "inputRequired": "Chọn 1 trong 4 nền tảng (Facebook, Instagram, TikTok hoặc Threads) và xác nhận cấp quyền đăng bài trên cửa sổ của nền tảng đó.",
+      "inputOptional": "Chọn trang Fanpage hoặc tài khoản doanh nghiệp cụ thể nếu người dùng quản lý nhiều trang.",
+      "systemData": "Lưu khóa kết nối OAuth2 đã mã hóa, tên trang/kênh, ảnh đại diện kênh và thời hạn hiệu lực token trong Workspace (BR-53).",
+      "output": "Liên kết tài khoản mạng xã hội vào Workspace thành công và hiển thị thông báo MSG51."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-53"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG51",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is not an authorized Client, Manager, or Owner in the Workspace → Display: MSG07.",
+      "User cancels OAuth consent or platform authorization callback fails → Display: MSG54.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Client hoặc Manager mở màn hình Kết nối Mạng xã hội (/social-accounts) trong Workspace.",
+      "Người dùng bấm nút Kết nối bên cạnh nền tảng muốn thêm (Facebook, Instagram, TikTok hoặc Threads).",
+      "Trên cửa sổ xác thực của mạng xã hội, người dùng đăng nhập, chọn trang của nhãn hàng và đồng ý cấp quyền đăng bài.",
+      "Hệ thống lưu kết nối an toàn cho Workspace (BR-53) và hiển thị tài khoản vừa thêm kèm thông báo MSG51."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng hủy cấp quyền giữa chừng hoặc mạng xã hội báo lỗi: Hệ thống hiển thị thông báo MSG54 để người dùng thử lại.",
+      "Nếu người thao tác không có quyền Manager hoặc Client trong dự án: Hệ thống chặn thao tác và báo MSG07."
+    ],
+    "postConditions": [
+      "The social media account is connected to the Workspace in CONNECTED status and available as a publishing target (3.8.6–3.8.15).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374214/brandhub-docs-portal/report3/r3-fig-116.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_8_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.2",
+    "title": "Disconnect Account",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-108",
+    "ucName": "Disconnect Account",
+    "ucDescription": "(3.8.2) Cho phép Client hoặc Manager ngắt kết nối một tài khoản mạng xã hội khỏi Workspace. Khi ngắt kết nối, hệ thống sẽ hủy các lịch hẹn đăng đang chờ của kênh đó nhưng vẫn giữ nguyên lịch sử và số liệu của các bài đã đăng trước đây.",
+    "figureId": "r3-fig-117",
+    "figureNumber": 117,
+    "figureCaption": "Figure 117 - Disconnect Account",
+    "sequenceFigureId": "seq-3.8.2",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager bấm nút Ngắt kết nối (Disconnect) bên cạnh một tài khoản mạng xã hội trên trang Kết nối Mạng xã hội (/social-accounts) và xác nhận.",
+    "purpose": "Cho phép Client hoặc Manager ngắt kết nối một tài khoản mạng xã hội khỏi Workspace. Khi ngắt kết nối, hệ thống sẽ hủy các lịch hẹn đăng đang chờ của kênh đó nhưng vẫn giữ nguyên lịch sử và số liệu của các bài đã đăng trước đây.",
+    "viSummary": "Cho phép Client hoặc Manager ngắt kết nối một tài khoản mạng xã hội khỏi Workspace. Khi ngắt kết nối, hệ thống sẽ hủy các lịch hẹn đăng đang chờ của kênh đó nhưng vẫn giữ nguyên lịch sử và số liệu của các bài đã đăng trước đây.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Nút Ngắt kết nối trên từng tài khoản đã liên kết tại màn hình Kết nối Mạng xã hội (/social-accounts) kèm hộp thoại xác nhận.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Client hoặc Manager trong Workspace (BR-20), xóa khóa kết nối OAuth của tài khoản đó, tự động hủy các bài viết đang xếp lịch chờ đăng (PENDING) vào kênh đó và giữ nguyên toàn bộ dữ liệu thống kê của những bài đã xuất bản thành công (BR-53).",
+    "dataSpecs": {
+      "inputRequired": "Chọn tài khoản mạng xã hội đang kết nối và xác nhận Ngắt kết nối.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Thu hồi khóa kết nối, hủy các lịch hẹn đăng đang chờ của kênh đó và bảo toàn lịch sử bài đã đăng (BR-53).",
+      "output": "Ngắt kết nối tài khoản mạng xã hội thành công và hiển thị thông báo MSG51."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-53"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG51"
+    ],
+    "validations": [
+      "Caller lacks Client, Manager, or Owner permission in the Workspace → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Client hoặc Manager mở màn hình Kết nối Mạng xã hội (/social-accounts) và bấm Ngắt kết nối cạnh kênh cần gỡ.",
+      "Người dùng bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống xóa khóa ủy quyền đăng bài và hủy các lịch đăng tự động đang chờ của kênh đó (BR-53).",
+      "Hệ thống giữ nguyên lịch sử các bài đã đăng trước đây và hiển thị thông báo MSG51."
+    ],
+    "abnormalCases": [
+      "Nếu tài khoản mạng xã hội đó đã được ngắt kết nối từ trước: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The social account's OAuth tokens are revoked and no further automated publications can be dispatched to it until reconnected (BR-53).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374214/brandhub-docs-portal/report3/r3-fig-117.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.3",
+    "title": "View Dashboard Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-109",
+    "ucName": "View Dashboard Post",
+    "ucDescription": "(3.8.3) Hiển thị bảng điều khiển tổng hợp toàn bộ các bài viết đã đăng thành công lên 4 mạng xã hội của dự án, kèm biểu đồ phân bổ theo nền tảng và tổng số lượt tương tác thu được.",
+    "figureId": "r3-fig-118",
+    "figureNumber": 118,
+    "figureCaption": "Figure 118 - View Dashboard Post",
+    "sequenceFigureId": "seq-3.8.3",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên trong dự án mở màn hình Thống kê Bài đã đăng (/publish/dashboard).",
+    "purpose": "Hiển thị bảng điều khiển tổng hợp toàn bộ các bài viết đã đăng thành công lên 4 mạng xã hội của dự án, kèm biểu đồ phân bổ theo nền tảng và tổng số lượt tương tác thu được.",
+    "viSummary": "Hiển thị bảng điều khiển tổng hợp toàn bộ các bài viết đã đăng thành công lên 4 mạng xã hội của dự án, kèm biểu đồ phân bổ theo nền tảng và tổng số lượt tương tác thu được.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Màn hình Thống kê Bài đã đăng (/publish/dashboard) hiển thị tổng số bài đã xuất bản, tổng lượt tương tác (thích, bình luận, chia sẻ, lượt xem), biểu đồ so sánh hiệu quả giữa Facebook, Instagram, TikTok, Threads và danh sách các bài viết gần đây.",
+    "dataProcessing": "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20), tổng hợp dữ liệu các bài viết ở trạng thái Đã xuất bản (PUBLISHED) cùng các chỉ số tương tác mới nhất được đồng bộ từ 4 mạng xã hội (BR-57) để hiển thị.",
+    "dataSpecs": {
+      "inputRequired": "Mở màn hình Thống kê Bài đã đăng của Workspace.",
+      "inputOptional": "Lọc theo nền tảng (Facebook, Instagram, TikTok, Threads) hoặc theo khoảng thời gian đăng.",
+      "systemData": "Danh sách bài đã đăng và tổng hợp số liệu tương tác định kỳ từ API mạng xã hội (BR-57).",
+      "output": "Hiển thị bảng thống kê tổng quan và danh sách các bài đã xuất bản."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-57",
+        "text": "Sau khi bài viết được đăng thành công, hệ thống định kỳ cập nhật các chỉ số tương tác (lượt thích, bình luận, chia sẻ, lượt xem) từ mạng xã hội về Bảng thống kê bài đăng (3.8.3) và Chi tiết bài đăng (3.8.4)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-57"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
+      "No published posts exist yet for the selected platform or date filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Thành viên (Owner, Manager, Creator hoặc Client) mở màn hình Thống kê Bài đã đăng (/publish/dashboard).",
+      "Hệ thống kiểm tra quyền truy cập trong dự án (BR-20).",
+      "Hệ thống tổng hợp danh sách các bài viết đã xuất bản và số liệu tương tác từ 4 nền tảng (BR-57).",
+      "Màn hình hiển thị các thẻ chỉ số tổng hợp, biểu đồ và danh sách bài đăng để người dùng theo dõi hiệu quả."
+    ],
+    "abnormalCases": [
+      "Nếu dự án chưa có bài đăng nào xuất bản trong khoảng thời gian đang lọc: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The viewer inspects cross-platform publishing KPIs and post summaries without modifying post records.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374215/brandhub-docs-portal/report3/r3-fig-118.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.4",
+    "title": "View Posted Detail",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-110",
+    "ucName": "View Posted Detail",
+    "ucDescription": "(3.8.4) Xem chi tiết nội dung, hình ảnh/video, đường dẫn bài viết thực tế trên mạng xã hội (permalink) và các chỉ số tương tác cụ thể (lượt thích, bình luận, chia sẻ, lượt xem) của một bài đăng đã xuất bản.",
+    "figureId": "r3-fig-119",
+    "figureNumber": 119,
+    "figureCaption": "Figure 119 - View Posted Detail",
+    "sequenceFigureId": "seq-3.8.4",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên bấm vào một bài viết trong danh sách đã xuất bản để mở trang Chi tiết Bài đã đăng (/publish/posts/:id).",
+    "purpose": "Xem chi tiết nội dung, hình ảnh/video, đường dẫn bài viết thực tế trên mạng xã hội (permalink) và các chỉ số tương tác cụ thể (lượt thích, bình luận, chia sẻ, lượt xem) của một bài đăng đã xuất bản.",
+    "viSummary": "Xem chi tiết nội dung, hình ảnh/video, đường dẫn bài viết thực tế trên mạng xã hội (permalink) và các chỉ số tương tác cụ thể (lượt thích, bình luận, chia sẻ, lượt xem) của một bài đăng đã xuất bản.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Màn hình Chi tiết Bài đã đăng (/publish/posts/:id) hiển thị khung nội dung và ảnh/video đã đăng, nền tảng xuất bản, thời gian đăng, nút Mở xem bài gốc trên mạng xã hội, cùng các thẻ số liệu: Lượt thích/thả tim (Reactions), Bình luận (Comments), Chia sẻ (Shares) và Lượt xem (Views).",
+    "dataProcessing": "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20), lấy thông tin bài đăng và số liệu tương tác đã đồng bộ gần nhất từ mạng xã hội đích (BR-57) để hiển thị chi tiết.",
+    "dataSpecs": {
+      "inputRequired": "Chọn một bài viết đã xuất bản để xem chi tiết.",
+      "inputOptional": "Bấm nút Làm mới số liệu để cập nhật chỉ số tương tác mới nhất.",
+      "systemData": "Đường dẫn bài đăng gốc (permalink), thời điểm xuất bản và các chỉ số tương tác chi tiết (BR-57).",
+      "output": "Hiển thị đầy đủ nội dung và kết quả tương tác của bài đăng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-57",
+        "text": "Sau khi bài viết được đăng thành công, hệ thống định kỳ cập nhật các chỉ số tương tác (lượt thích, bình luận, chia sẻ, lượt xem) từ mạng xã hội về Bảng thống kê bài đăng (3.8.3) và Chi tiết bài đăng (3.8.4)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-57"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
+      "Target Post ID does not exist or has not been published yet → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Từ màn hình Thống kê Bài đã đăng (/publish/dashboard), người dùng bấm vào một bài viết cụ thể.",
+      "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20).",
+      "Hệ thống tải nội dung bài đăng, đường dẫn gốc và các chỉ số lượt thích, bình luận, chia sẻ, lượt xem (BR-57).",
+      "Màn hình hiển thị chi tiết hiệu quả của bài viết đó."
+    ],
+    "abnormalCases": [
+      "Nếu không tìm thấy bài đăng hoặc người dùng không thuộc dự án: Hệ thống hiển thị thông báo MSG01 hoặc MSG07."
+    ],
+    "postConditions": [
+      "Detailed post engagement metrics and audience comments are displayed accurately.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374215/brandhub-docs-portal/report3/r3-fig-119.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.5",
+    "title": "Preview Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-111",
+    "ucName": "Preview Post",
+    "ucDescription": "(3.8.5) Cho phép Creator, Manager và Client xem trước giao diện hiển thị của bài viết (trên cả màn hình điện thoại và máy tính) theo đúng bố cục thực tế của từng mạng xã hội (Facebook, Instagram, TikTok, Threads) trước khi duyệt hoặc đăng bài.",
+    "figureId": "r3-fig-120",
+    "figureNumber": 120,
+    "figureCaption": "Figure 120 - Preview Post",
+    "sequenceFigureId": "seq-3.8.5",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi người dùng mở chế độ Xem trước Bài đăng (Preview Post) trong màn hình Xuất bản (/publish) hoặc Chi tiết Task.",
+    "purpose": "Cho phép Creator, Manager và Client xem trước giao diện hiển thị của bài viết (trên cả màn hình điện thoại và máy tính) theo đúng bố cục thực tế của từng mạng xã hội (Facebook, Instagram, TikTok, Threads) trước khi duyệt hoặc đăng bài.",
+    "viSummary": "Cho phép Creator, Manager và Client xem trước giao diện hiển thị của bài viết (trên cả màn hình điện thoại và máy tính) theo đúng bố cục thực tế của từng mạng xã hội (Facebook, Instagram, TikTok, Threads) trước khi duyệt hoặc đăng bài.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Khung Xem trước Bài đăng (/publish) gồm các tab chuyển đổi giữa Facebook (Feed / Story / Reels), Instagram (Post / Reels / Story), TikTok Video và Threads Post, nút chuyển chế độ Điện thoại / Máy tính, cùng bảng kiểm tra quy chuẩn ảnh/video và giới hạn số ký tự.",
+    "dataProcessing": "Hệ thống dựng khung giao diện mô phỏng giống hệt cách bài viết sẽ xuất hiện trên từng mạng xã hội, đồng thời tự động kiểm tra độ dài văn bản, tỷ lệ khung hình (1:1, 9:16, 16:9), định dạng và thời lượng video xem có đạt chuẩn của nền tảng đó hay không (BR-55).",
+    "dataSpecs": {
+      "inputRequired": "Chọn bài viết / Task cần xem trước và chọn nền tảng mạng xã hội muốn mô phỏng.",
+      "inputOptional": "Chuyển đổi giữa khung nhìn Điện thoại (Mobile) và Máy tính (Desktop).",
+      "systemData": "Kiểm tra tự động giới hạn ký tự, tỷ lệ khung hình ảnh/video và thời lượng theo quy định của từng nền tảng (BR-55).",
+      "output": "Hiển thị bản mô phỏng bài đăng trực quan (hoặc cảnh báo MSG52 nếu ảnh/video/caption chưa đúng chuẩn của nền tảng đó)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-55"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG52"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager, Client permission (BR-55) → Display: MSG07.",
+      "Attached media aspect ratio, duration, or caption length violates the selected platform's specifications (BR-55) → Display: MSG52.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Creator, Manager hoặc Client mở bài viết trong màn hình Xuất bản (/publish) và bấm nút Xem trước (Preview).",
+      "Người dùng chọn tab nền tảng muốn kiểm tra (Facebook, Instagram, TikTok hoặc Threads).",
+      "Hệ thống kiểm tra định dạng ảnh/video, tỷ lệ khung hình và độ dài caption theo quy chuẩn của nền tảng đó (BR-55).",
+      "Màn hình hiển thị khung mô phỏng bài đăng thực tế (và báo rõ nếu có thông số nào cần chỉnh lại theo MSG52)."
+    ],
+    "abnormalCases": [
+      "Nếu văn bản vượt quá số ký tự cho phép (ví dụ quá 500 ký tự trên Threads) hoặc video sai tỷ lệ khung hình: Hệ thống hiển thị cảnh báo đỏ MSG52 ngay bên dưới để người dùng sửa lại trước khi đăng."
+    ],
+    "postConditions": [
+      "The user visually verifies platform-specific post formatting prior to scheduling (3.8.6) or immediate publication (3.8.8–3.8.15).",
+      "Role-based access isolation (BR-55) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374215/brandhub-docs-portal/report3/r3-fig-120.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.6",
+    "title": "Schedule Platform Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-112",
+    "ucName": "Schedule Platform Post",
+    "ucDescription": "(3.8.6) Cho phép Creator hoặc Manager hẹn ngày giờ cụ thể để hệ thống tự động xuất bản bài viết đã được phê duyệt lên các tài khoản mạng xã hội đã chọn.",
+    "figureId": "r3-fig-121",
+    "figureNumber": 121,
+    "figureCaption": "Figure 121 - Schedule Platform Post",
+    "sequenceFigureId": "seq-3.8.6",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn một bài viết đã duyệt trên màn hình Xuất bản (/publish), chọn kênh mạng xã hội cùng ngày giờ đăng và bấm Lên lịch đăng.",
+    "purpose": "Cho phép Creator hoặc Manager hẹn ngày giờ cụ thể để hệ thống tự động xuất bản bài viết đã được phê duyệt lên các tài khoản mạng xã hội đã chọn.",
+    "viSummary": "Cho phép Creator hoặc Manager hẹn ngày giờ cụ thể để hệ thống tự động xuất bản bài viết đã được phê duyệt lên các tài khoản mạng xã hội đã chọn.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Màn hình Hẹn giờ Đăng bài (/publish, /calendar) gồm ô chọn Task đã duyệt, tích chọn các tài khoản mạng xã hội đích (Facebook, Instagram, TikTok, Threads), ô chọn Ngày và Giờ hẹn đăng (hiển thị theo múi giờ chuẩn của Workspace) và nút Xác nhận lên lịch.",
+    "dataProcessing": "Hệ thống kiểm tra bài viết bắt buộc phải hoàn tất quy trình duyệt 3 cấp (trạng thái APPROVED - BR-34, BR-54), đã đạt kiểm tra an toàn nội dung (BR-42), đúng quy chuẩn kỹ thuật của nền tảng đích (BR-55) và tài khoản người đăng không bị gắn cờ vi phạm (BR-63). Thời gian hẹn giờ được tính theo múi giờ của Workspace (BR-22, phải cách hiện tại ít nhất 5 phút - BR-56) và đưa vào hàng đợi chờ đăng tự động.",
+    "dataSpecs": {
+      "inputRequired": "Chọn bài viết đã được phê duyệt (APPROVED), chọn ít nhất 1 tài khoản mạng xã hội đã kết nối và chọn Ngày giờ hẹn đăng trong tương lai.",
+      "inputOptional": "Tùy chọn cấu hình riêng cho từng nền tảng (như ảnh bìa Reels/TikTok).",
+      "systemData": "Kiểm tra điều kiện Đã duyệt (BR-54), quy đổi giờ hẹn theo múi giờ Workspace (BR-22) và tạo lịch chờ đăng ở trạng thái PENDING (BR-56).",
+      "output": "Đặt lịch hẹn giờ đăng bài thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      },
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56",
+      "BR-63"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-22) → Display: MSG07.",
+      "Target social account or scheduled date/time missing, or scheduled time is in the past → Display: MSG02, MSG03.",
+      "Linked Task has not completed the Approval Sequence (BR-34) or failed Compliance Check (BR-42, BR-54) → Display: MSG36.",
+      "Post media or caption violates target platform specifications (BR-55) → Display: MSG52."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager mở màn hình Lên lịch Xuất bản (/publish) và chọn một bài viết đã hoàn tất phê duyệt.",
+      "Người dùng tích chọn các trang mạng xã hội muốn đăng và chọn Ngày giờ xuất bản (theo múi giờ của Workspace - BR-22).",
+      "Người dùng bấm nút Lên lịch đăng (Schedule Post).",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54), định dạng tệp (BR-55), lưu vào hàng đợi hẹn giờ (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu bài viết chưa hoàn tất quy trình phê duyệt 3 cấp hoặc chưa qua kiểm tra an toàn nội dung: Hệ thống chặn lên lịch và báo MSG36 (BR-54).",
+      "Nếu chọn thời gian hẹn giờ ở trong quá khứ hoặc định dạng ảnh/video không hợp lệ: Hệ thống báo lỗi MSG03 hoặc MSG52."
+    ],
+    "postConditions": [
+      "The Post is queued in PENDING status for automatic dispatch at its scheduled UTC timestamp (BR-56).",
+      "Role-based access isolation (BR-22) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374215/brandhub-docs-portal/report3/r3-fig-121.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.7",
+    "title": "Track Post Status",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-113",
+    "ucName": "Track Post Status",
+    "ucDescription": "(3.8.7) Theo dõi trạng thái của các bài đăng trong hàng đợi xuất bản theo thời gian thực (Đang chờ đến giờ -> Đang đăng -> Đã đăng thành công -> Hoặc Gặp lỗi), hỗ trợ tự động thử lại khi lỗi mạng và cho phép bấm Thử đăng lại thủ công.",
+    "figureId": "r3-fig-122",
+    "figureNumber": 122,
+    "figureCaption": "Figure 122 - Track Post Status",
+    "sequenceFigureId": "seq-3.8.7",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên mở màn hình Hàng đợi & Trạng thái Xuất bản (/publish) để kiểm tra tiến độ các bài hẹn giờ hoặc bấm nút Thử lại (Retry) trên bài bị lỗi.",
+    "purpose": "Theo dõi trạng thái của các bài đăng trong hàng đợi xuất bản theo thời gian thực (Đang chờ đến giờ -> Đang đăng -> Đã đăng thành công -> Hoặc Gặp lỗi), hỗ trợ tự động thử lại khi lỗi mạng và cho phép bấm Thử đăng lại thủ công.",
+    "viSummary": "Theo dõi trạng thái của các bài đăng trong hàng đợi xuất bản theo thời gian thực (Đang chờ đến giờ -> Đang đăng -> Đã đăng thành công -> Hoặc Gặp lỗi), hỗ trợ tự động thử lại khi lỗi mạng và cho phép bấm Thử đăng lại thủ công.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Bảng Theo dõi Trạng thái Xuất bản hiển thị Tiêu đề bài viết, Kênh mạng xã hội đích, Giờ hẹn đăng, nhãn Trạng thái (PENDING, IN_PROGRESS, PUBLISHED, FAILED), lý do lỗi (nếu có) và nút Thử đăng lại (Retry).",
+    "dataProcessing": "Hệ thống hiển thị trạng thái thực tế của từng lệnh đăng bài (BR-56). Đối với các bài gặp sự cố kết nối tạm thời từ phía mạng xã hội, hệ thống tự động thử đăng lại tối đa 3 lần; nếu vẫn thất bại thì chuyển sang trạng thái Lỗi (FAILED) và cho phép Manager/Creator bấm Thử lại sau khi kiểm tra kết nối tài khoản.",
+    "dataSpecs": {
+      "inputRequired": "Mở màn hình Theo dõi Trạng thái Xuất bản trong Workspace.",
+      "inputOptional": "Lọc theo trạng thái (Đang chờ / Đang đăng / Đã đăng / Bị lỗi) hoặc bấm nút Thử lại trên bài lỗi.",
+      "systemData": "Trạng thái tiến trình đăng bài, số lần đã tự động thử lại (tối đa 3 lần - BR-56) và thông báo phản hồi từ mạng xã hội.",
+      "output": "Hiển thị trạng thái xuất bản cập nhật mới nhất của các bài đăng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-22",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG07",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
+      "No posts match the selected status filter → Display: MSG01.",
+      "Manual retry triggered on a FAILED post whose social account token is expired → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Thành viên mở màn hình Hàng đợi Xuất bản (/publish) trong Workspace.",
+      "Hệ thống kiểm tra quyền truy cập (BR-20) và hiển thị danh sách các bài đang chờ đăng, đang xử lý, đã đăng hoặc bị lỗi (BR-56).",
+      "Khi đến đúng giờ hẹn, hệ thống tự động chuyển bài sang Đang đăng và cập nhật thành Đã đăng (PUBLISHED) ngay khi hoàn tất.",
+      "Nếu có bài báo trạng thái Lỗi (FAILED), người dùng có thể xem nguyên nhân và bấm nút Thử lại (Retry) để đăng lại."
+    ],
+    "abnormalCases": [
+      "Nếu việc đăng bài bị lỗi do quyền kết nối mạng xã hội đã hết hạn: Hệ thống hiển thị thông báo MSG54 nhắc người dùng kết nối lại tài khoản mạng xã hội (3.8.1)."
+    ],
+    "postConditions": [
+      "Stakeholders have transparent visibility into the real-time delivery status of every scheduled and published post (BR-56).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374216/brandhub-docs-portal/report3/r3-fig-122.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.8",
+    "title": "Publish Facebook Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-114",
+    "ucName": "Publish Facebook Post",
+    "ucDescription": "(3.8.8) Xuất bản trực tiếp (hoặc theo lịch hẹn) một bài viết tiêu chuẩn (gồm văn bản, ảnh đơn, bộ nhiều ảnh hoặc video) lên trang Facebook Page đã kết nối của dự án.",
+    "figureId": "r3-fig-123",
+    "figureNumber": 123,
+    "figureCaption": "Figure 123 - Publish Facebook Post",
+    "sequenceFigureId": "seq-3.8.8",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn đăng bài lên Facebook Page tại màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng tự động.",
+    "purpose": "Xuất bản trực tiếp (hoặc theo lịch hẹn) một bài viết tiêu chuẩn (gồm văn bản, ảnh đơn, bộ nhiều ảnh hoặc video) lên trang Facebook Page đã kết nối của dự án.",
+    "viSummary": "Xuất bản trực tiếp (hoặc theo lịch hẹn) một bài viết tiêu chuẩn (gồm văn bản, ảnh đơn, bộ nhiều ảnh hoặc video) lên trang Facebook Page đã kết nối của dự án.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Facebook Post trên màn hình Xuất bản (/publish) hiển thị trang Facebook Page đích, nội dung văn bản, ảnh/video đính kèm và nút Đăng lên Facebook.",
+    "dataProcessing": "Hệ thống kiểm tra bài viết đã được phê duyệt (BR-54), đạt kiểm tra an toàn nội dung (BR-42), kết nối Facebook Page còn hiệu lực (BR-53) và tệp ảnh/video đúng chuẩn của Facebook (BR-55). Sau đó, hệ thống đẩy bài viết lên Facebook Page, lưu lại mã bài đăng cùng đường dẫn bài viết (permalink) và chuyển trạng thái sang Đã xuất bản (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Bài viết đã được phê duyệt (APPROVED) và trang Facebook Page đích đã kết nối trong Workspace.",
+      "inputOptional": "Chọn đăng ngay lập tức hoặc đăng theo giờ hẹn (3.8.6).",
+      "systemData": "Kiểm tra điều kiện duyệt bài (BR-54), gửi bài qua Facebook API và lưu đường dẫn bài đăng thực tế (BR-56).",
+      "output": "Đăng bài lên Facebook Page thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "Task is not approved or failed compliance moderation (BR-54) → Display: MSG36.",
+      "Media format/size or caption length violates Facebook Feed constraints (BR-55) → Display: MSG52.",
+      "Facebook Graph API returns an error or OAuth token is expired → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn bài viết đã duyệt trên màn hình Xuất bản (/publish) và chọn kênh Facebook Page.",
+      "Người dùng bấm nút Đăng ngay (hoặc hệ thống tự kích hoạt khi đến đúng giờ hẹn).",
+      "Hệ thống kiểm tra trạng thái phê duyệt (BR-54), quy chuẩn tệp đính kèm (BR-55) và gửi nội dung lên Facebook Page.",
+      "Hệ thống lưu lại đường dẫn bài đăng từ Facebook, cập nhật trạng thái Đã xuất bản (PUBLISHED) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu tệp ảnh/video không đúng định dạng hỗ trợ của Facebook: Hệ thống báo lỗi MSG52.",
+      "Nếu kết nối Facebook Page bị hết hạn hoặc lỗi đường truyền: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The post is live on the target Facebook Page feed, its status is DONE in BrandHub (3.8.7), and engagement metrics begin syncing (3.8.3, 3.8.4).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374216/brandhub-docs-portal/report3/r3-fig-123.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374254/brandhub-docs-portal/report4/seq-3_8_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.9",
+    "title": "Publish Facebook Story",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-115",
+    "ucName": "Publish Facebook Story",
+    "ucDescription": "(3.8.9) Xuất bản tin ngắn 24 giờ (Facebook Story dạng ảnh dọc hoặc video ngắn tỷ lệ 9:16) lên trang Facebook Page đã kết nối của dự án.",
+    "figureId": "r3-fig-124",
+    "figureNumber": 124,
+    "figureCaption": "Figure 124 - Publish Facebook Story",
+    "sequenceFigureId": "seq-3.8.9",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản định dạng Facebook Story trên màn hình Xuất bản (/publish) hoặc khi đến lịch hẹn.",
+    "purpose": "Xuất bản tin ngắn 24 giờ (Facebook Story dạng ảnh dọc hoặc video ngắn tỷ lệ 9:16) lên trang Facebook Page đã kết nối của dự án.",
+    "viSummary": "Xuất bản tin ngắn 24 giờ (Facebook Story dạng ảnh dọc hoặc video ngắn tỷ lệ 9:16) lên trang Facebook Page đã kết nối của dự án.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Facebook Story trên màn hình Xuất bản (/publish) hiển thị khung xem trước dọc 9:16, trang Facebook Page đích và nút Đăng Story.",
+    "dataProcessing": "Hệ thống kiểm tra bài đăng đã được phê duyệt (BR-54) và kiểm tra tệp ảnh/video đáp ứng đúng tỷ lệ khung hình dọc 9:16 cùng thời lượng cho phép của Facebook Story (BR-55). Sau đó, hệ thống tải tệp lên Facebook Page Story và cập nhật trạng thái hoàn tất (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Ấn phẩm ảnh hoặc video dọc (9:16) đã được phê duyệt và trang Facebook Page đích.",
+      "inputOptional": "Chọn đăng ngay hoặc hẹn giờ đăng.",
+      "systemData": "Kiểm tra tỷ lệ khung hình 9:16, thời lượng Story (BR-55) và ghi nhận mã Story đã đăng trên Facebook (BR-56).",
+      "output": "Xuất bản Facebook Story thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "No media file attached or media violates Facebook Story 9:16 aspect ratio / duration limits (BR-55) → Display: MSG02, MSG52.",
+      "Task is not approved (BR-54) → Display: MSG36.",
+      "Facebook API error or expired token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn đầu việc Facebook Story đã được phê duyệt trong màn hình Xuất bản (/publish).",
+      "Người dùng chọn trang Facebook Page đích và bấm Đăng Story.",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54) và quy chuẩn khung hình dọc 9:16 của tệp (BR-55).",
+      "Hệ thống xuất bản lên Facebook Story, lưu trạng thái Đã đăng và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu tệp video dài quá giới hạn Story hoặc sai tỷ lệ khung hình: Hệ thống báo lỗi MSG52.",
+      "Nếu kết nối Facebook gặp lỗi: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The Story is published to the connected Facebook Page and tracked as DONE in BrandHub (3.8.7).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374216/brandhub-docs-portal/report3/r3-fig-124.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374254/brandhub-docs-portal/report4/seq-3_8_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.10",
+    "title": "Publish Facebook Reels",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-116",
+    "ucName": "Publish Facebook Reels",
+    "ucDescription": "(3.8.10) Xuất bản video ngắn định dạng dọc (Facebook Reels) kèm mô tả (caption) lên trang Facebook Page đã kết nối của dự án.",
+    "figureId": "r3-fig-125",
+    "figureNumber": 125,
+    "figureCaption": "Figure 125 - Publish Facebook Reels",
+    "sequenceFigureId": "seq-3.8.10",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản định dạng Facebook Reels trên màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng.",
+    "purpose": "Xuất bản video ngắn định dạng dọc (Facebook Reels) kèm mô tả (caption) lên trang Facebook Page đã kết nối của dự án.",
+    "viSummary": "Xuất bản video ngắn định dạng dọc (Facebook Reels) kèm mô tả (caption) lên trang Facebook Page đã kết nối của dự án.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Facebook Reels trên màn hình Xuất bản (/publish) hiển thị trình phát video dọc 9:16, ô mô tả Reels, trang Facebook Page đích và nút Đăng Reels.",
+    "dataProcessing": "Hệ thống kiểm tra đầu việc đã được phê duyệt (BR-54), kiểm tra video đạt chuẩn Reels (định dạng MP4/MOV, tỷ lệ 9:16, thời lượng 3–90 giây - BR-55), sau đó tải video lên Facebook Reels và cập nhật trạng thái xuất bản cùng đường dẫn video (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Video ngắn tỷ lệ 9:16 đã được phê duyệt, nội dung mô tả (caption) và trang Facebook Page đích.",
+      "inputOptional": "Chọn ảnh bìa (thumbnail) cho video Reels.",
+      "systemData": "Kiểm tra thời lượng video Reels (3–90 giây), tỷ lệ 9:16 (BR-55) và lưu đường dẫn Reels sau khi đăng (BR-56).",
+      "output": "Xuất bản video Facebook Reels thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "Attached media is not a valid vertical video or violates Facebook Reels duration/aspect-ratio limits (BR-55) → Display: MSG52.",
+      "Task has not completed approval (BR-54) → Display: MSG36.",
+      "Facebook Reels upload API error or expired token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn đầu việc Facebook Reels đã được phê duyệt tại màn hình Xuất bản (/publish).",
+      "Người dùng kiểm tra video, lời bình (caption), chọn trang Facebook Page và bấm Đăng Reels.",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54) và thông số kỹ thuật video Reels (BR-55).",
+      "Hệ thống tải video lên Facebook Reels, cập nhật trạng thái Đã xuất bản (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu video không đúng tỷ lệ dọc hoặc vượt quá thời lượng Reels cho phép: Hệ thống báo lỗi MSG52.",
+      "Nếu quá trình tải video lên Facebook bị gián đoạn: Hệ thống tự động thử lại và báo MSG54 nếu vẫn lỗi."
+    ],
+    "postConditions": [
+      "The vertical video is published as a Facebook Reel on the connected Page and tracked in BrandHub (3.8.3, 3.8.4).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374216/brandhub-docs-portal/report3/r3-fig-125.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_10.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.11",
+    "title": "Publish Instagram Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-117",
+    "ucName": "Publish Instagram Post",
+    "ucDescription": "(3.8.11) Xuất bản bài đăng ảnh đơn hoặc bộ nhiều ảnh xoay vòng (Carousel) kèm lời bình (caption) và bộ hashtag lên tài khoản Instagram Business đã kết nối.",
+    "figureId": "r3-fig-126",
+    "figureNumber": 126,
+    "figureCaption": "Figure 126 - Publish Instagram Post",
+    "sequenceFigureId": "seq-3.8.11",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản bài đăng Instagram Post trên màn hình Xuất bản (/publish) hoặc khi đến lịch hẹn.",
+    "purpose": "Xuất bản bài đăng ảnh đơn hoặc bộ nhiều ảnh xoay vòng (Carousel) kèm lời bình (caption) và bộ hashtag lên tài khoản Instagram Business đã kết nối.",
+    "viSummary": "Xuất bản bài đăng ảnh đơn hoặc bộ nhiều ảnh xoay vòng (Carousel) kèm lời bình (caption) và bộ hashtag lên tài khoản Instagram Business đã kết nối.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Instagram Post hiển thị ảnh đơn hoặc bộ ảnh Carousel, nội dung caption kèm hashtag, tài khoản Instagram Business đích và nút Đăng lên Instagram.",
+    "dataProcessing": "Hệ thống kiểm tra bài đăng đã được phê duyệt (BR-54), kiểm tra định dạng và tỷ lệ khung hình ảnh theo chuẩn của Instagram (BR-55), sau đó khởi tạo gói hình ảnh và xuất bản chính thức lên tài khoản Instagram Business đã chọn (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Ít nhất 1 hình ảnh đã được phê duyệt, nội dung caption và tài khoản Instagram Business đích.",
+      "inputOptional": "Sắp xếp thứ tự các ảnh trong bộ ảnh xoay vòng (Carousel).",
+      "systemData": "Kiểm tra quy chuẩn ảnh Instagram (BR-55), đăng bài qua Instagram API và lưu đường dẫn bài đăng (BR-56).",
+      "output": "Xuất bản bài đăng Instagram Post thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "No image/video attached, or aspect ratio / caption length (> 2200 chars or > 30 hashtags) violates Instagram Feed rules (BR-55) → Display: MSG02, MSG52.",
+      "Task is not approved (BR-54) → Display: MSG36.",
+      "Instagram Graph API error or expired token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn bài viết Instagram đã được phê duyệt trên màn hình Xuất bản (/publish).",
+      "Người dùng kiểm tra hình ảnh, nội dung caption và bấm Đăng lên Instagram.",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54) và kích thước/định dạng ảnh hợp lệ (BR-55).",
+      "Hệ thống đăng bài lên Instagram Business, lưu lại đường dẫn bài viết (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu bài đăng Instagram không có hình ảnh đính kèm hoặc ảnh sai tỷ lệ cho phép: Hệ thống báo lỗi MSG52.",
+      "Nếu phiên kết nối Instagram hết hạn: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The post is live on the connected Instagram Feed, its status is DONE (3.8.7), and engagement metrics sync automatically (BR-57).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374217/brandhub-docs-portal/report3/r3-fig-126.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_11.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.12",
+    "title": "Publish Instagram Reels",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-118",
+    "ucName": "Publish Instagram Reels",
+    "ucDescription": "(3.8.12) Xuất bản video ngắn lên mục Instagram Reels kèm ảnh bìa (cover) và nội dung caption thông qua tài khoản Instagram Business đã kết nối.",
+    "figureId": "r3-fig-127",
+    "figureNumber": 127,
+    "figureCaption": "Figure 127 - Publish Instagram Reels",
+    "sequenceFigureId": "seq-3.8.12",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản Instagram Reels trên màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng.",
+    "purpose": "Xuất bản video ngắn lên mục Instagram Reels kèm ảnh bìa (cover) và nội dung caption thông qua tài khoản Instagram Business đã kết nối.",
+    "viSummary": "Xuất bản video ngắn lên mục Instagram Reels kèm ảnh bìa (cover) và nội dung caption thông qua tài khoản Instagram Business đã kết nối.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Instagram Reels hiển thị video dọc 9:16, khung chọn ảnh bìa (Cover frame), nội dung caption/hashtag và nút Đăng Instagram Reels.",
+    "dataProcessing": "Hệ thống kiểm tra đầu việc đã hoàn tất phê duyệt (BR-54), kiểm tra video đạt chuẩn Instagram Reels (định dạng MP4/MOV, tỷ lệ khung hình dọc 9:16, thời lượng hợp lệ - BR-55), sau đó tải video lên Instagram, chờ xử lý xong và kích hoạt xuất bản (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Video ngắn tỷ lệ 9:16 đã được phê duyệt, nội dung caption và tài khoản Instagram Business đích.",
+      "inputOptional": "Chọn khung hình làm ảnh bìa (Cover) và tùy chọn chia sẻ đồng thời lên bảng tin chính (Feed).",
+      "systemData": "Kiểm tra chuẩn video Instagram Reels (BR-55), theo dõi tiến trình xử lý video và lưu đường dẫn bài đăng (BR-56).",
+      "output": "Xuất bản video Instagram Reels thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "Attached media is not a valid 9:16 video or violates Instagram Reels duration/size/caption limits (BR-55) → Display: MSG52.",
+      "Task is not approved (BR-54) → Display: MSG36.",
+      "Instagram Graph API container processing failure or expired token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn đầu việc Instagram Reels đã được duyệt trên màn hình Xuất bản (/publish).",
+      "Người dùng chọn tài khoản Instagram Business, kiểm tra ảnh bìa cùng caption và bấm Đăng Reels.",
+      "Hệ thống kiểm tra trạng thái duyệt (BR-54) và thông số kỹ thuật của video (BR-55).",
+      "Hệ thống xuất bản video lên Instagram Reels, cập nhật trạng thái Đã đăng (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu định dạng video hoặc tỷ lệ khung hình không đạt chuẩn Instagram Reels: Hệ thống báo lỗi MSG52.",
+      "Nếu máy chủ Instagram phản hồi lỗi: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The vertical video is published as an Instagram Reel and tracked in BrandHub (3.8.3, 3.8.4).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374217/brandhub-docs-portal/report3/r3-fig-127.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_12.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.13",
+    "title": "Publish Instagram Story",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-119",
+    "ucName": "Publish Instagram Story",
+    "ucDescription": "(3.8.13) Xuất bản hình ảnh hoặc video ngắn 24 giờ lên mục Tin (Instagram Story) của tài khoản Instagram Business đã kết nối.",
+    "figureId": "r3-fig-128",
+    "figureNumber": 128,
+    "figureCaption": "Figure 128 - Publish Instagram Story",
+    "sequenceFigureId": "seq-3.8.13",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản Instagram Story trên màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng.",
+    "purpose": "Xuất bản hình ảnh hoặc video ngắn 24 giờ lên mục Tin (Instagram Story) của tài khoản Instagram Business đã kết nối.",
+    "viSummary": "Xuất bản hình ảnh hoặc video ngắn 24 giờ lên mục Tin (Instagram Story) của tài khoản Instagram Business đã kết nối.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Instagram Story hiển thị khung xem trước toàn màn hình dọc 9:16, tài khoản Instagram Business đích và nút Đăng Story.",
+    "dataProcessing": "Hệ thống kiểm tra ấn phẩm đã được phê duyệt (BR-54) và đạt đúng tỷ lệ hiển thị dọc 9:16 cùng giới hạn thời lượng của Instagram Story (BR-55), sau đó đẩy ấn phẩm lên Instagram Story và cập nhật trạng thái hoàn tất (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Hình ảnh hoặc video dọc 9:16 đã được phê duyệt và tài khoản Instagram Business đích.",
+      "inputOptional": "Chọn đăng ngay hoặc hẹn giờ đăng.",
+      "systemData": "Kiểm tra quy chuẩn 9:16 của Instagram Story (BR-55) và lưu trạng thái xuất bản thành công (BR-56).",
+      "output": "Xuất bản Instagram Story thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "No media attached or media violates Instagram Story 9:16 aspect ratio / 60-second duration limit (BR-55) → Display: MSG02, MSG52.",
+      "Task is not approved (BR-54) → Display: MSG36.",
+      "Instagram API error or expired token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn đầu việc Instagram Story đã duyệt tại màn hình Xuất bản (/publish).",
+      "Người dùng chọn tài khoản Instagram Business đích và bấm Đăng Story.",
+      "Hệ thống kiểm tra trạng thái phê duyệt (BR-54) và định dạng tệp 9:16 (BR-55).",
+      "Hệ thống đăng ấn phẩm lên Instagram Story và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu tệp ảnh/video sai kích thước hoặc vượt quá thời lượng Story: Hệ thống báo lỗi MSG52.",
+      "Nếu kết nối tài khoản Instagram bị gián đoạn: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The Story is live on the connected Instagram account for 24 hours and recorded as DONE in BrandHub (3.8.7).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374218/brandhub-docs-portal/report3/r3-fig-128.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_13.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.14",
+    "title": "Publish TikTok Video",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-120",
+    "ucName": "Publish TikTok Video",
+    "ucDescription": "(3.8.14) Xuất bản video ngắn kèm mô tả (caption), thẻ hashtag và các tùy chọn tương tác (cho phép bình luận, Duet, Stitch) lên tài khoản TikTok đã kết nối của dự án.",
+    "figureId": "r3-fig-129",
+    "figureNumber": 129,
+    "figureCaption": "Figure 129 - Publish TikTok Video",
+    "sequenceFigureId": "seq-3.8.14",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản video lên TikTok tại màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng.",
+    "purpose": "Xuất bản video ngắn kèm mô tả (caption), thẻ hashtag và các tùy chọn tương tác (cho phép bình luận, Duet, Stitch) lên tài khoản TikTok đã kết nối của dự án.",
+    "viSummary": "Xuất bản video ngắn kèm mô tả (caption), thẻ hashtag và các tùy chọn tương tác (cho phép bình luận, Duet, Stitch) lên tài khoản TikTok đã kết nối của dự án.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản TikTok Video hiển thị trình phát video dọc 9:16, ô mô tả kèm hashtag, thiết lập quyền hiển thị (Công khai / Bạn bè / Riêng tư), nút bật/tắt Bình luận / Duet / Stitch và nút Đăng lên TikTok.",
+    "dataProcessing": "Hệ thống kiểm tra đầu việc đã hoàn tất phê duyệt (BR-54) và kiểm tra video đáp ứng đúng quy chuẩn của TikTok (định dạng MP4/MOV/WebM, tỷ lệ khung hình dọc, thời lượng và dung lượng hợp lệ - BR-55). Sau đó, hệ thống tải video lên TikTok theo từng phân đoạn ổn định và lưu mã bài đăng (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Tệp video đã được phê duyệt, nội dung mô tả (caption) và tài khoản TikTok đích.",
+      "inputOptional": "Cài đặt quyền riêng tư (Public/Friends/Private) và bật/tắt cho phép Comment, Duet, Stitch.",
+      "systemData": "Kiểm tra quy chuẩn video TikTok (BR-55), tải video lên TikTok API và lưu đường dẫn bài đăng (BR-56).",
+      "output": "Xuất bản video lên TikTok thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "No video attached or video/caption violates TikTok format, duration, or character limits (BR-55) → Display: MSG02, MSG52.",
+      "Task has not completed approval (BR-54) → Display: MSG36.",
+      "TikTok Content Posting API error or expired OAuth token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn đầu việc TikTok Video đã duyệt tại màn hình Xuất bản (/publish).",
+      "Người dùng chọn tài khoản TikTok đích, cấu hình tùy chọn tương tác (Bình luận, Duet, Stitch) và bấm Đăng lên TikTok.",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54) và định dạng/thời lượng video (BR-55).",
+      "Hệ thống tải video lên TikTok, cập nhật trạng thái Đã xuất bản (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu tệp video sai định dạng hoặc caption vượt quá độ dài cho phép của TikTok: Hệ thống báo lỗi MSG52.",
+      "Nếu phiên ủy quyền TikTok đã hết hạn hoặc lỗi kết nối: Hệ thống hiển thị thông báo MSG54."
+    ],
+    "postConditions": [
+      "The short-form video is published to the connected TikTok account, tracked as DONE in BrandHub (3.8.7), and synced for engagement metrics (3.8.3, 3.8.4).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374218/brandhub-docs-portal/report3/r3-fig-129.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_14.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  },
+  {
+    "code": "3.8.15",
+    "title": "Publish Threads Post",
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social",
+    "ucId": "UC-121",
+    "ucName": "Publish Threads Post",
+    "ucDescription": "(3.8.15) Xuất bản bài viết văn bản ngắn (tối đa 500 ký tự) kèm hình ảnh hoặc video lên tài khoản mạng xã hội Threads đã kết nối của dự án.",
+    "figureId": "r3-fig-130",
+    "figureNumber": 130,
+    "figureCaption": "Figure 130 - Publish Threads Post",
+    "sequenceFigureId": "seq-3.8.15",
+    "classDiagramFigureId": "cd-3.8",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn xuất bản bài viết lên Threads tại màn hình Xuất bản (/publish) hoặc khi đến giờ hẹn đăng.",
+    "purpose": "Xuất bản bài viết văn bản ngắn (tối đa 500 ký tự) kèm hình ảnh hoặc video lên tài khoản mạng xã hội Threads đã kết nối của dự án.",
+    "viSummary": "Xuất bản bài viết văn bản ngắn (tối đa 500 ký tự) kèm hình ảnh hoặc video lên tài khoản mạng xã hội Threads đã kết nối của dự án.",
+    "docAuthor": "Phước",
+    "codeAuthor": "Phước",
+    "interface": "Tùy chọn Xuất bản Threads Post hiển thị khung văn bản (kèm bộ đếm tối đa 500 ký tự), hình ảnh/video đính kèm, tài khoản Threads đích và nút Đăng lên Threads.",
+    "dataProcessing": "Hệ thống kiểm tra bài viết đã được phê duyệt (BR-54), kiểm tra độ dài văn bản không vượt quá 500 ký tự và tệp ảnh/video đính kèm đúng chuẩn của Threads (BR-55), sau đó xuất bản bài viết lên Threads và lưu lại đường dẫn bài đăng (BR-56).",
+    "dataSpecs": {
+      "inputRequired": "Nội dung bài viết đã được phê duyệt (tối đa 500 ký tự) và tài khoản Threads đích.",
+      "inputOptional": "Đính kèm hình ảnh hoặc video minh họa cho bài đăng Threads.",
+      "systemData": "Kiểm tra giới hạn 500 ký tự của Threads (BR-55), xuất bản qua Threads API và lưu đường dẫn bài đăng (BR-56).",
+      "output": "Xuất bản bài viết lên Threads thành công và hiển thị thông báo MSG53."
+    },
+    "businessRules": [
+      {
+        "code": "BR-53",
+        "text": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó."
+      },
+      {
+        "code": "BR-54",
+        "text": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15)."
+      },
+      {
+        "code": "BR-55",
+        "text": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads)."
+      },
+      {
+        "code": "BR-56",
+        "text": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-34",
+      "BR-42",
+      "BR-53",
+      "BR-54",
+      "BR-55",
+      "BR-56"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG52",
+      "MSG53",
+      "MSG54"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-53) → Display: MSG07.",
+      "Both text and media are empty, or text exceeds the 500-character Threads limit (BR-55) → Display: MSG02, MSG52.",
+      "Task is not approved (BR-54) → Display: MSG36.",
+      "Threads API error or expired OAuth token → Display: MSG54."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager chọn bài viết Threads đã được duyệt trên màn hình Xuất bản (/publish).",
+      "Người dùng chọn tài khoản Threads đích, kiểm tra độ dài văn bản dưới 500 ký tự và bấm Đăng lên Threads.",
+      "Hệ thống kiểm tra điều kiện phê duyệt (BR-54) và quy chuẩn bài đăng Threads (BR-55).",
+      "Hệ thống xuất bản bài viết lên Threads, lưu đường dẫn bài đăng (BR-56) và hiển thị thông báo MSG53."
+    ],
+    "abnormalCases": [
+      "Nếu nội dung văn bản dài quá 500 ký tự hoặc tệp đính kèm không hợp lệ: Hệ thống báo lỗi MSG52 để người dùng rút gọn lại.",
+      "Nếu kết nối tài khoản Threads gặp sự cố: Hệ thống báo thông báo MSG54."
+    ],
+    "postConditions": [
+      "The post is live on the connected Threads profile, recorded as DONE in BrandHub (3.8.7), and tracked on the Publishing Dashboard (3.8.3).",
+      "Role-based access isolation (BR-53) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374217/brandhub-docs-portal/report3/r3-fig-130.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_15.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png"
+  }
+]

@@ -1,0 +1,1989 @@
+{
+  "businessRules": [
+    {
+      "code": "BR-01",
+      "definition": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.2",
+        "3.2.3",
+        "3.2.4",
+        "3.4.7",
+        "3.10.7"
+      ]
+    },
+    {
+      "code": "BR-02",
+      "definition": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ số; mật khẩu luôn được mã hóa an toàn trước khi lưu vào cơ sở dữ liệu.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.2",
+        "3.2.4",
+        "3.2.5"
+      ]
+    },
+    {
+      "code": "BR-03",
+      "definition": "Mã xác nhận OTP gửi qua email (khi đăng ký hoặc quên mật khẩu) gồm 6 chữ số, có hiệu lực trong 10 phút và chỉ dùng được 1 lần. Khi tạo mã mới thì mã cũ sẽ hết hiệu lực ngay.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.4",
+        "3.2.6"
+      ]
+    },
+    {
+      "code": "BR-04",
+      "definition": "Mỗi lần bấm gửi lại mã OTP phải cách nhau ít nhất 60 giây. Nếu nhập sai mã OTP liên tiếp 5 lần thì mã đó sẽ bị khóa, người dùng phải yêu cầu gửi mã mới.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.4",
+        "3.2.6"
+      ]
+    },
+    {
+      "code": "BR-05",
+      "definition": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập.",
+      "relatedFrs": [
+        "3.2.2",
+        "3.2.3",
+        "3.2.6",
+        "3.2.7",
+        "3.2.8",
+        "3.3.1",
+        "3.10.9"
+      ]
+    },
+    {
+      "code": "BR-06",
+      "definition": "Nếu nhập sai mật khẩu đăng nhập 5 lần liên tiếp trong vòng 15 phút, tài khoản sẽ tạm khóa chức năng đăng nhập bằng mật khẩu trong 15 phút để chống dò mật khẩu.",
+      "relatedFrs": [
+        "3.2.2"
+      ]
+    },
+    {
+      "code": "BR-07",
+      "definition": "Khi đăng nhập bằng Google, nếu email Google trùng với tài khoản đã có trên BrandHub thì hệ thống tự động liên kết và đăng nhập luôn; nếu chưa có thì hệ thống tự tạo tài khoản mới đã xác thực.",
+      "relatedFrs": [
+        "3.2.3"
+      ]
+    },
+    {
+      "code": "BR-08",
+      "definition": "Khi đặt lại mật khẩu do quên (3.2.4), hệ thống sẽ đăng xuất toàn bộ các thiết bị đang đăng nhập cũ. Khi chủ động đổi mật khẩu (3.2.5), người dùng phải nhập đúng mật khẩu hiện tại và mật khẩu mới phải khác mật khẩu cũ.",
+      "relatedFrs": [
+        "3.2.4",
+        "3.2.5"
+      ]
+    },
+    {
+      "code": "BR-09",
+      "definition": "Nếu tài khoản có bật bảo mật 2 lớp (2FA), sau khi nhập đúng mật khẩu, người dùng cần nhập thêm mã 6 số từ ứng dụng Authenticator trên điện thoại (thay đổi mỗi 30 giây) mới hoàn tất đăng nhập.",
+      "relatedFrs": [
+        "3.2.2",
+        "3.2.7"
+      ]
+    },
+    {
+      "code": "BR-10",
+      "definition": "Khi người dùng tự xóa tài khoản (3.2.9), hệ thống sẽ tạm khóa và cho phép khôi phục trong 30 ngày trước khi xóa hẳn. Lưu ý: Không thể xóa tài khoản nếu người đó đang là Owner duy nhất của một Agency còn thành viên hoặc chiến dịch đang chạy.",
+      "relatedFrs": [
+        "3.2.9"
+      ]
+    },
+    {
+      "code": "BR-11",
+      "definition": "Mỗi người dùng có một Hồ sơ cá nhân duy nhất trên hệ thống; địa chỉ email đăng nhập chính được cố định, không thể tự đổi trên màn hình sửa hồ sơ.",
+      "relatedFrs": [
+        "3.3.1",
+        "3.3.2",
+        "3.10.8"
+      ]
+    },
+    {
+      "code": "BR-12",
+      "definition": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB.",
+      "relatedFrs": [
+        "3.3.2",
+        "3.3.4",
+        "3.4.3",
+        "3.4.5",
+        "3.4.14",
+        "3.4.16",
+        "3.6.3"
+      ]
+    },
+    {
+      "code": "BR-13",
+      "definition": "Mỗi tài khoản Client có một Hồ sơ thương hiệu riêng (gồm tên nhãn hàng, ngành nghề, logo, website, thông tin liên hệ) có thể dùng chung cho nhiều Workspace khác nhau mà không cần phải nhập lại.",
+      "relatedFrs": [
+        "3.3.3",
+        "3.3.4",
+        "3.4.24"
+      ]
+    },
+    {
+      "code": "BR-14",
+      "definition": "Chỉ chính tài khoản Client đó hoặc Manager trong Workspace liên kết mới được xem và cập nhật Hồ sơ thương hiệu của Client, và không được phép thay đổi email gốc của tài khoản Client.",
+      "relatedFrs": [
+        "3.3.3",
+        "3.3.4"
+      ]
+    },
+    {
+      "code": "BR-15",
+      "definition": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty.",
+      "relatedFrs": [
+        "3.4.1",
+        "3.4.2",
+        "3.4.3",
+        "3.4.4",
+        "3.4.5",
+        "3.4.6",
+        "3.4.7",
+        "3.4.11",
+        "3.4.12",
+        "3.4.14",
+        "3.4.16",
+        "3.4.17",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22",
+        "3.4.24",
+        "3.4.25",
+        "3.5.1",
+        "3.7.16",
+        "3.7.18",
+        "3.9.1",
+        "3.9.2",
+        "3.9.3",
+        "3.9.5",
+        "3.9.6",
+        "3.10.8"
+      ]
+    },
+    {
+      "code": "BR-16",
+      "definition": "Chỉ Owner mới có quyền xóa Agency (3.4.6) hoặc xóa Workspace (3.4.17). Khi xóa, dữ liệu sẽ được chuyển sang trạng thái tạm ẩn trong 30 ngày để Owner có thể khôi phục lại nếu xóa nhầm, đồng thời tạm ngưng quyền truy cập của các thành viên.",
+      "relatedFrs": [
+        "3.2.9",
+        "3.4.1",
+        "3.4.6",
+        "3.4.17"
+      ]
+    },
+    {
+      "code": "BR-17",
+      "definition": "Lời mời tham gia Agency được gửi qua email và thông báo trên ứng dụng. Khi chấp nhận, người dùng trở thành thành viên chung của Agency (chưa tự động vào các Workspace riêng). Lời mời sẽ tự hết hạn sau 3 ngày nếu không phản hồi.",
+      "relatedFrs": [
+        "3.4.7",
+        "3.4.8",
+        "3.4.9",
+        "3.4.10"
+      ]
+    },
+    {
+      "code": "BR-18",
+      "definition": "Chỉ đúng tài khoản có email nhận được lời mời (và lời mời đó vẫn đang chờ phản hồi, chưa hết hạn 3 ngày) mới có thể bấm Chấp nhận (3.4.9) hoặc Từ chối (3.4.10).",
+      "relatedFrs": [
+        "3.4.8",
+        "3.4.9",
+        "3.4.10"
+      ]
+    },
+    {
+      "code": "BR-19",
+      "definition": "Khi xóa một thành viên khỏi Agency (3.4.11) hoặc Workspace (3.4.26), người đó sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu mà họ đã làm trước đó vẫn được giữ nguyên cho dự án.",
+      "relatedFrs": [
+        "3.4.11",
+        "3.4.26"
+      ]
+    },
+    {
+      "code": "BR-20",
+      "definition": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên.",
+      "relatedFrs": [
+        "3.4.2",
+        "3.4.12",
+        "3.4.13",
+        "3.4.15",
+        "3.4.23",
+        "3.4.24",
+        "3.4.26",
+        "3.5.2",
+        "3.5.6",
+        "3.5.10",
+        "3.6.2",
+        "3.6.3",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.8",
+        "3.6.11",
+        "3.6.12",
+        "3.6.13",
+        "3.6.14",
+        "3.6.15",
+        "3.6.17",
+        "3.6.19",
+        "3.6.21",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24",
+        "3.6.25",
+        "3.6.26",
+        "3.6.27",
+        "3.6.28",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.35",
+        "3.7.3",
+        "3.7.4",
+        "3.7.5",
+        "3.7.12",
+        "3.7.15",
+        "3.8.1",
+        "3.8.2",
+        "3.8.3",
+        "3.8.4",
+        "3.8.7"
+      ]
+    },
+    {
+      "code": "BR-21",
+      "definition": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager.",
+      "relatedFrs": [
+        "3.4.11",
+        "3.4.14",
+        "3.4.16",
+        "3.4.18",
+        "3.4.23",
+        "3.4.24",
+        "3.4.25",
+        "3.4.26"
+      ]
+    },
+    {
+      "code": "BR-22",
+      "definition": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này.",
+      "relatedFrs": [
+        "3.4.13",
+        "3.4.14",
+        "3.4.15",
+        "3.4.16",
+        "3.4.21",
+        "3.5.5",
+        "3.6.1",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.7",
+        "3.6.8",
+        "3.6.27",
+        "3.6.32",
+        "3.8.6",
+        "3.8.7",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-23",
+      "definition": "Thành viên có thể chủ động rời khỏi một Workspace (3.4.18) mà vẫn giữ tư cách thành viên của Agency. Tuy nhiên, nếu người đó đang là Manager duy nhất của Workspace thì phải chuyển quyền Manager cho người khác trước khi rời đi.",
+      "relatedFrs": [
+        "3.4.18"
+      ]
+    },
+    {
+      "code": "BR-24",
+      "definition": "Mẫu cấu hình Workspace (Workspace Template) giúp lưu lại các thiết lập sẵn (ngành hàng, múi giờ, khung vai trò, gói dịch vụ mẫu). Khi xóa một Template (3.4.22), các Workspace đã tạo từ mẫu đó trước đây vẫn hoạt động bình thường.",
+      "relatedFrs": [
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "code": "BR-25",
+      "definition": "Gói dịch vụ truyền thông (Media Package) gồm các gói mẫu có sẵn hoặc gói do Owner tự thiết lập (quy định rõ thời gian, số lượng bài đăng, KPI và chi phí). Chỉ Owner mới có quyền tạo mới hoặc bật/tắt các gói mẫu của Agency.",
+      "relatedFrs": [
+        "3.5.1",
+        "3.5.2",
+        "3.5.3"
+      ]
+    },
+    {
+      "code": "BR-26",
+      "definition": "Trong mỗi dự án, Client và đại diện Agency (Owner/Manager) có thể trao đổi, đề xuất chỉnh sửa các điều khoản của gói truyền thông (3.5.3) cho đến khi cả hai bên cùng bấm phê duyệt chốt gói (3.5.4).",
+      "relatedFrs": [
+        "3.5.3",
+        "3.5.4"
+      ]
+    },
+    {
+      "code": "BR-27",
+      "definition": "Kế hoạch Chiến dịch Truyền thông (Media Campaign - 3.5.5) phải được lập dựa trên một Gói dịch vụ đã được duyệt, liệt kê cụ thể các bài viết dự kiến, kênh đăng và lịch trình thực hiện cho nhãn hàng.",
+      "relatedFrs": [
+        "3.5.4",
+        "3.5.5",
+        "3.5.6",
+        "3.5.7"
+      ]
+    },
+    {
+      "code": "BR-28",
+      "definition": "Mỗi lần chỉnh sửa hoặc góp ý trên Kế hoạch Chiến dịch (3.5.7) đều được hệ thống lưu lại thành một phiên bản lịch sử để hai bên dễ dàng đối chiếu trước khi duyệt chính thức.",
+      "relatedFrs": [
+        "3.5.5",
+        "3.5.6",
+        "3.5.7",
+        "3.5.8"
+      ]
+    },
+    {
+      "code": "BR-29",
+      "definition": "Kế hoạch Chiến dịch chỉ chính thức bắt đầu khi cả Manager và Client cùng xác nhận phê duyệt (3.5.8). Ngay khi duyệt xong, hệ thống tự động tạo các đầu việc (Task) tương ứng vào danh sách chờ (Backlog) của Workspace.",
+      "relatedFrs": [
+        "3.5.7",
+        "3.5.8"
+      ]
+    },
+    {
+      "code": "BR-30",
+      "definition": "Chỉ Manager mới có quyền xác nhận hoàn tất và đóng Chiến dịch Truyền thông đang chạy (3.5.9). Khi chiến dịch kết thúc, các yêu cầu nội dung phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại.",
+      "relatedFrs": [
+        "3.5.7",
+        "3.5.9"
+      ]
+    },
+    {
+      "code": "BR-31",
+      "definition": "Yêu cầu nội dung phát sinh (Content Request) đi qua các trạng thái: Chờ xử lý (PENDING) -> Đang xem xét (IN_PROGRESS) -> Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED) do Owner/Manager quyết định. Khi được Chấp nhận, hệ thống tự động tạo thành một Task mới trong Workspace.",
+      "relatedFrs": [
+        "3.5.10",
+        "3.5.11",
+        "3.5.12",
+        "3.5.13"
+      ]
+    },
+    {
+      "code": "BR-32",
+      "definition": "Người gửi Yêu cầu nội dung phát sinh (Client hoặc Manager) chỉ có thể sửa nội dung (3.5.12) hoặc hủy yêu cầu (3.5.13) khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+      "relatedFrs": [
+        "3.5.9",
+        "3.5.12",
+        "3.5.13"
+      ]
+    },
+    {
+      "code": "BR-33",
+      "definition": "Mỗi công việc (Task) trong Workspace đi qua 5 trạng thái: Chờ phân rã (BACKLOG) -> Cần làm (TODO) -> Đang làm (IN_PROGRESS) -> Đang chờ duyệt (IN_REVIEW) -> Hoàn thành (DONE). Chỉ Manager mới có quyền điền đặc tả chi tiết (3.6.1) và giao việc cho Creator (3.6.2).",
+      "relatedFrs": [
+        "3.5.11",
+        "3.6.1",
+        "3.6.2",
+        "3.6.4",
+        "3.6.5",
+        "3.6.7",
+        "3.6.9"
+      ]
+    },
+    {
+      "code": "BR-34",
+      "definition": "Quy trình duyệt bài 3 cấp (3.6.9): Creator gửi bài nháp -> Người kiểm tra nội bộ (nếu có) duyệt -> Manager duyệt -> Client duyệt bước cuối. Nếu bất kỳ cấp nào bấm Trả lại (kèm lý do bắt buộc), bài viết sẽ quay về cho Creator sửa lại từ đầu nhưng vẫn giữ nguyên lịch sử nhận xét trước đó.",
+      "relatedFrs": [
+        "3.6.2",
+        "3.6.7",
+        "3.6.9",
+        "3.6.33",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-35",
+      "definition": "Màn hình soạn thảo bài viết (3.6.10) tự động lưu lại các phiên bản mỗi khi người dùng lưu nháp hoặc gửi duyệt, giúp Creator và Manager dễ dàng xem lại lịch sử chỉnh sửa và khôi phục bản cũ (3.6.34) mà không tốn thêm điểm AI Credit.",
+      "relatedFrs": [
+        "3.6.10",
+        "3.6.20",
+        "3.6.34"
+      ]
+    },
+    {
+      "code": "BR-36",
+      "definition": "Tư liệu trong kho của Workspace được phân thành 3 loại: Ảnh/video gốc chưa chỉnh sửa (RAW), Ấn phẩm đã hoàn thiện (RETOUCHED) và Tài liệu tham khảo thương hiệu (BRAND_REFERENCE). Nếu chọn nhầm tệp RAW để đăng bài, hệ thống sẽ hiện cảnh báo nhắc nhở; tư liệu đã xóa có thể khôi phục trong 30 ngày.",
+      "relatedFrs": [
+        "3.6.11",
+        "3.6.12",
+        "3.6.13",
+        "3.6.14",
+        "3.6.16",
+        "3.6.18",
+        "3.6.19"
+      ]
+    },
+    {
+      "code": "BR-37",
+      "definition": "Khi kết nối Google Drive của khách hàng (3.6.15), hệ thống chỉ xin quyền đọc dữ liệu để đồng bộ các tệp ảnh/video được chọn vào kho tư liệu của Workspace (3.6.16). Khi ngắt kết nối (3.6.17), các tệp đã đồng bộ vào kho trước đó vẫn được giữ nguyên.",
+      "relatedFrs": [
+        "3.6.15",
+        "3.6.16",
+        "3.6.17"
+      ]
+    },
+    {
+      "code": "BR-38",
+      "definition": "Khi đóng dấu bản quyền (Watermark - 3.6.18), hệ thống ghép logo thương hiệu lên ảnh theo vị trí, kích thước và độ mờ đã chọn, sau đó lưu thành một tệp ảnh mới trong kho tư liệu để giữ nguyên ảnh gốc.",
+      "relatedFrs": [
+        "3.6.18"
+      ]
+    },
+    {
+      "code": "BR-39",
+      "definition": "Các bộ sưu tập Hashtag được quản lý riêng theo từng Workspace và phân loại theo mục đích chiến dịch/sự kiện. Khi xóa một bộ Hashtag (3.6.24), hệ thống chỉ ẩn khỏi danh sách chọn mới chứ không làm mất các hashtag đã chèn vào bài viết cũ.",
+      "relatedFrs": [
+        "3.6.20",
+        "3.6.21",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24",
+        "3.7.14"
+      ]
+    },
+    {
+      "code": "BR-40",
+      "definition": "Biểu mẫu Khảo sát (3.6.25) giúp thu thập ý kiến phản hồi của người tham gia sự kiện và thống kê kết quả trực tiếp (3.6.26); tính năng Tạo link họp (3.6.27) giúp tạo nhanh đường dẫn phòng họp trực tuyến gắn với lịch của Workspace.",
+      "relatedFrs": [
+        "3.6.25",
+        "3.6.26",
+        "3.6.27"
+      ]
+    },
+    {
+      "code": "BR-41",
+      "definition": "Mẫu Email (Mail Template) cho phép chèn các thông tin tự động (như tên người nhận, tên chiến dịch). Khi gửi email hàng loạt (3.6.32), hệ thống tự động bỏ qua những địa chỉ đã hủy đăng ký nhận tin.",
+      "relatedFrs": [
+        "3.6.28",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.32"
+      ]
+    },
+    {
+      "code": "BR-42",
+      "definition": "Tính năng Kiểm tra tuân thủ nội dung (3.6.33) giúp rà soát văn bản bài viết để phát hiện các từ ngữ nhạy cảm, bạo lực, phản cảm hoặc vi phạm chính sách cộng đồng, tô sáng đoạn vi phạm để Creator sửa lại trước khi duyệt và đăng bài.",
+      "relatedFrs": [
+        "3.6.9",
+        "3.6.33",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15",
+        "3.10.4"
+      ]
+    },
+    {
+      "code": "BR-43",
+      "definition": "Phòng trò chuyện trực tuyến (Realtime Chat - 3.6.35) chỉ dành riêng cho các thành viên và Client trong cùng một Workspace, hỗ trợ gửi tin nhắn tức thì, trả lời theo luồng, thả biểu tượng cảm xúc và nhắc tên (@mention).",
+      "relatedFrs": [
+        "3.6.35"
+      ]
+    },
+    {
+      "code": "BR-44",
+      "definition": "Cả 4 chế độ xem công việc (Danh sách 3.6.4, Lịch 3.6.5, Biểu đồ Gantt 3.6.6, Bảng Kanban 3.6.7) và Bộ lọc (3.6.8) đều hiển thị chung một nguồn dữ liệu Task của Workspace, đồng bộ theo đúng múi giờ và quyền hạn của từng người.",
+      "relatedFrs": [
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.7",
+        "3.6.8"
+      ]
+    },
+    {
+      "code": "BR-45",
+      "definition": "Danh sách Chủ đề xu hướng (3.7.1) và Đồ thị xu hướng AI (3.7.2) được tổng hợp tự động theo lịch thu thập do Admin cấu hình (3.7.13), giúp gợi ý các chủ đề và thẻ hashtag đang thịnh hành sát với ngành hàng.",
+      "relatedFrs": [
+        "3.7.1",
+        "3.7.2",
+        "3.7.13",
+        "3.7.14"
+      ]
+    },
+    {
+      "code": "BR-46",
+      "definition": "Tài liệu hướng dẫn thương hiệu (Brand Guideline) tải lên kho tri thức AI (3.7.4) hỗ trợ định dạng PDF, DOCX, TXT hoặc đường dẫn web (tối đa 10 MB), được kiểm tra an toàn và lưu tách biệt hoàn toàn theo từng Workspace.",
+      "relatedFrs": [
+        "3.6.10",
+        "3.7.3",
+        "3.7.4",
+        "3.7.6",
+        "3.7.7",
+        "3.7.8",
+        "3.7.9",
+        "3.7.10",
+        "3.7.11"
+      ]
+    },
+    {
+      "code": "BR-47",
+      "definition": "Khi xóa một Tài liệu hướng dẫn thương hiệu (3.7.5), hệ thống xóa cả tệp gốc lẫn toàn bộ dữ liệu trích xuất của tài liệu đó để AI không còn sử dụng thông tin cũ khi viết bài.",
+      "relatedFrs": [
+        "3.7.5"
+      ]
+    },
+    {
+      "code": "BR-48",
+      "definition": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố.",
+      "relatedFrs": [
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11",
+        "3.9.4",
+        "3.9.6",
+        "3.10.10",
+        "3.10.11"
+      ]
+    },
+    {
+      "code": "BR-49",
+      "definition": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng.",
+      "relatedFrs": [
+        "3.6.10",
+        "3.7.6",
+        "3.7.7",
+        "3.7.8",
+        "3.7.9",
+        "3.7.10",
+        "3.7.11"
+      ]
+    },
+    {
+      "code": "BR-50",
+      "definition": "Các hình ảnh và video do AI tạo ra có thể xuất tải về máy (3.7.12) theo các định dạng thông dụng (MP4, WebM cho video; PNG, JPG, WebP cho ảnh) hoặc lưu thẳng vào Kho tư liệu của Workspace.",
+      "relatedFrs": [
+        "3.7.9",
+        "3.7.11",
+        "3.7.12"
+      ]
+    },
+    {
+      "code": "BR-51",
+      "definition": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng.",
+      "relatedFrs": [
+        "3.7.15",
+        "3.7.16",
+        "3.7.17",
+        "3.7.18",
+        "3.7.19"
+      ]
+    },
+    {
+      "code": "BR-52",
+      "definition": "Tính năng Gợi ý đối tác bằng AI (3.7.19) tự động chấm điểm và đề xuất các đối tác phù hợp nhất trong danh bạ dựa trên ngành hàng của chiến dịch, tệp khách hàng mục tiêu và mức ngân sách dự kiến.",
+      "relatedFrs": [
+        "3.7.19"
+      ]
+    },
+    {
+      "code": "BR-53",
+      "definition": "Các tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) được kết nối riêng cho từng Workspace (3.8.1). Khi ngắt kết nối một tài khoản (3.8.2), hệ thống hủy quyền đăng bài và tự động hủy các lịch hẹn đăng đang chờ của kênh đó.",
+      "relatedFrs": [
+        "3.8.1",
+        "3.8.2",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-54",
+      "definition": "Chỉ những bài viết đã hoàn tất quy trình phê duyệt (BR-34) và vượt qua bước kiểm tra nội dung an toàn (BR-42) mới được phép hẹn giờ đăng (3.8.6) hoặc đăng ngay lên mạng xã hội (3.8.8–3.8.15).",
+      "relatedFrs": [
+        "3.6.9",
+        "3.6.33",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-55",
+      "definition": "Trước khi đăng hoặc khi Xem trước bài đăng (3.8.5), hệ thống tự động kiểm tra định dạng tệp, tỷ lệ khung hình, thời lượng video và giới hạn số ký tự theo đúng quy định của từng nền tảng (Facebook, Instagram, TikTok, Threads).",
+      "relatedFrs": [
+        "3.8.5",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-56",
+      "definition": "Các bài hẹn giờ đăng (3.8.6) được chạy theo đúng múi giờ của Workspace, cập nhật trạng thái từ Chờ đăng -> Đang đăng -> Đã đăng (hoặc Lỗi - 3.8.7). Nếu gặp lỗi kết nối mạng tạm thời, hệ thống sẽ tự động thử đăng lại tối đa 3 lần.",
+      "relatedFrs": [
+        "3.8.6",
+        "3.8.7",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "code": "BR-57",
+      "definition": "Sau khi bài viết được đăng thành công, hệ thống định kỳ cập nhật các chỉ số tương tác (lượt thích, bình luận, chia sẻ, lượt xem) từ mạng xã hội về Bảng thống kê bài đăng (3.8.3) và Chi tiết bài đăng (3.8.4).",
+      "relatedFrs": [
+        "3.8.3",
+        "3.8.4"
+      ]
+    },
+    {
+      "code": "BR-58",
+      "definition": "Mỗi Agency mới tạo sẽ bắt đầu ở gói Cơ bản (Basic). Khi Owner nâng cấp lên gói cao hơn (Pro hoặc Enterprise qua 3.9.1) và thanh toán thành công, hệ thống sẽ mở rộng ngay giới hạn số lượng Workspace, thành viên, dung lượng lưu trữ và điểm AI Credit hàng tháng.",
+      "relatedFrs": [
+        "3.4.3",
+        "3.4.14",
+        "3.6.12",
+        "3.6.16",
+        "3.9.1",
+        "3.9.2"
+      ]
+    },
+    {
+      "code": "BR-59",
+      "definition": "Mọi giao dịch nâng cấp gói cước (3.9.1) và mua thêm điểm AI Credit (3.9.5) đều thanh toán qua mã VietQR của cổng SePay (3.9.2). Đơn hàng chỉ chuyển sang Đã thanh toán và cộng quyền lợi khi hệ thống nhận được thông báo xác nhận hợp lệ từ SePay.",
+      "relatedFrs": [
+        "3.9.1",
+        "3.9.2",
+        "3.9.5",
+        "3.10.13"
+      ]
+    },
+    {
+      "code": "BR-60",
+      "definition": "Mọi biến động điểm AI Credit đều được ghi lại rõ ràng trong lịch sử (3.9.4); hệ thống ưu tiên trừ điểm định kỳ hàng tháng trước khi trừ đến điểm mua thêm, đồng thời cho phép Owner đặt giới hạn sử dụng điểm cho từng Workspace và thành viên (3.9.6).",
+      "relatedFrs": [
+        "3.6.34",
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11",
+        "3.9.2",
+        "3.9.4",
+        "3.9.5",
+        "3.9.6"
+      ]
+    },
+    {
+      "code": "BR-61",
+      "definition": "Mỗi giao dịch thanh toán thành công đều tự động tạo hóa đơn điện tử để Owner tra cứu và tải về trong mục Lịch sử hóa đơn (3.9.3), đồng thời tổng hợp vào Bảng thống kê doanh thu của Admin (3.10.13).",
+      "relatedFrs": [
+        "3.9.2",
+        "3.9.3",
+        "3.10.2",
+        "3.10.13"
+      ]
+    },
+    {
+      "code": "BR-62",
+      "definition": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác.",
+      "relatedFrs": [
+        "3.7.13",
+        "3.10.1",
+        "3.10.2",
+        "3.10.3",
+        "3.10.4",
+        "3.10.5",
+        "3.10.6",
+        "3.10.7",
+        "3.10.8",
+        "3.10.9",
+        "3.10.10",
+        "3.10.11",
+        "3.10.12",
+        "3.10.13"
+      ]
+    },
+    {
+      "code": "BR-63",
+      "definition": "Cơ chế xử lý vi phạm 3 mức (3.10.5, 3.10.9): 3 lần cảnh cáo mức Vàng (YELLOW) sẽ tự động gộp thành 1 mức Cam (ORANGE); tài khoản bị mức Cam sẽ bị gắn cờ theo dõi (mọi bài đăng cần Admin duyệt qua hàng đợi 3.10.4); nếu vi phạm mức Đỏ (RED) hoặc tích lũy 3 mức Cam thì tài khoản sẽ bị tạm khóa 30 ngày. Sau 30 ngày không có vi phạm mới, cảnh cáo sẽ tự hết hạn và tài khoản hết hạn khóa 30 ngày sẽ tự mở lại.",
+      "relatedFrs": [
+        "3.8.6",
+        "3.10.4",
+        "3.10.5",
+        "3.10.9"
+      ]
+    },
+    {
+      "code": "BR-64",
+      "definition": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó.",
+      "relatedFrs": [
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11",
+        "3.9.4",
+        "3.9.6",
+        "3.10.10",
+        "3.10.11",
+        "3.10.12"
+      ]
+    },
+    {
+      "code": "BR-65",
+      "definition": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống.",
+      "relatedFrs": [
+        "3.7.13",
+        "3.10.1",
+        "3.10.3",
+        "3.10.4",
+        "3.10.5",
+        "3.10.7",
+        "3.10.8",
+        "3.10.9",
+        "3.10.11",
+        "3.10.12"
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "index": "1",
+      "code": "MSG01",
+      "type": "Hiển thị trực tiếp trên màn hình (Inline)",
+      "context": "Không tìm thấy dữ liệu nào khớp với từ khóa tìm kiếm hoặc bộ lọc hiện tại",
+      "content": "No results found matching your criteria.",
+      "relatedFrs": [
+        "3.3.1",
+        "3.3.3",
+        "3.4.1",
+        "3.4.2",
+        "3.4.4",
+        "3.4.8",
+        "3.4.12",
+        "3.4.13",
+        "3.4.15",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22",
+        "3.4.23",
+        "3.5.2",
+        "3.5.6",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.8",
+        "3.6.11",
+        "3.6.14",
+        "3.6.17",
+        "3.6.19",
+        "3.6.20",
+        "3.6.21",
+        "3.6.24",
+        "3.6.26",
+        "3.6.28",
+        "3.6.34",
+        "3.6.35",
+        "3.7.1",
+        "3.7.2",
+        "3.7.3",
+        "3.7.5",
+        "3.7.8",
+        "3.7.10",
+        "3.7.15",
+        "3.7.17",
+        "3.7.18",
+        "3.7.19",
+        "3.8.2",
+        "3.8.3",
+        "3.8.4",
+        "3.8.7",
+        "3.9.3",
+        "3.9.4",
+        "3.9.5",
+        "3.9.6",
+        "3.10.1",
+        "3.10.2",
+        "3.10.3",
+        "3.10.6",
+        "3.10.8",
+        "3.10.10",
+        "3.10.11",
+        "3.10.13"
+      ]
+    },
+    {
+      "index": "2",
+      "code": "MSG02",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Người dùng bỏ trống các ô thông tin bắt buộc phải nhập (có dấu *)",
+      "content": "The * field is required.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.2",
+        "3.2.3",
+        "3.2.4",
+        "3.2.5",
+        "3.2.6",
+        "3.2.7",
+        "3.2.8",
+        "3.2.9",
+        "3.3.1",
+        "3.3.2",
+        "3.3.3",
+        "3.3.4",
+        "3.4.1",
+        "3.4.2",
+        "3.4.3",
+        "3.4.4",
+        "3.4.5",
+        "3.4.6",
+        "3.4.7",
+        "3.4.8",
+        "3.4.9",
+        "3.4.10",
+        "3.4.11",
+        "3.4.12",
+        "3.4.13",
+        "3.4.14",
+        "3.4.15",
+        "3.4.16",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22",
+        "3.4.23",
+        "3.4.24",
+        "3.4.25",
+        "3.4.26",
+        "3.5.1",
+        "3.5.2",
+        "3.5.3",
+        "3.5.4",
+        "3.5.5",
+        "3.5.6",
+        "3.5.7",
+        "3.5.8",
+        "3.5.9",
+        "3.5.10",
+        "3.5.11",
+        "3.5.12",
+        "3.5.13",
+        "3.6.1",
+        "3.6.2",
+        "3.6.3",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.7",
+        "3.6.8",
+        "3.6.9",
+        "3.6.10",
+        "3.6.12",
+        "3.6.13",
+        "3.6.14",
+        "3.6.15",
+        "3.6.17",
+        "3.6.18",
+        "3.6.19",
+        "3.6.20",
+        "3.6.21",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24",
+        "3.6.25",
+        "3.6.26",
+        "3.6.27",
+        "3.6.28",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.32",
+        "3.6.33",
+        "3.6.34",
+        "3.6.35",
+        "3.7.1",
+        "3.7.2",
+        "3.7.3",
+        "3.7.4",
+        "3.7.5",
+        "3.7.6",
+        "3.7.7",
+        "3.7.8",
+        "3.7.9",
+        "3.7.10",
+        "3.7.11",
+        "3.7.12",
+        "3.7.13",
+        "3.7.14",
+        "3.7.15",
+        "3.7.16",
+        "3.7.17",
+        "3.7.18",
+        "3.7.19",
+        "3.8.1",
+        "3.8.2",
+        "3.8.3",
+        "3.8.4",
+        "3.8.5",
+        "3.8.6",
+        "3.8.9",
+        "3.8.11",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15",
+        "3.9.1",
+        "3.9.3",
+        "3.9.4",
+        "3.9.5",
+        "3.10.1",
+        "3.10.2",
+        "3.10.3",
+        "3.10.4",
+        "3.10.5",
+        "3.10.6",
+        "3.10.7",
+        "3.10.8",
+        "3.10.9",
+        "3.10.10",
+        "3.10.11",
+        "3.10.12",
+        "3.10.13"
+      ]
+    },
+    {
+      "index": "3",
+      "code": "MSG03",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Nội dung nhập vào vượt quá độ dài tối đa hoặc nằm ngoài phạm vi cho phép",
+      "content": "Input value exceeds the allowed limit or format constraints.",
+      "relatedFrs": [
+        "3.2.3",
+        "3.2.8",
+        "3.3.1",
+        "3.3.2",
+        "3.3.3",
+        "3.3.4",
+        "3.4.1",
+        "3.4.2",
+        "3.4.3",
+        "3.4.4",
+        "3.4.5",
+        "3.4.6",
+        "3.4.8",
+        "3.4.9",
+        "3.4.10",
+        "3.4.11",
+        "3.4.12",
+        "3.4.13",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22",
+        "3.4.23",
+        "3.4.25",
+        "3.4.26",
+        "3.5.1",
+        "3.5.2",
+        "3.5.3",
+        "3.5.4",
+        "3.5.5",
+        "3.5.6",
+        "3.5.8",
+        "3.5.9",
+        "3.5.10",
+        "3.5.11",
+        "3.5.13",
+        "3.6.1",
+        "3.6.2",
+        "3.6.3",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.7",
+        "3.6.8",
+        "3.6.10",
+        "3.6.13",
+        "3.6.14",
+        "3.6.15",
+        "3.6.17",
+        "3.6.19",
+        "3.6.20",
+        "3.6.21",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24",
+        "3.6.25",
+        "3.6.26",
+        "3.6.27",
+        "3.6.28",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.34",
+        "3.6.35",
+        "3.7.1",
+        "3.7.2",
+        "3.7.3",
+        "3.7.5",
+        "3.7.8",
+        "3.7.10",
+        "3.7.12",
+        "3.7.13",
+        "3.7.15",
+        "3.7.16",
+        "3.7.17",
+        "3.7.18",
+        "3.8.1",
+        "3.8.2",
+        "3.8.3",
+        "3.8.4",
+        "3.8.5",
+        "3.8.6",
+        "3.9.1",
+        "3.9.3",
+        "3.9.4",
+        "3.9.5",
+        "3.9.6",
+        "3.10.1",
+        "3.10.2",
+        "3.10.3",
+        "3.10.6",
+        "3.10.8",
+        "3.10.9",
+        "3.10.10",
+        "3.10.11",
+        "3.10.12",
+        "3.10.13"
+      ]
+    },
+    {
+      "index": "4",
+      "code": "MSG04",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Địa chỉ email nhập vào không đúng định dạng chuẩn (ví dụ thiếu @ hoặc tên miền)",
+      "content": "Please enter a valid email address.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.2",
+        "3.2.4",
+        "3.4.7",
+        "3.6.32",
+        "3.7.16",
+        "3.10.7"
+      ]
+    },
+    {
+      "index": "5",
+      "code": "MSG05",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Mật khẩu chưa đủ điều kiện an toàn (cần tối thiểu 8 ký tự và có ít nhất 1 chữ số)",
+      "content": "Passwords must be at least 8 characters and contain 1 digit.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.4",
+        "3.2.5"
+      ]
+    },
+    {
+      "index": "6",
+      "code": "MSG06",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Mật khẩu nhập lại ở ô xác nhận không trùng khớp với mật khẩu vừa đặt",
+      "content": "Passwords do not match.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.4",
+        "3.2.5"
+      ]
+    },
+    {
+      "index": "7",
+      "code": "MSG07",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Người dùng không có quyền thực hiện thao tác này theo phân quyền vai trò",
+      "content": "You do not have permission to perform this action.",
+      "relatedFrs": [
+        "3.2.4",
+        "3.2.5",
+        "3.2.7",
+        "3.2.8",
+        "3.2.9",
+        "3.3.1",
+        "3.3.2",
+        "3.3.3",
+        "3.3.4",
+        "3.4.1",
+        "3.4.2",
+        "3.4.3",
+        "3.4.4",
+        "3.4.5",
+        "3.4.6",
+        "3.4.7",
+        "3.4.8",
+        "3.4.9",
+        "3.4.10",
+        "3.4.11",
+        "3.4.12",
+        "3.4.13",
+        "3.4.14",
+        "3.4.15",
+        "3.4.16",
+        "3.4.17",
+        "3.4.18",
+        "3.4.19",
+        "3.4.20",
+        "3.4.21",
+        "3.4.22",
+        "3.4.23",
+        "3.4.24",
+        "3.4.25",
+        "3.4.26",
+        "3.5.1",
+        "3.5.2",
+        "3.5.3",
+        "3.5.4",
+        "3.5.5",
+        "3.5.6",
+        "3.5.7",
+        "3.5.8",
+        "3.5.9",
+        "3.5.10",
+        "3.5.11",
+        "3.5.12",
+        "3.5.13",
+        "3.6.1",
+        "3.6.2",
+        "3.6.3",
+        "3.6.4",
+        "3.6.5",
+        "3.6.6",
+        "3.6.7",
+        "3.6.8",
+        "3.6.9",
+        "3.6.10",
+        "3.6.11",
+        "3.6.12",
+        "3.6.13",
+        "3.6.14",
+        "3.6.15",
+        "3.6.16",
+        "3.6.17",
+        "3.6.18",
+        "3.6.19",
+        "3.6.20",
+        "3.6.21",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24",
+        "3.6.25",
+        "3.6.26",
+        "3.6.27",
+        "3.6.28",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.32",
+        "3.6.33",
+        "3.6.34",
+        "3.6.35",
+        "3.7.1",
+        "3.7.2",
+        "3.7.3",
+        "3.7.4",
+        "3.7.5",
+        "3.7.6",
+        "3.7.7",
+        "3.7.8",
+        "3.7.9",
+        "3.7.10",
+        "3.7.11",
+        "3.7.12",
+        "3.7.13",
+        "3.7.14",
+        "3.7.15",
+        "3.7.16",
+        "3.7.17",
+        "3.7.18",
+        "3.7.19",
+        "3.8.1",
+        "3.8.2",
+        "3.8.3",
+        "3.8.4",
+        "3.8.5",
+        "3.8.6",
+        "3.8.7",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15",
+        "3.9.1",
+        "3.9.2",
+        "3.9.3",
+        "3.9.4",
+        "3.9.5",
+        "3.9.6",
+        "3.10.1",
+        "3.10.2",
+        "3.10.3",
+        "3.10.4",
+        "3.10.5",
+        "3.10.6",
+        "3.10.7",
+        "3.10.8",
+        "3.10.9",
+        "3.10.10",
+        "3.10.11",
+        "3.10.12",
+        "3.10.13"
+      ]
+    },
+    {
+      "index": "8",
+      "code": "MSG08",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Địa chỉ email này đã được đăng ký cho một tài khoản khác trên hệ thống",
+      "content": "This email is already registered.",
+      "relatedFrs": [
+        "3.2.1",
+        "3.2.2",
+        "3.2.3",
+        "3.2.4",
+        "3.4.7",
+        "3.10.7"
+      ]
+    },
+    {
+      "index": "9",
+      "code": "MSG09",
+      "type": "Hiển thị trực tiếp trên màn hình (Inline)",
+      "context": "Nhập sai địa chỉ email hoặc mật khẩu khi đăng nhập",
+      "content": "Incorrect email or password. Please check again.",
+      "relatedFrs": [
+        "3.2.2"
+      ]
+    },
+    {
+      "index": "10",
+      "code": "MSG10",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đăng ký tài khoản mới thành công và hệ thống đã gửi mã xác nhận OTP qua email",
+      "content": "Account created. A verification code has been sent to {email_address}.",
+      "relatedFrs": [
+        "3.2.1"
+      ]
+    },
+    {
+      "index": "11",
+      "code": "MSG11",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tài khoản bị tạm khóa đăng nhập 15 phút do nhập sai mật khẩu quá 5 lần liên tiếp",
+      "content": "Your account is temporarily locked for 15 minutes due to multiple failed sign-in attempts.",
+      "relatedFrs": [
+        "3.2.2"
+      ]
+    },
+    {
+      "index": "12",
+      "code": "MSG12",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tài khoản hiện đang bị khóa hoặc đang trong thời gian chờ xóa nên không thể đăng nhập",
+      "content": "Your account is currently deactivated or scheduled for deletion.",
+      "relatedFrs": [
+        "3.2.2",
+        "3.2.3"
+      ]
+    },
+    {
+      "index": "13",
+      "code": "MSG13",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đăng nhập hoặc liên kết qua tài khoản Google bị hủy giữa chừng hoặc gặp lỗi kết nối",
+      "content": "Google authentication could not be completed. Please try again.",
+      "relatedFrs": [
+        "3.2.3",
+        "3.6.15"
+      ]
+    },
+    {
+      "index": "14",
+      "code": "MSG14",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đã gửi yêu cầu khôi phục mật khẩu (hiển thị thông báo gửi mã đặt lại mật khẩu qua email)",
+      "content": "If that email address is registered, a password reset code has been sent.",
+      "relatedFrs": [
+        "3.2.4"
+      ]
+    },
+    {
+      "index": "15",
+      "code": "MSG15",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Mã xác nhận OTP hoặc mã bảo mật 2 lớp (2FA) không đúng hoặc đã hết thời hạn",
+      "content": "The verification code is invalid or has expired. Please try again.",
+      "relatedFrs": [
+        "3.2.4",
+        "3.2.6",
+        "3.2.7"
+      ]
+    },
+    {
+      "index": "16",
+      "code": "MSG16",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Yêu cầu gửi lại mã OTP khi chưa hết 60 giây chờ hoặc đã nhập sai quá số lần quy định",
+      "content": "Please wait 60 seconds before requesting a new code, or restart verification.",
+      "relatedFrs": [
+        "3.2.6"
+      ]
+    },
+    {
+      "index": "17",
+      "code": "MSG17",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đặt lại mật khẩu mới hoặc đổi mật khẩu thành công",
+      "content": "Your password has been updated successfully.",
+      "relatedFrs": [
+        "3.2.4",
+        "3.2.5"
+      ]
+    },
+    {
+      "index": "18",
+      "code": "MSG18",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Mật khẩu hiện tại nhập không đúng, hoặc mật khẩu mới trùng với mật khẩu đang dùng",
+      "content": "Current password is incorrect, or the new password must differ from your current password.",
+      "relatedFrs": [
+        "3.2.5",
+        "3.2.9"
+      ]
+    },
+    {
+      "index": "19",
+      "code": "MSG19",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Bật/tắt hoặc xác nhận mã bảo mật 2 lớp (2FA) thành công",
+      "content": "Two-factor authentication has been verified and updated successfully.",
+      "relatedFrs": [
+        "3.2.7"
+      ]
+    },
+    {
+      "index": "20",
+      "code": "MSG20",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đăng xuất khỏi phiên làm việc hoặc xác nhận xóa mềm tài khoản thành công",
+      "content": "Your session has ended and account status has been updated.",
+      "relatedFrs": [
+        "3.2.8",
+        "3.2.9"
+      ]
+    },
+    {
+      "index": "21",
+      "code": "MSG21",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Cập nhật thông tin hồ sơ cá nhân, hồ sơ Client, Agency hoặc Workspace thành công",
+      "content": "Profile information has been updated successfully.",
+      "relatedFrs": [
+        "3.3.2",
+        "3.3.4",
+        "3.4.5",
+        "3.4.16"
+      ]
+    },
+    {
+      "index": "22",
+      "code": "MSG22",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Tệp hình ảnh hoặc tài liệu tải lên không đúng định dạng hỗ trợ hoặc vượt quá dung lượng cho phép",
+      "content": "Unsupported file format or file size exceeds the maximum allowed limit.",
+      "relatedFrs": [
+        "3.3.2",
+        "3.3.4",
+        "3.4.3",
+        "3.4.5",
+        "3.4.14",
+        "3.4.16",
+        "3.6.3",
+        "3.6.12",
+        "3.6.16",
+        "3.6.18",
+        "3.7.4",
+        "3.7.12",
+        "3.10.12"
+      ]
+    },
+    {
+      "index": "23",
+      "code": "MSG23",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo mới Agency hoặc tạo mới Workspace thành công",
+      "content": "Created successfully.",
+      "relatedFrs": [
+        "3.4.3",
+        "3.4.14"
+      ]
+    },
+    {
+      "index": "24",
+      "code": "MSG24",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Xóa mềm Agency hoặc Workspace thành công (có thể khôi phục lại trong vòng 30 ngày)",
+      "content": "Removed successfully. It can be restored within 30 days.",
+      "relatedFrs": [
+        "3.4.6",
+        "3.4.17"
+      ]
+    },
+    {
+      "index": "25",
+      "code": "MSG25",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Gửi lời mời thành viên tham gia Agency qua email thành công (có hiệu lực trong 3 ngày)",
+      "content": "Invitation has been sent to {email_address} and is valid for 3 days.",
+      "relatedFrs": [
+        "3.4.7"
+      ]
+    },
+    {
+      "index": "26",
+      "code": "MSG26",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Người dùng được mời đã là thành viên chính thức hoặc đang có một lời mời chờ phản hồi",
+      "content": "This user is already a member or has a pending invitation.",
+      "relatedFrs": [
+        "3.4.7",
+        "3.4.24"
+      ]
+    },
+    {
+      "index": "27",
+      "code": "MSG27",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Chấp nhận hoặc từ chối lời mời tham gia Agency thành công",
+      "content": "Your response to the Agency invitation has been recorded.",
+      "relatedFrs": [
+        "3.4.9",
+        "3.4.10"
+      ]
+    },
+    {
+      "index": "28",
+      "code": "MSG28",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Lời mời tham gia Agency đã quá hạn 3 ngày hoặc không còn hiệu lực",
+      "content": "This invitation has expired or is no longer valid.",
+      "relatedFrs": [
+        "3.4.9",
+        "3.4.10"
+      ]
+    },
+    {
+      "index": "29",
+      "code": "MSG29",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Thêm thành viên, đổi vai trò hoặc xóa/rời khỏi Workspace thành công",
+      "content": "Workspace membership has been updated successfully.",
+      "relatedFrs": [
+        "3.4.11",
+        "3.4.18",
+        "3.4.24",
+        "3.4.25",
+        "3.4.26"
+      ]
+    },
+    {
+      "index": "30",
+      "code": "MSG30",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Lưu mới, áp dụng hoặc xóa mẫu cấu hình Workspace (Template) thành công",
+      "content": "Workspace template operation completed successfully.",
+      "relatedFrs": [
+        "3.4.19",
+        "3.4.21",
+        "3.4.22"
+      ]
+    },
+    {
+      "index": "31",
+      "code": "MSG31",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo gói dịch vụ truyền thông, gửi đề xuất điều chỉnh hoặc phê duyệt chốt gói thành công",
+      "content": "Media package has been saved and updated successfully.",
+      "relatedFrs": [
+        "3.5.1",
+        "3.5.3",
+        "3.5.4"
+      ]
+    },
+    {
+      "index": "32",
+      "code": "MSG32",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo mới hoặc lưu cập nhật bản Kế hoạch Chiến dịch Truyền thông thành công",
+      "content": "Media campaign plan has been saved successfully.",
+      "relatedFrs": [
+        "3.5.5",
+        "3.5.7"
+      ]
+    },
+    {
+      "index": "33",
+      "code": "MSG33",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Phê duyệt Kế hoạch Chiến dịch thành công và tự động chuyển các hạng mục sang danh sách công việc (Backlog)",
+      "content": "Media campaign approved. Campaign deliverables have been deployed to the Workspace backlog.",
+      "relatedFrs": [
+        "3.5.8"
+      ]
+    },
+    {
+      "index": "34",
+      "code": "MSG34",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Nghiệm thu hoàn tất Chiến dịch Truyền thông và đóng các yêu cầu phát sinh còn tồn đọng",
+      "content": "Media campaign has been marked as completed and pending requests were closed.",
+      "relatedFrs": [
+        "3.5.9"
+      ]
+    },
+    {
+      "index": "35",
+      "code": "MSG35",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo mới, cập nhật, đổi trạng thái hoặc hủy Yêu cầu nội dung phát sinh thành công",
+      "content": "Content request has been updated successfully.",
+      "relatedFrs": [
+        "3.5.10",
+        "3.5.11",
+        "3.5.12",
+        "3.5.13"
+      ]
+    },
+    {
+      "index": "36",
+      "code": "MSG36",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Không thể chỉnh sửa, xóa hoặc hủy mục này do trạng thái hiện tại không còn cho phép thay đổi",
+      "content": "This item cannot be modified or cancelled in its current status.",
+      "relatedFrs": [
+        "3.2.9",
+        "3.3.1",
+        "3.3.3",
+        "3.4.2",
+        "3.4.4",
+        "3.4.11",
+        "3.4.13",
+        "3.4.15",
+        "3.4.17",
+        "3.4.18",
+        "3.4.21",
+        "3.4.22",
+        "3.4.25",
+        "3.4.26",
+        "3.5.3",
+        "3.5.4",
+        "3.5.5",
+        "3.5.7",
+        "3.5.8",
+        "3.5.9",
+        "3.5.11",
+        "3.5.12",
+        "3.5.13",
+        "3.6.2",
+        "3.6.5",
+        "3.6.7",
+        "3.6.9",
+        "3.6.14",
+        "3.6.16",
+        "3.6.24",
+        "3.6.31",
+        "3.7.18",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15",
+        "3.9.1",
+        "3.9.2",
+        "3.9.5",
+        "3.10.2",
+        "3.10.4",
+        "3.10.5",
+        "3.10.9"
+      ]
+    },
+    {
+      "index": "37",
+      "code": "MSG37",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Cập nhật chi tiết công việc (Task), phân công người làm, đổi trạng thái hoặc bình luận thành công",
+      "content": "Task has been updated successfully.",
+      "relatedFrs": [
+        "3.6.1",
+        "3.6.2",
+        "3.6.3",
+        "3.6.5",
+        "3.6.7",
+        "3.6.33"
+      ]
+    },
+    {
+      "index": "38",
+      "code": "MSG38",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Gửi bài duyệt, phê duyệt hoặc trả lại bài viết kèm nhận xét trong quy trình duyệt 3 cấp thành công",
+      "content": "Task review decision has been recorded and notified to the team.",
+      "relatedFrs": [
+        "3.6.9"
+      ]
+    },
+    {
+      "index": "39",
+      "code": "MSG39",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Lưu bản nháp bài viết hoặc khôi phục lại phiên bản nội dung trước đó thành công",
+      "content": "Content version has been saved and updated successfully.",
+      "relatedFrs": [
+        "3.6.10",
+        "3.6.34"
+      ]
+    },
+    {
+      "index": "40",
+      "code": "MSG40",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tải lên, cập nhật thông tin, đóng dấu bản quyền hoặc xóa mềm tư liệu trong kho thành công",
+      "content": "Material repository has been updated successfully.",
+      "relatedFrs": [
+        "3.6.12",
+        "3.6.13",
+        "3.6.14",
+        "3.6.18"
+      ]
+    },
+    {
+      "index": "41",
+      "code": "MSG41",
+      "type": "Băng cảnh báo nổi bật (Warning Banner)",
+      "context": "Cảnh báo nhắc người dùng khi chọn tệp ảnh/video gốc chưa qua chỉnh sửa (RAW) để đưa vào bài đăng",
+      "content": "Warning: This asset is marked as RAW (unedited). Please use a retouched asset before publishing.",
+      "relatedFrs": [
+        "3.6.11",
+        "3.6.18"
+      ]
+    },
+    {
+      "index": "42",
+      "code": "MSG42",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Kết nối, đồng bộ tệp hoặc ngắt kết nối kho lưu trữ Google Drive thành công",
+      "content": "Google Drive storage synchronization status has been updated.",
+      "relatedFrs": [
+        "3.6.15",
+        "3.6.16",
+        "3.6.17"
+      ]
+    },
+    {
+      "index": "43",
+      "code": "MSG43",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Chèn thẻ hashtag vào bài viết hoặc thêm/sửa/xóa bộ sưu tập Hashtag thành công",
+      "content": "Hashtag collection has been updated successfully.",
+      "relatedFrs": [
+        "3.6.20",
+        "3.6.22",
+        "3.6.23",
+        "3.6.24"
+      ]
+    },
+    {
+      "index": "44",
+      "code": "MSG44",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo biểu mẫu khảo sát, tạo đường dẫn phòng họp trực tuyến hoặc lưu/gửi mẫu Email thành công",
+      "content": "Operation completed successfully.",
+      "relatedFrs": [
+        "3.6.25",
+        "3.6.27",
+        "3.6.29",
+        "3.6.30",
+        "3.6.31",
+        "3.6.32"
+      ]
+    },
+    {
+      "index": "45",
+      "code": "MSG45",
+      "type": "Băng cảnh báo nổi bật (Warning Banner)",
+      "context": "Phát hiện từ ngữ vi phạm tiêu chuẩn cộng đồng khi kiểm tra nội dung bài viết",
+      "content": "Compliance check completed: policy violations were detected in the highlighted text segments.",
+      "relatedFrs": [
+        "3.6.33"
+      ]
+    },
+    {
+      "index": "46",
+      "code": "MSG46",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tải lên hoặc xóa tài liệu hướng dẫn thương hiệu (Brand Guideline) trong kho AI thành công",
+      "content": "Brand knowledge base has been updated successfully.",
+      "relatedFrs": [
+        "3.7.4",
+        "3.7.5"
+      ]
+    },
+    {
+      "index": "47",
+      "code": "MSG47",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo nội dung Caption, Đại sứ ảo, Hình ảnh, Video hoặc Gợi ý Hashtag bằng AI thành công",
+      "content": "AI generation completed successfully.",
+      "relatedFrs": [
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11",
+        "3.7.14"
+      ]
+    },
+    {
+      "index": "48",
+      "code": "MSG48",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Số dư điểm AI Credit không đủ hoặc đã chạm trần hạn mức điểm được cấp cho Workspace/thành viên",
+      "content": "Insufficient AI Credits or credit quota reached. Please top up or adjust the credit limit.",
+      "relatedFrs": [
+        "3.4.14",
+        "3.6.12",
+        "3.6.16",
+        "3.6.32",
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11"
+      ]
+    },
+    {
+      "index": "49",
+      "code": "MSG49",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Quá trình tạo nội dung bằng AI bị gián đoạn hoặc quá thời gian chờ (số điểm AI Credit tạm giữ đã được hoàn lại)",
+      "content": "AI generation could not be completed. Any reserved AI Credits have been refunded.",
+      "relatedFrs": [
+        "3.7.6",
+        "3.7.7",
+        "3.7.9",
+        "3.7.11",
+        "3.7.14"
+      ]
+    },
+    {
+      "index": "50",
+      "code": "MSG50",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Thêm mới, cập nhật, xóa hoặc nhận gợi ý danh sách đối tác truyền thông (Collaborator) thành công",
+      "content": "Collaborator directory and campaign partner records updated successfully.",
+      "relatedFrs": [
+        "3.7.16",
+        "3.7.17",
+        "3.7.18",
+        "3.7.19"
+      ]
+    },
+    {
+      "index": "51",
+      "code": "MSG51",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Kết nối hoặc ngắt kết nối tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) thành công",
+      "content": "Social media account connection has been updated.",
+      "relatedFrs": [
+        "3.8.1",
+        "3.8.2"
+      ]
+    },
+    {
+      "index": "52",
+      "code": "MSG52",
+      "type": "Chữ đỏ báo lỗi ngay dưới ô nhập",
+      "context": "Định dạng ảnh/video, tỷ lệ khung hình, thời lượng hoặc độ dài văn bản không đúng quy chuẩn của mạng xã hội đích",
+      "content": "Media format, duration, aspect ratio, or caption length does not meet the target platform requirements.",
+      "relatedFrs": [
+        "3.8.5",
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "index": "53",
+      "code": "MSG53",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Hẹn giờ đăng hoặc xuất bản bài viết trực tiếp lên mạng xã hội đã chọn thành công",
+      "content": "Post has been scheduled or published to the selected platform successfully.",
+      "relatedFrs": [
+        "3.8.6",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "index": "54",
+      "code": "MSG54",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Đăng bài lên mạng xã hội thất bại do lỗi kết nối hoặc phiên ủy quyền tài khoản đã hết hạn (cần kết nối lại hoặc thử lại)",
+      "content": "Publication failed due to platform error or expired account authorization. Please reconnect or retry.",
+      "relatedFrs": [
+        "3.8.1",
+        "3.8.7",
+        "3.8.8",
+        "3.8.9",
+        "3.8.10",
+        "3.8.11",
+        "3.8.12",
+        "3.8.13",
+        "3.8.14",
+        "3.8.15"
+      ]
+    },
+    {
+      "index": "55",
+      "code": "MSG55",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Khởi tạo đơn hàng nâng cấp gói dịch vụ hoặc mua thêm điểm AI Credit thành công (hiển thị mã VietQR SePay)",
+      "content": "Payment order created. Please complete the SePay transfer within the validity window.",
+      "relatedFrs": [
+        "3.9.1",
+        "3.9.5"
+      ]
+    },
+    {
+      "index": "56",
+      "code": "MSG56",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Xác nhận thanh toán chuyển khoản SePay thành công, đã nâng cấp gói cước hoặc cộng thêm điểm AI Credit",
+      "content": "Payment confirmed. Your subscription plan and AI Credit balance have been updated.",
+      "relatedFrs": [
+        "3.9.2"
+      ]
+    },
+    {
+      "index": "57",
+      "code": "MSG57",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Cập nhật hạn mức sử dụng điểm AI Credit tối đa cho Workspace hoặc thành viên thành công",
+      "content": "AI Credit limit has been updated successfully.",
+      "relatedFrs": [
+        "3.9.6"
+      ]
+    },
+    {
+      "index": "58",
+      "code": "MSG58",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Phát thông báo toàn hệ thống hoặc lưu quyết định kiểm duyệt nội dung vi phạm thành công",
+      "content": "Administrative action has been processed and logged.",
+      "relatedFrs": [
+        "3.10.1",
+        "3.10.4"
+      ]
+    },
+    {
+      "index": "59",
+      "code": "MSG59",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Tạo tài khoản mới, cập nhật thông tin, ghi nhận mức phạt vi phạm hoặc khóa/mở khóa người dùng thành công",
+      "content": "User account status and compliance records have been updated.",
+      "relatedFrs": [
+        "3.10.5",
+        "3.10.7",
+        "3.10.8",
+        "3.10.9"
+      ]
+    },
+    {
+      "index": "60",
+      "code": "MSG60",
+      "type": "Thông báo nổi góc màn hình (Toast)",
+      "context": "Cập nhật bảng giá AI Credit (trực tiếp hoặc qua file CSV), lưu lịch thu thập xu hướng hoặc xuất báo cáo PDF thành công",
+      "content": "Administrative configuration or report export completed successfully.",
+      "relatedFrs": [
+        "3.7.13",
+        "3.10.11",
+        "3.10.12"
+      ]
+    }
+  ]
+}

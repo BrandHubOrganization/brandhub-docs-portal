@@ -1,0 +1,981 @@
+[
+  {
+    "id": "cd-3.2",
+    "figNum": 1,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.2 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.2 - Authentication & Authorization Class Diagram",
+    "caption": "Class Diagram 3.2 - Authentication & Authorization",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png",
+    "imageWidth": 2576,
+    "imageHeight": 1347,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.2 (Xác thực & Phân quyền): mô tả cấu trúc dữ liệu người dùng, phiên đăng nhập, liên kết Google OAuth và các lớp xử lý đăng ký, đăng nhập, mã xác nhận OTP và bảo mật 2 lớp.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.2 (Xác thực & Phân quyền): mô tả cấu trúc dữ liệu người dùng, phiên đăng nhập, liên kết Google OAuth và các lớp xử lý đăng ký, đăng nhập, mã xác nhận OTP và bảo mật 2 lớp.",
+    "components": [
+      {
+        "name": "AuditLog",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Bảng ghi nhận nhật ký các thao tác bảo mật quan trọng (đăng nhập, đổi mật khẩu, khóa/xóa tài khoản)."
+      },
+      {
+        "name": "AuditLogRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lưu nhật ký hoạt động bảo mật vào cơ sở dữ liệu."
+      },
+      {
+        "name": "AuthController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận các yêu cầu API về đăng ký, đăng nhập, xác thực OTP, quên/đổi mật khẩu và đăng xuất."
+      },
+      {
+        "name": "AuthService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Xử lý logic kiểm tra thông tin đăng ký/đăng nhập, tạo mã OTP, kiểm tra bảo mật 2 lớp và cấp phiên làm việc."
+      },
+      {
+        "name": "AuthenticatedUser",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Đối tượng lưu thông tin người dùng đang đăng nhập trong phiên làm việc hiện tại."
+      },
+      {
+        "name": "GoogleOAuthController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu đăng nhập nhanh bằng tài khoản Google."
+      },
+      {
+        "name": "GoogleOAuthService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Xử lý việc kiểm tra thông tin tài khoản Google và tự động liên kết hoặc tạo mới tài khoản."
+      },
+      {
+        "name": "OAuthService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Dịch vụ dùng chung hỗ trợ kết nối và xác thực theo chuẩn OAuth 2.0."
+      },
+      {
+        "name": "User",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Bảng lưu thông tin tài khoản người dùng (họ tên, email, mật khẩu mã hóa, trạng thái tài khoản, cài đặt 2FA)."
+      },
+      {
+        "name": "UserOAuthProvider",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Bảng lưu thông tin liên kết tài khoản Google OAuth 2.0 với tài khoản BrandHub."
+      },
+      {
+        "name": "UserOAuthProviderRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Truy vấn thông tin liên kết tài khoản Google của người dùng."
+      },
+      {
+        "name": "UserRefreshToken",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Bảng quản lý danh sách phiên đăng nhập (Refresh Token) để duy trì đăng nhập và thu hồi khi đăng xuất/đổi mật khẩu."
+      },
+      {
+        "name": "UserRefreshTokenRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lưu và xóa các phiên đăng nhập (Refresh Token) trong cơ sở dữ liệu."
+      },
+      {
+        "name": "UserRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Truy vấn và cập nhật dữ liệu bảng người dùng (User) trong cơ sở dữ liệu."
+      },
+      {
+        "name": "UserSystemRole",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Bảng lưu vai trò cấp hệ thống của người dùng (USER hoặc ADMIN)."
+      },
+      {
+        "name": "UserSystemRoleRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Truy vấn thông tin quyền hạn hệ thống của tài khoản."
+      }
+    ],
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization"
+  },
+  {
+    "id": "cd-3.3",
+    "figNum": 2,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.3 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.3 - User & Client Profile Class Diagram",
+    "caption": "Class Diagram 3.3 - User & Client Profile",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png",
+    "imageWidth": 2304,
+    "imageHeight": 934,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.3 (Hồ sơ Người dùng & Khách hàng): mô tả cấu trúc lưu trữ hồ sơ cá nhân và hồ sơ thương hiệu của Client có thể tái sử dụng cho nhiều dự án.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.3 (Hồ sơ Người dùng & Khách hàng): mô tả cấu trúc lưu trữ hồ sơ cá nhân và hồ sơ thương hiệu của Client có thể tái sử dụng cho nhiều dự án.",
+    "components": [
+      {
+        "name": "AvatarResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AvatarResponse trong phân hệ 3.3."
+      },
+      {
+        "name": "BannerResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của BannerResponse trong phân hệ 3.3."
+      },
+      {
+        "name": "ClientProfile",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin thương hiệu của Client (tên nhãn hàng, logo, ngành nghề, website, mã số thuế, thông tin liên hệ)."
+      },
+      {
+        "name": "ClientProfileController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu xem và cập nhật hồ sơ thương hiệu của Client."
+      },
+      {
+        "name": "ClientProfileRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Truy vấn và lưu hồ sơ thương hiệu của Client vào cơ sở dữ liệu."
+      },
+      {
+        "name": "ClientProfileRequest",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của ClientProfileRequest trong phân hệ 3.3."
+      },
+      {
+        "name": "ClientProfileResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của ClientProfileResponse trong phân hệ 3.3."
+      },
+      {
+        "name": "ClientProfileService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Quản lý thông tin thương hiệu của Client và đồng bộ hiển thị tới các Workspace liên quan."
+      },
+      {
+        "name": "ClientProfileServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.3 (User & Client Profile)."
+      },
+      {
+        "name": "SystemRole",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của SystemRole trong phân hệ 3.3."
+      },
+      {
+        "name": "UpdateProfileRequest",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của UpdateProfileRequest trong phân hệ 3.3."
+      },
+      {
+        "name": "User",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin cá nhân của người dùng (ảnh đại diện, họ tên, số điện thoại, ngôn ngữ, kỹ năng)."
+      },
+      {
+        "name": "UserController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.3 (User & Client Profile)."
+      },
+      {
+        "name": "UserLookupResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của UserLookupResponse trong phân hệ 3.3."
+      },
+      {
+        "name": "UserProfileResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của UserProfileResponse trong phân hệ 3.3."
+      },
+      {
+        "name": "UserRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Truy vấn và lưu thông tin hồ sơ cá nhân vào cơ sở dữ liệu."
+      },
+      {
+        "name": "UserService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.3 (User & Client Profile)."
+      },
+      {
+        "name": "UserServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.3 (User & Client Profile)."
+      }
+    ],
+    "domainCode": "3.3",
+    "domainTitle": "User & Client Profile"
+  },
+  {
+    "id": "cd-3.4",
+    "figNum": 3,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.4 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.4 - Agency & Workspace Class Diagram",
+    "caption": "Class Diagram 3.4 - Agency & Workspace",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png",
+    "imageWidth": 3744,
+    "imageHeight": 5174,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.4 (Agency & Workspace): mô tả mối quan hệ giữa Công ty (Agency), Thành viên, Lời mời gia nhập, Không gian làm việc (Workspace) và Mẫu cấu hình (Workspace Template).",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.4 (Agency & Workspace): mô tả mối quan hệ giữa Công ty (Agency), Thành viên, Lời mời gia nhập, Không gian làm việc (Workspace) và Mẫu cấu hình (Workspace Template).",
+    "components": [
+      {
+        "name": "AcceptInvitationRequest",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AcceptInvitationRequest trong phân hệ 3.4."
+      },
+      {
+        "name": "AddWorkspaceClientRequest",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AddWorkspaceClientRequest trong phân hệ 3.4."
+      },
+      {
+        "name": "Agency",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin công ty truyền thông do Owner sở hữu (tên, logo, gói dịch vụ đang dùng, số dư AI Credit)."
+      },
+      {
+        "name": "AgencyCategory",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyCategory trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận các yêu cầu tạo, xem, sửa, xóa mềm Agency và quản lý lời mời thành viên."
+      },
+      {
+        "name": "AgencyInvitation",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin lời mời tham gia Agency qua email kèm thời hạn hiệu lực 3 ngày."
+      },
+      {
+        "name": "AgencyInvitationRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AgencyInvitation."
+      },
+      {
+        "name": "AgencyInvitationResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyInvitationResponse trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyMember",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu danh sách nhân sự thuộc Agency và hạn mức sử dụng AI Credit của từng người."
+      },
+      {
+        "name": "AgencyMemberProfileResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyMemberProfileResponse trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyMemberRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AgencyMember."
+      },
+      {
+        "name": "AgencyMemberResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyMemberResponse trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyMemberRole",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyMemberRole trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng Agency."
+      },
+      {
+        "name": "AgencyRequest",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyRequest trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyResponse",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AgencyResponse trong phân hệ 3.4."
+      },
+      {
+        "name": "AgencyService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Xử lý nghiệp vụ quản lý công ty, gửi/chấp nhận/từ chối lời mời và bảo toàn dữ liệu khi xóa thành viên."
+      },
+      {
+        "name": "AgencyServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.4 (Agency & Workspace)."
+      }
+    ],
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace"
+  },
+  {
+    "id": "cd-3.5",
+    "figNum": 4,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.5 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.5 - Media Package & Media Campaign Class Diagram",
+    "caption": "Class Diagram 3.5 - Media Package & Media Campaign",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png",
+    "imageWidth": 2826,
+    "imageHeight": 1530,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.5 (Gói Truyền thông & Chiến dịch): mô tả cấu trúc của Gói dịch vụ (Media Package), Kế hoạch Chiến dịch (Media Campaign), các hạng mục công việc dự kiến và Yêu cầu phát sinh (Content Request).",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.5 (Gói Truyền thông & Chiến dịch): mô tả cấu trúc của Gói dịch vụ (Media Package), Kế hoạch Chiến dịch (Media Campaign), các hạng mục công việc dự kiến và Yêu cầu phát sinh (Content Request).",
+    "components": [
+      {
+        "name": "Agency",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của Agency trong phân hệ 3.5."
+      },
+      {
+        "name": "CampaignWorkItem",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của CampaignWorkItem trong phân hệ 3.5."
+      },
+      {
+        "name": "MediaCampaign",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu kế hoạch triển khai chiến dịch chi tiết dựa trên gói dịch vụ đã chốt, kèm lịch sử các phiên bản chỉnh sửa."
+      },
+      {
+        "name": "MediaCampaignController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu lập chiến dịch, cập nhật kế hoạch, phê duyệt kích hoạt và đóng chiến dịch."
+      },
+      {
+        "name": "MediaCampaignRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng MediaCampaign."
+      },
+      {
+        "name": "MediaCampaignService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Quản lý kế hoạch chiến dịch và tự động chuyển các hạng mục đã duyệt sang danh sách Task Backlog."
+      },
+      {
+        "name": "MediaPackage",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin gói dịch vụ truyền thông (thời hạn, chi phí, số lượng bài đăng cam kết và trạng thái đàm phán)."
+      },
+      {
+        "name": "MediaPackageController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu tạo gói dịch vụ, xem gói mẫu, gửi đề xuất chỉnh sửa và phê duyệt gói."
+      },
+      {
+        "name": "MediaPackageRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng MediaPackage."
+      },
+      {
+        "name": "MediaPackageService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Xử lý luồng đàm phán qua lại và xác nhận đồng thuận gói dịch vụ giữa Agency với Client."
+      },
+      {
+        "name": "PackageDeliverable",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của PackageDeliverable trong phân hệ 3.5."
+      },
+      {
+        "name": "PackageTerms",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của PackageTerms trong phân hệ 3.5."
+      },
+      {
+        "name": "Task",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của Task trong phân hệ 3.5."
+      },
+      {
+        "name": "TaskRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng Task."
+      },
+      {
+        "name": "Workspace",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của Workspace trong phân hệ 3.5."
+      },
+      {
+        "name": "WorkspaceMediaPackage",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của WorkspaceMediaPackage trong phân hệ 3.5."
+      },
+      {
+        "name": "WorkspaceMediaPackageRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng WorkspaceMediaPackage."
+      }
+    ],
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign"
+  },
+  {
+    "id": "cd-3.6",
+    "figNum": 5,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.6 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.6 - Content & Workflow Class Diagram",
+    "caption": "Class Diagram 3.6 - Content & Workflow",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_6.png",
+    "imageWidth": 2400,
+    "imageHeight": 1400,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.6 (Nội dung & Quy trình làm việc): mô tả cấu trúc Đầu việc (Task), Chuỗi duyệt 3 cấp, Lịch sử phiên bản bài viết, Kho tư liệu, Kết nối Google Drive, Bộ Hashtag, Khảo sát, Mẫu Email và Nhắn tin trực tuyến.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.6 (Nội dung & Quy trình làm việc): mô tả cấu trúc Đầu việc (Task), Chuỗi duyệt 3 cấp, Lịch sử phiên bản bài viết, Kho tư liệu, Kết nối Google Drive, Bộ Hashtag, Khảo sát, Mẫu Email và Nhắn tin trực tuyến.",
+    "components": [
+      {
+        "name": "TaskController",
+        "type": "Tầng API (Controller)",
+        "description": "Điều phối các thao tác cập nhật đầu việc, giao việc, lọc công việc theo 4 chế độ xem và duyệt bài."
+      },
+      {
+        "name": "TaskService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.6 (Content & Workflow)."
+      },
+      {
+        "name": "Task",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu thông tin chi tiết của từng đầu việc sản xuất nội dung (tiêu đề, mô tả, nền tảng, hạn chót, người làm, trạng thái)."
+      },
+      {
+        "name": "TaskApproval",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu lịch sử từng bước phê duyệt hoặc trả lại bài viết theo chuỗi Creator -> Manager -> Client."
+      },
+      {
+        "name": "TaskComment",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu các bình luận trao đổi, tệp đính kèm và gắn thẻ thành viên ngay trên đầu việc."
+      },
+      {
+        "name": "ContentVersion",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu lịch sử các phiên bản nội dung bài viết để xem lại hoặc khôi phục khi cần."
+      },
+      {
+        "name": "MaterialRepositoryController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.6 (Content & Workflow)."
+      },
+      {
+        "name": "MaterialService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.6 (Content & Workflow)."
+      },
+      {
+        "name": "MaterialAsset",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của MaterialAsset trong phân hệ 3.6."
+      },
+      {
+        "name": "HashtagCollection",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu các bộ sưu tập thẻ Hashtag phân loại theo chiến dịch hoặc sự kiện."
+      },
+      {
+        "name": "SurveyService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.6 (Content & Workflow)."
+      },
+      {
+        "name": "MailTemplateService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.6 (Content & Workflow)."
+      }
+    ],
+    "domainCode": "3.6",
+    "domainTitle": "Content & Workflow"
+  },
+  {
+    "id": "cd-3.7",
+    "figNum": 6,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.7 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.7 - AI Features Class Diagram",
+    "caption": "Class Diagram 3.7 - AI Features",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png",
+    "imageWidth": 3274,
+    "imageHeight": 1553,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.7 (Tính năng AI): mô tả cấu trúc Chủ đề xu hướng, Tài liệu kiến thức thương hiệu (Brand Guideline), Tiến trình tạo Caption/Ảnh/Video/Đại sứ ảo bằng AI và Danh bạ đối tác truyền thông.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.7 (Tính năng AI): mô tả cấu trúc Chủ đề xu hướng, Tài liệu kiến thức thương hiệu (Brand Guideline), Tiến trình tạo Caption/Ảnh/Video/Đại sứ ảo bằng AI và Danh bạ đối tác truyền thông.",
+    "components": [
+      {
+        "name": "AiCreditCreatorLimit",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AiCreditCreatorLimit trong phân hệ 3.7."
+      },
+      {
+        "name": "AiCreditCreatorLimitRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AiCreditCreatorLimit."
+      },
+      {
+        "name": "AiCreditLedger",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AiCreditLedger trong phân hệ 3.7."
+      },
+      {
+        "name": "AiCreditLedgerRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AiCreditLedger."
+      },
+      {
+        "name": "AiGenerationController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.7 (AI Features)."
+      },
+      {
+        "name": "AiServiceClient",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AiServiceClient trong phân hệ 3.7."
+      },
+      {
+        "name": "CampaignCollaborator",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của CampaignCollaborator trong phân hệ 3.7."
+      },
+      {
+        "name": "CampaignCollaboratorRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng CampaignCollaborator."
+      },
+      {
+        "name": "CandidateTrend",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của CandidateTrend trong phân hệ 3.7."
+      },
+      {
+        "name": "CaptionVariant",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của CaptionVariant trong phân hệ 3.7."
+      },
+      {
+        "name": "CollaboratorController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận các yêu cầu quản lý danh bạ đối tác truyền thông và gợi ý đối tác phù hợp bằng AI."
+      },
+      {
+        "name": "CollaboratorService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.7 (AI Features)."
+      },
+      {
+        "name": "FluxAmbassadorClient",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của FluxAmbassadorClient trong phân hệ 3.7."
+      },
+      {
+        "name": "FluxCommercialClient",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của FluxCommercialClient trong phân hệ 3.7."
+      },
+      {
+        "name": "StylePreset",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của StylePreset trong phân hệ 3.7."
+      },
+      {
+        "name": "ThirdPartyCollaborator",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lưu hồ sơ các đối tác truyền thông bên thứ ba (KOL/KOC, báo điện tử, kênh quảng cáo) và tiến độ hợp tác."
+      },
+      {
+        "name": "ThirdPartyCollaboratorRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng ThirdPartyCollaborator."
+      },
+      {
+        "name": "TrendService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.7 (AI Features)."
+      }
+    ],
+    "domainCode": "3.7",
+    "domainTitle": "AI Features"
+  },
+  {
+    "id": "cd-3.8",
+    "figNum": 7,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.8 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.8 - Publishing & Social Class Diagram",
+    "caption": "Class Diagram 3.8 - Publishing & Social",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png",
+    "imageWidth": 4936,
+    "imageHeight": 1425,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.8 (Xuất bản & Mạng xã hội): mô tả cấu trúc Tài khoản mạng xã hội đã kết nối, Bài đăng hẹn giờ/xuất bản trên 4 nền tảng (Facebook, Instagram, TikTok, Threads) và Số liệu tương tác.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.8 (Xuất bản & Mạng xã hội): mô tả cấu trúc Tài khoản mạng xã hội đã kết nối, Bài đăng hẹn giờ/xuất bản trên 4 nền tảng (Facebook, Instagram, TikTok, Threads) và Số liệu tương tác.",
+    "components": [
+      {
+        "name": "FacebookPublishAdapter",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của FacebookPublishAdapter trong phân hệ 3.8."
+      },
+      {
+        "name": "FacebookPublishService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "FacebookPublishServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "InstagramPublishAdapter",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của InstagramPublishAdapter trong phân hệ 3.8."
+      },
+      {
+        "name": "InstagramPublishService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "InstagramPublishServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "MetaOAuthService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "MetaOAuthServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "PostController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "PostDocument",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của PostDocument trong phân hệ 3.8."
+      },
+      {
+        "name": "PostMongoRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng PostMongo."
+      },
+      {
+        "name": "PostService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "PostServiceImpl",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      },
+      {
+        "name": "PublishJobConsumer",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của PublishJobConsumer trong phân hệ 3.8."
+      },
+      {
+        "name": "SocialAccountController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu kết nối mới hoặc ngắt kết nối tài khoản mạng xã hội."
+      },
+      {
+        "name": "SocialAccountDocument",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của SocialAccountDocument trong phân hệ 3.8."
+      },
+      {
+        "name": "SocialAccountMongoRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng SocialAccountMongo."
+      },
+      {
+        "name": "SocialAccountService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.8 (Publishing & Social)."
+      }
+    ],
+    "domainCode": "3.8",
+    "domainTitle": "Publishing & Social"
+  },
+  {
+    "id": "cd-3.9",
+    "figNum": 8,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.9 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.9 - Subscription & Billing Class Diagram",
+    "caption": "Class Diagram 3.9 - Subscription & Billing",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_9.png",
+    "imageWidth": 2126,
+    "imageHeight": 1635,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.9 (Gói đăng ký & Thanh toán): mô tả cấu trúc Đơn hàng nâng cấp gói / mua thêm điểm, Xử lý thanh toán tự động qua SePay (VietQR), Hóa đơn điện tử và Sổ theo dõi điểm AI Credit.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.9 (Gói đăng ký & Thanh toán): mô tả cấu trúc Đơn hàng nâng cấp gói / mua thêm điểm, Xử lý thanh toán tự động qua SePay (VietQR), Hóa đơn điện tử và Sổ theo dõi điểm AI Credit.",
+    "components": [
+      {
+        "name": "AiCreditCreatorLimit",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AiCreditCreatorLimit trong phân hệ 3.9."
+      },
+      {
+        "name": "AiCreditCreatorLimitRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AiCreditCreatorLimit."
+      },
+      {
+        "name": "AiCreditLedger",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của AiCreditLedger trong phân hệ 3.9."
+      },
+      {
+        "name": "AiCreditLedgerRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng AiCreditLedger."
+      },
+      {
+        "name": "BillingController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu nâng cấp gói, tạo mã QR thanh toán, nhận thông báo từ SePay và tải hóa đơn PDF."
+      },
+      {
+        "name": "BillingService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.9 (Subscription & Billing)."
+      },
+      {
+        "name": "SubscriptionController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.9 (Subscription & Billing)."
+      },
+      {
+        "name": "SubscriptionPlan",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của SubscriptionPlan trong phân hệ 3.9."
+      },
+      {
+        "name": "SubscriptionPlanRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng SubscriptionPlan."
+      },
+      {
+        "name": "SubscriptionService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.9 (Subscription & Billing)."
+      },
+      {
+        "name": "Transaction",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của Transaction trong phân hệ 3.9."
+      },
+      {
+        "name": "TransactionRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng Transaction."
+      },
+      {
+        "name": "UserSubscription",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của UserSubscription trong phân hệ 3.9."
+      },
+      {
+        "name": "UserSubscriptionRepository",
+        "type": "Truy vấn CSDL (Repository)",
+        "description": "Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng UserSubscription."
+      }
+    ],
+    "domainCode": "3.9",
+    "domainTitle": "Subscription & Billing"
+  },
+  {
+    "id": "cd-3.10",
+    "figNum": 9,
+    "reportId": "report4",
+    "reportName": "Report 4 — Software Design Document (SDD)",
+    "section": "Report 4 SDD — Section 3.10 Class Design",
+    "category": "UML Class Diagram",
+    "title": "3.10 - Admin Functions Class Diagram",
+    "caption": "Class Diagram 3.10 - Admin Functions",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png",
+    "imageWidth": 3484,
+    "imageHeight": 1659,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.10 (Chức năng Quản trị Admin): mô tả cấu trúc Thông báo hệ thống, Lịch sử cảnh cáo vi phạm, Hàng đợi kiểm duyệt nội dung, Bảng giá AI Credit và Báo cáo thống kê toàn nền tảng.",
+    "viSummary": "Sơ đồ lớp (Class Diagram) của phân hệ 3.10 (Chức năng Quản trị Admin): mô tả cấu trúc Thông báo hệ thống, Lịch sử cảnh cáo vi phạm, Hàng đợi kiểm duyệt nội dung, Bảng giá AI Credit và Báo cáo thống kê toàn nền tảng.",
+    "components": [
+      {
+        "name": "AdminAccountQueryService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminAccountService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminModerationController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu xử lý hàng đợi kiểm duyệt nội dung bị báo cáo và cập nhật mức phạt vi phạm."
+      },
+      {
+        "name": "AdminNotificationController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminNotificationService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminReportController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminReportService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminRevenueController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminRevenueService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminStatisticsController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminStatisticsService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "AdminUserController",
+        "type": "Tầng API (Controller)",
+        "description": "Tiếp nhận yêu cầu xem danh sách, tạo mới, sửa thông tin và khóa/mở khóa tài khoản người dùng."
+      },
+      {
+        "name": "AdminUserProvisioningService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "ContentModerationService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "HealthQueryService",
+        "type": "Xử lý nghiệp vụ (Service)",
+        "description": "Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "MonitoringHealthController",
+        "type": "Tầng API (Controller)",
+        "description": "Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ 3.10 (Admin Functions)."
+      },
+      {
+        "name": "MonitoringServer",
+        "type": "Thực thể dữ liệu (Entity)",
+        "description": "Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của MonitoringServer trong phân hệ 3.10."
+      }
+    ],
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions"
+  }
+]

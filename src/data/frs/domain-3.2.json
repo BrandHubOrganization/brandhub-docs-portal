@@ -1,0 +1,750 @@
+[
+  {
+    "code": "3.2.1",
+    "title": "Sign Up",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-001",
+    "ucName": "Sign Up",
+    "ucDescription": "(3.2.1) Cho phép người dùng mới (Guest) tạo tài khoản BrandHub bằng Họ tên, Email và Mật khẩu trên trang Đăng ký (/register), sau đó nhận mã OTP 6 số qua email để kích hoạt tài khoản.",
+    "figureId": "r3-fig-10",
+    "figureNumber": 10,
+    "figureCaption": "Figure 10 - Sign Up",
+    "sequenceFigureId": "seq-3.2.1",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Guest"
+    ],
+    "trigger": "Khi Guest mở trang Đăng ký (/register), điền thông tin cá nhân và bấm nút Tạo tài khoản.",
+    "purpose": "Cho phép người dùng mới (Guest) tạo tài khoản BrandHub bằng Họ tên, Email và Mật khẩu trên trang Đăng ký (/register), sau đó nhận mã OTP 6 số qua email để kích hoạt tài khoản.",
+    "viSummary": "Cho phép người dùng mới (Guest) tạo tài khoản BrandHub bằng Họ tên, Email và Mật khẩu trên trang Đăng ký (/register), sau đó nhận mã OTP 6 số qua email để kích hoạt tài khoản.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Đăng ký (/register) gồm các ô nhập: Họ và tên, Địa chỉ Email, Mật khẩu, Nhập lại mật khẩu, nút Tạo tài khoản và nút chuyển sang Đăng nhập bằng Google.",
+    "dataProcessing": "Hệ thống kiểm tra các ô bắt buộc không bị bỏ trống, định dạng email hợp lệ và email chưa từng được đăng ký trước đó (BR-01). Tiếp theo, hệ thống kiểm tra mật khẩu đủ độ an toàn (ít nhất 8 ký tự, có chữ số - BR-02), lưu tài khoản ở trạng thái chờ xác thực, tạo mã OTP 6 số có hiệu lực 10 phút (BR-03) gửi về email và chuyển người dùng sang màn hình nhập OTP.",
+    "dataSpecs": {
+      "inputRequired": "Họ và tên, Địa chỉ Email, Mật khẩu (tối thiểu 8 ký tự và có ít nhất 1 chữ số), Nhập lại mật khẩu xác nhận.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Mã tài khoản mới, mật khẩu đã mã hóa bảo mật, trạng thái tài khoản Chờ xác thực (PENDING_VERIFICATION) và mã OTP 6 số (hiệu lực 10 phút).",
+      "output": "Tạo tài khoản thành công, gửi mã OTP qua email (hiển thị thông báo MSG10) và chuyển sang màn hình Xác thực OTP (3.2.6)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-02",
+        "text": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ số; mật khẩu luôn được mã hóa an toàn trước khi lưu vào cơ sở dữ liệu."
+      },
+      {
+        "code": "BR-03",
+        "text": "Mã xác nhận OTP gửi qua email (khi đăng ký hoặc quên mật khẩu) gồm 6 chữ số, có hiệu lực trong 10 phút và chỉ dùng được 1 lần. Khi tạo mã mới thì mã cũ sẽ hết hiệu lực ngay."
+      },
+      {
+        "code": "BR-04",
+        "text": "Mỗi lần bấm gửi lại mã OTP phải cách nhau ít nhất 60 giây. Nếu nhập sai mã OTP liên tiếp 5 lần thì mã đó sẽ bị khóa, người dùng phải yêu cầu gửi mã mới."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-02",
+      "BR-03",
+      "BR-04"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG04",
+      "MSG05",
+      "MSG06",
+      "MSG08",
+      "MSG10"
+    ],
+    "validations": [
+      "Required field missing (fullName, email, or password left blank) → Display: MSG02.",
+      "Invalid email format → Display: MSG04.",
+      "Password does not meet security policy (BR-02) or passwords do not match → Display: MSG05, MSG06.",
+      "Email address already belongs to an existing account (BR-01) → Display: MSG08."
+    ],
+    "normalFlow": [
+      "Guest mở trang Đăng ký (/register) và điền đầy đủ Họ tên, Email, Mật khẩu và Nhập lại mật khẩu.",
+      "Guest bấm nút Tạo tài khoản.",
+      "Hệ thống kiểm tra email chưa bị trùng (BR-01) và mật khẩu đáp ứng đúng điều kiện bảo mật (BR-02).",
+      "Hệ thống lưu tài khoản ở trạng thái chờ kích hoạt, gửi mã OTP 6 số (hiệu lực 10 phút - BR-03) vào email và chuyển sang màn hình nhập OTP (3.2.6)."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống thông tin, nhập sai định dạng email hoặc mật khẩu chưa đủ 8 ký tự/thiếu số: Hệ thống báo lỗi ngay dưới ô nhập (MSG02, MSG04, MSG05, MSG06) để người dùng sửa lại.",
+      "Nếu địa chỉ email này đã được đăng ký trước đó: Hệ thống thông báo email đã tồn tại (MSG08) và gợi ý chuyển sang trang Đăng nhập."
+    ],
+    "postConditions": [
+      "A User account record exists for the normalized email address in an unverified state with the default user role assigned.",
+      "The password is stored exclusively as a one-way cryptographic hash, and a single-use 6-digit OTP with a 10-minute expiration is active for email verification.",
+      "The Guest is positioned on the OTP Verification screen (3.2.6) to confirm email ownership."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-10.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.2",
+    "title": "Sign In with Email",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-002",
+    "ucName": "Sign In with Email",
+    "ucDescription": "(3.2.2) Cho phép người dùng đăng nhập vào hệ thống bằng Email và Mật khẩu trên trang Đăng nhập (/login). Nếu tài khoản có bật bảo mật 2 lớp (2FA) thì hệ thống sẽ yêu cầu nhập thêm mã xác nhận từ điện thoại.",
+    "figureId": "r3-fig-11",
+    "figureNumber": 11,
+    "figureCaption": "Figure 11 - Sign In with Email",
+    "sequenceFigureId": "seq-3.2.2",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng mở trang Đăng nhập (/login), nhập Email cùng Mật khẩu và bấm nút Đăng nhập.",
+    "purpose": "Cho phép người dùng đăng nhập vào hệ thống bằng Email và Mật khẩu trên trang Đăng nhập (/login). Nếu tài khoản có bật bảo mật 2 lớp (2FA) thì hệ thống sẽ yêu cầu nhập thêm mã xác nhận từ điện thoại.",
+    "viSummary": "Cho phép người dùng đăng nhập vào hệ thống bằng Email và Mật khẩu trên trang Đăng nhập (/login). Nếu tài khoản có bật bảo mật 2 lớp (2FA) thì hệ thống sẽ yêu cầu nhập thêm mã xác nhận từ điện thoại.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Đăng nhập (/login) gồm ô nhập Email, ô nhập Mật khẩu (có nút ẩn/hiện mật khẩu), nút Đăng nhập, đường dẫn Quên mật khẩu và nút Đăng nhập bằng Google.",
+    "dataProcessing": "Hệ thống đối chiếu email và mật khẩu với dữ liệu đã lưu (BR-01, BR-02), đồng thời kiểm tra tài khoản đã xác thực email và không bị khóa (BR-05). Nếu tài khoản có bật 2FA thì chuyển sang bước nhập mã 6 số (BR-09); nếu không bật 2FA thì khởi tạo ngay phiên đăng nhập và đưa người dùng vào màn hình làm việc.",
+    "dataSpecs": {
+      "inputRequired": "Địa chỉ Email và Mật khẩu đăng nhập.",
+      "inputOptional": "Tùy chọn Ghi nhớ tài khoản cho lần đăng nhập sau.",
+      "systemData": "Trạng thái hoạt động của tài khoản, số lần nhập sai mật khẩu liên tiếp (khóa tạm 15 phút nếu sai 5 lần - BR-06) và mã phiên làm việc.",
+      "output": "Đăng nhập thành công vào màn hình chính (hoặc chuyển sang màn hình nhập mã bảo mật 2 lớp 3.2.7 nếu tài khoản có bật 2FA)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-02",
+        "text": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ số; mật khẩu luôn được mã hóa an toàn trước khi lưu vào cơ sở dữ liệu."
+      },
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      },
+      {
+        "code": "BR-06",
+        "text": "Nếu nhập sai mật khẩu đăng nhập 5 lần liên tiếp trong vòng 15 phút, tài khoản sẽ tạm khóa chức năng đăng nhập bằng mật khẩu trong 15 phút để chống dò mật khẩu."
+      },
+      {
+        "code": "BR-09",
+        "text": "Nếu tài khoản có bật bảo mật 2 lớp (2FA), sau khi nhập đúng mật khẩu, người dùng cần nhập thêm mã 6 số từ ứng dụng Authenticator trên điện thoại (thay đổi mỗi 30 giây) mới hoàn tất đăng nhập."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-02",
+      "BR-05",
+      "BR-06",
+      "BR-09"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG04",
+      "MSG08",
+      "MSG09",
+      "MSG11",
+      "MSG12"
+    ],
+    "validations": [
+      "Required field missing (email or password left blank) → Display: MSG02.",
+      "Invalid email format → Display: MSG04.",
+      "Email not found or password does not match stored hash → Display: MSG09.",
+      "Account temporarily locked after 5 consecutive failed sign-in attempts (BR-06) → Display: MSG11.",
+      "Account is currently DEACTIVATED or DELETED (BR-05) → Display: MSG12."
+    ],
+    "normalFlow": [
+      "Người dùng mở trang Đăng nhập (/login), nhập Email và Mật khẩu rồi bấm Đăng nhập.",
+      "Hệ thống kiểm tra thông tin đăng nhập và trạng thái tài khoản đang hoạt động (BR-05).",
+      "Nếu tài khoản có bật bảo mật 2 lớp (2FA), hệ thống chuyển sang màn hình nhập mã xác nhận 6 số từ ứng dụng Authenticator (3.2.7).",
+      "Nếu thông tin hợp lệ, hệ thống tạo phiên đăng nhập và chuyển người dùng vào trang làm việc chính theo đúng vai trò."
+    ],
+    "abnormalCases": [
+      "Nếu nhập sai email hoặc mật khẩu: Hệ thống báo thông tin đăng nhập không chính xác (MSG09). Nếu nhập sai liên tiếp 5 lần trong 15 phút, tài khoản sẽ tạm khóa đăng nhập trong 15 phút (BR-06, MSG11).",
+      "Nếu tài khoản chưa xác thực email: Hệ thống gửi mã OTP mới và chuyển sang màn hình Xác thực OTP (3.2.6).",
+      "Nếu tài khoản đang bị khóa hoặc đã xóa: Hệ thống từ chối đăng nhập và hiển thị thông báo MSG12."
+    ],
+    "postConditions": [
+      "Failed sign-in counter is reset to zero upon successful credential verification.",
+      "An authenticated user session is active (or a pending 2FA challenge session is active if 2FA is enabled).",
+      "The user is positioned on their role-appropriate dashboard or verification screen."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374187/brandhub-docs-portal/report3/r3-fig-11.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.3",
+    "title": "Sign In with Google OAuth",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-003",
+    "ucName": "Sign In with Google OAuth",
+    "ucDescription": "(3.2.3) Cho phép người dùng đăng ký hoặc đăng nhập nhanh chỉ với 1 cú nhấp chuột bằng tài khoản Google mà không cần phải nhớ mật khẩu riêng trên BrandHub.",
+    "figureId": "r3-fig-12",
+    "figureNumber": 12,
+    "figureCaption": "Figure 12 - Sign In with Google OAuth",
+    "sequenceFigureId": "seq-3.2.3",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bấm vào nút Tiếp tục với Google (Continue with Google) trên trang Đăng nhập (/login) hoặc Đăng ký (/register).",
+    "purpose": "Cho phép người dùng đăng ký hoặc đăng nhập nhanh chỉ với 1 cú nhấp chuột bằng tài khoản Google mà không cần phải nhớ mật khẩu riêng trên BrandHub.",
+    "viSummary": "Cho phép người dùng đăng ký hoặc đăng nhập nhanh chỉ với 1 cú nhấp chuột bằng tài khoản Google mà không cần phải nhớ mật khẩu riêng trên BrandHub.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Nút Tiếp tục với Google trên màn hình Đăng nhập/Đăng ký và cửa sổ chọn tài khoản chính thức của Google.",
+    "dataProcessing": "Sau khi người dùng chọn tài khoản Google, hệ thống nhận thông tin email đã xác thực từ Google. Nếu email này đã có tài khoản trên BrandHub thì hệ thống tự động liên kết và đăng nhập luôn; nếu chưa có thì hệ thống tự tạo tài khoản mới (lấy sẵn họ tên và ảnh đại diện từ Google - BR-07) và đăng nhập ngay vào hệ thống.",
+    "dataSpecs": {
+      "inputRequired": "Tài khoản Google hợp lệ do người dùng chọn xác nhận trên cửa sổ Google.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Email, họ tên, ảnh đại diện từ Google, trạng thái tài khoản (BR-05) và mã phiên đăng nhập.",
+      "output": "Đăng nhập thành công và chuyển thẳng vào màn hình làm việc chính."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      },
+      {
+        "code": "BR-07",
+        "text": "Khi đăng nhập bằng Google, nếu email Google trùng với tài khoản đã có trên BrandHub thì hệ thống tự động liên kết và đăng nhập luôn; nếu chưa có thì hệ thống tự tạo tài khoản mới đã xác thực."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-05",
+      "BR-07"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG08",
+      "MSG12",
+      "MSG13"
+    ],
+    "validations": [
+      "Google OAuth consent cancelled or invalid/expired OAuth state token → Display: MSG13.",
+      "Target BrandHub account is DEACTIVATED or DELETED (BR-05) → Display: MSG12.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng bấm nút Tiếp tục với Google trên trang Đăng nhập (/login) hoặc Đăng ký (/register).",
+      "Người dùng chọn tài khoản Google của mình trên cửa sổ xác nhận của Google.",
+      "Hệ thống kiểm tra email Google: nếu đã có trên hệ thống thì liên kết vào tài khoản hiện tại, nếu chưa có thì tự động tạo tài khoản mới (BR-07).",
+      "Hệ thống kiểm tra tài khoản không bị khóa (BR-05), tạo phiên làm việc và đưa người dùng vào trang chính."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng đóng cửa sổ Google giữa chừng hoặc hủy cấp quyền: Hệ thống quay lại trang đăng nhập và báo thao tác Google chưa hoàn tất (MSG13).",
+      "Nếu tài khoản gắn với email đó đang bị khóa hoặc đã xóa: Hệ thống chặn đăng nhập và báo MSG12."
+    ],
+    "postConditions": [
+      "The user's BrandHub account is linked to their verified Google identity and marked as email-verified.",
+      "An authenticated user session is active."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-12.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.4",
+    "title": "Reset Password",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-004",
+    "ucName": "Reset Password",
+    "ucDescription": "(3.2.4) Giúp người dùng lấy lại mật khẩu khi bị quên bằng cách nhận mã xác nhận OTP 6 số qua email và đặt lại mật khẩu mới.",
+    "figureId": "r3-fig-13",
+    "figureNumber": 13,
+    "figureCaption": "Figure 13 - Reset Password",
+    "sequenceFigureId": "seq-3.2.4",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bấm vào đường dẫn Quên mật khẩu trên trang Đăng nhập (/forgot-password) và nhập địa chỉ email của mình.",
+    "purpose": "Giúp người dùng lấy lại mật khẩu khi bị quên bằng cách nhận mã xác nhận OTP 6 số qua email và đặt lại mật khẩu mới.",
+    "viSummary": "Giúp người dùng lấy lại mật khẩu khi bị quên bằng cách nhận mã xác nhận OTP 6 số qua email và đặt lại mật khẩu mới.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Quên & Đặt lại mật khẩu (/forgot-password, /reset-password) gồm ô nhập Email nhận mã, ô nhập mã OTP 6 số, ô Mật khẩu mới, ô Nhập lại mật khẩu mới và nút Cập nhật mật khẩu.",
+    "dataProcessing": "Hệ thống kiểm tra email và gửi mã OTP 6 số (hiệu lực 10 phút - BR-03) về hộp thư của người dùng. Khi người dùng nhập đúng mã OTP và mật khẩu mới đạt chuẩn (BR-02), hệ thống lưu mật khẩu mới và tự động đăng xuất toàn bộ các thiết bị cũ để đảm bảo an toàn (BR-08).",
+    "dataSpecs": {
+      "inputRequired": "Địa chỉ Email đã đăng ký, Mã OTP 6 số nhận qua email, Mật khẩu mới và Nhập lại mật khẩu mới.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Mã OTP khôi phục (hiệu lực 10 phút, tối đa 5 lần thử - BR-03, BR-04), mật khẩu mới đã mã hóa và lệnh thu hồi các phiên đăng nhập cũ (BR-08).",
+      "output": "Cập nhật mật khẩu mới thành công (hiển thị MSG17) và chuyển về trang Đăng nhập để đăng nhập lại."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-02",
+        "text": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ số; mật khẩu luôn được mã hóa an toàn trước khi lưu vào cơ sở dữ liệu."
+      },
+      {
+        "code": "BR-03",
+        "text": "Mã xác nhận OTP gửi qua email (khi đăng ký hoặc quên mật khẩu) gồm 6 chữ số, có hiệu lực trong 10 phút và chỉ dùng được 1 lần. Khi tạo mã mới thì mã cũ sẽ hết hiệu lực ngay."
+      },
+      {
+        "code": "BR-04",
+        "text": "Mỗi lần bấm gửi lại mã OTP phải cách nhau ít nhất 60 giây. Nếu nhập sai mã OTP liên tiếp 5 lần thì mã đó sẽ bị khóa, người dùng phải yêu cầu gửi mã mới."
+      },
+      {
+        "code": "BR-08",
+        "text": "Khi đặt lại mật khẩu do quên (3.2.4), hệ thống sẽ đăng xuất toàn bộ các thiết bị đang đăng nhập cũ. Khi chủ động đổi mật khẩu (3.2.5), người dùng phải nhập đúng mật khẩu hiện tại và mật khẩu mới phải khác mật khẩu cũ."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-02",
+      "BR-03",
+      "BR-04",
+      "BR-08"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG04",
+      "MSG05",
+      "MSG06",
+      "MSG07",
+      "MSG08",
+      "MSG14",
+      "MSG15",
+      "MSG17"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-01) → Display: MSG07.",
+      "Required field missing (email, otpCode, newPassword, or confirmPassword) → Display: MSG02.",
+      "Invalid email format → Display: MSG04.",
+      "Recovery OTP is invalid or expired (BR-03) → Display: MSG15.",
+      "New password violates security policy (BR-02) or does not match confirmation → Display: MSG05, MSG06."
+    ],
+    "normalFlow": [
+      "Người dùng mở màn hình Quên mật khẩu (/forgot-password), nhập Email của mình và bấm Gửi mã xác nhận.",
+      "Hệ thống tạo mã OTP 6 số có hiệu lực 10 phút (BR-03), gửi vào email và hiển thị thông báo MSG14.",
+      "Người dùng nhập mã OTP 6 số kèm Mật khẩu mới và Nhập lại mật khẩu mới rồi bấm Xác nhận.",
+      "Hệ thống kiểm tra mã OTP hợp lệ, lưu mật khẩu mới, đăng xuất mọi phiên đăng nhập cũ (BR-08), báo thành công (MSG17) và chuyển về trang Đăng nhập."
+    ],
+    "abnormalCases": [
+      "Nếu mã OTP nhập sai hoặc đã quá 10 phút: Hệ thống báo mã không hợp lệ hoặc đã hết hạn (MSG15). Nếu nhập sai quá 5 lần thì khóa mã đó và yêu cầu gửi lại mã mới (BR-04).",
+      "Nếu mật khẩu mới ngắn hơn 8 ký tự, thiếu chữ số hoặc nhập lại không khớp: Hệ thống báo lỗi dưới ô nhập (MSG05, MSG06)."
+    ],
+    "postConditions": [
+      "The user's password hash is updated with the new encrypted password.",
+      "The recovery OTP is consumed and cannot be reused.",
+      "All prior active sessions for the user are revoked, requiring a fresh sign-in at 3.2.2."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374187/brandhub-docs-portal/report3/r3-fig-13.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.5",
+    "title": "Change Password",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-005",
+    "ucName": "Change Password",
+    "ucDescription": "(3.2.5) Cho phép người dùng đang đăng nhập chủ động thay đổi mật khẩu của mình trong phần Cài đặt bảo mật bằng cách xác nhận mật khẩu hiện tại và nhập mật khẩu mới.",
+    "figureId": "r3-fig-14",
+    "figureNumber": 14,
+    "figureCaption": "Figure 14 - Change Password",
+    "sequenceFigureId": "seq-3.2.5",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng mở trang Cài đặt bảo mật (/settings/security), điền mật khẩu cũ cùng mật khẩu mới và bấm Lưu thay đổi.",
+    "purpose": "Cho phép người dùng đang đăng nhập chủ động thay đổi mật khẩu của mình trong phần Cài đặt bảo mật bằng cách xác nhận mật khẩu hiện tại và nhập mật khẩu mới.",
+    "viSummary": "Cho phép người dùng đang đăng nhập chủ động thay đổi mật khẩu của mình trong phần Cài đặt bảo mật bằng cách xác nhận mật khẩu hiện tại và nhập mật khẩu mới.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Khu vực Đổi mật khẩu trên màn hình Cài đặt bảo mật (/settings/security) gồm 3 ô nhập: Mật khẩu hiện tại, Mật khẩu mới, Nhập lại mật khẩu mới và nút Cập nhật mật khẩu.",
+    "dataProcessing": "Hệ thống kiểm tra Mật khẩu hiện tại người dùng nhập vào có đúng không, đồng thời kiểm tra Mật khẩu mới phải khác mật khẩu cũ (BR-08) và đủ độ mạnh (tối thiểu 8 ký tự, có số - BR-02). Sau khi cập nhật thành công, hệ thống giữ nguyên phiên làm việc hiện tại của người dùng.",
+    "dataSpecs": {
+      "inputRequired": "Mật khẩu hiện tại, Mật khẩu mới (khác mật khẩu cũ, tối thiểu 8 ký tự và có số), Nhập lại mật khẩu mới.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Mật khẩu mới đã mã hóa và thời gian cập nhật mật khẩu.",
+      "output": "Đổi mật khẩu thành công, hiển thị thông báo MSG17 và tiếp tục làm việc bình thường."
+    },
+    "businessRules": [
+      {
+        "code": "BR-02",
+        "text": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ số; mật khẩu luôn được mã hóa an toàn trước khi lưu vào cơ sở dữ liệu."
+      },
+      {
+        "code": "BR-08",
+        "text": "Khi đặt lại mật khẩu do quên (3.2.4), hệ thống sẽ đăng xuất toàn bộ các thiết bị đang đăng nhập cũ. Khi chủ động đổi mật khẩu (3.2.5), người dùng phải nhập đúng mật khẩu hiện tại và mật khẩu mới phải khác mật khẩu cũ."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-02",
+      "BR-08"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG05",
+      "MSG06",
+      "MSG07",
+      "MSG17",
+      "MSG18"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-02) → Display: MSG07.",
+      "Required field missing (currentPassword, newPassword, or confirmNewPassword) → Display: MSG02.",
+      "Current password is incorrect or new password is identical to current password (BR-08) → Display: MSG18.",
+      "New password fails security policy (BR-02) or confirmation does not match → Display: MSG05, MSG06."
+    ],
+    "normalFlow": [
+      "Người dùng mở phần Cài đặt bảo mật (/settings/security) và chọn mục Đổi mật khẩu.",
+      "Người dùng nhập Mật khẩu hiện tại, Mật khẩu mới và Nhập lại mật khẩu mới rồi bấm Cập nhật.",
+      "Hệ thống kiểm tra mật khẩu hiện tại chính xác, mật khẩu mới đạt chuẩn (BR-02) và không trùng mật khẩu cũ (BR-08).",
+      "Hệ thống lưu mật khẩu mới và hiển thị thông báo đổi mật khẩu thành công (MSG17)."
+    ],
+    "abnormalCases": [
+      "Nếu nhập sai mật khẩu hiện tại hoặc đặt mật khẩu mới giống hệt mật khẩu cũ: Hệ thống báo lỗi MSG18 để người dùng nhập lại.",
+      "Nếu mật khẩu mới không đủ 8 ký tự/thiếu số hoặc 2 ô mật khẩu mới không khớp nhau: Hệ thống báo lỗi MSG05 hoặc MSG06."
+    ],
+    "postConditions": [
+      "The user's password hash is updated in persistent storage.",
+      "The user's current authenticated session remains active without forced sign-out."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-14.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.6",
+    "title": "OTP Verification",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-006",
+    "ucName": "OTP Verification",
+    "ucDescription": "(3.2.6) Xác nhận mã OTP 6 chữ số được gửi tới email của người dùng để hoàn tất kích hoạt tài khoản mới đăng ký (3.2.1) hoặc xác minh yêu cầu đặt lại mật khẩu (3.2.4).",
+    "figureId": "r3-fig-15",
+    "figureNumber": 15,
+    "figureCaption": "Figure 15 - OTP Verification",
+    "sequenceFigureId": "seq-3.2.6",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi người dùng được chuyển tới màn hình Xác thực OTP (/verify-otp), nhập 6 chữ số nhận được trong email và bấm Xác nhận.",
+    "purpose": "Xác nhận mã OTP 6 chữ số được gửi tới email của người dùng để hoàn tất kích hoạt tài khoản mới đăng ký (3.2.1) hoặc xác minh yêu cầu đặt lại mật khẩu (3.2.4).",
+    "viSummary": "Xác nhận mã OTP 6 chữ số được gửi tới email của người dùng để hoàn tất kích hoạt tài khoản mới đăng ký (3.2.1) hoặc xác minh yêu cầu đặt lại mật khẩu (3.2.4).",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Xác thực OTP (/verify-otp) gồm 6 ô nhập số OTP, đồng hồ đếm ngược thời gian hiệu lực, nút Xác nhận và nút Gửi lại mã (Resend OTP - mở sau 60 giây).",
+    "dataProcessing": "Hệ thống kiểm tra mã OTP 6 số có khớp với mã đã gửi không, còn trong thời hạn 10 phút không và chưa vượt quá 5 lần nhập sai (BR-03, BR-04). Nếu hợp lệ, hệ thống đánh dấu mã đã sử dụng và kích hoạt tài khoản sang trạng thái Đang hoạt động (ACTIVE - BR-05).",
+    "dataSpecs": {
+      "inputRequired": "Mã xác nhận OTP gồm 6 chữ số gửi qua email.",
+      "inputOptional": "Bấm nút Gửi lại mã mới (sau khi hết 60 giây chờ).",
+      "systemData": "Trạng thái mã OTP, bộ đếm số lần nhập sai (tối đa 5 lần - BR-04), thời gian chờ gửi lại (60 giây) và trạng thái kích hoạt tài khoản.",
+      "output": "Xác thực thành công, tài khoản được kích hoạt (ACTIVE) và chuyển người dùng sang bước tiếp theo."
+    },
+    "businessRules": [
+      {
+        "code": "BR-03",
+        "text": "Mã xác nhận OTP gửi qua email (khi đăng ký hoặc quên mật khẩu) gồm 6 chữ số, có hiệu lực trong 10 phút và chỉ dùng được 1 lần. Khi tạo mã mới thì mã cũ sẽ hết hiệu lực ngay."
+      },
+      {
+        "code": "BR-04",
+        "text": "Mỗi lần bấm gửi lại mã OTP phải cách nhau ít nhất 60 giây. Nếu nhập sai mã OTP liên tiếp 5 lần thì mã đó sẽ bị khóa, người dùng phải yêu cầu gửi mã mới."
+      },
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-03",
+      "BR-04",
+      "BR-05"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG15",
+      "MSG16"
+    ],
+    "validations": [
+      "OTP input is blank or fewer than 6 digits → Display: MSG02.",
+      "Entered OTP does not match or has expired after 10 minutes (BR-03) → Display: MSG15.",
+      "Resend requested before 60-second cooldown or 5 failed attempts exceeded (BR-04) → Display: MSG16."
+    ],
+    "normalFlow": [
+      "Trên màn hình Xác thực OTP (/verify-otp), người dùng nhập mã 6 chữ số vừa nhận được trong hộp thư email.",
+      "Người dùng bấm nút Xác nhận.",
+      "Hệ thống kiểm tra mã OTP chính xác và còn trong thời hạn 10 phút (BR-03).",
+      "Hệ thống chuyển trạng thái tài khoản sang Đang hoạt động (ACTIVE - BR-05) và đưa người dùng vào hệ thống (hoặc sang bước đặt mật khẩu mới nếu đang khôi phục mật khẩu)."
+    ],
+    "abnormalCases": [
+      "Nếu nhập sai mã OTP hoặc mã đã quá hạn 10 phút: Hệ thống báo lỗi MSG15.",
+      "Nếu nhập sai quá 5 lần liên tiếp hoặc bấm gửi lại khi chưa đủ 60 giây chờ: Hệ thống khóa mã cũ và báo người dùng đợi đủ 60 giây để lấy mã mới (BR-04, MSG16)."
+    ],
+    "postConditions": [
+      "The single-use 6-digit OTP is invalidated and removed from active verification storage.",
+      "For registration flows, the User account status is ACTIVE with a recorded emailVerifiedAt timestamp."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-15.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.7",
+    "title": "Two-Factor Authentication (2FA, TOTP)",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-007",
+    "ucName": "Two-Factor Authentication (2FA, TOTP)",
+    "ucDescription": "(3.2.7) Bật bảo mật 2 lớp (2FA) bằng cách quét mã QR qua ứng dụng Authenticator (Google/Microsoft Authenticator) trên điện thoại, và kiểm tra mã 6 số này mỗi khi đăng nhập.",
+    "figureId": "r3-fig-16",
+    "figureNumber": 16,
+    "figureCaption": "Figure 16 - Two-Factor Authentication (2FA, TOTP)",
+    "sequenceFigureId": "seq-3.2.7",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bật/tắt 2FA trong trang Cài đặt bảo mật (/settings/security) hoặc khi đăng nhập vào tài khoản đã bật 2FA (/verify-2fa).",
+    "purpose": "Bật bảo mật 2 lớp (2FA) bằng cách quét mã QR qua ứng dụng Authenticator (Google/Microsoft Authenticator) trên điện thoại, và kiểm tra mã 6 số này mỗi khi đăng nhập.",
+    "viSummary": "Bật bảo mật 2 lớp (2FA) bằng cách quét mã QR qua ứng dụng Authenticator (Google/Microsoft Authenticator) trên điện thoại, và kiểm tra mã 6 số này mỗi khi đăng nhập.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Khung hiển thị ảnh mã QR (để quét bằng điện thoại), ô nhập mã xác thực 6 số từ ứng dụng Authenticator và nút Xác nhận. (Giao diện lược bỏ phần hiện chuỗi mã khóa văn bản và mã dự phòng để gọn gàng và an toàn hơn).",
+    "dataProcessing": "Khi thiết lập, hệ thống tạo mã QR để người dùng quét vào ứng dụng Authenticator. Khi người dùng nhập mã 6 số hiển thị trên điện thoại (thay đổi mỗi 30 giây - BR-09), hệ thống kiểm tra tính hợp lệ để kích hoạt 2FA hoặc cho phép hoàn tất đăng nhập.",
+    "dataSpecs": {
+      "inputRequired": "Mã xác thực 6 chữ số hiển thị trên ứng dụng Authenticator của điện thoại.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Trạng thái bật/tắt 2FA của tài khoản và khóa đồng bộ thời gian 30 giây với ứng dụng Authenticator (BR-09).",
+      "output": "Cập nhật trạng thái bảo mật 2 lớp thành công (MSG19) hoặc hoàn tất đăng nhập vào hệ thống."
+    },
+    "businessRules": [
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      },
+      {
+        "code": "BR-09",
+        "text": "Nếu tài khoản có bật bảo mật 2 lớp (2FA), sau khi nhập đúng mật khẩu, người dùng cần nhập thêm mã 6 số từ ứng dụng Authenticator trên điện thoại (thay đổi mỗi 30 giây) mới hoàn tất đăng nhập."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-05",
+      "BR-09"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG15",
+      "MSG19"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-05) → Display: MSG07.",
+      "TOTP code field left blank → Display: MSG02.",
+      "Submitted 6-digit TOTP code is invalid or outside the valid time window (BR-09) → Display: MSG15."
+    ],
+    "normalFlow": [
+      "Người dùng mở mục Bảo mật 2 lớp trong Cài đặt (/settings/security) hoặc được chuyển tới màn hình nhập mã 2FA (/verify-2fa) lúc đăng nhập.",
+      "Nếu là lần đầu bật 2FA, người dùng mở ứng dụng Authenticator trên điện thoại để quét mã QR trên màn hình.",
+      "Người dùng nhập mã 6 chữ số đang hiển thị trên ứng dụng Authenticator vào ô xác nhận và bấm Xác nhận.",
+      "Hệ thống kiểm tra mã 6 số hợp lệ (BR-09), lưu cài đặt (hiển thị MSG19) hoặc mở phiên đăng nhập cho người dùng."
+    ],
+    "abnormalCases": [
+      "Nếu mã 6 số nhập sai hoặc đã qua chu kỳ 30 giây trên điện thoại: Hệ thống báo mã không hợp lệ (MSG15) để người dùng nhập mã mới đang hiển thị."
+    ],
+    "postConditions": [
+      "The user's 2FA TOTP configuration is persisted on their account profile.",
+      "During sign-in, full session access is granted only after successful 6-digit TOTP verification."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-16.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.8",
+    "title": "Logout",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-008",
+    "ucName": "Logout",
+    "ucDescription": "(3.2.8) Cho phép người dùng đăng xuất an toàn khỏi phiên làm việc hiện tại, đồng thời ghi nhớ phương thức đăng nhập gần nhất để lần sau đăng nhập lại nhanh hơn.",
+    "figureId": "r3-fig-17",
+    "figureNumber": 17,
+    "figureCaption": "Figure 17 - Logout",
+    "sequenceFigureId": "seq-3.2.8",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bấm vào ảnh đại diện trên thanh menu và chọn nút Đăng xuất (Logout).",
+    "purpose": "Cho phép người dùng đăng xuất an toàn khỏi phiên làm việc hiện tại, đồng thời ghi nhớ phương thức đăng nhập gần nhất để lần sau đăng nhập lại nhanh hơn.",
+    "viSummary": "Cho phép người dùng đăng xuất an toàn khỏi phiên làm việc hiện tại, đồng thời ghi nhớ phương thức đăng nhập gần nhất để lần sau đăng nhập lại nhanh hơn.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Nút Đăng xuất trong menu tài khoản trên thanh điều hướng hoặc trong trang Cài đặt bảo mật.",
+    "dataProcessing": "Hệ thống hủy ngay phiên đăng nhập hiện tại trên máy chủ để không ai có thể dùng lại phiên cũ, xóa thông tin phiên trên trình duyệt nhưng giữ lại gợi ý email/phương thức đăng nhập vừa dùng để tiện cho lần vào sau.",
+    "dataSpecs": {
+      "inputRequired": "Người dùng đang đăng nhập bấm chọn Đăng xuất.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Thu hồi mã phiên làm việc hiện tại và cập nhật nhật ký đăng xuất.",
+      "output": "Kết thúc phiên làm việc, hiển thị thông báo MSG20 và quay về màn hình Đăng nhập (/login)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-05"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG20"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-05) → Display: MSG07.",
+      "Session token is already expired or missing → System still clears local state and redirects cleanly to /login (3.2.2).",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở menu tài khoản ở góc trên màn hình và bấm chọn Đăng xuất.",
+      "Hệ thống hủy hiệu lực phiên làm việc hiện tại trên máy chủ.",
+      "Trình duyệt xóa dữ liệu phiên đăng nhập tạm thời và hiển thị thông báo đã đăng xuất (MSG20).",
+      "Hệ thống chuyển người dùng về lại màn hình Đăng nhập (/login)."
+    ],
+    "abnormalCases": [
+      "Nếu phiên đăng nhập đã hết hạn từ trước do để máy quá lâu: Hệ thống vẫn tự động dọn sạch dữ liệu trên trình duyệt và đưa người dùng về màn hình Đăng nhập."
+    ],
+    "postConditions": [
+      "The user's active session token is revoked and can no longer authenticate requests.",
+      "The user is returned to the unauthenticated Login Screen (3.2.2)."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-17.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  },
+  {
+    "code": "3.2.9",
+    "title": "Delete Account",
+    "domainCode": "3.2",
+    "domainTitle": "Authentication & Authorization",
+    "ucId": "UC-009",
+    "ucName": "Delete Account",
+    "ucDescription": "(3.2.9) Cho phép người dùng tự xóa tài khoản cá nhân của mình. Tài khoản sẽ được tạm ẩn và giữ lại dữ liệu trong 30 ngày để có thể khôi phục nếu đổi ý trước khi xóa hẳn.",
+    "figureId": "r3-fig-18",
+    "figureNumber": 18,
+    "figureCaption": "Figure 18 - Delete Account",
+    "sequenceFigureId": "seq-3.2.9",
+    "classDiagramFigureId": "cd-3.2",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng mở phần Cài đặt bảo mật (/settings/security), bấm nút Xóa tài khoản, nhập mật khẩu xác nhận và đồng ý.",
+    "purpose": "Cho phép người dùng tự xóa tài khoản cá nhân của mình. Tài khoản sẽ được tạm ẩn và giữ lại dữ liệu trong 30 ngày để có thể khôi phục nếu đổi ý trước khi xóa hẳn.",
+    "viSummary": "Cho phép người dùng tự xóa tài khoản cá nhân của mình. Tài khoản sẽ được tạm ẩn và giữ lại dữ liệu trong 30 ngày để có thể khôi phục nếu đổi ý trước khi xóa hẳn.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Trung",
+    "interface": "Khu vực Xóa tài khoản trong trang Cài đặt bảo mật (/settings/security) kèm hộp thoại cảnh báo, ô nhập mật khẩu xác nhận và nút Xác nhận xóa tài khoản.",
+    "dataProcessing": "Hệ thống kiểm tra mật khẩu xác nhận có đúng không, và kiểm tra người dùng có đang là Owner duy nhất của một Agency còn nhân sự hoặc chiến dịch đang chạy hay không (BR-10). Nếu đủ điều kiện, hệ thống chuyển tài khoản sang trạng thái Đã xóa mềm (lưu thời hạn 30 ngày chờ khôi phục - BR-16) và đăng xuất ngay lập tức.",
+    "dataSpecs": {
+      "inputRequired": "Mật khẩu hiện tại để xác nhận và tích chọn đồng ý xóa tài khoản.",
+      "inputOptional": "Lý do xóa tài khoản (ghi chú tùy chọn).",
+      "systemData": "Trạng thái tài khoản chuyển sang Đã xóa mềm (DELETED), mốc thời gian 30 ngày khôi phục (BR-10, BR-16) và thu hồi toàn bộ phiên đăng nhập.",
+      "output": "Tài khoản chuyển sang trạng thái chờ xóa 30 ngày, hiển thị thông báo MSG20 và chuyển về trang chủ."
+    },
+    "businessRules": [
+      {
+        "code": "BR-10",
+        "text": "Khi người dùng tự xóa tài khoản (3.2.9), hệ thống sẽ tạm khóa và cho phép khôi phục trong 30 ngày trước khi xóa hẳn. Lưu ý: Không thể xóa tài khoản nếu người đó đang là Owner duy nhất của một Agency còn thành viên hoặc chiến dịch đang chạy."
+      },
+      {
+        "code": "BR-16",
+        "text": "Chỉ Owner mới có quyền xóa Agency (3.4.6) hoặc xóa Workspace (3.4.17). Khi xóa, dữ liệu sẽ được chuyển sang trạng thái tạm ẩn trong 30 ngày để Owner có thể khôi phục lại nếu xóa nhầm, đồng thời tạm ngưng quyền truy cập của các thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-10",
+      "BR-16"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG18",
+      "MSG20",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-10) → Display: MSG07.",
+      "Confirmation password left blank → Display: MSG02.",
+      "Current password is incorrect → Display: MSG18.",
+      "User is the sole Owner of an active Agency that still has active members or campaigns (BR-10) → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Người dùng vào trang Cài đặt bảo mật (/settings/security) và bấm nút Xóa tài khoản.",
+      "Trên hộp thoại xác nhận, người dùng nhập mật khẩu hiện tại và bấm Xác nhận xóa.",
+      "Hệ thống kiểm tra mật khẩu đúng và đảm bảo người dùng không vướng quyền Owner duy nhất của một Agency đang hoạt động (BR-10).",
+      "Hệ thống chuyển tài khoản sang trạng thái xóa mềm (có thể khôi phục trong 30 ngày), đăng xuất tài khoản và hiển thị thông báo MSG20."
+    ],
+    "abnormalCases": [
+      "Nếu nhập sai mật khẩu xác nhận: Hệ thống báo mật khẩu không đúng (MSG18) và giữ nguyên tài khoản.",
+      "Nếu người dùng đang là Owner duy nhất của một Agency vẫn còn thành viên hoặc chiến dịch đang chạy: Hệ thống chặn thao tác xóa và báo cần đóng hoặc bàn giao Agency trước (BR-10, MSG36)."
+    ],
+    "postConditions": [
+      "The User account is in DELETED (soft-deleted) status with a 30-day restoration window.",
+      "All active sessions and tokens for the user are immediately revoked."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374189/brandhub-docs-portal/report3/r3-fig-18.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png"
+  }
+]

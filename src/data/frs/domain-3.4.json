@@ -1,0 +1,1959 @@
+[
+  {
+    "code": "3.4.1",
+    "title": "List Agency",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-014",
+    "ucName": "List Agency",
+    "ucDescription": "(3.4.1) Hiển thị danh sách tất cả các công ty (Agency) mà người dùng đang làm chủ sở hữu (Owner) hoặc đang tham gia làm thành viên, giúp chuyển đổi nhanh giữa các công ty hoặc tạo Agency mới.",
+    "figureId": "r3-fig-23",
+    "figureNumber": 23,
+    "figureCaption": "Figure 23 - List Agency",
+    "sequenceFigureId": "seq-3.4.1",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng mở màn hình Danh sách Agency (/agency).",
+    "purpose": "Hiển thị danh sách tất cả các công ty (Agency) mà người dùng đang làm chủ sở hữu (Owner) hoặc đang tham gia làm thành viên, giúp chuyển đổi nhanh giữa các công ty hoặc tạo Agency mới.",
+    "viSummary": "Hiển thị danh sách tất cả các công ty (Agency) mà người dùng đang làm chủ sở hữu (Owner) hoặc đang tham gia làm thành viên, giúp chuyển đổi nhanh giữa các công ty hoặc tạo Agency mới.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Danh sách Agency (/agency) gồm ô tìm kiếm theo tên, bộ lọc (Tất cả / Đang sở hữu / Đang tham gia), danh sách thẻ Agency (hiển thị Logo, Tên công ty, Vai trò, Số thành viên, Số Workspace, Gói dịch vụ) và nút Tạo Agency mới.",
+    "dataProcessing": "Hệ thống tìm tất cả các Agency mà người dùng đang là Owner (BR-15) hoặc là thành viên chính thức, ẩn các Agency đã xóa mềm (trừ khi Owner mở xem để khôi phục trong 30 ngày - BR-16) và hiển thị ra danh sách.",
+    "dataSpecs": {
+      "inputRequired": "Người dùng đã đăng nhập mở trang Danh sách Agency.",
+      "inputOptional": "Từ khóa tìm kiếm tên Agency và bộ lọc theo vai trò (Sở hữu / Tham gia).",
+      "systemData": "Danh sách Agency, vai trò của người dùng, tổng số thành viên, số Workspace và gói cước của từng Agency.",
+      "output": "Hiển thị danh sách các thẻ Agency mà người dùng có quyền truy cập."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-16",
+        "text": "Chỉ Owner mới có quyền xóa Agency (3.4.6) hoặc xóa Workspace (3.4.17). Khi xóa, dữ liệu sẽ được chuyển sang trạng thái tạm ẩn trong 30 ngày để Owner có thể khôi phục lại nếu xóa nhầm, đồng thời tạm ngưng quyền truy cập của các thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-16"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-15) → Display: MSG07.",
+      "Search query matches no Agencies → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở màn hình Danh sách Agency (/agency).",
+      "Hệ thống kiểm tra phiên đăng nhập và truy xuất các Agency mà người dùng sở hữu hoặc tham gia (BR-15).",
+      "Người dùng có thể nhập từ khóa tìm kiếm hoặc lọc theo nhóm Agency.",
+      "Màn hình hiển thị các thẻ Agency kèm nút bấm vào xem Tổng quan (3.4.2) hoặc Hồ sơ công ty (3.4.4)."
+    ],
+    "abnormalCases": [
+      "Nếu không có Agency nào khớp với từ khóa tìm kiếm: Hệ thống hiển thị thông báo không tìm thấy kết quả (MSG01) kèm nút Tạo Agency mới (3.4.3)."
+    ],
+    "postConditions": [
+      "The user's accessible Agencies are listed accurately without altering any Agency records.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-23.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.2",
+    "title": "View Agency Dashboard",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-015",
+    "ucName": "View Agency Dashboard",
+    "ucDescription": "(3.4.2) Cung cấp cho chủ sở hữu (Owner) bảng điều khiển tổng quan của toàn công ty (Agency Dashboard), thống kê số lượng Workspace, nhân sự, tiến độ các chiến dịch và mức sử dụng điểm AI Credit.",
+    "figureId": "r3-fig-24",
+    "figureNumber": 24,
+    "figureCaption": "Figure 24 - View Agency Dashboard",
+    "sequenceFigureId": "seq-3.4.2",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner chọn một Agency và mở màn hình Tổng quan Agency (/agency/:id/stats).",
+    "purpose": "Cung cấp cho chủ sở hữu (Owner) bảng điều khiển tổng quan của toàn công ty (Agency Dashboard), thống kê số lượng Workspace, nhân sự, tiến độ các chiến dịch và mức sử dụng điểm AI Credit.",
+    "viSummary": "Cung cấp cho chủ sở hữu (Owner) bảng điều khiển tổng quan của toàn công ty (Agency Dashboard), thống kê số lượng Workspace, nhân sự, tiến độ các chiến dịch và mức sử dụng điểm AI Credit.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Tổng quan Agency hiển thị các thẻ số liệu chính (Tổng số Workspace, Tổng nhân sự, Chiến dịch đang chạy, Số dư AI Credit), biểu đồ hiệu suất công việc theo tuần/tháng và đường dẫn nhanh tới các dự án.",
+    "dataProcessing": "Hệ thống kiểm tra người xem có đúng là Owner của Agency đó không (BR-15), sau đó tổng hợp số liệu thống kê từ tất cả các Workspace và nhân sự trực thuộc công ty để vẽ biểu đồ.",
+    "dataSpecs": {
+      "inputRequired": "Owner chọn Agency cần xem bảng điều khiển tổng quan.",
+      "inputOptional": "Bộ lọc khoảng thời gian thống kê (7 ngày, 30 ngày, theo quý).",
+      "systemData": "Tổng số Workspace, số thành viên đang hoạt động, số lượng chiến dịch, tiến độ Task và số dư điểm AI Credit của Agency.",
+      "output": "Hiển thị bảng thống kê KPI và biểu đồ hoạt động của toàn Agency."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-20"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller does not have permission to view the target Agency dashboard → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Owner truy cập vào màn hình Tổng quan của Agency (/agency/:id/stats).",
+      "Hệ thống xác nhận quyền Owner đối với Agency đó (BR-15).",
+      "Hệ thống tổng hợp số liệu thành viên, các Workspace đang hoạt động, tiến độ chiến dịch và quỹ điểm AI Credit.",
+      "Màn hình hiển thị trực quan các thẻ chỉ số và biểu đồ theo dõi."
+    ],
+    "abnormalCases": [
+      "Nếu người truy cập không phải là Owner của Agency hoặc Agency đang bị tạm khóa: Hệ thống từ chối truy cập và hiển thị MSG07 hoặc MSG36."
+    ],
+    "postConditions": [
+      "The Owner views up-to-date operational KPIs and analytical charts for the selected Agency.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-24.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.3",
+    "title": "Create Agency",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-016",
+    "ucName": "Create Agency",
+    "ucDescription": "(3.4.3) Cho phép người dùng khởi tạo một công ty truyền thông (Agency) mới. Người tạo sẽ tự động trở thành chủ sở hữu (Owner) duy nhất của Agency đó và bắt đầu với gói dịch vụ Cơ bản (Basic).",
+    "figureId": "r3-fig-25",
+    "figureNumber": 25,
+    "figureCaption": "Figure 25 - Create Agency",
+    "sequenceFigureId": "seq-3.4.3",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bấm nút Tạo Agency mới (/agency/create), điền thông tin công ty và bấm Hoàn tất.",
+    "purpose": "Cho phép người dùng khởi tạo một công ty truyền thông (Agency) mới. Người tạo sẽ tự động trở thành chủ sở hữu (Owner) duy nhất của Agency đó và bắt đầu với gói dịch vụ Cơ bản (Basic).",
+    "viSummary": "Cho phép người dùng khởi tạo một công ty truyền thông (Agency) mới. Người tạo sẽ tự động trở thành chủ sở hữu (Owner) duy nhất của Agency đó và bắt đầu với gói dịch vụ Cơ bản (Basic).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Tạo Agency (/agency/create) gồm ô nhập Tên công ty/Agency, chọn Lĩnh vực hoạt động, Mô tả giới thiệu, Website/Liên hệ, nút tải lên Logo/Ảnh bìa (kèm khung xem trước trực tiếp) và nút Tạo Agency.",
+    "dataProcessing": "Hệ thống kiểm tra Tên công ty không bị để trống, tệp Logo tải lên hợp lệ (dưới 5 MB - BR-12), kiểm tra giới hạn tạo Agency theo gói tài khoản (BR-58), sau đó tạo bản ghi Agency mới và gán người tạo làm Owner duy nhất (BR-15).",
+    "dataSpecs": {
+      "inputRequired": "Tên công ty (Agency Name) và Lĩnh vực hoạt động.",
+      "inputOptional": "Logo công ty, Ảnh bìa (PNG, JPG, WEBP tối đa 5 MB), Mô tả giới thiệu, Website, Số điện thoại và Địa chỉ liên hệ.",
+      "systemData": "Mã Agency mới, gán cố định vai trò OWNER cho người tạo (BR-15) và kích hoạt gói dịch vụ Basic mặc định (BR-58).",
+      "output": "Tạo Agency mới thành công (hiển thị MSG23) và chuyển vào trang quản lý của Agency vừa tạo."
+    },
+    "businessRules": [
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      },
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-58",
+        "text": "Mỗi Agency mới tạo sẽ bắt đầu ở gói Cơ bản (Basic). Khi Owner nâng cấp lên gói cao hơn (Pro hoặc Enterprise qua 3.9.1) và thanh toán thành công, hệ thống sẽ mở rộng ngay giới hạn số lượng Workspace, thành viên, dung lượng lưu trữ và điểm AI Credit hàng tháng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-12",
+      "BR-15",
+      "BR-58"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG22",
+      "MSG23"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-12) → Display: MSG07.",
+      "Required field missing (agencyName left blank) → Display: MSG02.",
+      "Agency Name or description exceeds maximum character limit → Display: MSG03.",
+      "Uploaded logo or banner violates PNG/JPG/WEBP format or 5 MB size limit (BR-12) → Display: MSG22."
+    ],
+    "normalFlow": [
+      "Người dùng mở màn hình Tạo Agency (/agency/create) và nhập Tên công ty, Lĩnh vực hoạt động, Mô tả cùng Logo.",
+      "Người dùng bấm nút Tạo Agency.",
+      "Hệ thống kiểm tra dữ liệu bắt buộc, định dạng ảnh Logo (BR-12) và điều kiện khởi tạo (BR-58).",
+      "Hệ thống lưu Agency mới, gán người tạo làm Owner duy nhất (BR-15), hiển thị thông báo MSG23 và mở trang quản lý Agency."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên công ty: Hệ thống báo lỗi MSG02 dưới ô nhập.",
+      "Nếu ảnh Logo/Banner tải lên sai định dạng hoặc vượt quá 5 MB: Hệ thống báo lỗi MSG22."
+    ],
+    "postConditions": [
+      "A new active Agency record exists with the creating user permanently linked as its sole OWNER (BR-15).",
+      "Default Basic subscription and AI Credit ledger records are initialized for the Agency."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-25.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.4",
+    "title": "View Agency Profile",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-017",
+    "ucName": "View Agency Profile",
+    "ucDescription": "(3.4.4) Xem trang hồ sơ giới thiệu chính thức của công ty (Agency Profile) gồm tên công ty, logo, năng lực chuyên môn, thông tin liên hệ và các gói dịch vụ mẫu để Client và thành viên nắm rõ thông tin.",
+    "figureId": "r3-fig-26",
+    "figureNumber": 26,
+    "figureCaption": "Figure 26 - View Agency Profile",
+    "sequenceFigureId": "seq-3.4.4",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi Owner, Manager, Creator hoặc Client mở trang Hồ sơ công ty (/agency/:id).",
+    "purpose": "Xem trang hồ sơ giới thiệu chính thức của công ty (Agency Profile) gồm tên công ty, logo, năng lực chuyên môn, thông tin liên hệ và các gói dịch vụ mẫu để Client và thành viên nắm rõ thông tin.",
+    "viSummary": "Xem trang hồ sơ giới thiệu chính thức của công ty (Agency Profile) gồm tên công ty, logo, năng lực chuyên môn, thông tin liên hệ và các gói dịch vụ mẫu để Client và thành viên nắm rõ thông tin.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Hồ sơ Agency (/agency/:id) hiển thị Ảnh bìa, Logo, Tên công ty, Giới thiệu năng lực, Lĩnh vực hoạt động, Website, Email/Số điện thoại liên hệ và nút Chỉnh sửa (chỉ hiện với Owner).",
+    "dataProcessing": "Hệ thống kiểm tra người dùng có quyền xem thông tin Agency không, sau đó tải và hiển thị toàn bộ thông tin giới thiệu của công ty.",
+    "dataSpecs": {
+      "inputRequired": "Chọn Agency cần xem hồ sơ giới thiệu.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Thông tin giới thiệu, bộ nhận diện thương hiệu và thông tin liên hệ của Agency.",
+      "output": "Hiển thị trang Hồ sơ giới thiệu của Agency."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Target Agency is soft-deleted and caller is not the Owner, or caller lacks access → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Người dùng (Owner, Manager, Creator hoặc Client) mở trang Hồ sơ Agency (/agency/:id).",
+      "Hệ thống kiểm tra quyền truy cập và trạng thái hoạt động của Agency (BR-15).",
+      "Hệ thống tải thông tin hồ sơ công ty từ cơ sở dữ liệu.",
+      "Màn hình hiển thị đầy đủ thông tin giới thiệu, logo và liên hệ của Agency."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng không thuộc Agency hoặc không có quyền xem: Hệ thống chặn truy cập và báo MSG07."
+    ],
+    "postConditions": [
+      "The Agency's profile information is displayed accurately to the viewer.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-26.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.5",
+    "title": "Update Agency Profile",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-018",
+    "ucName": "Update Agency Profile",
+    "ucDescription": "(3.4.5) Cho phép chủ sở hữu (Owner) chỉnh sửa thông tin giới thiệu, thông tin liên hệ và thay đổi Logo/Ảnh bìa của công ty (Agency).",
+    "figureId": "r3-fig-27",
+    "figureNumber": 27,
+    "figureCaption": "Figure 27 - Update Agency Profile",
+    "sequenceFigureId": "seq-3.4.5",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner mở phần cài đặt Hồ sơ Agency (/agency/:id), sửa thông tin và bấm Lưu thay đổi.",
+    "purpose": "Cho phép chủ sở hữu (Owner) chỉnh sửa thông tin giới thiệu, thông tin liên hệ và thay đổi Logo/Ảnh bìa của công ty (Agency).",
+    "viSummary": "Cho phép chủ sở hữu (Owner) chỉnh sửa thông tin giới thiệu, thông tin liên hệ và thay đổi Logo/Ảnh bìa của công ty (Agency).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Biểu mẫu cập nhật Hồ sơ Agency gồm ô sửa Tên công ty, Lĩnh vực, Mô tả giới thiệu, Website, Email/Số điện thoại liên hệ, nút đổi Logo/Ảnh bìa và nút Lưu.",
+    "dataProcessing": "Hệ thống kiểm tra người thực hiện đúng là Owner của Agency (BR-15), kiểm tra Tên công ty không bị để trống và ảnh tải lên không quá 5 MB (BR-12), sau đó lưu thông tin mới.",
+    "dataSpecs": {
+      "inputRequired": "Tên công ty (Agency Name).",
+      "inputOptional": "Logo mới, Ảnh bìa mới (PNG, JPG, WEBP tối đa 5 MB), Lĩnh vực hoạt động, Mô tả, Website, Địa chỉ và Số điện thoại.",
+      "systemData": "Thời gian cập nhật và đường dẫn ảnh mới của Agency.",
+      "output": "Cập nhật thông tin công ty thành công và hiển thị thông báo MSG21."
+    },
+    "businessRules": [
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      },
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-12",
+      "BR-15"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG21",
+      "MSG22"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) → Display: MSG07.",
+      "Agency Name is blank → Display: MSG02.",
+      "Field length or URL format invalid → Display: MSG03.",
+      "Logo or Banner upload violates PNG/JPG/WEBP or 5 MB limit (BR-12) → Display: MSG22."
+    ],
+    "normalFlow": [
+      "Owner mở phần chỉnh sửa Hồ sơ công ty trên trang quản lý Agency (/agency/:id).",
+      "Owner thay đổi Tên công ty, Mô tả, Liên hệ hoặc tải lên Logo mới rồi bấm Lưu thay đổi.",
+      "Hệ thống xác nhận quyền Owner (BR-15) và kiểm tra tính hợp lệ của thông tin/hình ảnh (BR-12).",
+      "Hệ thống lưu hồ sơ công ty mới và hiển thị thông báo cập nhật thành công (MSG21)."
+    ],
+    "abnormalCases": [
+      "Nếu người thao tác không phải là Owner của Agency: Hệ thống từ chối và báo MSG07.",
+      "Nếu để trống Tên công ty hoặc tải ảnh nặng quá 5 MB: Hệ thống báo lỗi MSG02 hoặc MSG22."
+    ],
+    "postConditions": [
+      "The Agency's updated profile attributes and branding visuals are persisted and visible across all linked Workspaces.",
+      "Role-based access isolation (BR-12) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-27.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.6",
+    "title": "Remove Agency",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-019",
+    "ucName": "Remove Agency",
+    "ucDescription": "(3.4.6) Cho phép Owner xóa mềm công ty (Remove Agency). Khi xóa, Agency và các dự án bên trong sẽ tạm ngưng hoạt động nhưng toàn bộ dữ liệu vẫn được giữ lại trong 30 ngày để Owner khôi phục nếu cần.",
+    "figureId": "r3-fig-28",
+    "figureNumber": 28,
+    "figureCaption": "Figure 28 - Remove Agency",
+    "sequenceFigureId": "seq-3.4.6",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner bấm nút Xóa Agency trong phần Cài đặt công ty, nhập lại tên Agency để xác nhận và đồng ý.",
+    "purpose": "Cho phép Owner xóa mềm công ty (Remove Agency). Khi xóa, Agency và các dự án bên trong sẽ tạm ngưng hoạt động nhưng toàn bộ dữ liệu vẫn được giữ lại trong 30 ngày để Owner khôi phục nếu cần.",
+    "viSummary": "Cho phép Owner xóa mềm công ty (Remove Agency). Khi xóa, Agency và các dự án bên trong sẽ tạm ngưng hoạt động nhưng toàn bộ dữ liệu vẫn được giữ lại trong 30 ngày để Owner khôi phục nếu cần.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Khu vực Xóa công ty trên màn hình Cài đặt Agency (/agency/:id) kèm hộp thoại xác nhận yêu cầu nhập đúng tên Agency và nút Xác nhận xóa.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner duy nhất (BR-15) và kiểm tra chuỗi tên xác nhận. Sau đó, hệ thống chuyển trạng thái Agency sang Tạm ẩn chờ xóa (lưu giữ 30 ngày - BR-16) và tạm dừng quyền truy cập của các thành viên vào các Workspace trực thuộc.",
+    "dataSpecs": {
+      "inputRequired": "Nhập đúng tên Agency vào ô xác nhận xóa.",
+      "inputOptional": "Lý do xóa (tùy chọn).",
+      "systemData": "Trạng thái Agency chuyển sang Đã xóa mềm (DELETED_PENDING), mốc hạn 30 ngày khôi phục (BR-16).",
+      "output": "Xóa mềm Agency thành công, hiển thị thông báo MSG24 (nhắc có thể khôi phục trong 30 ngày) và quay về danh sách Agency."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-16",
+        "text": "Chỉ Owner mới có quyền xóa Agency (3.4.6) hoặc xóa Workspace (3.4.17). Khi xóa, dữ liệu sẽ được chuyển sang trạng thái tạm ẩn trong 30 ngày để Owner có thể khôi phục lại nếu xóa nhầm, đồng thời tạm ngưng quyền truy cập của các thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-16"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG24"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15, BR-16) → Display: MSG07.",
+      "Confirmation input left blank → Display: MSG02.",
+      "Submitted parameter value exceeds maximum length or falls outside the valid domain range → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở phần Cài đặt của Agency (/agency/:id) và bấm chọn Xóa Agency.",
+      "Trên hộp thoại cảnh báo, Owner nhập lại chính xác tên Agency để xác nhận và bấm Đồng ý.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) và chuyển trạng thái Agency cùng các Workspace bên trong sang chế độ tạm khóa chờ xóa 30 ngày (BR-16).",
+      "Hệ thống hiển thị thông báo MSG24 và điều hướng về màn hình Danh sách Agency."
+    ],
+    "abnormalCases": [
+      "Nếu nhập tên xác nhận không khớp với tên Agency: Hệ thống báo lỗi MSG02/MSG03 và không thực hiện xóa.",
+      "Nếu người thao tác không phải là Owner: Hệ thống chặn thao tác và báo MSG07."
+    ],
+    "postConditions": [
+      "The Agency and its Workspaces are placed in a soft-deleted state and can be restored by the Owner within 30 days (BR-16).",
+      "Non-owner members can no longer access the soft-deleted Agency or its Workspaces."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374191/brandhub-docs-portal/report3/r3-fig-28.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.7",
+    "title": "Invite Agency Member",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-020",
+    "ucName": "Invite Agency Member",
+    "ucDescription": "(3.4.7) Cho phép Owner gửi lời mời nhân sự mới tham gia vào công ty (Agency) thông qua địa chỉ Email. Lời mời có hiệu lực trong vòng 3 ngày (72 giờ).",
+    "figureId": "r3-fig-29",
+    "figureNumber": 29,
+    "figureCaption": "Figure 29 - Invite Agency Member",
+    "sequenceFigureId": "seq-3.4.7",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner mở trang Thành viên Agency (/agency/:id/members), nhập địa chỉ email của người cần mời và bấm Gửi lời mời.",
+    "purpose": "Cho phép Owner gửi lời mời nhân sự mới tham gia vào công ty (Agency) thông qua địa chỉ Email. Lời mời có hiệu lực trong vòng 3 ngày (72 giờ).",
+    "viSummary": "Cho phép Owner gửi lời mời nhân sự mới tham gia vào công ty (Agency) thông qua địa chỉ Email. Lời mời có hiệu lực trong vòng 3 ngày (72 giờ).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Hộp thoại Mời thành viên trên màn hình Thành viên Agency (/agency/:id/members) gồm ô nhập Địa chỉ Email, ô lời nhắn (tùy chọn) và nút Gửi lời mời.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), kiểm tra định dạng email hợp lệ (BR-01) và kiểm tra người đó chưa phải là thành viên hoặc chưa có lời mời nào đang chờ. Tiếp theo, hệ thống tạo lời mời ở trạng thái Chờ phản hồi (PENDING) có hạn 3 ngày (BR-17) và gửi thông báo kèm email cho người nhận.",
+    "dataSpecs": {
+      "inputRequired": "Địa chỉ Email của người muốn mời vào Agency.",
+      "inputOptional": "Lời nhắn giới thiệu kèm theo lời mời.",
+      "systemData": "Mã lời mời, trạng thái Chờ phản hồi (PENDING) và thời gian hết hạn sau 3 ngày (72 giờ - BR-17).",
+      "output": "Gửi lời mời thành công, hiển thị thông báo MSG25 và thêm vào danh sách lời mời đang chờ."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-17",
+        "text": "Lời mời tham gia Agency được gửi qua email và thông báo trên ứng dụng. Khi chấp nhận, người dùng trở thành thành viên chung của Agency (chưa tự động vào các Workspace riêng). Lời mời sẽ tự hết hạn sau 3 ngày nếu không phản hồi."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-15",
+      "BR-17"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG04",
+      "MSG07",
+      "MSG08",
+      "MSG25",
+      "MSG26"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) → Display: MSG07.",
+      "Invitee email field is blank or malformed → Display: MSG02, MSG04.",
+      "Target email already belongs to an active Agency member or has an active PENDING invitation → Display: MSG26."
+    ],
+    "normalFlow": [
+      "Owner mở màn hình Thành viên Agency (/agency/:id/members) và bấm nút Mời thành viên.",
+      "Owner nhập địa chỉ Email của nhân sự cần mời và bấm Gửi lời mời.",
+      "Hệ thống kiểm tra email hợp lệ và chưa tồn tại trong danh sách thành viên hoặc danh sách đang chờ của Agency.",
+      "Hệ thống lưu lời mời (hiệu lực 3 ngày - BR-17), gửi email/thông báo cho người nhận và hiển thị thông báo MSG25."
+    ],
+    "abnormalCases": [
+      "Nếu nhập trống hoặc sai định dạng email: Hệ thống báo lỗi MSG02 hoặc MSG04.",
+      "Nếu email đó đã là thành viên của Agency hoặc đang có lời mời chờ phản hồi: Hệ thống báo thông báo MSG26."
+    ],
+    "postConditions": [
+      "A PENDING AgencyInvitation record exists with a 3-day expiration window (BR-17).",
+      "Upon future acceptance (3.4.9), the invitee joins the Agency as a general member without automatic Workspace roles."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374192/brandhub-docs-portal/report3/r3-fig-29.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.8",
+    "title": "View Agency Invitation Status",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-021",
+    "ucName": "View Agency Invitation Status",
+    "ucDescription": "(3.4.8) Theo dõi danh sách và trạng thái của các lời mời tham gia Agency (Đang chờ, Đã chấp nhận, Đã từ chối, Đã hết hạn sau 3 ngày).",
+    "figureId": "r3-fig-30",
+    "figureNumber": 30,
+    "figureCaption": "Figure 30 - View Agency Invitation Status",
+    "sequenceFigureId": "seq-3.4.8",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Owner mở tab Lời mời trên trang Thành viên Agency (/agency/:id/members) hoặc khi người dùng mở trang Lời mời nhận được (/agency/invitations).",
+    "purpose": "Theo dõi danh sách và trạng thái của các lời mời tham gia Agency (Đang chờ, Đã chấp nhận, Đã từ chối, Đã hết hạn sau 3 ngày).",
+    "viSummary": "Theo dõi danh sách và trạng thái của các lời mời tham gia Agency (Đang chờ, Đã chấp nhận, Đã từ chối, Đã hết hạn sau 3 ngày).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Bảng danh sách lời mời hiển thị Email người nhận, Tên Agency mời, Ngày gửi, Thời gian còn lại (đếm ngược 3 ngày), nhãn Trạng thái (PENDING, ACCEPTED, DECLINED, EXPIRED) và các nút thao tác.",
+    "dataProcessing": "Hệ thống tự động kiểm tra các lời mời đã quá 3 ngày để chuyển sang trạng thái Hết hạn (EXPIRED - BR-17), sau đó hiển thị danh sách lời mời theo quyền của người xem (BR-18).",
+    "dataSpecs": {
+      "inputRequired": "Người dùng mở trang danh sách lời mời.",
+      "inputOptional": "Lọc theo trạng thái lời mời (Đang chờ / Đã chấp nhận / Đã từ chối / Hết hạn) hoặc tìm theo email.",
+      "systemData": "Trạng thái hiện tại của lời mời và thời gian hết hạn 3 ngày (BR-17).",
+      "output": "Hiển thị danh sách lời mời kèm trạng thái cập nhật mới nhất."
+    },
+    "businessRules": [
+      {
+        "code": "BR-17",
+        "text": "Lời mời tham gia Agency được gửi qua email và thông báo trên ứng dụng. Khi chấp nhận, người dùng trở thành thành viên chung của Agency (chưa tự động vào các Workspace riêng). Lời mời sẽ tự hết hạn sau 3 ngày nếu không phản hồi."
+      },
+      {
+        "code": "BR-18",
+        "text": "Chỉ đúng tài khoản có email nhận được lời mời (và lời mời đó vẫn đang chờ phản hồi, chưa hết hạn 3 ngày) mới có thể bấm Chấp nhận (3.4.9) hoặc Từ chối (3.4.10)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-17",
+      "BR-18"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator permission (BR-17) → Display: MSG07.",
+      "No invitations match the selected filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner hoặc người dùng được mời mở màn hình Quản lý lời mời (/agency/invitations).",
+      "Hệ thống kiểm tra quyền truy cập và cập nhật trạng thái các lời mời đã quá hạn 3 ngày (BR-17).",
+      "Hệ thống truy xuất danh sách các lời mời liên quan đến tài khoản.",
+      "Màn hình hiển thị bảng lời mời kèm trạng thái và thời hạn còn lại."
+    ],
+    "abnormalCases": [
+      "Nếu không có lời mời nào khớp với bộ lọc: Hệ thống hiển thị thông báo trống MSG01."
+    ],
+    "postConditions": [
+      "Both the Owner and the Invited recipient see accurate, up-to-date invitation statuses.",
+      "Role-based access isolation (BR-17) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374192/brandhub-docs-portal/report3/r3-fig-30.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.9",
+    "title": "Accept Agency Invitation",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-022",
+    "ucName": "Accept Agency Invitation",
+    "ucDescription": "(3.4.9) Cho phép người dùng được mời bấm Chấp nhận lời mời để chính thức trở thành thành viên của công ty (Agency).",
+    "figureId": "r3-fig-31",
+    "figureNumber": 31,
+    "figureCaption": "Figure 31 - Accept Agency Invitation",
+    "sequenceFigureId": "seq-3.4.9",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi người dùng nhận được lời mời (còn trong thời hạn 3 ngày) và bấm nút Chấp nhận (Accept) trên trang Lời mời (/agency/invitations).",
+    "purpose": "Cho phép người dùng được mời bấm Chấp nhận lời mời để chính thức trở thành thành viên của công ty (Agency).",
+    "viSummary": "Cho phép người dùng được mời bấm Chấp nhận lời mời để chính thức trở thành thành viên của công ty (Agency).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Thẻ lời mời tham gia Agency hiển thị Tên công ty, Người mời, Thời hạn còn lại cùng 2 nút: Chấp nhận (Accept) và Từ chối (Decline).",
+    "dataProcessing": "Hệ thống kiểm tra tài khoản đang đăng nhập có đúng email được mời không (BR-18) và lời mời vẫn đang ở trạng thái Chờ phản hồi, chưa quá hạn 3 ngày (BR-17). Nếu hợp lệ, hệ thống chuyển lời mời sang Đã chấp nhận (ACCEPTED) và thêm người dùng vào danh sách thành viên chính thức của Agency.",
+    "dataSpecs": {
+      "inputRequired": "Chọn lời mời đang chờ và bấm nút Chấp nhận.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Cập nhật trạng thái lời mời sang ACCEPTED, tạo bản ghi thành viên mới trong Agency và gửi thông báo cho Owner.",
+      "output": "Gia nhập Agency thành công, hiển thị thông báo MSG27 và Agency mới xuất hiện trong danh sách của người dùng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-17",
+        "text": "Lời mời tham gia Agency được gửi qua email và thông báo trên ứng dụng. Khi chấp nhận, người dùng trở thành thành viên chung của Agency (chưa tự động vào các Workspace riêng). Lời mời sẽ tự hết hạn sau 3 ngày nếu không phản hồi."
+      },
+      {
+        "code": "BR-18",
+        "text": "Chỉ đúng tài khoản có email nhận được lời mời (và lời mời đó vẫn đang chờ phản hồi, chưa hết hạn 3 ngày) mới có thể bấm Chấp nhận (3.4.9) hoặc Từ chối (3.4.10)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-17",
+      "BR-18"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG27",
+      "MSG28"
+    ],
+    "validations": [
+      "Authenticated user's email does not match the invitation recipient (BR-18) → Display: MSG07.",
+      "Invitation has passed its 3-day expiration window or is no longer PENDING (BR-17) → Display: MSG28.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở danh sách Lời mời nhận được (/agency/invitations) hoặc nhấp vào link mời trong email.",
+      "Người dùng bấm nút Chấp nhận trên lời mời của Agency.",
+      "Hệ thống kiểm tra đúng tài khoản được mời (BR-18) và lời mời chưa quá hạn 3 ngày (BR-17).",
+      "Hệ thống thêm người dùng làm thành viên chính thức của Agency, cập nhật trạng thái lời mời sang Đã chấp nhận và hiển thị thông báo MSG27."
+    ],
+    "abnormalCases": [
+      "Nếu lời mời đã quá hạn 3 ngày hoặc đã bị thu hồi trước đó: Hệ thống từ chối và hiển thị thông báo lời mời đã hết hạn (MSG28)."
+    ],
+    "postConditions": [
+      "The AgencyInvitation status is permanently recorded as ACCEPTED.",
+      "The user is an active general member of the Agency and can be assigned to Workspaces (3.4.24)."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374192/brandhub-docs-portal/report3/r3-fig-31.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.10",
+    "title": "Decline Agency Invitation",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-023",
+    "ucName": "Decline Agency Invitation",
+    "ucDescription": "(3.4.10) Cho phép người dùng được mời bấm Từ chối lời mời tham gia Agency nếu không có nhu cầu gia nhập công ty đó.",
+    "figureId": "r3-fig-32",
+    "figureNumber": 32,
+    "figureCaption": "Figure 32 - Decline Agency Invitation",
+    "sequenceFigureId": "seq-3.4.10",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi người dùng bấm nút Từ chối (Decline) trên lời mời tham gia Agency đang chờ phản hồi.",
+    "purpose": "Cho phép người dùng được mời bấm Từ chối lời mời tham gia Agency nếu không có nhu cầu gia nhập công ty đó.",
+    "viSummary": "Cho phép người dùng được mời bấm Từ chối lời mời tham gia Agency nếu không có nhu cầu gia nhập công ty đó.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Nút Từ chối (Decline) trên thẻ lời mời tại màn hình Lời mời (/agency/invitations).",
+    "dataProcessing": "Hệ thống kiểm tra đúng người nhận lời mời (BR-18) và lời mời vẫn đang ở trạng thái Chờ phản hồi (BR-17), sau đó chuyển trạng thái lời mời sang Đã từ chối (DECLINED) và báo lại cho Owner.",
+    "dataSpecs": {
+      "inputRequired": "Chọn lời mời đang chờ và bấm nút Từ chối.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Cập nhật trạng thái lời mời sang DECLINED và lưu thời gian phản hồi.",
+      "output": "Ghi nhận từ chối lời mời thành công và hiển thị thông báo MSG27."
+    },
+    "businessRules": [
+      {
+        "code": "BR-17",
+        "text": "Lời mời tham gia Agency được gửi qua email và thông báo trên ứng dụng. Khi chấp nhận, người dùng trở thành thành viên chung của Agency (chưa tự động vào các Workspace riêng). Lời mời sẽ tự hết hạn sau 3 ngày nếu không phản hồi."
+      },
+      {
+        "code": "BR-18",
+        "text": "Chỉ đúng tài khoản có email nhận được lời mời (và lời mời đó vẫn đang chờ phản hồi, chưa hết hạn 3 ngày) mới có thể bấm Chấp nhận (3.4.9) hoặc Từ chối (3.4.10)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-17",
+      "BR-18"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG27",
+      "MSG28"
+    ],
+    "validations": [
+      "Caller's email does not match the invitation recipient (BR-18) → Display: MSG07.",
+      "Invitation is already expired or no longer PENDING (BR-17) → Display: MSG28.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở trang Lời mời (/agency/invitations) và xem lời mời đang chờ.",
+      "Người dùng bấm nút Từ chối.",
+      "Hệ thống kiểm tra tính hợp lệ của lời mời (BR-17, BR-18) và cập nhật trạng thái sang Đã từ chối (DECLINED).",
+      "Hệ thống gửi thông báo phản hồi cho Owner của Agency và hiển thị thông báo MSG27."
+    ],
+    "abnormalCases": [
+      "Nếu lời mời đã hết hạn 3 ngày hoặc đã được xử lý trước đó: Hệ thống hiển thị thông báo MSG28."
+    ],
+    "postConditions": [
+      "The AgencyInvitation status is set to DECLINED and no Agency membership is created.",
+      "Role-based access isolation (BR-17) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374192/brandhub-docs-portal/report3/r3-fig-32.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_10.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.11",
+    "title": "Remove Agency Member",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-024",
+    "ucName": "Remove Agency Member",
+    "ucDescription": "(3.4.11) Cho phép Owner xóa một thành viên ra khỏi công ty (Agency). Người bị xóa sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu họ đã làm trước đó vẫn được giữ nguyên cho công ty.",
+    "figureId": "r3-fig-33",
+    "figureNumber": 33,
+    "figureCaption": "Figure 33 - Remove Agency Member",
+    "sequenceFigureId": "seq-3.4.11",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner chọn một thành viên trong danh sách Thành viên Agency (/agency/:id/members), bấm Xóa khỏi Agency và xác nhận.",
+    "purpose": "Cho phép Owner xóa một thành viên ra khỏi công ty (Agency). Người bị xóa sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu họ đã làm trước đó vẫn được giữ nguyên cho công ty.",
+    "viSummary": "Cho phép Owner xóa một thành viên ra khỏi công ty (Agency). Người bị xóa sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu họ đã làm trước đó vẫn được giữ nguyên cho công ty.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Bảng danh sách thành viên Agency (/agency/:id/members) kèm nút Xóa thành viên và hộp thoại xác nhận trước khi xóa.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), kiểm tra thành viên đó không phải là Manager duy nhất đang phụ trách một Workspace nào đó (BR-21). Nếu hợp lệ, hệ thống thu hồi quyền truy cập của người đó khỏi Agency và các Workspace trực thuộc, đồng thời giữ nguyên toàn bộ tài liệu/bài viết họ từng tạo (BR-19).",
+    "dataSpecs": {
+      "inputRequired": "Chọn thành viên cần xóa khỏi Agency và xác nhận.",
+      "inputOptional": "Lý do xóa thành viên (ghi chú nội bộ).",
+      "systemData": "Thu hồi quyền thành viên trong Agency và các Workspace, bảo toàn lịch sử bài viết/tư liệu (BR-19).",
+      "output": "Xóa thành viên khỏi Agency thành công và hiển thị thông báo MSG29."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-19",
+        "text": "Khi xóa một thành viên khỏi Agency (3.4.11) hoặc Workspace (3.4.26), người đó sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu mà họ đã làm trước đó vẫn được giữ nguyên cho dự án."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-19",
+      "BR-21"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG29",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) or attempts to remove the Owner → Display: MSG07.",
+      "Target member is the sole active Manager of an active Workspace (BR-21) → Display: MSG36 (Owner must assign a replacement Manager first).",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở danh sách Thành viên của Agency (/agency/:id/members) và bấm nút Xóa bên cạnh thành viên cần gỡ.",
+      "Owner bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống kiểm tra thành viên đó không phải là Manager duy nhất của bất kỳ Workspace nào đang chạy (BR-21).",
+      "Hệ thống gỡ quyền truy cập của thành viên khỏi Agency và các Workspace, giữ nguyên toàn bộ sản phẩm công việc cũ (BR-19) và báo thành công (MSG29)."
+    ],
+    "abnormalCases": [
+      "Nếu thành viên đó đang là Manager duy nhất của một Workspace: Hệ thống chặn thao tác xóa và nhắc Owner cần gán một Manager khác thay thế cho Workspace đó trước (BR-21, MSG36).",
+      "Nếu Owner cố tình tự xóa chính tài khoản Owner của mình: Hệ thống chặn và báo lỗi MSG36."
+    ],
+    "postConditions": [
+      "The removed user can no longer access the Agency or any of its Workspaces.",
+      "All tasks, content, and media previously created by the user remain intact inside the Agency's Workspaces (BR-19) and become editable again if the user is re-invited later."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374193/brandhub-docs-portal/report3/r3-fig-33.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_11.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.12",
+    "title": "List Workspace",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-025",
+    "ucName": "List Workspace",
+    "ucDescription": "(3.4.12) Xem danh sách các không gian làm việc (Workspace) trong công ty. Owner nhìn thấy toàn bộ tất cả các Workspace của Agency, còn Manager, Creator và Client chỉ nhìn thấy những Workspace mà mình tham gia.",
+    "figureId": "r3-fig-34",
+    "figureNumber": 34,
+    "figureCaption": "Figure 34 - List Workspace",
+    "sequenceFigureId": "seq-3.4.12",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi người dùng mở màn hình Danh sách Workspace (/workspace).",
+    "purpose": "Xem danh sách các không gian làm việc (Workspace) trong công ty. Owner nhìn thấy toàn bộ tất cả các Workspace của Agency, còn Manager, Creator và Client chỉ nhìn thấy những Workspace mà mình tham gia.",
+    "viSummary": "Xem danh sách các không gian làm việc (Workspace) trong công ty. Owner nhìn thấy toàn bộ tất cả các Workspace của Agency, còn Manager, Creator và Client chỉ nhìn thấy những Workspace mà mình tham gia.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Danh sách Workspace (/workspace) gồm ô tìm kiếm tên dự án, danh sách thẻ Workspace (hiển thị Tên dự án/nhãn hàng, Tên Manager phụ trách, Múi giờ, Số lượng thành viên, Tiến độ công việc) và nút Tạo Workspace mới (dành cho Owner).",
+    "dataProcessing": "Hệ thống kiểm tra vai trò của người dùng: nếu là Owner thì lấy toàn bộ các Workspace của Agency (BR-15); nếu là Manager, Creator hoặc Client thì chỉ lấy những Workspace mà người đó đang là thành viên (BR-20).",
+    "dataSpecs": {
+      "inputRequired": "Người dùng đã đăng nhập mở màn hình Danh sách Workspace.",
+      "inputOptional": "Từ khóa tìm kiếm theo tên Workspace hoặc lọc theo trạng thái hoạt động.",
+      "systemData": "Danh sách Workspace theo đúng phân quyền (BR-20), thông tin Manager phụ trách và múi giờ của từng Workspace.",
+      "output": "Hiển thị danh sách các Workspace mà người dùng được phép truy cập."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-20"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-15) → Display: MSG07.",
+      "No Workspaces match the search query or membership scope → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở màn hình Danh sách Workspace (/workspace).",
+      "Hệ thống kiểm tra vai trò của người dùng trong Agency (BR-15, BR-20).",
+      "Hệ thống lấy danh sách toàn bộ Workspace (nếu là Owner) hoặc các Workspace được phân công (nếu là Manager, Creator, Client).",
+      "Màn hình hiển thị các thẻ Workspace để người dùng bấm vào làm việc."
+    ],
+    "abnormalCases": [
+      "Nếu không tìm thấy Workspace nào khớp với từ khóa: Hệ thống hiển thị thông báo trống MSG01."
+    ],
+    "postConditions": [
+      "The user sees only the Workspaces permitted by their Agency and Workspace role scope (BR-20).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374193/brandhub-docs-portal/report3/r3-fig-34.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_12.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.13",
+    "title": "View Workspace Dashboard",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-026",
+    "ucName": "View Workspace Dashboard",
+    "ucDescription": "(3.4.13) Hiển thị bảng điều khiển tổng quan của một dự án (Workspace Dashboard), giúp các thành viên nắm nhanh số lượng công việc theo từng trạng thái, lịch đăng bài sắp tới và lượng điểm AI Credit đã dùng.",
+    "figureId": "r3-fig-35",
+    "figureNumber": 35,
+    "figureCaption": "Figure 35 - View Workspace Dashboard",
+    "sequenceFigureId": "seq-3.4.13",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi Owner, Manager, Creator hoặc Client bấm vào một Workspace để mở màn hình Tổng quan dự án (/workspace/:id/dashboard).",
+    "purpose": "Hiển thị bảng điều khiển tổng quan của một dự án (Workspace Dashboard), giúp các thành viên nắm nhanh số lượng công việc theo từng trạng thái, lịch đăng bài sắp tới và lượng điểm AI Credit đã dùng.",
+    "viSummary": "Hiển thị bảng điều khiển tổng quan của một dự án (Workspace Dashboard), giúp các thành viên nắm nhanh số lượng công việc theo từng trạng thái, lịch đăng bài sắp tới và lượng điểm AI Credit đã dùng.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Tổng quan Workspace hiển thị thống kê số lượng Task (Đang chờ, Đang làm, Chờ duyệt, Đã duyệt, Đã đăng), lịch bài đăng sắp tới (theo múi giờ của Workspace), tiến độ chiến dịch và mức tiêu thụ AI Credit của dự án.",
+    "dataProcessing": "Hệ thống kiểm tra người dùng có quyền truy cập vào Workspace này không (BR-20), sau đó tổng hợp số liệu công việc, lịch xuất bản (quy đổi theo múi giờ chuẩn của Workspace - BR-22) và hạn mức điểm AI Credit để hiển thị.",
+    "dataSpecs": {
+      "inputRequired": "Chọn một Workspace mà người dùng có quyền truy cập.",
+      "inputOptional": "Bộ lọc khoảng thời gian xem thống kê.",
+      "systemData": "Số liệu thống kê Task theo trạng thái, lịch bài đăng sắp tới và số điểm AI Credit đã sử dụng trong Workspace.",
+      "output": "Hiển thị màn hình tổng quan tiến độ và hoạt động của Workspace."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-22"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Owner and not a member of the target Workspace (BR-20) → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Người dùng chọn một Workspace từ danh sách để mở trang Tổng quan (/workspace/:id/dashboard).",
+      "Hệ thống kiểm tra quyền truy cập của người dùng đối với Workspace đó (BR-20).",
+      "Hệ thống tổng hợp số liệu Task, tiến độ chiến dịch, lịch đăng bài (theo múi giờ BR-22) và điểm AI Credit.",
+      "Màn hình hiển thị các biểu đồ và bảng tóm tắt trực quan của dự án."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng không phải là thành viên của Workspace này (và không phải Owner): Hệ thống chặn truy cập và báo MSG07."
+    ],
+    "postConditions": [
+      "The Workspace Dashboard displays current metrics and status indicators for the selected Workspace.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374193/brandhub-docs-portal/report3/r3-fig-35.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_13.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.14",
+    "title": "Create Workspace",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-027",
+    "ucName": "Create Workspace",
+    "ucDescription": "(3.4.14) Cho phép Owner tạo mới một không gian làm việc (Workspace) cho dự án hoặc nhãn hàng mới. Khi tạo, Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách và thiết lập múi giờ chuẩn cho dự án.",
+    "figureId": "r3-fig-36",
+    "figureNumber": 36,
+    "figureCaption": "Figure 36 - Create Workspace",
+    "sequenceFigureId": "seq-3.4.14",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner mở màn hình Tạo Workspace (/workspace/create), điền thông tin dự án, chọn Manager phụ trách và bấm Tạo mới.",
+    "purpose": "Cho phép Owner tạo mới một không gian làm việc (Workspace) cho dự án hoặc nhãn hàng mới. Khi tạo, Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách và thiết lập múi giờ chuẩn cho dự án.",
+    "viSummary": "Cho phép Owner tạo mới một không gian làm việc (Workspace) cho dự án hoặc nhãn hàng mới. Khi tạo, Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách và thiết lập múi giờ chuẩn cho dự án.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Tạo Workspace (/workspace/create) gồm ô nhập Tên Workspace, Mô tả dự án, ô chọn Thành viên làm Manager (bắt buộc), ô chọn Múi giờ chuẩn (UTC Timezone), tùy chọn Gói dịch vụ / Mẫu cấu hình có sẵn và nút Tạo Workspace.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), kiểm tra giới hạn số lượng Workspace theo gói đăng ký hiện tại của Agency (BR-58), đảm bảo đã chọn ít nhất 1 thành viên của Agency làm Manager (BR-21) và có chọn Múi giờ hợp lệ (BR-22), sau đó khởi tạo Workspace mới.",
+    "dataSpecs": {
+      "inputRequired": "Tên Workspace, chọn ít nhất 01 thành viên làm Manager phụ trách (BR-21) và chọn Múi giờ chuẩn của dự án (BR-22).",
+      "inputOptional": "Mô tả dự án, Ảnh đại diện Workspace (PNG, JPG, WEBP tối đa 5 MB), chọn Client liên kết hoặc chọn Mẫu cấu hình Workspace.",
+      "systemData": "Mã Workspace mới, gán quyền MANAGER cho người được chọn, lưu cài đặt múi giờ và kiểm tra hạn mức gói cước (BR-58).",
+      "output": "Tạo Workspace mới thành công (hiển thị MSG23) và chuyển vào trang quản lý của Workspace đó."
+    },
+    "businessRules": [
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      },
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      },
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      },
+      {
+        "code": "BR-58",
+        "text": "Mỗi Agency mới tạo sẽ bắt đầu ở gói Cơ bản (Basic). Khi Owner nâng cấp lên gói cao hơn (Pro hoặc Enterprise qua 3.9.1) và thanh toán thành công, hệ thống sẽ mở rộng ngay giới hạn số lượng Workspace, thành viên, dung lượng lưu trữ và điểm AI Credit hàng tháng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-12",
+      "BR-15",
+      "BR-21",
+      "BR-22",
+      "BR-58"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG22",
+      "MSG23",
+      "MSG48"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) → Display: MSG07.",
+      "Required field missing (workspaceName, timezone, or managerUserId not selected per BR-21) → Display: MSG02.",
+      "Uploaded logo or banner violates PNG/JPG/WEBP or 5 MB limit (BR-12) → Display: MSG22.",
+      "Agency has reached the maximum Workspace limit for its current subscription plan (BR-58) → Display: MSG48."
+    ],
+    "normalFlow": [
+      "Owner bấm nút Tạo Workspace mới (/workspace/create) trong Agency của mình.",
+      "Owner nhập Tên Workspace, Mô tả, chọn ít nhất 1 nhân sự làm Manager phụ trách (BR-21) và chọn Múi giờ chuẩn cho dự án (BR-22).",
+      "Owner bấm nút Tạo Workspace.",
+      "Hệ thống kiểm tra hạn mức gói cước (BR-58), lưu Workspace mới kèm phân quyền Manager, hiển thị thông báo MSG23 và mở giao diện Workspace."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên Workspace hoặc chưa chọn Manager phụ trách: Hệ thống báo lỗi bắt buộc nhập (MSG02).",
+      "Nếu Agency đã đạt giới hạn số lượng Workspace tối đa của gói cước hiện tại: Hệ thống báo cần nâng cấp gói dịch vụ (MSG48)."
+    ],
+    "postConditions": [
+      "A new isolated Workspace exists in ACTIVE status with its UTC timezone configured (BR-22) and at least one Manager assigned (BR-21).",
+      "Role-based access isolation (BR-12) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374193/brandhub-docs-portal/report3/r3-fig-36.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_14.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.15",
+    "title": "View Workspace Profile",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-028",
+    "ucName": "View Workspace Profile",
+    "ucDescription": "(3.4.15) Xem thông tin cài đặt chi tiết của dự án (Workspace Profile), bao gồm tên dự án, mô tả, thông tin khách hàng (Client) liên kết, người quản lý (Manager) và cài đặt múi giờ chuẩn.",
+    "figureId": "r3-fig-37",
+    "figureNumber": 37,
+    "figureCaption": "Figure 37 - View Workspace Profile",
+    "sequenceFigureId": "seq-3.4.15",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên trong dự án mở trang Thông tin & Cài đặt Workspace (/workspace/:id/detail).",
+    "purpose": "Xem thông tin cài đặt chi tiết của dự án (Workspace Profile), bao gồm tên dự án, mô tả, thông tin khách hàng (Client) liên kết, người quản lý (Manager) và cài đặt múi giờ chuẩn.",
+    "viSummary": "Xem thông tin cài đặt chi tiết của dự án (Workspace Profile), bao gồm tên dự án, mô tả, thông tin khách hàng (Client) liên kết, người quản lý (Manager) và cài đặt múi giờ chuẩn.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Hồ sơ Workspace (/workspace/:id/detail) hiển thị Tên Workspace, Ảnh đại diện, Mô tả dự án, Thông tin Client liên kết, Danh sách Manager phụ trách và thông số Múi giờ chuẩn (IANA UTC Timezone).",
+    "dataProcessing": "Hệ thống kiểm tra người dùng là thành viên của Workspace hoặc là Owner của Agency (BR-20), sau đó tải thông tin cấu hình và múi giờ của Workspace (BR-22) lên màn hình.",
+    "dataSpecs": {
+      "inputRequired": "Thành viên có quyền truy cập mở trang Hồ sơ Workspace.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Thông tin định danh Workspace, cài đặt múi giờ (BR-22), thông tin Client và trạng thái hoạt động.",
+      "output": "Hiển thị đầy đủ thông tin cấu hình của Workspace."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-22"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller lacks access to the target Workspace (BR-20) → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Người dùng mở mục Thông tin & Cài đặt của Workspace (/workspace/:id/detail).",
+      "Hệ thống kiểm tra quyền truy cập của người dùng trong Workspace đó (BR-20).",
+      "Hệ thống truy xuất dữ liệu cấu hình và thiết lập múi giờ của Workspace (BR-22).",
+      "Màn hình hiển thị chi tiết hồ sơ dự án."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng không thuộc Workspace này: Hệ thống từ chối truy cập và hiển thị MSG07."
+    ],
+    "postConditions": [
+      "The Workspace profile and UTC timezone settings are displayed accurately.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374193/brandhub-docs-portal/report3/r3-fig-37.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_15.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.16",
+    "title": "Update Workspace Profile",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-029",
+    "ucName": "Update Workspace Profile",
+    "ucDescription": "(3.4.16) Cho phép Owner hoặc Manager cập nhật thông tin của Workspace (tên dự án, mô tả, ảnh đại diện) và điều chỉnh cài đặt Múi giờ chuẩn để đồng bộ lịch đăng bài và hạn chót công việc.",
+    "figureId": "r3-fig-38",
+    "figureNumber": 38,
+    "figureCaption": "Figure 38 - Update Workspace Profile",
+    "sequenceFigureId": "seq-3.4.16",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager sửa thông tin trên trang Cài đặt Workspace (/workspace/:id/detail) và bấm Lưu thay đổi.",
+    "purpose": "Cho phép Owner hoặc Manager cập nhật thông tin của Workspace (tên dự án, mô tả, ảnh đại diện) và điều chỉnh cài đặt Múi giờ chuẩn để đồng bộ lịch đăng bài và hạn chót công việc.",
+    "viSummary": "Cho phép Owner hoặc Manager cập nhật thông tin của Workspace (tên dự án, mô tả, ảnh đại diện) và điều chỉnh cài đặt Múi giờ chuẩn để đồng bộ lịch đăng bài và hạn chót công việc.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Biểu mẫu chỉnh sửa Hồ sơ Workspace gồm ô sửa Tên Workspace, Mô tả dự án, nút đổi Ảnh đại diện, hộp chọn Múi giờ chuẩn (UTC Timezone) và nút Lưu.",
+    "dataProcessing": "Hệ thống kiểm tra người thực hiện có quyền Owner hoặc Manager của Workspace không (BR-15, BR-21), kiểm tra ảnh đại diện dưới 5 MB (BR-12) và cập nhật múi giờ mới để áp dụng cho các lịch hẹn đăng bài và hạn công việc trong dự án (BR-22).",
+    "dataSpecs": {
+      "inputRequired": "Tên Workspace và Múi giờ chuẩn (UTC Timezone).",
+      "inputOptional": "Mô tả dự án, Ảnh đại diện mới của Workspace (PNG, JPG, WEBP tối đa 5 MB).",
+      "systemData": "Cập nhật thông tin Workspace và quy đổi hiển thị thời gian theo múi giờ mới (BR-22).",
+      "output": "Lưu cập nhật hồ sơ Workspace thành công và hiển thị thông báo MSG21."
+    },
+    "businessRules": [
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      },
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-12",
+      "BR-15",
+      "BR-21",
+      "BR-22"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG21",
+      "MSG22"
+    ],
+    "validations": [
+      "Caller is neither the Owner nor the Manager → Display: MSG07.",
+      "Workspace Name or Timezone left blank → Display: MSG02.",
+      "Uploaded logo or banner violates PNG/JPG/WEBP or 5 MB limit (BR-12) → Display: MSG22."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở màn hình Cài đặt Workspace (/workspace/:id/detail).",
+      "Người dùng chỉnh sửa Tên dự án, Mô tả, Ảnh đại diện hoặc đổi lại Múi giờ chuẩn (BR-22) rồi bấm Lưu.",
+      "Hệ thống kiểm tra quyền hạn (BR-15, BR-21) và định dạng tệp ảnh tải lên (BR-12).",
+      "Hệ thống lưu cấu hình mới và hiển thị thông báo thành công (MSG21)."
+    ],
+    "abnormalCases": [
+      "Nếu Creator hoặc Client (không có quyền quản lý) cố gắng sửa cấu hình Workspace: Hệ thống chặn thao tác và báo MSG07.",
+      "Nếu bỏ trống Tên Workspace hoặc tải ảnh quá 5 MB: Hệ thống báo lỗi MSG02 hoặc MSG22."
+    ],
+    "postConditions": [
+      "The Workspace's profile details and UTC Timezone Configuration (BR-22) are updated in persistent storage.",
+      "Role-based access isolation (BR-12) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374194/brandhub-docs-portal/report3/r3-fig-38.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_16.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.17",
+    "title": "Delete Workspace",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-030",
+    "ucName": "Delete Workspace",
+    "ucDescription": "(3.4.17) Cho phép Owner xóa mềm một Workspace khi dự án kết thúc hoặc không còn sử dụng. Dữ liệu của Workspace được giữ lại trong 30 ngày để Owner có thể khôi phục trước khi xóa vĩnh viễn.",
+    "figureId": "r3-fig-39",
+    "figureNumber": 39,
+    "figureCaption": "Figure 39 - Delete Workspace",
+    "sequenceFigureId": "seq-3.4.17",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner bấm nút Xóa Workspace trong phần Cài đặt dự án (/workspace/:id/detail), xác nhận tên dự án và đồng ý.",
+    "purpose": "Cho phép Owner xóa mềm một Workspace khi dự án kết thúc hoặc không còn sử dụng. Dữ liệu của Workspace được giữ lại trong 30 ngày để Owner có thể khôi phục trước khi xóa vĩnh viễn.",
+    "viSummary": "Cho phép Owner xóa mềm một Workspace khi dự án kết thúc hoặc không còn sử dụng. Dữ liệu của Workspace được giữ lại trong 30 ngày để Owner có thể khôi phục trước khi xóa vĩnh viễn.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Khu vực Xóa Workspace trên trang Cài đặt (/workspace/:id/detail) kèm hộp thoại xác nhận tên Workspace và nút Xác nhận xóa.",
+    "dataProcessing": "Hệ thống kiểm tra chỉ duy nhất Owner mới có quyền xóa Workspace (BR-15, BR-16). Khi xác nhận hợp lệ, hệ thống chuyển trạng thái Workspace sang Tạm ẩn chờ xóa (lưu giữ 30 ngày - BR-16) và ngưng quyền truy cập của các thành viên trong dự án đó.",
+    "dataSpecs": {
+      "inputRequired": "Owner nhập đúng tên Workspace để xác nhận xóa.",
+      "inputOptional": "Lý do đóng/xóa dự án.",
+      "systemData": "Trạng thái Workspace chuyển sang Đã xóa mềm (INACTIVE/DELETED_PENDING) kèm hạn 30 ngày khôi phục (BR-16).",
+      "output": "Xóa mềm Workspace thành công, hiển thị thông báo MSG24 và quay về danh sách Workspace."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-16",
+        "text": "Chỉ Owner mới có quyền xóa Agency (3.4.6) hoặc xóa Workspace (3.4.17). Khi xóa, dữ liệu sẽ được chuyển sang trạng thái tạm ẩn trong 30 ngày để Owner có thể khôi phục lại nếu xóa nhầm, đồng thời tạm ngưng quyền truy cập của các thành viên."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-16"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG24",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-16) → Display: MSG07.",
+      "Confirmation input not provided → Display: MSG02.",
+      "Submitted parameter value exceeds maximum length or falls outside the valid domain range → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở trang Cài đặt của Workspace (/workspace/:id/detail) và bấm nút Xóa Workspace.",
+      "Owner nhập lại tên Workspace vào hộp thoại xác nhận và bấm Đồng ý.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) và chuyển Workspace sang trạng thái xóa mềm có hạn khôi phục 30 ngày (BR-16).",
+      "Hệ thống hiển thị thông báo MSG24 và đưa người dùng về trang Danh sách Workspace."
+    ],
+    "abnormalCases": [
+      "Nếu người thao tác không phải là Owner (ví dụ Manager hoặc Creator): Hệ thống chặn thao tác và báo MSG07.",
+      "Nếu nhập tên xác nhận không khớp: Hệ thống báo lỗi MSG02."
+    ],
+    "postConditions": [
+      "The Workspace is in a soft-deleted state for 30 days and inaccessible to Workspace members (BR-16).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374194/brandhub-docs-portal/report3/r3-fig-39.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_17.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.18",
+    "title": "Leave Workspace",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-031",
+    "ucName": "Leave Workspace",
+    "ucDescription": "(3.4.18) Cho phép thành viên tự rời khỏi một Workspace cụ thể khi không còn tham gia dự án đó nữa, nhưng vẫn giữ nguyên tư cách là thành viên của công ty (Agency).",
+    "figureId": "r3-fig-40",
+    "figureNumber": 40,
+    "figureCaption": "Figure 40 - Leave Workspace",
+    "sequenceFigureId": "seq-3.4.18",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên bấm nút Rời khỏi Workspace trong phần Cài đặt dự án (/workspace/:id/detail) và xác nhận.",
+    "purpose": "Cho phép thành viên tự rời khỏi một Workspace cụ thể khi không còn tham gia dự án đó nữa, nhưng vẫn giữ nguyên tư cách là thành viên của công ty (Agency).",
+    "viSummary": "Cho phép thành viên tự rời khỏi một Workspace cụ thể khi không còn tham gia dự án đó nữa, nhưng vẫn giữ nguyên tư cách là thành viên của công ty (Agency).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Nút Rời khỏi Workspace (Leave Workspace) kèm hộp thoại xác nhận trên màn hình Cài đặt Workspace (/workspace/:id/detail).",
+    "dataProcessing": "Hệ thống kiểm tra nếu người muốn rời đi đang là Manager duy nhất của Workspace đó thì yêu cầu phải chuyển quyền Manager cho một thành viên khác trước (BR-21, BR-23). Nếu hợp lệ, hệ thống gỡ người đó khỏi danh sách thành viên của Workspace nhưng vẫn giữ nguyên tài khoản trong Agency (BR-23).",
+    "dataSpecs": {
+      "inputRequired": "Xác nhận đồng ý rời khỏi Workspace.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Gỡ quyền truy cập khỏi Workspace hiện tại, giữ nguyên tư cách thành viên Agency (BR-23) và bảo toàn các công việc đã làm trước đó.",
+      "output": "Rời khỏi Workspace thành công, hiển thị thông báo MSG29 và chuyển về trang Danh sách Workspace."
+    },
+    "businessRules": [
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      },
+      {
+        "code": "BR-23",
+        "text": "Thành viên có thể chủ động rời khỏi một Workspace (3.4.18) mà vẫn giữ tư cách thành viên của Agency. Tuy nhiên, nếu người đó đang là Manager duy nhất của Workspace thì phải chuyển quyền Manager cho người khác trước khi rời đi."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-21",
+      "BR-23"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG29",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-21) → Display: MSG07.",
+      "Caller is the sole active Manager of the Workspace (BR-21, BR-23) → Display: MSG36 (another Manager must be assigned before leaving).",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Thành viên mở trang Cài đặt Workspace (/workspace/:id/detail) và bấm nút Rời khỏi Workspace.",
+      "Người dùng bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống kiểm tra đảm bảo Workspace vẫn còn ít nhất 1 Manager khác đang hoạt động (BR-21, BR-23).",
+      "Hệ thống gỡ người dùng khỏi Workspace đó, hiển thị thông báo MSG29 và chuyển về danh sách Workspace."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng đang là Manager duy nhất của Workspace: Hệ thống chặn thao tác rời dự án và báo cần bổ nhiệm một Manager khác thay thế trước (BR-21, BR-23, MSG36)."
+    ],
+    "postConditions": [
+      "The user's membership in the target Workspace is removed while their parent Agency membership remains active (BR-23).",
+      "Role-based access isolation (BR-21) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374194/brandhub-docs-portal/report3/r3-fig-40.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_18.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.19",
+    "title": "Save Workspace Template",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-032",
+    "ucName": "Save Workspace Template",
+    "ucDescription": "(3.4.19) Cho phép Owner lưu lại cấu hình của một Workspace đang dùng (gồm múi giờ, khung vai trò, bộ hashtag, mẫu email và gói dịch vụ mẫu) thành Mẫu chuẩn (Workspace Template) để tái sử dụng nhanh cho các dự án sau.",
+    "figureId": "r3-fig-41",
+    "figureNumber": 41,
+    "figureCaption": "Figure 41 - Save Workspace Template",
+    "sequenceFigureId": "seq-3.4.19",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner bấm nút Lưu thành Mẫu (Save as Template) trong trang Cài đặt Workspace hoặc Thư viện mẫu (/templates), đặt tên mẫu và bấm Lưu.",
+    "purpose": "Cho phép Owner lưu lại cấu hình của một Workspace đang dùng (gồm múi giờ, khung vai trò, bộ hashtag, mẫu email và gói dịch vụ mẫu) thành Mẫu chuẩn (Workspace Template) để tái sử dụng nhanh cho các dự án sau.",
+    "viSummary": "Cho phép Owner lưu lại cấu hình của một Workspace đang dùng (gồm múi giờ, khung vai trò, bộ hashtag, mẫu email và gói dịch vụ mẫu) thành Mẫu chuẩn (Workspace Template) để tái sử dụng nhanh cho các dự án sau.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Hộp thoại Lưu mẫu Workspace gồm ô nhập Tên mẫu (Template Name), Ngành hàng áp dụng, Mô tả ngắn, các tùy chọn cấu hình muốn lưu lại và nút Lưu mẫu.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), trích xuất các thiết lập cấu trúc của Workspace hiện tại (không sao chép dữ liệu tin nhắn hay bài viết riêng tư) và lưu thành một bản mẫu mới trong thư viện của Agency (BR-24).",
+    "dataSpecs": {
+      "inputRequired": "Tên mẫu cấu hình (Template Name) và Workspace nguồn cần lưu.",
+      "inputOptional": "Mô tả mẫu và phân loại ngành hàng.",
+      "systemData": "Bản ghi cấu hình mẫu gồm múi giờ mặc định, khung phân quyền, bộ hashtag mẫu, mẫu email và gói dịch vụ liên kết (BR-24).",
+      "output": "Lưu mẫu Workspace mới thành công và hiển thị thông báo MSG30."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-24",
+        "text": "Mẫu cấu hình Workspace (Workspace Template) giúp lưu lại các thiết lập sẵn (ngành hàng, múi giờ, khung vai trò, gói dịch vụ mẫu). Khi xóa một Template (3.4.22), các Workspace đã tạo từ mẫu đó trước đây vẫn hoạt động bình thường."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-24"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG30"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) → Display: MSG07.",
+      "Template Name left blank → Display: MSG02.",
+      "Template Name exceeds 255 characters → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở trang Cài đặt của một Workspace chuẩn hoặc trang Thư viện mẫu (/templates) và chọn Lưu thành mẫu.",
+      "Owner nhập Tên mẫu, Mô tả và chọn các mục cấu hình muốn lưu lại rồi bấm Lưu.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) và kiểm tra tên mẫu hợp lệ.",
+      "Hệ thống đóng gói cấu hình thành Workspace Template mới (BR-24) và hiển thị thông báo MSG30."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên mẫu hoặc nhập quá độ dài cho phép: Hệ thống báo lỗi MSG02 hoặc MSG03."
+    ],
+    "postConditions": [
+      "A reusable WorkspaceTemplate record is stored in the Agency's template library (3.4.20).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374194/brandhub-docs-portal/report3/r3-fig-41.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_19.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.20",
+    "title": "View Workspace Templates",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-033",
+    "ucName": "View Workspace Templates",
+    "ucDescription": "(3.4.20) Cho phép Owner xem danh sách và chi tiết các Mẫu cấu hình Workspace (gồm cả mẫu gợi ý của hệ thống và mẫu riêng do Agency đã lưu) để chọn dùng khi mở dự án mới.",
+    "figureId": "r3-fig-42",
+    "figureNumber": 42,
+    "figureCaption": "Figure 42 - View Workspace Templates",
+    "sequenceFigureId": "seq-3.4.20",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner mở màn hình Thư viện Mẫu Workspace (/templates).",
+    "purpose": "Cho phép Owner xem danh sách và chi tiết các Mẫu cấu hình Workspace (gồm cả mẫu gợi ý của hệ thống và mẫu riêng do Agency đã lưu) để chọn dùng khi mở dự án mới.",
+    "viSummary": "Cho phép Owner xem danh sách và chi tiết các Mẫu cấu hình Workspace (gồm cả mẫu gợi ý của hệ thống và mẫu riêng do Agency đã lưu) để chọn dùng khi mở dự án mới.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Thư viện Mẫu Workspace (/templates) hiển thị danh sách các thẻ mẫu, bộ lọc theo ngành hàng, nút Xem chi tiết cấu trúc bên trong mẫu, nút Áp dụng mẫu và nút Xóa mẫu.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15) và tải danh sách các mẫu cấu hình có sẵn cùng các mẫu do Agency tự tạo (BR-24) để hiển thị.",
+    "dataSpecs": {
+      "inputRequired": "Owner mở màn hình Thư viện Mẫu Workspace.",
+      "inputOptional": "Từ khóa tìm kiếm tên mẫu hoặc lọc theo ngành hàng.",
+      "systemData": "Danh sách mẫu Workspace kèm thông tin múi giờ mặc định, gói dịch vụ mẫu và ngày tạo.",
+      "output": "Hiển thị danh sách và thông tin chi tiết của các Workspace Template."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-24",
+        "text": "Mẫu cấu hình Workspace (Workspace Template) giúp lưu lại các thiết lập sẵn (ngành hàng, múi giờ, khung vai trò, gói dịch vụ mẫu). Khi xóa một Template (3.4.22), các Workspace đã tạo từ mẫu đó trước đây vẫn hoạt động bình thường."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-24"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner permission (BR-15) → Display: MSG07.",
+      "No Workspace Templates match the search filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở màn hình Thư viện Mẫu Workspace (/templates).",
+      "Hệ thống xác nhận quyền Owner (BR-15) và lấy danh sách các mẫu cấu hình hiện có (BR-24).",
+      "Owner có thể lọc theo ngành hàng hoặc bấm vào từng mẫu để xem trước các thiết lập bên trong.",
+      "Màn hình hiển thị chi tiết cấu trúc của mẫu đã chọn."
+    ],
+    "abnormalCases": [
+      "Nếu chưa có mẫu nào khớp với từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The Owner views the available Workspace Templates without modifying any Workspace data.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374195/brandhub-docs-portal/report3/r3-fig-42.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_20.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.21",
+    "title": "Apply Workspace Template",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-034",
+    "ucName": "Apply Workspace Template",
+    "ucDescription": "(3.4.21) Cho phép Owner áp dụng một Mẫu cấu hình (Workspace Template) đã lưu vào một Workspace để tự động thiết lập sẵn múi giờ, bộ hashtag, mẫu email và gói dịch vụ mẫu chỉ trong vài giây.",
+    "figureId": "r3-fig-43",
+    "figureNumber": 43,
+    "figureCaption": "Figure 43 - Apply Workspace Template",
+    "sequenceFigureId": "seq-3.4.21",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner chọn một mẫu trong Thư viện mẫu (/templates), chọn Workspace đích cần áp dụng và bấm Áp dụng mẫu.",
+    "purpose": "Cho phép Owner áp dụng một Mẫu cấu hình (Workspace Template) đã lưu vào một Workspace để tự động thiết lập sẵn múi giờ, bộ hashtag, mẫu email và gói dịch vụ mẫu chỉ trong vài giây.",
+    "viSummary": "Cho phép Owner áp dụng một Mẫu cấu hình (Workspace Template) đã lưu vào một Workspace để tự động thiết lập sẵn múi giờ, bộ hashtag, mẫu email và gói dịch vụ mẫu chỉ trong vài giây.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Hộp thoại Áp dụng mẫu trên màn hình Thư viện Mẫu Workspace (/templates) gồm danh sách chọn mẫu, chọn Workspace đích và nút Xác nhận áp dụng.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), đọc dữ liệu cấu hình từ mẫu đã chọn và tự động tạo các thiết lập tương ứng (múi giờ BR-22, bộ hashtag mẫu, mẫu email, gói truyền thông mẫu) vào Workspace đích mà không làm mất dữ liệu đang có của dự án đó (BR-24).",
+    "dataSpecs": {
+      "inputRequired": "Chọn Mẫu cấu hình (Template) và chọn Workspace đích cần áp dụng.",
+      "inputOptional": "Tùy chọn các hạng mục muốn chép sang Workspace đích.",
+      "systemData": "Sao chép thiết lập múi giờ, bộ hashtag mẫu và mẫu email từ Template sang Workspace đích (BR-24).",
+      "output": "Áp dụng mẫu cấu hình vào Workspace thành công và hiển thị thông báo MSG30."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      },
+      {
+        "code": "BR-24",
+        "text": "Mẫu cấu hình Workspace (Workspace Template) giúp lưu lại các thiết lập sẵn (ngành hàng, múi giờ, khung vai trò, gói dịch vụ mẫu). Khi xóa một Template (3.4.22), các Workspace đã tạo từ mẫu đó trước đây vẫn hoạt động bình thường."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-22",
+      "BR-24"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG30",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-15) → Display: MSG07.",
+      "Target Workspace or Template not found → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Trên màn hình Thư viện Mẫu Workspace (/templates), Owner chọn một mẫu muốn sử dụng và bấm Áp dụng.",
+      "Owner chọn Workspace đích cần áp dụng cấu hình và bấm Xác nhận.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) và trạng thái hoạt động của Workspace đích.",
+      "Hệ thống tự động thiết lập múi giờ (BR-22) cùng các danh mục mẫu vào Workspace đích (BR-24) và hiển thị thông báo MSG30."
+    ],
+    "abnormalCases": [
+      "Nếu Workspace đích đang bị khóa hoặc đã xóa mềm: Hệ thống từ chối áp dụng và hiển thị thông báo MSG36."
+    ],
+    "postConditions": [
+      "The target Workspace is configured with the applied Workspace Template's settings and Media Package baseline.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374195/brandhub-docs-portal/report3/r3-fig-43.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_21.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.22",
+    "title": "Delete Workspace Template",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-035",
+    "ucName": "Delete Workspace Template",
+    "ucDescription": "(3.4.22) Cho phép Owner xóa các Mẫu cấu hình Workspace do Agency tự tạo khi không còn nhu cầu sử dụng. Việc xóa mẫu không làm ảnh hưởng tới các Workspace đã từng áp dụng mẫu đó trước đây.",
+    "figureId": "r3-fig-44",
+    "figureNumber": 44,
+    "figureCaption": "Figure 44 - Delete Workspace Template",
+    "sequenceFigureId": "seq-3.4.22",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner bấm nút Xóa trên một mẫu tùy chỉnh trong Thư viện Mẫu Workspace (/templates) và xác nhận.",
+    "purpose": "Cho phép Owner xóa các Mẫu cấu hình Workspace do Agency tự tạo khi không còn nhu cầu sử dụng. Việc xóa mẫu không làm ảnh hưởng tới các Workspace đã từng áp dụng mẫu đó trước đây.",
+    "viSummary": "Cho phép Owner xóa các Mẫu cấu hình Workspace do Agency tự tạo khi không còn nhu cầu sử dụng. Việc xóa mẫu không làm ảnh hưởng tới các Workspace đã từng áp dụng mẫu đó trước đây.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Nút Xóa mẫu trên thẻ Template tại màn hình Thư viện Mẫu Workspace (/templates) kèm hộp thoại xác nhận.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15) và kiểm tra mẫu đó là mẫu riêng của Agency (không phải mẫu mặc định cố định của hệ thống), sau đó xóa mẫu khỏi thư viện mà vẫn giữ nguyên các dự án đã tạo từ mẫu này trước đó (BR-24).",
+    "dataSpecs": {
+      "inputRequired": "Chọn mẫu tùy chỉnh cần xóa và xác nhận đồng ý.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Xóa bản ghi mẫu khỏi thư viện Agency, giữ nguyên các Workspace đã áp dụng trước đây (BR-24).",
+      "output": "Xóa mẫu cấu hình thành công và hiển thị thông báo MSG30."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-24",
+        "text": "Mẫu cấu hình Workspace (Workspace Template) giúp lưu lại các thiết lập sẵn (ngành hàng, múi giờ, khung vai trò, gói dịch vụ mẫu). Khi xóa một Template (3.4.22), các Workspace đã tạo từ mẫu đó trước đây vẫn hoạt động bình thường."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-24"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG30",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Owner or attempts to delete a system-wide global template (BR-15, BR-24) → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Owner mở màn hình Thư viện Mẫu Workspace (/templates) và bấm nút Xóa trên mẫu muốn gỡ bỏ.",
+      "Owner bấm Đồng ý trên hộp thoại xác nhận xóa.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) và xác nhận đây là mẫu do Agency tự tạo.",
+      "Hệ thống xóa mẫu khỏi danh sách lựa chọn (BR-24) và hiển thị thông báo MSG30."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng cố xóa mẫu mặc định dùng chung của toàn hệ thống: Hệ thống chặn thao tác và báo MSG36."
+    ],
+    "postConditions": [
+      "The custom WorkspaceTemplate is removed from future selection while all existing Workspaces remain intact (BR-24).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374196/brandhub-docs-portal/report3/r3-fig-44.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_22.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.23",
+    "title": "View Workspace Members",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-036",
+    "ucName": "View Workspace Members",
+    "ucDescription": "(3.4.23) Xem danh sách toàn bộ các thành viên đang tham gia trong một dự án (Workspace), kèm theo vai trò cụ thể của từng người (Owner, Manager, Creator, Client).",
+    "figureId": "r3-fig-45",
+    "figureNumber": 45,
+    "figureCaption": "Figure 45 - View Workspace Members",
+    "sequenceFigureId": "seq-3.4.23",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên trong dự án mở màn hình Thành viên Workspace (/workspace/:id/members).",
+    "purpose": "Xem danh sách toàn bộ các thành viên đang tham gia trong một dự án (Workspace), kèm theo vai trò cụ thể của từng người (Owner, Manager, Creator, Client).",
+    "viSummary": "Xem danh sách toàn bộ các thành viên đang tham gia trong một dự án (Workspace), kèm theo vai trò cụ thể của từng người (Owner, Manager, Creator, Client).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Thành viên Workspace (/workspace/:id/members) gồm ô tìm kiếm, bộ lọc theo vai trò, bảng danh sách thành viên (hiển thị Ảnh đại diện, Họ tên, Email, nhãn Vai trò trong Workspace, Ngày tham gia) và các nút Thêm / Đổi vai trò / Xóa (hiển thị cho Owner và Manager).",
+    "dataProcessing": "Hệ thống kiểm tra người xem thuộc Workspace đó (BR-20), sau đó truy xuất danh sách toàn bộ thành viên cùng vai trò hiện tại của họ trong dự án (BR-21).",
+    "dataSpecs": {
+      "inputRequired": "Thành viên có quyền truy cập mở trang Thành viên Workspace.",
+      "inputOptional": "Tìm kiếm theo tên/email hoặc lọc theo vai trò (Manager, Creator, Client).",
+      "systemData": "Danh sách thành viên dự án, vai trò tương ứng và trạng thái hoạt động.",
+      "output": "Hiển thị bảng danh sách thành viên của Workspace."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-21"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller does not have access to the Workspace (BR-20) → Display: MSG07.",
+      "No members match the search/role filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Người dùng mở mục Thành viên (/workspace/:id/members) trong Workspace đang làm việc.",
+      "Hệ thống kiểm tra quyền truy cập của người dùng đối với Workspace đó (BR-20).",
+      "Hệ thống lấy danh sách thành viên và vai trò tương ứng từ cơ sở dữ liệu.",
+      "Màn hình hiển thị danh sách thành viên kèm các công cụ tìm kiếm, lọc theo vai trò."
+    ],
+    "abnormalCases": [
+      "Nếu lọc hoặc tìm kiếm không có thành viên nào khớp: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The current roster of Workspace members and their roles is displayed accurately.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374196/brandhub-docs-portal/report3/r3-fig-45.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_23.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.24",
+    "title": "Add Workspace Member",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-037",
+    "ucName": "Add Workspace Member",
+    "ucDescription": "(3.4.24) Cho phép Owner hoặc Manager thêm nhân sự thuộc Agency hoặc thêm tài khoản Khách hàng (Client) vào làm việc trong Workspace và gán vai trò cụ thể (Manager, Creator hoặc Client).",
+    "figureId": "r3-fig-46",
+    "figureNumber": 46,
+    "figureCaption": "Figure 46 - Add Workspace Member",
+    "sequenceFigureId": "seq-3.4.24",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager bấm nút Thêm thành viên trên trang Thành viên Workspace (/workspace/:id/members), chọn người dùng cùng vai trò và bấm Xác nhận.",
+    "purpose": "Cho phép Owner hoặc Manager thêm nhân sự thuộc Agency hoặc thêm tài khoản Khách hàng (Client) vào làm việc trong Workspace và gán vai trò cụ thể (Manager, Creator hoặc Client).",
+    "viSummary": "Cho phép Owner hoặc Manager thêm nhân sự thuộc Agency hoặc thêm tài khoản Khách hàng (Client) vào làm việc trong Workspace và gán vai trò cụ thể (Manager, Creator hoặc Client).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Hộp thoại Thêm thành viên vào Workspace gồm ô chọn nhân sự từ danh sách Agency (hoặc nhập email Client đối tác), ô chọn Vai trò trong dự án (Manager, Creator, Client) và nút Thêm vào dự án.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner hoặc Manager (BR-15, BR-21), kiểm tra người được chọn chưa có mặt trong Workspace đó (BR-20), sau đó thêm vào dự án với vai trò được gán và tự động liên kết Hồ sơ thương hiệu nếu người được thêm là Client (BR-13).",
+    "dataSpecs": {
+      "inputRequired": "Chọn người dùng cần thêm và chọn Vai trò trong Workspace (Manager, Creator hoặc Client).",
+      "inputOptional": "Ghi chú phân công nhiệm vụ ban đầu.",
+      "systemData": "Bản ghi thành viên mới trong Workspace, quyền truy cập dự án (BR-20) và thông báo gửi cho người vừa được thêm.",
+      "output": "Thêm thành viên vào Workspace thành công và hiển thị thông báo MSG29."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-13",
+      "BR-15",
+      "BR-20",
+      "BR-21"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG26",
+      "MSG29"
+    ],
+    "validations": [
+      "Caller is neither the Owner nor the Manager → Display: MSG07.",
+      "Target user or Workspace role not selected → Display: MSG02.",
+      "Selected user is already a member of the Workspace → Display: MSG26."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở trang Thành viên Workspace (/workspace/:id/members) và bấm nút Thêm thành viên.",
+      "Người quản lý chọn nhân sự từ danh sách của Agency (hoặc chọn tài khoản Client) và chọn vai trò (Manager, Creator hoặc Client).",
+      "Người quản lý bấm nút Thêm vào dự án.",
+      "Hệ thống kiểm tra người đó chưa bị trùng trong dự án, lưu phân quyền mới và hiển thị thông báo MSG29."
+    ],
+    "abnormalCases": [
+      "Nếu người được chọn đã là thành viên trong Workspace này rồi: Hệ thống báo lỗi trùng thành viên (MSG26).",
+      "Nếu người thực hiện không phải là Owner hoặc Manager của dự án: Hệ thống chặn thao tác và báo MSG07."
+    ],
+    "postConditions": [
+      "The selected user holds an active membership and role in the Workspace (BR-20).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374196/brandhub-docs-portal/report3/r3-fig-46.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_24.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.25",
+    "title": "Update Workspace Member Role",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-038",
+    "ucName": "Update Workspace Member Role",
+    "ucDescription": "(3.4.25) Cho phép Owner hoặc Manager thay đổi vai trò của một thành viên trong Workspace (ví dụ nâng cấp từ Creator lên làm Manager phụ trách hoặc ngược lại), đồng thời đảm bảo dự án luôn có ít nhất 1 Manager.",
+    "figureId": "r3-fig-47",
+    "figureNumber": 47,
+    "figureCaption": "Figure 47 - Update Workspace Member Role",
+    "sequenceFigureId": "seq-3.4.25",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager chọn đổi vai trò mới cho một thành viên trên bảng Thành viên Workspace (/workspace/:id/members) và bấm Lưu.",
+    "purpose": "Cho phép Owner hoặc Manager thay đổi vai trò của một thành viên trong Workspace (ví dụ nâng cấp từ Creator lên làm Manager phụ trách hoặc ngược lại), đồng thời đảm bảo dự án luôn có ít nhất 1 Manager.",
+    "viSummary": "Cho phép Owner hoặc Manager thay đổi vai trò của một thành viên trong Workspace (ví dụ nâng cấp từ Creator lên làm Manager phụ trách hoặc ngược lại), đồng thời đảm bảo dự án luôn có ít nhất 1 Manager.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Hộp chọn đổi vai trò (Role dropdown: Manager, Creator, Client) ngay trên từng dòng thành viên tại màn hình Thành viên Workspace (/workspace/:id/members).",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner/Manager (BR-15, BR-21) và kiểm tra quy tắc bắt buộc: mỗi Workspace phải luôn có ít nhất 1 Manager đang hoạt động (không cho phép chuyển Manager duy nhất còn lại xuống làm Creator - BR-21). Nếu hợp lệ, hệ thống cập nhật ngay quyền hạn mới.",
+    "dataSpecs": {
+      "inputRequired": "Chọn thành viên trong Workspace và chọn Vai trò mới cần đổi.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Cập nhật vai trò của thành viên trong Workspace và kiểm tra số lượng Manager tối thiểu >= 1 (BR-21).",
+      "output": "Cập nhật vai trò thành viên thành công và hiển thị thông báo MSG29."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-21"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG29",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller lacks Owner or Manager authority → Display: MSG07.",
+      "Demoting the sole active Manager of the Workspace (BR-21) → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Trên màn hình Thành viên Workspace (/workspace/:id/members), Owner hoặc Manager bấm vào ô Vai trò của thành viên cần thay đổi.",
+      "Người quản lý chọn vai trò mới (ví dụ từ Creator sang Manager) và xác nhận.",
+      "Hệ thống kiểm tra đảm bảo sau khi đổi, dự án vẫn còn ít nhất 1 Manager đang hoạt động (BR-21).",
+      "Hệ thống lưu vai trò mới cho thành viên và hiển thị thông báo MSG29."
+    ],
+    "abnormalCases": [
+      "Nếu cố tình hạ quyền của người đang là Manager duy nhất trong dự án: Hệ thống chặn thao tác và báo dự án bắt buộc phải có ít nhất 1 Manager (BR-21, MSG36)."
+    ],
+    "postConditions": [
+      "The member's Workspace role and corresponding permissions are updated immediately.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374196/brandhub-docs-portal/report3/r3-fig-47.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_25.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  },
+  {
+    "code": "3.4.26",
+    "title": "Remove Workspace Member",
+    "domainCode": "3.4",
+    "domainTitle": "Agency & Workspace",
+    "ucId": "UC-039",
+    "ucName": "Remove Workspace Member",
+    "ucDescription": "(3.4.26) Cho phép Owner hoặc Manager xóa một thành viên ra khỏi dự án (Workspace). Người bị xóa không còn vào được dự án đó nữa, nhưng các công việc họ đã đóng góp vẫn được giữ lại và họ vẫn là thành viên của Agency.",
+    "figureId": "r3-fig-48",
+    "figureNumber": 48,
+    "figureCaption": "Figure 48 - Remove Workspace Member",
+    "sequenceFigureId": "seq-3.4.26",
+    "classDiagramFigureId": "cd-3.4",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager bấm nút Xóa khỏi Workspace bên cạnh một thành viên tại trang Thành viên Workspace (/workspace/:id/members) và xác nhận.",
+    "purpose": "Cho phép Owner hoặc Manager xóa một thành viên ra khỏi dự án (Workspace). Người bị xóa không còn vào được dự án đó nữa, nhưng các công việc họ đã đóng góp vẫn được giữ lại và họ vẫn là thành viên của Agency.",
+    "viSummary": "Cho phép Owner hoặc Manager xóa một thành viên ra khỏi dự án (Workspace). Người bị xóa không còn vào được dự án đó nữa, nhưng các công việc họ đã đóng góp vẫn được giữ lại và họ vẫn là thành viên của Agency.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Nút Xóa khỏi dự án trên bảng Thành viên Workspace (/workspace/:id/members) kèm hộp thoại xác nhận.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner/Manager (BR-21), kiểm tra người bị xóa không phải là Manager duy nhất của dự án (BR-21), sau đó thu hồi quyền truy cập của người đó khỏi Workspace trong khi vẫn bảo toàn toàn bộ bài viết, bình luận và tư liệu họ đã tạo (BR-19).",
+    "dataSpecs": {
+      "inputRequired": "Chọn thành viên cần gỡ khỏi Workspace và xác nhận đồng ý.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Gỡ bản ghi thành viên khỏi Workspace, giữ nguyên tư cách thành viên trong Agency và bảo toàn dữ liệu công việc cũ (BR-19).",
+      "output": "Gỡ thành viên khỏi Workspace thành công và hiển thị thông báo MSG29."
+    },
+    "businessRules": [
+      {
+        "code": "BR-19",
+        "text": "Khi xóa một thành viên khỏi Agency (3.4.11) hoặc Workspace (3.4.26), người đó sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu mà họ đã làm trước đó vẫn được giữ nguyên cho dự án."
+      },
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-21",
+        "text": "Khi tạo mới một Workspace (3.4.14), Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách. Trong suốt quá trình hoạt động, mỗi Workspace luôn phải có ít nhất 1 Manager."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-19",
+      "BR-20",
+      "BR-21"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG29",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is neither the Owner nor the Manager → Display: MSG07.",
+      "Target member is the sole active Manager of the Workspace (BR-21) → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở trang Thành viên Workspace (/workspace/:id/members) và bấm nút Xóa bên cạnh thành viên cần gỡ khỏi dự án.",
+      "Người quản lý bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống kiểm tra đảm bảo người đó không phải là Manager duy nhất của Workspace (BR-21).",
+      "Hệ thống thu hồi quyền truy cập dự án của thành viên đó, giữ nguyên các bài viết/tư liệu họ đã đóng góp (BR-19) và hiển thị thông báo MSG29."
+    ],
+    "abnormalCases": [
+      "Nếu thành viên đó là Manager duy nhất còn lại của dự án: Hệ thống chặn thao tác xóa và yêu cầu chỉ định Manager khác trước (BR-21, MSG36)."
+    ],
+    "postConditions": [
+      "The user no longer has access to the Workspace (BR-20), while their parent Agency membership and previously created Workspace tasks/materials remain intact.",
+      "Role-based access isolation (BR-19) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-48.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_4_26.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png"
+  }
+]

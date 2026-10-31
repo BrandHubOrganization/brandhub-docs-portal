@@ -1,0 +1,203 @@
+[
+  {
+    "id": "r2-fig-1",
+    "figNum": 1,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "1.1 Scope & Estimation",
+    "category": "Project Management",
+    "title": "Work Breakdown Structure (WBS) & Estimation",
+    "caption": "Figure 1.1 - Work Breakdown Structure (WBS) & Estimation",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374223/brandhub-docs-portal/report2/r2-fig-1.jpg",
+    "imageWidth": 688,
+    "imageHeight": 389,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Sơ đồ phân rã công việc (WBS) chia nhỏ toàn bộ dự án thành các giai đoạn (Khởi động, Phân tích yêu cầu, Thiết kế, Lập trình, Kiểm thử) và 9 phân hệ chức năng gồm 141 FR.",
+    "viSummary": "Sơ đồ phân rã công việc (WBS) chia nhỏ toàn bộ dự án thành các giai đoạn (Khởi động, Phân tích yêu cầu, Thiết kế, Lập trình, Kiểm thử) và 9 phân hệ chức năng gồm 141 FR.",
+    "components": [
+      {
+        "name": "Phân chia theo giai đoạn và phân hệ",
+        "type": "Cấu trúc WBS",
+        "description": "Giúp nhóm 5 thành viên phân bổ rõ trách nhiệm làm tài liệu, thiết kế giao diện, viết code và kiểm thử cho từng phần."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-2",
+    "figNum": 2,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "2.1 Project Process",
+    "category": "Project Management",
+    "title": "Iterative Agile-Scrum Lifecycle",
+    "caption": "Figure 2.1 - Iterative Agile-Scrum Lifecycle",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374224/brandhub-docs-portal/report2/r2-fig-2.png",
+    "imageWidth": 1838,
+    "imageHeight": 678,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Quy trình phát triển phần mềm theo mô hình Agile-Scrum lặp lại qua từng Sprint ngắn (2 tuần/Sprint), giúp nhóm liên tục hoàn thiện tính năng và nhận góp ý sớm từ giảng viên hướng dẫn.",
+    "viSummary": "Quy trình phát triển phần mềm theo mô hình Agile-Scrum lặp lại qua từng Sprint ngắn (2 tuần/Sprint), giúp nhóm liên tục hoàn thiện tính năng và nhận góp ý sớm từ giảng viên hướng dẫn.",
+    "components": [
+      {
+        "name": "Chu kỳ Sprint 2 tuần",
+        "type": "Quy trình làm việc",
+        "description": "Gồm lập kế hoạch đầu Sprint, họp ngắn hàng ngày, lập trình – kiểm thử và nghiệm thu kết quả cuối Sprint."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-3",
+    "figNum": 3,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "2.1 Project Process",
+    "category": "Project Management",
+    "title": "Sprint Execution & AI Parallel Track",
+    "caption": "Figure 2.2 - Sprint Execution & AI Parallel Track",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374224/brandhub-docs-portal/report2/r2-fig-3.png",
+    "imageWidth": 1818,
+    "imageHeight": 669,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Mô hình phối hợp song song giữa nhóm phát triển hệ thống chính (Web/Backend quản lý công việc, đăng bài) và nhóm phát triển dịch vụ AI (gợi ý xu hướng, tạo nội dung và hình ảnh).",
+    "viSummary": "Mô hình phối hợp song song giữa nhóm phát triển hệ thống chính (Web/Backend quản lý công việc, đăng bài) và nhóm phát triển dịch vụ AI (gợi ý xu hướng, tạo nội dung và hình ảnh).",
+    "components": [
+      {
+        "name": "Nhánh phát triển Nền tảng cốt lõi (Core Platform)",
+        "type": "Backend & Frontend",
+        "description": "Xây dựng giao diện người dùng, quản lý phân quyền, chiến dịch, luồng duyệt bài và kết nối mạng xã hội."
+      },
+      {
+        "name": "Nhánh phát triển Dịch vụ AI (AI Track)",
+        "type": "AI & Dữ liệu",
+        "description": "Xây dựng bộ thu thập xu hướng, kho tài liệu thương hiệu và kết nối các mô hình tạo văn bản, ảnh, video."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-4",
+    "figNum": 4,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "2.1 Project Process",
+    "category": "Project Management",
+    "title": "Scrum Master & Cross-Review Workflow",
+    "caption": "Figure 2.3 - Scrum Master & Cross-Review Workflow",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374224/brandhub-docs-portal/report2/r2-fig-4.png",
+    "imageWidth": 1820,
+    "imageHeight": 671,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Quy trình kiểm tra chéo trong nhóm: mỗi tính năng sau khi code xong đều phải qua bước đồng đội đọc duyệt code (Peer Review) và kiểm tra chạy thử trước khi ghép vào nhánh chính.",
+    "viSummary": "Quy trình kiểm tra chéo trong nhóm: mỗi tính năng sau khi code xong đều phải qua bước đồng đội đọc duyệt code (Peer Review) và kiểm tra chạy thử trước khi ghép vào nhánh chính.",
+    "components": [
+      {
+        "name": "Duyệt code chéo & Họp rà soát tiến độ",
+        "type": "Phối hợp nhóm",
+        "description": "Đảm bảo code thống nhất quy chuẩn, phát hiện lỗi sớm và bám sát đúng đặc tả trong báo cáo SRS."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-5",
+    "figNum": 5,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "2.2 Quality Management",
+    "category": "Quality Assurance",
+    "title": "Multi-Stage Quality Gate & Testing Pipeline",
+    "caption": "Figure 2.4 - Multi-Stage Quality Gate & Testing Pipeline",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report2/r2-fig-5.png",
+    "imageWidth": 1843,
+    "imageHeight": 674,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Quy trình kiểm soát chất lượng 5 bước: Kiểm tra quy chuẩn code -> Kiểm thử đơn vị (Unit Test) -> Kiểm thử tích hợp API -> Kiểm thử toàn hệ thống (System Test) -> Nghiệm thu thực tế (UAT).",
+    "viSummary": "Quy trình kiểm soát chất lượng 5 bước: Kiểm tra quy chuẩn code -> Kiểm thử đơn vị (Unit Test) -> Kiểm thử tích hợp API -> Kiểm thử toàn hệ thống (System Test) -> Nghiệm thu thực tế (UAT).",
+    "components": [
+      {
+        "name": "5 chốt chặn kiểm thử chất lượng",
+        "type": "Đảm bảo chất lượng (QA)",
+        "description": "Mỗi chức năng đều được kiểm tra cả trường hợp nhập đúng và các trường hợp nhập sai/thiếu dữ liệu trước khi bàn giao."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-6",
+    "figNum": 6,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "6.1 Document Management",
+    "category": "Configuration Management",
+    "title": "Repository & Documentation Structure Diagram",
+    "caption": "Figure 6.1 - Repository & Documentation Structure Diagram",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report2/r2-fig-6.png",
+    "imageWidth": 1461,
+    "imageHeight": 593,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Cấu trúc tổ chức các kho mã nguồn (Repositories) trên GitHub và thư mục tài liệu báo cáo của dự án, tách biệt rõ từng dịch vụ để dễ bảo trì và triển khai.",
+    "viSummary": "Cấu trúc tổ chức các kho mã nguồn (Repositories) trên GitHub và thư mục tài liệu báo cáo của dự án, tách biệt rõ từng dịch vụ để dễ bảo trì và triển khai.",
+    "components": [
+      {
+        "name": "Hệ thống kho mã nguồn (GitHub Repositories)",
+        "type": "Quản lý cấu hình",
+        "description": "Gồm cổng điều phối API Gateway, dịch vụ nghiệp vụ chính, dịch vụ AI, dịch vụ đăng bài, giao diện Web/Mobile và bộ báo cáo."
+      }
+    ]
+  },
+  {
+    "id": "r2-fig-7",
+    "figNum": 7,
+    "reportId": "report2",
+    "reportName": "Report 2 — Project Management Plan",
+    "section": "6.2 Source Code Management",
+    "category": "Configuration Management",
+    "title": "Git Polyrepo Branching Strategy Diagram",
+    "caption": "Figure 6.2 - Git Polyrepo Branching Strategy Diagram",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report2/r2-fig-7.png",
+    "imageWidth": 2048,
+    "imageHeight": 641,
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Admin"
+    ],
+    "summary": "Quy tắc phân nhánh làm việc trên Git (`main`, `develop`, `feature/*`, `release/*`, `hotfix/*`) giúp các thành viên code độc lập từng tính năng mà không làm lỗi code của nhau.",
+    "viSummary": "Quy tắc phân nhánh làm việc trên Git (`main`, `develop`, `feature/*`, `release/*`, `hotfix/*`) giúp các thành viên code độc lập từng tính năng mà không làm lỗi code của nhau.",
+    "components": [
+      {
+        "name": "Mô hình phân nhánh Git (Git Flow)",
+        "type": "Quản lý mã nguồn",
+        "description": "Mỗi tính năng mới được làm trên nhánh `feature/*` riêng, sau khi kiểm tra đạt yêu cầu mới gộp vào `develop` và `main`."
+      }
+    ]
+  }
+]

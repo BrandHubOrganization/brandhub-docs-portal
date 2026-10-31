@@ -1,0 +1,1048 @@
+[
+  {
+    "code": "3.10.1",
+    "title": "Push Notification",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-128",
+    "ucName": "Push Notification",
+    "ucDescription": "(3.10.1) Cho phép Admin tạo và gửi thông báo chung trên toàn hệ thống (đến tất cả người dùng, hoặc lọc riêng theo nhóm Owner, theo gói cước Basic/Pro/Enterprise) qua thông báo trên ứng dụng và email.",
+    "figureId": "r3-fig-137",
+    "figureNumber": 137,
+    "figureCaption": "Figure 137 - Push Notification",
+    "sequenceFigureId": "seq-3.10.1",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Phát Thông báo Hệ thống (/admin), soạn tiêu đề cùng nội dung, chọn nhóm người nhận và bấm Phát thông báo.",
+    "purpose": "Cho phép Admin tạo và gửi thông báo chung trên toàn hệ thống (đến tất cả người dùng, hoặc lọc riêng theo nhóm Owner, theo gói cước Basic/Pro/Enterprise) qua thông báo trên ứng dụng và email.",
+    "viSummary": "Cho phép Admin tạo và gửi thông báo chung trên toàn hệ thống (đến tất cả người dùng, hoặc lọc riêng theo nhóm Owner, theo gói cước Basic/Pro/Enterprise) qua thông báo trên ứng dụng và email.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Phát Thông báo trên cổng Admin (/admin) gồm ô nhập Tiêu đề thông báo, Nội dung chi tiết, chọn Mức độ (Thông tin / Bảo trì / Khẩn cấp), chọn Nhóm người nhận (Tất cả / Theo vai trò / Theo gói đăng ký) và nút Gửi thông báo.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), kiểm tra tiêu đề và nội dung không bị để trống, lọc danh sách người dùng khớp với nhóm đối tượng đã chọn, đẩy thông báo trực tiếp lên ứng dụng/email của người nhận và lưu vết vào nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Tiêu đề thông báo, Nội dung thông báo và Nhóm đối tượng người nhận.",
+      "inputOptional": "Mức độ ưu tiên của thông báo và đường dẫn đính kèm (nếu có).",
+      "systemData": "Lưu bản ghi thông báo hệ thống, gửi đến các tài khoản mục tiêu và ghi nhật ký Admin (BR-62, BR-65).",
+      "output": "Phát thông báo toàn hệ thống thành công và hiển thị thông báo MSG58."
+    },
+    "businessRules": [
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-62",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG58"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "Notification Title or Message Body left blank → Display: MSG02.",
+      "Title or body exceeds character limits, or target audience matches 0 users → Display: MSG03, MSG01."
+    ],
+    "normalFlow": [
+      "Admin mở mục Phát Thông báo Hệ thống trên cổng quản trị (/admin).",
+      "Admin nhập Tiêu đề, Nội dung thông báo (ví dụ: lịch bảo trì hoặc tính năng mới) và chọn nhóm người dùng nhận tin.",
+      "Admin bấm nút Phát thông báo.",
+      "Hệ thống kiểm tra quyền Admin (BR-62), gửi thông báo tới nhóm người nhận, lưu nhật ký quản trị (BR-65) và hiển thị thông báo MSG58."
+    ],
+    "abnormalCases": [
+      "Nếu để trống Tiêu đề hoặc Nội dung thông báo: Hệ thống báo lỗi MSG02.",
+      "Nếu không có tài khoản nào thuộc nhóm bộ lọc người nhận đã chọn: Hệ thống báo MSG01."
+    ],
+    "postConditions": [
+      "The system notification is recorded in the platform audit log (BR-65) and delivered to all targeted users' in-app notification inboxes.",
+      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-137.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.2",
+    "title": "Platform Statistics Overview",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-129",
+    "ucName": "Platform Statistics Overview",
+    "ucDescription": "(3.10.2) Hiển thị cho Admin bảng điều khiển thống kê toàn cảnh hoạt động của nền tảng BrandHub: tổng số người dùng, tổng số Agency & Workspace đang hoạt động, tổng số bài đã đăng lên 4 mạng xã hội, lưu lượng sử dụng AI và tổng doanh thu.",
+    "figureId": "r3-fig-138",
+    "figureNumber": 138,
+    "figureCaption": "Figure 138 - Platform Statistics Overview",
+    "sequenceFigureId": "seq-3.10.2",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Tổng quan Quản trị Hệ thống (/admin).",
+    "purpose": "Hiển thị cho Admin bảng điều khiển thống kê toàn cảnh hoạt động của nền tảng BrandHub: tổng số người dùng, tổng số Agency & Workspace đang hoạt động, tổng số bài đã đăng lên 4 mạng xã hội, lưu lượng sử dụng AI và tổng doanh thu.",
+    "viSummary": "Hiển thị cho Admin bảng điều khiển thống kê toàn cảnh hoạt động của nền tảng BrandHub: tổng số người dùng, tổng số Agency & Workspace đang hoạt động, tổng số bài đã đăng lên 4 mạng xã hội, lưu lượng sử dụng AI và tổng doanh thu.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Tổng quan Admin (/admin) hiển thị các thẻ chỉ số lớn (Tổng người dùng, Tổng Agency/Workspace, Tổng bài xuất bản, Lượt gọi AI, Tổng doanh thu) cùng biểu đồ tăng trưởng theo thời gian.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), tổng hợp số liệu thống kê người dùng, dự án, bài đăng và doanh thu từ các hóa đơn đã thanh toán (BR-61) để vẽ biểu đồ tổng quan.",
+    "dataSpecs": {
+      "inputRequired": "Admin mở màn hình Tổng quan Hệ thống (/admin).",
+      "inputOptional": "Chọn khoảng thời gian xem thống kê (7 ngày, 30 ngày, theo quý, theo năm).",
+      "systemData": "Số liệu tổng hợp toàn nền tảng về người dùng, Agency, bài đăng, lượt dùng AI và doanh thu (BR-61, BR-62).",
+      "output": "Hiển thị bảng điều khiển thống kê toàn nền tảng cho Admin."
+    },
+    "businessRules": [
+      {
+        "code": "BR-61",
+        "text": "Mỗi giao dịch thanh toán thành công đều tự động tạo hóa đơn điện tử để Owner tra cứu và tải về trong mục Lịch sử hóa đơn (3.9.3), đồng thời tổng hợp vào Bảng thống kê doanh thu của Admin (3.10.13)."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-61",
+      "BR-62"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Admin đăng nhập và mở màn hình Tổng quan Hệ thống (/admin).",
+      "Hệ thống xác nhận quyền Admin toàn hệ thống (BR-62).",
+      "Hệ thống tổng hợp các chỉ số vận hành và doanh thu trên toàn nền tảng (BR-61).",
+      "Màn hình hiển thị các thẻ số liệu và biểu đồ tăng trưởng trực quan."
+    ],
+    "abnormalCases": [
+      "Nếu tài khoản không có quyền Admin cố truy cập đường dẫn `/admin`: Hệ thống chặn truy cập và báo MSG07."
+    ],
+    "postConditions": [
+      "The Admin views accurate, real-time macro statistics across the entire BrandHub platform.",
+      "Role-based access isolation (BR-61) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374220/brandhub-docs-portal/report3/r3-fig-138.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.3",
+    "title": "System Health Monitoring",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-130",
+    "ucName": "System Health Monitoring",
+    "ucDescription": "(3.10.3) Giúp Admin theo dõi tình trạng hoạt động và mức tiêu thụ tài nguyên (CPU, RAM, ổ cứng, độ trễ phản hồi và kết nối cơ sở dữ liệu) của các máy chủ dịch vụ theo thời gian thực để phát hiện sớm nếu có dịch vụ bị quá tải.",
+    "figureId": "r3-fig-139",
+    "figureNumber": 139,
+    "figureCaption": "Figure 139 - System Health Monitoring",
+    "sequenceFigureId": "seq-3.10.3",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Giám sát Sức khỏe Hệ thống (/admin/system-health).",
+    "purpose": "Giúp Admin theo dõi tình trạng hoạt động và mức tiêu thụ tài nguyên (CPU, RAM, ổ cứng, độ trễ phản hồi và kết nối cơ sở dữ liệu) của các máy chủ dịch vụ theo thời gian thực để phát hiện sớm nếu có dịch vụ bị quá tải.",
+    "viSummary": "Giúp Admin theo dõi tình trạng hoạt động và mức tiêu thụ tài nguyên (CPU, RAM, ổ cứng, độ trễ phản hồi và kết nối cơ sở dữ liệu) của các máy chủ dịch vụ theo thời gian thực để phát hiện sớm nếu có dịch vụ bị quá tải.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Màn hình Giám sát Hệ thống (/admin/system-health) hiển thị trạng thái từng dịch vụ (Đang hoạt động tốt UP / Cảnh báo chậm DEGRADED / Ngừng phản hồi DOWN), thanh đo % CPU, % RAM, tình trạng hàng đợi xử lý và kết nối Cơ sở dữ liệu.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), thu thập chỉ số hoạt động trực tiếp từ các dịch vụ (API Gateway, Dịch vụ Nghiệp vụ, Dịch vụ Xuất bản, Dịch vụ AI) cùng các cơ sở dữ liệu để hiển thị lên màn hình giám sát.",
+    "dataSpecs": {
+      "inputRequired": "Admin mở màn hình Giám sát Sức khỏe Hệ thống (/admin/system-health).",
+      "inputOptional": "Lọc xem theo từng dịch vụ hoặc bấm Làm mới số liệu tức thì.",
+      "systemData": "Trạng thái sống (UP/DOWN), mức sử dụng CPU, RAM, ổ cứng và độ trễ kết nối của từng dịch vụ (BR-62).",
+      "output": "Hiển thị bảng giám sát tình trạng kỹ thuật của toàn bộ hệ thống theo thời gian thực."
+    },
+    "businessRules": [
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-62",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Admin mở màn hình Giám sát Sức khỏe Hệ thống (/admin/system-health).",
+      "Hệ thống kiểm tra quyền Admin (BR-62) và đọc các chỉ số đo lường mới nhất từ các máy chủ dịch vụ.",
+      "Màn hình hiển thị trạng thái hoạt động, mức CPU/RAM và tốc độ phản hồi của từng thành phần.",
+      "Admin có thể theo dõi trực tiếp để kịp thời xử lý nếu có dịch vụ nào báo quá tải."
+    ],
+    "abnormalCases": [
+      "Nếu người truy cập không phải là Admin: Hệ thống chặn truy cập và báo MSG07."
+    ],
+    "postConditions": [
+      "The Admin has real-time observability into infrastructure resource utilization and microservice availability.",
+      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-139.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.4",
+    "title": "Content Moderation Queue",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-131",
+    "ucName": "Content Moderation Queue",
+    "ucDescription": "(3.10.4) Cho phép Admin xem và xử lý Hàng đợi kiểm duyệt các nội dung bị gắn cờ nghi ngờ vi phạm chính sách cộng đồng (hoặc bài đăng của tài khoản đang bị theo dõi mức Cam), để quyết định Cho phép đăng hay Xác nhận vi phạm và gỡ bỏ.",
+    "figureId": "r3-fig-140",
+    "figureNumber": 140,
+    "figureCaption": "Figure 140 - Content Moderation Queue",
+    "sequenceFigureId": "seq-3.10.4",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Hàng đợi Kiểm duyệt Nội dung (/admin?view=moderation), xem xét một bài viết bị gắn cờ và bấm Cho phép hoặc Xác nhận vi phạm.",
+    "purpose": "Cho phép Admin xem và xử lý Hàng đợi kiểm duyệt các nội dung bị gắn cờ nghi ngờ vi phạm chính sách cộng đồng (hoặc bài đăng của tài khoản đang bị theo dõi mức Cam), để quyết định Cho phép đăng hay Xác nhận vi phạm và gỡ bỏ.",
+    "viSummary": "Cho phép Admin xem và xử lý Hàng đợi kiểm duyệt các nội dung bị gắn cờ nghi ngờ vi phạm chính sách cộng đồng (hoặc bài đăng của tài khoản đang bị theo dõi mức Cam), để quyết định Cho phép đăng hay Xác nhận vi phạm và gỡ bỏ.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Hàng đợi Kiểm duyệt (/admin?view=moderation) hiển thị danh sách các bài viết/ấn phẩm bị cảnh báo, lý do bị gắn cờ cùng các từ ngữ nghi vấn (BR-42), thông tin người tạo và 2 nút quyết định: Cho phép lưu hành (Approve/Dismiss) hoặc Xác nhận vi phạm (Confirm Violation).",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62). Khi Admin bấm Cho phép lưu hành, hệ thống gỡ cờ cảnh báo để bài viết được tiếp tục xuất bản. Khi Admin bấm Xác nhận vi phạm, hệ thống chặn bài viết đó, ghi nhận lỗi vi phạm cho tài khoản người tạo (theo cơ chế 3 mức Vàng/Cam/Đỏ - BR-63) và lưu vào nhật ký kiểm toán (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Chọn mục nội dung trong hàng đợi kiểm duyệt và chọn Quyết định xử lý (Cho phép lưu hành hoặc Xác nhận vi phạm).",
+      "inputOptional": "Ghi chú lý do kiểm duyệt hoặc mức cảnh cáo áp dụng.",
+      "systemData": "Cập nhật trạng thái kiểm duyệt nội dung (BR-42), liên kết xử lý mức cảnh cáo tài khoản (BR-63) và ghi nhật ký Admin (BR-65).",
+      "output": "Xử lý mục kiểm duyệt thành công và hiển thị thông báo MSG58."
+    },
+    "businessRules": [
+      {
+        "code": "BR-42",
+        "text": "Tính năng Kiểm tra tuân thủ nội dung (3.6.33) giúp rà soát văn bản bài viết để phát hiện các từ ngữ nhạy cảm, bạo lực, phản cảm hoặc vi phạm chính sách cộng đồng, tô sáng đoạn vi phạm để Creator sửa lại trước khi duyệt và đăng bài."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-63",
+        "text": "Cơ chế xử lý vi phạm 3 mức (3.10.5, 3.10.9): 3 lần cảnh cáo mức Vàng (YELLOW) sẽ tự động gộp thành 1 mức Cam (ORANGE); tài khoản bị mức Cam sẽ bị gắn cờ theo dõi (mọi bài đăng cần Admin duyệt qua hàng đợi 3.10.4); nếu vi phạm mức Đỏ (RED) hoặc tích lũy 3 mức Cam thì tài khoản sẽ bị tạm khóa 30 ngày. Sau 30 ngày không có vi phạm mới, cảnh cáo sẽ tự hết hạn và tài khoản hết hạn khóa 30 ngày sẽ tự mở lại."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-42",
+      "BR-62",
+      "BR-63",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG58"
+    ],
+    "validations": [
+      "Caller is not an Admin (BR-62) → Display: MSG07.",
+      "Decision justification (reviewReason) left blank → Display: MSG02.",
+      "Moderation item was already resolved concurrently → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Admin mở màn hình Hàng đợi Kiểm duyệt Nội dung (/admin?view=moderation).",
+      "Admin chọn một bài viết bị gắn cờ để xem chi tiết nội dung văn bản, hình ảnh và đoạn từ ngữ bị cảnh báo (BR-42).",
+      "Admin đưa ra quyết định: bấm Cho phép lưu hành (nếu nội dung an toàn) hoặc bấm Xác nhận vi phạm kèm lý do.",
+      "Hệ thống cập nhật trạng thái bài viết, áp dụng quy tắc xử lý vi phạm (BR-63), ghi nhật ký quản trị (BR-65) và hiển thị thông báo MSG58."
+    ],
+    "abnormalCases": [
+      "Nếu xác nhận vi phạm nhưng bỏ trống lý do ghi nhận: Hệ thống báo lỗi MSG02.",
+      "Nếu mục nội dung đó đã được một Admin khác xử lý xong trước đó: Hệ thống báo MSG36."
+    ],
+    "postConditions": [
+      "The moderation item is resolved with an immutable audit trail (BR-65), and the associated post is either cleared for publishing or blocked.",
+      "Role-based access isolation (BR-42) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-140.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.5",
+    "title": "Update User Violation Status",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-132",
+    "ucName": "Update User Violation Status",
+    "ucDescription": "(3.10.5) Cho phép Admin ghi nhận mức cảnh cáo vi phạm (Vàng, Cam, Đỏ) hoặc gỡ cảnh cáo cho tài khoản người dùng theo quy tắc 3 mức: 3 cảnh cáo Vàng tự gộp thành 1 mức Cam (tài khoản bị gắn cờ kiểm duyệt trước khi đăng); vi phạm mức Đỏ hoặc đủ 3 mức Cam sẽ chuyển sang khóa tài khoản 30 ngày.",
+    "figureId": "r3-fig-141",
+    "figureNumber": 141,
+    "figureCaption": "Figure 141 - Update User Violation Status",
+    "sequenceFigureId": "seq-3.10.5",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở hồ sơ vi phạm của người dùng trên cổng quản trị (/admin?view=users), chọn mức cảnh cáo (hoặc gỡ cảnh cáo) kèm lý do và bấm Cập nhật.",
+    "purpose": "Cho phép Admin ghi nhận mức cảnh cáo vi phạm (Vàng, Cam, Đỏ) hoặc gỡ cảnh cáo cho tài khoản người dùng theo quy tắc 3 mức: 3 cảnh cáo Vàng tự gộp thành 1 mức Cam (tài khoản bị gắn cờ kiểm duyệt trước khi đăng); vi phạm mức Đỏ hoặc đủ 3 mức Cam sẽ chuyển sang khóa tài khoản 30 ngày.",
+    "viSummary": "Cho phép Admin ghi nhận mức cảnh cáo vi phạm (Vàng, Cam, Đỏ) hoặc gỡ cảnh cáo cho tài khoản người dùng theo quy tắc 3 mức: 3 cảnh cáo Vàng tự gộp thành 1 mức Cam (tài khoản bị gắn cờ kiểm duyệt trước khi đăng); vi phạm mức Đỏ hoặc đủ 3 mức Cam sẽ chuyển sang khóa tài khoản 30 ngày.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Hộp thoại Quản lý Vi phạm & Trạng thái Người dùng trên cổng Admin hiển thị lịch sử các lần cảnh cáo (Vàng / Cam / Đỏ), trạng thái hiện tại của tài khoản (ACTIVE, FLAGGED, DEACTIVATED), ô chọn thao tác xử lý, ô nhập lý do bắt buộc và nút Xác nhận.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin và đảm bảo Admin không tự phạt chính mình hoặc phạt một Admin khác (BR-62). Khi ghi nhận cảnh cáo mới: nếu tích lũy đủ 3 mức Vàng (YELLOW) thì tự động chuyển thành 1 mức Cam (ORANGE) và gắn cờ tài khoản sang FLAGGED (mọi bài đăng phải qua Admin duyệt ở 3.10.4); nếu nhận mức Đỏ (RED) hoặc đủ 3 mức Cam thì kích hoạt xét duyệt tạm khóa 30 ngày (BR-63). Mọi cảnh cáo sẽ tự hết hạn sau 30 ngày liên tiếp không vi phạm thêm.",
+    "dataSpecs": {
+      "inputRequired": "Chọn tài khoản người dùng, chọn Mức xử lý vi phạm (Cảnh cáo Vàng / Cam / Đỏ hoặc Gỡ cảnh cáo) và nhập Lý do xử lý.",
+      "inputOptional": "Đính kèm mã bài viết hoặc bằng chứng vi phạm.",
+      "systemData": "Tự động quy đổi cấp độ cảnh cáo (3 Vàng -> 1 Cam -> Gắn cờ FLAGGED -> Tạm khóa 30 ngày theo BR-63) và lưu nhật ký kiểm toán (BR-65).",
+      "output": "Cập nhật trạng thái vi phạm của tài khoản thành công và hiển thị thông báo MSG59."
+    },
+    "businessRules": [
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-63",
+        "text": "Cơ chế xử lý vi phạm 3 mức (3.10.5, 3.10.9): 3 lần cảnh cáo mức Vàng (YELLOW) sẽ tự động gộp thành 1 mức Cam (ORANGE); tài khoản bị mức Cam sẽ bị gắn cờ theo dõi (mọi bài đăng cần Admin duyệt qua hàng đợi 3.10.4); nếu vi phạm mức Đỏ (RED) hoặc tích lũy 3 mức Cam thì tài khoản sẽ bị tạm khóa 30 ngày. Sau 30 ngày không có vi phạm mới, cảnh cáo sẽ tự hết hạn và tài khoản hết hạn khóa 30 ngày sẽ tự mở lại."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-62",
+      "BR-63",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG36",
+      "MSG59"
+    ],
+    "validations": [
+      "Caller is not ADMIN or attempts to strike/sanction themselves or another ADMIN account (BR-62) → Display: MSG07.",
+      "Justification reason or required strike level/ID is missing → Display: MSG02.",
+      "Admin attempts to Unflag an account while an active ORANGE strike remains unpardoned, or target is DEACTIVATED (BR-63) → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin chọn tài khoản cần xử lý vi phạm.",
+      "Admin chọn mức cảnh cáo (Vàng, Cam, Đỏ hoặc Gỡ cảnh cáo) và nhập rõ lý do cùng bằng chứng vi phạm.",
+      "Admin bấm nút Xác nhận cập nhật.",
+      "Hệ thống tự động tính toán mức cảnh cáo tích lũy và cập nhật trạng thái tài khoản theo quy tắc BR-63, lưu nhật ký Admin (BR-65) và hiển thị thông báo MSG59."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống ô lý do xử lý vi phạm: Hệ thống báo lỗi bắt buộc nhập (MSG02).",
+      "Nếu Admin cố áp dụng mức phạt lên tài khoản của chính mình hoặc một Admin khác: Hệ thống chặn thao tác và báo MSG07 / MSG36 (BR-62)."
+    ],
+    "postConditions": [
+      "The user's violation strike ledger, 30-day clean-period clock, and FLAGGED publishing gate status are persisted with a complete audit trail (BR-63, BR-65).",
+      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374220/brandhub-docs-portal/report3/r3-fig-141.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.6",
+    "title": "View User",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-133",
+    "ucName": "View User",
+    "ucDescription": "(3.10.6) Cho phép Admin xem, tìm kiếm và lọc danh sách toàn bộ tài khoản người dùng trên hệ thống theo họ tên, email, vai trò hệ thống hoặc trạng thái hoạt động.",
+    "figureId": "r3-fig-142",
+    "figureNumber": 142,
+    "figureCaption": "Figure 142 - View User",
+    "sequenceFigureId": "seq-3.10.6",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Quản lý Người dùng (/admin?view=users).",
+    "purpose": "Cho phép Admin xem, tìm kiếm và lọc danh sách toàn bộ tài khoản người dùng trên hệ thống theo họ tên, email, vai trò hệ thống hoặc trạng thái hoạt động.",
+    "viSummary": "Cho phép Admin xem, tìm kiếm và lọc danh sách toàn bộ tài khoản người dùng trên hệ thống theo họ tên, email, vai trò hệ thống hoặc trạng thái hoạt động.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Quản lý Người dùng (/admin?view=users) gồm ô tìm kiếm theo Tên/Email, bộ lọc theo Vai trò hệ thống (USER / ADMIN), lọc theo Trạng thái tài khoản (Đang hoạt động, Chờ xác thực, Đang gắn cờ, Tạm khóa, Đã xóa), bảng danh sách người dùng và nút Tạo tài khoản mới.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), truy xuất danh sách người dùng trên toàn nền tảng theo điều kiện tìm kiếm/bộ lọc và hiển thị kèm thông tin số lượng Agency/Workspace mà mỗi người đang tham gia.",
+    "dataSpecs": {
+      "inputRequired": "Admin mở màn hình Quản lý Người dùng (/admin?view=users).",
+      "inputOptional": "Từ khóa tìm kiếm (họ tên, email) và bộ lọc theo vai trò hoặc trạng thái tài khoản.",
+      "systemData": "Danh sách tài khoản toàn hệ thống, trạng thái bảo mật, số lần cảnh cáo và ngày tạo (BR-62).",
+      "output": "Hiển thị bảng danh sách người dùng toàn hệ thống cho Admin."
+    },
+    "businessRules": [
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-62"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "No user accounts match the search and filter criteria → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Admin mở tab Quản lý Người dùng (/admin?view=users) trên cổng quản trị.",
+      "Hệ thống xác nhận quyền Admin (BR-62) và tải danh sách tài khoản người dùng.",
+      "Admin nhập từ khóa email/họ tên hoặc lọc theo trạng thái tài khoản (ví dụ: đang bị gắn cờ FLAGGED hoặc tạm khóa).",
+      "Màn hình hiển thị danh sách tài khoản khớp điều kiện để Admin xem chi tiết hoặc thao tác."
+    ],
+    "abnormalCases": [
+      "Nếu không tìm thấy người dùng nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The Admin views accurate account status, role, and compliance strike information across the platform user base.",
+      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-142.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.7",
+    "title": "Create User",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-134",
+    "ucName": "Create User",
+    "ucDescription": "(3.10.7) Cho phép Admin chủ động tạo mới một tài khoản người dùng trực tiếp từ cổng quản trị và tự động gửi thông tin kích hoạt tài khoản qua email cho người đó.",
+    "figureId": "r3-fig-143",
+    "figureNumber": 143,
+    "figureCaption": "Figure 143 - Create User",
+    "sequenceFigureId": "seq-3.10.7",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin bấm nút Tạo người dùng mới trên màn hình Quản lý Người dùng (/admin?view=users), điền thông tin tài khoản và bấm Tạo.",
+    "purpose": "Cho phép Admin chủ động tạo mới một tài khoản người dùng trực tiếp từ cổng quản trị và tự động gửi thông tin kích hoạt tài khoản qua email cho người đó.",
+    "viSummary": "Cho phép Admin chủ động tạo mới một tài khoản người dùng trực tiếp từ cổng quản trị và tự động gửi thông tin kích hoạt tài khoản qua email cho người đó.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Hộp thoại Tạo Người dùng Mới trên cổng Admin gồm ô nhập Họ và tên, Địa chỉ Email, chọn Vai trò hệ thống (USER hoặc ADMIN), Số điện thoại (tùy chọn) và nút Tạo tài khoản.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), kiểm tra định dạng email hợp lệ và email chưa từng tồn tại trên hệ thống (BR-01). Sau đó, hệ thống tạo tài khoản ở trạng thái chờ kích hoạt, tự động gửi thông tin đăng nhập/kích hoạt tạm thời qua email cho người dùng và ghi lại vào nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Họ và tên, Địa chỉ Email chưa từng đăng ký và Vai trò hệ thống.",
+      "inputOptional": "Số điện thoại liên hệ và ghi chú quản trị.",
+      "systemData": "Kiểm tra email duy nhất (BR-01), tạo tài khoản, gửi email kích hoạt và lưu nhật ký Admin (BR-65).",
+      "output": "Tạo tài khoản người dùng mới thành công, gửi email kích hoạt và hiển thị thông báo MSG59."
+    },
+    "businessRules": [
+      {
+        "code": "BR-01",
+        "text": "Mỗi địa chỉ email chỉ được đăng ký cho một tài khoản duy nhất (không phân biệt chữ hoa hay chữ thường, ví dụ User@gmail.com và user@gmail.com được tính là một). Nếu đăng ký email đã tồn tại, hệ thống sẽ báo lỗi MSG08."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-01",
+      "BR-62",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG04",
+      "MSG07",
+      "MSG08",
+      "MSG59"
+    ],
+    "validations": [
+      "Caller is not an Admin (BR-62) → Display: MSG07.",
+      "Required field missing (fullName or email left blank) → Display: MSG02.",
+      "Invalid email format → Display: MSG04.",
+      "Email address already belongs to an existing account (BR-01) → Display: MSG08."
+    ],
+    "normalFlow": [
+      "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin bấm nút Tạo người dùng mới.",
+      "Admin nhập Họ tên, Địa chỉ Email và chọn Vai trò hệ thống cho tài khoản.",
+      "Admin bấm nút Xác nhận tạo.",
+      "Hệ thống kiểm tra email chưa bị trùng (BR-01), tạo tài khoản mới, gửi email kích hoạt cho người dùng (BR-65) và hiển thị thông báo MSG59."
+    ],
+    "abnormalCases": [
+      "Nếu để trống Họ tên/Email hoặc nhập sai định dạng email: Hệ thống báo lỗi MSG02 hoặc MSG04.",
+      "Nếu địa chỉ email này đã có tài khoản trên hệ thống: Hệ thống báo lỗi email đã tồn tại (MSG08)."
+    ],
+    "postConditions": [
+      "A newly provisioned User record exists in pending activation state, and the recipient can activate their account and set a permanent password via the emailed activation link (BR-65).",
+      "Role-based access isolation (BR-01) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-143.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.8",
+    "title": "Update User",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-135",
+    "ucName": "Update User",
+    "ucDescription": "(3.10.8) Cho phép Admin chỉnh sửa thông tin hồ sơ hành chính (họ tên, số điện thoại) và phân quyền cấp hệ thống của tài khoản người dùng, đồng thời giữ cố định email gốc và ngăn việc tự hạ quyền Admin của chính mình.",
+    "figureId": "r3-fig-144",
+    "figureNumber": 144,
+    "figureCaption": "Figure 144 - Update User",
+    "sequenceFigureId": "seq-3.10.8",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin chọn Chỉnh sửa trên một tài khoản tại màn hình Quản lý Người dùng (/admin?view=users), thay đổi thông tin và bấm Lưu.",
+    "purpose": "Cho phép Admin chỉnh sửa thông tin hồ sơ hành chính (họ tên, số điện thoại) và phân quyền cấp hệ thống của tài khoản người dùng, đồng thời giữ cố định email gốc và ngăn việc tự hạ quyền Admin của chính mình.",
+    "viSummary": "Cho phép Admin chỉnh sửa thông tin hồ sơ hành chính (họ tên, số điện thoại) và phân quyền cấp hệ thống của tài khoản người dùng, đồng thời giữ cố định email gốc và ngăn việc tự hạ quyền Admin của chính mình.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Hộp thoại Chỉnh sửa Người dùng trên cổng Admin gồm ô sửa Họ và tên, Số điện thoại, chọn Vai trò hệ thống, ô Email (khóa chỉ đọc) và nút Lưu thay đổi.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), giữ nguyên địa chỉ email đăng nhập chính (BR-11), đồng thời chặn việc Admin tự gỡ quyền Admin của chính mình hoặc gỡ quyền của một Admin khác (BR-62). Sau khi lưu thông tin mới, hệ thống ghi nhận vào nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Chọn tài khoản cần sửa, nhập Họ và tên cùng Vai trò hệ thống hợp lệ.",
+      "inputOptional": "Cập nhật Số điện thoại và ghi chú quản trị.",
+      "systemData": "Bảo toàn email định danh (BR-11), bảo vệ quyền Admin (BR-62) và lưu nhật ký kiểm toán (BR-65).",
+      "output": "Cập nhật thông tin tài khoản người dùng thành công và hiển thị thông báo MSG59."
+    },
+    "businessRules": [
+      {
+        "code": "BR-11",
+        "text": "Mỗi người dùng có một Hồ sơ cá nhân duy nhất trên hệ thống; địa chỉ email đăng nhập chính được cố định, không thể tự đổi trên màn hình sửa hồ sơ."
+      },
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-11",
+      "BR-15",
+      "BR-62",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG59"
+    ],
+    "validations": [
+      "Caller is not an Admin or attempts unauthorized modification of a peer ADMIN account (BR-62) → Display: MSG07.",
+      "Full Name left blank or field exceeds maximum length → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin bấm nút Chỉnh sửa bên cạnh tài khoản cần cập nhật.",
+      "Admin sửa lại Họ tên, Số điện thoại hoặc quyền hệ thống rồi bấm Lưu thay đổi.",
+      "Hệ thống kiểm tra quy tắc bảo vệ tài khoản Admin (BR-62) và dữ liệu đầu vào hợp lệ.",
+      "Hệ thống lưu thông tin cập nhật, ghi vào nhật ký quản trị (BR-65) và hiển thị thông báo MSG59."
+    ],
+    "abnormalCases": [
+      "Nếu Admin cố tình tự hạ quyền Admin của chính mình hoặc sửa quyền của một Admin khác: Hệ thống chặn thao tác và báo MSG07 (BR-62).",
+      "Nếu xóa trống ô Họ và tên: Hệ thống báo lỗi MSG02."
+    ],
+    "postConditions": [
+      "The user's updated profile fields are persisted and audited without altering their email address or Ownership.",
+      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-144.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.9",
+    "title": "Deactivate User",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-136",
+    "ucName": "Deactivate User",
+    "ucDescription": "(3.10.9) Cho phép Admin tạm khóa (vô hiệu hóa 30 ngày) đối với tài khoản vi phạm nghiêm trọng. Khi bị tạm khóa, toàn bộ phiên đăng nhập của tài khoản đó bị đăng xuất ngay lập tức; sau khi hết hạn 30 ngày, hệ thống sẽ tự động mở khóa lại tài khoản.",
+    "figureId": "r3-fig-145",
+    "figureNumber": 145,
+    "figureCaption": "Figure 145 - Deactivate User",
+    "sequenceFigureId": "seq-3.10.9",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin bấm nút Tạm khóa tài khoản (Deactivate User) trên màn hình Quản lý Người dùng (/admin?view=users), nhập lý do khóa và xác nhận.",
+    "purpose": "Cho phép Admin tạm khóa (vô hiệu hóa 30 ngày) đối với tài khoản vi phạm nghiêm trọng. Khi bị tạm khóa, toàn bộ phiên đăng nhập của tài khoản đó bị đăng xuất ngay lập tức; sau khi hết hạn 30 ngày, hệ thống sẽ tự động mở khóa lại tài khoản.",
+    "viSummary": "Cho phép Admin tạm khóa (vô hiệu hóa 30 ngày) đối với tài khoản vi phạm nghiêm trọng. Khi bị tạm khóa, toàn bộ phiên đăng nhập của tài khoản đó bị đăng xuất ngay lập tức; sau khi hết hạn 30 ngày, hệ thống sẽ tự động mở khóa lại tài khoản.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Hộp thoại Tạm khóa Tài khoản trên cổng Admin gồm thông tin tài khoản vi phạm, thời hạn khóa (30 ngày), ô nhập Lý do khóa tài khoản bắt buộc và nút Xác nhận tạm khóa.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin và đảm bảo tài khoản bị khóa không phải là một Admin (BR-62). Khi xác nhận, hệ thống chuyển trạng thái tài khoản sang Tạm khóa (DEACTIVATED trong 30 ngày - BR-63), lập tức đăng xuất mọi thiết bị đang đăng nhập của người đó, chặn đăng nhập mới (BR-05) và lưu lý do vào nhật ký quản trị (BR-65). Khi hết 30 ngày, tiến trình tự động sẽ khôi phục tài khoản về trạng thái Hoạt động (ACTIVE).",
+    "dataSpecs": {
+      "inputRequired": "Chọn tài khoản người dùng cần khóa và nhập Lý do tạm khóa tài khoản.",
+      "inputOptional": "Chọn mã biên bản vi phạm liên quan.",
+      "systemData": "Chuyển trạng thái tài khoản sang DEACTIVATED (kèm mốc tự mở lại sau 30 ngày - BR-63), thu hồi phiên đăng nhập (BR-05) và ghi nhật ký Admin (BR-65).",
+      "output": "Tạm khóa tài khoản người dùng thành công và hiển thị thông báo MSG59."
+    },
+    "businessRules": [
+      {
+        "code": "BR-05",
+        "text": "Chỉ những tài khoản đã xác thực email và đang hoạt động mới được đăng nhập vào hệ thống. Tài khoản chưa xác thực sẽ được chuyển sang màn hình nhập OTP (3.2.6); tài khoản đang bị khóa hoặc đã xóa sẽ bị từ chối đăng nhập."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-63",
+        "text": "Cơ chế xử lý vi phạm 3 mức (3.10.5, 3.10.9): 3 lần cảnh cáo mức Vàng (YELLOW) sẽ tự động gộp thành 1 mức Cam (ORANGE); tài khoản bị mức Cam sẽ bị gắn cờ theo dõi (mọi bài đăng cần Admin duyệt qua hàng đợi 3.10.4); nếu vi phạm mức Đỏ (RED) hoặc tích lũy 3 mức Cam thì tài khoản sẽ bị tạm khóa 30 ngày. Sau 30 ngày không có vi phạm mới, cảnh cáo sẽ tự hết hạn và tài khoản hết hạn khóa 30 ngày sẽ tự mở lại."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-05",
+      "BR-62",
+      "BR-63",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36",
+      "MSG59"
+    ],
+    "validations": [
+      "Caller is not ADMIN or targets themselves or another ADMIN account (BR-62) → Display: MSG07.",
+      "Sanction reason or explicit confirmation missing → Display: MSG02.",
+      "Target account is already DEACTIVATED or sanction request was already resolved → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin chọn tài khoản vi phạm và bấm Tạm khóa (Deactivate).",
+      "Admin nhập lý do tạm khóa vào hộp thoại xác nhận và bấm Đồng ý.",
+      "Hệ thống kiểm tra tài khoản đích không phải là Admin (BR-62), chuyển trạng thái sang Tạm khóa 30 ngày (BR-63) và thu hồi ngay mọi phiên đăng nhập của tài khoản đó (BR-05).",
+      "Hệ thống lưu nhật ký quản trị (BR-65), gửi thông báo email cho người dùng và hiển thị thông báo MSG59."
+    ],
+    "abnormalCases": [
+      "Nếu để trống ô lý do khóa tài khoản: Hệ thống báo lỗi MSG02.",
+      "Nếu cố khóa tài khoản của chính mình hoặc một Admin khác, hoặc tài khoản đã bị khóa từ trước: Hệ thống chặn thao tác và báo MSG07 hoặc MSG36 (BR-62)."
+    ],
+    "postConditions": [
+      "The user account is in DEACTIVATED status with all sessions revoked and cannot sign in (3.2.2) until the 30-day sanction period automatically restores it to ACTIVE (BR-05, BR-63).",
+      "All user, Agency, Workspace, and billing data remain intact without hard-deletion (BR-63)."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-145.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.10",
+    "title": "View AI Credit Price List",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-137",
+    "ucName": "View AI Credit Price List",
+    "ucDescription": "(3.10.10) Cho phép Admin và Owner xem bảng đơn giá điểm AI Credit hiện hành của toàn hệ thống cho từng loại tính năng AI (Tạo Caption, Tạo Ảnh, Tạo Video, Tạo Đại sứ ảo, Gợi ý Hashtag).",
+    "figureId": "r3-fig-146",
+    "figureNumber": 146,
+    "figureCaption": "Figure 146 - View AI Credit Price List",
+    "sequenceFigureId": "seq-3.10.10",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Owner",
+      "Admin"
+    ],
+    "trigger": "Khi Admin hoặc Owner mở màn hình Bảng giá AI Credit (/credit/prices).",
+    "purpose": "Cho phép Admin và Owner xem bảng đơn giá điểm AI Credit hiện hành của toàn hệ thống cho từng loại tính năng AI (Tạo Caption, Tạo Ảnh, Tạo Video, Tạo Đại sứ ảo, Gợi ý Hashtag).",
+    "viSummary": "Cho phép Admin và Owner xem bảng đơn giá điểm AI Credit hiện hành của toàn hệ thống cho từng loại tính năng AI (Tạo Caption, Tạo Ảnh, Tạo Video, Tạo Đại sứ ảo, Gợi ý Hashtag).",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Màn hình Bảng giá AI Credit (/credit/prices) hiển thị bảng danh mục các tính năng AI: Mã tính năng, Tên thao tác AI, Mô hình sử dụng, Đơn giá số điểm AI Credit trừ cho mỗi lượt gọi, Ngày cập nhật gần nhất và các nút Chỉnh sửa giá / Nhập CSV (chỉ hiển thị cho Admin).",
+    "dataProcessing": "Hệ thống tải danh sách đơn giá điểm AI Credit đang áp dụng trên toàn nền tảng (BR-48, BR-64) và hiển thị công khai để Owner nắm rõ mức phí và Admin quản lý.",
+    "dataSpecs": {
+      "inputRequired": "Admin hoặc Owner mở màn hình Bảng giá AI Credit (/credit/prices).",
+      "inputOptional": "Tìm kiếm theo tên tính năng AI.",
+      "systemData": "Danh mục tính năng AI và đơn giá điểm AI Credit hiện hành (BR-64).",
+      "output": "Hiển thị bảng đơn giá tiêu hao điểm AI Credit của từng tính năng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-48",
+      "BR-62",
+      "BR-64"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Admin, Owner permission (BR-48) → Display: MSG07.",
+      "No AI Credit price entries match the selected category filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Admin hoặc Owner mở màn hình Bảng giá AI Credit (/credit/prices).",
+      "Hệ thống kiểm tra quyền truy cập và tải bảng cấu hình đơn giá hiện tại từ cơ sở dữ liệu (BR-64).",
+      "Màn hình hiển thị rõ mỗi lượt Tạo Caption, Tạo Ảnh, Tạo Video hay Tạo Đại sứ ảo sẽ tốn bao nhiêu điểm AI Credit.",
+      "Nếu là Admin, màn hình hiển thị thêm công cụ sửa giá trực tiếp (3.10.11) hoặc nhập bảng giá từ file CSV (3.10.12)."
+    ],
+    "abnormalCases": [
+      "Nếu từ khóa tìm kiếm không khớp với tính năng AI nào: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The current unit AI Credit costs for all AI Studio features are displayed accurately.",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-146.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_10.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.11",
+    "title": "Update AI Credit Price",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-138",
+    "ucName": "Update AI Credit Price",
+    "ucDescription": "(3.10.11) Cho phép Admin chỉnh sửa trực tiếp số điểm AI Credit cần trừ cho từng tính năng AI trên bảng giá. Mức giá mới sẽ áp dụng cho các lượt sử dụng AI tiếp theo mà không làm thay đổi lịch sử các giao dịch đã trừ trước đó.",
+    "figureId": "r3-fig-147",
+    "figureNumber": 147,
+    "figureCaption": "Figure 147 - Update AI Credit Price",
+    "sequenceFigureId": "seq-3.10.11",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin sửa số điểm đơn giá của một tính năng trên màn hình Bảng giá AI Credit (/credit/prices) và bấm Lưu cập nhật.",
+    "purpose": "Cho phép Admin chỉnh sửa trực tiếp số điểm AI Credit cần trừ cho từng tính năng AI trên bảng giá. Mức giá mới sẽ áp dụng cho các lượt sử dụng AI tiếp theo mà không làm thay đổi lịch sử các giao dịch đã trừ trước đó.",
+    "viSummary": "Cho phép Admin chỉnh sửa trực tiếp số điểm AI Credit cần trừ cho từng tính năng AI trên bảng giá. Mức giá mới sẽ áp dụng cho các lượt sử dụng AI tiếp theo mà không làm thay đổi lịch sử các giao dịch đã trừ trước đó.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Ô nhập chỉnh sửa Đơn giá điểm AI Credit (Unit Cost) ngay trên từng dòng tính năng tại màn hình Bảng giá AI Credit (/credit/prices) kèm nút Lưu thay đổi.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62) và kiểm tra đơn giá mới phải là số nguyên dương hợp lệ. Sau khi lưu, đơn giá mới được áp dụng ngay cho các yêu cầu tạo AI mới (không làm thay đổi các giao dịch cũ hay các tiến trình đang chạy dở - BR-48, BR-64) và được ghi lại vào nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Chọn tính năng AI cần đổi giá và nhập Đơn giá điểm AI Credit mới (số nguyên lớn hơn 0).",
+      "inputOptional": "Ghi chú lý do điều chỉnh đơn giá.",
+      "systemData": "Cập nhật đơn giá mới cho các lượt gọi AI tiếp theo (BR-48, BR-64) và lưu nhật ký Admin (BR-65).",
+      "output": "Cập nhật đơn giá AI Credit thành công và hiển thị thông báo MSG60."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-48",
+      "BR-62",
+      "BR-64",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG60"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "newCreditCost is blank, zero, negative, or non-numeric → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Admin mở màn hình Bảng giá AI Credit (/credit/prices) và bấm Chỉnh sửa trên dòng tính năng cần đổi giá.",
+      "Admin nhập số điểm AI Credit mới (ví dụ đổi từ 5 điểm sang 4 điểm) và bấm Lưu.",
+      "Hệ thống kiểm tra quyền Admin (BR-62) và xác nhận đơn giá mới là số dương hợp lệ.",
+      "Hệ thống lưu mức giá mới (BR-64), ghi nhật ký quản trị (BR-65) và hiển thị thông báo MSG60."
+    ],
+    "abnormalCases": [
+      "Nếu nhập đơn giá bằng 0, số âm hoặc bỏ trống: Hệ thống báo lỗi giá trị không hợp lệ (MSG02, MSG03)."
+    ],
+    "postConditions": [
+      "The AI operation's new unit credit cost is active for all subsequent AI generation requests while historical ledger entries remain unchanged (BR-64).",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-147.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_11.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.12",
+    "title": "Import AI Credit Price CSV",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-139",
+    "ucName": "Import AI Credit Price CSV",
+    "ucDescription": "(3.10.12) Cho phép Admin tải lên tệp bảng tính CSV để kiểm tra xem trước và cập nhật hàng loạt đơn giá điểm AI Credit cho nhiều tính năng cùng lúc một cách nhanh chóng và chính xác.",
+    "figureId": "r3-fig-148",
+    "figureNumber": 148,
+    "figureCaption": "Figure 148 - Import AI Credit Price CSV",
+    "sequenceFigureId": "seq-3.10.12",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin bấm nút Nhập bảng giá CSV trên màn hình Bảng giá AI Credit (/credit/prices), chọn tệp CSV, xem trước bảng đối chiếu và bấm Xác nhận áp dụng.",
+    "purpose": "Cho phép Admin tải lên tệp bảng tính CSV để kiểm tra xem trước và cập nhật hàng loạt đơn giá điểm AI Credit cho nhiều tính năng cùng lúc một cách nhanh chóng và chính xác.",
+    "viSummary": "Cho phép Admin tải lên tệp bảng tính CSV để kiểm tra xem trước và cập nhật hàng loạt đơn giá điểm AI Credit cho nhiều tính năng cùng lúc một cách nhanh chóng và chính xác.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Hộp thoại Nhập Bảng giá từ CSV gồm nút tải tệp mẫu chuẩn, khung chọn tệp `.csv` từ máy tính, bảng Xem trước các dòng dữ liệu đọc được từ tệp (hiển thị giá cũ -> giá mới hoặc báo đỏ dòng bị lỗi) và nút Xác nhận cập nhật.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), kiểm tra tệp tải lên đúng định dạng CSV và kiểm tra từng dòng dữ liệu (mã tính năng tồn tại, đơn giá là số nguyên dương). Nếu tất cả các dòng đều hợp lệ và Admin bấm xác nhận, hệ thống sẽ cập nhật đồng bộ toàn bộ bảng giá trong một lần (nếu có dòng lỗi thì giữ nguyên bảng giá cũ, không cập nhật nửa vời - BR-64) và lưu nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Tệp CSV đúng cấu trúc mẫu (chứa mã tính năng AI và đơn giá điểm mới) và bấm Xác nhận sau khi xem trước.",
+      "inputOptional": "Ghi chú đợt cập nhật bảng giá.",
+      "systemData": "Kiểm tra toàn bộ các dòng trong tệp CSV, áp dụng cập nhật đồng bộ toàn bộ bảng giá (BR-64) và lưu nhật ký Admin (BR-65).",
+      "output": "Nhập và cập nhật bảng giá AI Credit từ CSV thành công, hiển thị thông báo MSG60."
+    },
+    "businessRules": [
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-62",
+      "BR-64",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG22",
+      "MSG60"
+    ],
+    "validations": [
+      "Caller is not an Admin (BR-62) → Display: MSG07.",
+      "Uploaded file is missing, not a valid CSV, or exceeds size limits → Display: MSG02, MSG22.",
+      "CSV contains unknown operation codes or non-positive credit values → Preview highlights invalid rows and displays MSG03."
+    ],
+    "normalFlow": [
+      "Trên màn hình Bảng giá AI Credit (/credit/prices), Admin bấm nút Nhập từ CSV và chọn tệp `.csv` từ máy tính.",
+      "Hệ thống đọc tệp, kiểm tra từng dòng và hiển thị bảng Xem trước (so sánh đơn giá hiện tại và đơn giá mới).",
+      "Admin kiểm tra bảng xem trước và bấm nút Xác nhận áp dụng.",
+      "Hệ thống cập nhật đồng bộ toàn bộ đơn giá mới (BR-64), ghi vào nhật ký quản trị (BR-65) và hiển thị thông báo MSG60."
+    ],
+    "abnormalCases": [
+      "Nếu chọn tệp không phải định dạng `.csv` hoặc tệp quá dung lượng: Hệ thống báo lỗi MSG22.",
+      "Nếu trong tệp CSV có dòng chứa mã tính năng không tồn tại hoặc đơn giá âm: Hệ thống chỉ rõ dòng bị lỗi và không áp dụng thay đổi cho đến khi Admin sửa lại tệp (MSG03)."
+    ],
+    "postConditions": [
+      "All AI operation prices in the validated CSV batch are updated prospectively and audited (BR-64, BR-65).",
+      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-148.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_12.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.13",
+    "title": "View Revenue Dashboard",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-140",
+    "ucName": "View Revenue Dashboard",
+    "ucDescription": "(3.10.13) Cung cấp cho Admin bảng điều khiển phân tích doanh thu toàn hệ thống, thống kê tổng tiền thực thu từ các giao dịch SePay đã thanh toán, biểu đồ doanh thu theo tháng/quý và tỷ trọng doanh thu giữa Gói đăng ký (Pro/Enterprise) với Gói mua thêm điểm AI Credit.",
+    "figureId": "r3-fig-149",
+    "figureNumber": 149,
+    "figureCaption": "Figure 149 - View Revenue Dashboard",
+    "sequenceFigureId": "seq-3.10.13",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Thống kê Doanh thu (/admin?view=revenue).",
+    "purpose": "Cung cấp cho Admin bảng điều khiển phân tích doanh thu toàn hệ thống, thống kê tổng tiền thực thu từ các giao dịch SePay đã thanh toán, biểu đồ doanh thu theo tháng/quý và tỷ trọng doanh thu giữa Gói đăng ký (Pro/Enterprise) với Gói mua thêm điểm AI Credit.",
+    "viSummary": "Cung cấp cho Admin bảng điều khiển phân tích doanh thu toàn hệ thống, thống kê tổng tiền thực thu từ các giao dịch SePay đã thanh toán, biểu đồ doanh thu theo tháng/quý và tỷ trọng doanh thu giữa Gói đăng ký (Pro/Enterprise) với Gói mua thêm điểm AI Credit.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Thống kê Doanh thu (/admin?view=revenue) hiển thị Tổng doanh thu thực thu, Số lượng đơn hàng thành công, biểu đồ cột/đường xu hướng doanh thu theo Ngày / Tuần / Tháng / Quý, biểu đồ tròn cơ cấu doanh thu (Gói đăng ký so với Nạp lẻ AI Credit) và danh sách các giao dịch gần nhất.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), tổng hợp toàn bộ các đơn hàng đã xác nhận thanh toán thành công qua cổng SePay (trạng thái PAID - BR-59, BR-61) để tính toán số liệu và vẽ biểu đồ theo kỳ thời gian Admin chọn.",
+    "dataSpecs": {
+      "inputRequired": "Admin mở màn hình Thống kê Doanh thu (/admin?view=revenue).",
+      "inputOptional": "Bộ lọc khoảng thời gian (Tháng này, Quý này, Năm nay hoặc chọn từ ngày đến ngày) và lọc theo nguồn thu.",
+      "systemData": "Tổng hợp dữ liệu hóa đơn đã thanh toán (PAID) từ cổng SePay trên toàn hệ thống (BR-59, BR-61, BR-62).",
+      "output": "Hiển thị bảng thống kê và biểu đồ phân tích doanh thu toàn nền tảng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-59",
+        "text": "Mọi giao dịch nâng cấp gói cước (3.9.1) và mua thêm điểm AI Credit (3.9.5) đều thanh toán qua mã VietQR của cổng SePay (3.9.2). Đơn hàng chỉ chuyển sang Đã thanh toán và cộng quyền lợi khi hệ thống nhận được thông báo xác nhận hợp lệ từ SePay."
+      },
+      {
+        "code": "BR-61",
+        "text": "Mỗi giao dịch thanh toán thành công đều tự động tạo hóa đơn điện tử để Owner tra cứu và tải về trong mục Lịch sử hóa đơn (3.9.3), đồng thời tổng hợp vào Bảng thống kê doanh thu của Admin (3.10.13)."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-59",
+      "BR-61",
+      "BR-62"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "No revenue transactions match the selected date or filter criteria → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Admin mở tab Thống kê Doanh thu (/admin?view=revenue) trên cổng quản trị.",
+      "Hệ thống xác nhận quyền Admin (BR-62) và truy xuất dữ liệu các giao dịch đã thanh toán (BR-59, BR-61).",
+      "Admin chọn khoảng thời gian muốn xem (ví dụ theo tháng hoặc theo quý).",
+      "Màn hình hiển thị tổng doanh thu, biểu đồ tăng trưởng và cơ cấu doanh thu chi tiết."
+    ],
+    "abnormalCases": [
+      "Nếu trong khoảng thời gian đang chọn chưa phát sinh giao dịch thanh toán nào: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The Admin inspects accurate, platform-wide revenue analytics and invoice records in read-only mode.",
+      "Role-based access isolation (BR-59) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374222/brandhub-docs-portal/report3/r3-fig-149.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_13.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  },
+  {
+    "code": "3.10.14",
+    "title": "Export Report File PDF",
+    "domainCode": "3.10",
+    "domainTitle": "Admin Functions",
+    "ucId": "UC-141",
+    "ucName": "Export Report File PDF",
+    "ucDescription": "(3.10.14) Cho phép Admin xuất và tải xuống tệp báo cáo quản trị định dạng PDF (gồm Báo cáo Doanh thu & Giao dịch, Báo cáo Tăng trưởng Người dùng & Agency, hoặc Báo cáo Sử dụng AI Credit) theo khoảng thời gian chọn trước để lưu trữ hoặc trình bày.",
+    "figureId": "r3-fig-150",
+    "figureNumber": 150,
+    "figureCaption": "Figure 150 - Export Report File PDF",
+    "sequenceFigureId": "seq-3.10.14",
+    "classDiagramFigureId": "cd-3.10",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin chọn loại báo cáo cùng khoảng thời gian trên màn hình Báo cáo (/admin?view=revenue), rồi bấm nút Xuất Báo cáo PDF.",
+    "purpose": "Cho phép Admin xuất và tải xuống tệp báo cáo quản trị định dạng PDF (gồm Báo cáo Doanh thu & Giao dịch, Báo cáo Tăng trưởng Người dùng & Agency, hoặc Báo cáo Sử dụng AI Credit) theo khoảng thời gian chọn trước để lưu trữ hoặc trình bày.",
+    "viSummary": "Cho phép Admin xuất và tải xuống tệp báo cáo quản trị định dạng PDF (gồm Báo cáo Doanh thu & Giao dịch, Báo cáo Tăng trưởng Người dùng & Agency, hoặc Báo cáo Sử dụng AI Credit) theo khoảng thời gian chọn trước để lưu trữ hoặc trình bày.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Khu vực Xuất Báo cáo PDF trên cổng Admin gồm hộp chọn Loại báo cáo (Doanh thu / Người dùng & Agency / Tiêu thụ AI Credit), ô chọn Từ ngày – Đến ngày và nút Xuất tệp PDF.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin (BR-62), kiểm tra khoảng ngày hợp lệ, tổng hợp số liệu thống kê chính xác từ cơ sở dữ liệu (BR-61), dàn trang biểu đồ cùng bảng số liệu thành tệp tài liệu PDF chuyên nghiệp, ghi nhận vào nhật ký quản trị (BR-65) và tải tệp về máy cho Admin.",
+    "dataSpecs": {
+      "inputRequired": "Chọn Loại báo cáo cần xuất và Khoảng thời gian (Từ ngày – Đến ngày).",
+      "inputOptional": "Nhập tiêu đề ghi chú hiển thị trên trang bìa báo cáo PDF.",
+      "systemData": "Tổng hợp số liệu báo cáo (BR-61, BR-62), tạo tệp PDF và ghi vết vào nhật ký quản trị (BR-65).",
+      "output": "Kết xuất tệp báo cáo PDF thành công, tải về máy tính và hiển thị thông báo MSG60."
+    },
+    "businessRules": [],
+    "linkedBrCodes": [],
+    "linkedMsgCodes": [],
+    "validations": [],
+    "normalFlow": [
+      "Trên cổng quản trị (/admin?view=revenue), Admin mở mục Xuất Báo cáo PDF.",
+      "Admin chọn Loại báo cáo cần lấy (ví dụ Báo cáo Doanh thu) và chọn khoảng thời gian Từ ngày – Đến ngày.",
+      "Admin bấm nút Xuất tệp PDF.",
+      "Hệ thống kiểm tra quyền Admin (BR-62), tổng hợp dữ liệu thành tệp PDF chuẩn, lưu nhật ký hệ thống (BR-65), hiển thị thông báo MSG60 và tải tệp về máy."
+    ],
+    "abnormalCases": [
+      "Nếu chọn ngày kết thúc sớm hơn ngày bắt đầu hoặc bỏ trống loại báo cáo: Hệ thống báo lỗi MSG02 hoặc MSG03."
+    ],
+    "postConditions": [],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374222/brandhub-docs-portal/report3/r3-fig-150.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374260/brandhub-docs-portal/report4/seq-3_10_14.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"
+  }
+]

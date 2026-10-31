@@ -1,0 +1,1416 @@
+[
+  {
+    "code": "3.7.1",
+    "title": "View Trending Topics Suggestions",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-088",
+    "ucName": "View Trending Topics Suggestions",
+    "ucDescription": "(3.7.1) Hiển thị bảng gợi ý các chủ đề và từ khóa đang thịnh hành (Trending Topics) trên mạng xã hội phù hợp với ngành hàng của dự án, giúp Creator và Manager nhanh chóng bắt kịp xu hướng để viết bài thu hút tương tác.",
+    "figureId": "r3-fig-97",
+    "figureNumber": 97,
+    "figureCaption": "Figure 97 - View Trending Topics Suggestions",
+    "sequenceFigureId": "seq-3.7.1",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager mở màn hình Gợi ý Xu hướng AI (/ai-studio/trends).",
+    "purpose": "Hiển thị bảng gợi ý các chủ đề và từ khóa đang thịnh hành (Trending Topics) trên mạng xã hội phù hợp với ngành hàng của dự án, giúp Creator và Manager nhanh chóng bắt kịp xu hướng để viết bài thu hút tương tác.",
+    "viSummary": "Hiển thị bảng gợi ý các chủ đề và từ khóa đang thịnh hành (Trending Topics) trên mạng xã hội phù hợp với ngành hàng của dự án, giúp Creator và Manager nhanh chóng bắt kịp xu hướng để viết bài thu hút tương tác.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Gợi ý Xu hướng (/ai-studio/trends) gồm các nút lọc theo lĩnh vực ngành hàng, ô tìm kiếm từ khóa, danh sách các thẻ Chủ đề đang hot (hiển thị Tên chủ đề, Độ tăng trưởng xu hướng, Nền tảng bắt nguồn, Các hashtag liên quan) và nút Dùng chủ đề này để viết Caption.",
+    "dataProcessing": "Hệ thống lấy danh sách các chủ đề và từ khóa xu hướng mới nhất đã được bộ thu thập tự động tổng hợp và chấm điểm mức độ lan truyền (BR-45), lọc theo ngành hàng mà người dùng chọn và hiển thị lên màn hình.",
+    "dataSpecs": {
+      "inputRequired": "Creator hoặc Manager mở màn hình Gợi ý Xu hướng AI.",
+      "inputOptional": "Lọc theo nhóm ngành hàng, từ khóa tìm kiếm hoặc khung thời gian (24 giờ qua, 7 ngày qua).",
+      "systemData": "Danh sách chủ đề xu hướng, điểm mức độ thịnh hành, các thẻ hashtag đi kèm và thời gian cập nhật (BR-45).",
+      "output": "Hiển thị danh sách các chủ đề đang thịnh hành để đội sáng tạo chọn làm nội dung."
+    },
+    "businessRules": [
+      {
+        "code": "BR-45",
+        "text": "Danh sách Chủ đề xu hướng (3.7.1) và Đồ thị xu hướng AI (3.7.2) được tổng hợp tự động theo lịch thu thập do Admin cấu hình (3.7.13), giúp gợi ý các chủ đề và thẻ hashtag đang thịnh hành sát với ngành hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-45"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-45) → Display: MSG07.",
+      "No trending topics match the selected category or search query → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Creator hoặc Manager mở màn hình Gợi ý Xu hướng AI (/ai-studio/trends).",
+      "Hệ thống tải danh sách các chủ đề và từ khóa đang thịnh hành mới nhất (BR-45).",
+      "Người dùng lọc theo ngành hàng của nhãn hàng để xem các chủ đề phù hợp nhất.",
+      "Người dùng có thể bấm trực tiếp vào một chủ đề xu hướng để chuyển sang màn hình Tạo Caption bằng AI (3.7.6) với chủ đề đó."
+    ],
+    "abnormalCases": [
+      "Nếu không có chủ đề xu hướng nào khớp với bộ lọc hiện tại: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "Current trending topics and keyword metrics are displayed without altering stored trend records.",
+      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-97.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.2",
+    "title": "View AI Trend Knowledge Graph",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-089",
+    "ucName": "View AI Trend Knowledge Graph",
+    "ucDescription": "(3.7.2) Hiển thị trực quan mạng lưới liên kết giữa các chủ đề, từ khóa và thẻ hashtag đang thịnh hành dưới dạng Sơ đồ mạng lưới (Knowledge Graph), giúp người làm nội dung hiểu rõ các từ khóa nào thường đi kèm với nhau trong một trào lưu.",
+    "figureId": "r3-fig-98",
+    "figureNumber": 98,
+    "figureCaption": "Figure 98 - View AI Trend Knowledge Graph",
+    "sequenceFigureId": "seq-3.7.2",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Admin"
+    ],
+    "trigger": "Khi Admin hoặc Manager mở màn hình Đồ thị Xu hướng AI (/ai-studio/trends hoặc trên cổng Admin).",
+    "purpose": "Hiển thị trực quan mạng lưới liên kết giữa các chủ đề, từ khóa và thẻ hashtag đang thịnh hành dưới dạng Sơ đồ mạng lưới (Knowledge Graph), giúp người làm nội dung hiểu rõ các từ khóa nào thường đi kèm với nhau trong một trào lưu.",
+    "viSummary": "Hiển thị trực quan mạng lưới liên kết giữa các chủ đề, từ khóa và thẻ hashtag đang thịnh hành dưới dạng Sơ đồ mạng lưới (Knowledge Graph), giúp người làm nội dung hiểu rõ các từ khóa nào thường đi kèm với nhau trong một trào lưu.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Đồ thị Xu hướng hiển thị sơ đồ các nút tròn (biểu diễn Chủ đề, Từ khóa, Nhãn hàng, Hashtag) nối với nhau bằng các đường liên kết, kèm bộ lọc ngành hàng và bảng thông tin chi tiết khi bấm vào từng nút.",
+    "dataProcessing": "Hệ thống truy xuất mối quan hệ giữa các từ khóa và chủ đề xu hướng đã được phân tích trong cơ sở dữ liệu đồ thị (BR-45), sau đó vẽ sơ đồ mạng lưới tương tác để người dùng phóng to, thu nhỏ và bấm xem từng cụm chủ đề.",
+    "dataSpecs": {
+      "inputRequired": "Admin hoặc Manager mở chế độ xem Đồ thị Xu hướng AI.",
+      "inputOptional": "Nhập từ khóa trung tâm hoặc lọc theo lĩnh vực để xem nhánh đồ thị liên quan.",
+      "systemData": "Các nút thực thể (Chủ đề, Từ khóa, Hashtag) và mức độ liên kết xuất hiện cùng nhau (BR-45).",
+      "output": "Hiển thị sơ đồ mạng lưới liên kết xu hướng trực quan."
+    },
+    "businessRules": [
+      {
+        "code": "BR-45",
+        "text": "Danh sách Chủ đề xu hướng (3.7.1) và Đồ thị xu hướng AI (3.7.2) được tổng hợp tự động theo lịch thu thập do Admin cấu hình (3.7.13), giúp gợi ý các chủ đề và thẻ hashtag đang thịnh hành sát với ngành hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-45"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Admin, Manager permission (BR-45) → Display: MSG07.",
+      "Search query matches no persisted trend or entity nodes in the knowledge graph → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Admin hoặc Manager mở màn hình Đồ thị Xu hướng AI (/ai-studio/trends).",
+      "Hệ thống tải dữ liệu các nút từ khóa và đường liên kết xu hướng (BR-45).",
+      "Người dùng bấm vào một nút chủ đề bất kỳ trên sơ đồ để xem các từ khóa và hashtag vệ tinh xung quanh chủ đề đó.",
+      "Màn hình hiển thị chi tiết ngữ cảnh của xu hướng ở bảng thông tin bên cạnh."
+    ],
+    "abnormalCases": [
+      "Nếu từ khóa tìm kiếm chưa có trong dữ liệu xu hướng hiện tại: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The user explores the semantic relationships of trending topics in the Neo4j knowledge graph in read-only mode.",
+      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-98.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.3",
+    "title": "View Brand Knowledge Documents",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-090",
+    "ucName": "View Brand Knowledge Documents",
+    "ucDescription": "(3.7.3) Xem danh sách và tra cứu nội dung các tệp Tài liệu hướng dẫn thương hiệu (Brand Guideline) đã tải lên kho kiến thức AI của Workspace, giúp kiểm tra những thông tin mà AI sẽ dựa vào khi viết bài cho nhãn hàng.",
+    "figureId": "r3-fig-99",
+    "figureNumber": 99,
+    "figureCaption": "Figure 99 - View Brand Knowledge Documents",
+    "sequenceFigureId": "seq-3.7.3",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi Manager, Creator hoặc Client mở màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base).",
+    "purpose": "Xem danh sách và tra cứu nội dung các tệp Tài liệu hướng dẫn thương hiệu (Brand Guideline) đã tải lên kho kiến thức AI của Workspace, giúp kiểm tra những thông tin mà AI sẽ dựa vào khi viết bài cho nhãn hàng.",
+    "viSummary": "Xem danh sách và tra cứu nội dung các tệp Tài liệu hướng dẫn thương hiệu (Brand Guideline) đã tải lên kho kiến thức AI của Workspace, giúp kiểm tra những thông tin mà AI sẽ dựa vào khi viết bài cho nhãn hàng.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Kho Tài liệu Thương hiệu (/ai-studio/knowledge-base) hiển thị danh sách các tệp tài liệu đã tải lên (Tên tệp, Định dạng PDF/DOCX/TXT, Dung lượng, Trạng thái xử lý Đã sẵn sàng / Đang xử lý), ô tìm kiếm thử nội dung trong tài liệu và nút Tải tài liệu mới.",
+    "dataProcessing": "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20), lấy danh sách các tài liệu thương hiệu thuộc riêng Workspace đó (không lẫn với dự án khác - BR-46) và cho phép người dùng gõ câu hỏi/từ khóa để xem thử các đoạn trích dẫn thương hiệu liên quan.",
+    "dataSpecs": {
+      "inputRequired": "Mở màn hình Kho Tài liệu Thương hiệu AI của Workspace.",
+      "inputOptional": "Nhập từ khóa hoặc câu hỏi để tra cứu thử các đoạn nội dung trong tài liệu thương hiệu.",
+      "systemData": "Danh sách tài liệu thương hiệu của Workspace, trạng thái trích xuất dữ liệu và số đoạn văn bản đã lưu (BR-46).",
+      "output": "Hiển thị danh sách tài liệu hướng dẫn thương hiệu và kết quả tra cứu nội dung."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-46",
+        "text": "Tài liệu hướng dẫn thương hiệu (Brand Guideline) tải lên kho tri thức AI (3.7.4) hỗ trợ định dạng PDF, DOCX, TXT hoặc đường dẫn web (tối đa 10 MB), được kiểm tra an toàn và lưu tách biệt hoàn toàn theo từng Workspace."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-46"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Manager, Creator, Client permission (BR-20) → Display: MSG07.",
+      "No Brand Knowledge Documents have been uploaded or match the semantic query → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager, Creator hoặc Client mở mục Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) của dự án.",
+      "Hệ thống kiểm tra quyền truy cập (BR-20) và hiển thị các tài liệu Brand Guideline đang có của Workspace (BR-46).",
+      "Người dùng có thể xem trạng thái xử lý của từng tệp hoặc gõ từ khóa vào ô tra cứu để kiểm tra thông tin thương hiệu.",
+      "Màn hình hiển thị danh sách tài liệu và các đoạn trích dẫn khớp với nội dung tìm kiếm."
+    ],
+    "abnormalCases": [
+      "Nếu dự án chưa tải lên tài liệu thương hiệu nào: Hệ thống hiển thị thông báo trống MSG01 kèm nút Tải tài liệu lên."
+    ],
+    "postConditions": [
+      "The Workspace's RAG Brand Knowledge Documents and semantic search results are displayed accurately.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-99.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.4",
+    "title": "Upload Brand Knowledge Document",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-091",
+    "ucName": "Upload Brand Knowledge Document",
+    "ucDescription": "(3.7.4) Cho phép Manager hoặc Client tải tài liệu hướng dẫn thương hiệu (Brand Guideline dạng PDF, DOCX, TXT) lên kho kiến thức của Workspace để AI đọc hiểu thông tin sản phẩm, quy tắc từ ngữ và viết bài đúng giọng điệu của nhãn hàng.",
+    "figureId": "r3-fig-100",
+    "figureNumber": 100,
+    "figureCaption": "Figure 100 - Upload Brand Knowledge Document",
+    "sequenceFigureId": "seq-3.7.4",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager hoặc Client bấm nút Tải tài liệu thương hiệu lên trên trang Kho Tài liệu AI (/ai-studio/knowledge-base), chọn tệp và bấm Xác nhận.",
+    "purpose": "Cho phép Manager hoặc Client tải tài liệu hướng dẫn thương hiệu (Brand Guideline dạng PDF, DOCX, TXT) lên kho kiến thức của Workspace để AI đọc hiểu thông tin sản phẩm, quy tắc từ ngữ và viết bài đúng giọng điệu của nhãn hàng.",
+    "viSummary": "Cho phép Manager hoặc Client tải tài liệu hướng dẫn thương hiệu (Brand Guideline dạng PDF, DOCX, TXT) lên kho kiến thức của Workspace để AI đọc hiểu thông tin sản phẩm, quy tắc từ ngữ và viết bài đúng giọng điệu của nhãn hàng.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Hộp thoại Tải Tài liệu Thương hiệu gồm khung chọn tệp (PDF, DOCX, TXT tối đa 10 MB) hoặc nhập đường dẫn trang web giới thiệu thương hiệu, ô đặt Tên tài liệu, Mô tả tóm tắt và nút Tải lên.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Manager hoặc Client trong dự án (BR-20), kiểm tra tệp đúng định dạng (PDF, DOCX, TXT) và dung lượng hợp lệ, quét an toàn tệp, sau đó tự động trích xuất nội dung văn bản và lưu vào kho dữ liệu AI riêng biệt của Workspace đó (BR-46).",
+    "dataSpecs": {
+      "inputRequired": "Tệp tài liệu thương hiệu (PDF, DOCX hoặc TXT) hoặc đường dẫn thông tin thương hiệu hợp lệ.",
+      "inputOptional": "Tên hiển thị của tài liệu và ghi chú phân loại (ví dụ: Quy chuẩn giọng văn, Thông tin sản phẩm mới).",
+      "systemData": "Kiểm tra an toàn tệp, lưu trữ tệp gốc và tách các đoạn nội dung vào kho kiến thức AI riêng của Workspace (BR-46).",
+      "output": "Tải lên và trích xuất tài liệu thương hiệu thành công, hiển thị thông báo MSG46."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-46",
+        "text": "Tài liệu hướng dẫn thương hiệu (Brand Guideline) tải lên kho tri thức AI (3.7.4) hỗ trợ định dạng PDF, DOCX, TXT hoặc đường dẫn web (tối đa 10 MB), được kiểm tra an toàn và lưu tách biệt hoàn toàn theo từng Workspace."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-46"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG22",
+      "MSG46"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-20) → Display: MSG07.",
+      "Neither a file nor a URL is provided → Display: MSG02.",
+      "File extension is not PDF/DOCX/TXT, file size exceeds 10 MB, or security scan detects macros/scripts (BR-46) → Display: MSG22."
+    ],
+    "normalFlow": [
+      "Manager hoặc Client mở màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) và bấm Tải tài liệu lên.",
+      "Người dùng chọn tệp Brand Guideline (PDF, DOCX hoặc TXT) từ máy tính và bấm Xác nhận.",
+      "Hệ thống kiểm tra định dạng, dung lượng tệp và tính an toàn của tài liệu (BR-46).",
+      "Hệ thống lưu tệp, trích xuất nội dung vào kho kiến thức AI của Workspace và hiển thị thông báo MSG46."
+    ],
+    "abnormalCases": [
+      "Nếu chọn tệp sai định dạng (không phải PDF/DOCX/TXT) hoặc vượt quá dung lượng cho phép: Hệ thống từ chối và báo lỗi MSG22."
+    ],
+    "postConditions": [
+      "The Brand Guideline document is stored in tenant-isolated S3 and indexed as vector embeddings in ChromaDB for RAG-grounded AI generation (BR-46, BR-49).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-100.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.5",
+    "title": "Delete Brand Knowledge Document",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-092",
+    "ucName": "Delete Brand Knowledge Document",
+    "ucDescription": "(3.7.5) Cho phép Manager hoặc Client xóa bỏ những tài liệu hướng dẫn thương hiệu đã cũ hoặc không còn chính xác khỏi kho kiến thức AI của Workspace để AI không còn dùng thông tin cũ khi viết bài.",
+    "figureId": "r3-fig-101",
+    "figureNumber": 101,
+    "figureCaption": "Figure 101 - Delete Brand Knowledge Document",
+    "sequenceFigureId": "seq-3.7.5",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager hoặc Client bấm nút Xóa bên cạnh một tài liệu trên trang Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) và xác nhận.",
+    "purpose": "Cho phép Manager hoặc Client xóa bỏ những tài liệu hướng dẫn thương hiệu đã cũ hoặc không còn chính xác khỏi kho kiến thức AI của Workspace để AI không còn dùng thông tin cũ khi viết bài.",
+    "viSummary": "Cho phép Manager hoặc Client xóa bỏ những tài liệu hướng dẫn thương hiệu đã cũ hoặc không còn chính xác khỏi kho kiến thức AI của Workspace để AI không còn dùng thông tin cũ khi viết bài.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Nút Xóa tài liệu kèm hộp thoại xác nhận trên màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base).",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Manager hoặc Client trong Workspace (BR-20), sau đó xóa hoàn toàn cả tệp tài liệu gốc lẫn toàn bộ các đoạn dữ liệu đã trích xuất của tài liệu đó khỏi kho kiến thức AI của dự án (BR-47).",
+    "dataSpecs": {
+      "inputRequired": "Chọn tài liệu thương hiệu cần xóa và xác nhận đồng ý.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Xóa tệp lưu trữ gốc và xóa toàn bộ dữ liệu trích xuất tương ứng trong kho AI của Workspace (BR-47).",
+      "output": "Xóa tài liệu thương hiệu thành công và hiển thị thông báo MSG46."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-47",
+        "text": "Khi xóa một Tài liệu hướng dẫn thương hiệu (3.7.5), hệ thống xóa cả tệp gốc lẫn toàn bộ dữ liệu trích xuất của tài liệu đó để AI không còn sử dụng thông tin cũ khi viết bài."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-47"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG46"
+    ],
+    "validations": [
+      "Caller lacks Manager, Owner, or Client permission in the Workspace → Display: MSG07.",
+      "Target documentId does not exist → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager hoặc Client mở màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) và bấm nút Xóa cạnh tài liệu cũ.",
+      "Người dùng bấm Đồng ý trên hộp thoại xác nhận xóa.",
+      "Hệ thống kiểm tra quyền hạn trong dự án (BR-20).",
+      "Hệ thống xóa tệp gốc cùng toàn bộ dữ liệu trích xuất của tài liệu đó (BR-47) và hiển thị thông báo MSG46."
+    ],
+    "abnormalCases": [
+      "Nếu tài liệu không tồn tại hoặc người dùng không có quyền xóa: Hệ thống báo MSG01 hoặc MSG07."
+    ],
+    "postConditions": [
+      "Both the raw document in S3 and all corresponding vector embeddings in ChromaDB are permanently removed (BR-47).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-101.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.6",
+    "title": "Generate Caption",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-093",
+    "ucName": "Generate Caption",
+    "ucDescription": "(3.7.6) Giúp Creator tự động viết nội dung bài đăng (Caption) bằng AI dựa trên yêu cầu chủ đề kết hợp với Tài liệu thương hiệu của dự án và các xu hướng đang thịnh hành, đảm bảo bài viết cuốn hút và đúng phong cách nhãn hàng.",
+    "figureId": "r3-fig-102",
+    "figureNumber": 102,
+    "figureCaption": "Figure 102 - Generate Caption",
+    "sequenceFigureId": "seq-3.7.6",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở công cụ Tạo Caption bằng AI (/editor), nhập chủ đề bài viết, chọn giọng văn cùng nền tảng mạng xã hội và bấm Tạo Caption.",
+    "purpose": "Giúp Creator tự động viết nội dung bài đăng (Caption) bằng AI dựa trên yêu cầu chủ đề kết hợp với Tài liệu thương hiệu của dự án và các xu hướng đang thịnh hành, đảm bảo bài viết cuốn hút và đúng phong cách nhãn hàng.",
+    "viSummary": "Giúp Creator tự động viết nội dung bài đăng (Caption) bằng AI dựa trên yêu cầu chủ đề kết hợp với Tài liệu thương hiệu của dự án và các xu hướng đang thịnh hành, đảm bảo bài viết cuốn hút và đúng phong cách nhãn hàng.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Khung Tạo Caption bằng AI trong trình soạn thảo (/editor) gồm ô nhập Chủ đề / Ý tưởng chính, chọn Nền tảng đích (Facebook, Instagram, TikTok, Threads), chọn Giọng điệu (Chuyên nghiệp, Trẻ trung, Hài hước...), tích chọn Áp dụng Tài liệu thương hiệu / Chủ đề xu hướng, hiển thị số điểm AI Credit sẽ dùng và nút Tạo Caption.",
+    "dataProcessing": "Hệ thống kiểm tra số dư điểm AI Credit của Agency và hạn mức của Workspace còn đủ theo bảng giá hiện hành không (BR-48, BR-60, BR-64). Nếu đủ, hệ thống tạm giữ điểm, lấy thông tin từ Tài liệu thương hiệu của dự án (BR-46, BR-49) để AI viết nội dung. Khi tạo xong thì trừ điểm chính thức; nếu dịch vụ AI gặp lỗi giữa chừng thì hệ thống tự động hoàn lại điểm ngay cho người dùng (BR-48).",
+    "dataSpecs": {
+      "inputRequired": "Chủ đề hoặc ý chính của bài viết cần tạo và Nền tảng mạng xã hội mục tiêu.",
+      "inputOptional": "Giọng điệu bài viết (Tone of voice), độ dài mong muốn, chọn Chủ đề xu hướng (3.7.1) và bật dùng Tài liệu thương hiệu (3.7.3).",
+      "systemData": "Kiểm tra và trừ điểm AI Credit theo bảng giá (tự động hoàn điểm nếu lỗi - BR-48) và lưu lịch sử nội dung đã tạo (BR-35).",
+      "output": "Hiển thị các phương án bài viết (Caption) do AI tạo ra để Creator chọn chèn vào trình soạn thảo (MSG47)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      },
+      {
+        "code": "BR-60",
+        "text": "Mọi biến động điểm AI Credit đều được ghi lại rõ ràng trong lịch sử (3.9.4); hệ thống ưu tiên trừ điểm định kỳ hàng tháng trước khi trừ đến điểm mua thêm, đồng thời cho phép Owner đặt giới hạn sử dụng điểm cho từng Workspace và thành viên (3.9.6)."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-48",
+      "BR-49",
+      "BR-60",
+      "BR-64"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG47",
+      "MSG48",
+      "MSG49"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
+      "Prompt text left blank → Display: MSG02.",
+      "Agency or Workspace AI Credit balance or member credit quota is insufficient (BR-48, BR-60) → Display: MSG48.",
+      "External LLM provider times out or fails (BR-48) → Display: MSG49 (reserved credits are automatically refunded)."
+    ],
+    "normalFlow": [
+      "Trong màn hình Soạn thảo (/editor), Creator mở công cụ Tạo Caption bằng AI, nhập ý tưởng bài viết và chọn nền tảng đăng.",
+      "Creator tích chọn kết hợp với Tài liệu thương hiệu của dự án rồi bấm nút Tạo Caption.",
+      "Hệ thống kiểm tra số dư điểm AI Credit khả dụng (BR-48), kết hợp thông tin thương hiệu (BR-49) và gọi mô hình AI sinh nội dung.",
+      "Hệ thống trừ điểm AI Credit tương ứng, hiển thị bài viết hoàn chỉnh kèm thông báo MSG47 để Creator đưa vào bài đăng."
+    ],
+    "abnormalCases": [
+      "Nếu quỹ điểm AI Credit của Agency đã hết hoặc vượt quá hạn mức được cấp cho Workspace: Hệ thống dừng thao tác và báo cần nạp thêm hoặc nâng hạn mức điểm (MSG48).",
+      "Nếu dịch vụ AI phản hồi quá lâu hoặc gặp sự cố kết nối: Hệ thống tự động hoàn trả lại toàn bộ số điểm AI Credit vừa tạm giữ và báo thông báo MSG49."
+    ],
+    "postConditions": [
+      "Generated caption variations are persisted in generation history and inserted into the draft, and the exact AI Credit cost is recorded in the AI Credit Ledger (BR-60).",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374210/brandhub-docs-portal/report3/r3-fig-102.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.7",
+    "title": "Generate Ambassador",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-094",
+    "ucName": "Generate Ambassador",
+    "ucDescription": "(3.7.7) Cho phép Creator tạo và lưu lại hình mẫu Đại sứ Thương hiệu Ảo (Virtual Brand Ambassador) bằng AI với khuôn mặt và phong cách nhất quán, giúp nhãn hàng có người mẫu đại diện xuyên suốt khi tạo ảnh quảng cáo (3.7.9) và video (3.7.11) mà không cần thuê mẫu chụp lại từ đầu.",
+    "figureId": "r3-fig-103",
+    "figureNumber": 103,
+    "figureCaption": "Figure 103 - Generate Ambassador",
+    "sequenceFigureId": "seq-3.7.7",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở màn hình Đại sứ Thương hiệu Ảo (/ai-studio/ambassadors), mô tả ngoại hình hoặc tải ảnh khuôn mặt mẫu tham chiếu và bấm Tạo Đại sứ ảo.",
+    "purpose": "Cho phép Creator tạo và lưu lại hình mẫu Đại sứ Thương hiệu Ảo (Virtual Brand Ambassador) bằng AI với khuôn mặt và phong cách nhất quán, giúp nhãn hàng có người mẫu đại diện xuyên suốt khi tạo ảnh quảng cáo (3.7.9) và video (3.7.11) mà không cần thuê mẫu chụp lại từ đầu.",
+    "viSummary": "Cho phép Creator tạo và lưu lại hình mẫu Đại sứ Thương hiệu Ảo (Virtual Brand Ambassador) bằng AI với khuôn mặt và phong cách nhất quán, giúp nhãn hàng có người mẫu đại diện xuyên suốt khi tạo ảnh quảng cáo (3.7.9) và video (3.7.11) mà không cần thuê mẫu chụp lại từ đầu.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Màn hình Tạo Đại sứ Thương hiệu Ảo (/ai-studio/ambassadors) gồm ô nhập Tên nhân vật đại diện, Giới tính, Độ tuổi, Mô tả ngoại hình và trang phục đặc trưng, khung tải ảnh chân dung tham chiếu (tùy chọn), hiển thị chi phí AI Credit và nút Tạo nhân vật.",
+    "dataProcessing": "Hệ thống kiểm tra số dư và hạn mức điểm AI Credit (BR-48, BR-60), kết hợp mô tả ngoại hình và thông tin nhận diện thương hiệu của dự án (BR-49) để sinh bộ ảnh chân dung chuẩn của nhân vật đại sứ ảo. Nhân vật sau khi lưu có thể được chọn dùng lại nhiều lần khi tạo ảnh và video sản phẩm.",
+    "dataSpecs": {
+      "inputRequired": "Tên nhân vật Đại sứ ảo và Mô tả đặc điểm ngoại hình / phong cách của nhân vật.",
+      "inputOptional": "Ảnh chân dung tham chiếu định hướng khuôn mặt và trang phục thương hiệu.",
+      "systemData": "Kiểm tra/trừ điểm AI Credit (tự hoàn điểm nếu lỗi - BR-48) và lưu hồ sơ nhân vật Đại sứ ảo vào Workspace (BR-49).",
+      "output": "Khởi tạo thành công hình mẫu Đại sứ Thương hiệu Ảo, lưu vào danh sách của dự án và hiển thị thông báo MSG47."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      },
+      {
+        "code": "BR-60",
+        "text": "Mọi biến động điểm AI Credit đều được ghi lại rõ ràng trong lịch sử (3.9.4); hệ thống ưu tiên trừ điểm định kỳ hàng tháng trước khi trừ đến điểm mua thêm, đồng thời cho phép Owner đặt giới hạn sử dụng điểm cho từng Workspace và thành viên (3.9.6)."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-48",
+      "BR-49",
+      "BR-60",
+      "BR-64"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG47",
+      "MSG48",
+      "MSG49"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
+      "Required field missing (ambassadorName or appearancePrompt left blank) → Display: MSG02.",
+      "Insufficient AI Credits or quota exceeded (BR-48, BR-60) → Display: MSG48.",
+      "AI generation job fails (BR-48) → Display: MSG49 (reserved credits refunded)."
+    ],
+    "normalFlow": [
+      "Creator mở màn hình Đại sứ Thương hiệu Ảo (/ai-studio/ambassadors) và bấm Tạo đại sứ mới.",
+      "Creator nhập Tên nhân vật, mô tả độ tuổi, nét mặt, trang phục đại diện cho nhãn hàng và bấm Tạo nhân vật.",
+      "Hệ thống kiểm tra số dư điểm AI Credit (BR-48) và gọi dịch vụ AI tạo hình ảnh nhân vật nhất quán (BR-49).",
+      "Hệ thống trừ điểm AI Credit, lưu hồ sơ Đại sứ ảo vào dự án để dùng cho các lần tạo ảnh/video sau và báo MSG47."
+    ],
+    "abnormalCases": [
+      "Nếu không đủ điểm AI Credit: Hệ thống báo lỗi MSG48.",
+      "Nếu quá trình tạo hình ảnh gặp sự cố: Hệ thống tự động hoàn lại điểm AI Credit đã giữ và báo MSG49."
+    ],
+    "postConditions": [
+      "A reusable AI Brand Ambassador model exists in the Workspace and can be selected as the subject in Generate Image (3.7.9) and Generate Video (3.7.11).",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-103.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.8",
+    "title": "View Image Style Template",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-095",
+    "ucName": "View Image Style Template",
+    "ucDescription": "(3.7.8) Hiển thị thư viện các Mẫu phong cách hình ảnh có sẵn (Image Style Templates như Chụp sản phẩm Studio, Tối giản, Cổ điển Vintage, Mùa lễ hội...) kèm ảnh minh họa trực quan, giúp Creator chỉ cần bấm chọn phong cách mà không phải tự viết câu lệnh kỹ thuật dài dòng.",
+    "figureId": "r3-fig-104",
+    "figureNumber": 104,
+    "figureCaption": "Figure 104 - View Image Style Template",
+    "sequenceFigureId": "seq-3.7.8",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở thư viện Mẫu phong cách ảnh trong màn hình Sáng tạo AI (/editor hoặc /ai-studio).",
+    "purpose": "Hiển thị thư viện các Mẫu phong cách hình ảnh có sẵn (Image Style Templates như Chụp sản phẩm Studio, Tối giản, Cổ điển Vintage, Mùa lễ hội...) kèm ảnh minh họa trực quan, giúp Creator chỉ cần bấm chọn phong cách mà không phải tự viết câu lệnh kỹ thuật dài dòng.",
+    "viSummary": "Hiển thị thư viện các Mẫu phong cách hình ảnh có sẵn (Image Style Templates như Chụp sản phẩm Studio, Tối giản, Cổ điển Vintage, Mùa lễ hội...) kèm ảnh minh họa trực quan, giúp Creator chỉ cần bấm chọn phong cách mà không phải tự viết câu lệnh kỹ thuật dài dòng.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Thư viện Mẫu phong cách ảnh hiển thị lưới các thẻ phong cách kèm ảnh mẫu minh họa, tên phong cách (Studio Product, Minimalist, Vintage, Cinematic...), mô tả ánh sáng/bố cục và nút Chọn phong cách này.",
+    "dataProcessing": "Hệ thống tải danh sách các mẫu phong cách hình ảnh đang hoạt động (BR-49) để Creator xem trước và chọn gắn vào bước tạo hình ảnh AI (3.7.9).",
+    "dataSpecs": {
+      "inputRequired": "Mở danh mục Mẫu phong cách hình ảnh AI.",
+      "inputOptional": "Lọc theo chủ đề phong cách (Chụp sản phẩm / Thời trang / Lễ hội / Nghệ thuật).",
+      "systemData": "Danh sách mẫu phong cách ảnh kèm cấu hình ánh sáng, góc máy và tông màu thiết lập sẵn (BR-49).",
+      "output": "Hiển thị danh sách các Mẫu phong cách hình ảnh để Creator lựa chọn."
+    },
+    "businessRules": [
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-49"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-49) → Display: MSG07.",
+      "No Image Style Templates match the selected category filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Creator mở công cụ Tạo ảnh trong AI Studio và bấm xem Thư viện Mẫu phong cách ảnh.",
+      "Hệ thống hiển thị các thẻ phong cách kèm hình ảnh minh họa mẫu (BR-49).",
+      "Creator lọc theo nhóm chủ đề và bấm xem chi tiết hiệu ứng màu sắc/ánh sáng của từng mẫu.",
+      "Creator bấm Chọn phong cách ưng ý để áp dụng ngay vào màn hình Tạo hình ảnh bằng AI (3.7.9)."
+    ],
+    "abnormalCases": [
+      "Nếu tìm kiếm không có mẫu phong cách nào khớp từ khóa: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The selected Image Style Template is active in the AI Image Studio form for image generation (3.7.9).",
+      "Role-based access isolation (BR-49) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-104.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.9",
+    "title": "Generate Image",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-096",
+    "ucName": "Generate Image",
+    "ucDescription": "(3.7.9) Giúp Creator tạo hình ảnh bài đăng hoặc ảnh quảng cáo sản phẩm bằng AI bằng cách kết hợp mô tả ý tưởng với Mẫu phong cách đã chọn (3.7.8), Đại sứ thương hiệu ảo (3.7.7) và ảnh sản phẩm trong kho.",
+    "figureId": "r3-fig-105",
+    "figureNumber": 105,
+    "figureCaption": "Figure 105 - Generate Image",
+    "sequenceFigureId": "seq-3.7.9",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở công cụ Tạo Ảnh bằng AI (/editor), nhập mô tả bức ảnh, chọn phong cách/đại sứ ảo và bấm Tạo hình ảnh.",
+    "purpose": "Giúp Creator tạo hình ảnh bài đăng hoặc ảnh quảng cáo sản phẩm bằng AI bằng cách kết hợp mô tả ý tưởng với Mẫu phong cách đã chọn (3.7.8), Đại sứ thương hiệu ảo (3.7.7) và ảnh sản phẩm trong kho.",
+    "viSummary": "Giúp Creator tạo hình ảnh bài đăng hoặc ảnh quảng cáo sản phẩm bằng AI bằng cách kết hợp mô tả ý tưởng với Mẫu phong cách đã chọn (3.7.8), Đại sứ thương hiệu ảo (3.7.7) và ảnh sản phẩm trong kho.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Tạo Ảnh bằng AI gồm ô nhập Mô tả hình ảnh mong muốn, ô chọn Mẫu phong cách ảnh (3.7.8), ô chọn Đại sứ thương hiệu ảo (3.7.7 - tùy chọn), chọn Tỷ lệ khung hình (1:1, 9:16, 16:9), hiển thị số điểm AI Credit cần dùng và nút Tạo hình ảnh.",
+    "dataProcessing": "Hệ thống kiểm tra số dư điểm AI Credit của Agency/Workspace (BR-48, BR-60), ghép nối mô tả của người dùng với thông số của Mẫu phong cách, khuôn mặt Đại sứ ảo và màu sắc thương hiệu (BR-49) để sinh ra hình ảnh độ phân giải cao. Ảnh tạo xong có thể lưu thẳng vào Kho tư liệu của dự án (BR-50).",
+    "dataSpecs": {
+      "inputRequired": "Mô tả nội dung bức ảnh cần tạo và Tỷ lệ khung hình mong muốn.",
+      "inputOptional": "Chọn Mẫu phong cách ảnh (3.7.8), chọn Đại sứ thương hiệu ảo (3.7.7) và chọn ảnh sản phẩm tham chiếu từ kho.",
+      "systemData": "Kiểm tra và trừ điểm AI Credit theo bảng giá (tự hoàn điểm nếu lỗi - BR-48, BR-64) và lưu ảnh kết quả (BR-50).",
+      "output": "Hiển thị hình ảnh quảng cáo do AI tạo ra, cho phép lưu vào Kho tư liệu hoặc chèn ngay vào bài viết (MSG47)."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      },
+      {
+        "code": "BR-50",
+        "text": "Các hình ảnh và video do AI tạo ra có thể xuất tải về máy (3.7.12) theo các định dạng thông dụng (MP4, WebM cho video; PNG, JPG, WebP cho ảnh) hoặc lưu thẳng vào Kho tư liệu của Workspace."
+      },
+      {
+        "code": "BR-60",
+        "text": "Mọi biến động điểm AI Credit đều được ghi lại rõ ràng trong lịch sử (3.9.4); hệ thống ưu tiên trừ điểm định kỳ hàng tháng trước khi trừ đến điểm mua thêm, đồng thời cho phép Owner đặt giới hạn sử dụng điểm cho từng Workspace và thành viên (3.9.6)."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-48",
+      "BR-49",
+      "BR-50",
+      "BR-60",
+      "BR-64"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG47",
+      "MSG48",
+      "MSG49"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
+      "Image prompt left blank → Display: MSG02.",
+      "Insufficient AI Credits or Workspace/Member credit limit reached (BR-48, BR-60) → Display: MSG48.",
+      "Image generation pipeline fails or times out (BR-48) → Display: MSG49 (reserved credits refunded)."
+    ],
+    "normalFlow": [
+      "Creator mở công cụ Tạo Ảnh bằng AI, nhập mô tả bối cảnh bức ảnh muốn tạo.",
+      "Creator chọn thêm Mẫu phong cách ảnh (3.7.8), chọn Đại sứ thương hiệu ảo (3.7.7) nếu muốn có người mẫu và chọn tỷ lệ khung hình.",
+      "Creator bấm nút Tạo hình ảnh.",
+      "Hệ thống kiểm tra và trừ điểm AI Credit (BR-48), sinh hình ảnh theo đúng thiết lập (BR-49), hiển thị kết quả và báo MSG47."
+    ],
+    "abnormalCases": [
+      "Nếu số dư điểm AI Credit không đủ: Hệ thống chặn thao tác và báo MSG48.",
+      "Nếu quá trình sinh ảnh gặp lỗi kết nối với máy chủ AI: Hệ thống tự động hoàn trả lại số điểm AI Credit đã giữ và báo MSG49."
+    ],
+    "postConditions": [
+      "The generated commercial image is available for task attachment, repository storage, or export (3.7.12), and the AI Credit ledger is updated (BR-60).",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-105.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.10",
+    "title": "View Video Style Template",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-097",
+    "ucName": "View Video Style Template",
+    "ucDescription": "(3.7.10) Hiển thị thư viện các Mẫu phong cách và chuyển động máy quay dành riêng cho Video AI (như Quay cận cảnh sản phẩm, Chuyển động xoay vòng, Slow-motion điện ảnh...), giúp Creator dễ dàng chọn nhịp điệu cho video ngắn Reels/TikTok.",
+    "figureId": "r3-fig-106",
+    "figureNumber": 106,
+    "figureCaption": "Figure 106 - View Video Style Template",
+    "sequenceFigureId": "seq-3.7.10",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở danh mục Mẫu phong cách Video trong màn hình Tạo Video AI (/ai-studio/video).",
+    "purpose": "Hiển thị thư viện các Mẫu phong cách và chuyển động máy quay dành riêng cho Video AI (như Quay cận cảnh sản phẩm, Chuyển động xoay vòng, Slow-motion điện ảnh...), giúp Creator dễ dàng chọn nhịp điệu cho video ngắn Reels/TikTok.",
+    "viSummary": "Hiển thị thư viện các Mẫu phong cách và chuyển động máy quay dành riêng cho Video AI (như Quay cận cảnh sản phẩm, Chuyển động xoay vòng, Slow-motion điện ảnh...), giúp Creator dễ dàng chọn nhịp điệu cho video ngắn Reels/TikTok.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Thư viện Mẫu phong cách Video (/ai-studio/video) hiển thị các thẻ mẫu kèm hình động minh họa góc máy (Pan, Zoom, Orbit, Cinematic), nhịp điệu chuyển cảnh và nút Chọn mẫu này.",
+    "dataProcessing": "Hệ thống tải danh sách các mẫu chuyển động và phong cách ánh sáng video được thiết lập sẵn (BR-49) để Creator chọn áp dụng khi tạo video ngắn bằng AI (3.7.11).",
+    "dataSpecs": {
+      "inputRequired": "Mở danh mục Mẫu phong cách Video AI.",
+      "inputOptional": "Lọc theo kiểu chuyển động máy quay hoặc thể loại video (Reels / TikTok / Giới thiệu sản phẩm).",
+      "systemData": "Danh sách mẫu phong cách video và các thông số góc quay thiết lập sẵn (BR-49).",
+      "output": "Hiển thị danh sách Mẫu phong cách Video để Creator lựa chọn."
+    },
+    "businessRules": [
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-49"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-49) → Display: MSG07.",
+      "No Video Style Templates match the filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Creator mở màn hình Tạo Video AI (/ai-studio/video) và bấm xem Thư viện Mẫu phong cách Video.",
+      "Hệ thống hiển thị danh sách các mẫu chuyển động camera và hiệu ứng ánh sáng mẫu (BR-49).",
+      "Creator xem trước hiệu ứng chuyển động của từng mẫu.",
+      "Creator bấm Chọn mẫu phù hợp để áp dụng vào bước Tạo Video bằng AI (3.7.11)."
+    ],
+    "abnormalCases": [
+      "Nếu không có mẫu video nào khớp với từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The chosen Video Style Template is selected for AI Video generation (3.7.11).",
+      "Role-based access isolation (BR-49) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-106.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_10.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.11",
+    "title": "Generate Video",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-098",
+    "ucName": "Generate Video",
+    "ucDescription": "(3.7.11) Giúp Creator tạo các đoạn video ngắn bằng AI (phục vụ đăng Reels, TikTok, Story) từ kịch bản mô tả cảnh quay kết hợp với hình ảnh sản phẩm/Đại sứ ảo (3.7.7) và Mẫu phong cách chuyển động video (3.7.10).",
+    "figureId": "r3-fig-107",
+    "figureNumber": 107,
+    "figureCaption": "Figure 107 - Generate Video",
+    "sequenceFigureId": "seq-3.7.11",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator mở màn hình Tạo Video bằng AI (/ai-studio/video), nhập mô tả cảnh quay, chọn mẫu chuyển động cùng tỷ lệ khung hình và bấm Tạo Video.",
+    "purpose": "Giúp Creator tạo các đoạn video ngắn bằng AI (phục vụ đăng Reels, TikTok, Story) từ kịch bản mô tả cảnh quay kết hợp với hình ảnh sản phẩm/Đại sứ ảo (3.7.7) và Mẫu phong cách chuyển động video (3.7.10).",
+    "viSummary": "Giúp Creator tạo các đoạn video ngắn bằng AI (phục vụ đăng Reels, TikTok, Story) từ kịch bản mô tả cảnh quay kết hợp với hình ảnh sản phẩm/Đại sứ ảo (3.7.7) và Mẫu phong cách chuyển động video (3.7.10).",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Tạo Video bằng AI (/ai-studio/video) gồm ô nhập Mô tả cảnh quay chuyển động, ô chọn Ảnh gốc / Đại sứ thương hiệu ảo (3.7.7), chọn Mẫu phong cách chuyển động (3.7.10), chọn Tỷ lệ khung hình (9:16 dọc hoặc 16:9 ngang), Thời lượng video, chi phí điểm AI Credit và nút Tạo Video.",
+    "dataProcessing": "Hệ thống kiểm tra số dư và hạn mức điểm AI Credit (BR-48, BR-60, BR-64), tạm giữ số điểm tương ứng và gửi yêu cầu dựng video dựa trên hình ảnh tham chiếu cùng mẫu chuyển động đã chọn (BR-49). Khi video dựng xong, hệ thống trừ điểm chính thức và cho phép lưu vào Kho tư liệu (BR-50); nếu lỗi thì tự động hoàn trả lại toàn bộ điểm AI Credit (BR-48).",
+    "dataSpecs": {
+      "inputRequired": "Mô tả cảnh quay video cần tạo, Tỷ lệ khung hình và Thời lượng video.",
+      "inputOptional": "Chọn Ảnh bắt đầu / Đại sứ thương hiệu ảo (3.7.7) và chọn Mẫu phong cách chuyển động camera (3.7.10).",
+      "systemData": "Kiểm tra/trừ điểm AI Credit (tự động hoàn điểm nếu lỗi - BR-48), xử lý hàng đợi dựng video và lưu tệp video kết quả (BR-50).",
+      "output": "Tạo video ngắn bằng AI thành công, hiển thị trình phát xem trước và thông báo MSG47."
+    },
+    "businessRules": [
+      {
+        "code": "BR-48",
+        "text": "Mọi thao tác tạo nội dung có tính phí bằng AI (Tạo Caption 3.7.6, Tạo Đại sứ ảo 3.7.7, Tạo Ảnh 3.7.9, Tạo Video 3.7.11) đều kiểm tra số dư điểm AI Credit trước khi chạy, trừ điểm theo bảng giá hiện hành (BR-64) và tự động hoàn lại điểm nếu dịch vụ AI gặp sự cố."
+      },
+      {
+        "code": "BR-49",
+        "text": "Khi tạo Caption (3.7.6), Ảnh (3.7.9) hoặc Video (3.7.11), hệ thống kết hợp thông tin từ Tài liệu thương hiệu của Workspace, Mẫu phong cách đã chọn (3.7.8, 3.7.10) và Đại sứ thương hiệu ảo (3.7.7) để sản phẩm đầu ra giữ đúng nhận diện nhãn hàng."
+      },
+      {
+        "code": "BR-50",
+        "text": "Các hình ảnh và video do AI tạo ra có thể xuất tải về máy (3.7.12) theo các định dạng thông dụng (MP4, WebM cho video; PNG, JPG, WebP cho ảnh) hoặc lưu thẳng vào Kho tư liệu của Workspace."
+      },
+      {
+        "code": "BR-60",
+        "text": "Mọi biến động điểm AI Credit đều được ghi lại rõ ràng trong lịch sử (3.9.4); hệ thống ưu tiên trừ điểm định kỳ hàng tháng trước khi trừ đến điểm mua thêm, đồng thời cho phép Owner đặt giới hạn sử dụng điểm cho từng Workspace và thành viên (3.9.6)."
+      },
+      {
+        "code": "BR-64",
+        "text": "Admin có thể chỉnh sửa đơn giá điểm AI Credit cho từng tính năng riêng lẻ (3.10.11) hoặc nhập hàng loạt từ file CSV (3.10.12). Giá mới sẽ áp dụng cho các lượt gọi AI tiếp theo và không làm thay đổi lịch sử các giao dịch đã trừ trước đó."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-46",
+      "BR-48",
+      "BR-49",
+      "BR-50",
+      "BR-60",
+      "BR-64"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG47",
+      "MSG48",
+      "MSG49"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
+      "Video prompt or Video Style Template missing → Display: MSG02.",
+      "Insufficient AI Credits or Workspace/Member quota reached (BR-48, BR-60) → Display: MSG48.",
+      "Asynchronous video generation job fails or times out (BR-48) → Display: MSG49 (reserved credits refunded)."
+    ],
+    "normalFlow": [
+      "Creator mở màn hình Tạo Video bằng AI (/ai-studio/video) và nhập mô tả cảnh quay mong muốn.",
+      "Creator chọn hình ảnh sản phẩm hoặc Đại sứ ảo làm khung hình gốc, chọn Mẫu phong cách video (3.7.10) và tỷ lệ 9:16 cho Reels/TikTok.",
+      "Creator bấm nút Tạo Video.",
+      "Hệ thống kiểm tra và trừ điểm AI Credit (BR-48), tiến hành dựng video (BR-49), hiển thị video hoàn chỉnh và báo MSG47."
+    ],
+    "abnormalCases": [
+      "Nếu không đủ điểm AI Credit hoặc vượt hạn mức của Workspace: Hệ thống báo lỗi MSG48.",
+      "Nếu tiến trình dựng video bị gián đoạn: Hệ thống tự động hoàn trả đủ điểm AI Credit đã giữ và báo MSG49."
+    ],
+    "postConditions": [
+      "The generated video is stored and available for export (3.7.12) or social publishing (3.8.10, 3.8.12, 3.8.14), and the AI Credit ledger reflects the completed charge (BR-60).",
+      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-107.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_11.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.12",
+    "title": "Export File",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-099",
+    "ucName": "Export File",
+    "ucDescription": "(3.7.12) Cho phép Creator hoặc Manager xuất và tải các hình ảnh, video do AI tạo ra về máy tính theo đúng định dạng chuẩn (MP4, WebM cho video; PNG, JPG, WEBP cho ảnh) và tỷ lệ khung hình tối ưu cho từng mạng xã hội mà không tốn thêm điểm AI Credit.",
+    "figureId": "r3-fig-108",
+    "figureNumber": 108,
+    "figureCaption": "Figure 108 - Export File",
+    "sequenceFigureId": "seq-3.7.12",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "trigger": "Khi Creator hoặc Manager chọn một ấn phẩm AI đã tạo, chọn định dạng tệp cần xuất và bấm Xuất tệp (Export File).",
+    "purpose": "Cho phép Creator hoặc Manager xuất và tải các hình ảnh, video do AI tạo ra về máy tính theo đúng định dạng chuẩn (MP4, WebM cho video; PNG, JPG, WEBP cho ảnh) và tỷ lệ khung hình tối ưu cho từng mạng xã hội mà không tốn thêm điểm AI Credit.",
+    "viSummary": "Cho phép Creator hoặc Manager xuất và tải các hình ảnh, video do AI tạo ra về máy tính theo đúng định dạng chuẩn (MP4, WebM cho video; PNG, JPG, WEBP cho ảnh) và tỷ lệ khung hình tối ưu cho từng mạng xã hội mà không tốn thêm điểm AI Credit.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Hộp thoại Xuất tệp Đa phương tiện gồm ô chọn Định dạng xuất (Ảnh: PNG, JPG, WEBP; Video: MP4, WebM), chọn Chất lượng / Tỷ lệ khung hình (9:16, 1:1, 16:9), tùy chọn Lưu đồng thời vào Kho tư liệu và nút Xuất & Tải về.",
+    "dataProcessing": "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20), chuyển đổi ấn phẩm AI sang đúng định dạng tệp mà người dùng yêu cầu (BR-50) và cho phép tải về máy hoàn toàn miễn phí (không trừ thêm AI Credit).",
+    "dataSpecs": {
+      "inputRequired": "Chọn ấn phẩm AI cần xuất và chọn Định dạng tệp đầu ra (PNG/JPG/WEBP hoặc MP4/WebM).",
+      "inputOptional": "Tùy chọn lưu thêm một bản vào Kho tư liệu của Workspace.",
+      "systemData": "Chuyển đổi định dạng tệp theo chuẩn mạng xã hội với chi phí 0 AI Credit (BR-50).",
+      "output": "Xuất tệp theo đúng định dạng đã chọn và tải về máy tính của người dùng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-50",
+        "text": "Các hình ảnh và video do AI tạo ra có thể xuất tải về máy (3.7.12) theo các định dạng thông dụng (MP4, WebM cho video; PNG, JPG, WebP cho ảnh) hoặc lưu thẳng vào Kho tư liệu của Workspace."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-50"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG22"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-20) → Display: MSG07.",
+      "Export format not selected or incompatible with asset media type (e.g., selecting PNG for a video) → Display: MSG02, MSG22.",
+      "Submitted parameter value exceeds maximum length or falls outside the valid domain range → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Sau khi tạo xong hình ảnh hoặc video trong AI Studio, Creator hoặc Manager bấm nút Xuất tệp (Export File).",
+      "Người dùng chọn định dạng tệp mong muốn (ví dụ MP4 cho video hoặc WEBP/PNG cho ảnh) và bấm Xác nhận xuất.",
+      "Hệ thống kiểm tra quyền truy cập (BR-20) và xử lý đóng gói tệp theo định dạng đã chọn (BR-50).",
+      "Hệ thống tải tệp về máy người dùng (và lưu vào Kho tư liệu nếu được chọn)."
+    ],
+    "abnormalCases": [
+      "Nếu chọn định dạng không tương thích với loại tệp (ví dụ chọn xuất ảnh sang định dạng video): Hệ thống báo lỗi MSG22."
+    ],
+    "postConditions": [
+      "The AI-generated media file is exported to the user's local device in the selected social-ready format (BR-50).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-108.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_12.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.13",
+    "title": "Crawl Schedule Config",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-100",
+    "ucName": "Crawl Schedule Config",
+    "ucDescription": "(3.7.13) Cho phép Admin cài đặt lịch chạy tự động (theo giờ/ngày) và các nguồn thu thập dữ liệu cho bộ cập nhật xu hướng thịnh hành của hệ thống.",
+    "figureId": "r3-fig-109",
+    "figureNumber": 109,
+    "figureCaption": "Figure 109 - Crawl Schedule Config",
+    "sequenceFigureId": "seq-3.7.13",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Admin"
+    ],
+    "trigger": "Khi Admin mở màn hình Cấu hình Thu thập Xu hướng (/admin), điều chỉnh lịch chạy hoặc nguồn dữ liệu và bấm Lưu cấu hình.",
+    "purpose": "Cho phép Admin cài đặt lịch chạy tự động (theo giờ/ngày) và các nguồn thu thập dữ liệu cho bộ cập nhật xu hướng thịnh hành của hệ thống.",
+    "viSummary": "Cho phép Admin cài đặt lịch chạy tự động (theo giờ/ngày) và các nguồn thu thập dữ liệu cho bộ cập nhật xu hướng thịnh hành của hệ thống.",
+    "docAuthor": "Ân",
+    "codeAuthor": "Ân",
+    "interface": "Bảng Cấu hình Thu thập Xu hướng trên cổng Admin gồm ô chọn Chu kỳ chạy tự động (mỗi 6 giờ, 12 giờ, hàng ngày), danh sách nguồn thu thập, bộ lọc ngành hàng, giới hạn số lượng chủ đề mỗi đợt và nút Lưu cấu hình.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Admin toàn hệ thống (BR-62), kiểm tra thông số chu kỳ thời gian hợp lệ, lưu cấu hình mới cho tiến trình thu thập xu hướng tự động (BR-45) và ghi lại vào nhật ký quản trị (BR-65).",
+    "dataSpecs": {
+      "inputRequired": "Chu kỳ thời gian chạy thu thập tự động và danh sách nguồn/lĩnh vực thu thập.",
+      "inputOptional": "Giới hạn số lượng từ khóa tối đa thu thập trong mỗi phiên.",
+      "systemData": "Cập nhật lịch chạy tiến trình ngầm (BR-45) và lưu nhật ký thao tác của Admin (BR-65).",
+      "output": "Lưu cấu hình lịch thu thập xu hướng thành công và hiển thị thông báo MSG60."
+    },
+    "businessRules": [
+      {
+        "code": "BR-45",
+        "text": "Danh sách Chủ đề xu hướng (3.7.1) và Đồ thị xu hướng AI (3.7.2) được tổng hợp tự động theo lịch thu thập do Admin cấu hình (3.7.13), giúp gợi ý các chủ đề và thẻ hashtag đang thịnh hành sát với ngành hàng."
+      },
+      {
+        "code": "BR-62",
+        "text": "Chỉ những tài khoản có quyền Admin toàn hệ thống mới truy cập được các chức năng quản trị (3.10.1–3.10.14). Để đảm bảo an toàn, Admin không thể tự khóa tài khoản của chính mình hoặc khóa tài khoản của một Admin khác."
+      },
+      {
+        "code": "BR-65",
+        "text": "Khi Admin tạo tài khoản mới trên cổng quản trị (3.10.7), hệ thống sẽ gửi thông tin kích hoạt qua email cho người dùng. Mọi thao tác quản trị của Admin (duyệt vi phạm, khóa tài khoản, gửi thông báo, đổi giá AI Credit, xuất báo cáo PDF) đều được ghi lại đầy đủ vào nhật ký hệ thống."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-45",
+      "BR-62",
+      "BR-65"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG60"
+    ],
+    "validations": [
+      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
+      "Required field missing (crawlIntervalCron, targetSourcesList, or maxPostsPerRun) → Display: MSG02.",
+      "maxPostsPerRun falls outside the allowed range (10–1000) or schedule syntax is invalid → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Admin mở phần Cấu hình Thu thập Xu hướng trên cổng quản trị (/admin).",
+      "Admin chọn chu kỳ quét tự động, bật các nguồn chủ đề và đặt giới hạn số lượng bản ghi mỗi đợt.",
+      "Admin bấm nút Lưu cấu hình.",
+      "Hệ thống kiểm tra quyền Admin (BR-62), áp dụng lịch chạy mới (BR-45), ghi nhật ký hệ thống (BR-65) và hiển thị thông báo MSG60."
+    ],
+    "abnormalCases": [
+      "Nếu người thao tác không có quyền Admin hoặc nhập chu kỳ thời gian sai định dạng: Hệ thống báo lỗi MSG07 hoặc MSG03."
+    ],
+    "postConditions": [
+      "The AI trend crawler operates according to the updated schedule and source configuration (BR-45).",
+      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-109.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_13.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.14",
+    "title": "Suggest Hashtag Trend",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-101",
+    "ucName": "Suggest Hashtag Trend",
+    "ucDescription": "(3.7.14) Tự động gợi ý các thẻ Hashtag đang thịnh hành và sát nhất với nội dung bài viết mà Creator đang soạn thảo (hoặc khi tạo bộ sưu tập Hashtag), giúp tăng khả năng tiếp cận người xem trên mạng xã hội.",
+    "figureId": "r3-fig-110",
+    "figureNumber": 110,
+    "figureCaption": "Figure 110 - Suggest Hashtag Trend",
+    "sequenceFigureId": "seq-3.7.14",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Creator"
+    ],
+    "trigger": "Khi Creator bấm nút Gợi ý Hashtag bằng AI ngay trong màn hình Soạn thảo bài viết (/editor) hoặc trong màn hình Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups).",
+    "purpose": "Tự động gợi ý các thẻ Hashtag đang thịnh hành và sát nhất với nội dung bài viết mà Creator đang soạn thảo (hoặc khi tạo bộ sưu tập Hashtag), giúp tăng khả năng tiếp cận người xem trên mạng xã hội.",
+    "viSummary": "Tự động gợi ý các thẻ Hashtag đang thịnh hành và sát nhất với nội dung bài viết mà Creator đang soạn thảo (hoặc khi tạo bộ sưu tập Hashtag), giúp tăng khả năng tiếp cận người xem trên mạng xã hội.",
+    "docAuthor": "Tuấn",
+    "codeAuthor": "Tuấn",
+    "interface": "Bảng Gợi ý Hashtag Xu hướng hiển thị danh sách các thẻ hashtag do AI đề xuất dựa trên nội dung bài viết, kèm mức độ phổ biến của từng thẻ, ô tích chọn và nút Chèn vào bài viết / Lưu vào bộ sưu tập.",
+    "dataProcessing": "Hệ thống đọc nội dung bài viết hoặc chủ đề ngành hàng hiện tại, đối chiếu với dữ liệu xu hướng đang thịnh hành (BR-45) để lọc ra bộ thẻ hashtag phù hợp nhất, chuẩn hóa dấu '#' và cho phép Creator chèn nhanh vào bài hoặc lưu vào bộ sưu tập của Workspace (BR-39).",
+    "dataSpecs": {
+      "inputRequired": "Nội dung bài viết đang soạn hoặc chủ đề ngành hàng cần gợi ý hashtag.",
+      "inputOptional": "Chọn nền tảng mạng xã hội mục tiêu và số lượng hashtag muốn gợi ý.",
+      "systemData": "Danh sách thẻ hashtag gợi ý kèm điểm mức độ thịnh hành (BR-39, BR-45).",
+      "output": "Hiển thị danh sách Hashtag xu hướng do AI đề xuất (MSG47) để người dùng chọn áp dụng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-39",
+        "text": "Các bộ sưu tập Hashtag được quản lý riêng theo từng Workspace và phân loại theo mục đích chiến dịch/sự kiện. Khi xóa một bộ Hashtag (3.6.24), hệ thống chỉ ẩn khỏi danh sách chọn mới chứ không làm mất các hashtag đã chèn vào bài viết cũ."
+      },
+      {
+        "code": "BR-45",
+        "text": "Danh sách Chủ đề xu hướng (3.7.1) và Đồ thị xu hướng AI (3.7.2) được tổng hợp tự động theo lịch thu thập do Admin cấu hình (3.7.13), giúp gợi ý các chủ đề và thẻ hashtag đang thịnh hành sát với ngành hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-39",
+      "BR-45"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG47",
+      "MSG49"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Creator permission (BR-39) → Display: MSG07.",
+      "Context text and Workspace industry context are both empty → Display: MSG02.",
+      "AI suggestion service is temporarily unavailable → Display: MSG49."
+    ],
+    "normalFlow": [
+      "Trong lúc viết bài (/editor) hoặc tạo nhóm Hashtag (/workspace/:id/hashtag-groups), Creator bấm nút Gợi ý Hashtag bằng AI.",
+      "Hệ thống phân tích nội dung bài viết và đối chiếu với các từ khóa xu hướng mới nhất (BR-45).",
+      "Màn hình hiển thị danh sách các thẻ hashtag phù hợp kèm thông báo MSG47.",
+      "Creator tích chọn các thẻ ưng ý để chèn thẳng vào bài viết hoặc lưu vào bộ sưu tập của dự án (BR-39)."
+    ],
+    "abnormalCases": [
+      "Nếu ô nội dung bài viết và chủ đề đều đang để trống: Hệ thống nhắc người dùng nhập chủ đề hoặc nội dung trước khi gợi ý (MSG02)."
+    ],
+    "postConditions": [
+      "Selected AI-recommended hashtags are added to the active post draft or Workspace Hashtag Collection.",
+      "Role-based access isolation (BR-39) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-110.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_14.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.15",
+    "title": "View Collaborator Directory",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-102",
+    "ucName": "View Collaborator Directory",
+    "ucDescription": "(3.7.15) Cho phép Owner và Manager xem, tìm kiếm và lọc danh bạ các đối tác truyền thông bên thứ ba của Agency (gồm KOL, KOC, Báo điện tử, Trang đặt Banner quảng cáo và Kênh truyền hình) kèm bảng giá tham khảo và tiến độ hợp tác.",
+    "figureId": "r3-fig-111",
+    "figureNumber": 111,
+    "figureCaption": "Figure 111 - View Collaborator Directory",
+    "sequenceFigureId": "seq-3.7.15",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager mở màn hình Danh bạ Đối tác Truyền thông (/collaborators).",
+    "purpose": "Cho phép Owner và Manager xem, tìm kiếm và lọc danh bạ các đối tác truyền thông bên thứ ba của Agency (gồm KOL, KOC, Báo điện tử, Trang đặt Banner quảng cáo và Kênh truyền hình) kèm bảng giá tham khảo và tiến độ hợp tác.",
+    "viSummary": "Cho phép Owner và Manager xem, tìm kiếm và lọc danh bạ các đối tác truyền thông bên thứ ba của Agency (gồm KOL, KOC, Báo điện tử, Trang đặt Banner quảng cáo và Kênh truyền hình) kèm bảng giá tham khảo và tiến độ hợp tác.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Danh bạ Đối tác (/collaborators) gồm ô tìm kiếm tên đối tác, bộ lọc theo loại hình (KOL/KOC, Báo điện tử, Banner, Kênh TV), lọc theo lĩnh vực ngành hàng, bảng danh sách đối tác (Tên, Lĩnh vực, Lượng người theo dõi/độc giả, Đơn giá tham khảo, Trạng thái hợp tác) và nút Thêm đối tác mới.",
+    "dataProcessing": "Hệ thống kiểm tra quyền truy cập của Owner hoặc Manager (BR-20), lấy danh sách các đối tác truyền thông trong danh bạ của Agency (BR-51) và hiển thị theo bộ lọc người dùng chọn.",
+    "dataSpecs": {
+      "inputRequired": "Owner hoặc Manager mở màn hình Danh bạ Đối tác Truyền thông.",
+      "inputOptional": "Tìm kiếm theo tên hoặc lọc theo phân loại kênh, ngành hàng, khoảng giá.",
+      "systemData": "Danh sách hồ sơ đối tác truyền thông, chỉ số tiếp cận và trạng thái hợp tác hiện tại (BR-51).",
+      "output": "Hiển thị bảng danh bạ các đối tác truyền thông bên thứ ba của Agency."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-51",
+        "text": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-51"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager permission (BR-20) → Display: MSG07.",
+      "No collaborators match the selected filter criteria → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở màn hình Danh bạ Đối tác Truyền thông (/collaborators).",
+      "Hệ thống kiểm tra quyền truy cập (BR-20) và tải danh sách đối tác của Agency (BR-51).",
+      "Người dùng có thể lọc theo nhóm KOL/KOC, Báo chí hoặc Kênh quảng cáo và so sánh mức giá tham khảo.",
+      "Người dùng bấm vào từng đối tác để xem chi tiết thông tin liên hệ và lịch sử hợp tác."
+    ],
+    "abnormalCases": [
+      "Nếu không có đối tác nào khớp với điều kiện lọc: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The Agency's third-party Collaborator Directory and campaign cooperation statuses are displayed accurately.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-111.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_15.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.16",
+    "title": "Create Collaborator Profile",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-103",
+    "ucName": "Create Collaborator Profile",
+    "ucDescription": "(3.7.16) Cho phép Owner hoặc Manager thêm mới hồ sơ một đối tác truyền thông bên thứ ba (KOL/KOC, Báo điện tử, Kênh quảng cáo) vào danh bạ của Agency để tiện liên hệ và lập kế hoạch booking cho các chiến dịch.",
+    "figureId": "r3-fig-112",
+    "figureNumber": 112,
+    "figureCaption": "Figure 112 - Create Collaborator Profile",
+    "sequenceFigureId": "seq-3.7.16",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager bấm nút Thêm đối tác mới trên màn hình Danh bạ Đối tác (/collaborators), điền thông tin và bấm Lưu.",
+    "purpose": "Cho phép Owner hoặc Manager thêm mới hồ sơ một đối tác truyền thông bên thứ ba (KOL/KOC, Báo điện tử, Kênh quảng cáo) vào danh bạ của Agency để tiện liên hệ và lập kế hoạch booking cho các chiến dịch.",
+    "viSummary": "Cho phép Owner hoặc Manager thêm mới hồ sơ một đối tác truyền thông bên thứ ba (KOL/KOC, Báo điện tử, Kênh quảng cáo) vào danh bạ của Agency để tiện liên hệ và lập kế hoạch booking cho các chiến dịch.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Ân",
+    "interface": "Biểu mẫu Thêm Đối tác Truyền thông gồm ô nhập Tên đối tác / Kênh, chọn Loại hình (KOL, KOC, Báo điện tử, Banner, TV), chọn Lĩnh vực chuyên môn, nhập Quy mô người theo dõi / lượt xem trung bình, Đơn giá tham khảo, Email / Số điện thoại liên hệ và nút Lưu hồ sơ.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner hoặc Manager (BR-15, BR-51), kiểm tra tên đối tác, phân loại kênh và email liên hệ hợp lệ (BR-04), sau đó lưu hồ sơ đối tác mới vào danh bạ chung của Agency (BR-51).",
+    "dataSpecs": {
+      "inputRequired": "Tên đối tác truyền thông, Phân loại kênh (KOL/KOC/Báo chí/Banner/TV), Lĩnh vực hoạt động và Thông tin liên hệ.",
+      "inputOptional": "Số lượng người theo dõi/độc giả, Đơn giá booking tham khảo, đường dẫn trang cá nhân/website và ghi chú.",
+      "systemData": "Mã hồ sơ đối tác mới và trạng thái hoạt động trong danh bạ của Agency (BR-51).",
+      "output": "Thêm hồ sơ đối tác truyền thông mới thành công và hiển thị thông báo MSG50."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-51",
+        "text": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-51"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG04",
+      "MSG07",
+      "MSG50"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager permission (BR-15) → Display: MSG07.",
+      "Required field missing (partnerName, partnerType, industryTags, or baseRate) → Display: MSG02.",
+      "Base rate or audience reach is negative, or contact email format is invalid → Display: MSG03, MSG04."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở màn hình Danh bạ Đối tác (/collaborators) và bấm nút Thêm đối tác mới.",
+      "Người dùng nhập Tên đối tác, chọn Loại hình kênh, Ngành hàng thế mạnh, Đơn giá tham khảo và Email/Số điện thoại liên hệ.",
+      "Người dùng bấm nút Lưu hồ sơ.",
+      "Hệ thống kiểm tra thông tin hợp lệ, lưu đối tác mới vào danh bạ Agency (BR-51) và hiển thị thông báo MSG50."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên đối tác, Loại hình kênh hoặc nhập sai định dạng email liên hệ: Hệ thống báo lỗi MSG02 hoặc MSG04."
+    ],
+    "postConditions": [
+      "A new ThirdPartyCollaborator profile exists in the Agency directory and is eligible for AI recommendation (3.7.19) and campaign linking.",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-112.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_16.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.17",
+    "title": "Update Collaborator Profile",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-104",
+    "ucName": "Update Collaborator Profile",
+    "ucDescription": "(3.7.17) Cho phép Owner hoặc Manager cập nhật thông tin hồ sơ, bảng giá của đối tác truyền thông và theo dõi tiến độ hợp tác thực tế trong chiến dịch (Đã liên hệ -> Đang đàm phán -> Đã chốt -> Đang lên sóng).",
+    "figureId": "r3-fig-113",
+    "figureNumber": 113,
+    "figureCaption": "Figure 113 - Update Collaborator Profile",
+    "sequenceFigureId": "seq-3.7.17",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager mở hồ sơ một đối tác trên trang Danh bạ Đối tác (/collaborators), sửa thông tin hoặc cập nhật trạng thái hợp tác và bấm Lưu.",
+    "purpose": "Cho phép Owner hoặc Manager cập nhật thông tin hồ sơ, bảng giá của đối tác truyền thông và theo dõi tiến độ hợp tác thực tế trong chiến dịch (Đã liên hệ -> Đang đàm phán -> Đã chốt -> Đang lên sóng).",
+    "viSummary": "Cho phép Owner hoặc Manager cập nhật thông tin hồ sơ, bảng giá của đối tác truyền thông và theo dõi tiến độ hợp tác thực tế trong chiến dịch (Đã liên hệ -> Đang đàm phán -> Đã chốt -> Đang lên sóng).",
+    "docAuthor": "Trung",
+    "codeAuthor": "Ân",
+    "interface": "Biểu mẫu Cập nhật Đối tác gồm các ô sửa thông tin liên hệ, đơn giá, chỉ số tiếp cận, hộp chọn Trạng thái hợp tác trong chiến dịch (CONTACTED, NEGOTIATING, CONFIRMED, LIVE_ON_AIR) kèm ô dán đường dẫn bài đăng nghiệm thu và nút Lưu cập nhật.",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner/Manager, lưu lại thông tin mới của đối tác và cập nhật trạng thái tiến độ hợp tác trong chiến dịch liên kết (BR-51).",
+    "dataSpecs": {
+      "inputRequired": "Chọn hồ sơ đối tác cần sửa và nhập các thông tin / trạng thái hợp tác mới.",
+      "inputOptional": "Chi phí thỏa thuận thực tế và đường dẫn bài viết/quảng cáo đã lên sóng (link nghiệm thu).",
+      "systemData": "Cập nhật trạng thái hợp tác chiến dịch (BR-51) và thời gian chỉnh sửa hồ sơ.",
+      "output": "Cập nhật hồ sơ và trạng thái đối tác thành công, hiển thị thông báo MSG50."
+    },
+    "businessRules": [
+      {
+        "code": "BR-51",
+        "text": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-51"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG50"
+    ],
+    "validations": [
+      "Required partner fields cleared or numeric rate is negative → Display: MSG02, MSG03.",
+      "Caller lacks Owner or Manager permission → Display: MSG07.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Owner hoặc Manager mở hồ sơ của một đối tác trong Danh bạ Đối tác (/collaborators) và chọn Chỉnh sửa.",
+      "Người dùng cập nhật lại bảng giá, thông tin liên hệ hoặc chuyển trạng thái hợp tác (ví dụ từ Đang đàm phán sang Đã chốt / Đang lên sóng).",
+      "Người dùng bấm nút Lưu cập nhật.",
+      "Hệ thống lưu thông tin mới vào cơ sở dữ liệu (BR-51) và hiển thị thông báo MSG50."
+    ],
+    "abnormalCases": [
+      "Nếu xóa trống Tên đối tác hoặc nhập mức giá âm: Hệ thống báo lỗi MSG02 hoặc MSG03."
+    ],
+    "postConditions": [
+      "The collaborator's profile attributes and campaign cooperation status are updated in persistent storage (BR-51).",
+      "Role-based access isolation (BR-51) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-113.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_17.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.18",
+    "title": "Remove Collaborator Profile",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-105",
+    "ucName": "Remove Collaborator Profile",
+    "ucDescription": "(3.7.18) Cho phép Owner hoặc Manager xóa mềm (ngừng kích hoạt) hồ sơ một đối tác truyền thông khỏi danh bạ đang hoạt động của Agency, trong khi vẫn giữ nguyên dữ liệu lịch sử của đối tác đó trong các chiến dịch cũ.",
+    "figureId": "r3-fig-114",
+    "figureNumber": 114,
+    "figureCaption": "Figure 114 - Remove Collaborator Profile",
+    "sequenceFigureId": "seq-3.7.18",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "trigger": "Khi Owner hoặc Manager bấm nút Xóa bên cạnh một đối tác trong Danh bạ Đối tác (/collaborators) và xác nhận.",
+    "purpose": "Cho phép Owner hoặc Manager xóa mềm (ngừng kích hoạt) hồ sơ một đối tác truyền thông khỏi danh bạ đang hoạt động của Agency, trong khi vẫn giữ nguyên dữ liệu lịch sử của đối tác đó trong các chiến dịch cũ.",
+    "viSummary": "Cho phép Owner hoặc Manager xóa mềm (ngừng kích hoạt) hồ sơ một đối tác truyền thông khỏi danh bạ đang hoạt động của Agency, trong khi vẫn giữ nguyên dữ liệu lịch sử của đối tác đó trong các chiến dịch cũ.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Ân",
+    "interface": "Nút Xóa đối tác kèm hộp thoại xác nhận trên màn hình Danh bạ Đối tác Truyền thông (/collaborators).",
+    "dataProcessing": "Hệ thống kiểm tra quyền của Owner hoặc Manager (BR-15, BR-51), chuyển trạng thái đối tác sang Ngừng hoạt động (ẩn khỏi danh sách chọn mới và gợi ý mới) nhưng bảo toàn nguyên vẹn lịch sử chi phí và bài nghiệm thu ở các chiến dịch trước (BR-51).",
+    "dataSpecs": {
+      "inputRequired": "Chọn hồ sơ đối tác cần gỡ khỏi danh bạ và xác nhận đồng ý.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Đánh dấu xóa mềm hồ sơ đối tác và bảo toàn lịch sử hợp tác chiến dịch cũ (BR-51).",
+      "output": "Gỡ đối tác khỏi danh bạ hoạt động thành công và hiển thị thông báo MSG50."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-51",
+        "text": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-51"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36",
+      "MSG50"
+    ],
+    "validations": [
+      "Caller lacks Owner or Manager permission → Display: MSG07.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Trên màn hình Danh bạ Đối tác (/collaborators), Owner hoặc Manager bấm nút Xóa cạnh đối tác không còn hợp tác.",
+      "Người dùng bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống kiểm tra quyền hạn (BR-15) và chuyển hồ sơ đối tác sang trạng thái ngừng hoạt động (BR-51).",
+      "Hệ thống ẩn đối tác khỏi danh bạ hiện hành và hiển thị thông báo MSG50."
+    ],
+    "abnormalCases": [
+      "Nếu hồ sơ đối tác đó đã bị xóa từ trước: Hệ thống hiển thị thông báo MSG36."
+    ],
+    "postConditions": [
+      "The collaborator profile is removed from active directory recommendations without breaking historical campaign records (BR-51).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-114.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_18.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  },
+  {
+    "code": "3.7.19",
+    "title": "Recommend Collaborator",
+    "domainCode": "3.7",
+    "domainTitle": "AI Features",
+    "ucId": "UC-106",
+    "ucName": "Recommend Collaborator",
+    "ucDescription": "(3.7.19) Sử dụng AI để tự động phân tích và đề xuất danh sách các đối tác truyền thông bên thứ ba (KOL/KOC, báo chí, kênh quảng cáo) trong danh bạ phù hợp nhất với ngành hàng, tệp khách hàng mục tiêu và ngân sách của chiến dịch.",
+    "figureId": "r3-fig-115",
+    "figureNumber": 115,
+    "figureCaption": "Figure 115 - Recommend Collaborator",
+    "sequenceFigureId": "seq-3.7.19",
+    "classDiagramFigureId": "cd-3.7",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager hoặc Client mở tính năng Gợi ý Đối tác bằng AI (/campaign-partners), chọn ngành hàng cùng mức ngân sách dự kiến và bấm Gợi ý đối tác.",
+    "purpose": "Sử dụng AI để tự động phân tích và đề xuất danh sách các đối tác truyền thông bên thứ ba (KOL/KOC, báo chí, kênh quảng cáo) trong danh bạ phù hợp nhất với ngành hàng, tệp khách hàng mục tiêu và ngân sách của chiến dịch.",
+    "viSummary": "Sử dụng AI để tự động phân tích và đề xuất danh sách các đối tác truyền thông bên thứ ba (KOL/KOC, báo chí, kênh quảng cáo) trong danh bạ phù hợp nhất với ngành hàng, tệp khách hàng mục tiêu và ngân sách của chiến dịch.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Ân",
+    "interface": "Màn hình Gợi ý Đối tác bằng AI (/campaign-partners) gồm ô chọn Chiến dịch / Ngành hàng thương hiệu, nhập Ngân sách dự kiến, chọn Mục tiêu (Tăng nhận diện / Tăng tương tác / Ra mắt sản phẩm), cùng danh sách các đối tác được AI xếp hạng theo độ phù hợp.",
+    "dataProcessing": "Hệ thống đối chiếu ngành hàng, đối tượng khán giả và mức ngân sách của chiến dịch với dữ liệu các đối tác đang hoạt động trong danh bạ của Agency (BR-51), sau đó chấm điểm mức độ phù hợp và xếp hạng các phương án tối ưu nhất để Manager và Client lựa chọn (BR-52).",
+    "dataSpecs": {
+      "inputRequired": "Ngành hàng của chiến dịch, Mục tiêu truyền thông và Mức ngân sách dự kiến.",
+      "inputOptional": "Lọc riêng theo nhóm kênh mong muốn (chỉ tìm KOL/KOC hoặc chỉ tìm Báo điện tử).",
+      "systemData": "Điểm đánh giá mức độ phù hợp của từng đối tác với ngân sách và ngành hàng của chiến dịch (BR-52).",
+      "output": "Hiển thị danh sách các đối tác truyền thông được AI xếp hạng đề xuất kèm thông báo MSG50."
+    },
+    "businessRules": [
+      {
+        "code": "BR-51",
+        "text": "Mỗi Agency có một Danh bạ đối tác truyền thông bên thứ ba (3.7.15–3.7.18) gồm KOL, KOC, báo điện tử, kênh quảng cáo và truyền hình, giúp theo dõi trạng thái hợp tác từ lúc Liên hệ -> Đàm phán -> Chốt hợp tác -> Đang lên sóng."
+      },
+      {
+        "code": "BR-52",
+        "text": "Tính năng Gợi ý đối tác bằng AI (3.7.19) tự động chấm điểm và đề xuất các đối tác phù hợp nhất trong danh bạ dựa trên ngành hàng của chiến dịch, tệp khách hàng mục tiêu và mức ngân sách dự kiến."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-51",
+      "BR-52"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG07",
+      "MSG50"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-51) → Display: MSG07.",
+      "No active collaborators exist in the Agency Directory matching the industry/budget constraints → Display: MSG01.",
+      "Required campaign or budget criteria missing → Display: MSG02."
+    ],
+    "normalFlow": [
+      "Manager hoặc Client mở màn hình Gợi ý Đối tác bằng AI (/campaign-partners) trong dự án.",
+      "Người dùng chọn ngành hàng của nhãn hàng, nhập mức ngân sách dự kiến cho việc thuê đối tác và bấm Gợi ý.",
+      "Hệ thống phân tích và chấm điểm độ tương thích của các đối tác trong danh bạ Agency (BR-51, BR-52).",
+      "Màn hình hiển thị danh sách đối tác phù hợp nhất theo thứ tự ưu tiên để dự án liên hệ hợp tác (MSG50)."
+    ],
+    "abnormalCases": [
+      "Nếu trong danh bạ chưa có đối tác nào thuộc ngành hàng hoặc tầm ngân sách đã chọn: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "Recommended third-party media partners are ranked by tier and linked to the Media Campaign upon selection (BR-51, BR-52).",
+      "Role-based access isolation (BR-51) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374214/brandhub-docs-portal/report3/r3-fig-115.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_7_19.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png"
+  }
+]
