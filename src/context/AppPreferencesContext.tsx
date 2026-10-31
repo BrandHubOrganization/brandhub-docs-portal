@@ -14,8 +14,8 @@ interface AppPreferencesContextValue {
   tx: (vi: string, en: string) => string;
 }
 
-const THEME_STORAGE_KEY = 'brandhub_docs_theme';
-const LANG_STORAGE_KEY = 'brandhub_docs_lang';
+const THEME_STORAGE_KEY = 'brandhub_docs_theme_v2';
+const LANG_STORAGE_KEY = 'brandhub_docs_lang_v2';
 
 const AppPreferencesContext = createContext<AppPreferencesContextValue | undefined>(
   undefined
@@ -29,15 +29,17 @@ function getSystemDark(): boolean {
 export const AppPreferencesProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  // Default strictly to 'light' (White background) unless user explicitly switches
   const [theme, setThemeState] = useState<ThemeMode>(() => {
-    if (typeof window === 'undefined') return 'system';
+    if (typeof window === 'undefined') return 'light';
     const saved = localStorage.getItem(THEME_STORAGE_KEY);
     if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
-    return 'system';
+    return 'light';
   });
 
   const [systemDark, setSystemDark] = useState<boolean>(() => getSystemDark());
 
+  // Default strictly to 'vi' (Tiếng Việt)
   const [lang, setLangState] = useState<LanguageMode>(() => {
     if (typeof window === 'undefined') return 'vi';
     const saved = localStorage.getItem(LANG_STORAGE_KEY);
@@ -82,7 +84,7 @@ export const AppPreferencesProvider: React.FC<{ children: React.ReactNode }> = (
   const cycleTheme = useCallback(() => {
     setThemeState((prev) => {
       const next: ThemeMode =
-        prev === 'system' ? 'light' : prev === 'light' ? 'dark' : 'system';
+        prev === 'light' ? 'dark' : prev === 'dark' ? 'system' : 'light';
       localStorage.setItem(THEME_STORAGE_KEY, next);
       return next;
     });

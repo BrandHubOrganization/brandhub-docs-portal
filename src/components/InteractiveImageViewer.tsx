@@ -22,6 +22,7 @@ interface InteractiveImageViewerProps {
   height?: number;
   category?: string;
   subImages?: SubImageItem[];
+  defaultFullscreen?: boolean;
 }
 
 export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
@@ -30,6 +31,7 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
   width,
   height,
   subImages,
+  defaultFullscreen = true,
 }) => {
   const { tx } = useAppPreferences();
   const [activeSubImg, setActiveSubImg] = useState<SubImageItem | null>(null);
@@ -37,12 +39,20 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(defaultFullscreen);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentUrl = activeSubImg ? activeSubImg.imageUrl : imageUrl;
   const currentW = activeSubImg ? activeSubImg.width : width;
   const currentH = activeSubImg ? activeSubImg.height : height;
+
+  // Reset sub-image and open in fullscreen whenever navigating to a new figure page
+  useEffect(() => {
+    setActiveSubImg(null);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    setIsFullscreen(defaultFullscreen);
+  }, [imageUrl, defaultFullscreen]);
 
   useEffect(() => {
     setScale(1);
@@ -135,31 +145,31 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
     >
       {/* Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-3 sm:px-4 py-2 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs">
-        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 tabular-nums">
+        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 tabular-nums min-w-0">
           <ImageIcon className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
-          <span className="font-semibold text-slate-800 dark:text-slate-100">
-            {tx('Sơ đồ / Hình ảnh', 'Diagram / Figure')}
+          <span className="font-semibold text-slate-800 dark:text-slate-100 truncate max-w-[260px] sm:max-w-[460px]">
+            {caption || tx('Sơ đồ / Hình ảnh', 'Diagram / Figure')}
           </span>
           {currentW && currentH ? (
-            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400 dark:text-slate-500 font-mono">
+            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400 dark:text-slate-500 font-mono shrink-0">
               <Maximize className="w-3 h-3" />
               <span>
                 {currentW}x{currentH}px
               </span>
             </span>
           ) : null}
-          <span className="hidden lg:inline-flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 ml-1">
+          <span className="hidden xl:inline-flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 ml-1 shrink-0">
             <Hand className="w-3 h-3" />
             <span>
               {tx(
-                'Kéo tay để di chuyển, nhấp đúp để phóng to',
-                'Drag to pan, double-click to zoom'
+                'Kéo tay để di chuyển, lăn chuột / nhấp đúp để phóng to',
+                'Drag to pan, scroll / double-click to zoom'
               )}
             </span>
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 tabular-nums">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 tabular-nums shrink-0">
           <button
             onClick={handleZoomOut}
             aria-label={tx('Thu nhỏ', 'Zoom out')}
@@ -213,7 +223,9 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
             {fullscreen ? (
               <>
                 <Minimize2 className="w-3.5 h-3.5" />
-                <span>{tx('Đóng (Esc)', 'Close (Esc)')}</span>
+                <span>
+                  {tx('Thu nhỏ / Xem giải thích (Esc)', 'Minimize / Details (Esc)')}
+                </span>
               </>
             ) : (
               <>
@@ -272,7 +284,7 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         className={`relative overflow-hidden select-none flex items-center justify-center bg-white ${
-          fullscreen ? 'flex-1 min-h-0' : 'min-h-[280px] sm:min-h-[420px] max-h-[720px]'
+          fullscreen ? 'flex-1 min-h-0' : 'min-h-[420px] sm:min-h-[600px] max-h-[82vh]'
         } ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
       >
         <div
@@ -281,14 +293,17 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
             transformOrigin: 'center center',
             transition: isDragging ? 'none' : 'transform 140ms cubic-bezier(0.16, 1, 0.3, 1)',
           }}
-          className="p-2 sm:p-4 flex items-center justify-center"
+          className="p-2 sm:p-4 flex items-center justify-center w-full h-full"
         >
           <img
             src={currentUrl}
             alt={caption}
             draggable={false}
-            className="max-w-full max-h-[650px] object-contain"
-            style={fullscreen ? { maxHeight: '85dvh' } : undefined}
+            className={
+              fullscreen
+                ? 'max-w-[96vw] max-h-[85dvh] w-auto h-auto object-contain'
+                : 'max-w-full max-h-[76vh] object-contain'
+            }
           />
         </div>
       </div>
