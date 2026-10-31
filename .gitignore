@@ -1,0 +1,38 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies & Build outputs
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment variables & Secrets (DO NOT COMMIT)
+.env
+.env.*
+!.env.example
+*.key
+credentials.*
+
+# Temporary staging images & Python cache
+.staging_images/
+assets_staging/
+__pycache__/
+*.pyc
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
