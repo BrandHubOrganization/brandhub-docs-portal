@@ -1,0 +1,412 @@
+[
+  {
+    "id": "r3-fig-1",
+    "figNum": 1,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "1.2 System Context",
+    "category": "Architecture & Context",
+    "title": "System Context Diagram",
+    "caption": "Figure 1 - System Context Diagram",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3-fig-1.jpg",
+    "imageWidth": 1093,
+    "imageHeight": 728,
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ ngữ cảnh tổng thể (System Context Diagram) cho thấy 6 nhóm người dùng (Guest, Owner, Manager, Creator, Client, Admin) tương tác với BrandHub như thế nào, và cách hệ thống kết nối với các dịch vụ bên ngoài (AI, 4 mạng xã hội, Google Drive, cổng thanh toán SePay).",
+    "viSummary": "Sơ đồ ngữ cảnh tổng thể (System Context Diagram) cho thấy 6 nhóm người dùng (Guest, Owner, Manager, Creator, Client, Admin) tương tác với BrandHub như thế nào, và cách hệ thống kết nối với các dịch vụ bên ngoài (AI, 4 mạng xã hội, Google Drive, cổng thanh toán SePay).",
+    "components": [
+      {
+        "name": "Hệ thống trung tâm BrandHub",
+        "type": "Nền tảng chính",
+        "description": "Xử lý toàn bộ nghiệp vụ quản lý Agency, Workspace, chiến dịch, duyệt bài, gọi AI và tự động đăng bài."
+      },
+      {
+        "name": "6 Vai trò người dùng (Actors)",
+        "type": "Người sử dụng",
+        "description": "Guest, Owner, Manager, Creator, Client và Admin truy cập hệ thống trên trình duyệt web hoặc ứng dụng di động."
+      },
+      {
+        "name": "Các dịch vụ AI bên ngoài",
+        "type": "Tích hợp AI",
+        "description": "Hỗ trợ tạo văn bản bài viết, sinh hình ảnh quảng cáo, người mẫu đại diện ảo và video ngắn."
+      },
+      {
+        "name": "4 Nền tảng Mạng xã hội",
+        "type": "Tích hợp Xuất bản",
+        "description": "Kết nối chính thức với Facebook, Instagram, TikTok và Threads để đăng bài và lấy số liệu tương tác."
+      },
+      {
+        "name": "Google Drive & Cổng thanh toán SePay (VietQR)",
+        "type": "Lưu trữ & Thanh toán",
+        "description": "Google Drive giúp đồng bộ kho ảnh/video của khách hàng; SePay giúp tạo mã QR và xác nhận chuyển khoản tự động."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-2",
+    "figNum": 2,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "2.2.1 Use Case Diagram(s)",
+    "category": "Use Case Diagram",
+    "title": "System Use Case Diagram",
+    "caption": "Figure 2 - System Use Case Diagram",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3-fig-2.png",
+    "imageWidth": 3234,
+    "imageHeight": 2640,
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ tổng hợp toàn bộ 141 Use Cases (UC-001 đến UC-141) chia theo 9 phân hệ chức năng và phân quyền rõ cho từng vai trò người dùng. Bạn có thể bấm vào các nút bên dưới ảnh để xem cận cảnh từng phân hệ.",
+    "viSummary": "Sơ đồ tổng hợp toàn bộ 141 Use Cases (UC-001 đến UC-141) chia theo 9 phân hệ chức năng và phân quyền rõ cho từng vai trò người dùng. Bạn có thể bấm vào các nút bên dưới ảnh để xem cận cảnh từng phân hệ.",
+    "components": [
+      {
+        "name": "Xác thực & Hồ sơ (UC-001 – UC-013)",
+        "type": "Phân hệ 3.2 & 3.3",
+        "description": "Đăng ký, đăng nhập, xác thực OTP/2FA, quản lý hồ sơ cá nhân và hồ sơ thương hiệu của Client."
+      },
+      {
+        "name": "Quản lý Agency & Workspace (UC-014 – UC-039)",
+        "type": "Phân hệ 3.4",
+        "description": "Tạo công ty, mời nhân sự, lập không gian làm việc cho từng nhãn hàng, gán Manager và cài đặt múi giờ."
+      },
+      {
+        "name": "Gói dịch vụ & Chiến dịch truyền thông (UC-040 – UC-052)",
+        "type": "Phân hệ 3.5",
+        "description": "Thỏa thuận gói dịch vụ, lập kế hoạch chiến dịch, tự động tạo danh sách đầu việc và nhận yêu cầu phát sinh."
+      },
+      {
+        "name": "Sản xuất nội dung, AI, Đăng bài & Quản trị (UC-053 – UC-141)",
+        "type": "Phân hệ 3.6 – 3.10",
+        "description": "Giao việc, duyệt bài 3 cấp, kho tư liệu, công cụ sáng tạo AI, đăng bài 4 mạng xã hội, thanh toán SePay và cổng Admin."
+      }
+    ],
+    "subImages": [
+      {
+        "id": "r3_fig_2_part_1",
+        "label": "3.2 Authentication & Authorization",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_1.jpg",
+        "width": 656,
+        "height": 283
+      },
+      {
+        "id": "r3_fig_2_part_2",
+        "label": "3.3 User & Client Profile",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374183/brandhub-docs-portal/report3/r3_fig_2_part_2.jpg",
+        "width": 611,
+        "height": 284
+      },
+      {
+        "id": "r3_fig_2_part_3",
+        "label": "3.4 Agency & Workspace",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_3.jpg",
+        "width": 967,
+        "height": 462
+      },
+      {
+        "id": "r3_fig_2_part_4",
+        "label": "3.5 Media Package & Media Campaign",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_4.jpg",
+        "width": 872,
+        "height": 368
+      },
+      {
+        "id": "r3_fig_2_part_5",
+        "label": "3.6 Content & Workflow",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_5.jpg",
+        "width": 1046,
+        "height": 848
+      },
+      {
+        "id": "r3_fig_2_part_6",
+        "label": "3.7 AI Features",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_6.jpg",
+        "width": 768,
+        "height": 378
+      },
+      {
+        "id": "r3_fig_2_part_7",
+        "label": "3.8 Publishing & Social",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374183/brandhub-docs-portal/report3/r3_fig_2_part_7.jpg",
+        "width": 637,
+        "height": 330
+      },
+      {
+        "id": "r3_fig_2_part_8",
+        "label": "3.9 Subscription & Billing",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3_fig_2_part_8.jpg",
+        "width": 828,
+        "height": 410
+      },
+      {
+        "id": "r3_fig_2_part_9",
+        "label": "3.10 Admin Functions",
+        "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374185/brandhub-docs-portal/report3/r3_fig_2_part_9.jpg",
+        "width": 686,
+        "height": 401
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-3",
+    "figNum": 3,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.1 Screen flow for Guest",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Guest",
+    "caption": "Figure 3 - Screen Flow for Guest",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-3.jpg",
+    "imageWidth": 791,
+    "imageHeight": 419,
+    "actors": [
+      "Guest"
+    ],
+    "summary": "Sơ đồ luồng di chuyển màn hình dành cho Guest (người dùng chưa đăng nhập): từ Trang chủ -> Đăng ký / Đăng nhập -> Nhập mã xác nhận OTP -> Khôi phục mật khẩu.",
+    "viSummary": "Sơ đồ luồng di chuyển màn hình dành cho Guest (người dùng chưa đăng nhập): từ Trang chủ -> Đăng ký / Đăng nhập -> Nhập mã xác nhận OTP -> Khôi phục mật khẩu.",
+    "components": [
+      {
+        "name": "Trang giới thiệu (Landing Page)",
+        "type": "Màn hình mở đầu",
+        "description": "Giới thiệu tính năng, bảng giá các gói dịch vụ và nút chuyển sang Đăng ký hoặc Đăng nhập."
+      },
+      {
+        "name": "Màn hình Đăng ký & Đăng nhập (/register, /login)",
+        "type": "Xác thực tài khoản",
+        "description": "Cho phép tạo tài khoản mới hoặc đăng nhập bằng mật khẩu / tài khoản Google."
+      },
+      {
+        "name": "Màn hình Xác nhận OTP & Quên mật khẩu",
+        "type": "Xác minh bảo mật",
+        "description": "Nhập mã 6 số gửi qua email để kích hoạt tài khoản hoặc đặt lại mật khẩu mới."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-4",
+    "figNum": 4,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.2 Screen flow for Client",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Client",
+    "caption": "Figure 4 - Screen Flow for Client",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-4.jpg",
+    "imageWidth": 980,
+    "imageHeight": 462,
+    "actors": [
+      "Client"
+    ],
+    "summary": "Sơ đồ luồng màn hình dành cho Client (Khách hàng): xem và cập nhật hồ sơ thương hiệu, đàm phán & phê duyệt gói dịch vụ/chiến dịch, gửi yêu cầu phát sinh, kết nối tài khoản mạng xã hội và duyệt bài trước khi đăng.",
+    "viSummary": "Sơ đồ luồng màn hình dành cho Client (Khách hàng): xem và cập nhật hồ sơ thương hiệu, đàm phán & phê duyệt gói dịch vụ/chiến dịch, gửi yêu cầu phát sinh, kết nối tài khoản mạng xã hội và duyệt bài trước khi đăng.",
+    "components": [
+      {
+        "name": "Hồ sơ thương hiệu (Client Profile)",
+        "type": "Thông tin nhãn hàng",
+        "description": "Quản lý tên thương hiệu, logo, ngành hàng và thông tin liên hệ dùng chung cho mọi dự án."
+      },
+      {
+        "name": "Đàm phán & Duyệt Gói dịch vụ / Chiến dịch",
+        "type": "Thỏa thuận kế hoạch",
+        "description": "Xem đề xuất từ Agency, gửi phản hồi chỉnh sửa và bấm phê duyệt phương án thống nhất."
+      },
+      {
+        "name": "Duyệt bài bước cuối & Xem hiệu quả bài đăng",
+        "type": "Nghiệm thu kết quả",
+        "description": "Xem trước bài viết hoàn chỉnh để duyệt đăng hoặc yêu cầu sửa lại, đồng thời theo dõi lượt tương tác sau khi đăng."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-5",
+    "figNum": 5,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.3 Screen flow for Admin",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Admin",
+    "caption": "Figure 5 - Screen Flow for Admin",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-5.jpg",
+    "imageWidth": 1712,
+    "imageHeight": 592,
+    "actors": [
+      "Admin"
+    ],
+    "summary": "Sơ đồ luồng màn hình dành cho Admin: theo dõi số liệu toàn hệ thống, giám sát sức khỏe máy chủ, kiểm duyệt nội dung bị báo cáo, quản lý tài khoản người dùng, chỉnh bảng giá AI Credit và xuất báo cáo doanh thu.",
+    "viSummary": "Sơ đồ luồng màn hình dành cho Admin: theo dõi số liệu toàn hệ thống, giám sát sức khỏe máy chủ, kiểm duyệt nội dung bị báo cáo, quản lý tài khoản người dùng, chỉnh bảng giá AI Credit và xuất báo cáo doanh thu.",
+    "components": [
+      {
+        "name": "Bảng thống kê & Giám sát hệ thống",
+        "type": "Giám sát vận hành",
+        "description": "Xem tổng số người dùng, số bài đăng, doanh thu và tình trạng hoạt động (CPU, RAM, kết nối) của các máy chủ."
+      },
+      {
+        "name": "Kiểm duyệt nội dung & Quản lý người dùng",
+        "type": "An toàn nền tảng",
+        "description": "Xem xét các bài viết bị cảnh báo vi phạm, gửi thông báo toàn hệ thống và quản lý trạng thái/mức phạt tài khoản."
+      },
+      {
+        "name": "Cấu hình bảng giá AI Credit & Báo cáo doanh thu",
+        "type": "Cấu hình & Tài chính",
+        "description": "Cập nhật số điểm trừ cho từng tính năng AI, nhập bảng giá qua file CSV và xuất báo cáo doanh thu ra PDF."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-6",
+    "figNum": 6,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.4 Screen flow for Owner",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Owner",
+    "caption": "Figure 6 - Screen Flow for Owner",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-6.jpg",
+    "imageWidth": 1848,
+    "imageHeight": 1174,
+    "actors": [
+      "Owner"
+    ],
+    "summary": "Sơ đồ luồng màn hình dành cho Owner (Chủ sở hữu Agency): tạo công ty, mời nhân sự, mở các Workspace theo dự án và gán Manager, quản lý gói cước, thanh toán qua SePay và phân bổ hạn mức AI Credit.",
+    "viSummary": "Sơ đồ luồng màn hình dành cho Owner (Chủ sở hữu Agency): tạo công ty, mời nhân sự, mở các Workspace theo dự án và gán Manager, quản lý gói cước, thanh toán qua SePay và phân bổ hạn mức AI Credit.",
+    "components": [
+      {
+        "name": "Quản lý Agency & Nhân sự công ty",
+        "type": "Cấp công ty (Agency)",
+        "description": "Tạo Agency mới, xem bảng thống kê toàn công ty, gửi lời mời nhân viên qua email và quản lý danh sách thành viên."
+      },
+      {
+        "name": "Khởi tạo Workspace & Thư viện mẫu (Template)",
+        "type": "Cấp dự án (Workspace)",
+        "description": "Tạo không gian làm việc cho khách hàng, chỉ định Manager phụ trách và lưu cấu hình mẫu để dùng lại."
+      },
+      {
+        "name": "Gói đăng ký, Thanh toán SePay & Hạn mức AI Credit",
+        "type": "Quản lý chi phí",
+        "description": "Nâng cấp gói Pro/Enterprise, quét mã VietQR thanh toán, mua thêm AI Credit và chia hạn mức cho từng Workspace."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-7",
+    "figNum": 7,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.5 Screen flow for Manager",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Manager",
+    "caption": "Figure 7 - Screen Flow for Manager",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-7.png",
+    "imageWidth": 1538,
+    "imageHeight": 638,
+    "actors": [
+      "Manager"
+    ],
+    "summary": "Sơ đồ luồng màn hình dành cho Manager (Quản lý dự án): điều hành công việc trong Workspace, lập kế hoạch chiến dịch, chi tiết hóa đầu việc và giao cho Creator, duyệt chất lượng nội dung và lên lịch đăng bài.",
+    "viSummary": "Sơ đồ luồng màn hình dành cho Manager (Quản lý dự án): điều hành công việc trong Workspace, lập kế hoạch chiến dịch, chi tiết hóa đầu việc và giao cho Creator, duyệt chất lượng nội dung và lên lịch đăng bài.",
+    "components": [
+      {
+        "name": "Lập kế hoạch Chiến dịch & Xử lý yêu cầu khách hàng",
+        "type": "Lập kế hoạch",
+        "description": "Chốt gói dịch vụ, lên danh sách bài viết cho chiến dịch và tiếp nhận các yêu cầu phát sinh từ Client."
+      },
+      {
+        "name": "Phân công công việc & Quản lý tiến độ",
+        "type": "Điều phối sản xuất",
+        "description": "Điền yêu cầu chi tiết cho từng Task, giao việc cho Creator và theo dõi trên bảng Danh sách / Lịch / Gantt / Kanban."
+      },
+      {
+        "name": "Kiểm duyệt bài viết & Lên lịch xuất bản",
+        "type": "Duyệt & Đăng bài",
+        "description": "Duyệt nội dung do Creator gửi lên, chuyển tiếp cho Client duyệt và hẹn giờ đăng lên 4 mạng xã hội."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-8",
+    "figNum": 8,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.1.6 Screen flow for Creator",
+    "category": "Screen Flow",
+    "title": "Screen Flow for Creator",
+    "caption": "Figure 8 - Screen Flow for Creator",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-8.png",
+    "imageWidth": 1315,
+    "imageHeight": 802,
+    "actors": [
+      "Creator"
+    ],
+    "summary": "Sơ đồ luồng màn hình dành cho Creator (Người sáng tạo nội dung): xem các đầu việc được giao, viết bài kết hợp bộ đổi kiểu chữ Unicode, dùng AI tạo caption/ảnh/video/người mẫu ảo, quản lý kho tư liệu và gửi bài duyệt.",
+    "viSummary": "Sơ đồ luồng màn hình dành cho Creator (Người sáng tạo nội dung): xem các đầu việc được giao, viết bài kết hợp bộ đổi kiểu chữ Unicode, dùng AI tạo caption/ảnh/video/người mẫu ảo, quản lý kho tư liệu và gửi bài duyệt.",
+    "components": [
+      {
+        "name": "Bảng công việc & Trình soạn thảo nội dung",
+        "type": "Soạn thảo bài đăng",
+        "description": "Nhận Task được giao, viết bài có hỗ trợ định dạng chữ nổi bật và tự động lưu lịch sử các lần chỉnh sửa."
+      },
+      {
+        "name": "Bộ công cụ sáng tạo AI (AI Studio)",
+        "type": "Hỗ trợ sáng tạo",
+        "description": "Xem xu hướng đang hot, tạo nhanh lời bình (caption), hình ảnh sản phẩm, video ngắn và đại sứ ảo bằng AI."
+      },
+      {
+        "name": "Kho tư liệu, Đóng dấu ảnh & Gửi duyệt",
+        "type": "Hoàn thiện ấn phẩm",
+        "description": "Tải ảnh/video lên kho, gắn logo đóng dấu bản quyền, chèn bộ hashtag, kiểm tra từ ngữ vi phạm và bấm gửi duyệt."
+      }
+    ]
+  },
+  {
+    "id": "r3-fig-9",
+    "figNum": 9,
+    "reportId": "report3",
+    "reportName": "Report 3 — Software Requirement Specification (SRS)",
+    "section": "3.1.5 Entity Relationship Diagram",
+    "category": "Database & ERD",
+    "title": "Entity Relationship Diagram",
+    "caption": "Figure 9 - Entity Relationship Diagram",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-9.png",
+    "imageWidth": 1377,
+    "imageHeight": 657,
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Sơ đồ quan hệ thực thể cơ sở dữ liệu (ERD) gồm 28 bảng chính, thể hiện cách lưu trữ và liên kết dữ liệu giữa Người dùng, Agency, Workspace, Chiến dịch, Công việc (Task), Kho tư liệu, Bài đăng và Hóa đơn thanh toán.",
+    "viSummary": "Sơ đồ quan hệ thực thể cơ sở dữ liệu (ERD) gồm 28 bảng chính, thể hiện cách lưu trữ và liên kết dữ liệu giữa Người dùng, Agency, Workspace, Chiến dịch, Công việc (Task), Kho tư liệu, Bài đăng và Hóa đơn thanh toán.",
+    "components": [
+      {
+        "name": "Nhóm bảng Người dùng, Agency & Workspace",
+        "type": "Tổ chức & Phân quyền",
+        "description": "Gồm User, ClientProfile, Agency, AgencyMember, AgencyInvitation, Workspace, WorkspaceMember, WorkspaceTemplate."
+      },
+      {
+        "name": "Nhóm bảng Chiến dịch & Quy trình công việc",
+        "type": "Kế hoạch & Sản xuất",
+        "description": "Gồm MediaPackage, MediaCampaign, ContentRequest, Task, TaskApproval, TaskComment, ContentVersion."
+      },
+      {
+        "name": "Nhóm bảng Tư liệu, AI, Mạng xã hội & Thanh toán",
+        "type": "Tư liệu, Xuất bản & Chi phí",
+        "description": "Gồm MaterialRepository, CustomerDriveConnection, HashtagCollection, Survey, MailTemplate, BrandKnowledgeDocument, ThirdPartyCollaborator, SocialAccount, Post, SubscriptionOrder, AICreditLedger, SystemNotification."
+      }
+    ]
+  }
+]

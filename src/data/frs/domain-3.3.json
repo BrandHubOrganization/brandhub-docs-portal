@@ -1,0 +1,305 @@
+[
+  {
+    "code": "3.3.1",
+    "title": "View User Profile",
+    "domainCode": "3.3",
+    "domainTitle": "User & Client Profile",
+    "ucId": "UC-010",
+    "ucName": "View User Profile",
+    "ucDescription": "(3.3.1) Xem thông tin hồ sơ cá nhân của bản thân gồm ảnh đại diện, họ tên, email, số điện thoại, kỹ năng, ngôn ngữ và trạng thái bảo mật tài khoản.",
+    "figureId": "r3-fig-19",
+    "figureNumber": 19,
+    "figureCaption": "Figure 19 - View User Profile",
+    "sequenceFigureId": "seq-3.3.1",
+    "classDiagramFigureId": "cd-3.3",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng bấm vào mục Hồ sơ cá nhân (/profile) từ menu tài khoản.",
+    "purpose": "Xem thông tin hồ sơ cá nhân của bản thân gồm ảnh đại diện, họ tên, email, số điện thoại, kỹ năng, ngôn ngữ và trạng thái bảo mật tài khoản.",
+    "viSummary": "Xem thông tin hồ sơ cá nhân của bản thân gồm ảnh đại diện, họ tên, email, số điện thoại, kỹ năng, ngôn ngữ và trạng thái bảo mật tài khoản.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Hồ sơ cá nhân (/profile) hiển thị ảnh đại diện, ảnh bìa, họ và tên, địa chỉ email (chỉ xem), số điện thoại, giới thiệu bản thân, kỹ năng, ngôn ngữ và nút Chỉnh sửa hồ sơ.",
+    "dataProcessing": "Hệ thống kiểm tra phiên đăng nhập hợp lệ (BR-05) và lấy thông tin hồ sơ cá nhân của người dùng đang đăng nhập (BR-11) để hiển thị lên màn hình.",
+    "dataSpecs": {
+      "inputRequired": "Người dùng đang đăng nhập mở trang Hồ sơ cá nhân.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Thông tin tài khoản, ảnh đại diện, số điện thoại, ngôn ngữ, múi giờ và trạng thái bảo mật 2FA.",
+      "output": "Hiển thị đầy đủ thông tin hồ sơ cá nhân hiện tại của người dùng."
+    },
+    "businessRules": [
+      {
+        "code": "BR-11",
+        "text": "Mỗi người dùng có một Hồ sơ cá nhân duy nhất trên hệ thống; địa chỉ email đăng nhập chính được cố định, không thể tự đổi trên màn hình sửa hồ sơ."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-05",
+      "BR-11"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Unauthenticated session attempting to access /profile → Display: MSG07 and redirect to Sign In (3.2.2).",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
+      "Target resource identifier or query matches no active records → Display: MSG01."
+    ],
+    "normalFlow": [
+      "Người dùng bấm vào mục Hồ sơ cá nhân (/profile) trên thanh điều hướng.",
+      "Hệ thống kiểm tra phiên đăng nhập hợp lệ của người dùng (BR-05).",
+      "Hệ thống tải dữ liệu hồ sơ cá nhân từ cơ sở dữ liệu (BR-11).",
+      "Màn hình hiển thị đầy đủ ảnh đại diện, thông tin liên hệ và các thiết lập cá nhân."
+    ],
+    "abnormalCases": [
+      "Nếu phiên đăng nhập đã hết hạn: Hệ thống báo lỗi phân quyền (MSG07) và yêu cầu đăng nhập lại."
+    ],
+    "postConditions": [
+      "The user's current profile data is displayed accurately without modifying any stored records.",
+      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-19.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png"
+  },
+  {
+    "code": "3.3.2",
+    "title": "Update User Profile",
+    "domainCode": "3.3",
+    "domainTitle": "User & Client Profile",
+    "ucId": "UC-011",
+    "ucName": "Update User Profile",
+    "ucDescription": "(3.3.2) Cập nhật thông tin hồ sơ cá nhân (họ tên, số điện thoại, giới thiệu, kỹ năng, ngôn ngữ) và tải lên ảnh đại diện mới. Địa chỉ email đăng nhập được giữ cố định để bảo vệ định danh tài khoản.",
+    "figureId": "r3-fig-20",
+    "figureNumber": 20,
+    "figureCaption": "Figure 20 - Update User Profile",
+    "sequenceFigureId": "seq-3.3.2",
+    "classDiagramFigureId": "cd-3.3",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "trigger": "Khi người dùng chỉnh sửa thông tin hoặc chọn ảnh đại diện mới trên trang Hồ sơ cá nhân (/profile) rồi bấm Lưu thay đổi.",
+    "purpose": "Cập nhật thông tin hồ sơ cá nhân (họ tên, số điện thoại, giới thiệu, kỹ năng, ngôn ngữ) và tải lên ảnh đại diện mới. Địa chỉ email đăng nhập được giữ cố định để bảo vệ định danh tài khoản.",
+    "viSummary": "Cập nhật thông tin hồ sơ cá nhân (họ tên, số điện thoại, giới thiệu, kỹ năng, ngôn ngữ) và tải lên ảnh đại diện mới. Địa chỉ email đăng nhập được giữ cố định để bảo vệ định danh tài khoản.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Biểu mẫu chỉnh sửa trên màn hình Hồ sơ cá nhân (/profile) gồm nút tải ảnh đại diện/ảnh bìa, ô sửa Họ tên, Số điện thoại, Giới thiệu, Kỹ năng, Ngôn ngữ, ô Email (khóa cố định không cho sửa) và nút Lưu thay đổi.",
+    "dataProcessing": "Hệ thống kiểm tra Họ tên không bị để trống, tệp ảnh tải lên đúng định dạng (PNG, JPG, WEBP) và không quá 5 MB (BR-12), đồng thời giữ nguyên địa chỉ email gốc (BR-11) trước khi lưu thông tin mới.",
+    "dataSpecs": {
+      "inputRequired": "Họ và tên (không được để trống).",
+      "inputOptional": "Ảnh đại diện / ảnh bìa mới (PNG, JPG, WEBP tối đa 5 MB), Số điện thoại, Giới thiệu ngắn, Kỹ năng, Ngôn ngữ hiển thị.",
+      "systemData": "Đường dẫn lưu trữ ảnh mới và thời gian cập nhật hồ sơ.",
+      "output": "Lưu thông tin hồ sơ cá nhân mới thành công và hiển thị thông báo MSG21."
+    },
+    "businessRules": [
+      {
+        "code": "BR-11",
+        "text": "Mỗi người dùng có một Hồ sơ cá nhân duy nhất trên hệ thống; địa chỉ email đăng nhập chính được cố định, không thể tự đổi trên màn hình sửa hồ sơ."
+      },
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-11",
+      "BR-12"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG21",
+      "MSG22"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-11) → Display: MSG07.",
+      "Full Name left blank → Display: MSG02.",
+      "Text field exceeds maximum length or invalid phone number format → Display: MSG03.",
+      "Uploaded avatar or banner image is not PNG/JPG/WEBP or exceeds 5 MB (BR-12) → Display: MSG22."
+    ],
+    "normalFlow": [
+      "Người dùng mở trang Hồ sơ cá nhân (/profile) và thay đổi Họ tên, Số điện thoại, Giới thiệu hoặc chọn tải ảnh đại diện mới.",
+      "Người dùng bấm nút Lưu thay đổi.",
+      "Hệ thống kiểm tra thông tin hợp lệ và kiểm tra ảnh tải lên có dung lượng dưới 5 MB, đúng định dạng ảnh (BR-12).",
+      "Hệ thống lưu cập nhật hồ sơ (giữ cố định email gốc theo BR-11) và hiển thị thông báo thành công (MSG21)."
+    ],
+    "abnormalCases": [
+      "Nếu để trống ô Họ tên hoặc nhập quá độ dài quy định: Hệ thống báo lỗi dưới ô nhập (MSG02, MSG03).",
+      "Nếu chọn tệp ảnh sai định dạng hoặc nặng quá 5 MB: Hệ thống từ chối tải ảnh và báo lỗi MSG22."
+    ],
+    "postConditions": [
+      "The user's updated profile metadata and avatar/banner URLs are persisted, and the primary email remains unchanged.",
+      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374189/brandhub-docs-portal/report3/r3-fig-20.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png"
+  },
+  {
+    "code": "3.3.3",
+    "title": "View Client Profile",
+    "domainCode": "3.3",
+    "domainTitle": "User & Client Profile",
+    "ucId": "UC-012",
+    "ucName": "View Client Profile",
+    "ucDescription": "(3.3.3) Xem hồ sơ thương hiệu của Khách hàng (Client Profile) gồm tên nhãn hàng, logo, ngành nghề, website và thông tin liên hệ. Hồ sơ này có thể dùng chung cho nhiều dự án (Workspace) khác nhau mà không cần nhập lại.",
+    "figureId": "r3-fig-21",
+    "figureNumber": 21,
+    "figureCaption": "Figure 21 - View Client Profile",
+    "sequenceFigureId": "seq-3.3.3",
+    "classDiagramFigureId": "cd-3.3",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager phụ trách mở màn hình Hồ sơ thương hiệu Client (/client-profiles hoặc trong Workspace).",
+    "purpose": "Xem hồ sơ thương hiệu của Khách hàng (Client Profile) gồm tên nhãn hàng, logo, ngành nghề, website và thông tin liên hệ. Hồ sơ này có thể dùng chung cho nhiều dự án (Workspace) khác nhau mà không cần nhập lại.",
+    "viSummary": "Xem hồ sơ thương hiệu của Khách hàng (Client Profile) gồm tên nhãn hàng, logo, ngành nghề, website và thông tin liên hệ. Hồ sơ này có thể dùng chung cho nhiều dự án (Workspace) khác nhau mà không cần nhập lại.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Màn hình Hồ sơ thương hiệu Client hiển thị Tên nhãn hàng, Logo thương hiệu, Lĩnh vực ngành nghề, Website, Mã số thuế, Địa chỉ, Thông tin liên hệ và danh sách các Workspace đang liên kết.",
+    "dataProcessing": "Hệ thống kiểm tra người xem có phải là chính chủ tài khoản Client đó hoặc là Manager/Owner trong Workspace liên kết hay không (BR-14), sau đó tải thông tin hồ sơ thương hiệu lên màn hình (BR-13).",
+    "dataSpecs": {
+      "inputRequired": "Tài khoản Client hoặc Manager có quyền truy cập mở trang Hồ sơ thương hiệu.",
+      "inputOptional": "Không bắt buộc.",
+      "systemData": "Mã hồ sơ Client, tên thương hiệu, logo, ngành hàng, thông tin liên hệ và các Workspace đang gắn kết.",
+      "output": "Hiển thị chi tiết Hồ sơ thương hiệu của Client."
+    },
+    "businessRules": [
+      {
+        "code": "BR-13",
+        "text": "Mỗi tài khoản Client có một Hồ sơ thương hiệu riêng (gồm tên nhãn hàng, ngành nghề, logo, website, thông tin liên hệ) có thể dùng chung cho nhiều Workspace khác nhau mà không cần phải nhập lại."
+      },
+      {
+        "code": "BR-14",
+        "text": "Chỉ chính tài khoản Client đó hoặc Manager trong Workspace liên kết mới được xem và cập nhật Hồ sơ thương hiệu của Client, và không được phép thay đổi email gốc của tài khoản Client."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-13",
+      "BR-14"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller lacks permission to access the target Client Profile (BR-14) → Display: MSG07.",
+      "No Client Profile found for the specified identifier → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Client hoặc Manager mở màn hình Hồ sơ thương hiệu Client (/client-profiles).",
+      "Hệ thống kiểm tra quyền xem hồ sơ của người dùng (BR-14).",
+      "Hệ thống truy xuất dữ liệu thương hiệu dùng chung của Client (BR-13).",
+      "Màn hình hiển thị đầy đủ thông tin nhận diện thương hiệu và thông tin liên hệ của nhãn hàng."
+    ],
+    "abnormalCases": [
+      "Nếu người dùng không phải chủ hồ sơ Client và không phải Manager của dự án liên kết: Hệ thống chặn truy cập và báo MSG07."
+    ],
+    "postConditions": [
+      "The reusable Client Profile is displayed in read-only mode without altering stored brand metadata.",
+      "Role-based access isolation (BR-13) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-21.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374230/brandhub-docs-portal/report4/seq-3_3_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png"
+  },
+  {
+    "code": "3.3.4",
+    "title": "Update Client Profile",
+    "domainCode": "3.3",
+    "domainTitle": "User & Client Profile",
+    "ucId": "UC-013",
+    "ucName": "Update Client Profile",
+    "ucDescription": "(3.3.4) Cập nhật thông tin Hồ sơ thương hiệu của Client (tên thương hiệu, logo, ngành hàng, website, địa chỉ, số điện thoại). Khi cập nhật, thông tin mới sẽ tự động đồng bộ sang tất cả các Workspace mà Client đang tham gia.",
+    "figureId": "r3-fig-22",
+    "figureNumber": 22,
+    "figureCaption": "Figure 22 - Update Client Profile",
+    "sequenceFigureId": "seq-3.3.4",
+    "classDiagramFigureId": "cd-3.3",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager chỉnh sửa thông tin trên màn hình Hồ sơ thương hiệu Client và bấm Lưu cập nhật.",
+    "purpose": "Cập nhật thông tin Hồ sơ thương hiệu của Client (tên thương hiệu, logo, ngành hàng, website, địa chỉ, số điện thoại). Khi cập nhật, thông tin mới sẽ tự động đồng bộ sang tất cả các Workspace mà Client đang tham gia.",
+    "viSummary": "Cập nhật thông tin Hồ sơ thương hiệu của Client (tên thương hiệu, logo, ngành hàng, website, địa chỉ, số điện thoại). Khi cập nhật, thông tin mới sẽ tự động đồng bộ sang tất cả các Workspace mà Client đang tham gia.",
+    "docAuthor": "Trung",
+    "codeAuthor": "Trung",
+    "interface": "Biểu mẫu chỉnh sửa Hồ sơ thương hiệu Client gồm ô nhập Tên thương hiệu, chọn Ngành nghề, tải Logo mới, nhập Website, Mã số thuế, Địa chỉ, Số điện thoại liên hệ và nút Lưu.",
+    "dataProcessing": "Hệ thống kiểm tra quyền chỉnh sửa (BR-14), kiểm tra Tên thương hiệu và Ngành nghề không bị trống, kiểm tra tệp Logo tải lên dưới 5 MB (BR-12), sau đó lưu và đồng bộ thông tin thương hiệu mới tới các Workspace liên quan (BR-13).",
+    "dataSpecs": {
+      "inputRequired": "Tên thương hiệu và Lĩnh vực ngành nghề.",
+      "inputOptional": "Tệp ảnh Logo thương hiệu (PNG, JPG, WEBP tối đa 5 MB), Website, Mã số thuế, Địa chỉ, Số điện thoại liên hệ.",
+      "systemData": "Giữ cố định email gốc của tài khoản Client (BR-14) và tự động đồng bộ hồ sơ tới các Workspace liên kết (BR-13).",
+      "output": "Cập nhật hồ sơ thương hiệu thành công và hiển thị thông báo MSG21."
+    },
+    "businessRules": [
+      {
+        "code": "BR-12",
+        "text": "Ảnh đại diện (Avatar) và ảnh bìa tải lên ở Hồ sơ cá nhân, Hồ sơ Client, Agency hoặc Workspace phải có định dạng PNG, JPG hoặc WEBP và dung lượng tối đa 5 MB."
+      },
+      {
+        "code": "BR-13",
+        "text": "Mỗi tài khoản Client có một Hồ sơ thương hiệu riêng (gồm tên nhãn hàng, ngành nghề, logo, website, thông tin liên hệ) có thể dùng chung cho nhiều Workspace khác nhau mà không cần phải nhập lại."
+      },
+      {
+        "code": "BR-14",
+        "text": "Chỉ chính tài khoản Client đó hoặc Manager trong Workspace liên kết mới được xem và cập nhật Hồ sơ thương hiệu của Client, và không được phép thay đổi email gốc của tài khoản Client."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-12",
+      "BR-13",
+      "BR-14"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG21",
+      "MSG22"
+    ],
+    "validations": [
+      "Required field missing (brandName or industry left blank) → Display: MSG02.",
+      "Invalid Website URL, phone format, or text length exceeded → Display: MSG03.",
+      "Uploaded brand logo violates PNG/JPG/WEBP format or 5 MB size limit (BR-12) → Display: MSG22.",
+      "Unauthorized caller attempts to modify the Client Profile (BR-14) → Display: MSG07."
+    ],
+    "normalFlow": [
+      "Client hoặc Manager mở biểu mẫu chỉnh sửa trên màn hình Hồ sơ thương hiệu Client.",
+      "Người dùng sửa Tên thương hiệu, Ngành nghề, Thông tin liên hệ hoặc tải lên Logo mới rồi bấm Lưu.",
+      "Hệ thống kiểm tra quyền hạn (BR-14), dữ liệu bắt buộc và định dạng ảnh Logo (BR-12).",
+      "Hệ thống lưu cập nhật, tự động đồng bộ sang các Workspace mà Client tham gia (BR-13) và báo thành công (MSG21)."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên thương hiệu hoặc Ngành nghề: Hệ thống báo lỗi MSG02 dưới ô nhập.",
+      "Nếu tệp Logo tải lên sai định dạng hoặc vượt quá 5 MB: Hệ thống báo lỗi MSG22."
+    ],
+    "postConditions": [
+      "The reusable Client Profile is updated and immediately available to all Workspaces linked to that Client.",
+      "The Client's primary account email address remains immutable."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-22.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_3_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png"
+  }
+]

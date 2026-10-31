@@ -1,0 +1,960 @@
+[
+  {
+    "code": "3.5.1",
+    "title": "Create Media Package",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-040",
+    "ucName": "Create Media Package",
+    "ucDescription": "(3.5.1) Cho phép Owner thiết lập các gói dịch vụ truyền thông mẫu hoặc gói tùy chỉnh (quy định rõ thời gian triển khai, mức ngân sách, số lượng bài đăng cam kết và chỉ tiêu KPI) để làm cơ sở chào dịch vụ và làm việc với Client.",
+    "figureId": "r3-fig-49",
+    "figureNumber": 49,
+    "figureCaption": "Figure 49 - Create Media Package",
+    "sequenceFigureId": "seq-3.5.1",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Owner"
+    ],
+    "trigger": "Khi Owner mở màn hình Quản lý Gói truyền thông (/media-package/agency), bấm Tạo gói mới, điền thông số gói và bấm Lưu.",
+    "purpose": "Cho phép Owner thiết lập các gói dịch vụ truyền thông mẫu hoặc gói tùy chỉnh (quy định rõ thời gian triển khai, mức ngân sách, số lượng bài đăng cam kết và chỉ tiêu KPI) để làm cơ sở chào dịch vụ và làm việc với Client.",
+    "viSummary": "Cho phép Owner thiết lập các gói dịch vụ truyền thông mẫu hoặc gói tùy chỉnh (quy định rõ thời gian triển khai, mức ngân sách, số lượng bài đăng cam kết và chỉ tiêu KPI) để làm cơ sở chào dịch vụ và làm việc với Client.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Quản lý Gói truyền thông gồm biểu mẫu tạo gói: Tên gói dịch vụ, Loại gói (Theo thời gian / Theo ngân sách / Trọn gói theo KPI), Thời lượng (ví dụ 2 tuần, 1 tháng), Chi phí dự kiến, Danh sách số lượng bài đăng theo từng nền tảng, Chỉ tiêu KPI cam kết và nút Lưu gói.",
+    "dataProcessing": "Hệ thống kiểm tra quyền Owner (BR-15), kiểm tra các thông tin bắt buộc (tên gói, thời lượng, hạng mục bàn giao và mức giá >= 0), sau đó lưu gói dịch vụ vào danh mục của Agency để sẵn sàng gắn vào các dự án khách hàng (BR-25).",
+    "dataSpecs": {
+      "inputRequired": "Tên gói truyền thông, Phân loại gói, Thời lượng triển khai, Danh sách số lượng bài đăng cam kết và Mức giá dự kiến.",
+      "inputOptional": "Mô tả chi tiết quyền lợi, chỉ tiêu KPI cam kết (lượt tiếp cận, tương tác) và trạng thái hiển thị mẫu.",
+      "systemData": "Mã gói dịch vụ truyền thông, người tạo (Owner) và trạng thái kích hoạt trong danh mục Agency (BR-25).",
+      "output": "Tạo gói dịch vụ truyền thông thành công và hiển thị thông báo MSG31."
+    },
+    "businessRules": [
+      {
+        "code": "BR-15",
+        "text": "Người tạo ra một Agency sẽ giữ vai trò Owner duy nhất của Agency đó và có toàn quyền quản lý các Workspace, nhân sự cũng như thanh toán gói cước của công ty."
+      },
+      {
+        "code": "BR-25",
+        "text": "Gói dịch vụ truyền thông (Media Package) gồm các gói mẫu có sẵn hoặc gói do Owner tự thiết lập (quy định rõ thời gian, số lượng bài đăng, KPI và chi phí). Chỉ Owner mới có quyền tạo mới hoặc bật/tắt các gói mẫu của Agency."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-15",
+      "BR-25"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG31"
+    ],
+    "validations": [
+      "Caller is not the Owner (BR-25) → Display: MSG07.",
+      "Required field missing (packageName, durationDays, basePrice, or offeringsList empty) → Display: MSG02.",
+      "Duration or price is negative or exceeds valid numeric bounds → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Owner mở màn hình Danh mục Gói truyền thông (/media-package/agency) và bấm Tạo gói dịch vụ mới.",
+      "Owner nhập Tên gói, chọn Loại gói, Thời lượng triển khai, Số lượng bài đăng cam kết trên từng kênh, KPI và Đơn giá.",
+      "Owner bấm nút Lưu gói dịch vụ.",
+      "Hệ thống kiểm tra quyền Owner (BR-15) cùng dữ liệu đầu vào, lưu gói dịch vụ mới (BR-25) và hiển thị thông báo MSG31."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tên gói, hạng mục bàn giao hoặc nhập mức giá âm: Hệ thống báo lỗi dưới ô nhập (MSG02, MSG03)."
+    ],
+    "postConditions": [
+      "A new custom MediaPackage is stored in the Agency catalog and available for selection and negotiation in Workspaces (3.5.2, 3.5.3).",
+      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-49.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_1.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.2",
+    "title": "View Template Media Package",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-041",
+    "ucName": "View Template Media Package",
+    "ucDescription": "(3.5.2) Cho phép Owner, Manager và Client xem danh sách và chi tiết các gói dịch vụ truyền thông mẫu (chia theo thời lượng, theo ngân sách hoặc trọn gói theo KPI) để dễ dàng chọn gói phù hợp cho dự án.",
+    "figureId": "r3-fig-50",
+    "figureNumber": 50,
+    "figureCaption": "Figure 50 - View Template Media Package",
+    "sequenceFigureId": "seq-3.5.2",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Owner, Manager hoặc Client mở màn hình Danh mục Gói truyền thông mẫu (/media-package).",
+    "purpose": "Cho phép Owner, Manager và Client xem danh sách và chi tiết các gói dịch vụ truyền thông mẫu (chia theo thời lượng, theo ngân sách hoặc trọn gói theo KPI) để dễ dàng chọn gói phù hợp cho dự án.",
+    "viSummary": "Cho phép Owner, Manager và Client xem danh sách và chi tiết các gói dịch vụ truyền thông mẫu (chia theo thời lượng, theo ngân sách hoặc trọn gói theo KPI) để dễ dàng chọn gói phù hợp cho dự án.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Danh mục Gói truyền thông (/media-package) hiển thị các thẻ gói dịch vụ phân theo 3 nhóm (Theo thời gian, Theo ngân sách, Trọn gói KPI), bảng so sánh số lượng bài đăng, thời lượng, chi phí và nút Chọn gói này để đàm phán.",
+    "dataProcessing": "Hệ thống kiểm tra quyền truy cập của người dùng trong Workspace/Agency (BR-20), sau đó tải danh sách các gói mẫu của hệ thống và các gói riêng của Agency (BR-25) để hiển thị.",
+    "dataSpecs": {
+      "inputRequired": "Mở màn hình Danh mục Gói truyền thông mẫu.",
+      "inputOptional": "Bộ lọc theo loại gói (Thời gian / Ngân sách / KPI) hoặc tìm theo từ khóa.",
+      "systemData": "Danh sách gói truyền thông mẫu, cơ cấu hạng mục bàn giao và bảng giá tham khảo (BR-25).",
+      "output": "Hiển thị danh sách các gói truyền thông mẫu và chi tiết quyền lợi của từng gói."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-25",
+        "text": "Gói dịch vụ truyền thông (Media Package) gồm các gói mẫu có sẵn hoặc gói do Owner tự thiết lập (quy định rõ thời gian, số lượng bài đăng, KPI và chi phí). Chỉ Owner mới có quyền tạo mới hoặc bật/tắt các gói mẫu của Agency."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-25"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Owner, Manager, Client permission (BR-20) → Display: MSG07.",
+      "No Media Packages available for the selected filter → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Owner, Manager hoặc Client mở màn hình Gói truyền thông (/media-package) trong dự án.",
+      "Hệ thống tải danh sách các gói dịch vụ mẫu đang mở của hệ thống và của Agency (BR-25).",
+      "Người dùng lọc theo nhu cầu (thời gian, ngân sách hoặc KPI) và bấm vào từng gói để xem chi tiết số lượng bài viết cam kết.",
+      "Người dùng có thể chọn một gói mẫu để bắt đầu bước trao đổi và điều chỉnh cho dự án (3.5.3)."
+    ],
+    "abnormalCases": [
+      "Nếu không có gói mẫu nào khớp với bộ lọc tìm kiếm: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The viewer inspects complete Media Package specifications and negotiation history without modifying stored terms.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-50.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_2.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.3",
+    "title": "Request Media Package",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-042",
+    "ucName": "Request Media Package",
+    "ucDescription": "(3.5.3) Cho phép Client và đại diện Agency (Manager/Owner) trao đổi, đề xuất điều chỉnh các điều khoản của gói truyền thông (như số lượng bài viết, thời gian chạy, chi phí) qua từng vòng đàm phán cho đến khi hai bên thống nhất.",
+    "figureId": "r3-fig-51",
+    "figureNumber": 51,
+    "figureCaption": "Figure 51 - Request Media Package",
+    "sequenceFigureId": "seq-3.5.3",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager chọn một gói truyền thông trong dự án (/media-package), chỉnh sửa đề xuất hoặc gửi phản hồi đàm phán và bấm Gửi đề xuất.",
+    "purpose": "Cho phép Client và đại diện Agency (Manager/Owner) trao đổi, đề xuất điều chỉnh các điều khoản của gói truyền thông (như số lượng bài viết, thời gian chạy, chi phí) qua từng vòng đàm phán cho đến khi hai bên thống nhất.",
+    "viSummary": "Cho phép Client và đại diện Agency (Manager/Owner) trao đổi, đề xuất điều chỉnh các điều khoản của gói truyền thông (như số lượng bài viết, thời gian chạy, chi phí) qua từng vòng đàm phán cho đến khi hai bên thống nhất.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Đàm phán Gói truyền thông gồm bảng chỉnh sửa số lượng ấn phẩm/bài đăng, thời lượng, ngân sách đề xuất, khung ghi chú phản hồi giữa Client và Agency, lịch sử các lần đề xuất và nút Gửi đề xuất chỉnh sửa.",
+    "dataProcessing": "Hệ thống kiểm tra gói dịch vụ của dự án chưa bị khóa phê duyệt cuối cùng (BR-26), lưu lại bản đề xuất điều chỉnh mới kèm nội dung trao đổi của Client/Manager và gửi thông báo cho bên còn lại xem xét.",
+    "dataSpecs": {
+      "inputRequired": "Nội dung đề xuất điều chỉnh (số lượng bài đăng, thời lượng, mức ngân sách hoặc ghi chú điều khoản).",
+      "inputOptional": "Tệp tài liệu báo giá hoặc yêu cầu đính kèm.",
+      "systemData": "Lưu lịch sử vòng đàm phán, chuyển trạng thái gói sang Đang đàm phán (NEGOTIATING - BR-26) và thông báo cho đối tác.",
+      "output": "Ghi nhận đề xuất điều chỉnh gói truyền thông thành công và hiển thị thông báo MSG31."
+    },
+    "businessRules": [
+      {
+        "code": "BR-25",
+        "text": "Gói dịch vụ truyền thông (Media Package) gồm các gói mẫu có sẵn hoặc gói do Owner tự thiết lập (quy định rõ thời gian, số lượng bài đăng, KPI và chi phí). Chỉ Owner mới có quyền tạo mới hoặc bật/tắt các gói mẫu của Agency."
+      },
+      {
+        "code": "BR-26",
+        "text": "Trong mỗi dự án, Client và đại diện Agency (Owner/Manager) có thể trao đổi, đề xuất chỉnh sửa các điều khoản của gói truyền thông (3.5.3) cho đến khi cả hai bên cùng bấm phê duyệt chốt gói (3.5.4)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-25",
+      "BR-26"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG31",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-25) → Display: MSG07.",
+      "Required negotiation terms (proposedPrice, proposedDurationDays, or deliverables) missing → Display: MSG02.",
+      "Numeric values are negative or out of bounds → Display: MSG03.",
+      "Workspace Media Package is already finalized and approved (BR-26) → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Trên màn hình Gói truyền thông của Workspace (/media-package), Client hoặc Manager chọn gói dịch vụ và nhập các đề xuất thay đổi (về số lượng bài, thời hạn hoặc chi phí).",
+      "Người dùng nhập ghi chú trao đổi và bấm nút Gửi đề xuất.",
+      "Hệ thống kiểm tra gói chưa bị khóa duyệt (BR-26) và các thông số nhập vào hợp lệ.",
+      "Hệ thống lưu phiên bản đề xuất mới vào lịch sử đàm phán, gửi thông báo cho phía bên kia và hiển thị thông báo MSG31."
+    ],
+    "abnormalCases": [
+      "Nếu gói truyền thông này đã được hai bên chốt duyệt (APPROVED) trước đó: Hệ thống chặn chỉnh sửa và báo gói đã khóa (MSG36)."
+    ],
+    "postConditions": [
+      "The latest negotiated Media Package proposal and version diff are persisted and awaiting review/approval (3.5.4) by the counterpart.",
+      "Role-based access isolation (BR-25) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-51.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_3.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.4",
+    "title": "Approve Media Package",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-043",
+    "ucName": "Approve Media Package",
+    "ucDescription": "(3.5.4) Xác nhận phê duyệt chốt Gói dịch vụ truyền thông (Approve Media Package) khi cả hai bên (Agency và Client) đã thống nhất hoàn toàn về chi phí, thời gian và số lượng bài đăng cam kết.",
+    "figureId": "r3-fig-52",
+    "figureNumber": 52,
+    "figureCaption": "Figure 52 - Approve Media Package",
+    "sequenceFigureId": "seq-3.5.4",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager và Client bấm nút Phê duyệt chốt gói (Approve Package) trên màn hình Gói truyền thông của dự án (/media-package).",
+    "purpose": "Xác nhận phê duyệt chốt Gói dịch vụ truyền thông (Approve Media Package) khi cả hai bên (Agency và Client) đã thống nhất hoàn toàn về chi phí, thời gian và số lượng bài đăng cam kết.",
+    "viSummary": "Xác nhận phê duyệt chốt Gói dịch vụ truyền thông (Approve Media Package) khi cả hai bên (Agency và Client) đã thống nhất hoàn toàn về chi phí, thời gian và số lượng bài đăng cam kết.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Bảng tổng kết điều khoản cuối cùng của Gói truyền thông kèm trạng thái xác nhận của 2 bên (Phía Agency & Phía Client) và nút Phê duyệt chốt gói.",
+    "dataProcessing": "Hệ thống ghi nhận xác nhận đồng ý của từng bên (Manager/Owner và Client). Khi cả hai bên đều đã bấm xác nhận đồng thuận, hệ thống chuyển trạng thái gói sang Đã phê duyệt (APPROVED - BR-26) và khóa nội dung gói để dùng làm căn cứ lập Kế hoạch Chiến dịch (3.5.5).",
+    "dataSpecs": {
+      "inputRequired": "Xác nhận phê duyệt từ phía Agency (Manager/Owner) và phía Khách hàng (Client).",
+      "inputOptional": "Ghi chú xác nhận chốt gói.",
+      "systemData": "Trạng thái xác nhận của 2 bên, thời điểm phê duyệt và khóa gói ở trạng thái APPROVED (BR-26, BR-27).",
+      "output": "Phê duyệt chốt gói truyền thông thành công (MSG31), mở khóa bước lập Kế hoạch Chiến dịch chi tiết."
+    },
+    "businessRules": [
+      {
+        "code": "BR-26",
+        "text": "Trong mỗi dự án, Client và đại diện Agency (Owner/Manager) có thể trao đổi, đề xuất chỉnh sửa các điều khoản của gói truyền thông (3.5.3) cho đến khi cả hai bên cùng bấm phê duyệt chốt gói (3.5.4)."
+      },
+      {
+        "code": "BR-27",
+        "text": "Kế hoạch Chiến dịch Truyền thông (Media Campaign - 3.5.5) phải được lập dựa trên một Gói dịch vụ đã được duyệt, liệt kê cụ thể các bài viết dự kiến, kênh đăng và lịch trình thực hiện cho nhãn hàng."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-26",
+      "BR-27"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG31",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is neither the Workspace Client nor an authorized Manager/Owner → Display: MSG07.",
+      "Package terms were modified concurrently or package is already approved → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Client và Manager xem lại bản điều khoản cuối cùng của Gói truyền thông trong dự án (/media-package).",
+      "Người dùng bấm nút Phê duyệt chốt gói và xác nhận đồng ý.",
+      "Hệ thống kiểm tra và ghi nhận chữ ký xác nhận của bên vừa bấm (BR-26).",
+      "Khi cả hai bên (Agency và Client) đều đã xác nhận, hệ thống chuyển gói sang trạng thái Đã phê duyệt (APPROVED) và hiển thị thông báo MSG31."
+    ],
+    "abnormalCases": [
+      "Nếu gói đã được duyệt khóa từ trước hoặc không ở trạng thái chờ duyệt: Hệ thống hiển thị thông báo MSG36."
+    ],
+    "postConditions": [
+      "The Workspace Media Package is in APPROVED status and serves as the locked baseline for creating a Media Campaign (3.5.5).",
+      "Role-based access isolation (BR-26) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-52.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_4.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.5",
+    "title": "Create Media Campaign",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-044",
+    "ucName": "Create Media Campaign",
+    "ucDescription": "(3.5.5) Cho phép Manager lập Kế hoạch Chiến dịch Truyền thông chi tiết (Media Campaign) dựa trên gói dịch vụ đã chốt, liệt kê cụ thể mục tiêu, thời gian chạy và danh sách từng bài viết dự kiến cho nhãn hàng.",
+    "figureId": "r3-fig-53",
+    "figureNumber": 53,
+    "figureCaption": "Figure 53 - Create Media Campaign",
+    "sequenceFigureId": "seq-3.5.5",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager"
+    ],
+    "trigger": "Khi Manager mở màn hình Chiến dịch Truyền thông (/workspace/:id/campaign), bấm Tạo chiến dịch mới, điền kế hoạch bài viết và bấm Lưu.",
+    "purpose": "Cho phép Manager lập Kế hoạch Chiến dịch Truyền thông chi tiết (Media Campaign) dựa trên gói dịch vụ đã chốt, liệt kê cụ thể mục tiêu, thời gian chạy và danh sách từng bài viết dự kiến cho nhãn hàng.",
+    "viSummary": "Cho phép Manager lập Kế hoạch Chiến dịch Truyền thông chi tiết (Media Campaign) dựa trên gói dịch vụ đã chốt, liệt kê cụ thể mục tiêu, thời gian chạy và danh sách từng bài viết dự kiến cho nhãn hàng.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Tạo Chiến dịch Truyền thông (/workspace/:id/campaign) gồm ô chọn Gói truyền thông đã duyệt, nhập Tên chiến dịch, Mục tiêu, Ngày bắt đầu – Ngày kết thúc, cùng bảng thêm danh sách các hạng mục bài viết dự kiến (Tiêu đề, Kênh đăng, Định dạng, Ngày dự kiến) và nút Lưu kế hoạch.",
+    "dataProcessing": "Hệ thống kiểm tra dự án đã có Gói truyền thông được duyệt làm cơ sở (BR-27), kiểm tra mốc thời gian bắt đầu/kết thúc hợp lệ theo múi giờ của Workspace (BR-22), tạo bản ghi Chiến dịch kèm phiên bản đầu tiên (BR-28) và gửi thông báo để Client vào xem xét.",
+    "dataSpecs": {
+      "inputRequired": "Gói truyền thông gốc đã duyệt, Tên chiến dịch, Mục tiêu, Ngày bắt đầu – Ngày kết thúc và ít nhất 1 hạng mục bài viết dự kiến.",
+      "inputOptional": "Ghi chú định hướng nội dung và tài liệu đính kèm.",
+      "systemData": "Mã chiến dịch, phiên bản kế hoạch v1 (BR-28), quy đổi thời gian theo múi giờ Workspace (BR-22) và trạng thái Chờ duyệt (PENDING_APPROVAL).",
+      "output": "Tạo bản Kế hoạch Chiến dịch Truyền thông thành công và hiển thị thông báo MSG32."
+    },
+    "businessRules": [
+      {
+        "code": "BR-22",
+        "text": "Mỗi Workspace đều có cài đặt Múi giờ chuẩn riêng (ví dụ UTC+7). Mọi mốc thời gian chiến dịch, hạn chót công việc và giờ hẹn đăng bài trong Workspace đều được tính theo múi giờ này."
+      },
+      {
+        "code": "BR-27",
+        "text": "Kế hoạch Chiến dịch Truyền thông (Media Campaign - 3.5.5) phải được lập dựa trên một Gói dịch vụ đã được duyệt, liệt kê cụ thể các bài viết dự kiến, kênh đăng và lịch trình thực hiện cho nhãn hàng."
+      },
+      {
+        "code": "BR-28",
+        "text": "Mỗi lần chỉnh sửa hoặc góp ý trên Kế hoạch Chiến dịch (3.5.7) đều được hệ thống lưu lại thành một phiên bản lịch sử để hai bên dễ dàng đối chiếu trước khi duyệt chính thức."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-22",
+      "BR-27",
+      "BR-28"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG32",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Manager permission (BR-22) → Display: MSG07.",
+      "Workspace does not yet have an APPROVED Media Package (BR-27) → Display: MSG36.",
+      "Required field missing (campaignTitle, startDate, endDate, or workItemsList empty) → Display: MSG02.",
+      "End Date is earlier than Start Date → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Manager mở màn hình Chiến dịch Truyền thông (/workspace/:id/campaign) và chọn Tạo chiến dịch từ gói dịch vụ đã duyệt.",
+      "Manager nhập Tên chiến dịch, Mục tiêu, Khung thời gian chạy và lên danh sách các bài viết dự kiến (tiêu đề, nền tảng đăng, lịch dự kiến).",
+      "Manager bấm nút Lưu và gửi duyệt.",
+      "Hệ thống kiểm tra điều kiện gói dịch vụ (BR-27), lưu bản kế hoạch phiên bản đầu tiên (BR-28) và hiển thị thông báo MSG32."
+    ],
+    "abnormalCases": [
+      "Nếu dự án chưa có Gói truyền thông nào ở trạng thái Đã phê duyệt (APPROVED): Hệ thống chặn tạo chiến dịch và nhắc cần chốt gói dịch vụ trước (BR-27, MSG36).",
+      "Nếu bỏ trống Tên chiến dịch hoặc đặt ngày kết thúc sớm hơn ngày bắt đầu: Hệ thống báo lỗi MSG02 hoặc MSG03."
+    ],
+    "postConditions": [
+      "A MediaCampaign record and its version 1 snapshot exist in the Workspace and are ready for stakeholder review (3.5.6, 3.5.8).",
+      "Role-based access isolation (BR-22) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-53.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_5.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.6",
+    "title": "View Media Campaign",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-045",
+    "ucName": "View Media Campaign",
+    "ucDescription": "(3.5.6) Cho phép Manager, Creator và Client xem chi tiết bản Kế hoạch Chiến dịch Truyền thông, bao gồm mục tiêu, tiến độ tổng thể, danh sách toàn bộ các bài viết dự kiến và lịch sử các lần chỉnh sửa.",
+    "figureId": "r3-fig-54",
+    "figureNumber": 54,
+    "figureCaption": "Figure 54 - View Media Campaign",
+    "sequenceFigureId": "seq-3.5.6",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "trigger": "Khi thành viên trong dự án mở màn hình Chi tiết Chiến dịch Truyền thông (/workspace/:id/campaign).",
+    "purpose": "Cho phép Manager, Creator và Client xem chi tiết bản Kế hoạch Chiến dịch Truyền thông, bao gồm mục tiêu, tiến độ tổng thể, danh sách toàn bộ các bài viết dự kiến và lịch sử các lần chỉnh sửa.",
+    "viSummary": "Cho phép Manager, Creator và Client xem chi tiết bản Kế hoạch Chiến dịch Truyền thông, bao gồm mục tiêu, tiến độ tổng thể, danh sách toàn bộ các bài viết dự kiến và lịch sử các lần chỉnh sửa.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Chi tiết Chiến dịch hiển thị thông tin tổng quan, trạng thái hiện tại, danh sách các hạng mục bài viết dự kiến (kèm kênh đăng và lịch trình), lịch sử các phiên bản cập nhật và khu vực nhận xét giữa Agency với Client.",
+    "dataProcessing": "Hệ thống kiểm tra người xem là thành viên của Workspace (BR-20), sau đó tải thông tin chiến dịch, danh sách các hạng mục công việc và lịch sử phiên bản (BR-27, BR-28) lên màn hình.",
+    "dataSpecs": {
+      "inputRequired": "Chọn Chiến dịch truyền thông cần xem trong Workspace.",
+      "inputOptional": "Chọn xem lại các phiên bản trước đó trong lịch sử chỉnh sửa.",
+      "systemData": "Thông tin chiến dịch, gói truyền thông gốc, danh sách hạng mục và lịch sử phiên bản (BR-28).",
+      "output": "Hiển thị đầy đủ nội dung Kế hoạch Chiến dịch Truyền thông."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-27",
+        "text": "Kế hoạch Chiến dịch Truyền thông (Media Campaign - 3.5.5) phải được lập dựa trên một Gói dịch vụ đã được duyệt, liệt kê cụ thể các bài viết dự kiến, kênh đăng và lịch trình thực hiện cho nhãn hàng."
+      },
+      {
+        "code": "BR-28",
+        "text": "Mỗi lần chỉnh sửa hoặc góp ý trên Kế hoạch Chiến dịch (3.5.7) đều được hệ thống lưu lại thành một phiên bản lịch sử để hai bên dễ dàng đối chiếu trước khi duyệt chính thức."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-27",
+      "BR-28"
+    ],
+    "linkedMsgCodes": [
+      "MSG01",
+      "MSG02",
+      "MSG03",
+      "MSG07"
+    ],
+    "validations": [
+      "Caller is not authorized to access the Workspace (BR-20) → Display: MSG07.",
+      "No Media Campaign exists yet in the Workspace → Display: MSG01.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager, Creator hoặc Client mở mục Chiến dịch Truyền thông (/workspace/:id/campaign) trong Workspace.",
+      "Hệ thống kiểm tra quyền truy cập của người dùng trong dự án (BR-20).",
+      "Hệ thống tải chi tiết kế hoạch chiến dịch, danh sách đầu mục bài viết và lịch sử trao đổi (BR-27, BR-28).",
+      "Màn hình hiển thị toàn bộ thông tin chiến dịch để người dùng theo dõi hoặc đóng góp ý kiến."
+    ],
+    "abnormalCases": [
+      "Nếu dự án chưa có chiến dịch nào hoặc không khớp bộ lọc: Hệ thống hiển thị thông báo MSG01."
+    ],
+    "postConditions": [
+      "The viewer inspects the complete Media Campaign plan and version history without altering stored data.",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-54.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_6.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.7",
+    "title": "Update Media Campaign",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-046",
+    "ucName": "Update Media Campaign",
+    "ucDescription": "(3.5.7) Cho phép Manager và Client chỉnh sửa hoặc gửi góp ý điều chỉnh bản Kế hoạch Chiến dịch Truyền thông trước khi phê duyệt chính thức. Mỗi lần cập nhật đều được lưu lại thành một phiên bản mới để dễ đối chiếu.",
+    "figureId": "r3-fig-55",
+    "figureNumber": 55,
+    "figureCaption": "Figure 55 - Update Media Campaign",
+    "sequenceFigureId": "seq-3.5.7",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager chỉnh sửa các hạng mục bài viết/lịch trình hoặc khi Client gửi nhận xét yêu cầu điều chỉnh trên màn hình Chiến dịch (/workspace/:id/campaign) và bấm Lưu cập nhật.",
+    "purpose": "Cho phép Manager và Client chỉnh sửa hoặc gửi góp ý điều chỉnh bản Kế hoạch Chiến dịch Truyền thông trước khi phê duyệt chính thức. Mỗi lần cập nhật đều được lưu lại thành một phiên bản mới để dễ đối chiếu.",
+    "viSummary": "Cho phép Manager và Client chỉnh sửa hoặc gửi góp ý điều chỉnh bản Kế hoạch Chiến dịch Truyền thông trước khi phê duyệt chính thức. Mỗi lần cập nhật đều được lưu lại thành một phiên bản mới để dễ đối chiếu.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Biểu mẫu cập nhật Chiến dịch gồm danh sách các hạng mục bài viết (cho phép thêm, sửa, xóa dòng hạng mục), ô điều chỉnh thời gian, khung nhập góp ý của Client và nút Lưu phiên bản mới.",
+    "dataProcessing": "Hệ thống kiểm tra chiến dịch vẫn đang ở trạng thái Bản nháp (DRAFT) hoặc Chờ duyệt (PENDING_APPROVAL - BR-27, BR-30), lưu lại các thay đổi thành một phiên bản lịch sử mới (BR-28) và gửi thông báo cập nhật cho các bên liên quan.",
+    "dataSpecs": {
+      "inputRequired": "Các nội dung chỉnh sửa trên kế hoạch chiến dịch hoặc nội dung góp ý điều chỉnh.",
+      "inputOptional": "Ghi chú tóm tắt những điểm vừa thay đổi trong phiên bản mới.",
+      "systemData": "Tạo bản chụp phiên bản mới (Version snapshot - BR-28), người cập nhật và thời gian sửa.",
+      "output": "Lưu cập nhật kế hoạch chiến dịch thành công và hiển thị thông báo MSG32."
+    },
+    "businessRules": [
+      {
+        "code": "BR-27",
+        "text": "Kế hoạch Chiến dịch Truyền thông (Media Campaign - 3.5.5) phải được lập dựa trên một Gói dịch vụ đã được duyệt, liệt kê cụ thể các bài viết dự kiến, kênh đăng và lịch trình thực hiện cho nhãn hàng."
+      },
+      {
+        "code": "BR-28",
+        "text": "Mỗi lần chỉnh sửa hoặc góp ý trên Kế hoạch Chiến dịch (3.5.7) đều được hệ thống lưu lại thành một phiên bản lịch sử để hai bên dễ dàng đối chiếu trước khi duyệt chính thức."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-27",
+      "BR-28",
+      "BR-29",
+      "BR-30"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG32",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-27) → Display: MSG07.",
+      "Required campaign fields or feedback text left blank → Display: MSG02.",
+      "Campaign is already deployed (IN_PROGRESS) or COMPLETED (BR-29, BR-30) → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Manager hoặc Client mở bản Kế hoạch Chiến dịch đang chờ duyệt (/workspace/:id/campaign).",
+      "Người dùng chỉnh sửa danh sách bài viết dự kiến, đổi lịch đăng hoặc nhập nhận xét góp ý rồi bấm Lưu cập nhật.",
+      "Hệ thống kiểm tra chiến dịch chưa bị đóng (BR-30) và dữ liệu sửa đổi hợp lệ.",
+      "Hệ thống lưu thành một phiên bản lịch sử mới (BR-28) và hiển thị thông báo MSG32."
+    ],
+    "abnormalCases": [
+      "Nếu chiến dịch đã hoàn tất và đóng lại (COMPLETED): Hệ thống không cho phép chỉnh sửa thêm và báo MSG36."
+    ],
+    "postConditions": [
+      "A new auditable MediaCampaign version snapshot is persisted (BR-28) and awaits bilateral approval (3.5.8).",
+      "Role-based access isolation (BR-27) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-55.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_7.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.8",
+    "title": "Approve Media Campaign",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-047",
+    "ucName": "Approve Media Campaign",
+    "ucDescription": "(3.5.8) Phê duyệt và kích hoạt Chiến dịch Truyền thông. Ngay khi cả Manager và Client cùng bấm duyệt, hệ thống sẽ chuyển chiến dịch sang Đang triển khai và tự động tạo toàn bộ các hạng mục bài viết thành các đầu việc (Task) trong bảng công việc của Workspace.",
+    "figureId": "r3-fig-56",
+    "figureNumber": 56,
+    "figureCaption": "Figure 56 - Approve Media Campaign",
+    "sequenceFigureId": "seq-3.5.8",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager và Client bấm nút Phê duyệt Chiến dịch (Approve Campaign) trên màn hình Chiến dịch Truyền thông (/workspace/:id/campaign).",
+    "purpose": "Phê duyệt và kích hoạt Chiến dịch Truyền thông. Ngay khi cả Manager và Client cùng bấm duyệt, hệ thống sẽ chuyển chiến dịch sang Đang triển khai và tự động tạo toàn bộ các hạng mục bài viết thành các đầu việc (Task) trong bảng công việc của Workspace.",
+    "viSummary": "Phê duyệt và kích hoạt Chiến dịch Truyền thông. Ngay khi cả Manager và Client cùng bấm duyệt, hệ thống sẽ chuyển chiến dịch sang Đang triển khai và tự động tạo toàn bộ các hạng mục bài viết thành các đầu việc (Task) trong bảng công việc của Workspace.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Khu vực Phê duyệt Chiến dịch hiển thị bản kế hoạch chốt, trạng thái đồng thuận của Manager và Client, cùng nút Phê duyệt & Triển khai công việc.",
+    "dataProcessing": "Hệ thống kiểm tra xác nhận đồng ý của cả Manager và Client (BR-29). Ngay khi đủ sự đồng thuận của 2 bên, hệ thống chuyển trạng thái chiến dịch sang Đang chạy (IN_PROGRESS) và tự động tạo hàng loạt các Task tương ứng vào cột Chờ xử lý (BACKLOG) của Workspace để đội ngũ bắt đầu làm việc.",
+    "dataSpecs": {
+      "inputRequired": "Xác nhận phê duyệt từ cả Manager và Client đối với bản kế hoạch chiến dịch hiện tại.",
+      "inputOptional": "Ghi chú khi phê duyệt.",
+      "systemData": "Chuyển trạng thái chiến dịch sang IN_PROGRESS và tự động khởi tạo danh sách Task trong Backlog của Workspace (BR-29).",
+      "output": "Chiến dịch chính thức kích hoạt, toàn bộ đầu việc được đẩy vào bảng Task của Workspace và hiển thị thông báo MSG33."
+    },
+    "businessRules": [
+      {
+        "code": "BR-28",
+        "text": "Mỗi lần chỉnh sửa hoặc góp ý trên Kế hoạch Chiến dịch (3.5.7) đều được hệ thống lưu lại thành một phiên bản lịch sử để hai bên dễ dàng đối chiếu trước khi duyệt chính thức."
+      },
+      {
+        "code": "BR-29",
+        "text": "Kế hoạch Chiến dịch chỉ chính thức bắt đầu khi cả Manager và Client cùng xác nhận phê duyệt (3.5.8). Ngay khi duyệt xong, hệ thống tự động tạo các đầu việc (Task) tương ứng vào danh sách chờ (Backlog) của Workspace."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-28",
+      "BR-29"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG33",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is neither the Workspace Client nor the Manager/Owner → Display: MSG07.",
+      "Campaign has already been deployed or contains zero work items → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager và Client kiểm tra lại danh sách các bài viết dự kiến trên màn hình Chiến dịch (/workspace/:id/campaign).",
+      "Cả hai bên bấm nút Phê duyệt Chiến dịch.",
+      "Hệ thống ghi nhận sự đồng thuận của 2 bên và chuyển trạng thái chiến dịch sang Đang triển khai (IN_PROGRESS - BR-29).",
+      "Hệ thống tự động tạo các đầu việc (Task) tương ứng vào danh sách Backlog của Workspace và hiển thị thông báo MSG33."
+    ],
+    "abnormalCases": [
+      "Nếu chiến dịch đã được duyệt kích hoạt từ trước hoặc đã kết thúc: Hệ thống chặn thao tác lặp lại và báo MSG36."
+    ],
+    "postConditions": [
+      "The Media Campaign status is IN_PROGRESS.",
+      "All planned campaign deliverables exist as initial BACKLOG Tasks in the Workspace awaiting detailed specification (3.6.1) and Creator assignment (3.6.2)."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-56.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_8.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.9",
+    "title": "Complete Media Campaign",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-048",
+    "ucName": "Complete Media Campaign",
+    "ucDescription": "(3.5.9) Cho phép Manager nghiệm thu và đánh dấu hoàn tất Chiến dịch Truyền thông sau khi đã bàn giao xong các hạng mục. Khi đóng chiến dịch, các yêu cầu phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại.",
+    "figureId": "r3-fig-57",
+    "figureNumber": 57,
+    "figureCaption": "Figure 57 - Complete Media Campaign",
+    "sequenceFigureId": "seq-3.5.9",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager"
+    ],
+    "trigger": "Khi Manager bấm nút Hoàn tất Chiến dịch (Complete Campaign) trên màn hình Chiến dịch Truyền thông (/workspace/:id/campaign) và xác nhận.",
+    "purpose": "Cho phép Manager nghiệm thu và đánh dấu hoàn tất Chiến dịch Truyền thông sau khi đã bàn giao xong các hạng mục. Khi đóng chiến dịch, các yêu cầu phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại.",
+    "viSummary": "Cho phép Manager nghiệm thu và đánh dấu hoàn tất Chiến dịch Truyền thông sau khi đã bàn giao xong các hạng mục. Khi đóng chiến dịch, các yêu cầu phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Nút Hoàn tất & Đóng Chiến dịch kèm hộp thoại tóm tắt kết quả thực hiện trên màn hình Chiến dịch (/workspace/:id/campaign).",
+    "dataProcessing": "Hệ thống kiểm tra người thực hiện là Manager (BR-30) và chiến dịch đang ở trạng thái Đang triển khai (IN_PROGRESS). Khi xác nhận, hệ thống chuyển trạng thái chiến dịch sang Đã hoàn thành (COMPLETED), đồng thời tự động chuyển các yêu cầu phát sinh (Content Request) còn đang chờ (PENDING) của chiến dịch đó sang Đã hủy (CANCELLED - BR-30, BR-32).",
+    "dataSpecs": {
+      "inputRequired": "Manager chọn chiến dịch đang chạy và xác nhận Hoàn tất chiến dịch.",
+      "inputOptional": "Ghi chú tổng kết nghiệm thu chiến dịch.",
+      "systemData": "Chuyển trạng thái chiến dịch sang COMPLETED, ghi nhận thời gian hoàn tất và đóng các yêu cầu phát sinh còn treo (BR-30).",
+      "output": "Đóng chiến dịch thành công và hiển thị thông báo MSG34."
+    },
+    "businessRules": [
+      {
+        "code": "BR-30",
+        "text": "Chỉ Manager mới có quyền xác nhận hoàn tất và đóng Chiến dịch Truyền thông đang chạy (3.5.9). Khi chiến dịch kết thúc, các yêu cầu nội dung phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại."
+      },
+      {
+        "code": "BR-32",
+        "text": "Người gửi Yêu cầu nội dung phát sinh (Client hoặc Manager) chỉ có thể sửa nội dung (3.5.12) hoặc hủy yêu cầu (3.5.13) khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-30",
+      "BR-32"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG34",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is not the Manager or Owner (BR-30) → Display: MSG07.",
+      "Campaign is not in IN_PROGRESS status (BR-30) → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager mở màn hình Chiến dịch Truyền thông đang chạy (/workspace/:id/campaign) và bấm nút Hoàn tất Chiến dịch.",
+      "Manager xem tóm tắt tiến độ trên hộp thoại xác nhận và bấm Đồng ý.",
+      "Hệ thống kiểm tra quyền Manager (BR-30) và cập nhật trạng thái chiến dịch sang Đã hoàn thành (COMPLETED).",
+      "Hệ thống tự động đóng các yêu cầu phát sinh còn đang chờ của chiến dịch đó và hiển thị thông báo MSG34."
+    ],
+    "abnormalCases": [
+      "Nếu người thao tác không phải là Manager hoặc chiến dịch chưa được kích hoạt chạy: Hệ thống từ chối và báo MSG07 hoặc MSG36."
+    ],
+    "postConditions": [
+      "The Media Campaign is permanently recorded in COMPLETED status.",
+      "All leftover PENDING Content Requests associated with the campaign are automatically set to CANCELLED (BR-30)."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-57.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_9.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.10",
+    "title": "Create Content Request",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-049",
+    "ucName": "Create Content Request",
+    "ucDescription": "(3.5.10) Cho phép Client hoặc Manager gửi yêu cầu làm thêm nội dung phát sinh ngoài kế hoạch ban đầu (ví dụ: bài đăng sự kiện đột xuất, thông cáo mới) để đội dự án xem xét và bổ sung vào công việc.",
+    "figureId": "r3-fig-58",
+    "figureNumber": 58,
+    "figureCaption": "Figure 58 - Create Content Request",
+    "sequenceFigureId": "seq-3.5.10",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager mở màn hình Yêu cầu Nội dung (/workspace/:id/requests), bấm Tạo yêu cầu mới, điền nội dung mong muốn và bấm Gửi.",
+    "purpose": "Cho phép Client hoặc Manager gửi yêu cầu làm thêm nội dung phát sinh ngoài kế hoạch ban đầu (ví dụ: bài đăng sự kiện đột xuất, thông cáo mới) để đội dự án xem xét và bổ sung vào công việc.",
+    "viSummary": "Cho phép Client hoặc Manager gửi yêu cầu làm thêm nội dung phát sinh ngoài kế hoạch ban đầu (ví dụ: bài đăng sự kiện đột xuất, thông cáo mới) để đội dự án xem xét và bổ sung vào công việc.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Màn hình Tạo Yêu cầu Nội dung (/workspace/:id/requests) gồm ô nhập Tiêu đề yêu cầu, Mô tả chi tiết nội dung mong muốn, chọn Nền tảng đăng dự kiến, Hạn hoàn thành mong muốn, nút đính kèm tệp tham khảo và nút Gửi yêu cầu.",
+    "dataProcessing": "Hệ thống kiểm tra quyền thành viên trong Workspace (BR-20), kiểm tra tiêu đề và mô tả không bị bỏ trống, sau đó lưu yêu cầu mới ở trạng thái Chờ xử lý (PENDING - BR-31) và gửi thông báo cho Manager của dự án.",
+    "dataSpecs": {
+      "inputRequired": "Tiêu đề yêu cầu nội dung phát sinh và Mô tả chi tiết yêu cầu.",
+      "inputOptional": "Nền tảng mạng xã hội mong muốn, Hạn chót đề xuất và Tệp tài liệu/hình ảnh tham khảo.",
+      "systemData": "Mã yêu cầu phát sinh, người gửi, thời gian tạo và trạng thái khởi tạo Chờ xử lý (PENDING - BR-31).",
+      "output": "Tạo yêu cầu nội dung phát sinh thành công và hiển thị thông báo MSG35."
+    },
+    "businessRules": [
+      {
+        "code": "BR-20",
+        "text": "Phân quyền xem Workspace: Owner nhìn thấy toàn bộ tất cả các Workspace trong Agency của mình; còn Manager, Creator và Client chỉ nhìn thấy và truy cập được những Workspace mà mình được thêm vào làm thành viên."
+      },
+      {
+        "code": "BR-31",
+        "text": "Yêu cầu nội dung phát sinh (Content Request) đi qua các trạng thái: Chờ xử lý (PENDING) -> Đang xem xét (IN_PROGRESS) -> Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED) do Owner/Manager quyết định. Khi được Chấp nhận, hệ thống tự động tạo thành một Task mới trong Workspace."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-20",
+      "BR-31"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG35"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-20) → Display: MSG07.",
+      "Required field missing (requestTitle or requestBrief left blank) → Display: MSG02.",
+      "Title or brief exceeds character limits → Display: MSG03."
+    ],
+    "normalFlow": [
+      "Client hoặc Manager mở màn hình Yêu cầu Nội dung (/workspace/:id/requests) và bấm nút Tạo yêu cầu mới.",
+      "Người dùng nhập Tiêu đề, Mô tả chi tiết bài viết cần làm thêm, chọn kênh đăng và hạn mong muốn rồi bấm Gửi yêu cầu.",
+      "Hệ thống kiểm tra thông tin bắt buộc và lưu yêu cầu ở trạng thái Chờ xử lý (PENDING - BR-31).",
+      "Hệ thống thông báo cho Manager phụ trách dự án và hiển thị thông báo thành công (MSG35)."
+    ],
+    "abnormalCases": [
+      "Nếu bỏ trống Tiêu đề hoặc Mô tả yêu cầu: Hệ thống báo lỗi MSG02 dưới ô nhập."
+    ],
+    "postConditions": [
+      "A new ContentRequest record exists in PENDING status awaiting Manager review (3.5.11).",
+      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-58.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_10.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.11",
+    "title": "Track Request Status",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-050",
+    "ucName": "Track Request Status",
+    "ucDescription": "(3.5.11) Theo dõi và xử lý trạng thái của các Yêu cầu nội dung phát sinh (Chờ xử lý -> Đang xem xét -> Chấp nhận hoặc Từ chối). Khi Manager bấm Chấp nhận một yêu cầu, hệ thống sẽ tự động tạo ngay một đầu việc (Task) mới trong Workspace.",
+    "figureId": "r3-fig-59",
+    "figureNumber": 59,
+    "figureCaption": "Figure 59 - Track Request Status",
+    "sequenceFigureId": "seq-3.5.11",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Manager hoặc Client mở danh sách Yêu cầu Nội dung (/workspace/:id/requests) để xem tiến độ hoặc khi Manager đổi trạng thái xét duyệt yêu cầu.",
+    "purpose": "Theo dõi và xử lý trạng thái của các Yêu cầu nội dung phát sinh (Chờ xử lý -> Đang xem xét -> Chấp nhận hoặc Từ chối). Khi Manager bấm Chấp nhận một yêu cầu, hệ thống sẽ tự động tạo ngay một đầu việc (Task) mới trong Workspace.",
+    "viSummary": "Theo dõi và xử lý trạng thái của các Yêu cầu nội dung phát sinh (Chờ xử lý -> Đang xem xét -> Chấp nhận hoặc Từ chối). Khi Manager bấm Chấp nhận một yêu cầu, hệ thống sẽ tự động tạo ngay một đầu việc (Task) mới trong Workspace.",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Bảng danh sách Yêu cầu Nội dung hiển thị Tiêu đề, Người gửi, Ngày tạo, Hạn mong muốn, nhãn Trạng thái (PENDING, IN_PROGRESS, ACCEPTED, DENIED) và các nút tiếp nhận/chấp nhận/từ chối dành cho Manager.",
+    "dataProcessing": "Hệ thống cho phép cả Client và Manager theo dõi trạng thái, nhưng chỉ Manager/Owner mới có quyền đổi trạng thái xét duyệt (BR-31). Đặc biệt, khi Manager chuyển trạng thái sang Đã chấp nhận (ACCEPTED), hệ thống tự động tạo một Task mới trong danh sách công việc (Backlog) của Workspace để giao cho Creator thực hiện (BR-31, BR-33).",
+    "dataSpecs": {
+      "inputRequired": "Chọn yêu cầu nội dung và chọn trạng thái xử lý mới (Đang xem xét / Chấp nhận / Từ chối - dành cho Manager).",
+      "inputOptional": "Ghi chú phản hồi hoặc lý do từ chối yêu cầu.",
+      "systemData": "Cập nhật trạng thái yêu cầu và tự động tạo Task mới trong Workspace khi yêu cầu được Chấp nhận (BR-31).",
+      "output": "Cập nhật trạng thái yêu cầu thành công (hiển thị MSG35) và sinh Task mới nếu được chấp nhận."
+    },
+    "businessRules": [
+      {
+        "code": "BR-31",
+        "text": "Yêu cầu nội dung phát sinh (Content Request) đi qua các trạng thái: Chờ xử lý (PENDING) -> Đang xem xét (IN_PROGRESS) -> Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED) do Owner/Manager quyết định. Khi được Chấp nhận, hệ thống tự động tạo thành một Task mới trong Workspace."
+      },
+      {
+        "code": "BR-33",
+        "text": "Mỗi công việc (Task) trong Workspace đi qua 5 trạng thái: Chờ phân rã (BACKLOG) -> Cần làm (TODO) -> Đang làm (IN_PROGRESS) -> Đang chờ duyệt (IN_REVIEW) -> Hoàn thành (DONE). Chỉ Manager mới có quyền điền đặc tả chi tiết (3.6.1) và giao việc cho Creator (3.6.2)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-31",
+      "BR-33"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG35",
+      "MSG36"
+    ],
+    "validations": [
+      "Client attempts to set agency-controlled status (IN_PROGRESS, ACCEPTED, DENIED) (BR-31) → Display: MSG07.",
+      "Request is already CANCELLED or finalized (BR-31) → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Manager hoặc Client mở màn hình Yêu cầu Nội dung (/workspace/:id/requests) để xem danh sách các yêu cầu phát sinh.",
+      "Manager mở một yêu cầu đang chờ và chọn chuyển trạng thái sang Đang xem xét (IN_PROGRESS), Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED).",
+      "Nếu chọn Chấp nhận, hệ thống tự động tạo một Task tương ứng vào bảng công việc của Workspace (BR-31, BR-33).",
+      "Hệ thống lưu trạng thái mới, thông báo cho Client và hiển thị thông báo MSG35."
+    ],
+    "abnormalCases": [
+      "Nếu Client cố tự bấm Chấp nhận yêu cầu: Hệ thống chặn thao tác vì chỉ Manager/Owner mới có quyền xét duyệt (BR-31, MSG07).",
+      "Nếu yêu cầu đã được xử lý xong hoặc đã hủy trước đó: Hệ thống báo không thể đổi trạng thái lại (MSG36)."
+    ],
+    "postConditions": [
+      "The Content Request status is updated; if ACCEPTED, a new Task is present in the Workspace Task Backlog (3.6.1).",
+      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-59.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_11.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.12",
+    "title": "Update Request",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-051",
+    "ucName": "Update Request",
+    "ucDescription": "(3.5.12) Cho phép người tạo (Client hoặc Manager) chỉnh sửa lại nội dung, mô tả hoặc hạn mong muốn của Yêu cầu phát sinh khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "figureId": "r3-fig-60",
+    "figureNumber": 60,
+    "figureCaption": "Figure 60 - Update Request",
+    "sequenceFigureId": "seq-3.5.12",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi Client hoặc Manager mở một yêu cầu đang ở trạng thái Chờ xử lý (/workspace/:id/requests), sửa lại thông tin và bấm Lưu.",
+    "purpose": "Cho phép người tạo (Client hoặc Manager) chỉnh sửa lại nội dung, mô tả hoặc hạn mong muốn của Yêu cầu phát sinh khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "viSummary": "Cho phép người tạo (Client hoặc Manager) chỉnh sửa lại nội dung, mô tả hoặc hạn mong muốn của Yêu cầu phát sinh khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Biểu mẫu chỉnh sửa Yêu cầu Nội dung gồm ô sửa Tiêu đề, Mô tả chi tiết, Nền tảng mong muốn, Hạn đề xuất và nút Lưu cập nhật.",
+    "dataProcessing": "Hệ thống kiểm tra yêu cầu đó có đúng là đang ở trạng thái Chờ xử lý (PENDING) hay không (BR-32). Nếu phía Agency đã bắt đầu xử lý hoặc đã duyệt/từ chối thì hệ thống khóa không cho sửa nữa; nếu vẫn đang PENDING thì lưu nội dung mới.",
+    "dataSpecs": {
+      "inputRequired": "Tiêu đề và Mô tả yêu cầu sau khi chỉnh sửa.",
+      "inputOptional": "Cập nhật hạn mong muốn hoặc tệp đính kèm.",
+      "systemData": "Kiểm tra điều kiện trạng thái PENDING (BR-32) và lưu thời gian cập nhật.",
+      "output": "Cập nhật nội dung yêu cầu phát sinh thành công và hiển thị thông báo MSG35."
+    },
+    "businessRules": [
+      {
+        "code": "BR-31",
+        "text": "Yêu cầu nội dung phát sinh (Content Request) đi qua các trạng thái: Chờ xử lý (PENDING) -> Đang xem xét (IN_PROGRESS) -> Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED) do Owner/Manager quyết định. Khi được Chấp nhận, hệ thống tự động tạo thành một Task mới trong Workspace."
+      },
+      {
+        "code": "BR-32",
+        "text": "Người gửi Yêu cầu nội dung phát sinh (Client hoặc Manager) chỉ có thể sửa nội dung (3.5.12) hoặc hủy yêu cầu (3.5.13) khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-31",
+      "BR-32"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG07",
+      "MSG35",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-31) → Display: MSG07.",
+      "Required field missing (requestTitle or requestBrief left blank) → Display: MSG02.",
+      "Content Request status is no longer PENDING (already IN_PROGRESS, ACCEPTED, DENIED, or CANCELLED per BR-32) → Display: MSG36."
+    ],
+    "normalFlow": [
+      "Người tạo mở một Yêu cầu nội dung đang ở trạng thái Chờ xử lý (PENDING) trên trang Yêu cầu (/workspace/:id/requests).",
+      "Người dùng sửa lại Tiêu đề, Mô tả hoặc Hạn mong muốn rồi bấm Lưu cập nhật.",
+      "Hệ thống kiểm tra yêu cầu vẫn đang ở trạng thái PENDING (BR-32) và dữ liệu nhập hợp lệ.",
+      "Hệ thống lưu thông tin mới và hiển thị thông báo MSG35."
+    ],
+    "abnormalCases": [
+      "Nếu yêu cầu đã được Manager chuyển sang Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống chặn chỉnh sửa và hiển thị thông báo MSG36 (BR-32)."
+    ],
+    "postConditions": [
+      "The PENDING Content Request reflects the updated title, brief, and target metadata.",
+      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-60.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_12.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  },
+  {
+    "code": "3.5.13",
+    "title": "Cancel Request",
+    "domainCode": "3.5",
+    "domainTitle": "Media Package & Media Campaign",
+    "ucId": "UC-052",
+    "ucName": "Cancel Request",
+    "ucDescription": "(3.5.13) Cho phép Client hoặc Manager hủy bỏ một Yêu cầu nội dung phát sinh nếu không còn cần thiết nữa, với điều kiện yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "figureId": "r3-fig-61",
+    "figureNumber": 61,
+    "figureCaption": "Figure 61 - Cancel Request",
+    "sequenceFigureId": "seq-3.5.13",
+    "classDiagramFigureId": "cd-3.5",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "trigger": "Khi người tạo bấm nút Hủy yêu cầu (Cancel Request) trên một yêu cầu đang chờ tại màn hình Yêu cầu Nội dung (/workspace/:id/requests) và xác nhận.",
+    "purpose": "Cho phép Client hoặc Manager hủy bỏ một Yêu cầu nội dung phát sinh nếu không còn cần thiết nữa, với điều kiện yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "viSummary": "Cho phép Client hoặc Manager hủy bỏ một Yêu cầu nội dung phát sinh nếu không còn cần thiết nữa, với điều kiện yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "docAuthor": "Lộc",
+    "codeAuthor": "Lộc",
+    "interface": "Nút Hủy yêu cầu kèm hộp thoại xác nhận trên màn hình Yêu cầu Nội dung (/workspace/:id/requests).",
+    "dataProcessing": "Hệ thống kiểm tra yêu cầu đang ở trạng thái Chờ xử lý (PENDING - BR-32). Nếu hợp lệ, hệ thống chuyển trạng thái yêu cầu sang Đã hủy (CANCELLED); nếu yêu cầu đã chuyển sang bước xử lý hoặc đã tạo thành Task thì không cho phép hủy.",
+    "dataSpecs": {
+      "inputRequired": "Chọn yêu cầu đang ở trạng thái PENDING và xác nhận Hủy.",
+      "inputOptional": "Lý do hủy yêu cầu.",
+      "systemData": "Chuyển trạng thái yêu cầu từ PENDING sang CANCELLED (BR-32).",
+      "output": "Hủy yêu cầu nội dung phát sinh thành công và hiển thị thông báo MSG35."
+    },
+    "businessRules": [
+      {
+        "code": "BR-31",
+        "text": "Yêu cầu nội dung phát sinh (Content Request) đi qua các trạng thái: Chờ xử lý (PENDING) -> Đang xem xét (IN_PROGRESS) -> Chấp nhận (ACCEPTED) hoặc Từ chối (DENIED) do Owner/Manager quyết định. Khi được Chấp nhận, hệ thống tự động tạo thành một Task mới trong Workspace."
+      },
+      {
+        "code": "BR-32",
+        "text": "Người gửi Yêu cầu nội dung phát sinh (Client hoặc Manager) chỉ có thể sửa nội dung (3.5.12) hoặc hủy yêu cầu (3.5.13) khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING)."
+      }
+    ],
+    "linkedBrCodes": [
+      "BR-31",
+      "BR-32"
+    ],
+    "linkedMsgCodes": [
+      "MSG02",
+      "MSG03",
+      "MSG07",
+      "MSG35",
+      "MSG36"
+    ],
+    "validations": [
+      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-31) → Display: MSG07.",
+      "Content Request is no longer in PENDING status (BR-32) → Display: MSG36.",
+      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+    ],
+    "normalFlow": [
+      "Trên màn hình Yêu cầu Nội dung (/workspace/:id/requests), người tạo chọn một yêu cầu đang ở trạng thái Chờ xử lý (PENDING) và bấm Hủy yêu cầu.",
+      "Người dùng bấm Đồng ý trên hộp thoại xác nhận.",
+      "Hệ thống kiểm tra yêu cầu vẫn đang ở trạng thái PENDING (BR-32).",
+      "Hệ thống chuyển trạng thái yêu cầu sang Đã hủy (CANCELLED) và hiển thị thông báo MSG35."
+    ],
+    "abnormalCases": [
+      "Nếu yêu cầu đã chuyển sang trạng thái Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống từ chối hủy và hiển thị thông báo MSG36 (BR-32)."
+    ],
+    "postConditions": [
+      "The Content Request is permanently marked as CANCELLED and will not be converted into a Workspace Task.",
+      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+    ],
+    "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-61.png",
+    "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_13.png",
+    "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png"
+  }
+]

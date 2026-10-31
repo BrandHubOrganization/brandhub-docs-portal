@@ -1,0 +1,792 @@
+{
+  "screenDescriptions": [
+    {
+      "index": "1",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Đăng ký (/register)",
+      "description": "Cho phép người dùng mới (Guest) tạo tài khoản BrandHub bằng họ tên, email và mật khẩu."
+    },
+    {
+      "index": "2",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Đăng nhập (/login)",
+      "description": "Đăng nhập vào hệ thống bằng email/mật khẩu hoặc đăng nhập nhanh qua tài khoản Google."
+    },
+    {
+      "index": "3",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Xác thực OTP (/verify-otp)",
+      "description": "Nhập mã OTP 6 chữ số gửi qua email để kích hoạt tài khoản mới hoặc xác nhận đặt lại mật khẩu."
+    },
+    {
+      "index": "4",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Quên & Đặt lại mật khẩu (/forgot-password, /reset-password)",
+      "description": "Yêu cầu gửi mã khôi phục qua email và thiết lập lại mật khẩu mới khi quên."
+    },
+    {
+      "index": "5",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Bảo mật 2 lớp 2FA (/verify-2fa, /settings/security)",
+      "description": "Quét mã QR cài đặt ứng dụng Authenticator và nhập mã xác nhận 6 số khi đăng nhập."
+    },
+    {
+      "index": "6",
+      "feature": "Xác thực & Tài khoản",
+      "screen": "Màn hình Cài đặt Bảo mật & Tài khoản (/settings/security)",
+      "description": "Cho phép người dùng đổi mật khẩu hiện tại, đăng xuất hoặc yêu cầu xóa mềm tài khoản."
+    },
+    {
+      "index": "7",
+      "feature": "Hồ sơ cá nhân & Nhãn hàng",
+      "screen": "Màn hình Hồ sơ cá nhân (/profile)",
+      "description": "Xem và cập nhật thông tin cá nhân, ảnh đại diện, ảnh bìa, số điện thoại, kỹ năng và ngôn ngữ."
+    },
+    {
+      "index": "8",
+      "feature": "Hồ sơ cá nhân & Nhãn hàng",
+      "screen": "Màn hình Hồ sơ thương hiệu Client (/client-profiles)",
+      "description": "Xem và cập nhật thông tin thương hiệu, ngành hàng, logo và liên hệ của Client để dùng chung cho các dự án."
+    },
+    {
+      "index": "9",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Danh sách & Tạo mới Agency (/agency, /agency/create)",
+      "description": "Xem các công ty (Agency) đang sở hữu hoặc tham gia và tạo mới một Agency."
+    },
+    {
+      "index": "10",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Tổng quan & Hồ sơ Agency (/agency/:id, /agency/:id/stats)",
+      "description": "Xem biểu đồ thống kê hoạt động của toàn Agency, chỉnh sửa thông tin giới thiệu công ty hoặc xóa mềm Agency."
+    },
+    {
+      "index": "11",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Thành viên & Lời mời Agency (/agency/:id/members, /agency/invitations)",
+      "description": "Gửi lời mời nhân sự qua email, theo dõi thời hạn 3 ngày của lời mời, chấp nhận/từ chối lời mời và quản lý thành viên."
+    },
+    {
+      "index": "12",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Danh sách & Tạo mới Workspace (/workspace, /workspace/create)",
+      "description": "Xem danh sách các không gian làm việc (Workspace) được phân quyền và tạo Workspace mới kèm gán Manager."
+    },
+    {
+      "index": "13",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Tổng quan & Cài đặt Workspace (/workspace/:id/dashboard, /workspace/:id/detail)",
+      "description": "Xem tiến độ công việc trong dự án, dung lượng lưu trữ, chỉnh sửa thông tin, cài đặt múi giờ chuẩn, rời hoặc xóa Workspace."
+    },
+    {
+      "index": "14",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Thư viện Mẫu Workspace (/templates, /workspace/:id/templates)",
+      "description": "Lưu cấu hình Workspace hiện tại thành mẫu, xem danh sách mẫu, áp dụng mẫu cho dự án mới hoặc xóa mẫu."
+    },
+    {
+      "index": "15",
+      "feature": "Agency & Workspace",
+      "screen": "Màn hình Thành viên & Phân quyền Workspace (/workspace/:id/members)",
+      "description": "Xem danh sách thành viên trong dự án, thêm nhân sự hoặc Client vào Workspace, đổi vai trò hoặc xóa khỏi dự án."
+    },
+    {
+      "index": "16",
+      "feature": "Gói dịch vụ & Chiến dịch",
+      "screen": "Màn hình Danh mục & Đàm phán Gói truyền thông (/media-package)",
+      "description": "Tạo gói dịch vụ tùy chỉnh, xem các gói mẫu, trao đổi điều khoản với Client và xác nhận chốt gói truyền thông."
+    },
+    {
+      "index": "17",
+      "feature": "Gói dịch vụ & Chiến dịch",
+      "screen": "Màn hình Lập Kế hoạch Chiến dịch Truyền thông (/workspace/:id/campaign)",
+      "description": "Xây dựng kế hoạch bài viết chi tiết cho chiến dịch, cập nhật theo góp ý, phê duyệt kích hoạt tạo Task và nghiệm thu chiến dịch."
+    },
+    {
+      "index": "18",
+      "feature": "Gói dịch vụ & Chiến dịch",
+      "screen": "Màn hình Yêu cầu Nội dung phát sinh (/workspace/:id/requests)",
+      "description": "Gửi yêu cầu làm thêm bài viết/sự kiện phát sinh, theo dõi trạng thái xét duyệt, chỉnh sửa hoặc hủy yêu cầu khi đang chờ."
+    },
+    {
+      "index": "19",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Quản lý Công việc Đa chế độ (/workspace/:id/tasks)",
+      "description": "Xem, lọc và sắp xếp công việc theo 4 chế độ trực quan: Bảng danh sách (List), Lịch (Calendar), Tiến độ (Gantt) và Cột kéo thả (Kanban)."
+    },
+    {
+      "index": "20",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Chi tiết Công việc, Bình luận & Duyệt bài (/workspace/:id/tasks/:taskId)",
+      "description": "Điền yêu cầu chi tiết cho đầu việc, giao việc cho Creator, trao đổi bình luận và thực hiện duyệt bài 3 cấp (Creator -> Manager -> Client)."
+    },
+    {
+      "index": "21",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Soạn thảo Nội dung & Lịch sử Phiên bản (/workspace/:id/content-writing)",
+      "description": "Soạn thảo văn bản bài đăng tích hợp đổi kiểu chữ Unicode nổi bật, kiểm tra từ ngữ vi phạm và khôi phục các phiên bản cũ."
+    },
+    {
+      "index": "22",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Kho Tư liệu & Đóng dấu Bản quyền (/workspace/:id/library)",
+      "description": "Quản lý ảnh/video gốc (RAW), ấn phẩm hoàn thiện và tài liệu mẫu; đồng bộ Google Drive và gắn logo đóng dấu (Watermark)."
+    },
+    {
+      "index": "23",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups)",
+      "description": "Xem, thêm mới, chỉnh sửa, xóa các nhóm thẻ Hashtag theo chiến dịch và chèn nhanh vào bài viết."
+    },
+    {
+      "index": "24",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Khảo sát & Tạo Phòng họp (/workspace/:id/surveys, /workspace/:id/meetings)",
+      "description": "Tạo biểu mẫu khảo sát ý kiến khách hàng, xem biểu đồ thống kê kết quả và tạo nhanh link họp trực tuyến Google Meet."
+    },
+    {
+      "index": "25",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Mẫu Email & Gửi Email (/workspace/:id/mail-templates)",
+      "description": "Xem, tạo, sửa, xóa các mẫu email thông báo có gắn biến tự động và gửi email cho khách hàng/đội dự án."
+    },
+    {
+      "index": "26",
+      "feature": "Nội dung & Quy trình",
+      "screen": "Màn hình Nhắn tin Trực tuyến Workspace (/workspace/:id/chat)",
+      "description": "Nhắn tin, gửi tệp đính kèm và trao đổi trực tiếp theo thời gian thực giữa các thành viên và Client trong cùng dự án."
+    },
+    {
+      "index": "27",
+      "feature": "Tính năng AI",
+      "screen": "Màn hình Gợi ý Xu hướng & Đồ thị Xu hướng AI (/ai-studio/trends)",
+      "description": "Xem các chủ đề, từ khóa đang thịnh hành theo ngành hàng, khám phá mạng lưới liên kết xu hướng và cấu hình lịch thu thập."
+    },
+    {
+      "index": "28",
+      "feature": "Tính năng AI",
+      "screen": "Màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base)",
+      "description": "Tải lên, tra cứu và quản lý các tài liệu Brand Guideline (PDF, DOCX, TXT) để AI đọc hiểu và viết bài đúng phong cách nhãn hàng."
+    },
+    {
+      "index": "29",
+      "feature": "Tính năng AI",
+      "screen": "Màn hình Sáng tạo AI Studio (/editor, /ai-studio/ambassadors, /ai-studio/video)",
+      "description": "Sử dụng AI để viết caption, tạo người mẫu đại sứ ảo, chọn mẫu phong cách, sinh hình ảnh quảng cáo, tạo video ngắn và xuất tệp."
+    },
+    {
+      "index": "30",
+      "feature": "Tính năng AI",
+      "screen": "Màn hình Danh bạ Đối tác & Gợi ý bằng AI (/collaborators, /campaign-partners)",
+      "description": "Quản lý danh sách KOL/KOC, báo điện tử, kênh quảng cáo của Agency và dùng AI gợi ý đối tác phù hợp với ngân sách chiến dịch."
+    },
+    {
+      "index": "31",
+      "feature": "Xuất bản & Mạng xã hội",
+      "screen": "Màn hình Kết nối Tài khoản Mạng xã hội (/social-accounts)",
+      "description": "Liên kết và quản lý quyền đăng bài tự động cho 4 nền tảng: Facebook, Instagram, TikTok và Threads."
+    },
+    {
+      "index": "32",
+      "feature": "Xuất bản & Mạng xã hội",
+      "screen": "Màn hình Xem trước, Hẹn giờ & Xuất bản Bài đăng (/publish, /calendar)",
+      "description": "Xem trước giao diện bài viết trên từng mạng xã hội, hẹn giờ đăng tự động hoặc xuất bản ngay và theo dõi trạng thái đăng."
+    },
+    {
+      "index": "33",
+      "feature": "Xuất bản & Mạng xã hội",
+      "screen": "Màn hình Thống kê & Chi tiết Bài đã đăng (/publish/dashboard, /publish/posts/:id)",
+      "description": "Theo dõi tổng quan các bài đã xuất bản và xem chi tiết số lượt thích, bình luận, chia sẻ, lượt xem của từng bài."
+    },
+    {
+      "index": "34",
+      "feature": "Gói cước & Thanh toán",
+      "screen": "Màn hình Nâng cấp Gói, Thanh toán SePay & Hóa đơn (/subscription/plans)",
+      "description": "Chọn nâng cấp gói Pro/Enterprise, quét mã QR chuyển khoản qua SePay và xem/tải hóa đơn thanh toán PDF."
+    },
+    {
+      "index": "35",
+      "feature": "Gói cước & Thanh toán",
+      "screen": "Màn hình Theo dõi, Mua thêm & Phân bổ AI Credit (/credit)",
+      "description": "Xem lịch sử tiêu dùng điểm AI Credit, mua thêm gói điểm bổ sung và đặt hạn mức sử dụng điểm cho từng Workspace."
+    },
+    {
+      "index": "36",
+      "feature": "Quản trị Hệ thống (Admin)",
+      "screen": "Màn hình Tổng quan Hệ thống, Máy chủ & Thông báo (/admin, /admin/system-health)",
+      "description": "Xem số liệu thống kê toàn nền tảng, theo dõi sức khỏe máy chủ (CPU, RAM, Database) và gửi thông báo chung."
+    },
+    {
+      "index": "37",
+      "feature": "Quản trị Hệ thống (Admin)",
+      "screen": "Màn hình Kiểm duyệt Nội dung & Quản lý Người dùng (/admin?view=moderation)",
+      "description": "Xử lý các nội dung bị gắn cờ vi phạm và quản lý danh sách người dùng, tạo/sửa tài khoản, ghi nhận cảnh cáo hoặc khóa tài khoản."
+    },
+    {
+      "index": "38",
+      "feature": "Quản trị Hệ thống (Admin)",
+      "screen": "Màn hình Bảng giá AI Credit & Báo cáo Doanh thu (/credit/prices, /admin?view=revenue)",
+      "description": "Xem, cập nhật trực tiếp hoặc nhập file CSV bảng giá AI Credit; xem biểu đồ doanh thu toàn hệ thống và xuất báo cáo PDF."
+    }
+  ],
+  "screenAuthorization": [
+    {
+      "screen": "Register Screen (/register)",
+      "Admin": "",
+      "Owner": "",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": "X"
+    },
+    {
+      "screen": "Login Screen (/login)",
+      "Admin": "X",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": "X"
+    },
+    {
+      "screen": "OTP Verification Screen (/verify-otp)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": "X"
+    },
+    {
+      "screen": "Forgot & Reset Password Screen (/forgot-password, /reset-password)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": "X"
+    },
+    {
+      "screen": "Two-Factor Authentication Screen (/verify-2fa, /settings/security)",
+      "Admin": "X",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Security & Account Settings Screen (/settings/security)",
+      "Admin": "X",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "User Profile Screen (/profile)",
+      "Admin": "X",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Client Profile Screen (/client-profiles, /workspace/:id/client-profile)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Agency Directory & Creation Screen (/agency, /agency/create)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Agency Dashboard & Profile Screen (/agency/:id, /agency/:id/stats)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Agency Members & Invitations Screen (/agency/:id/members, /agency/invitations)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Workspace Directory & Creation Screen (/workspace, /workspace/create)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Workspace Dashboard & Settings Screen (/workspace/:id/dashboard, /workspace/:id/detail)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Workspace Template Library Screen (/templates, /workspace/:id/templates)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Workspace Members & Roles Screen (/workspace/:id/members)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Media Package Catalog & Negotiation Screen (/media-package, /media-package/agency)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Media Campaign Studio Screen (/workspace/:id/campaign)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Content Request Management Screen (/workspace/:id/requests)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Task Multi-View Workspace Screen (/workspace/:id/tasks)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Task Detail, Comments & Approval Screen (/workspace/:id/tasks/:taskId, /task-approvals)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Content Writing & Version History Screen (/workspace/:id/content-writing, /editor)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Material Repository & Watermark Studio Screen (/workspace/:id/library)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Hashtag Collection Screen (/workspace/:id/hashtag-groups)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Survey & Meeting Coordination Screen (/workspace/:id/surveys, /workspace/:id/meetings)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Mail Template & Batch Dispatch Screen (/workspace/:id/mail-templates)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Workspace Realtime Chat Screen (/workspace/:id/chat)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "AI Trend Suggestions & Knowledge Graph Screen (/ai-studio/trends, /admin?view=trendGraph)",
+      "Admin": "X",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Brand Knowledge Base (RAG) Screen (/ai-studio/knowledge-base)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "AI Creative Studio Screen (/editor, /ai-studio/ambassadors, /ai-studio/video)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Collaborator Directory & AI Recommendation Screen (/collaborators, /campaign-partners)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Social Account Connections Screen (/social-accounts)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Social Publishing Composer, Preview & Calendar Screen (/publish, /calendar)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Published Post Dashboard & Detail Screen (/publish/dashboard, /publish/posts/:id)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "X",
+      "Guest": ""
+    },
+    {
+      "screen": "Subscription Plans, SePay Checkout & Invoices Screen (/subscription/plans, /subscription/checkout, /subscription/invoices)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "AI Credit Tracking, Top-Up & Quota Screen (/credit)",
+      "Admin": "",
+      "Owner": "X",
+      "Manager": "X",
+      "Creator": "X",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Admin Overview, System Health & Notification Broadcast Screen (/admin, /admin/system-health)",
+      "Admin": "X",
+      "Owner": "",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Admin Content Moderation & User Governance Screen (/admin?view=moderation, /admin?view=users)",
+      "Admin": "X",
+      "Owner": "",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": ""
+    },
+    {
+      "screen": "Admin AI Credit Pricing & Revenue Report Screen (/credit/prices, /admin?view=revenue)",
+      "Admin": "X",
+      "Owner": "",
+      "Manager": "",
+      "Creator": "",
+      "Client": "",
+      "Guest": ""
+    }
+  ],
+  "nonScreenFunctions": [
+    {
+      "index": "1",
+      "feature": "Xác thực & Bảo mật",
+      "systemFunction": "Tiến trình Gửi Email Xác thực & Mã OTP",
+      "description": "Tự động gửi email chứa mã OTP 6 số khi đăng ký/quên mật khẩu, email kích hoạt tài khoản mới và thông báo bảo mật."
+    },
+    {
+      "index": "2",
+      "feature": "Xác thực & Bảo mật",
+      "systemFunction": "Dịch vụ Quản lý & Làm mới Phiên Kết nối OAuth2",
+      "description": "Xử lý liên kết tài khoản, mã hóa bảo mật và tự động gia hạn quyền kết nối cho Google, Google Drive, Facebook, Instagram, TikTok và Threads."
+    },
+    {
+      "index": "3",
+      "feature": "Agency & Workspace",
+      "systemFunction": "Tiến trình Kiểm tra Lời mời Hết hạn & Dọn dữ liệu Xóa mềm",
+      "description": "Tự động chuyển các lời mời tham gia Agency sang trạng thái Hết hạn sau 3 ngày và dọn dẹp các tài khoản/Agency/Workspace đã quá 30 ngày chờ khôi phục."
+    },
+    {
+      "index": "4",
+      "feature": "Chiến dịch Truyền thông",
+      "systemFunction": "Tiến trình Tự động Tạo Đầu việc (Task) từ Chiến dịch",
+      "description": "Ngay khi Kế hoạch Chiến dịch được cả Manager và Client phê duyệt, hệ thống tự động tạo các Task tương ứng vào bảng công việc của Workspace."
+    },
+    {
+      "index": "5",
+      "feature": "Nội dung & Quy trình",
+      "systemFunction": "Tiến trình Đồng bộ Tư liệu từ Google Drive",
+      "description": "Tải các tệp hình ảnh và video được chọn từ thư mục Google Drive của khách hàng về Kho tư liệu của Workspace."
+    },
+    {
+      "index": "6",
+      "feature": "Nội dung & Quy trình",
+      "systemFunction": "Tiến trình Gửi Email theo Mẫu & Lọc danh sách từ chối",
+      "description": "Thực hiện gửi email tự động theo mẫu của Workspace và tự động bỏ qua những địa chỉ email đã hủy đăng ký nhận tin."
+    },
+    {
+      "index": "7",
+      "feature": "Tính năng AI",
+      "systemFunction": "Tiến trình Xử lý & Trích xuất Tài liệu Thương hiệu (RAG)",
+      "description": "Kiểm tra an toàn, đọc nội dung từ các tệp PDF/DOCX/TXT hướng dẫn thương hiệu và lưu vào kho dữ liệu AI riêng của từng Workspace."
+    },
+    {
+      "index": "8",
+      "feature": "Tính năng AI",
+      "systemFunction": "Tiến trình Thu thập & Phân tích Xu hướng Thịnh hành",
+      "description": "Định kỳ thu thập các chủ đề, từ khóa và hashtag đang được quan tâm trên thị trường để cập nhật vào bảng gợi ý xu hướng."
+    },
+    {
+      "index": "9",
+      "feature": "Xuất bản & Mạng xã hội",
+      "systemFunction": "Tiến trình Đăng bài Hẹn giờ & Cập nhật Số liệu Tương tác",
+      "description": "Tự động đăng các bài viết đã hẹn giờ lên Facebook, Instagram, TikTok, Threads khi đến lịch (tự thử lại tối đa 3 lần nếu lỗi mạng) và lấy số liệu tương tác về hệ thống."
+    },
+    {
+      "index": "10",
+      "feature": "Gói cước & Thanh toán",
+      "systemFunction": "Tiến trình Xác nhận Thanh toán SePay & Hoàn điểm AI Credit",
+      "description": "Nhận thông báo chuyển khoản từ ngân hàng qua SePay để kích hoạt gói cước/cộng điểm ngay lập tức, đồng thời tự động hoàn lại điểm AI Credit nếu việc tạo ảnh/video gặp lỗi."
+    },
+    {
+      "index": "11",
+      "feature": "Quản trị Hệ thống (Admin)",
+      "systemFunction": "Tiến trình Xóa Cảnh cáo Hết hạn & Mở khóa Tài khoản",
+      "description": "Kiểm tra hàng ngày để tự động xóa các mức cảnh cáo vi phạm sau 30 ngày không tái phạm và mở khóa lại các tài khoản đã hết thời hạn phạt 30 ngày."
+    },
+    {
+      "index": "12",
+      "feature": "Quản trị Hệ thống (Admin)",
+      "systemFunction": "Tiến trình Thu thập Chỉ số Sức khỏe Máy chủ",
+      "description": "Định kỳ đo mức sử dụng CPU, RAM, ổ cứng và trạng thái kết nối của các dịch vụ để hiển thị trên màn hình Giám sát hệ thống của Admin."
+    }
+  ],
+  "entities": [
+    {
+      "index": "1",
+      "entity": "User",
+      "description": "Lưu thông tin tài khoản người dùng (họ tên, email, mật khẩu mã hóa, cài đặt 2FA, vai trò hệ thống USER/ADMIN, trạng thái hoạt động và số lần cảnh cáo vi phạm)."
+    },
+    {
+      "index": "2",
+      "entity": "UserViolationStrike",
+      "description": "Lưu lịch sử các lần cảnh cáo vi phạm (mức Vàng, Cam, Đỏ) do Admin ghi nhận kèm bằng chứng, lý do và thời hạn áp dụng."
+    },
+    {
+      "index": "3",
+      "entity": "ClientProfile",
+      "description": "Lưu hồ sơ thương hiệu của Client (tên nhãn hàng, ngành nghề, logo, website, mã số thuế, thông tin liên hệ) dùng chung xuyên suốt nhiều Workspace."
+    },
+    {
+      "index": "4",
+      "entity": "Agency",
+      "description": "Lưu thông tin công ty truyền thông do Owner tạo và sở hữu (tên công ty, logo, gói đăng ký hiện tại, tổng số dư điểm AI Credit và trạng thái xóa mềm 30 ngày)."
+    },
+    {
+      "index": "5",
+      "entity": "AgencyMember",
+      "description": "Lưu danh sách các thành viên thuộc một Agency, ngày gia nhập, trạng thái hoạt động và hạn mức điểm AI Credit cá nhân."
+    },
+    {
+      "index": "6",
+      "entity": "AgencyInvitation",
+      "description": "Lưu các lời mời gia nhập Agency do Owner gửi qua email, kèm mã xác nhận, trạng thái (Chờ phản hồi, Đã nhận, Từ chối, Hết hạn) và mốc hết hạn 3 ngày."
+    },
+    {
+      "index": "7",
+      "entity": "Workspace",
+      "description": "Lưu thông tin không gian làm việc riêng của từng dự án/khách hàng trong Agency, bao gồm múi giờ chuẩn, hạn mức điểm AI Credit và trạng thái hoạt động."
+    },
+    {
+      "index": "8",
+      "entity": "WorkspaceMember",
+      "description": "Lưu danh sách thành viên tham gia vào một Workspace cụ thể cùng vai trò trong dự án đó (Manager, Creator hoặc Client)."
+    },
+    {
+      "index": "9",
+      "entity": "WorkspaceTemplate",
+      "description": "Lưu các mẫu cấu hình Workspace (múi giờ mặc định, cấu trúc vai trò, gói dịch vụ mẫu) để Owner tái sử dụng nhanh cho các dự án mới."
+    },
+    {
+      "index": "10",
+      "entity": "MediaPackage",
+      "description": "Lưu thông tin các gói dịch vụ truyền thông mẫu hoặc gói tùy chỉnh (thời gian triển khai, số lượng bài đăng cam kết, KPI, chi phí và lịch sử đàm phán)."
+    },
+    {
+      "index": "11",
+      "entity": "MediaCampaign",
+      "description": "Lưu kế hoạch triển khai chiến dịch truyền thông chi tiết dựa trên gói dịch vụ đã duyệt, gồm danh sách hạng mục bài viết, các phiên bản chỉnh sửa và trạng thái phê duyệt."
+    },
+    {
+      "index": "12",
+      "entity": "ContentRequest",
+      "description": "Lưu các yêu cầu làm thêm nội dung phát sinh do Client hoặc Manager gửi lên, theo dõi trạng thái xử lý (Chờ duyệt, Đang xem, Chấp nhận, Từ chối, Đã hủy) và mã Task liên kết."
+    },
+    {
+      "index": "13",
+      "entity": "Task",
+      "description": "Lưu thông tin đầu việc sản xuất nội dung trong Workspace (tiêu đề, yêu cầu chi tiết, kênh đăng dự kiến, hạn hoàn thành, trạng thái công việc, Creator thực hiện và người duyệt)."
+    },
+    {
+      "index": "14",
+      "entity": "TaskApproval",
+      "description": "Lưu lịch sử từng bước duyệt hoặc trả lại bài viết trong quy trình 3 cấp (Creator -> Manager -> Client), ghi rõ người duyệt, thời gian và nhận xét."
+    },
+    {
+      "index": "15",
+      "entity": "TaskComment",
+      "description": "Lưu các bình luận trao đổi, hình ảnh đính kèm và lượt nhắc tên (@mention) giữa các thành viên trên từng đầu việc."
+    },
+    {
+      "index": "16",
+      "entity": "ContentVersion",
+      "description": "Lưu lịch sử các phiên bản nội dung bài viết đã soạn thảo, giúp đối chiếu sự thay đổi và khôi phục lại phiên bản cũ bất kỳ lúc nào."
+    },
+    {
+      "index": "17",
+      "entity": "MaterialRepository",
+      "description": "Lưu danh mục các tệp hình ảnh, video và tài liệu trong kho của Workspace, phân loại rõ (Ảnh gốc RAW, Đã chỉnh sửa, Tài liệu mẫu) và trạng thái đóng dấu logo."
+    },
+    {
+      "index": "18",
+      "entity": "CustomerDriveConnection",
+      "description": "Lưu thông tin kết nối an toàn với thư mục Google Drive của khách hàng để đồng bộ ảnh/video vào kho tư liệu của Workspace."
+    },
+    {
+      "index": "19",
+      "entity": "HashtagCollection",
+      "description": "Lưu các nhóm thẻ Hashtag của Workspace được phân loại theo chiến dịch, sự kiện hoặc thẻ bắt buộc của nhãn hàng."
+    },
+    {
+      "index": "20",
+      "entity": "Survey",
+      "description": "Lưu thông tin biểu mẫu khảo sát ý kiến khách hàng/sự kiện, danh sách câu hỏi và kết quả thống kê phản hồi."
+    },
+    {
+      "index": "21",
+      "entity": "MailTemplate",
+      "description": "Lưu các mẫu email thông báo có gắn biến tự động (như tên khách hàng, tên chiến dịch) và lịch sử các đợt gửi email."
+    },
+    {
+      "index": "22",
+      "entity": "BrandKnowledgeDocument",
+      "description": "Lưu thông tin các tài liệu hướng dẫn thương hiệu (PDF, DOCX, TXT) được tải lên để cung cấp kiến thức chuẩn cho công cụ AI của từng Workspace."
+    },
+    {
+      "index": "23",
+      "entity": "ThirdPartyCollaborator",
+      "description": "Lưu danh bạ đối tác truyền thông bên thứ ba của Agency (KOL, KOC, báo điện tử, kênh quảng cáo) và tiến độ hợp tác trong các chiến dịch."
+    },
+    {
+      "index": "24",
+      "entity": "SocialAccount",
+      "description": "Lưu thông tin kết nối tài khoản mạng xã hội (Facebook, Instagram, TikTok, Threads) của từng Workspace để phục vụ đăng bài tự động."
+    },
+    {
+      "index": "25",
+      "entity": "Post",
+      "description": "Lưu thông tin bài đăng mạng xã hội gắn với Task đã duyệt, gồm nền tảng đăng, giờ hẹn đăng, trạng thái xuất bản, đường dẫn bài viết và các chỉ số tương tác."
+    },
+    {
+      "index": "26",
+      "entity": "SubscriptionOrder",
+      "description": "Lưu thông tin đơn hàng nâng cấp gói dịch vụ hoặc mua thêm điểm AI Credit của Agency, mã thanh toán VietQR SePay, trạng thái đơn hàng và tệp hóa đơn PDF."
+    },
+    {
+      "index": "27",
+      "entity": "AICreditLedger",
+      "description": "Lưu sổ theo dõi chi tiết mọi giao dịch cộng điểm, tạm giữ, trừ điểm khi dùng AI, hoàn điểm khi lỗi và bảng đơn giá của từng thao tác AI."
+    },
+    {
+      "index": "28",
+      "entity": "SystemNotification",
+      "description": "Lưu các thông báo toàn hệ thống do Admin gửi đi, bộ lọc nhóm người nhận và trạng thái đã đọc của từng người dùng."
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "projectInfo": {
+    "name": "BrandHub — AI-Powered Multi-Channel Media Campaign Platform",
+    "course": "SEP490 — Capstone Project (FPT University)",
+    "cloudinaryCloudName": "dvwt6npcl",
+    "totalFrs": 141,
+    "totalUseCases": 141,
+    "totalBusinessRules": 65,
+    "totalMessages": 60,
+    "totalFigures": 312,
+    "canonicalRoles": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "supportedPlatforms": [
+      "Facebook",
+      "Instagram",
+      "TikTok",
+      "Threads"
+    ],
+    "paymentGateway": "SePay / PayOS (VietQR)"
+  },
+  "reports": [
+    {
+      "id": "report1",
+      "code": "Report 1",
+      "title": "Project Introduction",
+      "fileName": "Report1_Project Introduction.docx",
+      "description": "Giới thiệu bối cảnh thực tế của các Agency truyền thông, so sánh ưu/nhược điểm của các công cụ hiện có (Hootsuite, Buffer, Jira, Notion) và xác định phạm vi 9 phân hệ của nền tảng BrandHub.",
+      "figureCount": 5
+    },
+    {
+      "id": "report2",
+      "code": "Report 2",
+      "title": "Project Management Plan",
+      "fileName": "Report2_Project Management Plan.docx",
+      "description": "Kế hoạch triển khai dự án: cấu trúc phân rã công việc (WBS), quy trình làm việc Agile-Scrum theo từng Sprint 2 tuần, 5 bước kiểm thử chất lượng phần mềm và cách quản lý mã nguồn trên GitHub.",
+      "figureCount": 7
+    },
+    {
+      "id": "report3",
+      "code": "Report 3",
+      "title": "Software Requirement Specification (SRS)",
+      "fileName": "report3_official.docx",
+      "description": "Tài liệu đặc tả yêu cầu phần mềm (SRS): quy định 6 vai trò người dùng chuẩn, 141 chức năng chi tiết (UC-001 đến UC-141), 150 sơ đồ và giao diện màn hình, 65 quy tắc nghiệp vụ và 60 mã thông báo.",
+      "figureCount": 150
+    },
+    {
+      "id": "report4",
+      "code": "Report 4",
+      "title": "Software Design Document (SDD — UML Models)",
+      "fileName": "Report4_Software Design Document.docx / BrandHub-Master-All-In-One.vpp",
+      "description": "Tài liệu thiết kế phần mềm (SDD): gồm 9 sơ đồ lớp (Class Diagram) theo từng phân hệ và 141 sơ đồ tuần tự (Sequence Diagram) mô tả luồng xử lý chi tiết của từng chức năng.",
+      "figureCount": 150
+    }
+  ],
+  "domains": [
+    {
+      "code": "3.2",
+      "title": "Authentication & Authorization",
+      "frCount": 9,
+      "summary": "Đăng ký, đăng nhập bằng Email hoặc Google, quên/đổi mật khẩu, xác thực mã OTP qua email, bảo mật 2 lớp (2FA), đăng xuất và xóa tài khoản."
+    },
+    {
+      "code": "3.3",
+      "title": "User & Client Profile",
+      "frCount": 4,
+      "summary": "Xem và cập nhật thông tin cá nhân của người dùng; quản lý hồ sơ thương hiệu của Client để dùng chung cho nhiều dự án mà không cần nhập lại."
+    },
+    {
+      "code": "3.4",
+      "title": "Agency & Workspace",
+      "frCount": 26,
+      "summary": "Tạo và quản lý công ty (Agency), mời thành viên qua email, tạo không gian làm việc (Workspace) cho từng nhãn hàng, gán Manager phụ trách, cài đặt múi giờ và lưu mẫu Workspace."
+    },
+    {
+      "code": "3.5",
+      "title": "Media Package & Media Campaign",
+      "frCount": 13,
+      "summary": "Thiết lập gói dịch vụ truyền thông (Media Package), trao đổi và chốt gói với Client, lập kế hoạch chiến dịch (Media Campaign), tự động tạo danh sách đầu việc và xử lý yêu cầu phát sinh."
+    },
+    {
+      "code": "3.6",
+      "title": "Content & Workflow",
+      "frCount": 35,
+      "summary": "Quản lý công việc theo 4 chế độ (Danh sách, Lịch, Gantt, Kanban), duyệt bài 3 cấp (Creator -> Manager -> Client), soạn thảo văn bản, kho tư liệu kết nối Google Drive, đóng dấu ảnh, bộ Hashtag, khảo sát, mẫu email và kiểm tra từ ngữ vi phạm."
+    },
+    {
+      "code": "3.7",
+      "title": "AI Features",
+      "frCount": 19,
+      "summary": "Gợi ý chủ đề và hashtag đang thịnh hành, lưu tài liệu hướng dẫn thương hiệu (Brand Guideline) để AI viết bài đúng giọng điệu, tạo hình ảnh/video và người mẫu đại diện ảo bằng AI, quản lý và gợi ý đối tác truyền thông (KOL/KOC, báo chí)."
+    },
+    {
+      "code": "3.8",
+      "title": "Publishing & Social",
+      "frCount": 15,
+      "summary": "Kết nối tài khoản mạng xã hội, xem trước giao diện bài đăng, hẹn giờ đăng tự động và theo dõi chỉ số tương tác trên 4 nền tảng: Facebook, Instagram, TikTok và Threads."
+    },
+    {
+      "code": "3.9",
+      "title": "Subscription & Billing",
+      "frCount": 6,
+      "summary": "Nâng cấp gói dịch vụ của Agency, thanh toán tự động bằng mã VietQR (qua cổng SePay / PayOS), xem lịch sử hóa đơn, mua thêm và phân bổ hạn mức điểm AI Credit cho từng dự án."
+    },
+    {
+      "code": "3.10",
+      "title": "Admin Functions",
+      "frCount": 14,
+      "summary": "Cổng quản trị dành cho Admin: gửi thông báo toàn hệ thống, xem thống kê hoạt động, theo dõi tình trạng máy chủ, kiểm duyệt bài viết bị báo cáo, quản lý tài khoản người dùng, cài đặt bảng giá AI Credit và xuất báo cáo doanh thu PDF."
+    }
+  ],
+  "actors": [
+    {
+      "index": "1",
+      "role": "Guest",
+      "description": "Người dùng chưa đăng nhập: có thể xem trang giới thiệu, đăng ký tài khoản mới, đăng nhập bằng Email hoặc Google, nhập mã xác nhận OTP và khôi phục mật khẩu khi quên."
+    },
+    {
+      "index": "2",
+      "role": "Owner",
+      "description": "Chủ sở hữu Agency: người tạo và quản lý công ty, mời nhân sự vào Agency, tạo các Workspace cho từng dự án khách hàng, thiết lập gói dịch vụ mẫu, nâng cấp gói cước, mua điểm AI Credit qua SePay và cấp hạn mức sử dụng cho từng Workspace."
+    },
+    {
+      "index": "3",
+      "role": "Manager",
+      "description": "Quản lý dự án trong Workspace: người trực tiếp làm việc với Client để thỏa thuận gói truyền thông và kế hoạch chiến dịch, giao việc cho Creator, kiểm duyệt chất lượng bài viết ở bước trung gian, tải tài liệu thương hiệu cho AI và lên lịch đăng bài."
+    },
+    {
+      "index": "4",
+      "role": "Creator",
+      "description": "Nhân sự sáng tạo nội dung trong Workspace: người nhận đầu việc, viết bài, sử dụng công cụ AI để tạo caption/hình ảnh/video/người mẫu ảo, tải tư liệu, gắn logo đóng dấu bản quyền, kiểm tra từ ngữ vi phạm và gửi bài chờ duyệt."
+    },
+    {
+      "index": "5",
+      "role": "Client",
+      "description": "Khách hàng (đại diện nhãn hàng) được mời vào Workspace: cập nhật hồ sơ thương hiệu của mình, trao đổi và phê duyệt gói dịch vụ cùng kế hoạch chiến dịch, gửi yêu cầu nội dung phát sinh, kết nối Google Drive / mạng xã hội, duyệt bài bước cuối và xem kết quả tương tác."
+    },
+    {
+      "index": "6",
+      "role": "Admin",
+      "description": "Quản trị viên toàn hệ thống: theo dõi số liệu vận hành và tình trạng máy chủ, gửi thông báo chung, xử lý các nội dung bị cảnh báo vi phạm, quản lý trạng thái tài khoản người dùng, điều chỉnh bảng giá AI Credit và xuất báo cáo doanh thu."
+    }
+  ]
+}

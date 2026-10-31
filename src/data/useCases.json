@@ -1,0 +1,1736 @@
+[
+  {
+    "id": "UC-001",
+    "name": "Sign Up",
+    "actors": [
+      "Guest"
+    ],
+    "actorsRaw": "Guest",
+    "description": "(3.2.1) Cho phép người dùng mới (Guest) tạo tài khoản BrandHub bằng Họ tên, Email và Mật khẩu trên trang Đăng ký (/register), sau đó nhận mã OTP 6 số qua email để kích hoạt tài khoản.",
+    "ucNum": 1,
+    "frCode": "3.2.1"
+  },
+  {
+    "id": "UC-002",
+    "name": "Sign In with Email",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Guest, Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.2) Cho phép người dùng đăng nhập vào hệ thống bằng Email và Mật khẩu trên trang Đăng nhập (/login). Nếu tài khoản có bật bảo mật 2 lớp (2FA) thì hệ thống sẽ yêu cầu nhập thêm mã xác nhận từ điện thoại.",
+    "ucNum": 2,
+    "frCode": "3.2.2"
+  },
+  {
+    "id": "UC-003",
+    "name": "Sign In with Google OAuth",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Guest, Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.3) Cho phép người dùng đăng ký hoặc đăng nhập nhanh chỉ với 1 cú nhấp chuột bằng tài khoản Google mà không cần phải nhớ mật khẩu riêng trên BrandHub.",
+    "ucNum": 3,
+    "frCode": "3.2.3"
+  },
+  {
+    "id": "UC-004",
+    "name": "Reset Password",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.4) Giúp người dùng lấy lại mật khẩu khi bị quên bằng cách nhận mã xác nhận OTP 6 số qua email và đặt lại mật khẩu mới.",
+    "ucNum": 4,
+    "frCode": "3.2.4"
+  },
+  {
+    "id": "UC-005",
+    "name": "Change Password",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.5) Cho phép người dùng đang đăng nhập chủ động thay đổi mật khẩu của mình trong phần Cài đặt bảo mật bằng cách xác nhận mật khẩu hiện tại và nhập mật khẩu mới.",
+    "ucNum": 5,
+    "frCode": "3.2.5"
+  },
+  {
+    "id": "UC-006",
+    "name": "OTP Verification",
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Guest, Owner, Manager, Creator, Client",
+    "description": "(3.2.6) Xác nhận mã OTP 6 chữ số được gửi tới email của người dùng để hoàn tất kích hoạt tài khoản mới đăng ký (3.2.1) hoặc xác minh yêu cầu đặt lại mật khẩu (3.2.4).",
+    "ucNum": 6,
+    "frCode": "3.2.6"
+  },
+  {
+    "id": "UC-007",
+    "name": "Two-Factor Authentication (2FA, TOTP)",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.7) Bật bảo mật 2 lớp (2FA) bằng cách quét mã QR qua ứng dụng Authenticator (Google/Microsoft Authenticator) trên điện thoại, và kiểm tra mã 6 số này mỗi khi đăng nhập.",
+    "ucNum": 7,
+    "frCode": "3.2.7"
+  },
+  {
+    "id": "UC-008",
+    "name": "Logout",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.8) Cho phép người dùng đăng xuất an toàn khỏi phiên làm việc hiện tại, đồng thời ghi nhớ phương thức đăng nhập gần nhất để lần sau đăng nhập lại nhanh hơn.",
+    "ucNum": 8,
+    "frCode": "3.2.8"
+  },
+  {
+    "id": "UC-009",
+    "name": "Delete Account",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.2.9) Cho phép người dùng tự xóa tài khoản cá nhân của mình. Tài khoản sẽ được tạm ẩn và giữ lại dữ liệu trong 30 ngày để có thể khôi phục nếu đổi ý trước khi xóa hẳn.",
+    "ucNum": 9,
+    "frCode": "3.2.9"
+  },
+  {
+    "id": "UC-010",
+    "name": "View User Profile",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.3.1) Xem thông tin hồ sơ cá nhân của bản thân gồm ảnh đại diện, họ tên, email, số điện thoại, kỹ năng, ngôn ngữ và trạng thái bảo mật tài khoản.",
+    "ucNum": 10,
+    "frCode": "3.3.1"
+  },
+  {
+    "id": "UC-011",
+    "name": "Update User Profile",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.3.2) Cập nhật thông tin hồ sơ cá nhân (họ tên, số điện thoại, giới thiệu, kỹ năng, ngôn ngữ) và tải lên ảnh đại diện mới. Địa chỉ email đăng nhập được giữ cố định để bảo vệ định danh tài khoản.",
+    "ucNum": 11,
+    "frCode": "3.3.2"
+  },
+  {
+    "id": "UC-012",
+    "name": "View Client Profile",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.3.3) Xem hồ sơ thương hiệu của Khách hàng (Client Profile) gồm tên nhãn hàng, logo, ngành nghề, website và thông tin liên hệ. Hồ sơ này có thể dùng chung cho nhiều dự án (Workspace) khác nhau mà không cần nhập lại.",
+    "ucNum": 12,
+    "frCode": "3.3.3"
+  },
+  {
+    "id": "UC-013",
+    "name": "Update Client Profile",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.3.4) Cập nhật thông tin Hồ sơ thương hiệu của Client (tên thương hiệu, logo, ngành hàng, website, địa chỉ, số điện thoại). Khi cập nhật, thông tin mới sẽ tự động đồng bộ sang tất cả các Workspace mà Client đang tham gia.",
+    "ucNum": 13,
+    "frCode": "3.3.4"
+  },
+  {
+    "id": "UC-014",
+    "name": "List Agency",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.4.1) Hiển thị danh sách tất cả các công ty (Agency) mà người dùng đang làm chủ sở hữu (Owner) hoặc đang tham gia làm thành viên, giúp chuyển đổi nhanh giữa các công ty hoặc tạo Agency mới.",
+    "ucNum": 14,
+    "frCode": "3.4.1"
+  },
+  {
+    "id": "UC-015",
+    "name": "View Agency Dashboard",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.2) Cung cấp cho chủ sở hữu (Owner) bảng điều khiển tổng quan của toàn công ty (Agency Dashboard), thống kê số lượng Workspace, nhân sự, tiến độ các chiến dịch và mức sử dụng điểm AI Credit.",
+    "ucNum": 15,
+    "frCode": "3.4.2"
+  },
+  {
+    "id": "UC-016",
+    "name": "Create Agency",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client, Admin",
+    "description": "(3.4.3) Cho phép người dùng khởi tạo một công ty truyền thông (Agency) mới. Người tạo sẽ tự động trở thành chủ sở hữu (Owner) duy nhất của Agency đó và bắt đầu với gói dịch vụ Cơ bản (Basic).",
+    "ucNum": 16,
+    "frCode": "3.4.3"
+  },
+  {
+    "id": "UC-017",
+    "name": "View Agency Profile",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.4) Xem trang hồ sơ giới thiệu chính thức của công ty (Agency Profile) gồm tên công ty, logo, năng lực chuyên môn, thông tin liên hệ và các gói dịch vụ mẫu để Client và thành viên nắm rõ thông tin.",
+    "ucNum": 17,
+    "frCode": "3.4.4"
+  },
+  {
+    "id": "UC-018",
+    "name": "Update Agency Profile",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.5) Cho phép chủ sở hữu (Owner) chỉnh sửa thông tin giới thiệu, thông tin liên hệ và thay đổi Logo/Ảnh bìa của công ty (Agency).",
+    "ucNum": 18,
+    "frCode": "3.4.5"
+  },
+  {
+    "id": "UC-019",
+    "name": "Remove Agency",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.6) Cho phép Owner xóa mềm công ty (Remove Agency). Khi xóa, Agency và các dự án bên trong sẽ tạm ngưng hoạt động nhưng toàn bộ dữ liệu vẫn được giữ lại trong 30 ngày để Owner khôi phục nếu cần.",
+    "ucNum": 19,
+    "frCode": "3.4.6"
+  },
+  {
+    "id": "UC-020",
+    "name": "Invite Agency Member",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.7) Cho phép Owner gửi lời mời nhân sự mới tham gia vào công ty (Agency) thông qua địa chỉ Email. Lời mời có hiệu lực trong vòng 3 ngày (72 giờ).",
+    "ucNum": 20,
+    "frCode": "3.4.7"
+  },
+  {
+    "id": "UC-021",
+    "name": "View Agency Invitation Status",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Owner, Manager, Creator",
+    "description": "(3.4.8) Theo dõi danh sách và trạng thái của các lời mời tham gia Agency (Đang chờ, Đã chấp nhận, Đã từ chối, Đã hết hạn sau 3 ngày).",
+    "ucNum": 21,
+    "frCode": "3.4.8"
+  },
+  {
+    "id": "UC-022",
+    "name": "Accept Agency Invitation",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Owner, Manager, Creator",
+    "description": "(3.4.9) Cho phép người dùng được mời bấm Chấp nhận lời mời để chính thức trở thành thành viên của công ty (Agency).",
+    "ucNum": 22,
+    "frCode": "3.4.9"
+  },
+  {
+    "id": "UC-023",
+    "name": "Decline Agency Invitation",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Owner, Manager, Creator",
+    "description": "(3.4.10) Cho phép người dùng được mời bấm Từ chối lời mời tham gia Agency nếu không có nhu cầu gia nhập công ty đó.",
+    "ucNum": 23,
+    "frCode": "3.4.10"
+  },
+  {
+    "id": "UC-024",
+    "name": "Remove Agency Member",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.11) Cho phép Owner xóa một thành viên ra khỏi công ty (Agency). Người bị xóa sẽ mất quyền truy cập ngay lập tức, nhưng toàn bộ bài viết, công việc và tư liệu họ đã làm trước đó vẫn được giữ nguyên cho công ty.",
+    "ucNum": 24,
+    "frCode": "3.4.11"
+  },
+  {
+    "id": "UC-025",
+    "name": "List Workspace",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.12) Xem danh sách các không gian làm việc (Workspace) trong công ty. Owner nhìn thấy toàn bộ tất cả các Workspace của Agency, còn Manager, Creator và Client chỉ nhìn thấy những Workspace mà mình tham gia.",
+    "ucNum": 25,
+    "frCode": "3.4.12"
+  },
+  {
+    "id": "UC-026",
+    "name": "View Workspace Dashboard",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.13) Hiển thị bảng điều khiển tổng quan của một dự án (Workspace Dashboard), giúp các thành viên nắm nhanh số lượng công việc theo từng trạng thái, lịch đăng bài sắp tới và lượng điểm AI Credit đã dùng.",
+    "ucNum": 26,
+    "frCode": "3.4.13"
+  },
+  {
+    "id": "UC-027",
+    "name": "Create Workspace",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.14) Cho phép Owner tạo mới một không gian làm việc (Workspace) cho dự án hoặc nhãn hàng mới. Khi tạo, Owner bắt buộc phải chọn ít nhất 1 thành viên làm Manager phụ trách và thiết lập múi giờ chuẩn cho dự án.",
+    "ucNum": 27,
+    "frCode": "3.4.14"
+  },
+  {
+    "id": "UC-028",
+    "name": "View Workspace Profile",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.15) Xem thông tin cài đặt chi tiết của dự án (Workspace Profile), bao gồm tên dự án, mô tả, thông tin khách hàng (Client) liên kết, người quản lý (Manager) và cài đặt múi giờ chuẩn.",
+    "ucNum": 28,
+    "frCode": "3.4.15"
+  },
+  {
+    "id": "UC-029",
+    "name": "Update Workspace Profile",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.4.16) Cho phép Owner hoặc Manager cập nhật thông tin của Workspace (tên dự án, mô tả, ảnh đại diện) và điều chỉnh cài đặt Múi giờ chuẩn để đồng bộ lịch đăng bài và hạn chót công việc.",
+    "ucNum": 29,
+    "frCode": "3.4.16"
+  },
+  {
+    "id": "UC-030",
+    "name": "Delete Workspace",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.17) Cho phép Owner xóa mềm một Workspace khi dự án kết thúc hoặc không còn sử dụng. Dữ liệu của Workspace được giữ lại trong 30 ngày để Owner có thể khôi phục trước khi xóa vĩnh viễn.",
+    "ucNum": 30,
+    "frCode": "3.4.17"
+  },
+  {
+    "id": "UC-031",
+    "name": "Leave Workspace",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.18) Cho phép thành viên tự rời khỏi một Workspace cụ thể khi không còn tham gia dự án đó nữa, nhưng vẫn giữ nguyên tư cách là thành viên của công ty (Agency).",
+    "ucNum": 31,
+    "frCode": "3.4.18"
+  },
+  {
+    "id": "UC-032",
+    "name": "Save Workspace Template",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.19) Cho phép Owner lưu lại cấu hình của một Workspace đang dùng (gồm múi giờ, khung vai trò, bộ hashtag, mẫu email và gói dịch vụ mẫu) thành Mẫu chuẩn (Workspace Template) để tái sử dụng nhanh cho các dự án sau.",
+    "ucNum": 32,
+    "frCode": "3.4.19"
+  },
+  {
+    "id": "UC-033",
+    "name": "View Workspace Templates",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.20) Cho phép Owner xem danh sách và chi tiết các Mẫu cấu hình Workspace (gồm cả mẫu gợi ý của hệ thống và mẫu riêng do Agency đã lưu) để chọn dùng khi mở dự án mới.",
+    "ucNum": 33,
+    "frCode": "3.4.20"
+  },
+  {
+    "id": "UC-034",
+    "name": "Apply Workspace Template",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.21) Cho phép Owner áp dụng một Mẫu cấu hình (Workspace Template) đã lưu vào một Workspace để tự động thiết lập sẵn múi giờ, bộ hashtag, mẫu email và gói dịch vụ mẫu chỉ trong vài giây.",
+    "ucNum": 34,
+    "frCode": "3.4.21"
+  },
+  {
+    "id": "UC-035",
+    "name": "Delete Workspace Template",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.4.22) Cho phép Owner xóa các Mẫu cấu hình Workspace do Agency tự tạo khi không còn nhu cầu sử dụng. Việc xóa mẫu không làm ảnh hưởng tới các Workspace đã từng áp dụng mẫu đó trước đây.",
+    "ucNum": 35,
+    "frCode": "3.4.22"
+  },
+  {
+    "id": "UC-036",
+    "name": "View Workspace Members",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.4.23) Xem danh sách toàn bộ các thành viên đang tham gia trong một dự án (Workspace), kèm theo vai trò cụ thể của từng người (Owner, Manager, Creator, Client).",
+    "ucNum": 36,
+    "frCode": "3.4.23"
+  },
+  {
+    "id": "UC-037",
+    "name": "Add Workspace Member",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.4.24) Cho phép Owner hoặc Manager thêm nhân sự thuộc Agency hoặc thêm tài khoản Khách hàng (Client) vào làm việc trong Workspace và gán vai trò cụ thể (Manager, Creator hoặc Client).",
+    "ucNum": 37,
+    "frCode": "3.4.24"
+  },
+  {
+    "id": "UC-038",
+    "name": "Update Workspace Member Role",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.4.25) Cho phép Owner hoặc Manager thay đổi vai trò của một thành viên trong Workspace (ví dụ nâng cấp từ Creator lên làm Manager phụ trách hoặc ngược lại), đồng thời đảm bảo dự án luôn có ít nhất 1 Manager.",
+    "ucNum": 38,
+    "frCode": "3.4.25"
+  },
+  {
+    "id": "UC-039",
+    "name": "Remove Workspace Member",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.4.26) Cho phép Owner hoặc Manager xóa một thành viên ra khỏi dự án (Workspace). Người bị xóa không còn vào được dự án đó nữa, nhưng các công việc họ đã đóng góp vẫn được giữ lại và họ vẫn là thành viên của Agency.",
+    "ucNum": 39,
+    "frCode": "3.4.26"
+  },
+  {
+    "id": "UC-040",
+    "name": "Create Media Package",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.5.1) Cho phép Owner thiết lập các gói dịch vụ truyền thông mẫu hoặc gói tùy chỉnh (quy định rõ thời gian triển khai, mức ngân sách, số lượng bài đăng cam kết và chỉ tiêu KPI) để làm cơ sở chào dịch vụ và làm việc với Client.",
+    "ucNum": 40,
+    "frCode": "3.5.1"
+  },
+  {
+    "id": "UC-041",
+    "name": "View Template Media Package",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Client",
+    "description": "(3.5.2) Cho phép Owner, Manager và Client xem danh sách và chi tiết các gói dịch vụ truyền thông mẫu (chia theo thời lượng, theo ngân sách hoặc trọn gói theo KPI) để dễ dàng chọn gói phù hợp cho dự án.",
+    "ucNum": 41,
+    "frCode": "3.5.2"
+  },
+  {
+    "id": "UC-042",
+    "name": "Request Media Package",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.3) Cho phép Client và đại diện Agency (Manager/Owner) trao đổi, đề xuất điều chỉnh các điều khoản của gói truyền thông (như số lượng bài viết, thời gian chạy, chi phí) qua từng vòng đàm phán cho đến khi hai bên thống nhất.",
+    "ucNum": 42,
+    "frCode": "3.5.3"
+  },
+  {
+    "id": "UC-043",
+    "name": "Approve Media Package",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.4) Xác nhận phê duyệt chốt Gói dịch vụ truyền thông (Approve Media Package) khi cả hai bên (Agency và Client) đã thống nhất hoàn toàn về chi phí, thời gian và số lượng bài đăng cam kết.",
+    "ucNum": 43,
+    "frCode": "3.5.4"
+  },
+  {
+    "id": "UC-044",
+    "name": "Create Media Campaign",
+    "actors": [
+      "Manager"
+    ],
+    "actorsRaw": "Manager",
+    "description": "(3.5.5) Cho phép Manager lập Kế hoạch Chiến dịch Truyền thông chi tiết (Media Campaign) dựa trên gói dịch vụ đã chốt, liệt kê cụ thể mục tiêu, thời gian chạy và danh sách từng bài viết dự kiến cho nhãn hàng.",
+    "ucNum": 44,
+    "frCode": "3.5.5"
+  },
+  {
+    "id": "UC-045",
+    "name": "View Media Campaign",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Creator, Client",
+    "description": "(3.5.6) Cho phép Manager, Creator và Client xem chi tiết bản Kế hoạch Chiến dịch Truyền thông, bao gồm mục tiêu, tiến độ tổng thể, danh sách toàn bộ các bài viết dự kiến và lịch sử các lần chỉnh sửa.",
+    "ucNum": 45,
+    "frCode": "3.5.6"
+  },
+  {
+    "id": "UC-046",
+    "name": "Update Media Campaign",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.5.7) Cho phép Manager và Client chỉnh sửa hoặc gửi góp ý điều chỉnh bản Kế hoạch Chiến dịch Truyền thông trước khi phê duyệt chính thức. Mỗi lần cập nhật đều được lưu lại thành một phiên bản mới để dễ đối chiếu.",
+    "ucNum": 46,
+    "frCode": "3.5.7"
+  },
+  {
+    "id": "UC-047",
+    "name": "Approve Media Campaign",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.8) Phê duyệt và kích hoạt Chiến dịch Truyền thông. Ngay khi cả Manager và Client cùng bấm duyệt, hệ thống sẽ chuyển chiến dịch sang Đang triển khai và tự động tạo toàn bộ các hạng mục bài viết thành các đầu việc (Task) trong bảng công việc của Workspace.",
+    "ucNum": 47,
+    "frCode": "3.5.8"
+  },
+  {
+    "id": "UC-048",
+    "name": "Complete Media Campaign",
+    "actors": [
+      "Manager"
+    ],
+    "actorsRaw": "Manager",
+    "description": "(3.5.9) Cho phép Manager nghiệm thu và đánh dấu hoàn tất Chiến dịch Truyền thông sau khi đã bàn giao xong các hạng mục. Khi đóng chiến dịch, các yêu cầu phát sinh còn đang chờ xử lý của chiến dịch đó cũng sẽ tự động đóng lại.",
+    "ucNum": 48,
+    "frCode": "3.5.9"
+  },
+  {
+    "id": "UC-049",
+    "name": "Create Content Request",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.10) Cho phép Client hoặc Manager gửi yêu cầu làm thêm nội dung phát sinh ngoài kế hoạch ban đầu (ví dụ: bài đăng sự kiện đột xuất, thông cáo mới) để đội dự án xem xét và bổ sung vào công việc.",
+    "ucNum": 49,
+    "frCode": "3.5.10"
+  },
+  {
+    "id": "UC-050",
+    "name": "Track Request Status",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.5.11) Theo dõi và xử lý trạng thái của các Yêu cầu nội dung phát sinh (Chờ xử lý -> Đang xem xét -> Chấp nhận hoặc Từ chối). Khi Manager bấm Chấp nhận một yêu cầu, hệ thống sẽ tự động tạo ngay một đầu việc (Task) mới trong Workspace.",
+    "ucNum": 50,
+    "frCode": "3.5.11"
+  },
+  {
+    "id": "UC-051",
+    "name": "Update Request",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.12) Cho phép người tạo (Client hoặc Manager) chỉnh sửa lại nội dung, mô tả hoặc hạn mong muốn của Yêu cầu phát sinh khi yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "ucNum": 51,
+    "frCode": "3.5.12"
+  },
+  {
+    "id": "UC-052",
+    "name": "Cancel Request",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.5.13) Cho phép Client hoặc Manager hủy bỏ một Yêu cầu nội dung phát sinh nếu không còn cần thiết nữa, với điều kiện yêu cầu đó vẫn đang ở trạng thái Chờ xử lý (PENDING).",
+    "ucNum": 52,
+    "frCode": "3.5.13"
+  },
+  {
+    "id": "UC-053",
+    "name": "Identify Task Detail",
+    "actors": [
+      "Manager"
+    ],
+    "actorsRaw": "Manager",
+    "description": "(3.6.1) Cho phép Manager bổ sung thông tin chi tiết cho một đầu việc (Task) vừa được tạo từ Chiến dịch hoặc Yêu cầu phát sinh, bao gồm yêu cầu bài viết (Brief), loại ấn phẩm, nền tảng đăng, hạn hoàn thành và tài liệu tham khảo.",
+    "ucNum": 53,
+    "frCode": "3.6.1"
+  },
+  {
+    "id": "UC-054",
+    "name": "Assign Task to Creator",
+    "actors": [
+      "Manager"
+    ],
+    "actorsRaw": "Manager",
+    "description": "(3.6.2) Cho phép Manager phân công một đầu việc (Task) cho Creator phụ trách viết bài/thiết kế chính, đồng thời có thể gán thêm một người kiểm tra chất lượng nội bộ trong cùng Workspace.",
+    "ucNum": 54,
+    "frCode": "3.6.2"
+  },
+  {
+    "id": "UC-055",
+    "name": "Add Comments on Task",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.3) Cho phép các thành viên trong dự án (Owner, Manager, Creator, Client) viết bình luận, đính kèm ảnh minh họa và nhắc tên (@mention) nhau ngay trên từng đầu việc để trao đổi và góp ý tập trung.",
+    "ucNum": 55,
+    "frCode": "3.6.3"
+  },
+  {
+    "id": "UC-056",
+    "name": "List Task View",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.4) Hiển thị toàn bộ công việc của dự án dưới dạng bảng danh sách chi tiết (List View), giúp theo dõi nhanh mã công việc, tiêu đề, người làm, kênh đăng, mức độ ưu tiên, hạn chót và sắp xếp thứ tự ưu tiên.",
+    "ucNum": 56,
+    "frCode": "3.6.4"
+  },
+  {
+    "id": "UC-057",
+    "name": "Calendar Task View",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.5) Hiển thị các đầu việc và lịch đăng bài trực quan trên tờ lịch theo Ngày, Tuần hoặc Tháng (giống Google Calendar), đồng thời hỗ trợ kéo thả thẻ công việc sang ngày khác để đổi lịch nhanh.",
+    "ucNum": 57,
+    "frCode": "3.6.5"
+  },
+  {
+    "id": "UC-058",
+    "name": "Gantt Timeline Task View",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.6) Hiển thị tiến độ các công việc trong chiến dịch dưới dạng biểu đồ đường thời gian (Gantt Timeline), giúp nhìn rõ công việc nào bắt đầu khi nào, kéo dài bao lâu và có bị chậm tiến độ hay không.",
+    "ucNum": 58,
+    "frCode": "3.6.6"
+  },
+  {
+    "id": "UC-059",
+    "name": "Kanban Board Task View",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.7) Hiển thị và quản lý công việc trên bảng phân cột Kanban (kiểu Jira), cho phép nhóm cột theo Trạng thái, theo Người thực hiện hoặc theo Nền tảng mạng xã hội và kéo thả thẻ để chuyển trạng thái.",
+    "ucNum": 59,
+    "frCode": "3.6.7"
+  },
+  {
+    "id": "UC-060",
+    "name": "View Task Filter",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.8) Cung cấp thanh tìm kiếm và bộ lọc đa tiêu chí (theo từ khóa, trạng thái, người phụ trách, chiến dịch, nền tảng đăng, độ ưu tiên và khoảng thời gian) áp dụng đồng bộ cho cả 4 chế độ xem Danh sách, Lịch, Gantt và Kanban.",
+    "ucNum": 60,
+    "frCode": "3.6.8"
+  },
+  {
+    "id": "UC-061",
+    "name": "Approval Sequence (Creator -> Manager -> Client)",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Creator, Manager, Client",
+    "description": "(3.6.9) Thực hiện quy trình duyệt bài 3 cấp chặt chẽ: Creator gửi bài -> Manager kiểm duyệt nội bộ -> Client phê duyệt cuối cùng. Nếu bất kỳ cấp nào bấm Trả lại (Reject kèm lý do), bài viết sẽ quay về cho Creator sửa lại nhưng vẫn giữ nguyên toàn bộ lịch sử nhận xét.",
+    "ucNum": 61,
+    "frCode": "3.6.9"
+  },
+  {
+    "id": "UC-062",
+    "name": "Content Writing View",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.10) Cung cấp trình soạn thảo nội dung bài đăng tích hợp sẵn bộ chuyển đổi kiểu chữ Unicode (in đậm, in nghiêng, chữ kiểu nổi bật để đăng lên mạng xã hội không bị mất định dạng) và tự động lưu lịch sử các phiên bản chỉnh sửa.",
+    "ucNum": 62,
+    "frCode": "3.6.10"
+  },
+  {
+    "id": "UC-063",
+    "name": "View Material Repository",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.11) Xem và tra cứu kho lưu trữ tư liệu sáng tạo của dự án (Material Repository), được phân loại rõ thành 3 nhóm: (1) Ảnh/video gốc chưa chỉnh sửa (RAW - có nhãn cảnh báo không đăng trực tiếp), (2) Ấn phẩm đã chỉnh sửa hoàn thiện (Retouched), và (3) Tài liệu mẫu thương hiệu do Client cung cấp.",
+    "ucNum": 63,
+    "frCode": "3.6.11"
+  },
+  {
+    "id": "UC-064",
+    "name": "Add Material Repository",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Creator, Manager, Client",
+    "description": "(3.6.12) Cho phép Creator, Manager hoặc Client tải các tệp hình ảnh, video hoặc tài liệu nhận diện thương hiệu mới từ máy tính lên Kho tư liệu chung của Workspace.",
+    "ucNum": 64,
+    "frCode": "3.6.12"
+  },
+  {
+    "id": "UC-065",
+    "name": "Update Material Repository",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.13) Cho phép Creator hoặc Manager cập nhật lại tên, mô tả, thẻ tìm kiếm hoặc chuyển trạng thái phân loại của tư liệu trong kho (ví dụ chuyển từ Ảnh gốc RAW sang Đã chỉnh sửa hoàn thiện Retouched sau khi hậu kỳ xong).",
+    "ucNum": 65,
+    "frCode": "3.6.13"
+  },
+  {
+    "id": "UC-066",
+    "name": "Remove Material Repository",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.14) Cho phép Creator hoặc Manager xóa mềm những tư liệu không còn dùng khỏi Kho tư liệu của Workspace. Tư liệu đã xóa sẽ ẩn khỏi danh sách chọn mới nhưng không làm mất ảnh trong các bài viết cũ và có thể khôi phục trong 30 ngày.",
+    "ucNum": 66,
+    "frCode": "3.6.14"
+  },
+  {
+    "id": "UC-067",
+    "name": "Connect Google Drive Storage",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.6.15) Cho phép Client hoặc Manager liên kết thư mục Google Drive của khách hàng vào Workspace (qua đăng nhập Google an toàn) để lấy ảnh chụp và video dung lượng lớn vào dự án mà không cần tải thủ công từng tệp.",
+    "ucNum": 67,
+    "frCode": "3.6.15"
+  },
+  {
+    "id": "UC-068",
+    "name": "Sync Material from Google Drive",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.6.16) Đồng bộ và nhập các tệp hình ảnh, video được chọn từ thư mục Google Drive đã kết nối về thẳng Kho tư liệu của Workspace.",
+    "ucNum": 68,
+    "frCode": "3.6.16"
+  },
+  {
+    "id": "UC-069",
+    "name": "Disconnect Google Drive Storage",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.6.17) Cho phép Client hoặc Manager ngắt kết nối tài khoản Google Drive khỏi Workspace. Sau khi ngắt kết nối, toàn bộ các tư liệu đã từng đồng bộ vào kho trước đó vẫn được giữ nguyên cho dự án.",
+    "ucNum": 69,
+    "frCode": "3.6.17"
+  },
+  {
+    "id": "UC-070",
+    "name": "Apply Watermark",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.6.18) Cho phép Creator đóng dấu logo bản quyền thương hiệu (Watermark) lên hình ảnh đã chỉnh sửa với tùy chọn góc đặt, kích thước và độ mờ linh hoạt. Ảnh sau khi đóng dấu được lưu thành tệp mới để giữ nguyên ảnh gốc.",
+    "ucNum": 70,
+    "frCode": "3.6.18"
+  },
+  {
+    "id": "UC-071",
+    "name": "Download Material",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.19) Cho phép các thành viên trong dự án (Owner, Manager, Creator, Client) tải tệp hình ảnh, video hoặc tài liệu từ Kho tư liệu của Workspace về máy tính cá nhân.",
+    "ucNum": 71,
+    "frCode": "3.6.19"
+  },
+  {
+    "id": "UC-072",
+    "name": "Apply Hashtag",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.6.20) Cho phép Creator chọn nhanh một bộ sưu tập Hashtag của dự án để chèn thẳng vào nội dung bài viết đang soạn thảo, tự động thêm dấu '#' và loại bỏ các thẻ bị trùng lặp.",
+    "ucNum": 72,
+    "frCode": "3.6.20"
+  },
+  {
+    "id": "UC-073",
+    "name": "View Hashtag Collection",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.21) Xem danh sách các Bộ sưu tập Hashtag được thiết lập riêng cho từng Workspace (gồm nhóm hashtag thương hiệu cố định của Client, nhóm hashtag theo sự kiện/chiến dịch và hashtag xu hướng).",
+    "ucNum": 73,
+    "frCode": "3.6.21"
+  },
+  {
+    "id": "UC-074",
+    "name": "Add Hashtag Collection",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Creator, Manager, Client",
+    "description": "(3.6.22) Cho phép Creator, Manager hoặc Client tạo mới một Bộ sưu tập Hashtag trong Workspace và phân loại theo mục đích (Hashtag cốt lõi của nhãn hàng, Chiến dịch, Sự kiện) để cả đội dùng thống nhất.",
+    "ucNum": 74,
+    "frCode": "3.6.22"
+  },
+  {
+    "id": "UC-075",
+    "name": "Update Hashtag Collection",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.23) Cho phép Creator hoặc Manager chỉnh sửa lại tên nhóm, mục đích phân loại hoặc thêm/bớt các thẻ hashtag bên trong một Bộ sưu tập Hashtag của Workspace.",
+    "ucNum": 75,
+    "frCode": "3.6.23"
+  },
+  {
+    "id": "UC-076",
+    "name": "Remove Hashtag Collection",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.24) Cho phép Creator hoặc Manager xóa mềm một Bộ sưu tập Hashtag không còn sử dụng khỏi danh sách của Workspace, trong khi vẫn giữ nguyên các thẻ hashtag đã từng được chèn vào các bài viết trước đó.",
+    "ucNum": 76,
+    "frCode": "3.6.24"
+  },
+  {
+    "id": "UC-077",
+    "name": "Create Survey",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.25) Cho phép Manager hoặc Creator tạo biểu mẫu khảo sát ý kiến (Survey) với nhiều dạng câu hỏi (trắc nghiệm, chọn nhiều đáp án, chấm điểm, tự luận) và lấy đường dẫn chia sẻ để thu thập phản hồi từ khách hàng hoặc người tham dự sự kiện.",
+    "ucNum": 77,
+    "frCode": "3.6.25"
+  },
+  {
+    "id": "UC-078",
+    "name": "View Survey Analysis",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.6.26) Hiển thị báo cáo thống kê và biểu đồ phân tích kết quả trả lời của biểu mẫu khảo sát (tổng số người phản hồi, tỷ lệ chọn từng đáp án trắc nghiệm và danh sách câu trả lời tự luận) để đánh giá hiệu quả sự kiện/chiến dịch.",
+    "ucNum": 78,
+    "frCode": "3.6.26"
+  },
+  {
+    "id": "UC-079",
+    "name": "Generate Meeting Link",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Owner, Manager, Creator",
+    "description": "(3.6.27) Cho phép Owner, Manager hoặc Creator tạo nhanh đường dẫn phòng họp trực tuyến (Google Meet) gắn với lịch của Workspace để đội ngũ Agency và Client vào họp bàn kịch bản hoặc duyệt ấn phẩm ngay.",
+    "ucNum": 79,
+    "frCode": "3.6.27"
+  },
+  {
+    "id": "UC-080",
+    "name": "View Mail Template",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.28) Xem danh sách và nội dung chi tiết của các mẫu Email thông báo trong Workspace (gồm mẫu mời họp, gửi báo cáo chiến dịch, thông báo duyệt bài) có hỗ trợ các biến điền tự động như tên khách hàng, tên chiến dịch.",
+    "ucNum": 80,
+    "frCode": "3.6.28"
+  },
+  {
+    "id": "UC-081",
+    "name": "Create Mail Template",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.29) Cho phép Manager hoặc Creator tạo mới một mẫu Email thông báo cho dự án, hỗ trợ chèn các thẻ biến tự động (như tên người nhận, tên chiến dịch, tên công việc) để dùng lại nhiều lần mà không cần gõ lại từ đầu.",
+    "ucNum": 81,
+    "frCode": "3.6.29"
+  },
+  {
+    "id": "UC-082",
+    "name": "Update Mail Template",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.30) Cho phép Manager hoặc Creator chỉnh sửa lại tiêu đề, bố cục nội dung và các thẻ biến tự động của một mẫu Email đã tạo trong Workspace.",
+    "ucNum": 82,
+    "frCode": "3.6.30"
+  },
+  {
+    "id": "UC-083",
+    "name": "Delete Mail Template",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.31) Cho phép Manager hoặc Creator xóa các mẫu Email tùy chỉnh không còn dùng khỏi thư viện của Workspace (các mẫu email mặc định bắt buộc của hệ thống sẽ được bảo vệ không cho xóa).",
+    "ucNum": 83,
+    "frCode": "3.6.31"
+  },
+  {
+    "id": "UC-084",
+    "name": "Send Email via Template",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Manager, Creator",
+    "description": "(3.6.32) Cho phép Manager hoặc Creator gửi email thông báo cho Client hoặc danh sách người nhận bằng mẫu Email đã chọn. Hệ thống sẽ tự động điền tên người nhận, tên chiến dịch vào đúng vị trí các thẻ biến và tự động lọc bỏ những địa chỉ đã hủy đăng ký nhận tin.",
+    "ucNum": 84,
+    "frCode": "3.6.32"
+  },
+  {
+    "id": "UC-085",
+    "name": "Check Compliance Content",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.33) Kiểm tra độ an toàn và tuân thủ tiêu chuẩn cộng đồng của nội dung bài viết trước khi duyệt hoặc đăng bài. Hệ thống tự động rà soát và tô sáng các từ ngữ nhạy cảm, bạo lực, thô tục hoặc từ khóa bị cấm trên mạng xã hội kèm gợi ý sửa lại.",
+    "ucNum": 85,
+    "frCode": "3.6.33"
+  },
+  {
+    "id": "UC-086",
+    "name": "View Content History",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.6.34) Cho phép Creator và Manager xem lại toàn bộ lịch sử các phiên bản bài viết đã lưu cũng như các nội dung/hình ảnh đã tạo bằng AI trước đó để đối chiếu sự thay đổi hoặc khôi phục lại bản cũ hoàn toàn miễn phí (không tốn lại điểm AI Credit).",
+    "ucNum": 86,
+    "frCode": "3.6.34"
+  },
+  {
+    "id": "UC-087",
+    "name": "Chat Realtime",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.6.35) Cung cấp phòng nhắn tin trực tuyến theo thời gian thực (Realtime Chat) dành riêng cho các thành viên và Client trong cùng một Workspace, hỗ trợ gửi tin nhắn, trả lời theo luồng, thả biểu tượng cảm xúc và nhắc tên (@mention).",
+    "ucNum": 87,
+    "frCode": "3.6.35"
+  },
+  {
+    "id": "UC-088",
+    "name": "View Trending Topics Suggestions",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.7.1) Hiển thị bảng gợi ý các chủ đề và từ khóa đang thịnh hành (Trending Topics) trên mạng xã hội phù hợp với ngành hàng của dự án, giúp Creator và Manager nhanh chóng bắt kịp xu hướng để viết bài thu hút tương tác.",
+    "ucNum": 88,
+    "frCode": "3.7.1"
+  },
+  {
+    "id": "UC-089",
+    "name": "View AI Trend Knowledge Graph",
+    "actors": [
+      "Manager",
+      "Admin"
+    ],
+    "actorsRaw": "Admin, Manager",
+    "description": "(3.7.2) Hiển thị trực quan mạng lưới liên kết giữa các chủ đề, từ khóa và thẻ hashtag đang thịnh hành dưới dạng Sơ đồ mạng lưới (Knowledge Graph), giúp người làm nội dung hiểu rõ các từ khóa nào thường đi kèm với nhau trong một trào lưu.",
+    "ucNum": 89,
+    "frCode": "3.7.2"
+  },
+  {
+    "id": "UC-090",
+    "name": "View Brand Knowledge Documents",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Creator, Client",
+    "description": "(3.7.3) Xem danh sách và tra cứu nội dung các tệp Tài liệu hướng dẫn thương hiệu (Brand Guideline) đã tải lên kho kiến thức AI của Workspace, giúp kiểm tra những thông tin mà AI sẽ dựa vào khi viết bài cho nhãn hàng.",
+    "ucNum": 90,
+    "frCode": "3.7.3"
+  },
+  {
+    "id": "UC-091",
+    "name": "Upload Brand Knowledge Document",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.7.4) Cho phép Manager hoặc Client tải tài liệu hướng dẫn thương hiệu (Brand Guideline dạng PDF, DOCX, TXT) lên kho kiến thức của Workspace để AI đọc hiểu thông tin sản phẩm, quy tắc từ ngữ và viết bài đúng giọng điệu của nhãn hàng.",
+    "ucNum": 91,
+    "frCode": "3.7.4"
+  },
+  {
+    "id": "UC-092",
+    "name": "Delete Brand Knowledge Document",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.7.5) Cho phép Manager hoặc Client xóa bỏ những tài liệu hướng dẫn thương hiệu đã cũ hoặc không còn chính xác khỏi kho kiến thức AI của Workspace để AI không còn dùng thông tin cũ khi viết bài.",
+    "ucNum": 92,
+    "frCode": "3.7.5"
+  },
+  {
+    "id": "UC-093",
+    "name": "Generate Caption",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.6) Giúp Creator tự động viết nội dung bài đăng (Caption) bằng AI dựa trên yêu cầu chủ đề kết hợp với Tài liệu thương hiệu của dự án và các xu hướng đang thịnh hành, đảm bảo bài viết cuốn hút và đúng phong cách nhãn hàng.",
+    "ucNum": 93,
+    "frCode": "3.7.6"
+  },
+  {
+    "id": "UC-094",
+    "name": "Generate Ambassador",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.7) Cho phép Creator tạo và lưu lại hình mẫu Đại sứ Thương hiệu Ảo (Virtual Brand Ambassador) bằng AI với khuôn mặt và phong cách nhất quán, giúp nhãn hàng có người mẫu đại diện xuyên suốt khi tạo ảnh quảng cáo (3.7.9) và video (3.7.11) mà không cần thuê mẫu chụp lại từ đầu.",
+    "ucNum": 94,
+    "frCode": "3.7.7"
+  },
+  {
+    "id": "UC-095",
+    "name": "View Image Style Template",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.8) Hiển thị thư viện các Mẫu phong cách hình ảnh có sẵn (Image Style Templates như Chụp sản phẩm Studio, Tối giản, Cổ điển Vintage, Mùa lễ hội...) kèm ảnh minh họa trực quan, giúp Creator chỉ cần bấm chọn phong cách mà không phải tự viết câu lệnh kỹ thuật dài dòng.",
+    "ucNum": 95,
+    "frCode": "3.7.8"
+  },
+  {
+    "id": "UC-096",
+    "name": "Generate Image",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.9) Giúp Creator tạo hình ảnh bài đăng hoặc ảnh quảng cáo sản phẩm bằng AI bằng cách kết hợp mô tả ý tưởng với Mẫu phong cách đã chọn (3.7.8), Đại sứ thương hiệu ảo (3.7.7) và ảnh sản phẩm trong kho.",
+    "ucNum": 96,
+    "frCode": "3.7.9"
+  },
+  {
+    "id": "UC-097",
+    "name": "View Video Style Template",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.10) Hiển thị thư viện các Mẫu phong cách và chuyển động máy quay dành riêng cho Video AI (như Quay cận cảnh sản phẩm, Chuyển động xoay vòng, Slow-motion điện ảnh...), giúp Creator dễ dàng chọn nhịp điệu cho video ngắn Reels/TikTok.",
+    "ucNum": 97,
+    "frCode": "3.7.10"
+  },
+  {
+    "id": "UC-098",
+    "name": "Generate Video",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.11) Giúp Creator tạo các đoạn video ngắn bằng AI (phục vụ đăng Reels, TikTok, Story) từ kịch bản mô tả cảnh quay kết hợp với hình ảnh sản phẩm/Đại sứ ảo (3.7.7) và Mẫu phong cách chuyển động video (3.7.10).",
+    "ucNum": 98,
+    "frCode": "3.7.11"
+  },
+  {
+    "id": "UC-099",
+    "name": "Export File",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.7.12) Cho phép Creator hoặc Manager xuất và tải các hình ảnh, video do AI tạo ra về máy tính theo đúng định dạng chuẩn (MP4, WebM cho video; PNG, JPG, WEBP cho ảnh) và tỷ lệ khung hình tối ưu cho từng mạng xã hội mà không tốn thêm điểm AI Credit.",
+    "ucNum": 99,
+    "frCode": "3.7.12"
+  },
+  {
+    "id": "UC-100",
+    "name": "Crawl Schedule Config",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.7.13) Cho phép Admin cài đặt lịch chạy tự động (theo giờ/ngày) và các nguồn thu thập dữ liệu cho bộ cập nhật xu hướng thịnh hành của hệ thống.",
+    "ucNum": 100,
+    "frCode": "3.7.13"
+  },
+  {
+    "id": "UC-101",
+    "name": "Suggest Hashtag Trend",
+    "actors": [
+      "Creator"
+    ],
+    "actorsRaw": "Creator",
+    "description": "(3.7.14) Tự động gợi ý các thẻ Hashtag đang thịnh hành và sát nhất với nội dung bài viết mà Creator đang soạn thảo (hoặc khi tạo bộ sưu tập Hashtag), giúp tăng khả năng tiếp cận người xem trên mạng xã hội.",
+    "ucNum": 101,
+    "frCode": "3.7.14"
+  },
+  {
+    "id": "UC-102",
+    "name": "View Collaborator Directory",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.7.15) Cho phép Owner và Manager xem, tìm kiếm và lọc danh bạ các đối tác truyền thông bên thứ ba của Agency (gồm KOL, KOC, Báo điện tử, Trang đặt Banner quảng cáo và Kênh truyền hình) kèm bảng giá tham khảo và tiến độ hợp tác.",
+    "ucNum": 102,
+    "frCode": "3.7.15"
+  },
+  {
+    "id": "UC-103",
+    "name": "Create Collaborator Profile",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.7.16) Cho phép Owner hoặc Manager thêm mới hồ sơ một đối tác truyền thông bên thứ ba (KOL/KOC, Báo điện tử, Kênh quảng cáo) vào danh bạ của Agency để tiện liên hệ và lập kế hoạch booking cho các chiến dịch.",
+    "ucNum": 103,
+    "frCode": "3.7.16"
+  },
+  {
+    "id": "UC-104",
+    "name": "Update Collaborator Profile",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.7.17) Cho phép Owner hoặc Manager cập nhật thông tin hồ sơ, bảng giá của đối tác truyền thông và theo dõi tiến độ hợp tác thực tế trong chiến dịch (Đã liên hệ -> Đang đàm phán -> Đã chốt -> Đang lên sóng).",
+    "ucNum": 104,
+    "frCode": "3.7.17"
+  },
+  {
+    "id": "UC-105",
+    "name": "Remove Collaborator Profile",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.7.18) Cho phép Owner hoặc Manager xóa mềm (ngừng kích hoạt) hồ sơ một đối tác truyền thông khỏi danh bạ đang hoạt động của Agency, trong khi vẫn giữ nguyên dữ liệu lịch sử của đối tác đó trong các chiến dịch cũ.",
+    "ucNum": 105,
+    "frCode": "3.7.18"
+  },
+  {
+    "id": "UC-106",
+    "name": "Recommend Collaborator",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Manager, Client",
+    "description": "(3.7.19) Sử dụng AI để tự động phân tích và đề xuất danh sách các đối tác truyền thông bên thứ ba (KOL/KOC, báo chí, kênh quảng cáo) trong danh bạ phù hợp nhất với ngành hàng, tệp khách hàng mục tiêu và ngân sách của chiến dịch.",
+    "ucNum": 106,
+    "frCode": "3.7.19"
+  },
+  {
+    "id": "UC-107",
+    "name": "Connect Social Account",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.8.1) Cho phép Client hoặc Manager kết nối các tài khoản mạng xã hội chính thức của nhãn hàng (gồm 4 nền tảng: Facebook Page, Instagram Business, TikTok và Threads) vào Workspace để phục vụ đăng bài tự động.",
+    "ucNum": 107,
+    "frCode": "3.8.1"
+  },
+  {
+    "id": "UC-108",
+    "name": "Disconnect Account",
+    "actors": [
+      "Manager",
+      "Client"
+    ],
+    "actorsRaw": "Client, Manager",
+    "description": "(3.8.2) Cho phép Client hoặc Manager ngắt kết nối một tài khoản mạng xã hội khỏi Workspace. Khi ngắt kết nối, hệ thống sẽ hủy các lịch hẹn đăng đang chờ của kênh đó nhưng vẫn giữ nguyên lịch sử và số liệu của các bài đã đăng trước đây.",
+    "ucNum": 108,
+    "frCode": "3.8.2"
+  },
+  {
+    "id": "UC-109",
+    "name": "View Dashboard Post",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.8.3) Hiển thị bảng điều khiển tổng hợp toàn bộ các bài viết đã đăng thành công lên 4 mạng xã hội của dự án, kèm biểu đồ phân bổ theo nền tảng và tổng số lượt tương tác thu được.",
+    "ucNum": 109,
+    "frCode": "3.8.3"
+  },
+  {
+    "id": "UC-110",
+    "name": "View Posted Detail",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.8.4) Xem chi tiết nội dung, hình ảnh/video, đường dẫn bài viết thực tế trên mạng xã hội (permalink) và các chỉ số tương tác cụ thể (lượt thích, bình luận, chia sẻ, lượt xem) của một bài đăng đã xuất bản.",
+    "ucNum": 110,
+    "frCode": "3.8.4"
+  },
+  {
+    "id": "UC-111",
+    "name": "Preview Post",
+    "actors": [
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Creator, Manager, Client",
+    "description": "(3.8.5) Cho phép Creator, Manager và Client xem trước giao diện hiển thị của bài viết (trên cả màn hình điện thoại và máy tính) theo đúng bố cục thực tế của từng mạng xã hội (Facebook, Instagram, TikTok, Threads) trước khi duyệt hoặc đăng bài.",
+    "ucNum": 111,
+    "frCode": "3.8.5"
+  },
+  {
+    "id": "UC-112",
+    "name": "Schedule Platform Post",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.6) Cho phép Creator hoặc Manager hẹn ngày giờ cụ thể để hệ thống tự động xuất bản bài viết đã được phê duyệt lên các tài khoản mạng xã hội đã chọn.",
+    "ucNum": 112,
+    "frCode": "3.8.6"
+  },
+  {
+    "id": "UC-113",
+    "name": "Track Post Status",
+    "actors": [
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client"
+    ],
+    "actorsRaw": "Owner, Manager, Creator, Client",
+    "description": "(3.8.7) Theo dõi trạng thái của các bài đăng trong hàng đợi xuất bản theo thời gian thực (Đang chờ đến giờ -> Đang đăng -> Đã đăng thành công -> Hoặc Gặp lỗi), hỗ trợ tự động thử lại khi lỗi mạng và cho phép bấm Thử đăng lại thủ công.",
+    "ucNum": 113,
+    "frCode": "3.8.7"
+  },
+  {
+    "id": "UC-114",
+    "name": "Publish Facebook Post",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.8) Xuất bản trực tiếp (hoặc theo lịch hẹn) một bài viết tiêu chuẩn (gồm văn bản, ảnh đơn, bộ nhiều ảnh hoặc video) lên trang Facebook Page đã kết nối của dự án.",
+    "ucNum": 114,
+    "frCode": "3.8.8"
+  },
+  {
+    "id": "UC-115",
+    "name": "Publish Facebook Story",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.9) Xuất bản tin ngắn 24 giờ (Facebook Story dạng ảnh dọc hoặc video ngắn tỷ lệ 9:16) lên trang Facebook Page đã kết nối của dự án.",
+    "ucNum": 115,
+    "frCode": "3.8.9"
+  },
+  {
+    "id": "UC-116",
+    "name": "Publish Facebook Reels",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.10) Xuất bản video ngắn định dạng dọc (Facebook Reels) kèm mô tả (caption) lên trang Facebook Page đã kết nối của dự án.",
+    "ucNum": 116,
+    "frCode": "3.8.10"
+  },
+  {
+    "id": "UC-117",
+    "name": "Publish Instagram Post",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.11) Xuất bản bài đăng ảnh đơn hoặc bộ nhiều ảnh xoay vòng (Carousel) kèm lời bình (caption) và bộ hashtag lên tài khoản Instagram Business đã kết nối.",
+    "ucNum": 117,
+    "frCode": "3.8.11"
+  },
+  {
+    "id": "UC-118",
+    "name": "Publish Instagram Reels",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.12) Xuất bản video ngắn lên mục Instagram Reels kèm ảnh bìa (cover) và nội dung caption thông qua tài khoản Instagram Business đã kết nối.",
+    "ucNum": 118,
+    "frCode": "3.8.12"
+  },
+  {
+    "id": "UC-119",
+    "name": "Publish Instagram Story",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.13) Xuất bản hình ảnh hoặc video ngắn 24 giờ lên mục Tin (Instagram Story) của tài khoản Instagram Business đã kết nối.",
+    "ucNum": 119,
+    "frCode": "3.8.13"
+  },
+  {
+    "id": "UC-120",
+    "name": "Publish TikTok Video",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.14) Xuất bản video ngắn kèm mô tả (caption), thẻ hashtag và các tùy chọn tương tác (cho phép bình luận, Duet, Stitch) lên tài khoản TikTok đã kết nối của dự án.",
+    "ucNum": 120,
+    "frCode": "3.8.14"
+  },
+  {
+    "id": "UC-121",
+    "name": "Publish Threads Post",
+    "actors": [
+      "Manager",
+      "Creator"
+    ],
+    "actorsRaw": "Creator, Manager",
+    "description": "(3.8.15) Xuất bản bài viết văn bản ngắn (tối đa 500 ký tự) kèm hình ảnh hoặc video lên tài khoản mạng xã hội Threads đã kết nối của dự án.",
+    "ucNum": 121,
+    "frCode": "3.8.15"
+  },
+  {
+    "id": "UC-122",
+    "name": "Upgrade Plan",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.9.1) Cho phép Owner nâng cấp gói dịch vụ của Agency từ gói Cơ bản (Basic) lên gói cao hơn (Pro hoặc Enterprise) để mở rộng số lượng Workspace, số thành viên, dung lượng lưu trữ và lượng điểm AI Credit được cấp hàng tháng. (Hệ thống chỉ hỗ trợ nâng cấp lên gói cao hơn, không có luồng hạ cấp gói).",
+    "ucNum": 122,
+    "frCode": "3.9.1"
+  },
+  {
+    "id": "UC-123",
+    "name": "Make Payment (SePay)",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.9.2) Thực hiện thanh toán đơn hàng nâng cấp gói dịch vụ (3.9.1) hoặc mua thêm điểm AI Credit (3.9.5) bằng cách quét mã chuyển khoản ngân hàng VietQR qua cổng SePay / PayOS. Ngay khi chuyển khoản xong, hệ thống tự động xác nhận và kích hoạt quyền lợi ngay lập tức.",
+    "ucNum": 123,
+    "frCode": "3.9.2"
+  },
+  {
+    "id": "UC-124",
+    "name": "View Invoice History",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.9.3) Cho phép Owner xem lại toàn bộ lịch sử các giao dịch thanh toán của Agency (nâng cấp gói cước và mua thêm điểm AI Credit) và tải hóa đơn điện tử định dạng PDF về máy để lưu trữ kế toán.",
+    "ucNum": 124,
+    "frCode": "3.9.3"
+  },
+  {
+    "id": "UC-125",
+    "name": "View AI Credit Tracking",
+    "actors": [
+      "Owner",
+      "Manager"
+    ],
+    "actorsRaw": "Owner, Manager",
+    "description": "(3.9.4) Giúp Owner và Manager theo dõi chi tiết số dư điểm AI Credit còn lại, lượng điểm đã sử dụng theo từng tính năng AI (Tạo Caption, Ảnh, Video, Đại sứ ảo) và theo từng Workspace hoặc thành viên.",
+    "ucNum": 125,
+    "frCode": "3.9.4"
+  },
+  {
+    "id": "UC-126",
+    "name": "Buy Credit",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.9.5) Cho phép Owner mua thêm các gói nạp điểm AI Credit (Top-up Packs) khi công ty cần sử dụng AI nhiều hơn số điểm tặng sẵn hàng tháng trong gói đăng ký.",
+    "ucNum": 126,
+    "frCode": "3.9.5"
+  },
+  {
+    "id": "UC-127",
+    "name": "Set Credit",
+    "actors": [
+      "Owner"
+    ],
+    "actorsRaw": "Owner",
+    "description": "(3.9.6) Cho phép Owner đặt và điều chỉnh hạn mức sử dụng điểm AI Credit tối đa hàng tháng cho từng Workspace hoặc từng thành viên, giúp kiểm soát chi phí AI hợp lý giữa các dự án khách hàng.",
+    "ucNum": 127,
+    "frCode": "3.9.6"
+  },
+  {
+    "id": "UC-128",
+    "name": "Push Notification",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.1) Cho phép Admin tạo và gửi thông báo chung trên toàn hệ thống (đến tất cả người dùng, hoặc lọc riêng theo nhóm Owner, theo gói cước Basic/Pro/Enterprise) qua thông báo trên ứng dụng và email.",
+    "ucNum": 128,
+    "frCode": "3.10.1"
+  },
+  {
+    "id": "UC-129",
+    "name": "Platform Statistics Overview",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.2) Hiển thị cho Admin bảng điều khiển thống kê toàn cảnh hoạt động của nền tảng BrandHub: tổng số người dùng, tổng số Agency & Workspace đang hoạt động, tổng số bài đã đăng lên 4 mạng xã hội, lưu lượng sử dụng AI và tổng doanh thu.",
+    "ucNum": 129,
+    "frCode": "3.10.2"
+  },
+  {
+    "id": "UC-130",
+    "name": "System Health Monitoring",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.3) Giúp Admin theo dõi tình trạng hoạt động và mức tiêu thụ tài nguyên (CPU, RAM, ổ cứng, độ trễ phản hồi và kết nối cơ sở dữ liệu) của các máy chủ dịch vụ theo thời gian thực để phát hiện sớm nếu có dịch vụ bị quá tải.",
+    "ucNum": 130,
+    "frCode": "3.10.3"
+  },
+  {
+    "id": "UC-131",
+    "name": "Content Moderation Queue",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.4) Cho phép Admin xem và xử lý Hàng đợi kiểm duyệt các nội dung bị gắn cờ nghi ngờ vi phạm chính sách cộng đồng (hoặc bài đăng của tài khoản đang bị theo dõi mức Cam), để quyết định Cho phép đăng hay Xác nhận vi phạm và gỡ bỏ.",
+    "ucNum": 131,
+    "frCode": "3.10.4"
+  },
+  {
+    "id": "UC-132",
+    "name": "Update User Violation Status",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.5) Cho phép Admin ghi nhận mức cảnh cáo vi phạm (Vàng, Cam, Đỏ) hoặc gỡ cảnh cáo cho tài khoản người dùng theo quy tắc 3 mức: 3 cảnh cáo Vàng tự gộp thành 1 mức Cam (tài khoản bị gắn cờ kiểm duyệt trước khi đăng); vi phạm mức Đỏ hoặc đủ 3 mức Cam sẽ chuyển sang khóa tài khoản 30 ngày.",
+    "ucNum": 132,
+    "frCode": "3.10.5"
+  },
+  {
+    "id": "UC-133",
+    "name": "View User",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.6) Cho phép Admin xem, tìm kiếm và lọc danh sách toàn bộ tài khoản người dùng trên hệ thống theo họ tên, email, vai trò hệ thống hoặc trạng thái hoạt động.",
+    "ucNum": 133,
+    "frCode": "3.10.6"
+  },
+  {
+    "id": "UC-134",
+    "name": "Create User",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.7) Cho phép Admin chủ động tạo mới một tài khoản người dùng trực tiếp từ cổng quản trị và tự động gửi thông tin kích hoạt tài khoản qua email cho người đó.",
+    "ucNum": 134,
+    "frCode": "3.10.7"
+  },
+  {
+    "id": "UC-135",
+    "name": "Update User",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.8) Cho phép Admin chỉnh sửa thông tin hồ sơ hành chính (họ tên, số điện thoại) và phân quyền cấp hệ thống của tài khoản người dùng, đồng thời giữ cố định email gốc và ngăn việc tự hạ quyền Admin của chính mình.",
+    "ucNum": 135,
+    "frCode": "3.10.8"
+  },
+  {
+    "id": "UC-136",
+    "name": "Deactivate User",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.9) Cho phép Admin tạm khóa (vô hiệu hóa 30 ngày) đối với tài khoản vi phạm nghiêm trọng. Khi bị tạm khóa, toàn bộ phiên đăng nhập của tài khoản đó bị đăng xuất ngay lập tức; sau khi hết hạn 30 ngày, hệ thống sẽ tự động mở khóa lại tài khoản.",
+    "ucNum": 136,
+    "frCode": "3.10.9"
+  },
+  {
+    "id": "UC-137",
+    "name": "View AI Credit Price List",
+    "actors": [
+      "Owner",
+      "Admin"
+    ],
+    "actorsRaw": "Admin, Owner",
+    "description": "(3.10.10) Cho phép Admin và Owner xem bảng đơn giá điểm AI Credit hiện hành của toàn hệ thống cho từng loại tính năng AI (Tạo Caption, Tạo Ảnh, Tạo Video, Tạo Đại sứ ảo, Gợi ý Hashtag).",
+    "ucNum": 137,
+    "frCode": "3.10.10"
+  },
+  {
+    "id": "UC-138",
+    "name": "Update AI Credit Price",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.11) Cho phép Admin chỉnh sửa trực tiếp số điểm AI Credit cần trừ cho từng tính năng AI trên bảng giá. Mức giá mới sẽ áp dụng cho các lượt sử dụng AI tiếp theo mà không làm thay đổi lịch sử các giao dịch đã trừ trước đó.",
+    "ucNum": 138,
+    "frCode": "3.10.11"
+  },
+  {
+    "id": "UC-139",
+    "name": "Import AI Credit Price CSV",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.12) Cho phép Admin tải lên tệp bảng tính CSV để kiểm tra xem trước và cập nhật hàng loạt đơn giá điểm AI Credit cho nhiều tính năng cùng lúc một cách nhanh chóng và chính xác.",
+    "ucNum": 139,
+    "frCode": "3.10.12"
+  },
+  {
+    "id": "UC-140",
+    "name": "View Revenue Dashboard",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.13) Cung cấp cho Admin bảng điều khiển phân tích doanh thu toàn hệ thống, thống kê tổng tiền thực thu từ các giao dịch SePay đã thanh toán, biểu đồ doanh thu theo tháng/quý và tỷ trọng doanh thu giữa Gói đăng ký (Pro/Enterprise) với Gói mua thêm điểm AI Credit.",
+    "ucNum": 140,
+    "frCode": "3.10.13"
+  },
+  {
+    "id": "UC-141",
+    "name": "Export Report File PDF",
+    "actors": [
+      "Admin"
+    ],
+    "actorsRaw": "Admin",
+    "description": "(3.10.14) Cho phép Admin xuất và tải xuống tệp báo cáo quản trị định dạng PDF (gồm Báo cáo Doanh thu & Giao dịch, Báo cáo Tăng trưởng Người dùng & Agency, hoặc Báo cáo Sử dụng AI Credit) theo khoảng thời gian chọn trước để lưu trữ hoặc trình bày.",
+    "ucNum": 141,
+    "frCode": "3.10.14"
+  }
+]
