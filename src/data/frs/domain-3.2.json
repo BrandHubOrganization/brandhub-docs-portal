@@ -61,10 +61,8 @@
       "MSG10"
     ],
     "validations": [
-      "Required field missing (fullName, email, or password left blank) → Display: MSG02.",
-      "Invalid email format → Display: MSG04.",
-      "Password does not meet security policy (BR-02) or passwords do not match → Display: MSG05, MSG06.",
-      "Email address already belongs to an existing account (BR-01) → Display: MSG08."
+      "Nếu bỏ trống thông tin, nhập sai định dạng email hoặc mật khẩu chưa đủ 8 ký tự/thiếu số: Hệ thống báo lỗi ngay dưới ô nhập (MSG02, MSG04, MSG05, MSG06) để người dùng sửa lại.",
+      "Nếu địa chỉ email này đã được đăng ký trước đó: Hệ thống thông báo email đã tồn tại (MSG08) và gợi ý chuyển sang trang Đăng nhập."
     ],
     "normalFlow": [
       "Guest mở trang Đăng ký (/register) và điền đầy đủ Họ tên, Email, Mật khẩu và Nhập lại mật khẩu.",
@@ -77,9 +75,8 @@
       "Nếu địa chỉ email này đã được đăng ký trước đó: Hệ thống thông báo email đã tồn tại (MSG08) và gợi ý chuyển sang trang Đăng nhập."
     ],
     "postConditions": [
-      "A User account record exists for the normalized email address in an unverified state with the default user role assigned.",
-      "The password is stored exclusively as a one-way cryptographic hash, and a single-use 6-digit OTP with a 10-minute expiration is active for email verification.",
-      "The Guest is positioned on the OTP Verification screen (3.2.6) to confirm email ownership."
+      "Tạo tài khoản thành công, gửi mã OTP qua email (hiển thị thông báo MSG10) và chuyển sang màn hình Xác thực OTP (3.2.6).",
+      "Hệ thống lưu và cập nhật: Mã tài khoản mới, mật khẩu đã mã hóa bảo mật, trạng thái tài khoản Chờ xác thực (PENDING_VERIFICATION) và mã OTP 6 số (hiệu lực 10 phút)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-10.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_1.png",
@@ -157,11 +154,9 @@
       "MSG12"
     ],
     "validations": [
-      "Required field missing (email or password left blank) → Display: MSG02.",
-      "Invalid email format → Display: MSG04.",
-      "Email not found or password does not match stored hash → Display: MSG09.",
-      "Account temporarily locked after 5 consecutive failed sign-in attempts (BR-06) → Display: MSG11.",
-      "Account is currently DEACTIVATED or DELETED (BR-05) → Display: MSG12."
+      "Nếu nhập sai email hoặc mật khẩu: Hệ thống báo thông tin đăng nhập không chính xác (MSG09). Nếu nhập sai liên tiếp 5 lần trong 15 phút, tài khoản sẽ tạm khóa đăng nhập trong 15 phút (BR-06, MSG11).",
+      "Nếu tài khoản chưa xác thực email: Hệ thống gửi mã OTP mới và chuyển sang màn hình Xác thực OTP (3.2.6).",
+      "Nếu tài khoản đang bị khóa hoặc đã xóa: Hệ thống từ chối đăng nhập và hiển thị thông báo MSG12."
     ],
     "normalFlow": [
       "Người dùng mở trang Đăng nhập (/login), nhập Email và Mật khẩu rồi bấm Đăng nhập.",
@@ -175,9 +170,8 @@
       "Nếu tài khoản đang bị khóa hoặc đã xóa: Hệ thống từ chối đăng nhập và hiển thị thông báo MSG12."
     ],
     "postConditions": [
-      "Failed sign-in counter is reset to zero upon successful credential verification.",
-      "An authenticated user session is active (or a pending 2FA challenge session is active if 2FA is enabled).",
-      "The user is positioned on their role-appropriate dashboard or verification screen."
+      "Đăng nhập thành công vào màn hình chính (hoặc chuyển sang màn hình nhập mã bảo mật 2 lớp 3.2.7 nếu tài khoản có bật 2FA).",
+      "Hệ thống lưu và cập nhật: Trạng thái hoạt động của tài khoản, số lần nhập sai mật khẩu liên tiếp (khóa tạm 15 phút nếu sai 5 lần - BR-06) và mã phiên làm việc."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374187/brandhub-docs-portal/report3/r3-fig-11.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_2.png",
@@ -244,9 +238,8 @@
       "MSG13"
     ],
     "validations": [
-      "Google OAuth consent cancelled or invalid/expired OAuth state token → Display: MSG13.",
-      "Target BrandHub account is DEACTIVATED or DELETED (BR-05) → Display: MSG12.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người dùng đóng cửa sổ Google giữa chừng hoặc hủy cấp quyền: Hệ thống quay lại trang đăng nhập và báo thao tác Google chưa hoàn tất (MSG13).",
+      "Nếu tài khoản gắn với email đó đang bị khóa hoặc đã xóa: Hệ thống chặn đăng nhập và báo MSG12."
     ],
     "normalFlow": [
       "Người dùng bấm nút Tiếp tục với Google trên trang Đăng nhập (/login) hoặc Đăng ký (/register).",
@@ -259,8 +252,8 @@
       "Nếu tài khoản gắn với email đó đang bị khóa hoặc đã xóa: Hệ thống chặn đăng nhập và báo MSG12."
     ],
     "postConditions": [
-      "The user's BrandHub account is linked to their verified Google identity and marked as email-verified.",
-      "An authenticated user session is active."
+      "Đăng nhập thành công và chuyển thẳng vào màn hình làm việc chính.",
+      "Hệ thống lưu và cập nhật: Email, họ tên, ảnh đại diện từ Google, trạng thái tài khoản (BR-05) và mã phiên đăng nhập."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-12.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_3.png",
@@ -340,11 +333,8 @@
       "MSG17"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-01) → Display: MSG07.",
-      "Required field missing (email, otpCode, newPassword, or confirmPassword) → Display: MSG02.",
-      "Invalid email format → Display: MSG04.",
-      "Recovery OTP is invalid or expired (BR-03) → Display: MSG15.",
-      "New password violates security policy (BR-02) or does not match confirmation → Display: MSG05, MSG06."
+      "Nếu mã OTP nhập sai hoặc đã quá 10 phút: Hệ thống báo mã không hợp lệ hoặc đã hết hạn (MSG15). Nếu nhập sai quá 5 lần thì khóa mã đó và yêu cầu gửi lại mã mới (BR-04).",
+      "Nếu mật khẩu mới ngắn hơn 8 ký tự, thiếu chữ số hoặc nhập lại không khớp: Hệ thống báo lỗi dưới ô nhập (MSG05, MSG06)."
     ],
     "normalFlow": [
       "Người dùng mở màn hình Quên mật khẩu (/forgot-password), nhập Email của mình và bấm Gửi mã xác nhận.",
@@ -357,9 +347,8 @@
       "Nếu mật khẩu mới ngắn hơn 8 ký tự, thiếu chữ số hoặc nhập lại không khớp: Hệ thống báo lỗi dưới ô nhập (MSG05, MSG06)."
     ],
     "postConditions": [
-      "The user's password hash is updated with the new encrypted password.",
-      "The recovery OTP is consumed and cannot be reused.",
-      "All prior active sessions for the user are revoked, requiring a fresh sign-in at 3.2.2."
+      "Cập nhật mật khẩu mới thành công (hiển thị MSG17) và chuyển về trang Đăng nhập để đăng nhập lại.",
+      "Hệ thống lưu và cập nhật: Mã OTP khôi phục (hiệu lực 10 phút, tối đa 5 lần thử - BR-03, BR-04), mật khẩu mới đã mã hóa và lệnh thu hồi các phiên đăng nhập cũ (BR-08)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374187/brandhub-docs-portal/report3/r3-fig-13.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_4.png",
@@ -421,10 +410,8 @@
       "MSG18"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-02) → Display: MSG07.",
-      "Required field missing (currentPassword, newPassword, or confirmNewPassword) → Display: MSG02.",
-      "Current password is incorrect or new password is identical to current password (BR-08) → Display: MSG18.",
-      "New password fails security policy (BR-02) or confirmation does not match → Display: MSG05, MSG06."
+      "Nếu nhập sai mật khẩu hiện tại hoặc đặt mật khẩu mới giống hệt mật khẩu cũ: Hệ thống báo lỗi MSG18 để người dùng nhập lại.",
+      "Nếu mật khẩu mới không đủ 8 ký tự/thiếu số hoặc 2 ô mật khẩu mới không khớp nhau: Hệ thống báo lỗi MSG05 hoặc MSG06."
     ],
     "normalFlow": [
       "Người dùng mở phần Cài đặt bảo mật (/settings/security) và chọn mục Đổi mật khẩu.",
@@ -437,8 +424,8 @@
       "Nếu mật khẩu mới không đủ 8 ký tự/thiếu số hoặc 2 ô mật khẩu mới không khớp nhau: Hệ thống báo lỗi MSG05 hoặc MSG06."
     ],
     "postConditions": [
-      "The user's password hash is updated in persistent storage.",
-      "The user's current authenticated session remains active without forced sign-out."
+      "Đổi mật khẩu thành công, hiển thị thông báo MSG17 và tiếp tục làm việc bình thường.",
+      "Hệ thống lưu và cập nhật: Mật khẩu mới đã mã hóa và thời gian cập nhật mật khẩu."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-14.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_5.png",
@@ -502,9 +489,8 @@
       "MSG16"
     ],
     "validations": [
-      "OTP input is blank or fewer than 6 digits → Display: MSG02.",
-      "Entered OTP does not match or has expired after 10 minutes (BR-03) → Display: MSG15.",
-      "Resend requested before 60-second cooldown or 5 failed attempts exceeded (BR-04) → Display: MSG16."
+      "Nếu nhập sai mã OTP hoặc mã đã quá hạn 10 phút: Hệ thống báo lỗi MSG15.",
+      "Nếu nhập sai quá 5 lần liên tiếp hoặc bấm gửi lại khi chưa đủ 60 giây chờ: Hệ thống khóa mã cũ và báo người dùng đợi đủ 60 giây để lấy mã mới (BR-04, MSG16)."
     ],
     "normalFlow": [
       "Trên màn hình Xác thực OTP (/verify-otp), người dùng nhập mã 6 chữ số vừa nhận được trong hộp thư email.",
@@ -517,8 +503,8 @@
       "Nếu nhập sai quá 5 lần liên tiếp hoặc bấm gửi lại khi chưa đủ 60 giây chờ: Hệ thống khóa mã cũ và báo người dùng đợi đủ 60 giây để lấy mã mới (BR-04, MSG16)."
     ],
     "postConditions": [
-      "The single-use 6-digit OTP is invalidated and removed from active verification storage.",
-      "For registration flows, the User account status is ACTIVE with a recorded emailVerifiedAt timestamp."
+      "Xác thực thành công, tài khoản được kích hoạt (ACTIVE) và chuyển người dùng sang bước tiếp theo.",
+      "Hệ thống lưu và cập nhật: Trạng thái mã OTP, bộ đếm số lần nhập sai (tối đa 5 lần - BR-04), thời gian chờ gửi lại (60 giây) và trạng thái kích hoạt tài khoản."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-15.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_6.png",
@@ -578,9 +564,7 @@
       "MSG19"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-05) → Display: MSG07.",
-      "TOTP code field left blank → Display: MSG02.",
-      "Submitted 6-digit TOTP code is invalid or outside the valid time window (BR-09) → Display: MSG15."
+      "Nếu mã 6 số nhập sai hoặc đã qua chu kỳ 30 giây trên điện thoại: Hệ thống báo mã không hợp lệ (MSG15) để người dùng nhập mã mới đang hiển thị."
     ],
     "normalFlow": [
       "Người dùng mở mục Bảo mật 2 lớp trong Cài đặt (/settings/security) hoặc được chuyển tới màn hình nhập mã 2FA (/verify-2fa) lúc đăng nhập.",
@@ -592,8 +576,8 @@
       "Nếu mã 6 số nhập sai hoặc đã qua chu kỳ 30 giây trên điện thoại: Hệ thống báo mã không hợp lệ (MSG15) để người dùng nhập mã mới đang hiển thị."
     ],
     "postConditions": [
-      "The user's 2FA TOTP configuration is persisted on their account profile.",
-      "During sign-in, full session access is granted only after successful 6-digit TOTP verification."
+      "Cập nhật trạng thái bảo mật 2 lớp thành công (MSG19) hoặc hoàn tất đăng nhập vào hệ thống.",
+      "Hệ thống lưu và cập nhật: Trạng thái bật/tắt 2FA của tài khoản và khóa đồng bộ thời gian 30 giây với ứng dụng Authenticator (BR-09)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-16.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_7.png",
@@ -648,9 +632,7 @@
       "MSG20"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-05) → Display: MSG07.",
-      "Session token is already expired or missing → System still clears local state and redirects cleanly to /login (3.2.2).",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu phiên đăng nhập đã hết hạn từ trước do để máy quá lâu: Hệ thống vẫn tự động dọn sạch dữ liệu trên trình duyệt và đưa người dùng về màn hình Đăng nhập."
     ],
     "normalFlow": [
       "Người dùng mở menu tài khoản ở góc trên màn hình và bấm chọn Đăng xuất.",
@@ -662,8 +644,8 @@
       "Nếu phiên đăng nhập đã hết hạn từ trước do để máy quá lâu: Hệ thống vẫn tự động dọn sạch dữ liệu trên trình duyệt và đưa người dùng về màn hình Đăng nhập."
     ],
     "postConditions": [
-      "The user's active session token is revoked and can no longer authenticate requests.",
-      "The user is returned to the unauthenticated Login Screen (3.2.2)."
+      "Kết thúc phiên làm việc, hiển thị thông báo MSG20 và quay về màn hình Đăng nhập (/login).",
+      "Hệ thống lưu và cập nhật: Thu hồi mã phiên làm việc hiện tại và cập nhật nhật ký đăng xuất."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374188/brandhub-docs-portal/report3/r3-fig-17.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_8.png",
@@ -724,10 +706,8 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-10) → Display: MSG07.",
-      "Confirmation password left blank → Display: MSG02.",
-      "Current password is incorrect → Display: MSG18.",
-      "User is the sole Owner of an active Agency that still has active members or campaigns (BR-10) → Display: MSG36."
+      "Nếu nhập sai mật khẩu xác nhận: Hệ thống báo mật khẩu không đúng (MSG18) và giữ nguyên tài khoản.",
+      "Nếu người dùng đang là Owner duy nhất của một Agency vẫn còn thành viên hoặc chiến dịch đang chạy: Hệ thống chặn thao tác xóa và báo cần đóng hoặc bàn giao Agency trước (BR-10, MSG36)."
     ],
     "normalFlow": [
       "Người dùng vào trang Cài đặt bảo mật (/settings/security) và bấm nút Xóa tài khoản.",
@@ -740,8 +720,8 @@
       "Nếu người dùng đang là Owner duy nhất của một Agency vẫn còn thành viên hoặc chiến dịch đang chạy: Hệ thống chặn thao tác xóa và báo cần đóng hoặc bàn giao Agency trước (BR-10, MSG36)."
     ],
     "postConditions": [
-      "The User account is in DELETED (soft-deleted) status with a 30-day restoration window.",
-      "All active sessions and tokens for the user are immediately revoked."
+      "Tài khoản chuyển sang trạng thái chờ xóa 30 ngày, hiển thị thông báo MSG20 và chuyển về trang chủ.",
+      "Hệ thống lưu và cập nhật: Trạng thái tài khoản chuyển sang Đã xóa mềm (DELETED), mốc thời gian 30 ngày khôi phục (BR-10, BR-16) và thu hồi toàn bộ phiên đăng nhập."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374189/brandhub-docs-portal/report3/r3-fig-18.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_9.png",

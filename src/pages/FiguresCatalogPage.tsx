@@ -199,7 +199,7 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
               </option>
               {data.domains.map((d) => (
                 <option key={d.code} value={d.code}>
-                  {d.code} — {d.title} ({d.frCount})
+                  {d.code} - {d.title} ({d.frCount})
                 </option>
               ))}
             </select>

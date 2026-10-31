@@ -49,9 +49,8 @@
       "MSG37"
     ],
     "validations": [
-      "Caller is not the Manager or Owner (BR-33) → Display: MSG07.",
-      "Required field missing (taskTitle, detailedBrief, targetPlatforms, or dueDate) → Display: MSG02.",
-      "Due Date is invalid or precedes campaign start date → Display: MSG03."
+      "Nếu bỏ trống Yêu cầu chi tiết, chưa chọn kênh đăng hoặc đặt hạn hoàn thành không hợp lệ: Hệ thống báo lỗi MSG02 hoặc MSG03.",
+      "Nếu người thao tác không phải là Manager của dự án: Hệ thống chặn chỉnh sửa và báo MSG07."
     ],
     "normalFlow": [
       "Manager mở bảng công việc của Workspace (/workspace/:id/tasks) và chọn một Task đang ở cột Chờ phân rã (BACKLOG).",
@@ -64,8 +63,8 @@
       "Nếu người thao tác không phải là Manager của dự án: Hệ thống chặn chỉnh sửa và báo MSG07."
     ],
     "postConditions": [
-      "The Task record contains complete production specifications, target platforms, and deadline, ready for Creator assignment (3.6.2).",
-      "Role-based access isolation (BR-22) and audit state consistency are preserved across the session."
+      "Cập nhật đặc tả công việc thành công (hiển thị MSG37), sẵn sàng để giao cho Creator thực hiện.",
+      "Hệ thống lưu và cập nhật: Quy đổi thời gian theo múi giờ của Workspace (BR-22) và chuyển trạng thái Task từ BACKLOG sang TODO (BR-33)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-62.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_1.png",
@@ -127,9 +126,7 @@
       "MSG37"
     ],
     "validations": [
-      "Caller is not the Manager or Owner (BR-33) → Display: MSG07.",
-      "Assignee Creator not selected → Display: MSG02.",
-      "Submitted parameter value exceeds maximum length or falls outside the valid domain range → Display: MSG03."
+      "Nếu chưa chọn Creator hoặc chọn người không thuộc Workspace này: Hệ thống báo lỗi MSG02 hoặc MSG07."
     ],
     "normalFlow": [
       "Manager mở màn hình Chi tiết Công việc (/workspace/:id/tasks/:taskId) cần phân công.",
@@ -141,8 +138,8 @@
       "Nếu chưa chọn Creator hoặc chọn người không thuộc Workspace này: Hệ thống báo lỗi MSG02 hoặc MSG07."
     ],
     "postConditions": [
-      "The Task is assigned to the designated Creator and optional peer Creator reviewer and appears in their active workload views (3.6.4–3.6.7).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Giao việc cho Creator thành công và hiển thị thông báo MSG37.",
+      "Hệ thống lưu và cập nhật: Lưu thông tin người nhận việc trên Task và gửi thông báo thời gian thực cho Creator."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-63.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_2.png",
@@ -202,10 +199,8 @@
       "MSG37"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-12) → Display: MSG07.",
-      "Comment text is empty and no attachment is provided → Display: MSG02.",
-      "Comment exceeds 2000 characters → Display: MSG03.",
-      "Attached image violates PNG/JPG/WEBP or 5 MB size limit (BR-12) → Display: MSG22."
+      "Nếu bấm gửi khi ô bình luận đang trống: Hệ thống báo lỗi MSG02.",
+      "Nếu ảnh đính kèm vượt quá 5 MB hoặc sai định dạng: Hệ thống báo lỗi MSG22."
     ],
     "normalFlow": [
       "Thành viên (Owner, Manager, Creator hoặc Client) mở màn hình Chi tiết Công việc (/workspace/:id/tasks/:taskId).",
@@ -218,8 +213,8 @@
       "Nếu ảnh đính kèm vượt quá 5 MB hoặc sai định dạng: Hệ thống báo lỗi MSG22."
     ],
     "postConditions": [
-      "The comment and any attachment are persisted in the Task's chronological discussion history.",
-      "Role-based access isolation (BR-12) and audit state consistency are preserved across the session."
+      "Hiển thị ngay bình luận mới trên luồng trao đổi của Task và báo MSG37.",
+      "Hệ thống lưu và cập nhật: Mã bình luận, người gửi, thời gian gửi và danh sách thành viên nhận thông báo."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-64.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_3.png",
@@ -288,9 +283,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "No Tasks match the current filter criteria → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu dự án chưa có công việc nào hoặc không khớp bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Thành viên trong dự án mở mục Công việc và chọn chế độ xem Danh sách (/workspace/:id/tasks?view=list).",
@@ -302,8 +295,8 @@
       "Nếu dự án chưa có công việc nào hoặc không khớp bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "Workspace Tasks are displayed in a sortable tabular format consistent with all other task views (BR-44).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị bảng danh sách công việc rõ ràng, đầy đủ thông tin.",
+      "Hệ thống lưu và cập nhật: Danh sách Task của Workspace đã đồng bộ theo múi giờ dự án (BR-22, BR-33, BR-44)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-65.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_4.png",
@@ -374,9 +367,7 @@
       "MSG37"
     ],
     "validations": [
-      "Non-Manager attempts to drag-reschedule a Task's due date (BR-33) → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu kéo thả một Task đã xuất bản xong hoặc người kéo không có quyền sửa lịch: Hệ thống trả thẻ về vị trí cũ và báo MSG07 hoặc MSG36."
     ],
     "normalFlow": [
       "Thành viên mở bảng Công việc của Workspace và chọn tab Lịch (/workspace/:id/tasks?view=calendar).",
@@ -388,8 +379,8 @@
       "Nếu kéo thả một Task đã xuất bản xong hoặc người kéo không có quyền sửa lịch: Hệ thống trả thẻ về vị trí cũ và báo MSG07 hoặc MSG36."
     ],
     "postConditions": [
-      "The Calendar View reflects accurate task deadlines in the Workspace timezone (BR-44).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị lịch công việc trực quan và cập nhật ngày mới khi kéo thả (MSG37).",
+      "Hệ thống lưu và cập nhật: Mốc thời gian hạn chót và giờ đăng bài tính theo múi giờ Workspace (BR-22, BR-44)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374201/brandhub-docs-portal/report3/r3-fig-66.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_5.png",
@@ -453,9 +444,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "No Tasks with valid timeline dates match the active filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có công việc nào trong khoảng thời gian đang chọn: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Thành viên mở mục Công việc của Workspace và chuyển sang tab Gantt (/workspace/:id/tasks?view=gantt).",
@@ -467,8 +456,8 @@
       "Nếu không có công việc nào trong khoảng thời gian đang chọn: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The Gantt Timeline View accurately visualizes task durations and campaign progression.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị biểu đồ tiến độ Gantt trực quan theo dòng thời gian của dự án.",
+      "Hệ thống lưu và cập nhật: Khoảng thời gian thực hiện, tỷ lệ hoàn thành và sự liên kết giữa các Task trong chiến dịch (BR-22, BR-44)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374201/brandhub-docs-portal/report3/r3-fig-67.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_6.png",
@@ -534,9 +523,7 @@
       "MSG37"
     ],
     "validations": [
-      "User attempts to drag a task directly to DONE bypassing the required Approval Sequence (BR-34) → Display: MSG36.",
-      "Unauthorized user attempts to transition a task not assigned to them → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người dùng kéo nhảy cóc một Task chưa duyệt sang thẳng cột Hoàn thành (bỏ qua quy trình duyệt 3 cấp BR-34): Hệ thống trả thẻ về cột cũ và báo lỗi MSG36."
     ],
     "normalFlow": [
       "Thành viên mở mục Công việc và chọn tab Bảng Kanban (/workspace/:id/tasks?view=kanban).",
@@ -548,8 +535,8 @@
       "Nếu người dùng kéo nhảy cóc một Task chưa duyệt sang thẳng cột Hoàn thành (bỏ qua quy trình duyệt 3 cấp BR-34): Hệ thống trả thẻ về cột cũ và báo lỗi MSG36."
     ],
     "postConditions": [
-      "The Kanban board reflects real-time task state transitions governed by the workflow state machine (BR-33, BR-34).",
-      "Role-based access isolation (BR-33) and audit state consistency are preserved across the session."
+      "Hiển thị bảng Kanban và cập nhật trạng thái Task ngay khi kéo thả hợp lệ (MSG37).",
+      "Hệ thống lưu và cập nhật: Trạng thái hiện tại của Task và kiểm tra điều kiện chuyển bước hợp lệ (BR-33, BR-34)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374201/brandhub-docs-portal/report3/r3-fig-68.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_7.png",
@@ -609,9 +596,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "Combined filter criteria match zero Tasks in the Workspace → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có công việc nào khớp với các điều kiện lọc: Hệ thống hiển thị thông báo không tìm thấy kết quả (MSG01) và nút Xóa bộ lọc."
     ],
     "normalFlow": [
       "Trên màn hình Công việc (/workspace/:id/tasks), người dùng nhập từ khóa hoặc chọn các bộ lọc (ví dụ: chỉ xem việc của tôi, nền tảng TikTok, trạng thái Đang làm).",
@@ -623,8 +608,8 @@
       "Nếu không có công việc nào khớp với các điều kiện lọc: Hệ thống hiển thị thông báo không tìm thấy kết quả (MSG01) và nút Xóa bộ lọc."
     ],
     "postConditions": [
-      "The active Task View displays only the Tasks matching the user's filter and sort parameters.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Cập nhật danh sách công việc trên màn hình theo đúng điều kiện lọc.",
+      "Hệ thống lưu và cập nhật: Tập kết quả Task thỏa mãn điều kiện lọc trên cả 4 chế độ hiển thị (BR-44)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374201/brandhub-docs-portal/report3/r3-fig-69.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374242/brandhub-docs-portal/report4/seq-3_6_8.png",
@@ -688,9 +673,8 @@
       "MSG38"
     ],
     "validations": [
-      "Caller is not the designated actor for the current approval stage (BR-34) → Display: MSG07.",
-      "Approver selects Return for Revision (REJECT) without entering a feedback reason → Display: MSG02.",
-      "Task is not in a submittable or reviewable status → Display: MSG36."
+      "Nếu bấm Trả lại (Reject) nhưng để trống ô lý do nhận xét: Hệ thống báo bắt buộc phải nhập lý do để Creator biết cần sửa gì (MSG02).",
+      "Nếu người dùng không đúng vai trò của bước duyệt hiện tại cố bấm duyệt: Hệ thống chặn thao tác và báo MSG07."
     ],
     "normalFlow": [
       "Sau khi soạn xong nội dung và ấn phẩm, Creator bấm Gửi duyệt trên đầu việc (/workspace/:id/tasks/:taskId).",
@@ -703,8 +687,8 @@
       "Nếu người dùng không đúng vai trò của bước duyệt hiện tại cố bấm duyệt: Hệ thống chặn thao tác và báo MSG07."
     ],
     "postConditions": [
-      "Every approval or rejection step is permanently recorded in the Task's Approval History.",
-      "Only Tasks that pass all required stages reach DONE status and become eligible for scheduling or publishing (BR-54)."
+      "Chuyển bước phê duyệt thành công (hoặc trả bài về cho Creator sửa lại) và hiển thị thông báo MSG38.",
+      "Hệ thống lưu và cập nhật: Bản ghi lịch sử duyệt (người duyệt, cấp duyệt, quyết định, thời gian, nhận xét) và trạng thái mới của Task (BR-34, BR-54)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374202/brandhub-docs-portal/report3/r3-fig-70.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_9.png",
@@ -762,9 +746,7 @@
       "MSG39"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-35) → Display: MSG07.",
-      "Content body is empty when attempting to save a version snapshot → Display: MSG02.",
-      "Content body exceeds maximum platform or editor character limits → Display: MSG03."
+      "Nếu để trống hoàn toàn nội dung khi bấm lưu phiên bản hoặc vượt quá giới hạn độ dài tối đa: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "normalFlow": [
       "Creator hoặc Manager mở trình Soạn thảo nội dung (/workspace/:id/content-writing) từ đầu việc được giao.",
@@ -776,8 +758,8 @@
       "Nếu để trống hoàn toàn nội dung khi bấm lưu phiên bản hoặc vượt quá giới hạn độ dài tối đa: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "postConditions": [
-      "The Task's latest stylized content is saved and a new immutable ContentVersion snapshot is available in Content History (3.6.34).",
-      "Role-based access isolation (BR-35) and audit state consistency are preserved across the session."
+      "Lưu bản nháp bài viết kèm phiên bản lịch sử mới thành công và hiển thị thông báo MSG39.",
+      "Hệ thống lưu và cập nhật: Mã phiên bản nội dung mới (Version snapshot), người lưu, thời gian lưu và số lượng ký tự (BR-35)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374202/brandhub-docs-portal/report3/r3-fig-71.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374242/brandhub-docs-portal/report4/seq-3_6_10.png",
@@ -835,9 +817,7 @@
       "MSG41"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "No materials match the selected filter or search query → Display: MSG01.",
-      "User selects an unedited RAW image for task publication attachment (BR-36) → Display: MSG41."
+      "Nếu kho tư liệu chưa có tệp nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Thành viên mở mục Kho Tư liệu (/workspace/:id/library) trong Workspace.",
@@ -849,8 +829,8 @@
       "Nếu kho tư liệu chưa có tệp nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "Workspace materials and their RAW/RETOUCHED/BRAND_REFERENCE classifications are displayed accurately.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách tư liệu của dự án kèm nhãn phân loại trực quan.",
+      "Hệ thống lưu và cập nhật: Danh sách tư liệu, nhãn phân loại giai đoạn xử lý (BR-36), dung lượng và người tải lên."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374203/brandhub-docs-portal/report3/r3-fig-72.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_11.png",
@@ -914,10 +894,8 @@
       "MSG48"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager, Client permission (BR-20) → Display: MSG07.",
-      "No file selected or assetStage not specified → Display: MSG02.",
-      "File format is unsupported or file size exceeds the allowed upload limit → Display: MSG22.",
-      "Agency storage quota is full (BR-58) → Display: MSG48."
+      "Nếu tệp tải lên sai định dạng hoặc vượt quá giới hạn dung lượng cho phép: Hệ thống từ chối và báo lỗi MSG22.",
+      "Nếu kho lưu trữ của Agency đã đầy theo giới hạn gói cước: Hệ thống báo lỗi hết hạn mức dung lượng (MSG48)."
     ],
     "normalFlow": [
       "Creator, Manager hoặc Client mở Kho Tư liệu (/workspace/:id/library) và bấm nút Tải tư liệu lên.",
@@ -930,8 +908,8 @@
       "Nếu kho lưu trữ của Agency đã đầy theo giới hạn gói cước: Hệ thống báo lỗi hết hạn mức dung lượng (MSG48)."
     ],
     "postConditions": [
-      "The uploaded media asset is indexed in the Workspace Material Repository under its designated classification (BR-36).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tải tư liệu mới vào kho thành công và hiển thị thông báo MSG40.",
+      "Hệ thống lưu và cập nhật: Đường dẫn lưu trữ tệp, dung lượng tệp, người tải lên và phân loại tư liệu (BR-36)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374202/brandhub-docs-portal/report3/r3-fig-73.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_12.png",
@@ -988,9 +966,7 @@
       "MSG40"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-20) → Display: MSG07.",
-      "Material Title left blank → Display: MSG02.",
-      "Title or description exceeds character limits → Display: MSG03."
+      "Nếu để trống Tên tư liệu khi lưu: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Creator hoặc Manager mở Kho Tư liệu (/workspace/:id/library) và bấm chọn Chỉnh sửa trên tư liệu cần cập nhật.",
@@ -1002,8 +978,8 @@
       "Nếu để trống Tên tư liệu khi lưu: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "The material asset's updated metadata and classification stage are persisted in the repository.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Cập nhật thông tin tư liệu thành công và hiển thị thông báo MSG40.",
+      "Hệ thống lưu và cập nhật: Cập nhật trạng thái phân loại tư liệu (BR-36) và thời gian chỉnh sửa mới nhất."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374203/brandhub-docs-portal/report3/r3-fig-74.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_13.png",
@@ -1062,9 +1038,7 @@
       "MSG40"
     ],
     "validations": [
-      "Caller lacks permission to delete materials in the Workspace → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu tư liệu đó đã bị xóa từ trước: Hệ thống báo không thể thực hiện lặp lại (MSG36)."
     ],
     "normalFlow": [
       "Trên màn hình Kho Tư liệu (/workspace/:id/library), Creator hoặc Manager bấm nút Xóa trên tư liệu muốn gỡ bỏ.",
@@ -1076,8 +1050,8 @@
       "Nếu tư liệu đó đã bị xóa từ trước: Hệ thống báo không thể thực hiện lặp lại (MSG36)."
     ],
     "postConditions": [
-      "The material asset is soft-deleted for 30 days without breaking historical posts that previously referenced it (BR-36).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Xóa mềm tư liệu khỏi kho thành công và hiển thị thông báo MSG40.",
+      "Hệ thống lưu và cập nhật: Đánh dấu xóa mềm tư liệu kèm thời hạn 30 ngày khôi phục (BR-36)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374203/brandhub-docs-portal/report3/r3-fig-75.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_14.png",
@@ -1135,9 +1109,7 @@
       "MSG42"
     ],
     "validations": [
-      "Caller is not an authorized Client, Manager, or Owner in the Workspace → Display: MSG07.",
-      "Google OAuth authorization cancelled or state validation failed → Display: MSG13.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người dùng hủy cấp quyền trên cửa sổ Google hoặc mất kết nối: Hệ thống giữ nguyên trạng thái chưa liên kết và báo MSG13."
     ],
     "normalFlow": [
       "Client hoặc Manager mở Kho Tư liệu (/workspace/:id/library) và bấm nút Kết nối Google Drive.",
@@ -1149,8 +1121,8 @@
       "Nếu người dùng hủy cấp quyền trên cửa sổ Google hoặc mất kết nối: Hệ thống giữ nguyên trạng thái chưa liên kết và báo MSG13."
     ],
     "postConditions": [
-      "The Workspace has an active, authorized CustomerDriveConnection ready for media synchronization (3.6.16).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Kết nối Google Drive với Workspace thành công và hiển thị thông báo MSG42.",
+      "Hệ thống lưu và cập nhật: Lưu khóa kết nối Google Drive đã mã hóa và thông tin thư mục liên kết của Workspace (BR-37)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374203/brandhub-docs-portal/report3/r3-fig-76.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_15.png",
@@ -1213,9 +1185,8 @@
       "MSG48"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-36) → Display: MSG07.",
-      "No Google Drive account is currently connected to the Workspace (BR-37) → Display: MSG36.",
-      "Selected Drive files contain unsupported formats or exceed Agency storage quota (BR-58) → Display: MSG22, MSG48."
+      "Nếu có tệp không đúng định dạng hỗ trợ hoặc quá dung lượng: Hệ thống báo lỗi MSG22 hoặc MSG48.",
+      "Nếu phiên kết nối Google Drive đã hết hạn: Hệ thống báo cần kết nối lại Google Drive (MSG36)."
     ],
     "normalFlow": [
       "Trên màn hình Kho Tư liệu (/workspace/:id/library), Client hoặc Manager mở tab Google Drive đã kết nối.",
@@ -1228,8 +1199,8 @@
       "Nếu phiên kết nối Google Drive đã hết hạn: Hệ thống báo cần kết nối lại Google Drive (MSG36)."
     ],
     "postConditions": [
-      "Selected Google Drive media files are imported into the Workspace Material Repository and available for content production.",
-      "Role-based access isolation (BR-36) and audit state consistency are preserved across the session."
+      "Đồng bộ các tệp từ Google Drive vào Kho tư liệu thành công và hiển thị thông báo MSG42.",
+      "Hệ thống lưu và cập nhật: Đối chiếu mã tệp Google Drive để chống trùng lặp, kiểm tra dung lượng kho (BR-58) và lưu vào Kho tư liệu (BR-36, BR-37)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374203/brandhub-docs-portal/report3/r3-fig-77.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_16.png",
@@ -1287,9 +1258,7 @@
       "MSG42"
     ],
     "validations": [
-      "Caller lacks Client, Manager, or Owner permission in the Workspace → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu người thao tác không có quyền trong Workspace: Hệ thống chặn thao tác và báo MSG07."
     ],
     "normalFlow": [
       "Client hoặc Manager mở phần cài đặt Google Drive trong Kho Tư liệu (/workspace/:id/library) và bấm Ngắt kết nối.",
@@ -1301,8 +1270,8 @@
       "Nếu người thao tác không có quyền trong Workspace: Hệ thống chặn thao tác và báo MSG07."
     ],
     "postConditions": [
-      "The Google Drive OAuth connection for the Workspace is terminated, and all previously synced Material Repository assets remain intact (BR-37).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Ngắt kết nối Google Drive thành công và hiển thị thông báo MSG42.",
+      "Hệ thống lưu và cập nhật: Thu hồi khóa kết nối Google Drive và giữ nguyên các tư liệu đã nhập vào kho (BR-37)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374204/brandhub-docs-portal/report3/r3-fig-78.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_17.png",
@@ -1359,9 +1328,8 @@
       "MSG41"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-36) → Display: MSG07.",
-      "Source material is not an image or no Brand Logo is selected → Display: MSG02, MSG22.",
-      "Source material is marked as unedited RAW (BR-36) → Display: MSG41."
+      "Nếu Creator chọn một bức ảnh đang gắn nhãn RAW (chưa chỉnh sửa hậu kỳ): Hệ thống hiển thị băng cảnh báo MSG41 nhắc người dùng nên dùng ảnh đã chỉnh sửa (BR-36).",
+      "Nếu tệp logo tải lên bị lỗi định dạng: Hệ thống báo lỗi MSG22."
     ],
     "normalFlow": [
       "Creator chọn một bức ảnh hoàn thiện trong Kho Tư liệu (/workspace/:id/library) và bấm Công cụ đóng dấu (Apply Watermark).",
@@ -1374,8 +1342,8 @@
       "Nếu tệp logo tải lên bị lỗi định dạng: Hệ thống báo lỗi MSG22."
     ],
     "postConditions": [
-      "A new watermarked image asset exists in the Workspace Material Repository ready for task attachment and publishing (BR-38).",
-      "Role-based access isolation (BR-36) and audit state consistency are preserved across the session."
+      "Tạo bản ảnh đóng dấu thương hiệu thành công và hiển thị thông báo MSG40.",
+      "Hệ thống lưu và cập nhật: Tạo tệp ảnh mới đã gắn watermark trong Kho tư liệu và giữ nguyên tệp ảnh gốc ban đầu (BR-38)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374204/brandhub-docs-portal/report3/r3-fig-79.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374244/brandhub-docs-portal/report4/seq-3_6_18.png",
@@ -1434,9 +1402,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller does not have access to the Workspace (BR-20) → Display: MSG07.",
-      "Target material has been deleted or is unavailable → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người dùng không thuộc Workspace hoặc tệp đã bị xóa: Hệ thống chặn tải xuống và báo MSG07 hoặc MSG01."
     ],
     "normalFlow": [
       "Thành viên mở Kho Tư liệu của dự án (/workspace/:id/library) và tìm đến tệp cần lấy.",
@@ -1448,8 +1414,8 @@
       "Nếu người dùng không thuộc Workspace hoặc tệp đã bị xóa: Hệ thống chặn tải xuống và báo MSG07 hoặc MSG01."
     ],
     "postConditions": [
-      "The selected media file is downloaded to the user's local device without altering the repository asset.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Trình duyệt bắt đầu tải tệp tư liệu về máy tính của người dùng.",
+      "Hệ thống lưu và cập nhật: Kiểm tra quyền thành viên dự án (BR-20) và tạo liên kết tải tệp an toàn."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374204/brandhub-docs-portal/report3/r3-fig-80.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_19.png",
@@ -1506,9 +1472,7 @@
       "MSG43"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-35) → Display: MSG07.",
-      "No hashtags selected or invalid special characters in hashtag token → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu dự án chưa có bộ hashtag nào khớp từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Trong lúc soạn bài viết (/workspace/:id/content-writing), Creator bấm nút Chèn Hashtag trên thanh công cụ.",
@@ -1520,8 +1484,8 @@
       "Nếu dự án chưa có bộ hashtag nào khớp từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The selected hashtags are attached to the Task content draft and visible in the social preview (3.8.5).",
-      "Role-based access isolation (BR-35) and audit state consistency are preserved across the session."
+      "Chèn bộ thẻ hashtag vào bài viết thành công và hiển thị thông báo MSG43.",
+      "Hệ thống lưu và cập nhật: Tự động chuẩn hóa tiền tố '#', khử trùng lặp hashtag và cập nhật vào nội dung bài viết (BR-35, BR-39)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374205/brandhub-docs-portal/report3/r3-fig-81.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_20.png",
@@ -1580,9 +1544,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "No Hashtag Collections match the search or category filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu chưa có bộ sưu tập Hashtag nào khớp với tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Thành viên trong dự án mở mục Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups).",
@@ -1594,8 +1556,8 @@
       "Nếu chưa có bộ sưu tập Hashtag nào khớp với tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "All active Workspace Hashtag Collections are displayed accurately.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách đầy đủ các Bộ sưu tập Hashtag của dự án.",
+      "Hệ thống lưu và cập nhật: Danh sách các nhóm Hashtag và các thẻ hashtag bên trong của Workspace (BR-39)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374205/brandhub-docs-portal/report3/r3-fig-82.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_21.png",
@@ -1653,9 +1615,7 @@
       "MSG43"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager, Client permission (BR-20) → Display: MSG07.",
-      "Required field missing (collectionName, purposeCategory, or hashtagsList empty) → Display: MSG02.",
-      "Collection Name or individual hashtag exceeds character limits → Display: MSG03."
+      "Nếu để trống Tên bộ sưu tập hoặc chưa nhập thẻ hashtag nào: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Creator, Manager hoặc Client mở màn hình Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups) và bấm Tạo bộ mới.",
@@ -1667,8 +1627,8 @@
       "Nếu để trống Tên bộ sưu tập hoặc chưa nhập thẻ hashtag nào: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "A new categorized HashtagCollection is saved in the Workspace and available for one-click application in the Content Editor (3.6.20).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tạo bộ sưu tập Hashtag mới thành công và hiển thị thông báo MSG43.",
+      "Hệ thống lưu và cập nhật: Chuẩn hóa định dạng các thẻ hashtag và lưu vào Workspace hiện tại (BR-39)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374205/brandhub-docs-portal/report3/r3-fig-83.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_22.png",
@@ -1725,9 +1685,7 @@
       "MSG43"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-20) → Display: MSG07.",
-      "Collection Name, Purpose Category, or hashtagsList left empty → Display: MSG02.",
-      "Field length exceeds allowed limits → Display: MSG03."
+      "Nếu xóa hết toàn bộ thẻ hoặc để trống tên bộ sưu tập: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Creator hoặc Manager mở màn hình Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups) và bấm Sửa trên nhóm cần điều chỉnh.",
@@ -1739,8 +1697,8 @@
       "Nếu xóa hết toàn bộ thẻ hoặc để trống tên bộ sưu tập: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "The Workspace Hashtag Collection reflects the updated hashtag list and category metadata.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Cập nhật Bộ sưu tập Hashtag thành công và hiển thị thông báo MSG43.",
+      "Hệ thống lưu và cập nhật: Chuẩn hóa danh sách thẻ mới và lưu thời gian cập nhật (BR-39)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374205/brandhub-docs-portal/report3/r3-fig-84.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_23.png",
@@ -1799,9 +1757,7 @@
       "MSG43"
     ],
     "validations": [
-      "Caller lacks permission in the Workspace or collection is already deleted → Display: MSG07, MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu bộ sưu tập đó đã bị xóa trước đó: Hệ thống báo lỗi MSG36."
     ],
     "normalFlow": [
       "Creator hoặc Manager mở trang Bộ sưu tập Hashtag (/workspace/:id/hashtag-groups) và bấm nút Xóa trên nhóm muốn gỡ bỏ.",
@@ -1813,8 +1769,8 @@
       "Nếu bộ sưu tập đó đã bị xóa trước đó: Hệ thống báo lỗi MSG36."
     ],
     "postConditions": [
-      "The Hashtag Collection is soft-deleted from the Workspace library while historical tasks and posts retain their applied hashtags (BR-39).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Xóa bộ sưu tập Hashtag thành công và hiển thị thông báo MSG43.",
+      "Hệ thống lưu và cập nhật: Đánh dấu xóa mềm bộ sưu tập Hashtag trong Workspace (BR-39)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374205/brandhub-docs-portal/report3/r3-fig-85.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_24.png",
@@ -1871,9 +1827,7 @@
       "MSG44"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-20) → Display: MSG07.",
-      "Survey Title left blank or questionsList contains zero questions → Display: MSG02.",
-      "Question text or option labels exceed maximum length → Display: MSG03."
+      "Nếu bỏ trống Tiêu đề khảo sát hoặc chưa thêm câu hỏi nào: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Manager hoặc Creator mở màn hình Khảo sát (/workspace/:id/surveys) trong Workspace và bấm Tạo khảo sát mới.",
@@ -1885,8 +1839,8 @@
       "Nếu bỏ trống Tiêu đề khảo sát hoặc chưa thêm câu hỏi nào: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "An active Survey exists in the Workspace ready to collect participant responses for analysis (3.6.26).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tạo biểu mẫu khảo sát thành công, cấp link chia sẻ và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Mã khảo sát, cấu trúc danh sách câu hỏi và đường dẫn chia sẻ biểu mẫu (BR-40)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374206/brandhub-docs-portal/report3/r3-fig-86.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_25.png",
@@ -1943,9 +1897,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-20) → Display: MSG07.",
-      "No responses have been submitted for the selected Survey yet → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu biểu mẫu khảo sát chưa có người nào gửi câu trả lời: Hệ thống hiển thị thông báo chưa có dữ liệu phản hồi (MSG01)."
     ],
     "normalFlow": [
       "Manager hoặc Client mở danh sách Khảo sát (/workspace/:id/surveys) và chọn Xem phân tích trên biểu mẫu cần kiểm tra.",
@@ -1957,8 +1909,8 @@
       "Nếu biểu mẫu khảo sát chưa có người nào gửi câu trả lời: Hệ thống hiển thị thông báo chưa có dữ liệu phản hồi (MSG01)."
     ],
     "postConditions": [
-      "The viewer inspects real-time aggregated survey analytics without altering response records.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị bảng thống kê và biểu đồ phân tích kết quả khảo sát.",
+      "Hệ thống lưu và cập nhật: Số lượng phản hồi, tỷ lệ phân bổ đáp án và danh sách câu trả lời chi tiết (BR-40)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374206/brandhub-docs-portal/report3/r3-fig-87.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_26.png",
@@ -2021,9 +1973,7 @@
       "MSG44"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator permission (BR-20) → Display: MSG07.",
-      "Meeting Title or Scheduled Start Time missing → Display: MSG02.",
-      "Duration falls outside valid bounds (15–480 minutes) → Display: MSG03."
+      "Nếu bỏ trống Chủ đề cuộc họp hoặc chọn thời gian không hợp lệ: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "normalFlow": [
       "Owner, Manager hoặc Creator mở màn hình Cuộc họp (/workspace/:id/meetings) và bấm Tạo cuộc họp mới.",
@@ -2035,8 +1985,8 @@
       "Nếu bỏ trống Chủ đề cuộc họp hoặc chọn thời gian không hợp lệ: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "postConditions": [
-      "A unique Google Meet link is generated, persisted for the Workspace meeting, and shared with invited participants.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Khởi tạo link phòng họp thành công, cho phép copy link ngay và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Đường dẫn phòng họp trực tuyến (Google Meet URL), thời gian theo múi giờ Workspace (BR-22, BR-40) và thông báo lịch họp."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374206/brandhub-docs-portal/report3/r3-fig-88.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374246/brandhub-docs-portal/report4/seq-3_6_27.png",
@@ -2093,9 +2043,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-20) → Display: MSG07.",
-      "No Mail Templates match the search query → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không tìm thấy mẫu email nào khớp với từ khóa: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Manager hoặc Creator mở màn hình Mẫu Email (/workspace/:id/mail-templates) trong Workspace.",
@@ -2107,8 +2055,8 @@
       "Nếu không tìm thấy mẫu email nào khớp với từ khóa: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The user views the Mail Template library and live HTML preview without altering stored templates.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách và bản xem trước của các mẫu Email trong dự án.",
+      "Hệ thống lưu và cập nhật: Danh sách mẫu email, tiêu đề, nội dung HTML và danh sách các biến tự động đi kèm (BR-41)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374207/brandhub-docs-portal/report3/r3-fig-89.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374246/brandhub-docs-portal/report4/seq-3_6_28.png",
@@ -2165,9 +2113,7 @@
       "MSG44"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-20) → Display: MSG07.",
-      "Required field missing (templateName, subjectLine, or htmlBody left blank) → Display: MSG02.",
-      "Template Name, Subject Line, or malformed variable syntax violates constraints → Display: MSG03."
+      "Nếu bỏ trống Tên mẫu, Tiêu đề hoặc Nội dung email, hoặc viết sai cú pháp thẻ biến: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "normalFlow": [
       "Manager hoặc Creator mở màn hình Mẫu Email (/workspace/:id/mail-templates) và bấm Tạo mẫu mới.",
@@ -2179,8 +2125,8 @@
       "Nếu bỏ trống Tên mẫu, Tiêu đề hoặc Nội dung email, hoặc viết sai cú pháp thẻ biến: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "postConditions": [
-      "A new reusable MailTemplate is persisted in the Workspace and ready for email dispatch (3.6.32).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tạo mẫu Email mới thành công và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Mã mẫu email mới, danh sách các biến sử dụng trong mẫu và người tạo (BR-41)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374206/brandhub-docs-portal/report3/r3-fig-90.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_29.png",
@@ -2237,9 +2183,7 @@
       "MSG44"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-20) → Display: MSG07.",
-      "Required field missing (templateName, subjectLine, or htmlBody left blank) → Display: MSG02.",
-      "Text length or variable placeholder syntax invalid → Display: MSG03."
+      "Nếu để trống Tiêu đề hoặc Nội dung email khi lưu: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Manager hoặc Creator mở màn hình Mẫu Email (/workspace/:id/mail-templates) và chọn Chỉnh sửa trên mẫu cần sửa.",
@@ -2251,8 +2195,8 @@
       "Nếu để trống Tiêu đề hoặc Nội dung email khi lưu: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "The updated MailTemplate content and variable schema are persisted for future email dispatches.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Lưu cập nhật mẫu Email thành công và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Kiểm tra cú pháp biến tự động (BR-41) và cập nhật thời gian sửa mẫu."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374207/brandhub-docs-portal/report3/r3-fig-91.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_30.png",
@@ -2310,9 +2254,7 @@
       "MSG44"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-20) → Display: MSG07.",
-      "Template is currently locked by an active scheduled/sending mail batch → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu cố xóa mẫu email mặc định của hệ thống: Hệ thống chặn thao tác và báo MSG36."
     ],
     "normalFlow": [
       "Manager hoặc Creator mở trang Mẫu Email (/workspace/:id/mail-templates) và bấm nút Xóa trên mẫu tùy chỉnh cần gỡ.",
@@ -2324,8 +2266,8 @@
       "Nếu cố xóa mẫu email mặc định của hệ thống: Hệ thống chặn thao tác và báo MSG36."
     ],
     "postConditions": [
-      "The custom MailTemplate is removed from the Workspace library while historical email batch logs remain intact.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Xóa mẫu Email thành công và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Xóa mẫu email khỏi danh sách chọn của Workspace và giữ nguyên nhật ký gửi mail cũ (BR-41)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374207/brandhub-docs-portal/report3/r3-fig-92.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_31.png",
@@ -2383,10 +2325,8 @@
       "MSG48"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator permission (BR-22) → Display: MSG07.",
-      "No recipients selected or required template variable values missing → Display: MSG02.",
-      "Recipient email format is invalid → Display: MSG04.",
-      "Batch size exceeds remaining daily Workspace email quota (BR-41) → Display: MSG48."
+      "Nếu danh sách người nhận bị trống hoặc chứa địa chỉ email sai định dạng: Hệ thống báo lỗi MSG02 hoặc MSG04.",
+      "Nếu đã vượt quá hạn mức gửi email trong ngày của dự án: Hệ thống báo chạm trần hạn mức (MSG48)."
     ],
     "normalFlow": [
       "Trên màn hình Mẫu Email (/workspace/:id/mail-templates), Manager hoặc Creator chọn một mẫu thư và bấm Gửi Email.",
@@ -2399,8 +2339,8 @@
       "Nếu đã vượt quá hạn mức gửi email trong ngày của dự án: Hệ thống báo chạm trần hạn mức (MSG48)."
     ],
     "postConditions": [
-      "A MailBatch record tracks delivery, failed-resend, and unsubscribe suppression statuses for the dispatched campaign.",
-      "Role-based access isolation (BR-22) and audit state consistency are preserved across the session."
+      "Đưa lệnh gửi email vào hàng đợi xử lý thành công và hiển thị thông báo MSG44.",
+      "Hệ thống lưu và cập nhật: Tự động ghép nội dung biến, lọc bỏ email đã hủy nhận tin (BR-41) và ghi lại nhật ký gửi thư."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374208/brandhub-docs-portal/report3/r3-fig-93.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_32.png",
@@ -2458,9 +2398,7 @@
       "MSG45"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-42) → Display: MSG07.",
-      "Caption text is empty when triggering compliance check → Display: MSG02.",
-      "Compliance scan detects violence, profanity, or restricted terms in the text (BR-42) → Display: MSG45."
+      "Nếu bấm kiểm tra khi bài viết đang để trống hoàn toàn: Hệ thống báo cần nhập nội dung bài viết trước (MSG02)."
     ],
     "normalFlow": [
       "Sau khi viết xong nội dung bài đăng, Creator hoặc Manager bấm nút Kiểm tra Tuân thủ (Check Compliance).",
@@ -2472,8 +2410,8 @@
       "Nếu bấm kiểm tra khi bài viết đang để trống hoàn toàn: Hệ thống báo cần nhập nội dung bài viết trước (MSG02)."
     ],
     "postConditions": [
-      "The Task draft's latest compliance check result and highlighted term analysis are persisted and visible to Reviewers and Managers during the Approval Sequence (3.6.9).",
-      "Role-based access isolation (BR-42) and audit state consistency are preserved across the session."
+      "Hiển thị kết quả rà soát an toàn nội dung (thông báo MSG37 nếu đạt chuẩn, hoặc cảnh báo MSG45 nếu phát hiện từ vi phạm).",
+      "Hệ thống lưu và cập nhật: Điểm đánh giá mức độ an toàn, danh sách các cụm từ vi phạm (nếu có) và trạng thái Đạt kiểm duyệt trên Task (BR-42)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374208/brandhub-docs-portal/report3/r3-fig-94.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_33.png",
@@ -2531,9 +2469,7 @@
       "MSG39"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-35) → Display: MSG07.",
-      "No saved ContentVersion snapshots exist yet for the Task → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu đầu việc mới tạo chưa có phiên bản lịch sử nào được lưu: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Trên màn hình Soạn thảo nội dung (/workspace/:id/content-writing), Creator hoặc Manager bấm mở bảng Lịch sử phiên bản.",
@@ -2545,8 +2481,8 @@
       "Nếu đầu việc mới tạo chưa có phiên bản lịch sử nào được lưu: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The selected historical content version is restored as the active Task draft while preserving the complete version audit trail and consuming zero AI Credits (BR-35).",
-      "Role-based access isolation (BR-35) and audit state consistency are preserved across the session."
+      "Hiển thị lịch sử phiên bản bài viết hoặc khôi phục bản cũ thành công (hiển thị MSG39).",
+      "Hệ thống lưu và cập nhật: Danh sách các phiên bản đã lưu (BR-35) và đảm bảo chi phí khôi phục bằng 0 AI Credit (BR-60)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-95.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_34.png",
@@ -2605,9 +2541,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is not a member of the Workspace or target private channel (BR-43) → Display: MSG07.",
-      "Message content is empty or exceeds 4000 characters → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu người dùng không thuộc Workspace này cố truy cập phòng chat: Hệ thống chặn truy cập và báo MSG07."
     ],
     "normalFlow": [
       "Thành viên (Owner, Manager, Creator hoặc Client) mở mục Trò chuyện (/workspace/:id/chat) của Workspace.",
@@ -2619,8 +2553,8 @@
       "Nếu người dùng không thuộc Workspace này cố truy cập phòng chat: Hệ thống chặn truy cập và báo MSG07."
     ],
     "postConditions": [
-      "Chat messages, thread replies, reactions, and read states are persisted and synchronized in real time across all connected Workspace participants (BR-43).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tin nhắn hiển thị ngay lập tức trên màn hình của tất cả thành viên trong kênh dự án.",
+      "Hệ thống lưu và cập nhật: Mã tin nhắn, người gửi, thời gian gửi và kiểm soát phạm vi hiển thị chỉ trong nội bộ Workspace (BR-20, BR-43)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374208/brandhub-docs-portal/report3/r3-fig-96.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_35.png",

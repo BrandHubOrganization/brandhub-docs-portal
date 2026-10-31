@@ -38,46 +38,46 @@ def describe_sequence_lifeline(name: str, stereotype: str, fr_title: str, fr_cod
     if "actor" in st or nm in ("Guest", "Owner", "Manager", "Creator", "Client", "Admin") or "," in nm:
         return (
             "Người thực hiện (Actor)",
-            f"Vai trò ({nm}) trực tiếp thao tác trên màn hình để thực hiện chức năng {fr_code} ({fr_title})."
+            f"Người dùng có vai trò {nm} trực tiếp mở màn hình và thực hiện chức năng {fr_code} ({fr_title})."
         )
     if "boundary" in st or "page" in nm.lower() or "(ui)" in nm.lower() or "screen" in nm.lower() or "view" in nm.lower():
         return (
             "Giao diện màn hình (UI)",
-            f"Màn hình giao diện ({nm}) tiếp nhận thao tác của người dùng, kiểm tra sơ bộ dữ liệu nhập và hiển thị kết quả phản hồi."
+            f"Màn hình {nm} nơi người dùng nhập thông tin, bấm nút thao tác và xem kết quả trả về."
         )
     if "controller" in st or "controller" in nm.lower():
         return (
             "Tầng điều phối API (Controller)",
-            f"Lớp {nm} tiếp nhận yêu cầu từ giao diện, kiểm tra quyền truy cập của người dùng và chuyển dữ liệu xuống tầng xử lý nghiệp vụ."
+            f"Lớp {nm} nhận yêu cầu API từ màn hình, kiểm tra quyền truy cập và chuyển dữ liệu cho tầng xử lý."
         )
     if "repository" in st or "repository" in nm.lower():
         return (
             "Tầng truy vấn dữ liệu (Repository)",
-            f"Lớp {nm} thực hiện các câu lệnh đọc, thêm mới hoặc cập nhật bản ghi trong cơ sở dữ liệu."
+            f"Lớp {nm} chạy các câu lệnh đọc, thêm mới hoặc cập nhật bản ghi trong cơ sở dữ liệu."
         )
     if "database" in st or nm.lower() in ("database", "postgresql", "mongodb", "redis", "neo4j", "chromadb"):
         return (
             "Cơ sở dữ liệu (Database)",
-            f"Hệ quản trị cơ sở dữ liệu ({nm}) lưu trữ bền vững và đảm bảo tính toàn vẹn của dữ liệu."
+            f"Cơ sở dữ liệu ({nm}) lưu và đọc các bản ghi phục vụ chức năng {fr_code}."
         )
     if "mail" in nm.lower() or "smtp" in nm.lower() or "notification" in nm.lower():
         return (
             "Dịch vụ Gửi thông báo / Email",
-            f"Dịch vụ ({nm}) phụ trách gửi mã OTP, email thông báo hoặc đẩy thông báo thời gian thực tới người nhận."
+            f"Dịch vụ {nm} gửi mã OTP, email xác nhận hoặc đẩy thông báo tới người nhận."
         )
     if "sepay" in nm.lower() or "payos" in nm.lower() or "payment" in nm.lower():
         return (
             "Dịch vụ Thanh toán (SePay / VietQR)",
-            f"Dịch vụ ({nm}) khởi tạo mã VietQR và xác nhận kết quả chuyển khoản ngân hàng tự động."
+            f"Dịch vụ {nm} tạo mã QR chuyển khoản và báo kết quả thanh toán tự động về hệ thống."
         )
     if any(k in nm.lower() for k in ("oauth", "google", "facebook", "instagram", "tiktok", "threads", "drive", "s3", "storage")):
         return (
-            "Dịch vụ Tích hợp Bên ngoài",
-            f"Dịch vụ kết nối ({nm}) hỗ trợ xác thực tài khoản, lưu trữ đám mây hoặc đăng bài sang nền tảng mạng xã hội."
+            "Dịch vụ Bên ngoài",
+            f"Dịch vụ {nm} kết nối để đăng nhập tài khoản, lưu tệp đám mây hoặc đăng bài lên mạng xã hội."
         )
     return (
         "Tầng xử lý nghiệp vụ (Service)",
-        f"Lớp nghiệp vụ ({nm}) kiểm tra các quy tắc ràng buộc (Business Rules) và điều phối luồng xử lý chính của chức năng {fr_code} ({fr_title})."
+        f"Lớp {nm} kiểm tra điều kiện hợp lệ và xử lý các bước chính của chức năng {fr_code} ({fr_title})."
     )
 
 
@@ -88,14 +88,14 @@ def describe_class_item(name: str, raw_type: str, domain_code: str, domain_title
     else:
         t_low = raw_type.lower()
         if "controller" in t_low or name.endswith("Controller"):
-            desc = f"Lớp tiếp nhận các yêu cầu API từ giao diện và kiểm tra phân quyền trong phân hệ {domain_code} ({domain_title})."
+            desc = f"Lớp nhận các yêu cầu API từ màn hình và kiểm tra phân quyền trong phân hệ {domain_code} ({domain_title})."
         elif "service" in t_low or name.endswith("Service"):
-            desc = f"Lớp xử lý các quy tắc nghiệp vụ cốt lõi của phân hệ {domain_code} ({domain_title})."
+            desc = f"Lớp kiểm tra điều kiện và xử lý các bước tính toán chính của phân hệ {domain_code} ({domain_title})."
         elif "repository" in t_low or name.endswith("Repository"):
             target = name.replace("Repository", "")
-            desc = f"Lớp giao tiếp cơ sở dữ liệu để truy vấn, lưu và cập nhật bảng {target}."
+            desc = f"Lớp đọc, thêm mới và cập nhật dữ liệu bảng {target} trong cơ sở dữ liệu."
         else:
-            desc = f"Lớp mô hình dữ liệu (Entity) lưu trữ các thuộc tính và trạng thái của {name} trong phân hệ {domain_code}."
+            desc = f"Đối tượng dữ liệu ({name}) lưu các trường thông tin và trạng thái trong phân hệ {domain_code}."
 
     t_low = raw_type.lower()
     if "controller" in t_low or name.endswith("Controller"):
@@ -108,6 +108,17 @@ def describe_class_item(name: str, raw_type: str, domain_code: str, domain_title
         vi_type = "Thực thể dữ liệu (Entity)"
 
     return vi_type, desc
+
+
+def strip_em_dash(obj):
+    """Recursively replace em-dashes with clean hyphens in any JSON structure."""
+    if isinstance(obj, str):
+        return obj.replace(" — ", " - ").replace("—", "-")
+    if isinstance(obj, list):
+        return [strip_em_dash(x) for x in obj]
+    if isinstance(obj, dict):
+        return {k: strip_em_dash(v) for k, v in obj.items()}
+    return obj
 
 
 def main():
@@ -127,6 +138,7 @@ def main():
         role = act["role"]
         if role in ACTORS_VI:
             act["description"] = ACTORS_VI[role]
+    proj = strip_em_dash(proj)
     json.dump(proj, open(proj_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated project.json")
 
@@ -148,6 +160,7 @@ def main():
             msg["context"] = MESSAGES_CONTEXT_VI[code]
         if msg["type"] in msg_type_vi:
             msg["type"] = msg_type_vi[msg["type"]]
+    rm = strip_em_dash(rm)
     json.dump(rm, open(rm_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated rulesAndMessages.json")
 
@@ -172,6 +185,7 @@ def main():
         ename = ent["entity"]
         if ename in ENTITIES_VI:
             ent["description"] = ENTITIES_VI[ename]
+    mat = strip_em_dash(mat)
     json.dump(mat, open(mat_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated matrices.json")
 
@@ -182,6 +196,7 @@ def main():
         fr_code = uc.get("frCode")
         if fr_code and fr_code in ALL_FRS_VI:
             uc["description"] = f"({fr_code}) {ALL_FRS_VI[fr_code]['summary']}"
+    ucs = strip_em_dash(ucs)
     json.dump(ucs, open(uc_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated useCases.json")
 
@@ -205,10 +220,16 @@ def main():
             }
             fr["normalFlow"] = spec["flow"]
             fr["abnormalCases"] = spec["abnormal"]
+            fr["validations"] = spec["abnormal"]
+            fr["postConditions"] = [
+                spec["output"],
+                f"Hệ thống lưu và cập nhật: {spec['sys_data']}",
+            ]
             # Also update embedded businessRules text
             for b in fr.get("businessRules", []):
                 if b["code"] in BUSINESS_RULES_VI:
                     b["text"] = BUSINESS_RULES_VI[b["code"]]
+        fr_list = strip_em_dash(fr_list)
         json.dump(fr_list, open(dom_file, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
         print(f"Updated {os.path.basename(dom_file)} ({len(fr_list)} FRs)")
 
@@ -221,6 +242,7 @@ def main():
             fig["viSummary"] = info["viSummary"]
             fig["summary"] = info["viSummary"]
             fig["components"] = info["components"]
+    r1_figs = strip_em_dash(r1_figs)
     json.dump(r1_figs, open(r1_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report1.json")
 
@@ -233,6 +255,7 @@ def main():
             fig["viSummary"] = info["viSummary"]
             fig["summary"] = info["viSummary"]
             fig["components"] = info["components"]
+    r2_figs = strip_em_dash(r2_figs)
     json.dump(r2_figs, open(r2_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report2.json")
 
@@ -245,6 +268,7 @@ def main():
             fig["viSummary"] = info["viSummary"]
             fig["summary"] = info["viSummary"]
             fig["components"] = info["components"]
+    r3o_figs = strip_em_dash(r3o_figs)
     json.dump(r3o_figs, open(r3o_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report3-overview.json")
 
@@ -284,6 +308,7 @@ def main():
                     "description": spec["output"],
                 },
             ]
+    r3s_figs = strip_em_dash(r3s_figs)
     json.dump(r3s_figs, open(r3s_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report3-screens.json")
 
@@ -313,6 +338,7 @@ def main():
                     "description": vi_desc,
                 })
             fig["components"] = new_comps
+    r4c_figs = strip_em_dash(r4c_figs)
     json.dump(r4c_figs, open(r4c_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report4-class.json")
 
@@ -323,10 +349,13 @@ def main():
         code = fig.get("frCode")
         if code and code in ALL_FRS_VI:
             spec = ALL_FRS_VI[code]
-            fr_title = fig.get("title", "").replace(f"Sequence Diagram — {code} ", "").strip()
-            fig["viSummary"] = (
-                f"Sơ đồ tuần tự (Sequence Diagram) mô tả từng bước tương tác từ lúc người dùng thao tác trên màn hình đến khi hệ thống xử lý và trả kết quả cho chức năng {code} ({fr_title}): {spec['summary']}"
+            fr_title = (
+                fig.get("title", "")
+                .replace(f"Sequence Diagram — {code} ", "")
+                .replace(f"Sequence Diagram - {code} ", "")
+                .strip()
             )
+            fig["viSummary"] = f"Luồng xử lý từng bước của chức năng {code} ({fr_title}): {spec['summary']}"
             fig["summary"] = spec["summary"]
             fig["normalFlow"] = spec["flow"]
             fig["abnormalCases"] = spec["abnormal"]
@@ -344,6 +373,7 @@ def main():
                     "description": vi_desc,
                 })
             fig["components"] = new_comps
+    r4s_figs = strip_em_dash(r4s_figs)
     json.dump(r4s_figs, open(r4s_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print("Updated figures/report4-sequence.json")
     print("ALL JSON DATA FILES UPDATED SUCCESSFULLY!")

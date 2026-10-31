@@ -50,9 +50,8 @@
       "MSG58"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "Notification Title or Message Body left blank → Display: MSG02.",
-      "Title or body exceeds character limits, or target audience matches 0 users → Display: MSG03, MSG01."
+      "Nếu để trống Tiêu đề hoặc Nội dung thông báo: Hệ thống báo lỗi MSG02.",
+      "Nếu không có tài khoản nào thuộc nhóm bộ lọc người nhận đã chọn: Hệ thống báo MSG01."
     ],
     "normalFlow": [
       "Admin mở mục Phát Thông báo Hệ thống trên cổng quản trị (/admin).",
@@ -65,8 +64,8 @@
       "Nếu không có tài khoản nào thuộc nhóm bộ lọc người nhận đã chọn: Hệ thống báo MSG01."
     ],
     "postConditions": [
-      "The system notification is recorded in the platform audit log (BR-65) and delivered to all targeted users' in-app notification inboxes.",
-      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+      "Phát thông báo toàn hệ thống thành công và hiển thị thông báo MSG58.",
+      "Hệ thống lưu và cập nhật: Lưu bản ghi thông báo hệ thống, gửi đến các tài khoản mục tiêu và ghi nhật ký Admin (BR-62, BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-137.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_1.png",
@@ -123,9 +122,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu tài khoản không có quyền Admin cố truy cập đường dẫn `/admin`: Hệ thống chặn truy cập và báo MSG07."
     ],
     "normalFlow": [
       "Admin đăng nhập và mở màn hình Tổng quan Hệ thống (/admin).",
@@ -137,8 +134,8 @@
       "Nếu tài khoản không có quyền Admin cố truy cập đường dẫn `/admin`: Hệ thống chặn truy cập và báo MSG07."
     ],
     "postConditions": [
-      "The Admin views accurate, real-time macro statistics across the entire BrandHub platform.",
-      "Role-based access isolation (BR-61) and audit state consistency are preserved across the session."
+      "Hiển thị bảng điều khiển thống kê toàn nền tảng cho Admin.",
+      "Hệ thống lưu và cập nhật: Số liệu tổng hợp toàn nền tảng về người dùng, Agency, bài đăng, lượt dùng AI và doanh thu (BR-61, BR-62)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374220/brandhub-docs-portal/report3/r3-fig-138.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_2.png",
@@ -194,9 +191,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu người truy cập không phải là Admin: Hệ thống chặn truy cập và báo MSG07."
     ],
     "normalFlow": [
       "Admin mở màn hình Giám sát Sức khỏe Hệ thống (/admin/system-health).",
@@ -208,8 +203,8 @@
       "Nếu người truy cập không phải là Admin: Hệ thống chặn truy cập và báo MSG07."
     ],
     "postConditions": [
-      "The Admin has real-time observability into infrastructure resource utilization and microservice availability.",
-      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+      "Hiển thị bảng giám sát tình trạng kỹ thuật của toàn bộ hệ thống theo thời gian thực.",
+      "Hệ thống lưu và cập nhật: Trạng thái sống (UP/DOWN), mức sử dụng CPU, RAM, ổ cứng và độ trễ kết nối của từng dịch vụ (BR-62)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-139.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_3.png",
@@ -275,9 +270,8 @@
       "MSG58"
     ],
     "validations": [
-      "Caller is not an Admin (BR-62) → Display: MSG07.",
-      "Decision justification (reviewReason) left blank → Display: MSG02.",
-      "Moderation item was already resolved concurrently → Display: MSG36."
+      "Nếu xác nhận vi phạm nhưng bỏ trống lý do ghi nhận: Hệ thống báo lỗi MSG02.",
+      "Nếu mục nội dung đó đã được một Admin khác xử lý xong trước đó: Hệ thống báo MSG36."
     ],
     "normalFlow": [
       "Admin mở màn hình Hàng đợi Kiểm duyệt Nội dung (/admin?view=moderation).",
@@ -290,8 +284,8 @@
       "Nếu mục nội dung đó đã được một Admin khác xử lý xong trước đó: Hệ thống báo MSG36."
     ],
     "postConditions": [
-      "The moderation item is resolved with an immutable audit trail (BR-65), and the associated post is either cleared for publishing or blocked.",
-      "Role-based access isolation (BR-42) and audit state consistency are preserved across the session."
+      "Xử lý mục kiểm duyệt thành công và hiển thị thông báo MSG58.",
+      "Hệ thống lưu và cập nhật: Cập nhật trạng thái kiểm duyệt nội dung (BR-42), liên kết xử lý mức cảnh cáo tài khoản (BR-63) và ghi nhật ký Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-140.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_4.png",
@@ -352,9 +346,8 @@
       "MSG59"
     ],
     "validations": [
-      "Caller is not ADMIN or attempts to strike/sanction themselves or another ADMIN account (BR-62) → Display: MSG07.",
-      "Justification reason or required strike level/ID is missing → Display: MSG02.",
-      "Admin attempts to Unflag an account while an active ORANGE strike remains unpardoned, or target is DEACTIVATED (BR-63) → Display: MSG36."
+      "Nếu bỏ trống ô lý do xử lý vi phạm: Hệ thống báo lỗi bắt buộc nhập (MSG02).",
+      "Nếu Admin cố áp dụng mức phạt lên tài khoản của chính mình hoặc một Admin khác: Hệ thống chặn thao tác và báo MSG07 / MSG36 (BR-62)."
     ],
     "normalFlow": [
       "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin chọn tài khoản cần xử lý vi phạm.",
@@ -367,8 +360,8 @@
       "Nếu Admin cố áp dụng mức phạt lên tài khoản của chính mình hoặc một Admin khác: Hệ thống chặn thao tác và báo MSG07 / MSG36 (BR-62)."
     ],
     "postConditions": [
-      "The user's violation strike ledger, 30-day clean-period clock, and FLAGGED publishing gate status are persisted with a complete audit trail (BR-63, BR-65).",
-      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+      "Cập nhật trạng thái vi phạm của tài khoản thành công và hiển thị thông báo MSG59.",
+      "Hệ thống lưu và cập nhật: Tự động quy đổi cấp độ cảnh cáo (3 Vàng -> 1 Cam -> Gắn cờ FLAGGED -> Tạm khóa 30 ngày theo BR-63) và lưu nhật ký kiểm toán (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374220/brandhub-docs-portal/report3/r3-fig-141.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_5.png",
@@ -419,9 +412,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "No user accounts match the search and filter criteria → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không tìm thấy người dùng nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Admin mở tab Quản lý Người dùng (/admin?view=users) trên cổng quản trị.",
@@ -433,8 +424,8 @@
       "Nếu không tìm thấy người dùng nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The Admin views accurate account status, role, and compliance strike information across the platform user base.",
-      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+      "Hiển thị bảng danh sách người dùng toàn hệ thống cho Admin.",
+      "Hệ thống lưu và cập nhật: Danh sách tài khoản toàn hệ thống, trạng thái bảo mật, số lần cảnh cáo và ngày tạo (BR-62)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-142.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_6.png",
@@ -496,10 +487,8 @@
       "MSG59"
     ],
     "validations": [
-      "Caller is not an Admin (BR-62) → Display: MSG07.",
-      "Required field missing (fullName or email left blank) → Display: MSG02.",
-      "Invalid email format → Display: MSG04.",
-      "Email address already belongs to an existing account (BR-01) → Display: MSG08."
+      "Nếu để trống Họ tên/Email hoặc nhập sai định dạng email: Hệ thống báo lỗi MSG02 hoặc MSG04.",
+      "Nếu địa chỉ email này đã có tài khoản trên hệ thống: Hệ thống báo lỗi email đã tồn tại (MSG08)."
     ],
     "normalFlow": [
       "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin bấm nút Tạo người dùng mới.",
@@ -512,8 +501,8 @@
       "Nếu địa chỉ email này đã có tài khoản trên hệ thống: Hệ thống báo lỗi email đã tồn tại (MSG08)."
     ],
     "postConditions": [
-      "A newly provisioned User record exists in pending activation state, and the recipient can activate their account and set a permanent password via the emailed activation link (BR-65).",
-      "Role-based access isolation (BR-01) and audit state consistency are preserved across the session."
+      "Tạo tài khoản người dùng mới thành công, gửi email kích hoạt và hiển thị thông báo MSG59.",
+      "Hệ thống lưu và cập nhật: Kiểm tra email duy nhất (BR-01), tạo tài khoản, gửi email kích hoạt và lưu nhật ký Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-143.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_7.png",
@@ -580,9 +569,8 @@
       "MSG59"
     ],
     "validations": [
-      "Caller is not an Admin or attempts unauthorized modification of a peer ADMIN account (BR-62) → Display: MSG07.",
-      "Full Name left blank or field exceeds maximum length → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu Admin cố tình tự hạ quyền Admin của chính mình hoặc sửa quyền của một Admin khác: Hệ thống chặn thao tác và báo MSG07 (BR-62).",
+      "Nếu xóa trống ô Họ và tên: Hệ thống báo lỗi MSG02."
     ],
     "normalFlow": [
       "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin bấm nút Chỉnh sửa bên cạnh tài khoản cần cập nhật.",
@@ -595,8 +583,8 @@
       "Nếu xóa trống ô Họ và tên: Hệ thống báo lỗi MSG02."
     ],
     "postConditions": [
-      "The user's updated profile fields are persisted and audited without altering their email address or Ownership.",
-      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+      "Cập nhật thông tin tài khoản người dùng thành công và hiển thị thông báo MSG59.",
+      "Hệ thống lưu và cập nhật: Bảo toàn email định danh (BR-11), bảo vệ quyền Admin (BR-62) và lưu nhật ký kiểm toán (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-144.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_8.png",
@@ -663,9 +651,8 @@
       "MSG59"
     ],
     "validations": [
-      "Caller is not ADMIN or targets themselves or another ADMIN account (BR-62) → Display: MSG07.",
-      "Sanction reason or explicit confirmation missing → Display: MSG02.",
-      "Target account is already DEACTIVATED or sanction request was already resolved → Display: MSG36."
+      "Nếu để trống ô lý do khóa tài khoản: Hệ thống báo lỗi MSG02.",
+      "Nếu cố khóa tài khoản của chính mình hoặc một Admin khác, hoặc tài khoản đã bị khóa từ trước: Hệ thống chặn thao tác và báo MSG07 hoặc MSG36 (BR-62)."
     ],
     "normalFlow": [
       "Trên màn hình Quản lý Người dùng (/admin?view=users), Admin chọn tài khoản vi phạm và bấm Tạm khóa (Deactivate).",
@@ -678,8 +665,8 @@
       "Nếu cố khóa tài khoản của chính mình hoặc một Admin khác, hoặc tài khoản đã bị khóa từ trước: Hệ thống chặn thao tác và báo MSG07 hoặc MSG36 (BR-62)."
     ],
     "postConditions": [
-      "The user account is in DEACTIVATED status with all sessions revoked and cannot sign in (3.2.2) until the 30-day sanction period automatically restores it to ACTIVE (BR-05, BR-63).",
-      "All user, Agency, Workspace, and billing data remain intact without hard-deletion (BR-63)."
+      "Tạm khóa tài khoản người dùng thành công và hiển thị thông báo MSG59.",
+      "Hệ thống lưu và cập nhật: Chuyển trạng thái tài khoản sang DEACTIVATED (kèm mốc tự mở lại sau 30 ngày - BR-63), thu hồi phiên đăng nhập (BR-05) và ghi nhật ký Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-145.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_9.png",
@@ -741,9 +728,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Admin, Owner permission (BR-48) → Display: MSG07.",
-      "No AI Credit price entries match the selected category filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu từ khóa tìm kiếm không khớp với tính năng AI nào: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Admin hoặc Owner mở màn hình Bảng giá AI Credit (/credit/prices).",
@@ -755,8 +740,8 @@
       "Nếu từ khóa tìm kiếm không khớp với tính năng AI nào: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The current unit AI Credit costs for all AI Studio features are displayed accurately.",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Hiển thị bảng đơn giá tiêu hao điểm AI Credit của từng tính năng.",
+      "Hệ thống lưu và cập nhật: Danh mục tính năng AI và đơn giá điểm AI Credit hiện hành (BR-64)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-146.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_10.png",
@@ -823,9 +808,7 @@
       "MSG60"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "newCreditCost is blank, zero, negative, or non-numeric → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu nhập đơn giá bằng 0, số âm hoặc bỏ trống: Hệ thống báo lỗi giá trị không hợp lệ (MSG02, MSG03)."
     ],
     "normalFlow": [
       "Admin mở màn hình Bảng giá AI Credit (/credit/prices) và bấm Chỉnh sửa trên dòng tính năng cần đổi giá.",
@@ -837,8 +820,8 @@
       "Nếu nhập đơn giá bằng 0, số âm hoặc bỏ trống: Hệ thống báo lỗi giá trị không hợp lệ (MSG02, MSG03)."
     ],
     "postConditions": [
-      "The AI operation's new unit credit cost is active for all subsequent AI generation requests while historical ledger entries remain unchanged (BR-64).",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Cập nhật đơn giá AI Credit thành công và hiển thị thông báo MSG60.",
+      "Hệ thống lưu và cập nhật: Cập nhật đơn giá mới cho các lượt gọi AI tiếp theo (BR-48, BR-64) và lưu nhật ký Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-147.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_11.png",
@@ -900,9 +883,8 @@
       "MSG60"
     ],
     "validations": [
-      "Caller is not an Admin (BR-62) → Display: MSG07.",
-      "Uploaded file is missing, not a valid CSV, or exceeds size limits → Display: MSG02, MSG22.",
-      "CSV contains unknown operation codes or non-positive credit values → Preview highlights invalid rows and displays MSG03."
+      "Nếu chọn tệp không phải định dạng `.csv` hoặc tệp quá dung lượng: Hệ thống báo lỗi MSG22.",
+      "Nếu trong tệp CSV có dòng chứa mã tính năng không tồn tại hoặc đơn giá âm: Hệ thống chỉ rõ dòng bị lỗi và không áp dụng thay đổi cho đến khi Admin sửa lại tệp (MSG03)."
     ],
     "normalFlow": [
       "Trên màn hình Bảng giá AI Credit (/credit/prices), Admin bấm nút Nhập từ CSV và chọn tệp `.csv` từ máy tính.",
@@ -915,8 +897,8 @@
       "Nếu trong tệp CSV có dòng chứa mã tính năng không tồn tại hoặc đơn giá âm: Hệ thống chỉ rõ dòng bị lỗi và không áp dụng thay đổi cho đến khi Admin sửa lại tệp (MSG03)."
     ],
     "postConditions": [
-      "All AI operation prices in the validated CSV batch are updated prospectively and audited (BR-64, BR-65).",
-      "Role-based access isolation (BR-62) and audit state consistency are preserved across the session."
+      "Nhập và cập nhật bảng giá AI Credit từ CSV thành công, hiển thị thông báo MSG60.",
+      "Hệ thống lưu và cập nhật: Kiểm tra toàn bộ các dòng trong tệp CSV, áp dụng cập nhật đồng bộ toàn bộ bảng giá (BR-64) và lưu nhật ký Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374221/brandhub-docs-portal/report3/r3-fig-148.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_12.png",
@@ -977,9 +959,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "No revenue transactions match the selected date or filter criteria → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu trong khoảng thời gian đang chọn chưa phát sinh giao dịch thanh toán nào: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Admin mở tab Thống kê Doanh thu (/admin?view=revenue) trên cổng quản trị.",
@@ -991,8 +971,8 @@
       "Nếu trong khoảng thời gian đang chọn chưa phát sinh giao dịch thanh toán nào: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The Admin inspects accurate, platform-wide revenue analytics and invoice records in read-only mode.",
-      "Role-based access isolation (BR-59) and audit state consistency are preserved across the session."
+      "Hiển thị bảng thống kê và biểu đồ phân tích doanh thu toàn nền tảng.",
+      "Hệ thống lưu và cập nhật: Tổng hợp dữ liệu hóa đơn đã thanh toán (PAID) từ cổng SePay trên toàn hệ thống (BR-59, BR-61, BR-62)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374222/brandhub-docs-portal/report3/r3-fig-149.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_13.png",
@@ -1030,7 +1010,9 @@
     "businessRules": [],
     "linkedBrCodes": [],
     "linkedMsgCodes": [],
-    "validations": [],
+    "validations": [
+      "Nếu chọn ngày kết thúc sớm hơn ngày bắt đầu hoặc bỏ trống loại báo cáo: Hệ thống báo lỗi MSG02 hoặc MSG03."
+    ],
     "normalFlow": [
       "Trên cổng quản trị (/admin?view=revenue), Admin mở mục Xuất Báo cáo PDF.",
       "Admin chọn Loại báo cáo cần lấy (ví dụ Báo cáo Doanh thu) và chọn khoảng thời gian Từ ngày – Đến ngày.",
@@ -1040,7 +1022,10 @@
     "abnormalCases": [
       "Nếu chọn ngày kết thúc sớm hơn ngày bắt đầu hoặc bỏ trống loại báo cáo: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
-    "postConditions": [],
+    "postConditions": [
+      "Kết xuất tệp báo cáo PDF thành công, tải về máy tính và hiển thị thông báo MSG60.",
+      "Hệ thống lưu và cập nhật: Tổng hợp số liệu báo cáo (BR-61, BR-62), tạo tệp PDF và ghi vết vào nhật ký quản trị (BR-65)."
+    ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374222/brandhub-docs-portal/report3/r3-fig-150.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374260/brandhub-docs-portal/report4/seq-3_10_14.png",
     "classDiagramImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png"

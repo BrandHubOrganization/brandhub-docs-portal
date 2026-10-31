@@ -45,8 +45,8 @@ const AnimatedRoutes: React.FC = () => {
             <FolderCode className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span>
               {tx(
-                'BrandHub Documentation — Chỉnh sửa nội dung tại',
-                'BrandHub Documentation — Edit modular JSON files at'
+                'BrandHub Documentation - Chỉnh sửa nội dung tại',
+                'BrandHub Documentation - Edit modular JSON files at'
               )}{' '}
               <code className="font-mono text-slate-700 dark:text-slate-300">src/data/</code>
             </span>

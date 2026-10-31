@@ -49,9 +49,7 @@
       "MSG31"
     ],
     "validations": [
-      "Caller is not the Owner (BR-25) → Display: MSG07.",
-      "Required field missing (packageName, durationDays, basePrice, or offeringsList empty) → Display: MSG02.",
-      "Duration or price is negative or exceeds valid numeric bounds → Display: MSG03."
+      "Nếu bỏ trống Tên gói, hạng mục bàn giao hoặc nhập mức giá âm: Hệ thống báo lỗi dưới ô nhập (MSG02, MSG03)."
     ],
     "normalFlow": [
       "Owner mở màn hình Danh mục Gói truyền thông (/media-package/agency) và bấm Tạo gói dịch vụ mới.",
@@ -63,8 +61,8 @@
       "Nếu bỏ trống Tên gói, hạng mục bàn giao hoặc nhập mức giá âm: Hệ thống báo lỗi dưới ô nhập (MSG02, MSG03)."
     ],
     "postConditions": [
-      "A new custom MediaPackage is stored in the Agency catalog and available for selection and negotiation in Workspaces (3.5.2, 3.5.3).",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Tạo gói dịch vụ truyền thông thành công và hiển thị thông báo MSG31.",
+      "Hệ thống lưu và cập nhật: Mã gói dịch vụ truyền thông, người tạo (Owner) và trạng thái kích hoạt trong danh mục Agency (BR-25)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-49.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_1.png",
@@ -122,9 +120,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Client permission (BR-20) → Display: MSG07.",
-      "No Media Packages available for the selected filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có gói mẫu nào khớp với bộ lọc tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Owner, Manager hoặc Client mở màn hình Gói truyền thông (/media-package) trong dự án.",
@@ -136,8 +132,8 @@
       "Nếu không có gói mẫu nào khớp với bộ lọc tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The viewer inspects complete Media Package specifications and negotiation history without modifying stored terms.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách các gói truyền thông mẫu và chi tiết quyền lợi của từng gói.",
+      "Hệ thống lưu và cập nhật: Danh sách gói truyền thông mẫu, cơ cấu hạng mục bàn giao và bảng giá tham khảo (BR-25)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-50.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_2.png",
@@ -195,10 +191,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-25) → Display: MSG07.",
-      "Required negotiation terms (proposedPrice, proposedDurationDays, or deliverables) missing → Display: MSG02.",
-      "Numeric values are negative or out of bounds → Display: MSG03.",
-      "Workspace Media Package is already finalized and approved (BR-26) → Display: MSG36."
+      "Nếu gói truyền thông này đã được hai bên chốt duyệt (APPROVED) trước đó: Hệ thống chặn chỉnh sửa và báo gói đã khóa (MSG36)."
     ],
     "normalFlow": [
       "Trên màn hình Gói truyền thông của Workspace (/media-package), Client hoặc Manager chọn gói dịch vụ và nhập các đề xuất thay đổi (về số lượng bài, thời hạn hoặc chi phí).",
@@ -210,8 +203,8 @@
       "Nếu gói truyền thông này đã được hai bên chốt duyệt (APPROVED) trước đó: Hệ thống chặn chỉnh sửa và báo gói đã khóa (MSG36)."
     ],
     "postConditions": [
-      "The latest negotiated Media Package proposal and version diff are persisted and awaiting review/approval (3.5.4) by the counterpart.",
-      "Role-based access isolation (BR-25) and audit state consistency are preserved across the session."
+      "Ghi nhận đề xuất điều chỉnh gói truyền thông thành công và hiển thị thông báo MSG31.",
+      "Hệ thống lưu và cập nhật: Lưu lịch sử vòng đàm phán, chuyển trạng thái gói sang Đang đàm phán (NEGOTIATING - BR-26) và thông báo cho đối tác."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-51.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_3.png",
@@ -269,9 +262,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is neither the Workspace Client nor an authorized Manager/Owner → Display: MSG07.",
-      "Package terms were modified concurrently or package is already approved → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu gói đã được duyệt khóa từ trước hoặc không ở trạng thái chờ duyệt: Hệ thống hiển thị thông báo MSG36."
     ],
     "normalFlow": [
       "Client và Manager xem lại bản điều khoản cuối cùng của Gói truyền thông trong dự án (/media-package).",
@@ -283,8 +274,8 @@
       "Nếu gói đã được duyệt khóa từ trước hoặc không ở trạng thái chờ duyệt: Hệ thống hiển thị thông báo MSG36."
     ],
     "postConditions": [
-      "The Workspace Media Package is in APPROVED status and serves as the locked baseline for creating a Media Campaign (3.5.5).",
-      "Role-based access isolation (BR-26) and audit state consistency are preserved across the session."
+      "Phê duyệt chốt gói truyền thông thành công (MSG31), mở khóa bước lập Kế hoạch Chiến dịch chi tiết.",
+      "Hệ thống lưu và cập nhật: Trạng thái xác nhận của 2 bên, thời điểm phê duyệt và khóa gói ở trạng thái APPROVED (BR-26, BR-27)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-52.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_4.png",
@@ -346,10 +337,8 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager permission (BR-22) → Display: MSG07.",
-      "Workspace does not yet have an APPROVED Media Package (BR-27) → Display: MSG36.",
-      "Required field missing (campaignTitle, startDate, endDate, or workItemsList empty) → Display: MSG02.",
-      "End Date is earlier than Start Date → Display: MSG03."
+      "Nếu dự án chưa có Gói truyền thông nào ở trạng thái Đã phê duyệt (APPROVED): Hệ thống chặn tạo chiến dịch và nhắc cần chốt gói dịch vụ trước (BR-27, MSG36).",
+      "Nếu bỏ trống Tên chiến dịch hoặc đặt ngày kết thúc sớm hơn ngày bắt đầu: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "normalFlow": [
       "Manager mở màn hình Chiến dịch Truyền thông (/workspace/:id/campaign) và chọn Tạo chiến dịch từ gói dịch vụ đã duyệt.",
@@ -362,8 +351,8 @@
       "Nếu bỏ trống Tên chiến dịch hoặc đặt ngày kết thúc sớm hơn ngày bắt đầu: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "postConditions": [
-      "A MediaCampaign record and its version 1 snapshot exist in the Workspace and are ready for stakeholder review (3.5.6, 3.5.8).",
-      "Role-based access isolation (BR-22) and audit state consistency are preserved across the session."
+      "Tạo bản Kế hoạch Chiến dịch Truyền thông thành công và hiển thị thông báo MSG32.",
+      "Hệ thống lưu và cập nhật: Mã chiến dịch, phiên bản kế hoạch v1 (BR-28), quy đổi thời gian theo múi giờ Workspace (BR-22) và trạng thái Chờ duyệt (PENDING_APPROVAL)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-53.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_5.png",
@@ -426,9 +415,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is not authorized to access the Workspace (BR-20) → Display: MSG07.",
-      "No Media Campaign exists yet in the Workspace → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu dự án chưa có chiến dịch nào hoặc không khớp bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Manager, Creator hoặc Client mở mục Chiến dịch Truyền thông (/workspace/:id/campaign) trong Workspace.",
@@ -440,8 +427,8 @@
       "Nếu dự án chưa có chiến dịch nào hoặc không khớp bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The viewer inspects the complete Media Campaign plan and version history without altering stored data.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị đầy đủ nội dung Kế hoạch Chiến dịch Truyền thông.",
+      "Hệ thống lưu và cập nhật: Thông tin chiến dịch, gói truyền thông gốc, danh sách hạng mục và lịch sử phiên bản (BR-28)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374197/brandhub-docs-portal/report3/r3-fig-54.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_6.png",
@@ -500,9 +487,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-27) → Display: MSG07.",
-      "Required campaign fields or feedback text left blank → Display: MSG02.",
-      "Campaign is already deployed (IN_PROGRESS) or COMPLETED (BR-29, BR-30) → Display: MSG36."
+      "Nếu chiến dịch đã hoàn tất và đóng lại (COMPLETED): Hệ thống không cho phép chỉnh sửa thêm và báo MSG36."
     ],
     "normalFlow": [
       "Manager hoặc Client mở bản Kế hoạch Chiến dịch đang chờ duyệt (/workspace/:id/campaign).",
@@ -514,8 +499,8 @@
       "Nếu chiến dịch đã hoàn tất và đóng lại (COMPLETED): Hệ thống không cho phép chỉnh sửa thêm và báo MSG36."
     ],
     "postConditions": [
-      "A new auditable MediaCampaign version snapshot is persisted (BR-28) and awaits bilateral approval (3.5.8).",
-      "Role-based access isolation (BR-27) and audit state consistency are preserved across the session."
+      "Lưu cập nhật kế hoạch chiến dịch thành công và hiển thị thông báo MSG32.",
+      "Hệ thống lưu và cập nhật: Tạo bản chụp phiên bản mới (Version snapshot - BR-28), người cập nhật và thời gian sửa."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-55.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_7.png",
@@ -573,9 +558,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is neither the Workspace Client nor the Manager/Owner → Display: MSG07.",
-      "Campaign has already been deployed or contains zero work items → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu chiến dịch đã được duyệt kích hoạt từ trước hoặc đã kết thúc: Hệ thống chặn thao tác lặp lại và báo MSG36."
     ],
     "normalFlow": [
       "Manager và Client kiểm tra lại danh sách các bài viết dự kiến trên màn hình Chiến dịch (/workspace/:id/campaign).",
@@ -587,8 +570,8 @@
       "Nếu chiến dịch đã được duyệt kích hoạt từ trước hoặc đã kết thúc: Hệ thống chặn thao tác lặp lại và báo MSG36."
     ],
     "postConditions": [
-      "The Media Campaign status is IN_PROGRESS.",
-      "All planned campaign deliverables exist as initial BACKLOG Tasks in the Workspace awaiting detailed specification (3.6.1) and Creator assignment (3.6.2)."
+      "Chiến dịch chính thức kích hoạt, toàn bộ đầu việc được đẩy vào bảng Task của Workspace và hiển thị thông báo MSG33.",
+      "Hệ thống lưu và cập nhật: Chuyển trạng thái chiến dịch sang IN_PROGRESS và tự động khởi tạo danh sách Task trong Backlog của Workspace (BR-29)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-56.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_8.png",
@@ -645,9 +628,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is not the Manager or Owner (BR-30) → Display: MSG07.",
-      "Campaign is not in IN_PROGRESS status (BR-30) → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người thao tác không phải là Manager hoặc chiến dịch chưa được kích hoạt chạy: Hệ thống từ chối và báo MSG07 hoặc MSG36."
     ],
     "normalFlow": [
       "Manager mở màn hình Chiến dịch Truyền thông đang chạy (/workspace/:id/campaign) và bấm nút Hoàn tất Chiến dịch.",
@@ -659,8 +640,8 @@
       "Nếu người thao tác không phải là Manager hoặc chiến dịch chưa được kích hoạt chạy: Hệ thống từ chối và báo MSG07 hoặc MSG36."
     ],
     "postConditions": [
-      "The Media Campaign is permanently recorded in COMPLETED status.",
-      "All leftover PENDING Content Requests associated with the campaign are automatically set to CANCELLED (BR-30)."
+      "Đóng chiến dịch thành công và hiển thị thông báo MSG34.",
+      "Hệ thống lưu và cập nhật: Chuyển trạng thái chiến dịch sang COMPLETED, ghi nhận thời gian hoàn tất và đóng các yêu cầu phát sinh còn treo (BR-30)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374198/brandhub-docs-portal/report3/r3-fig-57.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_9.png",
@@ -717,9 +698,7 @@
       "MSG35"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-20) → Display: MSG07.",
-      "Required field missing (requestTitle or requestBrief left blank) → Display: MSG02.",
-      "Title or brief exceeds character limits → Display: MSG03."
+      "Nếu bỏ trống Tiêu đề hoặc Mô tả yêu cầu: Hệ thống báo lỗi MSG02 dưới ô nhập."
     ],
     "normalFlow": [
       "Client hoặc Manager mở màn hình Yêu cầu Nội dung (/workspace/:id/requests) và bấm nút Tạo yêu cầu mới.",
@@ -731,8 +710,8 @@
       "Nếu bỏ trống Tiêu đề hoặc Mô tả yêu cầu: Hệ thống báo lỗi MSG02 dưới ô nhập."
     ],
     "postConditions": [
-      "A new ContentRequest record exists in PENDING status awaiting Manager review (3.5.11).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tạo yêu cầu nội dung phát sinh thành công và hiển thị thông báo MSG35.",
+      "Hệ thống lưu và cập nhật: Mã yêu cầu phát sinh, người gửi, thời gian tạo và trạng thái khởi tạo Chờ xử lý (PENDING - BR-31)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-58.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_10.png",
@@ -790,9 +769,8 @@
       "MSG36"
     ],
     "validations": [
-      "Client attempts to set agency-controlled status (IN_PROGRESS, ACCEPTED, DENIED) (BR-31) → Display: MSG07.",
-      "Request is already CANCELLED or finalized (BR-31) → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu Client cố tự bấm Chấp nhận yêu cầu: Hệ thống chặn thao tác vì chỉ Manager/Owner mới có quyền xét duyệt (BR-31, MSG07).",
+      "Nếu yêu cầu đã được xử lý xong hoặc đã hủy trước đó: Hệ thống báo không thể đổi trạng thái lại (MSG36)."
     ],
     "normalFlow": [
       "Manager hoặc Client mở màn hình Yêu cầu Nội dung (/workspace/:id/requests) để xem danh sách các yêu cầu phát sinh.",
@@ -805,8 +783,8 @@
       "Nếu yêu cầu đã được xử lý xong hoặc đã hủy trước đó: Hệ thống báo không thể đổi trạng thái lại (MSG36)."
     ],
     "postConditions": [
-      "The Content Request status is updated; if ACCEPTED, a new Task is present in the Workspace Task Backlog (3.6.1).",
-      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+      "Cập nhật trạng thái yêu cầu thành công (hiển thị MSG35) và sinh Task mới nếu được chấp nhận.",
+      "Hệ thống lưu và cập nhật: Cập nhật trạng thái yêu cầu và tự động tạo Task mới trong Workspace khi yêu cầu được Chấp nhận (BR-31)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-59.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_11.png",
@@ -863,9 +841,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-31) → Display: MSG07.",
-      "Required field missing (requestTitle or requestBrief left blank) → Display: MSG02.",
-      "Content Request status is no longer PENDING (already IN_PROGRESS, ACCEPTED, DENIED, or CANCELLED per BR-32) → Display: MSG36."
+      "Nếu yêu cầu đã được Manager chuyển sang Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống chặn chỉnh sửa và hiển thị thông báo MSG36 (BR-32)."
     ],
     "normalFlow": [
       "Người tạo mở một Yêu cầu nội dung đang ở trạng thái Chờ xử lý (PENDING) trên trang Yêu cầu (/workspace/:id/requests).",
@@ -877,8 +853,8 @@
       "Nếu yêu cầu đã được Manager chuyển sang Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống chặn chỉnh sửa và hiển thị thông báo MSG36 (BR-32)."
     ],
     "postConditions": [
-      "The PENDING Content Request reflects the updated title, brief, and target metadata.",
-      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+      "Cập nhật nội dung yêu cầu phát sinh thành công và hiển thị thông báo MSG35.",
+      "Hệ thống lưu và cập nhật: Kiểm tra điều kiện trạng thái PENDING (BR-32) và lưu thời gian cập nhật."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374199/brandhub-docs-portal/report3/r3-fig-60.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_12.png",
@@ -936,9 +912,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Client, Manager permission (BR-31) → Display: MSG07.",
-      "Content Request is no longer in PENDING status (BR-32) → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu yêu cầu đã chuyển sang trạng thái Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống từ chối hủy và hiển thị thông báo MSG36 (BR-32)."
     ],
     "normalFlow": [
       "Trên màn hình Yêu cầu Nội dung (/workspace/:id/requests), người tạo chọn một yêu cầu đang ở trạng thái Chờ xử lý (PENDING) và bấm Hủy yêu cầu.",
@@ -950,8 +924,8 @@
       "Nếu yêu cầu đã chuyển sang trạng thái Đang xem xét, Đã chấp nhận hoặc Đã từ chối: Hệ thống từ chối hủy và hiển thị thông báo MSG36 (BR-32)."
     ],
     "postConditions": [
-      "The Content Request is permanently marked as CANCELLED and will not be converted into a Workspace Task.",
-      "Role-based access isolation (BR-31) and audit state consistency are preserved across the session."
+      "Hủy yêu cầu nội dung phát sinh thành công và hiển thị thông báo MSG35.",
+      "Hệ thống lưu và cập nhật: Chuyển trạng thái yêu cầu từ PENDING sang CANCELLED (BR-32)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374200/brandhub-docs-portal/report3/r3-fig-61.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_13.png",

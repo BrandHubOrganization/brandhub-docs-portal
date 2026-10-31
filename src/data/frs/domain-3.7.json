@@ -45,9 +45,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-45) → Display: MSG07.",
-      "No trending topics match the selected category or search query → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có chủ đề xu hướng nào khớp với bộ lọc hiện tại: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Creator hoặc Manager mở màn hình Gợi ý Xu hướng AI (/ai-studio/trends).",
@@ -59,8 +57,8 @@
       "Nếu không có chủ đề xu hướng nào khớp với bộ lọc hiện tại: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "Current trending topics and keyword metrics are displayed without altering stored trend records.",
-      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách các chủ đề đang thịnh hành để đội sáng tạo chọn làm nội dung.",
+      "Hệ thống lưu và cập nhật: Danh sách chủ đề xu hướng, điểm mức độ thịnh hành, các thẻ hashtag đi kèm và thời gian cập nhật (BR-45)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-97.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_1.png",
@@ -112,9 +110,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Admin, Manager permission (BR-45) → Display: MSG07.",
-      "Search query matches no persisted trend or entity nodes in the knowledge graph → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu từ khóa tìm kiếm chưa có trong dữ liệu xu hướng hiện tại: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Admin hoặc Manager mở màn hình Đồ thị Xu hướng AI (/ai-studio/trends).",
@@ -126,8 +122,8 @@
       "Nếu từ khóa tìm kiếm chưa có trong dữ liệu xu hướng hiện tại: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The user explores the semantic relationships of trending topics in the Neo4j knowledge graph in read-only mode.",
-      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+      "Hiển thị sơ đồ mạng lưới liên kết xu hướng trực quan.",
+      "Hệ thống lưu và cập nhật: Các nút thực thể (Chủ đề, Từ khóa, Hashtag) và mức độ liên kết xuất hiện cùng nhau (BR-45)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-98.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_2.png",
@@ -185,9 +181,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Creator, Client permission (BR-20) → Display: MSG07.",
-      "No Brand Knowledge Documents have been uploaded or match the semantic query → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu dự án chưa tải lên tài liệu thương hiệu nào: Hệ thống hiển thị thông báo trống MSG01 kèm nút Tải tài liệu lên."
     ],
     "normalFlow": [
       "Manager, Creator hoặc Client mở mục Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) của dự án.",
@@ -199,8 +193,8 @@
       "Nếu dự án chưa tải lên tài liệu thương hiệu nào: Hệ thống hiển thị thông báo trống MSG01 kèm nút Tải tài liệu lên."
     ],
     "postConditions": [
-      "The Workspace's RAG Brand Knowledge Documents and semantic search results are displayed accurately.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách tài liệu hướng dẫn thương hiệu và kết quả tra cứu nội dung.",
+      "Hệ thống lưu và cập nhật: Danh sách tài liệu thương hiệu của Workspace, trạng thái trích xuất dữ liệu và số đoạn văn bản đã lưu (BR-46)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-99.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_3.png",
@@ -257,9 +251,7 @@
       "MSG46"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-20) → Display: MSG07.",
-      "Neither a file nor a URL is provided → Display: MSG02.",
-      "File extension is not PDF/DOCX/TXT, file size exceeds 10 MB, or security scan detects macros/scripts (BR-46) → Display: MSG22."
+      "Nếu chọn tệp sai định dạng (không phải PDF/DOCX/TXT) hoặc vượt quá dung lượng cho phép: Hệ thống từ chối và báo lỗi MSG22."
     ],
     "normalFlow": [
       "Manager hoặc Client mở màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) và bấm Tải tài liệu lên.",
@@ -271,8 +263,8 @@
       "Nếu chọn tệp sai định dạng (không phải PDF/DOCX/TXT) hoặc vượt quá dung lượng cho phép: Hệ thống từ chối và báo lỗi MSG22."
     ],
     "postConditions": [
-      "The Brand Guideline document is stored in tenant-isolated S3 and indexed as vector embeddings in ChromaDB for RAG-grounded AI generation (BR-46, BR-49).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Tải lên và trích xuất tài liệu thương hiệu thành công, hiển thị thông báo MSG46.",
+      "Hệ thống lưu và cập nhật: Kiểm tra an toàn tệp, lưu trữ tệp gốc và tách các đoạn nội dung vào kho kiến thức AI riêng của Workspace (BR-46)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-100.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_4.png",
@@ -330,9 +322,7 @@
       "MSG46"
     ],
     "validations": [
-      "Caller lacks Manager, Owner, or Client permission in the Workspace → Display: MSG07.",
-      "Target documentId does not exist → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu tài liệu không tồn tại hoặc người dùng không có quyền xóa: Hệ thống báo MSG01 hoặc MSG07."
     ],
     "normalFlow": [
       "Manager hoặc Client mở màn hình Kho Tài liệu Thương hiệu AI (/ai-studio/knowledge-base) và bấm nút Xóa cạnh tài liệu cũ.",
@@ -344,8 +334,8 @@
       "Nếu tài liệu không tồn tại hoặc người dùng không có quyền xóa: Hệ thống báo MSG01 hoặc MSG07."
     ],
     "postConditions": [
-      "Both the raw document in S3 and all corresponding vector embeddings in ChromaDB are permanently removed (BR-47).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Xóa tài liệu thương hiệu thành công và hiển thị thông báo MSG46.",
+      "Hệ thống lưu và cập nhật: Xóa tệp lưu trữ gốc và xóa toàn bộ dữ liệu trích xuất tương ứng trong kho AI của Workspace (BR-47)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374209/brandhub-docs-portal/report3/r3-fig-101.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_5.png",
@@ -413,10 +403,8 @@
       "MSG49"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
-      "Prompt text left blank → Display: MSG02.",
-      "Agency or Workspace AI Credit balance or member credit quota is insufficient (BR-48, BR-60) → Display: MSG48.",
-      "External LLM provider times out or fails (BR-48) → Display: MSG49 (reserved credits are automatically refunded)."
+      "Nếu quỹ điểm AI Credit của Agency đã hết hoặc vượt quá hạn mức được cấp cho Workspace: Hệ thống dừng thao tác và báo cần nạp thêm hoặc nâng hạn mức điểm (MSG48).",
+      "Nếu dịch vụ AI phản hồi quá lâu hoặc gặp sự cố kết nối: Hệ thống tự động hoàn trả lại toàn bộ số điểm AI Credit vừa tạm giữ và báo thông báo MSG49."
     ],
     "normalFlow": [
       "Trong màn hình Soạn thảo (/editor), Creator mở công cụ Tạo Caption bằng AI, nhập ý tưởng bài viết và chọn nền tảng đăng.",
@@ -429,8 +417,8 @@
       "Nếu dịch vụ AI phản hồi quá lâu hoặc gặp sự cố kết nối: Hệ thống tự động hoàn trả lại toàn bộ số điểm AI Credit vừa tạm giữ và báo thông báo MSG49."
     ],
     "postConditions": [
-      "Generated caption variations are persisted in generation history and inserted into the draft, and the exact AI Credit cost is recorded in the AI Credit Ledger (BR-60).",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Hiển thị các phương án bài viết (Caption) do AI tạo ra để Creator chọn chèn vào trình soạn thảo (MSG47).",
+      "Hệ thống lưu và cập nhật: Kiểm tra và trừ điểm AI Credit theo bảng giá (tự động hoàn điểm nếu lỗi - BR-48) và lưu lịch sử nội dung đã tạo (BR-35)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374210/brandhub-docs-portal/report3/r3-fig-102.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_6.png",
@@ -498,10 +486,8 @@
       "MSG49"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
-      "Required field missing (ambassadorName or appearancePrompt left blank) → Display: MSG02.",
-      "Insufficient AI Credits or quota exceeded (BR-48, BR-60) → Display: MSG48.",
-      "AI generation job fails (BR-48) → Display: MSG49 (reserved credits refunded)."
+      "Nếu không đủ điểm AI Credit: Hệ thống báo lỗi MSG48.",
+      "Nếu quá trình tạo hình ảnh gặp sự cố: Hệ thống tự động hoàn lại điểm AI Credit đã giữ và báo MSG49."
     ],
     "normalFlow": [
       "Creator mở màn hình Đại sứ Thương hiệu Ảo (/ai-studio/ambassadors) và bấm Tạo đại sứ mới.",
@@ -514,8 +500,8 @@
       "Nếu quá trình tạo hình ảnh gặp sự cố: Hệ thống tự động hoàn lại điểm AI Credit đã giữ và báo MSG49."
     ],
     "postConditions": [
-      "A reusable AI Brand Ambassador model exists in the Workspace and can be selected as the subject in Generate Image (3.7.9) and Generate Video (3.7.11).",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Khởi tạo thành công hình mẫu Đại sứ Thương hiệu Ảo, lưu vào danh sách của dự án và hiển thị thông báo MSG47.",
+      "Hệ thống lưu và cập nhật: Kiểm tra/trừ điểm AI Credit (tự hoàn điểm nếu lỗi - BR-48) và lưu hồ sơ nhân vật Đại sứ ảo vào Workspace (BR-49)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-103.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_7.png",
@@ -567,9 +553,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-49) → Display: MSG07.",
-      "No Image Style Templates match the selected category filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu tìm kiếm không có mẫu phong cách nào khớp từ khóa: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Creator mở công cụ Tạo ảnh trong AI Studio và bấm xem Thư viện Mẫu phong cách ảnh.",
@@ -581,8 +565,8 @@
       "Nếu tìm kiếm không có mẫu phong cách nào khớp từ khóa: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The selected Image Style Template is active in the AI Image Studio form for image generation (3.7.9).",
-      "Role-based access isolation (BR-49) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách các Mẫu phong cách hình ảnh để Creator lựa chọn.",
+      "Hệ thống lưu và cập nhật: Danh sách mẫu phong cách ảnh kèm cấu hình ánh sáng, góc máy và tông màu thiết lập sẵn (BR-49)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-104.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_8.png",
@@ -655,10 +639,8 @@
       "MSG49"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
-      "Image prompt left blank → Display: MSG02.",
-      "Insufficient AI Credits or Workspace/Member credit limit reached (BR-48, BR-60) → Display: MSG48.",
-      "Image generation pipeline fails or times out (BR-48) → Display: MSG49 (reserved credits refunded)."
+      "Nếu số dư điểm AI Credit không đủ: Hệ thống chặn thao tác và báo MSG48.",
+      "Nếu quá trình sinh ảnh gặp lỗi kết nối với máy chủ AI: Hệ thống tự động hoàn trả lại số điểm AI Credit đã giữ và báo MSG49."
     ],
     "normalFlow": [
       "Creator mở công cụ Tạo Ảnh bằng AI, nhập mô tả bối cảnh bức ảnh muốn tạo.",
@@ -671,8 +653,8 @@
       "Nếu quá trình sinh ảnh gặp lỗi kết nối với máy chủ AI: Hệ thống tự động hoàn trả lại số điểm AI Credit đã giữ và báo MSG49."
     ],
     "postConditions": [
-      "The generated commercial image is available for task attachment, repository storage, or export (3.7.12), and the AI Credit ledger is updated (BR-60).",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Hiển thị hình ảnh quảng cáo do AI tạo ra, cho phép lưu vào Kho tư liệu hoặc chèn ngay vào bài viết (MSG47).",
+      "Hệ thống lưu và cập nhật: Kiểm tra và trừ điểm AI Credit theo bảng giá (tự hoàn điểm nếu lỗi - BR-48, BR-64) và lưu ảnh kết quả (BR-50)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-105.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_9.png",
@@ -724,9 +706,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-49) → Display: MSG07.",
-      "No Video Style Templates match the filter → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có mẫu video nào khớp với từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Creator mở màn hình Tạo Video AI (/ai-studio/video) và bấm xem Thư viện Mẫu phong cách Video.",
@@ -738,8 +718,8 @@
       "Nếu không có mẫu video nào khớp với từ khóa tìm kiếm: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The chosen Video Style Template is selected for AI Video generation (3.7.11).",
-      "Role-based access isolation (BR-49) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách Mẫu phong cách Video để Creator lựa chọn.",
+      "Hệ thống lưu và cập nhật: Danh sách mẫu phong cách video và các thông số góc quay thiết lập sẵn (BR-49)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-106.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_10.png",
@@ -812,10 +792,8 @@
       "MSG49"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-48) → Display: MSG07.",
-      "Video prompt or Video Style Template missing → Display: MSG02.",
-      "Insufficient AI Credits or Workspace/Member quota reached (BR-48, BR-60) → Display: MSG48.",
-      "Asynchronous video generation job fails or times out (BR-48) → Display: MSG49 (reserved credits refunded)."
+      "Nếu không đủ điểm AI Credit hoặc vượt hạn mức của Workspace: Hệ thống báo lỗi MSG48.",
+      "Nếu tiến trình dựng video bị gián đoạn: Hệ thống tự động hoàn trả đủ điểm AI Credit đã giữ và báo MSG49."
     ],
     "normalFlow": [
       "Creator mở màn hình Tạo Video bằng AI (/ai-studio/video) và nhập mô tả cảnh quay mong muốn.",
@@ -828,8 +806,8 @@
       "Nếu tiến trình dựng video bị gián đoạn: Hệ thống tự động hoàn trả đủ điểm AI Credit đã giữ và báo MSG49."
     ],
     "postConditions": [
-      "The generated video is stored and available for export (3.7.12) or social publishing (3.8.10, 3.8.12, 3.8.14), and the AI Credit ledger reflects the completed charge (BR-60).",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Tạo video ngắn bằng AI thành công, hiển thị trình phát xem trước và thông báo MSG47.",
+      "Hệ thống lưu và cập nhật: Kiểm tra/trừ điểm AI Credit (tự động hoàn điểm nếu lỗi - BR-48), xử lý hàng đợi dựng video và lưu tệp video kết quả (BR-50)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-107.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_11.png",
@@ -886,9 +864,7 @@
       "MSG22"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator, Manager permission (BR-20) → Display: MSG07.",
-      "Export format not selected or incompatible with asset media type (e.g., selecting PNG for a video) → Display: MSG02, MSG22.",
-      "Submitted parameter value exceeds maximum length or falls outside the valid domain range → Display: MSG03."
+      "Nếu chọn định dạng không tương thích với loại tệp (ví dụ chọn xuất ảnh sang định dạng video): Hệ thống báo lỗi MSG22."
     ],
     "normalFlow": [
       "Sau khi tạo xong hình ảnh hoặc video trong AI Studio, Creator hoặc Manager bấm nút Xuất tệp (Export File).",
@@ -900,8 +876,8 @@
       "Nếu chọn định dạng không tương thích với loại tệp (ví dụ chọn xuất ảnh sang định dạng video): Hệ thống báo lỗi MSG22."
     ],
     "postConditions": [
-      "The AI-generated media file is exported to the user's local device in the selected social-ready format (BR-50).",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Xuất tệp theo đúng định dạng đã chọn và tải về máy tính của người dùng.",
+      "Hệ thống lưu và cập nhật: Chuyển đổi định dạng tệp theo chuẩn mạng xã hội với chi phí 0 AI Credit (BR-50)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-108.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_12.png",
@@ -962,9 +938,7 @@
       "MSG60"
     ],
     "validations": [
-      "Caller does not hold the system ADMIN role (BR-62) → Display: MSG07.",
-      "Required field missing (crawlIntervalCron, targetSourcesList, or maxPostsPerRun) → Display: MSG02.",
-      "maxPostsPerRun falls outside the allowed range (10–1000) or schedule syntax is invalid → Display: MSG03."
+      "Nếu người thao tác không có quyền Admin hoặc nhập chu kỳ thời gian sai định dạng: Hệ thống báo lỗi MSG07 hoặc MSG03."
     ],
     "normalFlow": [
       "Admin mở phần Cấu hình Thu thập Xu hướng trên cổng quản trị (/admin).",
@@ -976,8 +950,8 @@
       "Nếu người thao tác không có quyền Admin hoặc nhập chu kỳ thời gian sai định dạng: Hệ thống báo lỗi MSG07 hoặc MSG03."
     ],
     "postConditions": [
-      "The AI trend crawler operates according to the updated schedule and source configuration (BR-45).",
-      "Role-based access isolation (BR-45) and audit state consistency are preserved across the session."
+      "Lưu cấu hình lịch thu thập xu hướng thành công và hiển thị thông báo MSG60.",
+      "Hệ thống lưu và cập nhật: Cập nhật lịch chạy tiến trình ngầm (BR-45) và lưu nhật ký thao tác của Admin (BR-65)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374211/brandhub-docs-portal/report3/r3-fig-109.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_13.png",
@@ -1033,9 +1007,7 @@
       "MSG49"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Creator permission (BR-39) → Display: MSG07.",
-      "Context text and Workspace industry context are both empty → Display: MSG02.",
-      "AI suggestion service is temporarily unavailable → Display: MSG49."
+      "Nếu ô nội dung bài viết và chủ đề đều đang để trống: Hệ thống nhắc người dùng nhập chủ đề hoặc nội dung trước khi gợi ý (MSG02)."
     ],
     "normalFlow": [
       "Trong lúc viết bài (/editor) hoặc tạo nhóm Hashtag (/workspace/:id/hashtag-groups), Creator bấm nút Gợi ý Hashtag bằng AI.",
@@ -1047,8 +1019,8 @@
       "Nếu ô nội dung bài viết và chủ đề đều đang để trống: Hệ thống nhắc người dùng nhập chủ đề hoặc nội dung trước khi gợi ý (MSG02)."
     ],
     "postConditions": [
-      "Selected AI-recommended hashtags are added to the active post draft or Workspace Hashtag Collection.",
-      "Role-based access isolation (BR-39) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách Hashtag xu hướng do AI đề xuất (MSG47) để người dùng chọn áp dụng.",
+      "Hệ thống lưu và cập nhật: Danh sách thẻ hashtag gợi ý kèm điểm mức độ thịnh hành (BR-39, BR-45)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-110.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_14.png",
@@ -1105,9 +1077,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager permission (BR-20) → Display: MSG07.",
-      "No collaborators match the selected filter criteria → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu không có đối tác nào khớp với điều kiện lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Owner hoặc Manager mở màn hình Danh bạ Đối tác Truyền thông (/collaborators).",
@@ -1119,8 +1089,8 @@
       "Nếu không có đối tác nào khớp với điều kiện lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The Agency's third-party Collaborator Directory and campaign cooperation statuses are displayed accurately.",
-      "Role-based access isolation (BR-20) and audit state consistency are preserved across the session."
+      "Hiển thị bảng danh bạ các đối tác truyền thông bên thứ ba của Agency.",
+      "Hệ thống lưu và cập nhật: Danh sách hồ sơ đối tác truyền thông, chỉ số tiếp cận và trạng thái hợp tác hiện tại (BR-51)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374212/brandhub-docs-portal/report3/r3-fig-111.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_15.png",
@@ -1178,9 +1148,7 @@
       "MSG50"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager permission (BR-15) → Display: MSG07.",
-      "Required field missing (partnerName, partnerType, industryTags, or baseRate) → Display: MSG02.",
-      "Base rate or audience reach is negative, or contact email format is invalid → Display: MSG03, MSG04."
+      "Nếu bỏ trống Tên đối tác, Loại hình kênh hoặc nhập sai định dạng email liên hệ: Hệ thống báo lỗi MSG02 hoặc MSG04."
     ],
     "normalFlow": [
       "Owner hoặc Manager mở màn hình Danh bạ Đối tác (/collaborators) và bấm nút Thêm đối tác mới.",
@@ -1192,8 +1160,8 @@
       "Nếu bỏ trống Tên đối tác, Loại hình kênh hoặc nhập sai định dạng email liên hệ: Hệ thống báo lỗi MSG02 hoặc MSG04."
     ],
     "postConditions": [
-      "A new ThirdPartyCollaborator profile exists in the Agency directory and is eligible for AI recommendation (3.7.19) and campaign linking.",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Thêm hồ sơ đối tác truyền thông mới thành công và hiển thị thông báo MSG50.",
+      "Hệ thống lưu và cập nhật: Mã hồ sơ đối tác mới và trạng thái hoạt động trong danh bạ của Agency (BR-51)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-112.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_16.png",
@@ -1246,9 +1214,7 @@
       "MSG50"
     ],
     "validations": [
-      "Required partner fields cleared or numeric rate is negative → Display: MSG02, MSG03.",
-      "Caller lacks Owner or Manager permission → Display: MSG07.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu xóa trống Tên đối tác hoặc nhập mức giá âm: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "normalFlow": [
       "Owner hoặc Manager mở hồ sơ của một đối tác trong Danh bạ Đối tác (/collaborators) và chọn Chỉnh sửa.",
@@ -1260,8 +1226,8 @@
       "Nếu xóa trống Tên đối tác hoặc nhập mức giá âm: Hệ thống báo lỗi MSG02 hoặc MSG03."
     ],
     "postConditions": [
-      "The collaborator's profile attributes and campaign cooperation status are updated in persistent storage (BR-51).",
-      "Role-based access isolation (BR-51) and audit state consistency are preserved across the session."
+      "Cập nhật hồ sơ và trạng thái đối tác thành công, hiển thị thông báo MSG50.",
+      "Hệ thống lưu và cập nhật: Cập nhật trạng thái hợp tác chiến dịch (BR-51) và thời gian chỉnh sửa hồ sơ."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-113.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_17.png",
@@ -1320,9 +1286,7 @@
       "MSG50"
     ],
     "validations": [
-      "Caller lacks Owner or Manager permission → Display: MSG07.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu hồ sơ đối tác đó đã bị xóa từ trước: Hệ thống hiển thị thông báo MSG36."
     ],
     "normalFlow": [
       "Trên màn hình Danh bạ Đối tác (/collaborators), Owner hoặc Manager bấm nút Xóa cạnh đối tác không còn hợp tác.",
@@ -1334,8 +1298,8 @@
       "Nếu hồ sơ đối tác đó đã bị xóa từ trước: Hệ thống hiển thị thông báo MSG36."
     ],
     "postConditions": [
-      "The collaborator profile is removed from active directory recommendations without breaking historical campaign records (BR-51).",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Gỡ đối tác khỏi danh bạ hoạt động thành công và hiển thị thông báo MSG50.",
+      "Hệ thống lưu và cập nhật: Đánh dấu xóa mềm hồ sơ đối tác và bảo toàn lịch sử hợp tác chiến dịch cũ (BR-51)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374213/brandhub-docs-portal/report3/r3-fig-114.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_18.png",
@@ -1392,9 +1356,7 @@
       "MSG50"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Manager, Client permission (BR-51) → Display: MSG07.",
-      "No active collaborators exist in the Agency Directory matching the industry/budget constraints → Display: MSG01.",
-      "Required campaign or budget criteria missing → Display: MSG02."
+      "Nếu trong danh bạ chưa có đối tác nào thuộc ngành hàng hoặc tầm ngân sách đã chọn: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Manager hoặc Client mở màn hình Gợi ý Đối tác bằng AI (/campaign-partners) trong dự án.",
@@ -1406,8 +1368,8 @@
       "Nếu trong danh bạ chưa có đối tác nào thuộc ngành hàng hoặc tầm ngân sách đã chọn: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "Recommended third-party media partners are ranked by tier and linked to the Media Campaign upon selection (BR-51, BR-52).",
-      "Role-based access isolation (BR-51) and audit state consistency are preserved across the session."
+      "Hiển thị danh sách các đối tác truyền thông được AI xếp hạng đề xuất kèm thông báo MSG50.",
+      "Hệ thống lưu và cập nhật: Điểm đánh giá mức độ phù hợp của từng đối tác với ngân sách và ngành hàng của chiến dịch (BR-52)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374214/brandhub-docs-portal/report3/r3-fig-115.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_7_19.png",

@@ -55,9 +55,8 @@
       "MSG55"
     ],
     "validations": [
-      "Caller is not the Owner (BR-15) → Display: MSG07.",
-      "Selected plan is not a higher tier than the currently active subscription (BR-58) → Display: MSG36.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu chọn gói trùng với gói đang dùng hoặc gói thấp hơn: Hệ thống không cho phép chọn và báo MSG36 (BR-58).",
+      "Nếu người thao tác không phải là Owner của Agency: Hệ thống chặn thao tác và báo MSG07."
     ],
     "normalFlow": [
       "Owner mở màn hình Gói đăng ký dịch vụ (/subscription/plans) để xem bảng so sánh các gói.",
@@ -70,8 +69,8 @@
       "Nếu người thao tác không phải là Owner của Agency: Hệ thống chặn thao tác và báo MSG07."
     ],
     "postConditions": [
-      "A PENDING SubscriptionOrder exists awaiting verified SePay settlement (3.9.2) before expanding Agency quotas and AI Credits (BR-58, BR-59).",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Tạo đơn hàng nâng cấp gói thành công (hiển thị MSG55) và chuyển sang màn hình Thanh toán SePay (3.9.2).",
+      "Hệ thống lưu và cập nhật: Kiểm tra điều kiện chỉ nâng cấp lên gói cao hơn (BR-58), tạo đơn hàng chờ thanh toán kèm mã tham chiếu SePay (BR-59)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374217/brandhub-docs-portal/report3/r3-fig-131.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_9_1.png",
@@ -141,9 +140,7 @@
       "MSG56"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner permission (BR-15) → Display: MSG07.",
-      "Payment window expires before transfer is completed → Order status transitions to EXPIRED and displays MSG36.",
-      "Duplicate SePay webhook received for an already PAID order (BR-59) → System returns idempotent success without double-crediting."
+      "Nếu quá thời gian chờ mà người dùng chưa chuyển khoản: Hệ thống tự động chuyển đơn hàng sang trạng thái Hết hạn (EXPIRED - MSG36) để người dùng tạo lại đơn mới khi cần."
     ],
     "normalFlow": [
       "Trên màn hình Thanh toán (/subscription/checkout), hệ thống hiển thị mã VietQR kèm số tiền và nội dung chuyển khoản của đơn hàng.",
@@ -155,8 +152,8 @@
       "Nếu quá thời gian chờ mà người dùng chưa chuyển khoản: Hệ thống tự động chuyển đơn hàng sang trạng thái Hết hạn (EXPIRED - MSG36) để người dùng tạo lại đơn mới khi cần."
     ],
     "postConditions": [
-      "The transaction and SubscriptionOrder are permanently recorded as PAID under ACID guarantees (BR-59).",
-      "The Agency's subscription tier or AI Credit balance is updated and an invoice receipt is available in View Invoice History (3.9.3)."
+      "Xác nhận thanh toán thành công, kích hoạt ngay gói dịch vụ hoặc điểm AI Credit mới và hiển thị thông báo MSG56.",
+      "Hệ thống lưu và cập nhật: Xác thực thông báo thanh toán từ SePay, chuyển đơn sang PAID (BR-59), mở rộng hạn mức gói/cộng điểm AI Credit (BR-58, BR-60) và xuất hóa đơn (BR-61)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374218/brandhub-docs-portal/report3/r3-fig-132.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_9_2.png",
@@ -212,9 +209,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is not the Owner (BR-15) → Display: MSG07.",
-      "No invoices match the selected filter criteria → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu chưa có giao dịch nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Owner mở màn hình Lịch sử Hóa đơn (/subscription/invoices).",
@@ -226,8 +221,8 @@
       "Nếu chưa có giao dịch nào khớp với bộ lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The Owner reviews accurate historical billing records and receipts in read-only mode.",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Hiển thị bảng lịch sử giao dịch và tải tệp hóa đơn PDF về máy.",
+      "Hệ thống lưu và cập nhật: Danh sách hóa đơn thanh toán bất biến của Agency (BR-61)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374218/brandhub-docs-portal/report3/r3-fig-133.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374256/brandhub-docs-portal/report4/seq-3_9_3.png",
@@ -285,9 +280,7 @@
       "MSG07"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager permission (BR-48) → Display: MSG07.",
-      "No AI Credit consumption entries match the selected filter period → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu chưa có lượt sử dụng AI nào trong khoảng thời gian đang lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "normalFlow": [
       "Owner hoặc Manager mở màn hình Theo dõi AI Credit (/credit).",
@@ -299,8 +292,8 @@
       "Nếu chưa có lượt sử dụng AI nào trong khoảng thời gian đang lọc: Hệ thống hiển thị thông báo MSG01."
     ],
     "postConditions": [
-      "The viewer inspects accurate, real-time AI Credit balances and historical consumption records.",
-      "Role-based access isolation (BR-48) and audit state consistency are preserved across the session."
+      "Hiển thị bảng thống kê số dư và nhật ký chi tiêu điểm AI Credit.",
+      "Hệ thống lưu và cập nhật: Số dư điểm khả dụng, lịch sử trừ điểm/hoàn điểm (BR-48, BR-60) và đơn giá áp dụng tại thời điểm sử dụng (BR-64)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374218/brandhub-docs-portal/report3/r3-fig-134.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_4.png",
@@ -363,9 +356,7 @@
       "MSG55"
     ],
     "validations": [
-      "Caller is not the Owner (BR-15) → Display: MSG07.",
-      "Credit quantity is missing, zero, or negative → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu người thao tác không phải là Owner của Agency: Hệ thống chặn thao tác và báo MSG07."
     ],
     "normalFlow": [
       "Owner mở màn hình Quản lý AI Credit (/credit) và chọn mục Mua thêm điểm (Top-up).",
@@ -377,8 +368,8 @@
       "Nếu người thao tác không phải là Owner của Agency: Hệ thống chặn thao tác và báo MSG07."
     ],
     "postConditions": [
-      "A PENDING AI Credit top-up order is created and, upon verified SePay payment (3.9.2), increases the Agency's top-up credit balance (BR-59, BR-60).",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Khởi tạo đơn hàng mua điểm AI Credit thành công (hiển thị MSG55) và chuyển sang màn hình quét mã VietQR SePay (3.9.2).",
+      "Hệ thống lưu và cập nhật: Tạo đơn hàng mua thêm điểm chờ thanh toán qua SePay (BR-59) và cộng vào quỹ điểm nạp thêm khi hoàn tất (BR-60)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-135.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_5.png",
@@ -440,9 +431,7 @@
       "MSG57"
     ],
     "validations": [
-      "Caller is not the Owner (BR-15, BR-60) → Display: MSG07.",
-      "Submitted credit limit is negative or non-numeric → Display: MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu đặt hạn mức thấp hơn số điểm mà Workspace đó đã tiêu thụ trong tháng hoặc vượt quá quỹ điểm của Agency: Hệ thống báo lỗi giá trị không hợp lệ (MSG03)."
     ],
     "normalFlow": [
       "Owner mở phần Phân bổ Hạn mức trên màn hình Quản lý AI Credit (/credit).",
@@ -454,8 +443,8 @@
       "Nếu đặt hạn mức thấp hơn số điểm mà Workspace đó đã tiêu thụ trong tháng hoặc vượt quá quỹ điểm của Agency: Hệ thống báo lỗi giá trị không hợp lệ (MSG03)."
     ],
     "postConditions": [
-      "The updated AI Credit quota is enforced immediately on all subsequent AI generation requests in that Workspace or by that Member (BR-48, BR-60).",
-      "Role-based access isolation (BR-15) and audit state consistency are preserved across the session."
+      "Cập nhật hạn mức sử dụng điểm AI Credit thành công và hiển thị thông báo MSG57.",
+      "Hệ thống lưu và cập nhật: Kiểm tra tổng hạn mức với quỹ điểm của Agency và mức đã tiêu thụ trong kỳ (BR-48, BR-60)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374219/brandhub-docs-portal/report3/r3-fig-136.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_6.png",

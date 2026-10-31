@@ -1,7 +1,7 @@
 {
   "projectInfo": {
-    "name": "BrandHub — AI-Powered Multi-Channel Media Campaign Platform",
-    "course": "SEP490 — Capstone Project (FPT University)",
+    "name": "BrandHub - AI-Powered Multi-Channel Media Campaign Platform",
+    "course": "SEP490 - Capstone Project (FPT University)",
     "cloudinaryCloudName": "dvwt6npcl",
     "totalFrs": 141,
     "totalUseCases": 141,
@@ -52,7 +52,7 @@
     {
       "id": "report4",
       "code": "Report 4",
-      "title": "Software Design Document (SDD — UML Models)",
+      "title": "Software Design Document (SDD - UML Models)",
       "fileName": "Report4_Software Design Document.docx / BrandHub-Master-All-In-One.vpp",
       "description": "Tài liệu thiết kế phần mềm (SDD): gồm 9 sơ đồ lớp (Class Diagram) theo từng phân hệ và 141 sơ đồ tuần tự (Sequence Diagram) mô tả luồng xử lý chi tiết của từng chức năng.",
       "figureCount": 150

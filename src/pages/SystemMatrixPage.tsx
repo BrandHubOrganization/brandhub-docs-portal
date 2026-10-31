@@ -293,7 +293,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                       (roleKey) => {
                         const val = row[roleKey];
                         const hasAccess =
-                          val && val !== '-' && val !== '—' && val.trim() !== '';
+                          val && val !== '-' && val !== '-' && val.trim() !== '';
                         return (
                           <td key={roleKey} className="py-2 px-3 text-center">
                             {hasAccess ? (

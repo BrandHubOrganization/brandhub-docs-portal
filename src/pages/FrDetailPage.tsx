@@ -158,7 +158,7 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
         </div>
 
         <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 text-balance">
-          {fr.code} ({fr.ucId}) — {fr.title}
+          {fr.code} ({fr.ucId}) - {fr.title}
         </h1>
         {fr.viSummary && (
           <p className="text-sm text-slate-600 dark:text-slate-300 text-pretty">

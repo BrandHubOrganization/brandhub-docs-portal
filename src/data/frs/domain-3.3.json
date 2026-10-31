@@ -50,9 +50,7 @@
       "MSG36"
     ],
     "validations": [
-      "Unauthenticated session attempting to access /profile → Display: MSG07 and redirect to Sign In (3.2.2).",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03.",
-      "Target resource identifier or query matches no active records → Display: MSG01."
+      "Nếu phiên đăng nhập đã hết hạn: Hệ thống báo lỗi phân quyền (MSG07) và yêu cầu đăng nhập lại."
     ],
     "normalFlow": [
       "Người dùng bấm vào mục Hồ sơ cá nhân (/profile) trên thanh điều hướng.",
@@ -64,8 +62,8 @@
       "Nếu phiên đăng nhập đã hết hạn: Hệ thống báo lỗi phân quyền (MSG07) và yêu cầu đăng nhập lại."
     ],
     "postConditions": [
-      "The user's current profile data is displayed accurately without modifying any stored records.",
-      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+      "Hiển thị đầy đủ thông tin hồ sơ cá nhân hiện tại của người dùng.",
+      "Hệ thống lưu và cập nhật: Thông tin tài khoản, ảnh đại diện, số điện thoại, ngôn ngữ, múi giờ và trạng thái bảo mật 2FA."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-19.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_1.png",
@@ -126,10 +124,8 @@
       "MSG22"
     ],
     "validations": [
-      "Caller is unauthenticated or does not hold required Owner, Manager, Creator, Client, Admin permission (BR-11) → Display: MSG07.",
-      "Full Name left blank → Display: MSG02.",
-      "Text field exceeds maximum length or invalid phone number format → Display: MSG03.",
-      "Uploaded avatar or banner image is not PNG/JPG/WEBP or exceeds 5 MB (BR-12) → Display: MSG22."
+      "Nếu để trống ô Họ tên hoặc nhập quá độ dài quy định: Hệ thống báo lỗi dưới ô nhập (MSG02, MSG03).",
+      "Nếu chọn tệp ảnh sai định dạng hoặc nặng quá 5 MB: Hệ thống từ chối tải ảnh và báo lỗi MSG22."
     ],
     "normalFlow": [
       "Người dùng mở trang Hồ sơ cá nhân (/profile) và thay đổi Họ tên, Số điện thoại, Giới thiệu hoặc chọn tải ảnh đại diện mới.",
@@ -142,8 +138,8 @@
       "Nếu chọn tệp ảnh sai định dạng hoặc nặng quá 5 MB: Hệ thống từ chối tải ảnh và báo lỗi MSG22."
     ],
     "postConditions": [
-      "The user's updated profile metadata and avatar/banner URLs are persisted, and the primary email remains unchanged.",
-      "Role-based access isolation (BR-11) and audit state consistency are preserved across the session."
+      "Lưu thông tin hồ sơ cá nhân mới thành công và hiển thị thông báo MSG21.",
+      "Hệ thống lưu và cập nhật: Đường dẫn lưu trữ ảnh mới và thời gian cập nhật hồ sơ."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374189/brandhub-docs-portal/report3/r3-fig-20.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_2.png",
@@ -201,9 +197,7 @@
       "MSG36"
     ],
     "validations": [
-      "Caller lacks permission to access the target Client Profile (BR-14) → Display: MSG07.",
-      "No Client Profile found for the specified identifier → Display: MSG01.",
-      "Required identifier, parameter, or filter input is missing or malformed → Display: MSG02, MSG03."
+      "Nếu người dùng không phải chủ hồ sơ Client và không phải Manager của dự án liên kết: Hệ thống chặn truy cập và báo MSG07."
     ],
     "normalFlow": [
       "Client hoặc Manager mở màn hình Hồ sơ thương hiệu Client (/client-profiles).",
@@ -215,8 +209,8 @@
       "Nếu người dùng không phải chủ hồ sơ Client và không phải Manager của dự án liên kết: Hệ thống chặn truy cập và báo MSG07."
     ],
     "postConditions": [
-      "The reusable Client Profile is displayed in read-only mode without altering stored brand metadata.",
-      "Role-based access isolation (BR-13) and audit state consistency are preserved across the session."
+      "Hiển thị chi tiết Hồ sơ thương hiệu của Client.",
+      "Hệ thống lưu và cập nhật: Mã hồ sơ Client, tên thương hiệu, logo, ngành hàng, thông tin liên hệ và các Workspace đang gắn kết."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-21.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374230/brandhub-docs-portal/report4/seq-3_3_3.png",
@@ -279,10 +273,8 @@
       "MSG22"
     ],
     "validations": [
-      "Required field missing (brandName or industry left blank) → Display: MSG02.",
-      "Invalid Website URL, phone format, or text length exceeded → Display: MSG03.",
-      "Uploaded brand logo violates PNG/JPG/WEBP format or 5 MB size limit (BR-12) → Display: MSG22.",
-      "Unauthorized caller attempts to modify the Client Profile (BR-14) → Display: MSG07."
+      "Nếu bỏ trống Tên thương hiệu hoặc Ngành nghề: Hệ thống báo lỗi MSG02 dưới ô nhập.",
+      "Nếu tệp Logo tải lên sai định dạng hoặc vượt quá 5 MB: Hệ thống báo lỗi MSG22."
     ],
     "normalFlow": [
       "Client hoặc Manager mở biểu mẫu chỉnh sửa trên màn hình Hồ sơ thương hiệu Client.",
@@ -295,8 +287,8 @@
       "Nếu tệp Logo tải lên sai định dạng hoặc vượt quá 5 MB: Hệ thống báo lỗi MSG22."
     ],
     "postConditions": [
-      "The reusable Client Profile is updated and immediately available to all Workspaces linked to that Client.",
-      "The Client's primary account email address remains immutable."
+      "Cập nhật hồ sơ thương hiệu thành công và hiển thị thông báo MSG21.",
+      "Hệ thống lưu và cập nhật: Giữ cố định email gốc của tài khoản Client (BR-14) và tự động đồng bộ hồ sơ tới các Workspace liên kết (BR-13)."
     ],
     "screenImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374190/brandhub-docs-portal/report3/r3-fig-22.png",
     "sequenceImageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_3_4.png",
