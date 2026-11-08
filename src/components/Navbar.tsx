@@ -12,6 +12,7 @@ import {
   Moon,
   Monitor,
   Languages,
+  PlayCircle,
 } from 'lucide-react';
 import { useAppPreferences, ThemeMode } from '../context/AppPreferencesContext';
 
@@ -59,6 +60,12 @@ export const Navbar: React.FC<NavbarProps> = ({
       label: tx('Link gắn Word', 'Word Deep-Links'),
       shortLabel: tx('Link Word', 'Links'),
       icon: Link2,
+    },
+    {
+      to: '/demo-monitor',
+      label: tx('Live Demo', 'Live Demo'),
+      shortLabel: 'Live Demo',
+      icon: PlayCircle,
     },
   ];
 

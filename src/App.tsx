@@ -12,6 +12,7 @@ import { FrDetailPage } from './pages/FrDetailPage';
 import { SystemMatrixPage } from './pages/SystemMatrixPage';
 import { RulesAndMessagesPage } from './pages/RulesAndMessagesPage';
 import { WordLinkManagerPage } from './pages/WordLinkManagerPage';
+import { DemoMonitorPage } from './pages/DemoMonitorPage';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const AnimatedRoutes: React.FC = () => {
           <Route path="/matrices" element={<SystemMatrixPage data={portalData} />} />
           <Route path="/rules" element={<RulesAndMessagesPage data={portalData} />} />
           <Route path="/links" element={<WordLinkManagerPage data={portalData} />} />
+          <Route path="/demo-monitor" element={<DemoMonitorPage />} />
         </Routes>
       </main>
 
