@@ -1,0 +1,137 @@
+{
+  "database": "brandhub (MongoDB Atlas)",
+  "workspaceId": "b47477c4-13ad-44ff-8c49-f73f1837461b",
+  "workspaceName": "FPT University x FPT Smart Ads",
+  "agencyName": "FPT Smart Ads Agency",
+  "clientBrandName": "FPT University – Đại học FPT (Tập đoàn FPT)",
+  "campaignId": "d7e00000-0000-4000-8000-000000000301",
+  "team_members": {
+    "user177@demo.brandhub.test": {
+      "window": "Cửa sổ 1 (Owner)",
+      "role": "Owner",
+      "full_name": "Lê Trí Trung",
+      "scope": "Giám đốc FPT Smart Ads Agency"
+    },
+    "user1@demo.brandhub.test": {
+      "window": "Cửa sổ 2 (Manager)",
+      "role": "Manager",
+      "full_name": "Nguyễn Thành Lộc",
+      "scope": "Quản lý Chiến dịch & Workspace FPT University x FPT Smart Ads"
+    },
+    "user13@demo.brandhub.test": {
+      "window": "Cửa sổ 3 (Creator)",
+      "role": "Creator",
+      "full_name": "Nguyễn Chơn Phước",
+      "scope": "Chuyên viên Sáng tạo Nội dung FPT Smart Ads Agency"
+    },
+    "user59@demo.brandhub.test": {
+      "window": "Cửa sổ 4 (Client)",
+      "role": "Client",
+      "full_name": "Nguyễn Minh Tuấn",
+      "scope": "Đại diện Thương hiệu FPT University – Đại học FPT (Tập đoàn FPT)"
+    },
+    "admin@demo.brandhub.test": {
+      "window": "Cửa sổ 5 (Admin)",
+      "role": "Admin",
+      "full_name": "Hà Văn Ân",
+      "scope": "Quản trị viên Hệ thống BrandHub Platform"
+    }
+  },
+  "tasks_to_upsert": [
+    {
+      "_id": "c6453698-cf56-38c1-96d2-90ccdd985228",
+      "workspaceId": "b47477c4-13ad-44ff-8c49-f73f1837461b",
+      "campaignId": "d7e00000-0000-4000-8000-000000000301",
+      "campaignWorkItemId": "eef8cfde-2ec0-34d1-8ff6-a53f097ff4bb",
+      "type": "POST",
+      "name": "[Bài #1] Mở đăng ký học bổng ngành Thiết kế Vi mạch & AI tại Đại học FPT",
+      "description": "Viết bài giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030.",
+      "status": "TODO",
+      "requiresClientApproval": true,
+      "approvalRound": 1,
+      "workflowRevision": 0,
+      "inputReferences": [],
+      "subtasks": [],
+      "typeMetadata": {
+        "acceptanceCriteria": "Nội dung ngắn gọn, nêu rõ mức học bổng Nguyễn Văn Đạo (50% đến 100%) và kỳ thực tập tại FPT Software từ năm thứ 3, đạt trạng thái PASSED khi kiểm tra an toàn nội dung."
+      },
+      "sourceType": "CAMPAIGN",
+      "sourceRefId": "eef8cfde-2ec0-34d1-8ff6-a53f097ff4bb",
+      "dueDate": "2026-11-15T10:00:00Z",
+      "seed_tag": "demo-prepared-fpt"
+    },
+    {
+      "_id": "febd57bb-3e2f-3192-b3b0-fb4b4fea4a5b",
+      "workspaceId": "b47477c4-13ad-44ff-8c49-f73f1837461b",
+      "campaignId": "d7e00000-0000-4000-8000-000000000301",
+      "campaignWorkItemId": "b4a8ad8b-43f5-3d31-91b6-b0c3960dac5d",
+      "type": "POST",
+      "name": "[Bài #2] Tổng kết Ngày hội Trí tuệ Nhân tạo Việt Nam (AI4VN) tại cơ sở Hòa Lạc",
+      "description": "Viết bài giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030.",
+      "status": "TODO",
+      "requiresClientApproval": true,
+      "approvalRound": 1,
+      "workflowRevision": 0,
+      "inputReferences": [],
+      "subtasks": [],
+      "typeMetadata": {
+        "acceptanceCriteria": "Nội dung ngắn gọn, nêu rõ mức học bổng Nguyễn Văn Đạo (50% đến 100%) và kỳ thực tập tại FPT Software từ năm thứ 3, đạt trạng thái PASSED khi kiểm tra an toàn nội dung."
+      },
+      "sourceType": "CAMPAIGN",
+      "sourceRefId": "b4a8ad8b-43f5-3d31-91b6-b0c3960dac5d",
+      "dueDate": "2026-11-20T10:00:00Z",
+      "seed_tag": "demo-prepared-fpt"
+    },
+    {
+      "_id": "5d0f775c-e535-340e-9232-5b6a9d2cbc7b",
+      "workspaceId": "b47477c4-13ad-44ff-8c49-f73f1837461b",
+      "campaignId": "d7e00000-0000-4000-8000-000000000301",
+      "campaignWorkItemId": "48bdf50b-2b6b-3177-8a98-cfaa93caaf1d",
+      "type": "PRESS_RECOMMENDATION",
+      "name": "[Báo chí #1] Thông cáo chương trình đào tạo nhân lực bán dẫn hưởng ứng mục tiêu quốc gia 2030",
+      "description": "Chuẩn bị thông tin gửi các báo giáo dục và công nghệ trong dịp Ngày hội Trí tuệ Nhân tạo Việt Nam (AI4VN).",
+      "status": "TODO",
+      "requiresClientApproval": true,
+      "approvalRound": 1,
+      "workflowRevision": 0,
+      "inputReferences": [],
+      "subtasks": [],
+      "typeMetadata": {
+        "acceptanceCriteria": "Có số liệu chỉ tiêu tuyển sinh, thông tin phòng lab bán dẫn tại Hòa Lạc và danh sách báo dự kiến."
+      },
+      "sourceType": "CAMPAIGN",
+      "sourceRefId": "48bdf50b-2b6b-3177-8a98-cfaa93caaf1d",
+      "dueDate": "2026-11-24T10:00:00Z",
+      "seed_tag": "demo-prepared-fpt"
+    },
+    {
+      "_id": "2e2bd389-5c7d-3e5d-8248-268ec7dbc0b4",
+      "workspaceId": "b47477c4-13ad-44ff-8c49-f73f1837461b",
+      "campaignId": "d7e00000-0000-4000-8000-000000000301",
+      "campaignWorkItemId": "8f2c291b-9a9c-39fe-aae0-fa09d4e75c02",
+      "type": "SURVEY",
+      "name": "[Khảo sát #1] Khảo sát nhu cầu học sinh THPT về ngành Vi mạch bán dẫn và Chuyển đổi số",
+      "description": "Khảo sát học sinh lớp 12 tham gia Tuần lễ trải nghiệm công nghệ tại Khu Công nghệ cao Hòa Lạc.",
+      "status": "TODO",
+      "requiresClientApproval": true,
+      "approvalRound": 1,
+      "workflowRevision": 0,
+      "inputReferences": [],
+      "subtasks": [],
+      "typeMetadata": {
+        "acceptanceCriteria": "Gồm 5 câu hỏi trắc nghiệm ngắn gọn và 1 câu hỏi mở về nguyện vọng nghề nghiệp."
+      },
+      "sourceType": "CAMPAIGN",
+      "sourceRefId": "8f2c291b-9a9c-39fe-aae0-fa09d4e75c02",
+      "dueDate": "2026-11-28T10:00:00Z",
+      "seed_tag": "demo-prepared-fpt"
+    }
+  ],
+  "chat_messages_sender_display_name_updates": {
+    "OWNER": "Lê Trí Trung",
+    "MANAGER": "Nguyễn Thành Lộc",
+    "CREATOR": "Nguyễn Chơn Phước",
+    "CLIENT": "Nguyễn Minh Tuấn",
+    "ADMIN": "Hà Văn Ân"
+  }
+}
