@@ -272,14 +272,14 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Thương hiệu sử dụng dịch vụ truyền thông trong Workspace',
         selector: '[data-testid="workspace-package-header"]',
         sampleValue: 'Đại học FPT (Tập đoàn FPT)',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
       {
         fieldName: 'Lịch sử đàm phán 3 vòng',
         meaningForJury: 'Lưu vết quá trình đề xuất ngân sách từ 20 triệu xuống 17,5 triệu và chốt ở 18 triệu đồng',
         selector: 'NegotiationHistoryList',
         sampleValue: 'Vòng 1: 20M (Đề xuất gốc) -> Vòng 2: 17,5M (Client đề xuất) -> Vòng 3: 18M (Chốt hợp đồng)',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
     ],
     actions: [
@@ -336,11 +336,11 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Gắn liền với mục tiêu phát triển nhân lực bán dẫn và sự kiện AI4VN tại Việt Nam',
         selector: 'CampaignCard > h3',
         sampleValue: 'Chiến dịch Tuyển sinh Ngành Vi mạch Bán dẫn & Sự kiện AI4VN 2026',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
       {
         fieldName: 'Nút Triển khai (Deploy)',
-        meaningForJury: 'Chuyển hóa kế hoạch chiến dịch thành các đầu việc cụ thể cho đội ngũ thực hiện',
+        meaningForJury: 'Tạo các đầu việc cụ thể từ kế hoạch chiến dịch đã duyệt',
         selector: "//button[contains(., 'Triển khai') or contains(., 'Deploy')]",
         sampleValue: 'Được khoanh sáng viền xanh lá, chờ người thuyết trình bấm',
         inputMode: 'Tự bấm thủ công',
@@ -393,7 +393,7 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Đầu việc bài đăng mạng xã hội đầu tiên của chiến dịch',
         selector: 'TaskRow[data-task-id="c6453698-cf56-38c1-96d2-90ccdd985228"]',
         sampleValue: '[Bài #1] Mở đăng ký học bổng ngành Thiết kế Vi mạch & AI tại Đại học FPT',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
       {
         fieldName: 'Người phụ trách (Assignee)',
@@ -488,7 +488,7 @@ const DEMO_STEPS: DemoStep[] = [
       {
         order: 'Bước 2/4',
         fieldLabel: 'Gõ từng cụm từ vào ô Chủ đề bài viết',
-        behaviorBadge: 'Nhả chữ 42-88ms/cụm',
+        behaviorBadge: 'Gõ 42-88ms/cụm từ',
         sampleValue:
           'Giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030',
         domTarget: "[role='dialog'] textarea",
@@ -523,7 +523,7 @@ const DEMO_STEPS: DemoStep[] = [
         selector: "[role='dialog'] textarea",
         sampleValue:
           'Giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030',
-        inputMode: 'Gõ nhả chữ từng cụm (Có thể sửa bên dưới)',
+        inputMode: 'Gõ tự động từng cụm từ (sửa được bên dưới)',
       },
       {
         fieldName: 'Mục tiêu và Độ dài',
@@ -537,7 +537,7 @@ const DEMO_STEPS: DemoStep[] = [
       { actionId: 'B6_NAV_EDITOR', label: '1. Mở trang Soạn thảo Yjs Canvas (Nguyễn Chơn Phước)', variant: 'secondary' },
       {
         actionId: 'B6_SEQ_FILL_AI',
-        label: '2. Điền tuần tự Chủ đề & Tham số AI (Nhả chữ từng phần)',
+        label: '2. Điền tuần tự Chủ đề & Tham số AI',
         variant: 'typing',
         defaultTextKey: 'B6_AI_TOPIC',
       },
@@ -572,7 +572,7 @@ const DEMO_STEPS: DemoStep[] = [
         domTarget: "[aria-label='Content editor input']",
       },
       {
-        order: 'Kiểm chứng chặn',
+        order: 'Kiểm tra chặn lỗi',
         fieldLabel: 'Khoanh sáng đỏ nút "Kiểm tra tuân thủ" chờ bạn bấm',
         behaviorBadge: 'Viền đỏ #DC2626',
         sampleValue: 'Hệ thống báo BLOCKED và khóa chức năng gửi duyệt bài viết',
@@ -581,8 +581,8 @@ const DEMO_STEPS: DemoStep[] = [
       },
       {
         order: 'Khôi phục 7.2',
-        fieldLabel: 'Xóa sạch câu vi phạm và gõ bản thảo v1 ngắn gọn, chuẩn mực',
-        behaviorBadge: 'Ctrl+A + Backspace + Nhả chữ',
+        fieldLabel: 'Xóa câu vi phạm và gõ lại bản thảo v1 của Đại học FPT',
+        behaviorBadge: 'Xóa nội dung cũ + Gõ lại',
         sampleValue:
           'Đại học FPT mở cổng đăng ký ngành Thiết kế Vi mạch và Trí tuệ nhân tạo kỳ thu 2026. Chương trình đào tạo gắn với mục tiêu phát triển 50.000 kỹ sư bán dẫn tại Việt Nam đến năm 2030.',
         domTarget: "[aria-label='Content editor input']",
@@ -671,7 +671,7 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Kiểm soát chất lượng nội bộ của FPT Smart Ads trước khi gửi khách hàng',
         selector: 'TaskReviewStatus',
         sampleValue: 'MANAGER_REVIEW (Quản lý chiến dịch duyệt tầng 1)',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
     ],
     actions: [
@@ -692,7 +692,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Đại diện Đại học FPT (Nguyễn Minh Tuấn) xem bản v1 và đề nghị bổ sung thêm 2 thông tin thực tế mà phụ huynh, học sinh rất quan tâm: mức học bổng Nguyễn Văn Đạo (50% đến 100%) và kỳ thực tập tại FPT Software từ năm thứ 3.',
     routeTemplate: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
     apiEndpoint: 'POST /api/v1/workspaces/:workspaceId/tasks/:taskId/review/reject',
-    algorithmTier: 'Tầng 3 (React 19 Textarea #task-review-note) + Tự mở hộp thoại và nhả chữ từng cụm',
+    algorithmTier: 'Tầng 3 (React 19 Textarea #task-review-note) + Tự mở hộp thoại và gõ từng cụm từ',
     stateBefore: 'IN_REVIEW (Bước chờ: CLIENT_REVIEW)',
     stateAfter: 'REJECTED (Trả bài về cho Creator kèm ghi chú chỉnh sửa)',
     manualSubmitButton: 'Tự tay bấm nút xác nhận "Từ chối" màu đỏ trong hộp thoại sau khi hệ thống gõ xong lý do',
@@ -709,7 +709,7 @@ const DEMO_STEPS: DemoStep[] = [
       {
         order: 'Bước 2/2',
         fieldLabel: 'Gõ từng cụm từ góp ý của Nguyễn Minh Tuấn vào ô ghi chú',
-        behaviorBadge: 'Nhả chữ 42-88ms/cụm',
+        behaviorBadge: 'Gõ 42-88ms/cụm từ',
         sampleValue:
           'Bài viết đã rõ ý chính. Nhờ bạn bổ sung thêm thông tin học bổng Nguyễn Văn Đạo từ 50% đến 100% và kỳ thực tập thực tế tại FPT Software từ năm thứ 3.',
         domTarget: '#task-review-note',
@@ -730,7 +730,7 @@ const DEMO_STEPS: DemoStep[] = [
         selector: '#task-review-note',
         sampleValue:
           'Bài viết đã rõ ý chính. Nhờ bạn bổ sung thêm thông tin học bổng Nguyễn Văn Đạo từ 50% đến 100% và kỳ thực tập thực tế tại FPT Software từ năm thứ 3.',
-        inputMode: 'Gõ nhả chữ từng cụm (Có thể sửa bên dưới)',
+        inputMode: 'Gõ tự động từng cụm từ (sửa được bên dưới)',
       },
     ],
     actions: [
@@ -757,7 +757,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Nguyễn Chơn Phước đọc ghi chú của Nguyễn Minh Tuấn, bổ sung câu thông tin học bổng Nguyễn Văn Đạo 50% - 100% và kỳ thực tập hưởng lương tại FPT Software vào cuối bài để tạo bản v2.',
     routeTemplate: '/workspaces/{workspace_id}/editor?taskId={task_id}',
     apiEndpoint: 'GET /api/v1/workspaces/:workspaceId/tasks/:taskId/versions',
-    algorithmTier: 'Tầng 1 & Tầng 2 (Tự động nhận diện Tiptap hoặc Yjs Canvas) + Xuống dòng cuối bài và nhả chữ',
+    algorithmTier: 'Tầng 1 & Tầng 2 (Tự động nhận diện Tiptap hoặc Yjs Canvas) + Xuống dòng cuối bài và gõ tiếp',
     stateBefore: 'REJECTED (Bản v1)',
     stateAfter: 'IN_REVIEW (Bản v2 kèm lịch sử so sánh v1 và v2)',
     manualSubmitButton: 'Tự bấm "Lưu" -> Mở xem "Lịch sử phiên bản" (Diff v1 - v2) -> Bấm "Gửi duyệt"',
@@ -774,7 +774,7 @@ const DEMO_STEPS: DemoStep[] = [
       {
         order: 'Bước 2',
         fieldLabel: 'Đưa con trỏ xuống cuối bài và gõ câu bổ sung học bổng + thực tập FPT Software',
-        behaviorBadge: 'Nhả chữ nối tiếp cuối bài',
+        behaviorBadge: 'Gõ nối tiếp vào cuối bài',
         sampleValue:
           'Sinh viên có cơ hội nhận học bổng Nguyễn Văn Đạo từ 50% đến 100% học phí và tham gia thực tập hưởng lương tại FPT Software ngay từ năm thứ 3.',
         domTarget: ".ProseMirror[contenteditable='true'], [aria-label='Content editor input']",
@@ -852,7 +852,7 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Điều kiện bắt buộc để bài viết được phép đăng lên các kênh truyền thông chính thức',
         selector: 'TaskReviewStatus',
         sampleValue: 'APPROVED (Đã được Đại học FPT nghiệm thu)',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
     ],
     actions: [
@@ -895,7 +895,7 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Các kênh truyền thông đã xác thực OAuth trong Workspace của Đại học FPT',
         selector: 'SocialAccountCard',
         sampleValue: 'Facebook (FPT University), Instagram, TikTok và Threads',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
     ],
     actions: [
@@ -1045,14 +1045,14 @@ const DEMO_STEPS: DemoStep[] = [
         meaningForJury: 'Tổng hợp doanh thu định kỳ tháng/năm và tỷ lệ chuyển đổi gói thuê bao',
         selector: 'AdminRevenueMetrics',
         sampleValue: 'Biểu đồ doanh thu và danh sách giao dịch nâng cấp gói qua SePay',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
       {
         fieldName: 'Hàng đợi kiểm duyệt (Moderation Queue)',
         meaningForJury: 'Ghi nhận các nội dung bị chặn hoặc cảnh báo từ các Workspace để Admin hậu kiểm',
         selector: 'ModerationQueueTable',
         sampleValue: 'Danh sách các bản ghi bị đánh dấu BLOCKED / WARNING',
-        inputMode: 'Hiển thị trực quan',
+        inputMode: 'Hiển thị sẵn trên trang',
       },
     ],
     actions: [
@@ -1266,7 +1266,7 @@ export const DemoMonitorPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Tốc độ nhả chữ */}
+            {/* Tốc độ gõ chữ */}
             <div className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-2.5 py-1 gap-1.5">
               <Keyboard className="w-3.5 h-3.5 text-blue-600" />
               <span className="text-[11px] font-medium text-slate-500">Nhịp gõ:</span>
@@ -1367,7 +1367,7 @@ export const DemoMonitorPage: React.FC = () => {
                 </div>
               </div>
               <div className="bg-white rounded-lg border border-blue-200 p-3">
-                <div className="text-[11px] font-bold text-blue-700 uppercase">2. Khách hàng (Brand Client)</div>
+                <div className="text-[11px] font-bold text-blue-700 uppercase">2. Khách hàng (Client)</div>
                 <div className="text-sm font-bold text-slate-900 mt-0.5">Đại học FPT (Tập đoàn FPT)</div>
                 <div className="text-xs text-slate-600 mt-1">
                   Triển khai tuyển sinh ngành Thiết kế Vi mạch và Trí tuệ nhân tạo kỳ thu năm 2026.
@@ -1756,7 +1756,7 @@ export const DemoMonitorPage: React.FC = () => {
           </div>
         </aside>
 
-        {/* CỘT PHẢI: BẢNG ĐIỀU KHIỂN CHI TIẾT & TRỰC QUAN HÓA CHO BAN GIÁM KHẢO */}
+        {/* CỘT PHẢI: BẢNG ĐIỀU KHIỂN CHI TIẾT CHO BUỔI BẢO VỆ */}
         <main className="lg:col-span-8 xl:col-span-9 flex flex-col gap-4">
           {/* Thẻ trạng thái phản hồi thời gian thực */}
           <div className="bg-blue-600 text-white rounded-xl px-4 py-3 shadow-xs flex flex-wrap items-center justify-between gap-3">
@@ -1927,7 +1927,7 @@ export const DemoMonitorPage: React.FC = () => {
                         className={`px-4 py-2.5 rounded-lg text-xs font-bold border transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50 ${btnStyle}`}
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        {isRunning ? 'Đang điều khiển & nhả chữ...' : act.label}
+                        {isRunning ? 'Đang điền dữ liệu...' : act.label}
                       </button>
                     );
                   })}
@@ -1944,7 +1944,7 @@ export const DemoMonitorPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* 2. TRỰC QUAN HÓA LUỒNG ĐIỀN DỮ LIỆU TUẦN TỰ (SEQUENTIAL PIPELINE CARDS) */}
+              {/* 2. LUỒNG ĐIỀN DỮ LIỆU TUẦN TỰ (SEQUENTIAL PIPELINE CARDS) */}
               <div className="rounded-xl border border-blue-200 bg-blue-50/30 p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
@@ -2004,13 +2004,13 @@ export const DemoMonitorPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* 3. Ô CHỈNH SỬA NỘI DUNG GÕ TỰ ĐỘNG (NẾU BƯỚC NÀY CÓ NHẢ CHỮ TỪNG PHẦN) */}
+              {/* 3. Ô CHỈNH SỬA NỘI DUNG GÕ TỰ ĐỘNG */}
               {currentStep.actions.some((a) => a.defaultTextKey) && (
                 <div className="rounded-xl border border-blue-200 bg-white p-4 space-y-3 shadow-2xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-blue-800 flex items-center gap-1.5">
                       <Keyboard className="w-4 h-4 text-blue-600" />
-                      Dữ liệu Mẫu Ngắn gọn Sẽ Nhả Từng Cụm Từ (Có thể sửa trực tiếp tại đây)
+                      Nội dung mẫu gõ tự động (có thể sửa trực tiếp)
                     </span>
                     <button
                       type="button"

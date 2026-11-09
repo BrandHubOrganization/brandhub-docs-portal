@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrandHub — Bảng Điều Khiển & Sơ Đồ Luồng Live Demo (15 Bước)</title>
+  <title>BrandHub - Bảng Điều Khiển & Sơ Đồ Luồng Live Demo (15 Bước)</title>
   <style>
     :root {
       --brand: #CA3D0E;
@@ -489,15 +489,15 @@
   <div class="brand-title">
     <span class="brand-badge">BRANDHUB DEMO</span>
     <div>
-      <h1>Bảng Điều Khiển & Sơ Đồ Luồng Thuyết Trình Demo (5 Chặng – 15 Bước)</h1>
-      <p>Agency: <b>Circus Digital Agency</b> (<code>359a1839-18c7-48e2-8a68-f5f68c3375b6</code>) · Workspace: <b>TH True Milk x Circus Digital</b> (<code>b47477c4-13ad-44ff-8c49-f73f1837461b</code>)</p>
+      <h1>Bảng Điều Khiển & Sơ Đồ Luồng Thuyết Trình Demo (5 Chặng - 15 Bước)</h1>
+      <p>Agency: <b>FPT Smart Ads Agency</b> (<code>359a1839-18c7-48e2-8a68-f5f68c3375b6</code>) · Workspace: <b>FPT University x FPT Smart Ads</b> (<code>b47477c4-13ad-44ff-8c49-f73f1837461b</code>)</p>
     </div>
   </div>
   <div class="toolbar">
     <div class="env-box">
       <span>Môi trường:</span>
-      <button class="btn btn-primary" id="presetLocalBtn" onclick="setEnvPreset('http://localhost:5173')">🧪 Local :5173</button>
-      <button class="btn btn-outline" id="presetProdBtn" onclick="setEnvPreset('https://brandhub.id.vn')" style="background:#0F172A;color:#F8FAFC;border-color:#475569">🚀 Prod: brandhub.id.vn</button>
+      <button class="btn btn-primary" id="presetLocalBtn" onclick="setEnvPreset('http://localhost:5173')">Local :5173</button>
+      <button class="btn btn-outline" id="presetProdBtn" onclick="setEnvPreset('https://brandhub.id.vn')" style="background:#0F172A;color:#F8FAFC;border-color:#475569">Prod: brandhub.id.vn</button>
       <input type="text" id="baseUrlInput" value="http://localhost:5173" oninput="updateAllLinks()" />
       <button class="btn btn-copy" onclick="copyText('Password123', this)">Pass: Password123</button>
     </div>
@@ -516,8 +516,8 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
       <div>
         <div style="font-size:17px;font-weight:800;color:#38BDF8;display:flex;align-items:center;gap:8px">
-          <span>🤖 BẢNG ĐIỀU KHIỂN SELENIUM LIVE MONITOR (DIRECTOR CONSOLE)</span>
-          <span style="font-size:12px;background:#065F46;color:#A7F3D0;padding:2px 8px;border-radius:99px">Chế độ: Nhả chữ từng phần · Điền tuần tự · Tự bấm Submit</span>
+          <span>BẢNG ĐIỀU KHIỂN SELENIUM LIVE MONITOR (DIRECTOR CONSOLE)</span>
+          <span style="font-size:12px;background:#065F46;color:#A7F3D0;padding:2px 8px;border-radius:99px">Chế độ: Gõ từng cụm từ · Điền tuần tự · Tự bấm Submit</span>
         </div>
         <div style="font-size:13px;color:#94A3B8;margin-top:2px">
           Máy chủ điều khiển: <code>http://localhost:3999</code> (Chạy file <code>run_demo_monitor.bat</code> hoặc <code>selenium_demo_monitor.py</code>)
@@ -526,17 +526,17 @@
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <label style="font-size:12.5px;color:#CBD5E1">Mã Task Bài #1:</label>
         <input type="text" id="activeTaskIdInput" value="c6453698-cf56-38c1-96d2-90ccdd985228" onchange="syncSeleniumConfig()" style="background:#1E293B;color:#FBBF24;border:1px solid #475569;border-radius:6px;padding:5px 9px;font-family:Consolas,monospace;font-size:12.5px;width:295px" />
-        <label style="font-size:12.5px;color:#CBD5E1">Tốc độ nhả chữ:</label>
+        <label style="font-size:12.5px;color:#CBD5E1">Tốc độ gõ:</label>
         <select id="chunkSpeedSelect" onchange="syncSeleniumConfig()" style="background:#1E293B;color:#fff;border:1px solid #475569;border-radius:6px;padding:5px 9px;font-size:12.5px">
-          <option value="normal" selected>Tự nhiên (45–95ms / cụm)</option>
-          <option value="fast">Nhanh (25–55ms / cụm)</option>
-          <option value="slow">Chậm rõ chữ (85–160ms / cụm)</option>
+          <option value="normal" selected>Tự nhiên (45-95ms / cụm)</option>
+          <option value="fast">Nhanh (25-55ms / cụm)</option>
+          <option value="slow">Chậm rõ chữ (85-160ms / cụm)</option>
         </select>
       </div>
     </div>
 
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-selenium" onclick="runSeleniumAction('INIT_ALL_5_ROLES', this)">🚀 Khởi tạo & Đăng nhập cả 5 Cửa sổ</button>
+      <button class="btn btn-selenium" onclick="runSeleniumAction('INIT_ALL_5_ROLES', this)">Khởi tạo & Đăng nhập cả 5 Cửa sổ</button>
       <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#CA3D0E" onclick="runSeleniumAction('INIT_ROLE:owner', this)">1 · Mở Owner</button>
       <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#1D4ED8" onclick="runSeleniumAction('INIT_ROLE:manager', this)">2 · Mở Manager</button>
       <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#047857" onclick="runSeleniumAction('INIT_ROLE:creator', this)">3 · Mở Creator</button>
@@ -545,7 +545,7 @@
     </div>
 
     <div class="selenium-status" id="seleniumStatusBox">
-      <span id="seleniumStatusText">⚡ Trạng thái Selenium: Sẵn sàng điều khiển (Mặc định: http://localhost:5173 — Đổi sang https://brandhub.id.vn bằng nút trên thanh công cụ).</span>
+      <span id="seleniumStatusText">Trạng thái Selenium: Sẵn sàng điều khiển (Mặc định: http://localhost:5173, đổi sang https://brandhub.id.vn bằng nút trên thanh công cụ).</span>
       <span id="seleniumActiveRoles" style="color:#38BDF8;font-size:12px"></span>
     </div>
   </div>
@@ -559,8 +559,8 @@
     <div class="accounts-grid">
       <div class="acc-card owner">
         <span class="role-pill owner">Cửa sổ 1 · Owner</span>
-        <div class="acc-name">Nguyễn Minh Quân</div>
-        <div style="font-size:12.5px;color:var(--slate)">Chủ Circus Digital Agency</div>
+        <div class="acc-name">Lê Trí Trung</div>
+        <div style="font-size:12.5px;color:var(--slate)">Giám đốc FPT Smart Ads Agency</div>
         <div class="acc-email">
           <span>user177@demo.brandhub.test</span>
           <button class="btn btn-copy" onclick="copyText('user177@demo.brandhub.test', this)">Copy</button>
@@ -568,8 +568,8 @@
       </div>
       <div class="acc-card manager">
         <span class="role-pill manager">Cửa sổ 2 · Manager</span>
-        <div class="acc-name">Trần Thu Hà</div>
-        <div style="font-size:12.5px;color:var(--slate)">Quản lý Workspace TH True Milk</div>
+        <div class="acc-name">Nguyễn Thành Lộc</div>
+        <div style="font-size:12.5px;color:var(--slate)">Quản lý Chiến dịch Đại học FPT</div>
         <div class="acc-email">
           <span>user1@demo.brandhub.test</span>
           <button class="btn btn-copy" onclick="copyText('user1@demo.brandhub.test', this)">Copy</button>
@@ -577,8 +577,8 @@
       </div>
       <div class="acc-card creator">
         <span class="role-pill creator">Cửa sổ 3 · Creator</span>
-        <div class="acc-name">Lê Hoàng Nam</div>
-        <div style="font-size:12.5px;color:var(--slate)">Chuyên viên sáng tạo nội dung</div>
+        <div class="acc-name">Nguyễn Chơn Phước</div>
+        <div style="font-size:12.5px;color:var(--slate)">Chuyên viên Sáng tạo Nội dung</div>
         <div class="acc-email">
           <span>user13@demo.brandhub.test</span>
           <button class="btn btn-copy" onclick="copyText('user13@demo.brandhub.test', this)">Copy</button>
@@ -586,8 +586,8 @@
       </div>
       <div class="acc-card client">
         <span class="role-pill client">Cửa sổ 4 · Client</span>
-        <div class="acc-name">Phạm Hương Giang</div>
-        <div style="font-size:12.5px;color:var(--slate)">Đại diện nhãn hàng TH True Milk</div>
+        <div class="acc-name">Nguyễn Minh Tuấn</div>
+        <div style="font-size:12.5px;color:var(--slate)">Đại diện Thương hiệu Đại học FPT</div>
         <div class="acc-email">
           <span>user59@demo.brandhub.test</span>
           <button class="btn btn-copy" onclick="copyText('user59@demo.brandhub.test', this)">Copy</button>
@@ -595,8 +595,8 @@
       </div>
       <div class="acc-card admin">
         <span class="role-pill admin">Cửa sổ 5 · Admin</span>
-        <div class="acc-name">Quản trị viên BrandHub</div>
-        <div style="font-size:12.5px;color:var(--slate)">Giám sát toàn nền tảng</div>
+        <div class="acc-name">Hà Văn Ân</div>
+        <div style="font-size:12.5px;color:var(--slate)">Quản trị viên Hệ thống BrandHub</div>
         <div class="acc-email">
           <span>admin@demo.brandhub.test</span>
           <button class="btn btn-copy" onclick="copyText('admin@demo.brandhub.test', this)">Copy</button>
@@ -631,20 +631,20 @@
       <thead>
         <tr>
           <th>Vai trò / Cửa sổ</th>
-          <th>Chặng 1 (00:00–04:00)<br>Thiết lập & Chiến dịch</th>
-          <th>Chặng 2 (04:00–08:30)<br>Sáng tạo AI & An toàn</th>
-          <th>Chặng 3 (08:30–13:00)<br>Duyệt 2 Cấp & Version Diff</th>
-          <th>Chặng 4 (13:00–16:30)<br>Xuất bản Đa nền tảng</th>
-          <th>Chặng 5 (16:30–20:00)<br>VietQR SePay & Admin</th>
+          <th>Chặng 1 (00:00-04:00)<br>Thiết lập & Chiến dịch</th>
+          <th>Chặng 2 (04:00-08:30)<br>Sáng tạo AI & An toàn</th>
+          <th>Chặng 3 (08:30-13:00)<br>Duyệt 2 Cấp & Version Diff</th>
+          <th>Chặng 4 (13:00-16:30)<br>Xuất bản Đa nền tảng</th>
+          <th>Chặng 5 (16:30-20:00)<br>VietQR SePay & Admin</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="lane-role-cell"><span class="role-pill owner">1 · Owner</span><br><small>Circus Digital</small></td>
+          <td class="lane-role-cell"><span class="role-pill owner">1 · Owner</span><br><small>Lê Trí Trung (FPT Smart Ads)</small></td>
           <td>
             <a href="#step-B1" class="mini-step owner">
               <div class="ms-top"><span>B1</span><span>00:00</span></div>
-              <div class="ms-title">Giới thiệu Agency & Gói mẫu 30M</div>
+              <div class="ms-title">Giới thiệu Agency & Gói mẫu 18M</div>
               <span class="ms-state">TEMPLATE ACTIVE</span>
             </a>
           </td>
@@ -660,7 +660,7 @@
           </td>
         </tr>
         <tr>
-          <td class="lane-role-cell"><span class="role-pill manager">2 · Manager</span><br><small>TH True Milk WS</small></td>
+          <td class="lane-role-cell"><span class="role-pill manager">2 · Manager</span><br><small>Nguyễn Thành Lộc</small></td>
           <td>
             <a href="#step-B3" class="mini-step manager">
               <div class="ms-top"><span>B3</span><span>02:00</span></div>
@@ -689,7 +689,7 @@
           <td>
             <a href="#step-B12" class="mini-step manager">
               <div class="ms-top"><span>B12</span><span>13:00</span></div>
-              <div class="ms-title">Kiểm tra 4 kênh MXH đã kết nối</div>
+              <div class="ms-title">Kiểm tra 4 kênh MXH Đại học FPT</div>
               <span class="ms-state">4 PLATFORMS ACTIVE</span>
             </a>
             <a href="#step-B13" class="mini-step manager">
@@ -701,7 +701,7 @@
           <td></td>
         </tr>
         <tr>
-          <td class="lane-role-cell"><span class="role-pill creator">3 · Creator</span><br><small>TH True Milk WS</small></td>
+          <td class="lane-role-cell"><span class="role-pill creator">3 · Creator</span><br><small>Nguyễn Chơn Phước</small></td>
           <td></td>
           <td>
             <a href="#step-B5" class="mini-step creator">
@@ -731,7 +731,7 @@
           <td></td>
         </tr>
         <tr>
-          <td class="lane-role-cell"><span class="role-pill client">4 · Client</span><br><small>Đại diện TH True Milk</small></td>
+          <td class="lane-role-cell"><span class="role-pill client">4 · Client</span><br><small>Nguyễn Minh Tuấn (Đại học FPT)</small></td>
           <td>
             <a href="#step-B2" class="mini-step client">
               <div class="ms-top"><span>B2</span><span>01:00</span></div>
@@ -756,7 +756,7 @@
           <td></td>
         </tr>
         <tr>
-          <td class="lane-role-cell"><span class="role-pill admin">5 · Admin</span><br><small>Toàn hệ thống</small></td>
+          <td class="lane-role-cell"><span class="role-pill admin">5 · Admin</span><br><small>Hà Văn Ân</small></td>
           <td></td>
           <td></td>
           <td></td>
@@ -786,92 +786,92 @@ const AGENCY_ID = '359a1839-18c7-48e2-8a68-f5f68c3375b6';
 const STAGES = [
   {
     title: 'CHẶNG 1: THIẾT LẬP KHÔNG GIAN LÀM VIỆC, GÓI DỊCH VỤ & TRIỂN KHAI CHIẾN DỊCH',
-    time: '00:00 – 04:00 (4 phút) · FR 3.4 & FR 3.5',
+    time: '00:00 - 04:00 (4 phút) · FR 3.4 & FR 3.5',
     steps: [
       {
         id: 'B1',
-        time: '00:00 – 00:55',
+        time: '00:00 - 00:55',
         role: 'owner',
-        roleLabel: 'Cửa sổ 1 · Owner (Nguyễn Minh Quân)',
-        title: 'Giới thiệu Agency & Danh mục Gói dịch vụ mẫu',
+        roleLabel: 'Cửa sổ 1 · Owner (Lê Trí Trung)',
+        title: 'Giới thiệu FPT Smart Ads Agency & Danh mục Gói dịch vụ mẫu',
         route: `/agency/${AGENCY_ID}/media-packages`,
         actions: [
-          'Mở trang Quản lý Gói dịch vụ của <b>Circus Digital Agency</b>.',
-          'Trình bày gói mẫu <b>"Gói Truyền Thông Ra Mắt Sữa Tươi Ít Đường TH True Milk (18.000.000đ - 6 tuần)"</b> gồm các hạng mục bài đăng Facebook, Instagram Reels, TikTok và Threads.',
-          'Nhấn mạnh: Chỉ giữ các gói thuộc 4 nền tảng chuẩn, không mở các gói Livestream.'
+          'Mở trang Gói dịch vụ của <b>FPT Smart Ads Agency</b>.',
+          'Trình bày gói mẫu <b>"Gói Truyền thông Tuyển sinh Vi mạch & AI Đại học FPT 2026"</b> (<code>18.000.000đ - 6 tuần</code>) gồm 3 hạng mục bàn giao chuẩn trên Facebook, Instagram, TikTok và Threads.',
+          'Nhấn mạnh: Chỉ giữ các gói thuộc 4 nền tảng chuẩn, đã ẩn các gói Livestream ngoài phạm vi.'
         ],
         snippets: [],
         api: 'GET /api/v1/agencies/{agencyId}/media-package-custom',
-        dbBefore: 'Postgres <code>media_package_templates</code> / <code>agency_custom_packages</code>: <code>is_active = true</code>',
-        dbAfter: 'Gói dịch vụ sẵn sàng để <code>Client</code> chọn vào Workspace.'
+        dbBefore: 'Postgres <code>media_packages</code>: <code>id = d7e00000-0000-4000-8000-000000000200</code>',
+        dbAfter: 'Gói dịch vụ sẵn sàng để <code>Client</code> (Nguyễn Minh Tuấn) chọn vào Workspace.'
       },
       {
         id: 'B2',
-        time: '00:55 – 01:55',
+        time: '00:55 - 01:55',
         role: 'client',
-        roleLabel: 'Cửa sổ 4 · Client (Phạm Hương Giang) + Cửa sổ 2 · Manager',
+        roleLabel: 'Cửa sổ 4 · Client (Nguyễn Minh Tuấn) + Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
         title: 'Xem lịch sử đàm phán & Chốt Gói dịch vụ trong Workspace',
         route: `/workspaces/${WS_ID}/media-package`,
         actions: [
-          'Mở màn hình Gói dịch vụ của Workspace <b>TH True Milk x Circus Digital</b>.',
-          'Chỉ vào lịch sử đàm phán giữa <code>Client</code> và <code>Manager</code> (<code>CLIENT_REQUESTED_CHANGE</code> → <code>AGENCY_COUNTERED</code> → chốt điều khoản <code>termsVersion = 2</code>).',
-          'Hai bên xác nhận trạng thái <span class="state-badge">APPROVED</span> (tự động khởi tạo bản nháp Chiến dịch kèm danh sách hạng mục).'
+          'Mở màn hình Gói dịch vụ của Workspace <b>FPT University x FPT Smart Ads</b>.',
+          'Chỉ vào lịch sử đàm phán 3 phiên bản điều khoản giữa <code>Client</code> (Nguyễn Minh Tuấn) và <code>Manager</code> (Nguyễn Thành Lộc): <code>20M (v1)</code> → <code>17,5M (v2)</code> → chốt <code>18M (v3)</code>.',
+          'Hai bên xác nhận trạng thái <span class="state-badge">APPROVED</span>.'
         ],
         snippets: [],
         api: 'POST /api/v1/workspaces/{workspaceId}/media-package/approve',
-        dbBefore: 'Postgres <code>workspace_media_packages</code>: <code>negotiation_status = AGENCY_COUNTERED</code>',
-        dbAfter: 'Postgres <code>workspace_media_packages</code>: <code>negotiation_status = APPROVED</code>, sinh <code>media_campaigns</code> (<code>DRAFT</code>).'
+        dbBefore: 'Postgres <code>workspace_media_packages</code>: <code>terms_version = 2</code>',
+        dbAfter: 'Postgres <code>workspace_media_packages</code>: <code>negotiation_status = APPROVED</code>, <code>terms_version = 3</code>.'
       },
       {
         id: 'B3',
-        time: '01:55 – 03:00',
+        time: '01:55 - 03:00',
         role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Trần Thu Hà)',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
         title: 'Bấm "Triển khai chiến dịch" để tự động sinh Công việc',
         route: `/workspaces/${WS_ID}/campaigns`,
         actions: [
-          'Mở chiến dịch <b>"Chiến dịch Ra mắt Sữa tươi TH true MILK ít đường – Tháng 11"</b> đang ở trạng thái <span class="state-badge">APPROVED</span> (cả Agency và Client đã duyệt ở <code>contentVersion = 1</code>).',
+          'Mở chiến dịch <b>"Chiến dịch Tuyển sinh Ngành Vi mạch Bán dẫn & Sự kiện AI4VN 2026"</b> đang ở trạng thái <span class="state-badge">APPROVED</span> (cả Agency và Client đã duyệt ở <code>contentVersion = 1</code>).',
           'Bấm nút <b>"Triển khai chiến dịch" (Deploy)</b> ngay trên sân khấu.',
-          'Chờ 5 giây để tiến trình ngầm <code>CampaignDeploymentProcessor</code> hoàn tất và chuyển chiến dịch sang <span class="state-badge">IN_PROGRESS</span>.'
+          'Chờ 5 giây để tiến trình ngầm hoàn tất và chuyển chiến dịch sang <span class="state-badge">IN_PROGRESS</span>.'
         ],
         snippets: [],
         api: 'POST /api/v1/workspaces/{workspaceId}/campaigns/{campaignId}/deploy',
         dbBefore: 'Postgres <code>media_campaigns</code>: <code>status = APPROVED</code>, <code>content_version = 1</code>',
-        dbAfter: 'Postgres <code>campaign_deployments</code>: <code>COMPLETED</code> · <code>media_campaigns.status = IN_PROGRESS</code> · Mongo <code>tasks</code> sẵn sàng.'
+        dbAfter: 'Postgres <code>campaign_deployments</code>: <code>SUCCEEDED</code> · <code>media_campaigns.status = IN_PROGRESS</code> · Mongo <code>tasks</code> sẵn sàng.'
       },
       {
         id: 'B4',
-        time: '03:00 – 04:00',
+        time: '03:00 - 04:00',
         role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Trần Thu Hà)',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
         title: 'Giao việc cho Creator & Bật công tắc Duyệt 2 cấp',
         route: `/workspaces/${WS_ID}/tasks`,
         actions: [
           'Chuyển sang màn hình <b>Bảng công việc (Kanban)</b>.',
-          'Mở công việc <b>"[Bài #1] Ra mắt sữa tươi TH true MILK ít đường cho bữa sáng gia đình"</b>.',
-          'Giao cho <code>Creator</code> (<b>Lê Hoàng Nam</b> - <code>user13@demo.brandhub.test</code>) và bật công tắc <b>"Yêu cầu Khách hàng phê duyệt" (<code>requiresClientApproval = true</code>)</b>.'
+          'Mở công việc <b>"[Bài #1] Mở đăng ký học bổng ngành Thiết kế Vi mạch & AI tại Đại học FPT"</b>.',
+          'Giao cho <code>Creator</code> (<b>Nguyễn Chơn Phước</b> - <code>user13@demo.brandhub.test</code>) và bật công tắc <b>"Yêu cầu Khách hàng phê duyệt" (<code>requiresClientApproval = true</code>)</b>.'
         ],
         snippets: [],
         api: 'PATCH /api/v1/workspaces/{workspaceId}/tasks/{taskId}',
-        dbBefore: 'Mongo <code>tasks</code>: <code>status = TODO</code>, <code>assigneeId = null</code>',
-        dbAfter: 'Mongo <code>tasks</code>: <code>assigneeId = user13</code>, <code>requiresClientApproval = true</code>.'
+        dbBefore: 'Mongo <code>tasks</code>: <code>status = TODO</code>',
+        dbAfter: 'Mongo <code>tasks</code>: <code>assigneeId = 56034372...</code>, <code>requiresClientApproval = true</code>.'
       }
     ]
   },
   {
     title: 'CHẶNG 2: SÁNG TẠO NỘI DUNG VỚI AI & KIỂM TRA TUÂN THỦ CỘNG ĐỒNG',
-    time: '04:00 – 08:30 (4,5 phút) · FR 3.6 & FR 3.7',
+    time: '04:00 - 08:30 (4,5 phút) · FR 3.6 & FR 3.7',
     steps: [
       {
         id: 'B5',
-        time: '04:00 – 04:45',
+        time: '04:00 - 04:45',
         role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Lê Hoàng Nam)',
-        title: 'Bắt đầu làm việc & Tra cứu Kho tri thức thương hiệu (Brand Vault)',
+        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
+        title: 'Bắt đầu làm việc & Tra cứu Kho tri thức thương hiệu Đại học FPT',
         route: `/workspaces/${WS_ID}/tasks`,
         actions: [
-          'Tại Cửa sổ 3 (<code>Creator</code>), mở công việc vừa được giao, bấm <b>"Bắt đầu làm"</b> (chuyển từ <code>TODO</code> sang <span class="state-badge">IN_PROGRESS</span>).',
-          'Bấm mở <b>Soạn thảo Nội dung (Content Studio)</b> và mở nhanh ngữ cảnh thương hiệu <b>TH True Milk</b> để đối chiếu giọng điệu và từ khóa cấm.'
+          'Tại Cửa sổ 3 (<code>Creator</code> - Nguyễn Chơn Phước), mở công việc vừa được giao, bấm <b>"Bắt đầu làm"</b> (chuyển từ <code>TODO</code> sang <span class="state-badge">IN_PROGRESS</span>).',
+          'Mở <b>Soạn thảo Nội dung (Content Studio)</b> và kiểm tra hồ sơ thương hiệu <b>Đại học FPT (Tập đoàn FPT)</b> trong Brand Vault.'
         ],
         snippets: [],
         api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/start',
@@ -880,20 +880,20 @@ const STAGES = [
       },
       {
         id: 'B6',
-        time: '04:45 – 06:30',
+        time: '04:45 - 06:30',
         role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Lê Hoàng Nam)',
+        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
         title: 'Gọi AI tạo 3 phương án Caption đa góc tiếp cận',
         route: `/workspaces/${WS_ID}/content-writing`,
         actions: [
-          'Mở công cụ <b>AI tạo caption</b>, dán chủ đề bên dưới, chọn nền tảng <b>Facebook</b> và giọng điệu <b>Thân thiện (friendly)</b>.',
-          'Trình bày 3 phương án AI sinh ra: <code>HOOK_DRIVEN</code> (Mở đầu gây chú ý), <code>STORYTELLING</code> (Kể chuyện), <code>DIRECT_CTA</code> (Kêu gọi hành động trực tiếp).',
+          'Mở công cụ <b>AI tạo caption</b>, gõ tuần tự chủ đề học bổng Nguyễn Văn Đạo ngành Thiết kế Vi mạch & AI, chọn nền tảng <b>Facebook</b> và giọng điệu <b>Thân thiện (friendly)</b>.',
+          'Trình bày 3 phương án AI sinh ra: <code>HOOK_DRIVEN</code>, <code>STORYTELLING</code>, <code>DIRECT_CTA</code>.',
           'Chọn 1 phương án đưa vào trình soạn thảo và xem trước giao diện thực tế (<b>Chỉ bấm tab Facebook / Instagram, không bấm X/Twitter</b>).'
         ],
         snippets: [
           {
             label: 'Chủ đề nhập vào AI tạo Caption (Bấm để Copy)',
-            text: 'Ra mắt sữa tươi TH true MILK ít đường cho bữa sáng năng lượng của gia đình Việt'
+            text: 'Giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030'
           }
         ],
         api: 'POST /api/v1/ai/captions (business-service → ai-service :8082)',
@@ -902,20 +902,20 @@ const STAGES = [
       },
       {
         id: 'B7',
-        time: '06:30 – 08:30',
+        time: '06:30 - 08:30',
         role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Lê Hoàng Nam)',
+        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
         title: 'Kiểm tra an toàn nội dung (BLOCKED → PASSED) & Nộp duyệt',
         route: `/workspaces/${WS_ID}/tasks`,
         actions: [
-          '<b>Thử nghiệm chặn vi phạm:</b> Dán câu thử vi phạm bên dưới vào cuối bài viết → Bấm <b>"Kiểm tra tuân thủ"</b>. Hệ thống trả về <span class="state-badge warn">BLOCKED</span> (nhóm <code>violence</code>) và khóa nút nộp duyệt.',
-          '<b>Sửa lại chuẩn:</b> Xóa câu vi phạm, bấm kiểm tra lại → Hệ thống báo <span class="state-badge">PASSED</span>.',
-          'Đính kèm ảnh sản phẩm và bấm <b>"Nộp duyệt" (Submit for Review)</b>.'
+          '<b>Thử nghiệm chặn vi phạm:</b> Dán câu thử vi phạm bên dưới vào trình soạn thảo → Bấm <b>"Kiểm tra tuân thủ"</b>. Hệ thống trả về <span class="state-badge warn">BLOCKED</span> và khóa nút nộp duyệt.',
+          '<b>Sửa lại chuẩn:</b> Thay bằng bài đăng chuẩn v1 giới thiệu ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, bấm kiểm tra lại → Hệ thống báo <span class="state-badge">PASSED</span>.',
+          'Bấm <b>"Nộp duyệt" (Submit for Review)</b>.'
         ],
         snippets: [
           {
             label: 'Câu thử vi phạm để hệ thống chặn BLOCKED (Bấm để Copy)',
-            text: 'Bài viết kêu gọi giết người và bạo lực đẫm máu.'
+            text: 'Bài viết chứa nội dung kích động bạo lực và ngôn từ thù ghét vi phạm quy định an toàn thông tin.'
           }
         ],
         api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/compliance-check → POST .../submit',
@@ -926,17 +926,17 @@ const STAGES = [
   },
   {
     title: 'CHẶNG 3: PHÊ DUYỆT HAI CẤP (MANAGER → CLIENT) & ĐỐI CHIẾU LỊCH SỬ PHIÊN BẢN TỪNG TỪ',
-    time: '08:30 – 13:00 (4,5 phút) · FR 3.6',
+    time: '08:30 - 13:00 (4,5 phút) · FR 3.6',
     steps: [
       {
         id: 'B8',
-        time: '08:30 – 09:30',
+        time: '08:30 - 09:30',
         role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Trần Thu Hà)',
-        title: 'Phê duyệt Tầng 1 (Nội bộ Agency)',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
+        title: 'Phê duyệt Tầng 1 (Nội bộ FPT Smart Ads Agency)',
         route: `/workspaces/${WS_ID}/task-approvals`,
         actions: [
-          'Tại Cửa sổ 2 (<code>Manager</code>), mở màn hình <b>Phê duyệt công việc</b>.',
+          'Tại Cửa sổ 2 (<code>Manager</code> - Nguyễn Thành Lộc), mở màn hình <b>Phê duyệt công việc</b>.',
           'Xem bài viết đang ở bước <code>reviewStep = MANAGER</code>, kiểm tra nội dung và bấm <b>"Phê duyệt"</b> để chuyển bài sang hàng đợi của Khách hàng (<code>CLIENT</code>).'
         ],
         snippets: [],
@@ -946,57 +946,57 @@ const STAGES = [
       },
       {
         id: 'B9',
-        time: '09:30 – 10:30',
+        time: '09:30 - 10:30',
         role: 'client',
-        roleLabel: 'Cửa sổ 4 · Client (Phạm Hương Giang)',
-        title: 'Khách hàng xem trước & Từ chối kèm lý do bắt buộc',
+        roleLabel: 'Cửa sổ 4 · Client (Nguyễn Minh Tuấn)',
+        title: 'Đại diện Đại học FPT xem trước & Từ chối kèm lý do bắt buộc',
         route: `/workspaces/${WS_ID}/task-approvals`,
         actions: [
-          'Tại Cửa sổ 4 (<code>Client</code>), mở bài viết vừa chuyển đến ở bước <code>CLIENT</code>.',
-          'Xem bản mô phỏng giao diện mạng xã hội, bấm <b>"Từ chối / Yêu cầu chỉnh sửa"</b> và dán lý do bên dưới.'
+          'Tại Cửa sổ 4 (<code>Client</code> - Nguyễn Minh Tuấn), mở bài viết vừa chuyển đến ở bước <code>CLIENT</code>.',
+          'Xem bản mô phỏng giao diện mạng xã hội, bấm <b>"Từ chối / Yêu cầu chỉnh sửa"</b> và điền lý do bổ sung học bổng Nguyễn Văn Đạo và kỳ thực tập tại FPT Software.'
         ],
         snippets: [
           {
             label: 'Lý do Client từ chối bài viết ở Vòng 1 (Bấm để Copy)',
-            text: 'Nội dung tốt, cần bổ sung thông điệp nguồn sữa tươi sạch từ trang trại Nghĩa Đàn và giảm ngọt 25%.'
+            text: 'Bài viết đã rõ ý chính. Nhờ bạn bổ sung thêm thông tin học bổng Nguyễn Văn Đạo từ 50% đến 100% và kỳ thực tập thực tế tại FPT Software từ năm thứ 3.'
           }
         ],
         api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/reject',
         dbBefore: 'Mongo <code>tasks</code>: <code>IN_REVIEW (CLIENT)</code> · <code>posts</code>: <code>PENDING_APPROVAL</code>',
-        dbAfter: 'Mongo <code>tasks</code>: trả về <code>IN_PROGRESS</code>, lưu lý do vào <code>approvalHistory</code> · <code>posts</code>: trả về <code>DRAFT</code>.'
+        dbAfter: 'Mongo <code>tasks</code>: trả về <code>IN_PROGRESS</code>, lưu lý do vào lịch sử phê duyệt · <code>posts</code>: trả về <code>DRAFT</code>.'
       },
       {
         id: 'B10',
-        time: '10:30 – 11:50',
+        time: '10:30 - 11:50',
         role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Lê Hoàng Nam)',
+        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
         title: 'Chỉnh sửa lên Phiên bản v2, So sánh từng từ (Version Diff) & Nộp lại',
         route: `/workspaces/${WS_ID}/tasks`,
         actions: [
-          'Tại Cửa sổ 3 (<code>Creator</code>), xem hộp thông báo lý do từ chối của <code>Client</code>.',
-          'Bổ sung câu thông điệp trang trại Nghĩa Đàn bên dưới vào bài viết và bấm <b>Lưu</b> (tự động nâng <code>contentVersion = 2</code>).',
+          'Tại Cửa sổ 3 (<code>Creator</code> - Nguyễn Chơn Phước), xem hộp thông báo lý do từ chối của <code>Client</code>.',
+          'Bổ sung câu thông tin học bổng Nguyễn Văn Đạo (50% - 100%) và thực tập tại FPT Software từ năm thứ 3, bấm <b>Lưu</b> (tự động nâng <code>contentVersion = 2</code>).',
           'Mở <b>Lịch sử phiên bản (Version History)</b> để Hội đồng thấy rõ phần <b>so sánh từng từ (Diff)</b> giữa <code>v1</code> và <code>v2</code>, sau đó bấm <b>"Nộp duyệt lại"</b> (Vòng duyệt 2).'
         ],
         snippets: [
           {
             label: 'Đoạn văn bổ sung vào bản v2 theo góp ý của Client (Bấm để Copy)',
-            text: 'Nguồn sữa tươi sạch nguyên chất từ trang trại công nghệ cao Nghĩa Đàn, công thức mới giảm ngọt 25% giữ trọn vị thanh mát tự nhiên.'
+            text: 'Sinh viên có cơ hội nhận học bổng Nguyễn Văn Đạo từ 50% đến 100% học phí và tham gia thực tập hưởng lương tại FPT Software ngay từ năm thứ 3.'
           }
         ],
         api: 'PATCH /api/v1/workspaces/{workspaceId}/posts/{postId} → POST .../submit',
         dbBefore: 'Mongo <code>posts</code>: <code>contentVersion = 1</code>, <code>status = DRAFT</code>',
-        dbAfter: 'Mongo <code>posts</code>: <code>contentVersion = 2</code> · <code>post_versions</code> thêm bản chụp <code>{postId}:2</code> · <code>tasks</code>: <code>IN_REVIEW</code> (<code>round = 2</code>).'
+        dbAfter: 'Mongo <code>posts</code>: <code>contentVersion = 2</code> · <code>post_versions</code> thêm bản chụp <code>{postId}:2</code> · <code>tasks</code>: <code>IN_REVIEW</code> (<code>approvalRound = 2</code>).'
       },
       {
         id: 'B11',
-        time: '11:50 – 13:00',
+        time: '11:50 - 13:00',
         role: 'client',
-        roleLabel: 'Cửa sổ 2 · Manager → Cửa sổ 4 · Client',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc) → Cửa sổ 4 · Client (Nguyễn Minh Tuấn)',
         title: 'Phê duyệt hoàn tất 2 cấp ở Vòng 2 (Mở khóa Xuất bản)',
         route: `/workspaces/${WS_ID}/task-approvals`,
         actions: [
-          '1. Bên Cửa sổ 2 (<code>Manager</code>): Bấm <b>"Phê duyệt"</b> bản <code>v2</code> → chuyển <code>reviewStep</code> sang <code>CLIENT</code>.',
-          '2. Bên Cửa sổ 4 (<code>Client</code>): Kiểm tra bản <code>v2</code> đã bổ sung thông điệp Nghĩa Đàn, bấm <b>"Phê duyệt chính thức"</b>.'
+          '1. Bên Cửa sổ 2 (<code>Manager</code> - Nguyễn Thành Lộc): Bấm <b>"Phê duyệt"</b> bản <code>v2</code> → chuyển <code>reviewStep</code> sang <code>CLIENT</code>.',
+          '2. Bên Cửa sổ 4 (<code>Client</code> - Nguyễn Minh Tuấn): Kiểm tra bản <code>v2</code> đã bổ sung thông tin AI4VN & OJT, bấm <b>"Phê duyệt chính thức"</b>.'
         ],
         snippets: [],
         api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/approve (x2)',
@@ -1007,18 +1007,18 @@ const STAGES = [
   },
   {
     title: 'CHẶNG 4: XUẤT BẢN LÊN MẠNG XÃ HỘI THẬT QUA HÀNG ĐỢI RABBITMQ & SSE',
-    time: '13:00 – 16:30 (3,5 phút) · FR 3.8',
+    time: '13:00 - 16:30 (3,5 phút) · FR 3.8',
     steps: [
       {
         id: 'B12',
-        time: '13:00 – 13:45',
+        time: '13:00 - 13:45',
         role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Trần Thu Hà)',
-        title: 'Kiểm tra 4 Tài khoản Mạng xã hội đã kết nối OAuth 2.0',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
+        title: 'Kiểm tra 4 Tài khoản Mạng xã hội Đại học FPT đã kết nối OAuth 2.0',
         route: `/workspaces/${WS_ID}/social-accounts`,
         actions: [
           'Mở màn hình <b>Tài khoản mạng xã hội</b> của Workspace.',
-          'Trình bày 4 nền tảng chuẩn đang ở trạng thái <span class="state-badge">CONNECTED / ACTIVE</span>: <b>Facebook</b> (<code>TH true MILK Official</code>), <b>Instagram</b> (<code>thtruemilk.official</code>), <b>TikTok</b> (<code>thtruemilk.vn</code>), <b>Threads</b> (<code>thtruemilk.official</code>).'
+          'Trình bày 4 nền tảng chuẩn đang ở trạng thái <span class="state-badge">CONNECTED / ACTIVE</span>: <b>Facebook</b> (<code>FPT University Official</code>), <b>Instagram</b> (<code>fptuniversity.official</code>), <b>TikTok</b> (<code>fptuniversity.vn</code>), <b>Threads</b> (<code>fptuniversity.official</code>).'
         ],
         snippets: [],
         api: 'GET /api/v1/social/workspaces/{workspaceId}/accounts',
@@ -1027,38 +1027,38 @@ const STAGES = [
       },
       {
         id: 'B13',
-        time: '13:45 – 16:30',
+        time: '13:45 - 16:30',
         role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Trần Thu Hà)',
+        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
         title: 'Đăng ngay lên 1 nền tảng (Facebook) & Xem Dashboard / Lịch nội dung',
         route: `/workspaces/${WS_ID}/publish`,
         actions: [
           'Chọn bài viết vừa được duyệt (<span class="state-badge">APPROVED</span>).',
           '<b>Lưu ý kỹ thuật quan trọng:</b> Chỉ tích chọn <b>1 nền tảng duy nhất (Facebook)</b> rồi bấm <b>"Đăng ngay"</b> (do khóa chống trùng Redis <code>processingPostIds:{postId}</code> giữ theo mã bài).',
-          'Quan sát trạng thái cập nhật trực tiếp qua SSE: <code>PENDING</code> → <code>IN_PROGRESS</code> → <span class="state-badge">PUBLISHED</span> kèm đường dẫn tới bài đăng thật.',
+          'Quan sát trạng thái cập nhật trực tiếp qua SSE: <code>PENDING</code> → <code>IN_PROGRESS</code> → <span class="state-badge">PUBLISHED</span>.',
           'Mở tiếp <b>Bảng điều khiển xuất bản</b> (<code>/publish/dashboard</code>) và <b>Lịch nội dung</b> (<code>/calendar</code>).'
         ],
         snippets: [],
         api: 'POST /api/v1/workspaces/{workspaceId}/posts/{postId}/publish',
         dbBefore: 'Mongo <code>posts</code>: <code>status = APPROVED</code>',
-        dbAfter: 'RabbitMQ <code>publish.exchange</code> → <code>publisher-service</code> gọi Graph API → Mongo <code>posts.status = PUBLISHED</code>, lưu <code>externalPostId</code>.'
+        dbAfter: 'RabbitMQ <code>publish.exchange</code> → <code>publisher-service</code> gọi Graph API → Mongo <code>posts.status = PUBLISHED</code>.'
       }
     ]
   },
   {
     title: 'CHẶNG 5: THANH TOÁN THUÊ BAO QUA VIETQR SEPAY & QUẢN TRỊ HỆ THỐNG (ADMIN)',
-    time: '16:30 – 20:00 (3,5 phút) · FR 3.9 & FR 3.10',
+    time: '16:30 - 20:00 (3,5 phút) · FR 3.9 & FR 3.10',
     steps: [
       {
         id: 'B14',
-        time: '16:30 – 18:15',
+        time: '16:30 - 18:15',
         role: 'owner',
-        roleLabel: 'Cửa sổ 1 · Owner (Nguyễn Minh Quân)',
+        roleLabel: 'Cửa sổ 1 · Owner (Lê Trí Trung)',
         title: 'Nâng cấp gói thuê bao Plus bằng chuyển khoản VietQR SePay thật',
         route: `/subscription/plans`,
         actions: [
-          'Tại Cửa sổ 1 (<code>Owner</code>), mở trang <b>Gói cước thuê bao</b> (chỉ hỗ trợ nâng cấp lên gói cao hơn, không có hạ cấp).',
-          'Bấm <b>"Nâng cấp gói Plus"</b> → Màn hình Checkout sinh mã <b>VietQR SePay</b> kèm số tiền và mã đơn hàng.',
+          'Tại Cửa sổ 1 (<code>Owner</code> - Lê Trí Trung), mở trang <b>Gói cước thuê bao</b> của <code>FPT Smart Ads Agency</code> (đang ở gói <code>Basic</code>).',
+          'Bấm <b>"Nâng cấp gói Plus"</b> → Màn hình Checkout sinh mã <b>VietQR SePay</b> (<code>2.000 VNĐ</code>) kèm mã đơn hàng.',
           'Dùng ứng dụng ngân hàng trên điện thoại quét mã chuyển khoản thật → Webhook SePay gọi về hệ thống qua tunnel, tự động kích hoạt gói <span class="state-badge">PLUS</span> ngay trên giao diện.'
         ],
         snippets: [],
@@ -1068,20 +1068,20 @@ const STAGES = [
       },
       {
         id: 'B15',
-        time: '18:15 – 20:00',
+        time: '18:15 - 20:00',
         role: 'admin',
-        roleLabel: 'Cửa sổ 5 · Admin (Quản trị viên BrandHub)',
+        roleLabel: 'Cửa sổ 5 · Admin (Hà Văn Ân)',
         title: 'Giám sát Doanh thu MRR/ARR & Hàng đợi Kiểm duyệt Nội dung',
         route: `/admin?view=revenue`,
         actions: [
-          '1. Tại Cửa sổ 5 (<code>Admin</code>), mở <b>Quản trị Doanh thu</b> (<code>/admin?view=revenue</code>): Kiểm tra biểu đồ MRR/ARR và đơn hàng SePay vừa đối soát thành công.',
+          '1. Tại Cửa sổ 5 (<code>Admin</code> - Hà Văn Ân), mở <b>Quản trị Doanh thu</b> (<code>/admin?view=revenue</code>): Kiểm tra biểu đồ MRR/ARR và đơn hàng SePay vừa đối soát thành công.',
           '2. Chuyển sang <b>Hàng đợi Kiểm duyệt Nội dung</b> (<code>/admin?view=moderation</code>): Xem các bản ghi bài viết bị gắn cờ/chặn từ bước kiểm tra tuân thủ cộng đồng (FR 3.10.4).',
           '3. Hoàn tất 20 phút Live Demo và nhường mic lại cho <b>Lê Trí Trung</b> tổng kết.'
         ],
         snippets: [],
         api: 'GET /api/v1/admin/revenue/summary & GET /api/v1/admin/moderation/reviews',
         dbBefore: 'Postgres <code>billing_payments</code> & <code>content_moderation_reviews</code>',
-        dbAfter: 'Toàn bộ vòng đời thương mại, nội dung, AI, xuất bản và thanh toán đã được kiểm chứng khép kín.'
+        dbAfter: 'Hiển thị biểu đồ doanh thu MRR/ARR và danh sách bản ghi kiểm duyệt nội dung.'
       }
     ]
   }
@@ -1089,56 +1089,56 @@ const STAGES = [
 
 const SELENIUM_STEP_BUTTONS = {
   B1: [
-    { label: '🎬 Bước 1.1: Chuyển sang Cửa sổ 1 (Owner) & Mở danh mục Gói mẫu', actionId: 'B1_NAV', kind: 'nav' }
+    { label: 'Bước 1.1: Chuyển sang Cửa sổ 1 (Owner) & Mở danh mục Gói mẫu', actionId: 'B1_NAV', kind: 'nav' }
   ],
   B2: [
-    { label: '🎬 Bước 2.1: Chuyển sang Cửa sổ 4 (Client) & Mở Gói dịch vụ trong Workspace', actionId: 'B2_NAV', kind: 'nav' }
+    { label: 'Bước 2.1: Chuyển sang Cửa sổ 4 (Client) & Mở Gói dịch vụ trong Workspace', actionId: 'B2_NAV', kind: 'nav' }
   ],
   B3: [
-    { label: '🎬 Bước 3.1: Mở Chiến dịch (Manager) & Làm nổi bật nút "Triển khai" (Tự bấm)', actionId: 'B3_NAV', kind: 'nav' }
+    { label: 'Bước 3.1: Mở Chiến dịch (Manager) & Làm nổi bật nút "Triển khai" (Tự bấm)', actionId: 'B3_NAV', kind: 'nav' }
   ],
   B4: [
-    { label: '🎬 Bước 4.1: Mở Bảng công việc (Manager) để giao Bài #1 cho Creator', actionId: 'B4_NAV', kind: 'nav' }
+    { label: 'Bước 4.1: Mở Bảng công việc (Manager) để giao Bài #1 cho Creator', actionId: 'B4_NAV', kind: 'nav' }
   ],
   B5: [
-    { label: '🎬 Bước 5.1: Chuyển sang Cửa sổ 3 (Creator) & Mở danh sách công việc', actionId: 'B5_NAV', kind: 'nav' }
+    { label: 'Bước 5.1: Chuyển sang Cửa sổ 3 (Creator) & Mở danh sách công việc', actionId: 'B5_NAV', kind: 'nav' }
   ],
   B6: [
-    { label: '🎬 Bước 6.1: Mở màn hình Soạn thảo Nội dung của Bài #1 (Creator)', actionId: 'B6_NAV_EDITOR', kind: 'nav' },
-    { label: '⌨️ Bước 6.2: Mở hộp thoại AI → Nhả chữ từng phần Chủ đề → Chọn Mục tiêu (Dừng trước nút Tạo)', actionId: 'B6_SEQ_FILL_AI', kind: 'seq' }
+    { label: 'Bước 6.1: Mở màn hình Soạn thảo Nội dung của Bài #1 (Creator)', actionId: 'B6_NAV_EDITOR', kind: 'nav' },
+    { label: 'Bước 6.2: Mở hộp thoại AI → Gõ từng cụm Chủ đề → Chọn Mục tiêu (Dừng trước nút Tạo)', actionId: 'B6_SEQ_FILL_AI', kind: 'seq' }
   ],
   B7: [
-    { label: '⌨️ Bước 7.1: Nhả chữ từng phần câu thử vi phạm vào bài viết (Để bạn bấm Kiểm tra → BLOCKED)', actionId: 'B7_FILL_VIOLATION', kind: 'seq' },
-    { label: '🧹 Bước 7.2: Xóa câu vi phạm & Nhả chữ lại bản chuẩn v1 (Để bạn bấm Kiểm tra → PASSED & Nộp duyệt)', actionId: 'B7_CLEAN_AND_RESTORE', kind: 'seq' }
+    { label: 'Bước 7.1: Gõ từng cụm câu thử vi phạm vào bài viết (Để bạn bấm Kiểm tra → BLOCKED)', actionId: 'B7_FILL_VIOLATION', kind: 'seq' },
+    { label: 'Bước 7.2: Xóa câu vi phạm & Gõ lại bản chuẩn v1 Đại học FPT (Để bạn bấm Kiểm tra → PASSED & Nộp duyệt)', actionId: 'B7_CLEAN_AND_RESTORE', kind: 'seq' }
   ],
   B8: [
-    { label: '🎬 Bước 8.1: Chuyển sang Cửa sổ 2 (Manager) — Mở bài chờ duyệt Tầng 1 (Tự bấm Phê duyệt)', actionId: 'B8_NAV_MANAGER_APPROVAL', kind: 'nav' }
+    { label: 'Bước 8.1: Chuyển sang Cửa sổ 2 (Manager), Mở bài chờ duyệt Tầng 1 (Tự bấm Phê duyệt)', actionId: 'B8_NAV_MANAGER_APPROVAL', kind: 'nav' }
   ],
   B9: [
-    { label: '🎬 Bước 9.1: Chuyển sang Cửa sổ 4 (Client) — Mở bài chờ duyệt Tầng 2', actionId: 'B9_NAV_CLIENT_APPROVAL', kind: 'nav' },
-    { label: '⌨️ Bước 9.2: Mở hộp Từ chối → Nhả chữ từng phần lý do vào #task-review-note (Dừng trước nút Xác nhận)', actionId: 'B9_SEQ_FILL_REJECT_REASON', kind: 'seq' }
+    { label: 'Bước 9.1: Chuyển sang Cửa sổ 4 (Client), Mở bài chờ duyệt Tầng 2', actionId: 'B9_NAV_CLIENT_APPROVAL', kind: 'nav' },
+    { label: 'Bước 9.2: Mở hộp Từ chối → Gõ từng cụm lý do vào #task-review-note (Dừng trước nút Xác nhận)', actionId: 'B9_SEQ_FILL_REJECT_REASON', kind: 'seq' }
   ],
   B10: [
-    { label: '🎬 Bước 10.1: Chuyển về Cửa sổ 3 (Creator) — Mở trình chỉnh sửa bài viết', actionId: 'B10_NAV_CREATOR_FIX', kind: 'nav' },
-    { label: '⌨️ Bước 10.2: Nhả chữ từng phần câu bổ sung trang trại Nghĩa Đàn lên bản v2 (Tự bấm Lưu & Nộp lại)', actionId: 'B10_SEQ_FILL_V2', kind: 'seq' }
+    { label: 'Bước 10.1: Chuyển về Cửa sổ 3 (Creator), Mở trình chỉnh sửa bài viết', actionId: 'B10_NAV_CREATOR_FIX', kind: 'nav' },
+    { label: 'Bước 10.2: Gõ từng cụm câu bổ sung Học bổng Nguyễn Văn Đạo & thực tập FPT Software lên bản v2', actionId: 'B10_SEQ_FILL_V2', kind: 'seq' }
   ],
   B11: [
-    { label: '🎬 Bước 11.1: Mở Cửa sổ 2 (Manager) duyệt Vòng 2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_MANAGER_V2', kind: 'nav' },
-    { label: '🎬 Bước 11.2: Mở Cửa sổ 4 (Client) phê duyệt chính thức bản v2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_CLIENT_V2', kind: 'nav' }
+    { label: 'Bước 11.1: Mở Cửa sổ 2 (Manager) duyệt Vòng 2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_MANAGER_V2', kind: 'nav' },
+    { label: 'Bước 11.2: Mở Cửa sổ 4 (Client) phê duyệt chính thức bản v2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_CLIENT_V2', kind: 'nav' }
   ],
   B12: [
-    { label: '🎬 Bước 12.1: Mở màn hình 4 Tài khoản Mạng xã hội đã kết nối (Manager)', actionId: 'B12_NAV_SOCIAL', kind: 'nav' }
+    { label: 'Bước 12.1: Mở màn hình 4 Tài khoản Mạng xã hội đã kết nối (Manager)', actionId: 'B12_NAV_SOCIAL', kind: 'nav' }
   ],
   B13: [
-    { label: '🎬 Bước 13.1: Mở trang Xuất bản (Manager) — Lưu ý chỉ tích 1 kênh Facebook & Tự bấm Đăng ngay', actionId: 'B13_NAV_PUBLISH', kind: 'nav' },
-    { label: '🎬 Bước 13.2: Mở Bảng điều khiển kết quả xuất bản (/publish/dashboard)', actionId: 'B13_NAV_DASHBOARD', kind: 'nav' }
+    { label: 'Bước 13.1: Mở trang Xuất bản (Manager), chỉ tích 1 kênh Facebook & Tự bấm Đăng ngay', actionId: 'B13_NAV_PUBLISH', kind: 'nav' },
+    { label: 'Bước 13.2: Mở Bảng điều khiển kết quả xuất bản (/publish/dashboard)', actionId: 'B13_NAV_DASHBOARD', kind: 'nav' }
   ],
   B14: [
-    { label: '🎬 Bước 14.1: Chuyển sang Cửa sổ 1 (Owner) — Mở trang Nâng cấp gói Plus qua VietQR SePay', actionId: 'B14_NAV_PLANS', kind: 'nav' }
+    { label: 'Bước 14.1: Chuyển sang Cửa sổ 1 (Owner), Mở trang Nâng cấp gói Plus qua VietQR SePay', actionId: 'B14_NAV_PLANS', kind: 'nav' }
   ],
   B15: [
-    { label: '🎬 Bước 15.1: Chuyển sang Cửa sổ 5 (Admin) — Mở Quản trị Doanh thu MRR/ARR', actionId: 'B15_NAV_ADMIN_REVENUE', kind: 'nav' },
-    { label: '🎬 Bước 15.2: Chuyển sang Cửa sổ 5 (Admin) — Mở Hàng đợi Kiểm duyệt Nội dung', actionId: 'B15_NAV_ADMIN_MODERATION', kind: 'nav' }
+    { label: 'Bước 15.1: Chuyển sang Cửa sổ 5 (Admin), Mở Quản trị Doanh thu MRR/ARR', actionId: 'B15_NAV_ADMIN_REVENUE', kind: 'nav' },
+    { label: 'Bước 15.2: Chuyển sang Cửa sổ 5 (Admin), Mở Hàng đợi Kiểm duyệt Nội dung', actionId: 'B15_NAV_ADMIN_MODERATION', kind: 'nav' }
   ]
 };
 
@@ -1173,7 +1173,7 @@ function renderSteps() {
             <div class="step-body">
               <div class="seq-actions-box">
                 <div class="seq-actions-title">
-                  <span>🤖 Điều khiển Selenium Tuần Tự (Nhả chữ từng phần · Không tự bấm Submit)</span>
+                  <span>Điều khiển Selenium Tuần Tự (Gõ từng cụm từ · Không tự bấm Submit)</span>
                   <span>Bước ${s.id}</span>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1190,7 +1190,7 @@ function renderSteps() {
               ${s.snippets.map(sn => `
                 <div class="copy-snippet">
                   <div class="copy-snippet-header">
-                    <span>📋 ${sn.label}</span>
+                    <span>${sn.label}</span>
                     <button class="btn btn-copy" onclick="copyText(${JSON.stringify(sn.text)}, this)">Copy văn bản</button>
                   </div>
                   <div class="copy-snippet-text">${sn.text}</div>
@@ -1228,7 +1228,7 @@ async function syncSeleniumConfig() {
     });
     const data = await res.json();
     if (data.ok) {
-      document.getElementById('seleniumStatusText').textContent = '⚡ ' + data.state.status_message;
+      document.getElementById('seleniumStatusText').textContent = data.state.status_message;
     }
   } catch (err) {
     // Không báo lỗi ồn nếu chỉ mở file HTML tĩnh chưa bật server
@@ -1240,9 +1240,9 @@ async function runSeleniumAction(actionId, btn) {
   const oldLabel = btn ? btn.textContent : '';
   if (btn) {
     btn.disabled = true;
-    btn.textContent = '⏳ Đang thực thi trên Chrome...';
+    btn.textContent = 'Đang thực thi trên Chrome...';
   }
-  statusEl.textContent = `⏳ Đang chạy thao tác Selenium [${actionId}]...`;
+  statusEl.textContent = `Đang chạy thao tác Selenium [${actionId}]...`;
 
   try {
     await syncSeleniumConfig();
@@ -1253,12 +1253,12 @@ async function runSeleniumAction(actionId, btn) {
     });
     const data = await res.json();
     if (data.ok) {
-      statusEl.textContent = '✅ ' + data.message;
+      statusEl.textContent = data.message;
     } else {
-      statusEl.textContent = '⚠️ ' + (data.error || 'Có lỗi xảy ra khi điều khiển trình duyệt');
+      statusEl.textContent = 'Lỗi: ' + (data.error || 'Có lỗi xảy ra khi điều khiển trình duyệt');
     }
   } catch (err) {
-    statusEl.textContent = '❌ Chưa kết nối được tới máy chủ Selenium (http://localhost:3999). Hãy chạy file run_demo_monitor.bat trước!';
+    statusEl.textContent = 'Chưa kết nối được tới máy chủ Selenium (http://localhost:3999). Hãy chạy file run_demo_monitor.bat trước.';
   } finally {
     if (btn) {
       btn.disabled = false;
@@ -1290,7 +1290,7 @@ function updateAllLinks() {
 function copyText(text, btn) {
   navigator.clipboard.writeText(text);
   const old = btn.textContent;
-  btn.textContent = '✓ Đã copy';
+  btn.textContent = 'Đã copy';
   btn.classList.add('copied');
   setTimeout(() => {
     btn.textContent = old;

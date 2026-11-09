@@ -5,7 +5,7 @@ BRANDHUB SELENIUM LIVE DEMO MONITOR SERVER (DIRECTOR CONSOLE v2.0)
 Máy chủ điều khiển trình duyệt bằng Selenium 4 phục vụ buổi bảo vệ đồ án tốt nghiệp.
 - Kịch bản thực tế hệ sinh thái FPT:
     * Đơn vị truyền thông (Agency) : FPT Smart Ads Agency
-    * Thương hiệu khách hàng       : FPT University – Đại học FPT (Tập đoàn FPT)
+    * Thương hiệu khách hàng       : Đại học FPT (Tập đoàn FPT)
     * Không gian làm việc chung    : FPT University x FPT Smart Ads
 - 5 cửa sổ Chrome độc lập gắn với 5 thành viên nhóm đồ án theo 5 vai trò chuẩn:
     1. `Owner`   : Lê Trí Trung       (user177@demo.brandhub.test)
@@ -13,15 +13,15 @@ Máy chủ điều khiển trình duyệt bằng Selenium 4 phục vụ buổi b
     3. `Creator` : Nguyễn Chơn Phước  (user13@demo.brandhub.test)
     4. `Client`  : Nguyễn Minh Tuấn   (user59@demo.brandhub.test)
     5. `Admin`   : Hà Văn Ân          (admin@demo.brandhub.test)
-- Thuật toán 3 tầng tương thích 100% với kiến trúc BrandHub Web (React 19 + Yjs Canvas + Tiptap):
-    * Tầng 1 (`CanvasTextEditor` + `Y.Text`): Phát sự kiện `InputEvent('beforeinput')` chuẩn xác
-      theo từng cụm âm tiết tiếng Việt, không bao giờ mất dấu cách hoặc kẹt phím tắt.
+- Thuật toán 3 tầng tương thích với kiến trúc BrandHub Web (React 19 + Yjs Canvas + Tiptap):
+    * Tầng 1 (`CanvasTextEditor` + `Y.Text`): Phát sự kiện `InputEvent('beforeinput')`
+      theo từng cụm âm tiết tiếng Việt, giữ nguyên dấu cách và tránh kẹt phím tắt.
     * Tầng 2 (`RichTextEditor` / Tiptap `.ProseMirror`): Điều khiển `ActionChains` + `send_keys`
-      nhả chữ từng cụm mượt mà.
+      gõ chữ từng cụm.
     * Tầng 3 (`React 19 Controlled Input/Textarea`): Đồng bộ `_valueTracker` nội bộ của React 19
       trước khi gõ từng cụm ký tự và nghỉ nhịp giữa các trường (`pause_between_fields`).
-- TUYỆT ĐỐI KHÔNG tự động bấm các nút Submit/Approve/Reject/Deploy/Publish chốt hạ
-  mà khoanh sáng viền xanh/cam để người thuyết trình chủ động hoàn toàn nhịp bấm trên sân khấu.
+- Không tự động bấm các nút Submit/Approve/Reject/Deploy/Publish chốt cuối
+  mà khoanh sáng viền xanh/đỏ để người thuyết trình tự bấm trên sân khấu.
 """
 
 import ctypes
@@ -273,8 +273,8 @@ def highlight_element(
 
 def split_into_natural_chunks(text: str) -> list[str]:
     """
-    Chia câu tiếng Việt thành từng cụm nhỏ (1–4 ký tự hoặc theo âm tiết)
-    để khi gõ vào ô input chữ nhả ra từng phần tự nhiên như người đang gõ thật.
+    Chia câu tiếng Việt thành từng cụm nhỏ (1 đến 4 ký tự hoặc theo âm tiết)
+    để khi gõ vào ô input chữ hiện ra từng cụm tự nhiên như người đang gõ thật.
     """
     tokens = re.findall(r"\S+\s*|\s+", text)
     chunks: list[str] = []
@@ -299,7 +299,7 @@ def get_chunk_delays() -> tuple[float, float]:
 
 def _sleep_chunk_rhythm(chunk: str, min_d: float, max_d: float):
     delay = random.uniform(min_d, max_d)
-    if any(p in chunk for p in (",", ".", ":", "!", "–", "\n")):
+    if any(p in chunk for p in (",", ".", ":", "!", "-", "\n")):
         delay += 0.13
     time.sleep(delay)
 
@@ -312,12 +312,12 @@ def _type_canvas_editor_chunks(
     append_newline: bool,
 ):
     """
-    TẦNG 1: Chuyên biệt cho `CanvasTextEditor` (`aria-label='Content editor input'`).
+    TẦNG 1: Dành cho `CanvasTextEditor` (`aria-label='Content editor input'`).
     `CanvasTextEditor` của BrandHub quản lý văn bản bằng Yjs (`Y.Text`) và lắng nghe:
       - `onKeyDown` cho Ctrl+A, Backspace, ArrowDown, End
       - `onBeforeInput` (`InputEvent`) cho thao tác chèn văn bản (`insertText`) & xuống dòng (`insertLineBreak`).
-    Phát trực tiếp `KeyboardEvent` & `InputEvent` theo từng cụm từ giúp tốc độ hiển thị trên `<canvas>`
-    mượt tuyệt đối 100%, không bao giờ bị mất dấu cách hay lỗi bộ gõ tiếng Việt.
+    Phát trực tiếp `KeyboardEvent` & `InputEvent` theo từng cụm từ giúp hiển thị trên `<canvas>`
+    ổn định, không bị mất dấu cách hay lỗi bộ gõ tiếng Việt.
     """
     # Khoanh sáng vùng khung Canvas cha để Hội đồng nhìn rõ
     try:
@@ -493,7 +493,7 @@ def type_in_chunks(
     field_label: str = "Đang gõ tuần tự",
 ):
     """
-    Bộ điều phối thuật toán gõ chữ nhả từng phần (tự động nhận diện đúng kiến trúc của phần tử DOM).
+    Bộ điều phối thuật toán gõ chữ từng cụm (tự động nhận diện đúng phần tử DOM).
     """
     aria_lbl = element.get_attribute("aria-label") or ""
     is_contenteditable = element.get_attribute("contenteditable") == "true"
@@ -556,7 +556,7 @@ def login_single_role(role_key: str, auto_submit: bool = True) -> str:
             time.sleep(1.8)
             driver.get(target_url)
 
-    return f"Đã mở {acc['window_label']} — {acc['full_name']} ({acc['org_title']}) tại {driver.current_url}"
+    return f"Đã mở {acc['window_label']}: {acc['full_name']} ({acc['org_title']}) tại {driver.current_url}"
 
 
 def execute_demo_action(action_id: str, payload: dict) -> str:
@@ -604,13 +604,13 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
         d = get_or_create_driver("owner")
         bring_browser_to_front(d, "owner")
         d.get(resolve_path(f"/agency/{ag_id}/media-packages"))
-        return "B1: Đã mở Cửa sổ 1 (Owner: Lê Trí Trung) — Danh mục Gói truyền thông mẫu của FPT Smart Ads Agency."
+        return "B1: Đã mở Cửa sổ 1 (Owner: Lê Trí Trung), Danh mục Gói truyền thông mẫu của FPT Smart Ads Agency."
 
     if action_id == "B2_NAV":
         d = get_or_create_driver("client")
         bring_browser_to_front(d, "client")
         d.get(resolve_path(f"/workspaces/{ws_id}/media-package"))
-        return "B2: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn) — Gói truyền thông Tuyển sinh Đại học FPT 2026 đã chốt."
+        return "B2: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn), Gói truyền thông Tuyển sinh Đại học FPT 2026 đã chốt."
 
     if action_id == "B3_NAV":
         d = get_or_create_driver("manager")
@@ -623,20 +623,20 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, btns[0], "#059669", 2600, "Mời bạn bấm: Triển khai chiến dịch")
         except Exception:
             pass
-        return "B3: Đã mở Chiến dịch (Manager: Nguyễn Thành Lộc). Nút 'Triển khai' đã được khoanh sáng — mời bạn tự bấm!"
+        return "B3: Đã mở Chiến dịch (Manager: Nguyễn Thành Lộc). Nút 'Triển khai' đã được khoanh sáng, mời bạn tự bấm."
 
     if action_id == "B4_NAV":
         d = get_or_create_driver("manager")
         bring_browser_to_front(d, "manager")
         d.get(resolve_path(f"/workspaces/{ws_id}/tasks"))
-        return "B4: Đã mở Bảng công việc (Manager: Nguyễn Thành Lộc) — Chọn Bài #1 để giao cho Creator Nguyễn Chơn Phước."
+        return "B4: Đã mở Bảng công việc (Manager: Nguyễn Thành Lộc). Chọn Bài #1 để giao cho Creator Nguyễn Chơn Phước."
 
     # ── CHẶNG 2: SÁNG TẠO AI & KIỂM TRA AN TOÀN (B5 - B7) ──
     if action_id == "B5_NAV":
         d = get_or_create_driver("creator")
         bring_browser_to_front(d, "creator")
         d.get(resolve_path(f"/workspaces/{ws_id}/tasks"))
-        return "B5: Đã mở Cửa sổ 3 (Creator: Nguyễn Chơn Phước) — Nhận task Bài #1 và bắt đầu thực hiện."
+        return "B5: Đã mở Cửa sổ 3 (Creator: Nguyễn Chơn Phước), nhận task Bài #1 và bắt đầu thực hiện."
 
     if action_id == "B6_NAV_EDITOR":
         d = get_or_create_driver("creator")
@@ -648,9 +648,9 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
         """
         Điền tuần tự 4 bước trên hộp thoại AI tạo Caption đúng như người dùng thật:
           Bước 1: Mở hộp thoại AI (nếu chưa mở) -> nghỉ 0.6s.
-          Bước 2: Focus ô Chủ đề (Textarea), nhả chữ từng phần chủ đề tuyển sinh AI Đại học FPT -> nghỉ 0.55s.
+          Bước 2: Focus ô Chủ đề (Textarea), gõ từng cụm từ chủ đề tuyển sinh AI Đại học FPT -> nghỉ 0.55s.
           Bước 3: Chọn Mục tiêu (Tương tác / Thông báo) trong nhóm nút Goal -> nghỉ 0.45s.
-          Bước 4: Chọn Độ dài (Vừa / Medium) -> Khoanh sáng nút 'Tạo caption' và dừng lại chờ người thuyết trình bấm!
+          Bước 4: Chọn Độ dài (Vừa / Medium) -> Khoanh sáng nút 'Tạo caption' và dừng lại chờ người thuyết trình bấm.
         """
         d = get_or_create_driver("creator")
         bring_browser_to_front(d, "creator")
@@ -750,7 +750,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, mod_btns[0], "#DC2626", 2600, "Mời bạn tự bấm: Kiểm tra tuân thủ (Sẽ báo BLOCKED)")
         except Exception:
             pass
-        return "B7.1: Đã nhả chữ từng phần câu thử vi phạm. Mời bạn tự bấm nút 'Kiểm tra tuân thủ'!"
+        return "B7.1: Đã gõ từng cụm câu thử vi phạm. Mời bạn tự bấm nút 'Kiểm tra tuân thủ'."
 
     if action_id == "B7_CLEAN_AND_RESTORE":
         """Xóa câu vi phạm và điền lại nội dung chuẩn v1 của Đại học FPT để kiểm tra PASSED."""
@@ -777,7 +777,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, mod_btns[0], "#059669", 2600, "Mời bạn bấm: Kiểm tra lại (PASSED) & Nộp duyệt")
         except Exception:
             pass
-        return "B7.2: Đã xóa câu vi phạm và điền bản v1 chuẩn Đại học FPT. Mời bạn tự bấm 'Kiểm tra lại' và 'Nộp duyệt'!"
+        return "B7.2: Đã xóa câu vi phạm và điền bản v1 chuẩn Đại học FPT. Mời bạn tự bấm 'Kiểm tra lại' và 'Nộp duyệt'."
 
     # ── CHẶNG 3: DUYỆT 2 CẤP & VERSION DIFF (B8 - B11) ──
     if action_id == "B8_NAV_MANAGER_APPROVAL":
@@ -791,20 +791,20 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, approve_btns[0], "#059669", 2600, "Mời Manager tự bấm: Phê duyệt Tầng 1")
         except Exception:
             pass
-        return "B8: Đã mở Cửa sổ 2 (Manager: Nguyễn Thành Lộc) — Duyệt bài Tầng 1. Mời bạn tự bấm 'Phê duyệt'!"
+        return "B8: Đã mở Cửa sổ 2 (Manager: Nguyễn Thành Lộc), Duyệt bài Tầng 1. Mời bạn tự bấm 'Phê duyệt'."
 
     if action_id == "B9_NAV_CLIENT_APPROVAL":
         d = get_or_create_driver("client")
         bring_browser_to_front(d, "client")
         d.get(resolve_path(f"/workspaces/{ws_id}/task-approvals?task={STATE['active_task_id']}"))
-        return "B9.1: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn) — Xem trước bài viết chờ duyệt từ phía Đại học FPT."
+        return "B9.1: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn), Xem trước bài viết chờ duyệt từ phía Đại học FPT."
 
     if action_id == "B9_SEQ_FILL_REJECT_REASON":
         """
         Tuần tự thao tác từ chối của Client Nguyễn Minh Tuấn:
           1. Nếu hộp thoại Từ chối (#task-review-note) chưa mở, tự bấm nút 'Từ chối' màu đỏ để mở hộp thoại -> nghỉ 0.55s.
-          2. Focus vào ô #task-review-note, nhả chữ từng phần lý do yêu cầu bổ sung Học bổng Nguyễn Văn Đạo & OJT FPT Software.
-          3. Khoanh sáng nút xác nhận Từ chối và dừng lại để người thuyết trình tự bấm!
+          2. Focus vào ô #task-review-note, gõ từng cụm lý do yêu cầu bổ sung Học bổng Nguyễn Văn Đạo & OJT FPT Software.
+          3. Khoanh sáng nút xác nhận Từ chối và dừng lại để người thuyết trình tự bấm.
         """
         d = get_or_create_driver("client")
         bring_browser_to_front(d, "client")
@@ -840,7 +840,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, confirm_btns[-1], "#DC2626", 2600, "Mời Client tự bấm: Xác nhận Từ chối")
         except Exception:
             pass
-        return "B9.2: Đã gõ từng phần góp ý của Đại học FPT vào ô '#task-review-note'. Mời bạn tự bấm xác nhận 'Từ chối'!"
+        return "B9.2: Đã gõ từng cụm góp ý của Đại học FPT vào ô '#task-review-note'. Mời bạn tự bấm xác nhận 'Từ chối'."
 
     if action_id == "B10_NAV_CREATOR_FIX":
         d = get_or_create_driver("creator")
@@ -849,7 +849,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
         return "B10.1: Đã chuyển về Cửa sổ 3 (Creator: Nguyễn Chơn Phước) để sửa bài theo góp ý của Đại học FPT."
 
     if action_id == "B10_SEQ_FILL_V2":
-        """Nhả chữ từng phần câu bổ sung Học bổng Nguyễn Văn Đạo & thực tập OJT FPT Software để tạo bản v2."""
+        """Gõ từng cụm câu bổ sung Học bổng Nguyễn Văn Đạo & thực tập OJT FPT Software để tạo bản v2."""
         d = get_or_create_driver("creator")
         bring_browser_to_front(d, "creator")
         v2_addition = payload.get("text") or DEFAULT_TEXTS["B10_V2_ADDITION"]
@@ -865,7 +865,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
             append_newline=True,
             field_label="B10.2: Bổ sung Học bổng Nguyễn Văn Đạo & OJT FPT Software (Bản v2)",
         )
-        return "B10.2: Đã gõ bổ sung Học bổng Nguyễn Văn Đạo & OJT FPT Software (bản v2). Mời bạn tự bấm Lưu, mở Version History và Nộp duyệt lại!"
+        return "B10.2: Đã gõ bổ sung Học bổng Nguyễn Văn Đạo & OJT FPT Software (bản v2). Mời bạn tự bấm Lưu, mở Version History và Nộp duyệt lại."
 
     if action_id == "B11_NAV_MANAGER_V2":
         d = get_or_create_driver("manager")
@@ -878,7 +878,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, approve_btns[0], "#059669", 2600, "Mời Manager bấm: Phê duyệt vòng 2")
         except Exception:
             pass
-        return "B11a: Đã mở Cửa sổ 2 (Manager: Nguyễn Thành Lộc) để duyệt vòng 2. Mời bạn tự bấm 'Phê duyệt'!"
+        return "B11a: Đã mở Cửa sổ 2 (Manager: Nguyễn Thành Lộc) để duyệt vòng 2. Mời bạn tự bấm 'Phê duyệt'."
 
     if action_id == "B11_NAV_CLIENT_V2":
         d = get_or_create_driver("client")
@@ -891,7 +891,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
                 highlight_element(d, approve_btns[0], "#059669", 2600, "Mời Client bấm: Phê duyệt chính thức (APPROVED)")
         except Exception:
             pass
-        return "B11b: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn) để phê duyệt chính thức bản v2. Mời bạn tự bấm 'Phê duyệt'!"
+        return "B11b: Đã mở Cửa sổ 4 (Client: Nguyễn Minh Tuấn) để phê duyệt chính thức bản v2. Mời bạn tự bấm 'Phê duyệt'."
 
     # ── CHẶNG 4: XUẤT BẢN MẠNG XÃ HỘI (B12 - B13) ──
     if action_id == "B12_NAV_SOCIAL":
@@ -904,7 +904,7 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
         d = get_or_create_driver("manager")
         bring_browser_to_front(d, "manager")
         d.get(resolve_path(f"/workspaces/{ws_id}/publish"))
-        return "B13a: Đã mở màn hình Xuất bản (Manager: Nguyễn Thành Lộc). Lưu ý chỉ tích chọn 1 kênh (Facebook FPT University) và tự bấm 'Đăng ngay'!"
+        return "B13a: Đã mở màn hình Xuất bản (Manager: Nguyễn Thành Lộc). Lưu ý chỉ tích chọn 1 kênh (Facebook FPT University) và tự bấm 'Đăng ngay'."
 
     if action_id == "B13_NAV_DASHBOARD":
         d = get_or_create_driver("manager")
@@ -917,19 +917,19 @@ def execute_demo_action(action_id: str, payload: dict) -> str:
         d = get_or_create_driver("owner")
         bring_browser_to_front(d, "owner")
         d.get(resolve_path("/subscription/plans"))
-        return "B14: Đã mở Cửa sổ 1 (Owner: Lê Trí Trung) — Nâng cấp gói thuê bao Plus cho FPT Smart Ads qua VietQR SePay."
+        return "B14: Đã mở Cửa sổ 1 (Owner: Lê Trí Trung), Nâng cấp gói thuê bao Plus cho FPT Smart Ads qua VietQR SePay."
 
     if action_id == "B15_NAV_ADMIN_REVENUE":
         d = get_or_create_driver("admin")
         bring_browser_to_front(d, "admin")
         d.get(resolve_path("/admin?view=revenue"))
-        return "B15a: Đã mở Cửa sổ 5 (Admin: Hà Văn Ân) — Bảng điều khiển Doanh thu MRR/ARR toàn nền tảng."
+        return "B15a: Đã mở Cửa sổ 5 (Admin: Hà Văn Ân), Bảng điều khiển Doanh thu MRR/ARR toàn nền tảng."
 
     if action_id == "B15_NAV_ADMIN_MODERATION":
         d = get_or_create_driver("admin")
         bring_browser_to_front(d, "admin")
         d.get(resolve_path("/admin?view=moderation"))
-        return "B15b: Đã mở Cửa sổ 5 (Admin: Hà Văn Ân) — Hàng đợi Kiểm duyệt Nội dung vi phạm toàn hệ thống."
+        return "B15b: Đã mở Cửa sổ 5 (Admin: Hà Văn Ân), Hàng đợi Kiểm duyệt Nội dung vi phạm toàn hệ thống."
 
     return f"Không nhận diện được mã hành động: {action_id}"
 
