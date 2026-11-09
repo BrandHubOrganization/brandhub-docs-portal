@@ -29,6 +29,7 @@ import json
 import os
 import random
 import re
+import socket
 import sys
 import threading
 import time
@@ -145,13 +146,32 @@ DRIVER_LOCK = threading.Lock()
 # CÁC HÀM TIỆN ÍCH SELENIUM: ĐƯA CỬA SỔ LÊN TRƯỚC & HIGHLIGHT TRỰC QUAN
 # ==============================================================================
 
+def _is_port_open(port: int) -> bool:
+    try:
+        with socket.create_connection(("127.0.0.1", port), timeout=0.25):
+            return True
+    except OSError:
+        return False
+
+
+def get_effective_base_url() -> str:
+    base = STATE["base_url"].rstrip("/")
+    if "localhost:5173" in base and not _is_port_open(5173) and _is_port_open(3000):
+        STATE["base_url"] = "http://localhost:3000"
+        return STATE["base_url"]
+    if "localhost:3000" in base and not _is_port_open(3000) and _is_port_open(5173):
+        STATE["base_url"] = "http://localhost:5173"
+        return STATE["base_url"]
+    return base
+
+
 def resolve_path(path_template: str) -> str:
     path = (
         path_template.replace("{agency_id}", STATE["agency_id"])
         .replace("{workspace_id}", STATE["workspace_id"])
         .replace("{task_id}", STATE["active_task_id"])
     )
-    return STATE["base_url"].rstrip("/") + path
+    return get_effective_base_url() + path
 
 
 def get_or_create_driver(role_key: str) -> webdriver.Chrome:

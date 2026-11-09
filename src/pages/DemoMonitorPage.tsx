@@ -1244,18 +1244,29 @@ export const DemoMonitorPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => updateConfig({ base_url: 'http://localhost:5173' })}
-                className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all ${
-                  config.base_url.includes('localhost')
+                className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                  config.base_url.includes(':5173')
                     ? 'bg-blue-600 text-white shadow-2xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Localhost (:5173)
+                Local (:5173)
+              </button>
+              <button
+                type="button"
+                onClick={() => updateConfig({ base_url: 'http://localhost:3000' })}
+                className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer ${
+                  config.base_url.includes(':3000')
+                    ? 'bg-blue-600 text-white shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Local (:3000)
               </button>
               <button
                 type="button"
                 onClick={() => updateConfig({ base_url: 'https://brandhub.id.vn' })}
-                className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 ${
+                className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer ${
                   config.base_url.includes('brandhub.id.vn')
                     ? 'bg-blue-600 text-white shadow-2xs'
                     : 'text-slate-600 hover:text-slate-900'
