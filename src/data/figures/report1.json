@@ -140,8 +140,43 @@
     ]
   },
   {
-    "id": "r1-fig-5",
+    "id": "r1-fig-4b",
     "figNum": 5,
+    "reportId": "report1",
+    "reportName": "Report 1 - Project Introduction",
+    "section": "3.5 Existing System - Planable",
+    "category": "Competitor Analysis",
+    "title": "Planable Interface",
+    "caption": "Figure 3.5 - Planable Interface",
+    "imageUrl": "https://planable.io/wp-content/uploads/2025/10/Frame-1407273813.png",
+    "imageWidth": 1560,
+    "imageHeight": 820,
+    "actors": [
+      "Guest",
+      "Owner",
+      "Manager",
+      "Creator",
+      "Client",
+      "Admin"
+    ],
+    "summary": "Giao diện duyệt bài nhiều cấp (Multi-Level Approval) và xem trước bài đăng (Feed View) của Planable. BrandHub kế thừa ưu điểm xem trước giao diện mạng xã hội và luồng duyệt bài nhiều cấp, đồng thời bổ sung đàm phán Gói truyền thông (Media Package), AI Brand Hybrid GraphRAG, dự đoán xu hướng Việt Nam và thanh toán SePay VietQR.",
+    "viSummary": "Giao diện duyệt bài nhiều cấp (Multi-Level Approval) và xem trước bài đăng (Feed View) của Planable. BrandHub kế thừa ưu điểm xem trước giao diện mạng xã hội và luồng duyệt bài nhiều cấp, đồng thời bổ sung đàm phán Gói truyền thông (Media Package), AI Brand Hybrid GraphRAG, dự đoán xu hướng Việt Nam và thanh toán SePay VietQR.",
+    "components": [
+      {
+        "name": "Xem trước bài đăng & Duyệt nhiều cấp (Multi-Level Approval)",
+        "type": "Điểm học hỏi",
+        "description": "Mô phỏng trực quan bài đăng trên mạng xã hội và phân tách bình luận nội bộ với bình luận của Client."
+      },
+      {
+        "name": "Điểm cải tiến trên BrandHub",
+        "type": "Chuỗi giá trị toàn trình",
+        "description": "Bổ sung quy trình thương thảo Media Package -> Media Campaign -> Tự động sinh Task Backlog, AI Studio đa phương thức gắn chặt Brand Guideline (ChromaDB) và thanh toán VND qua SePay VietQR."
+      }
+    ]
+  },
+  {
+    "id": "r1-fig-5",
+    "figNum": 6,
     "reportId": "report1",
     "reportName": "Report 1 - Project Introduction",
     "section": "6.1 Project Scope & Major Features",
