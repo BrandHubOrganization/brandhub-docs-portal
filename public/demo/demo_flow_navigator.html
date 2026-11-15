@@ -1,1351 +1,1232 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-astryx-theme="neutral">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrandHub - Bảng Điều Khiển & Sơ Đồ Luồng Live Demo (15 Bước)</title>
+  <title>BrandHub: Bàn Điều Khiển Thuyết Trình SE08 (Astryx White &amp; Orange)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --brand: #CA3D0E;
-      --brand-bg: #FFF4EE;
-      --navy: #0F172A;
-      --slate: #475569;
-      --border: #E2E8F0;
-      --bg: #F8FAFC;
-      --owner: #CA3D0E;
-      --owner-bg: #FFF4EE;
-      --manager: #1D4ED8;
-      --manager-bg: #EFF6FF;
-      --creator: #047857;
-      --creator-bg: #ECFDF5;
-      --client: #6D28D9;
-      --client-bg: #F5F3FF;
-      --admin: #B91C1C;
-      --admin-bg: #FEF2F2;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root, [data-astryx-theme="neutral"] {
+      --astryx-color-accent: #f05a28;
+      --astryx-color-accent-hover: #ea580c;
+      --astryx-color-accent-active: #c2410c;
+      --astryx-color-surface: #ffffff;
+      --astryx-color-border-subtle: #fed7aa;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--navy);
-      line-height: 1.5;
-      padding-bottom: 64px;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #0F172A;
-      color: #fff;
-      padding: 14px 28px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.18);
-    }
-    .brand-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand-badge {
-      background: var(--brand);
-      color: #fff;
-      font-weight: 800;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 15px;
-      letter-spacing: 0.3px;
-    }
-    .brand-title h1 {
-      font-size: 19px;
-      font-weight: 700;
-    }
-    .brand-title p {
-      font-size: 13px;
-      color: #94A3B8;
-    }
-    .toolbar {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .env-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #1E293B;
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px solid #334155;
-      font-size: 13px;
-    }
-    .env-box input {
-      background: #0F172A;
-      color: #38BDF8;
-      border: 1px solid #475569;
-      border-radius: 6px;
-      padding: 4px 10px;
-      font-family: Consolas, monospace;
-      font-size: 13px;
-      width: 220px;
-    }
-    .timer-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #1E293B;
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px solid #334155;
-    }
-    .timer-display {
-      font-family: Consolas, monospace;
-      font-size: 18px;
-      font-weight: 700;
-      color: #FBBF24;
-      min-width: 68px;
-      text-align: center;
-    }
-    .btn {
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-    }
-    .btn-primary { background: var(--brand); color: #fff; }
-    .btn-primary:hover { background: #A83009; }
-    .btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--border); }
-    .btn-outline:hover { border-color: var(--brand); color: var(--brand); }
-    .btn-copy { background: #F1F5F9; color: #0F172A; border: 1px solid #CBD5E1; }
-    .btn-copy:hover { background: #E2E8F0; }
-    .btn-copy.copied { background: #047857; color: #fff; border-color: #047857; }
-    .btn-selenium {
-      background: linear-gradient(135deg, #047857 0%, #059669 100%);
-      color: #fff;
-      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.25);
-    }
-    .btn-selenium:hover { background: #065F46; }
-    .btn-selenium-seq {
-      background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
-      color: #fff;
-      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
-    }
-    .btn-selenium-seq:hover { background: #1E40AF; }
-    .selenium-bar {
-      background: #0F172A;
-      color: #F8FAFC;
-      border: 2px solid #334155;
-      border-radius: 14px;
-      padding: 16px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .selenium-status {
-      background: #1E293B;
-      border-left: 4px solid #10B981;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-family: Consolas, monospace;
-      font-size: 13px;
-      color: #A7F3D0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .seq-actions-box {
-      background: #F0FDF4;
-      border: 1.5px solid #86EFAC;
-      border-radius: 10px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .seq-actions-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #065F46;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .container {
-      max-width: 1480px;
-      margin: 24px auto;
-      padding: 0 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .section-card {
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-    .section-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .accounts-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-    .acc-card {
-      border-radius: 10px;
-      padding: 12px 14px;
-      border: 1.5px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .acc-card.owner { background: var(--owner-bg); border-color: var(--owner); }
-    .acc-card.manager { background: var(--manager-bg); border-color: var(--manager); }
-    .acc-card.creator { background: var(--creator-bg); border-color: var(--creator); }
-    .acc-card.client { background: var(--client-bg); border-color: var(--client); }
-    .acc-card.admin { background: var(--admin-bg); border-color: var(--admin); }
-    .role-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 99px;
-      color: #fff;
-      width: fit-content;
-    }
-    .role-pill.owner { background: var(--owner); }
-    .role-pill.manager { background: var(--manager); }
-    .role-pill.creator { background: var(--creator); }
-    .role-pill.client { background: var(--client); }
-    .role-pill.admin { background: var(--admin); }
-    .acc-name { font-weight: 700; font-size: 15px; }
-    .acc-email {
-      font-family: Consolas, monospace;
-      font-size: 12.5px;
-      color: var(--slate);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-    }
-
-    /* Swimlane Matrix */
-    .swimlane-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .swimlane-table th, .swimlane-table td {
-      border: 1.5px solid var(--border);
-      padding: 10px;
-      vertical-align: top;
-    }
-    .swimlane-table thead th {
-      background: #0F172A;
-      color: #fff;
-      text-align: left;
-      font-size: 13.5px;
-    }
-    .lane-role-cell {
-      width: 170px;
-      font-weight: 700;
-    }
-    .mini-step {
-      display: block;
-      text-decoration: none;
-      color: var(--navy);
-      background: #fff;
-      border: 1.5px solid #CBD5E1;
-      border-left-width: 5px;
-      border-radius: 8px;
-      padding: 7px 9px;
-      margin-bottom: 6px;
-      transition: transform 0.12s, box-shadow 0.12s;
-    }
-    .mini-step:last-child { margin-bottom: 0; }
-    .mini-step:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-    .mini-step.owner { border-left-color: var(--owner); }
-    .mini-step.manager { border-left-color: var(--manager); }
-    .mini-step.creator { border-left-color: var(--creator); }
-    .mini-step.client { border-left-color: var(--client); }
-    .mini-step.admin { border-left-color: var(--admin); }
-    .mini-step .ms-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11.5px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .mini-step .ms-title { font-weight: 700; font-size: 12.5px; }
-    .mini-step .ms-state {
-      display: inline-block;
-      margin-top: 3px;
-      font-family: Consolas, monospace;
-      font-size: 11px;
-      background: #ECFDF5;
-      color: #047857;
-      border: 1px solid #A7F3D0;
-      padding: 0 5px;
-      border-radius: 4px;
-    }
-
-    /* Stage & Step Cards */
-    .stage-block {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .stage-header {
-      background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%);
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .stage-header h2 { font-size: 17px; font-weight: 700; }
-    .stage-header span { font-size: 13px; color: #FBBF24; font-weight: 600; }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .step-card {
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-left-width: 7px;
-      border-radius: 12px;
-      padding: 16px 20px;
-      display: grid;
-      grid-template-columns: 270px 1fr 360px;
-      gap: 18px;
-      align-items: start;
-      transition: background 0.15s;
-    }
-    .step-card.done {
-      opacity: 0.68;
-      background: #F1F5F9;
-    }
-    .step-card.owner { border-left-color: var(--owner); }
-    .step-card.manager { border-left-color: var(--manager); }
-    .step-card.creator { border-left-color: var(--creator); }
-    .step-card.client { border-left-color: var(--client); }
-    .step-card.admin { border-left-color: var(--admin); }
-
-    .step-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .step-num-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .step-num {
-      background: var(--navy);
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      padding: 3px 10px;
-      border-radius: 6px;
-    }
-    .step-time {
-      font-family: Consolas, monospace;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--slate);
-    }
-    .step-title {
-      font-size: 16.5px;
-      font-weight: 700;
-      color: var(--navy);
-    }
-    .route-box {
-      background: #F8FAFC;
-      border: 1px solid #CBD5E1;
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-family: Consolas, monospace;
-      font-size: 12.5px;
-      color: var(--brand);
-      word-break: break-all;
-    }
-    .step-body {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .step-body ul {
-      padding-left: 18px;
-      font-size: 14.5px;
-      color: #1E293B;
-    }
-    .step-body li { margin-bottom: 5px; }
-    .copy-snippet {
-      background: #FFFBEB;
-      border: 1px solid #FDE68A;
-      border-radius: 8px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .copy-snippet-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 700;
-      color: #92400E;
-    }
-    .copy-snippet-text {
-      font-family: Consolas, monospace;
-      font-size: 13px;
-      color: #0F172A;
-      background: #fff;
-      padding: 6px 8px;
-      border-radius: 5px;
-      border: 1px solid #FCD34D;
-    }
-    .step-db {
-      background: #F8FAFC;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 13px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .step-db-title {
-      font-weight: 700;
-      font-size: 12.5px;
-      color: var(--slate);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-    code {
-      font-family: Consolas, monospace;
-      font-size: 12.5px;
-      background: #E2E8F0;
-      padding: 1px 5px;
-      border-radius: 4px;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #FFFFFF;
       color: #0F172A;
     }
-    .state-badge {
-      display: inline-block;
-      font-family: Consolas, monospace;
-      font-weight: 700;
-      font-size: 12px;
-      padding: 1px 7px;
-      border-radius: 5px;
-      background: #ECFDF5;
-      color: #047857;
-      border: 1px solid #6EE7B7;
-    }
-    .state-badge.warn {
-      background: #FEF2F2;
-      color: #B91C1C;
-      border-color: #FCA5A5;
-    }
-    @media (max-width: 1150px) {
-      .accounts-grid { grid-template-columns: repeat(2, 1fr); }
-      .step-card { grid-template-columns: 1fr; }
-    }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #FFF7ED; }
+    ::-webkit-scrollbar-thumb { background: #FDBA74; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #EA580C; }
+    dialog::backdrop { background: rgba(15, 23, 42, 0.35); }
   </style>
 </head>
-<body>
+<body class="min-h-dvh bg-white text-slate-900">
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-md px-4 py-3 rounded-xl shadow-lg border bg-orange-600 border-orange-700 text-white text-sm font-medium"></div>
 
-<header>
-  <div class="brand-title">
-    <span class="brand-badge">BRANDHUB DEMO</span>
-    <div>
-      <h1>Bảng Điều Khiển & Sơ Đồ Luồng Thuyết Trình Demo (5 Chặng - 15 Bước)</h1>
-      <p>Agency: <b>FPT Smart Ads Agency</b> (<code>359a1839-18c7-48e2-8a68-f5f68c3375b6</code>) · Workspace: <b>FPT University x FPT Smart Ads</b> (<code>b47477c4-13ad-44ff-8c49-f73f1837461b</code>)</p>
-    </div>
-  </div>
-  <div class="toolbar">
-    <div class="env-box">
-      <span>Môi trường:</span>
-      <button class="btn btn-primary" id="presetLocalBtn" onclick="setEnvPreset('http://localhost:5173')">Local :5173</button>
-      <button class="btn btn-outline" id="presetProdBtn" onclick="setEnvPreset('https://brandhub.id.vn')" style="background:#0F172A;color:#F8FAFC;border-color:#475569">Prod: brandhub.id.vn</button>
-      <input type="text" id="baseUrlInput" value="http://localhost:5173" oninput="updateAllLinks()" />
-      <button class="btn btn-copy" onclick="copyText('Password123', this)">Pass: Password123</button>
-    </div>
-    <div class="timer-box">
-      <span class="timer-display" id="timerDisplay">00:00</span>
-      <button class="btn btn-primary" onclick="toggleTimer()" id="timerBtn">Bắt đầu bấm giờ</button>
-      <button class="btn btn-outline" onclick="resetTimer()">Đặt lại</button>
-    </div>
-  </div>
-</header>
-
-<div class="container">
-
-  <!-- 0. SELENIUM DIRECTOR CONSOLE BAR -->
-  <div class="selenium-bar">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-      <div>
-        <div style="font-size:17px;font-weight:800;color:#38BDF8;display:flex;align-items:center;gap:8px">
-          <span>BẢNG ĐIỀU KHIỂN SELENIUM LIVE MONITOR (DIRECTOR CONSOLE)</span>
-          <span style="font-size:12px;background:#065F46;color:#A7F3D0;padding:2px 8px;border-radius:99px">Chế độ: Gõ từng cụm từ · Điền tuần tự · Tự bấm Submit</span>
-        </div>
-        <div style="font-size:13px;color:#94A3B8;margin-top:2px">
-          Máy chủ điều khiển: <code>http://localhost:3999</code> (Chạy file <code>run_demo_monitor.bat</code> hoặc <code>selenium_demo_monitor.py</code>)
-        </div>
+  <!-- Safe Reset Confirmation Dialog -->
+  <dialog id="reset-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-md w-full text-slate-900">
+    <div class="space-y-4">
+      <div class="space-y-1.5">
+        <h3 class="text-base font-bold text-slate-900">Khôi phục toàn bộ dữ liệu gốc PostgreSQL &amp; MongoDB?</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Thao tác này sẽ chạy lại kịch bản chuẩn bị dữ liệu ban đầu, đặt lại bài trọng điểm Tuần 3 về trạng thái trước khi gửi duyệt v1 và xóa dấu tích tiến độ hiện tại.
+        </p>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <label style="font-size:12.5px;color:#CBD5E1">Mã Task Bài #1:</label>
-        <input type="text" id="activeTaskIdInput" value="c6453698-cf56-38c1-96d2-90ccdd985228" onchange="syncSeleniumConfig()" style="background:#1E293B;color:#FBBF24;border:1px solid #475569;border-radius:6px;padding:5px 9px;font-family:Consolas,monospace;font-size:12.5px;width:295px" />
-        <label style="font-size:12.5px;color:#CBD5E1">Tốc độ gõ:</label>
-        <select id="chunkSpeedSelect" onchange="syncSeleniumConfig()" style="background:#1E293B;color:#fff;border:1px solid #475569;border-radius:6px;padding:5px 9px;font-size:12.5px">
-          <option value="normal" selected>Tự nhiên (45-95ms / cụm)</option>
-          <option value="fast">Nhanh (25-55ms / cụm)</option>
-          <option value="slow">Chậm rõ chữ (85-160ms / cụm)</option>
-        </select>
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button onclick="document.getElementById('reset-dialog').close()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+          Hủy
+        </button>
+        <button onclick="confirmResetDemoData()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+          Đồng ý khôi phục
+        </button>
       </div>
     </div>
+  </dialog>
 
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-selenium" onclick="runSeleniumAction('INIT_ALL_5_ROLES', this)">Khởi tạo & Đăng nhập cả 5 Cửa sổ</button>
-      <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#CA3D0E" onclick="runSeleniumAction('INIT_ROLE:owner', this)">1 · Mở Owner</button>
-      <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#1D4ED8" onclick="runSeleniumAction('INIT_ROLE:manager', this)">2 · Mở Manager</button>
-      <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#047857" onclick="runSeleniumAction('INIT_ROLE:creator', this)">3 · Mở Creator</button>
-      <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#6D28D9" onclick="runSeleniumAction('INIT_ROLE:client', this)">4 · Mở Client</button>
-      <button class="btn btn-outline" style="background:#1E293B;color:#FFF;border-color:#B91C1C" onclick="runSeleniumAction('INIT_ROLE:admin', this)">5 · Mở Admin</button>
-    </div>
-
-    <div class="selenium-status" id="seleniumStatusBox">
-      <span id="seleniumStatusText">Trạng thái Selenium: Sẵn sàng điều khiển (Mặc định: http://localhost:5173, đổi sang https://brandhub.id.vn bằng nút trên thanh công cụ).</span>
-      <span id="seleniumActiveRoles" style="color:#38BDF8;font-size:12px"></span>
-    </div>
-  </div>
-
-  <!-- 1. 5 Chrome Profiles / Roles -->
-  <div class="section-card">
-    <div class="section-title">
-      <span>1. Năm Cửa Sổ Trình Duyệt Mở Sẵn (6 Vai Trò Chuẩn: Guest, Owner, Manager, Creator, Client, Admin)</span>
-      <span style="font-size:13px;color:var(--slate);font-weight:500">Mật khẩu chung: <code>Password123</code> · Không bấm tab X/Twitter · Không cuộn xuống footer có chữ Zalo</span>
-    </div>
-    <div class="accounts-grid">
-      <div class="acc-card owner">
-        <span class="role-pill owner">Cửa sổ 1 · Owner</span>
-        <div class="acc-name">Lê Trí Trung</div>
-        <div style="font-size:12.5px;color:var(--slate)">Giám đốc FPT Smart Ads Agency</div>
-        <div class="acc-email">
-          <span>user177@demo.brandhub.test</span>
-          <button class="btn btn-copy" onclick="copyText('user177@demo.brandhub.test', this)">Copy</button>
-        </div>
-      </div>
-      <div class="acc-card manager">
-        <span class="role-pill manager">Cửa sổ 2 · Manager</span>
-        <div class="acc-name">Nguyễn Thành Lộc</div>
-        <div style="font-size:12.5px;color:var(--slate)">Quản lý Chiến dịch Đại học FPT</div>
-        <div class="acc-email">
-          <span>user1@demo.brandhub.test</span>
-          <button class="btn btn-copy" onclick="copyText('user1@demo.brandhub.test', this)">Copy</button>
-        </div>
-      </div>
-      <div class="acc-card creator">
-        <span class="role-pill creator">Cửa sổ 3 · Creator</span>
-        <div class="acc-name">Nguyễn Chơn Phước</div>
-        <div style="font-size:12.5px;color:var(--slate)">Chuyên viên Sáng tạo Nội dung</div>
-        <div class="acc-email">
-          <span>user13@demo.brandhub.test</span>
-          <button class="btn btn-copy" onclick="copyText('user13@demo.brandhub.test', this)">Copy</button>
-        </div>
-      </div>
-      <div class="acc-card client">
-        <span class="role-pill client">Cửa sổ 4 · Client</span>
-        <div class="acc-name">Nguyễn Minh Tuấn</div>
-        <div style="font-size:12.5px;color:var(--slate)">Đại diện Thương hiệu Đại học FPT</div>
-        <div class="acc-email">
-          <span>user59@demo.brandhub.test</span>
-          <button class="btn btn-copy" onclick="copyText('user59@demo.brandhub.test', this)">Copy</button>
-        </div>
-      </div>
-      <div class="acc-card admin">
-        <span class="role-pill admin">Cửa sổ 5 · Admin</span>
-        <div class="acc-name">Hà Văn Ân</div>
-        <div style="font-size:12.5px;color:var(--slate)">Quản trị viên Hệ thống BrandHub</div>
-        <div class="acc-email">
-          <span>admin@demo.brandhub.test</span>
-          <button class="btn btn-copy" onclick="copyText('admin@demo.brandhub.test', this)">Copy</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. Visual Flow Diagrams Switcher + Swimlane Matrix -->
-  <div class="section-card">
-    <div class="section-title">
-      <span>2. Sơ Đồ Luồng Trực Quan (3 Chế Độ Xem: Chuyển Cửa Sổ Swimlane · Tuần Tự Snake Flow · 5 Chặng)</span>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-primary" id="tabBtn1" onclick="switchDiagram(1)">1. Sơ đồ Chuyển Cửa Sổ (Swimlane B1→B15)</button>
-        <button class="btn btn-outline" id="tabBtn2" onclick="switchDiagram(2)">2. Sơ đồ Tuần Tự 15 Bước (Snake Flow)</button>
-        <button class="btn btn-outline" id="tabBtn3" onclick="switchDiagram(3)">3. Sơ đồ 5 Chặng theo Cột</button>
-        <button class="btn btn-outline" id="tabBtn4" onclick="switchDiagram(4)">4. Bảng Ma Trận Bấm Nhanh</button>
-      </div>
-    </div>
-
-    <div id="diagView1" style="text-align:center">
-      <img src="../01_slide_deck/assets/diagrams/d21_demo_handoff.png" onerror="this.src='/diagrams/d21_demo_handoff.png'" alt="Sơ đồ Swimlane Chuyển Giao Màn Hình B1-B15" style="width:100%;max-width:1420px;border:1.5px solid var(--border);border-radius:12px" />
-    </div>
-    <div id="diagView2" style="display:none;text-align:center">
-      <img src="../01_slide_deck/assets/diagrams/d21_demo_swimlane.png" onerror="this.src='/diagrams/d21_demo_swimlane.png'" alt="Sơ đồ Luồng Tuần Tự 15 Bước Snake Flow" style="width:100%;max-width:1420px;border:1.5px solid var(--border);border-radius:12px" />
-    </div>
-    <div id="diagView3" style="display:none;text-align:center">
-      <img src="../01_slide_deck/assets/diagrams/d21_demo.png" onerror="this.src='/diagrams/d21_demo.png'" alt="Sơ đồ 5 Chặng 15 Bước" style="width:100%;max-width:1420px;border:1.5px solid var(--border);border-radius:12px" />
-    </div>
-    <div id="diagView4" style="display:none">
-    <table class="swimlane-table">
-      <thead>
-        <tr>
-          <th>Vai trò / Cửa sổ</th>
-          <th>Chặng 1 (00:00-04:00)<br>Thiết lập & Chiến dịch</th>
-          <th>Chặng 2 (04:00-08:30)<br>Sáng tạo AI & An toàn</th>
-          <th>Chặng 3 (08:30-13:00)<br>Duyệt 2 Cấp & Version Diff</th>
-          <th>Chặng 4 (13:00-16:30)<br>Xuất bản Đa nền tảng</th>
-          <th>Chặng 5 (16:30-20:00)<br>VietQR SePay & Admin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="lane-role-cell"><span class="role-pill owner">1 · Owner</span><br><small>Lê Trí Trung (FPT Smart Ads)</small></td>
-          <td>
-            <a href="#step-B1" class="mini-step owner">
-              <div class="ms-top"><span>B1</span><span>00:00</span></div>
-              <div class="ms-title">Giới thiệu Agency & Gói mẫu 18M</div>
-              <span class="ms-state">TEMPLATE ACTIVE</span>
-            </a>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <a href="#step-B14" class="mini-step owner">
-              <div class="ms-top"><span>B14</span><span>16:30</span></div>
-              <div class="ms-title">Quét VietQR SePay nâng gói Plus</div>
-              <span class="ms-state">BASIC → PLUS (FULFILLED)</span>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td class="lane-role-cell"><span class="role-pill manager">2 · Manager</span><br><small>Nguyễn Thành Lộc</small></td>
-          <td>
-            <a href="#step-B3" class="mini-step manager">
-              <div class="ms-top"><span>B3</span><span>02:00</span></div>
-              <div class="ms-title">Bấm "Triển khai chiến dịch"</div>
-              <span class="ms-state">APPROVED → IN_PROGRESS</span>
-            </a>
-            <a href="#step-B4" class="mini-step manager">
-              <div class="ms-top"><span>B4</span><span>03:10</span></div>
-              <div class="ms-title">Giao việc Creator + Bật duyệt 2 cấp</div>
-              <span class="ms-state">TASK: TODO</span>
-            </a>
-          </td>
-          <td></td>
-          <td>
-            <a href="#step-B8" class="mini-step manager">
-              <div class="ms-top"><span>B8</span><span>08:30</span></div>
-              <div class="ms-title">Duyệt nội bộ Vòng 1</div>
-              <span class="ms-state">STEP: MANAGER → CLIENT</span>
-            </a>
-            <a href="#step-B11" class="mini-step manager">
-              <div class="ms-top"><span>B11a</span><span>12:00</span></div>
-              <div class="ms-title">Duyệt nội bộ Vòng 2 (bản v2)</div>
-              <span class="ms-state">STEP: CLIENT</span>
-            </a>
-          </td>
-          <td>
-            <a href="#step-B12" class="mini-step manager">
-              <div class="ms-top"><span>B12</span><span>13:00</span></div>
-              <div class="ms-title">Kiểm tra 4 kênh MXH Đại học FPT</div>
-              <span class="ms-state">4 PLATFORMS ACTIVE</span>
-            </a>
-            <a href="#step-B13" class="mini-step manager">
-              <div class="ms-top"><span>B13</span><span>13:45</span></div>
-              <div class="ms-title">Đăng ngay 1 kênh (Facebook) + SSE</div>
-              <span class="ms-state">PUBLISHED</span>
-            </a>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="lane-role-cell"><span class="role-pill creator">3 · Creator</span><br><small>Nguyễn Chơn Phước</small></td>
-          <td></td>
-          <td>
-            <a href="#step-B5" class="mini-step creator">
-              <div class="ms-top"><span>B5</span><span>04:00</span></div>
-              <div class="ms-title">Bắt đầu làm & Xem Brand Vault</div>
-              <span class="ms-state">TASK: IN_PROGRESS</span>
-            </a>
-            <a href="#step-B6" class="mini-step creator">
-              <div class="ms-top"><span>B6</span><span>05:00</span></div>
-              <div class="ms-title">AI tạo 3 phương án Caption</div>
-              <span class="ms-state">POST DRAFT v1</span>
-            </a>
-            <a href="#step-B7" class="mini-step creator">
-              <div class="ms-top"><span>B7</span><span>06:45</span></div>
-              <div class="ms-title">Kiểm tra tuân thủ & Nộp duyệt</div>
-              <span class="ms-state">BLOCKED → PASSED</span>
-            </a>
-          </td>
-          <td>
-            <a href="#step-B10" class="mini-step creator">
-              <div class="ms-top"><span>B10</span><span>10:45</span></div>
-              <div class="ms-title">Sửa bản v2 & So sánh Version Diff</div>
-              <span class="ms-state">v1 vs v2 → ROUND 2</span>
-            </a>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="lane-role-cell"><span class="role-pill client">4 · Client</span><br><small>Nguyễn Minh Tuấn (Đại học FPT)</small></td>
-          <td>
-            <a href="#step-B2" class="mini-step client">
-              <div class="ms-top"><span>B2</span><span>01:00</span></div>
-              <div class="ms-title">Đàm phán & Chốt Gói dịch vụ</div>
-              <span class="ms-state">PACKAGE: APPROVED</span>
-            </a>
-          </td>
-          <td></td>
-          <td>
-            <a href="#step-B9" class="mini-step client">
-              <div class="ms-top"><span>B9</span><span>09:30</span></div>
-              <div class="ms-title">Từ chối Vòng 1 kèm lý do</div>
-              <span class="ms-state">REJECT → DRAFT</span>
-            </a>
-            <a href="#step-B11" class="mini-step client">
-              <div class="ms-top"><span>B11b</span><span>12:20</span></div>
-              <div class="ms-title">Phê duyệt chính thức bản v2</div>
-              <span class="ms-state">POST: APPROVED</span>
-            </a>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="lane-role-cell"><span class="role-pill admin">5 · Admin</span><br><small>Hà Văn Ân</small></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <a href="#step-B15" class="mini-step admin">
-              <div class="ms-top"><span>B15</span><span>18:15</span></div>
-              <div class="ms-title">Doanh thu MRR & Hàng đợi Kiểm duyệt</div>
-              <span class="ms-state">REVENUE + MODERATION</span>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- 3. Detailed Step-by-Step Cards -->
-  <div id="stepsContainer" class="stage-block"></div>
-
-</div>
-
-<script>
-const WS_ID = 'b47477c4-13ad-44ff-8c49-f73f1837461b';
-const AGENCY_ID = '359a1839-18c7-48e2-8a68-f5f68c3375b6';
-
-const STAGES = [
-  {
-    title: 'CHẶNG 1: THIẾT LẬP KHÔNG GIAN LÀM VIỆC, GÓI DỊCH VỤ & TRIỂN KHAI CHIẾN DỊCH',
-    time: '00:00 - 04:00 (4 phút) · FR 3.4 & FR 3.5',
-    steps: [
-      {
-        id: 'B1',
-        time: '00:00 - 00:55',
-        role: 'owner',
-        roleLabel: 'Cửa sổ 1 · Owner (Lê Trí Trung)',
-        title: 'Giới thiệu FPT Smart Ads Agency & Danh mục Gói dịch vụ mẫu',
-        route: `/agency/${AGENCY_ID}/media-packages`,
-        actions: [
-          'Mở trang Gói dịch vụ của <b>FPT Smart Ads Agency</b>.',
-          'Trình bày gói mẫu <b>"Gói Truyền thông Tuyển sinh Vi mạch & AI Đại học FPT 2026"</b> (<code>18.000.000đ - 6 tuần</code>) gồm 3 hạng mục bàn giao chuẩn trên Facebook, Instagram, TikTok và Threads.',
-          'Nhấn mạnh: Chỉ giữ các gói thuộc 4 nền tảng chuẩn, đã ẩn các gói Livestream ngoài phạm vi.'
-        ],
-        snippets: [],
-        api: 'GET /api/v1/agencies/{agencyId}/media-package-custom',
-        dbBefore: 'Postgres <code>media_packages</code>: <code>id = d7e00000-0000-4000-8000-000000000200</code>',
-        dbAfter: 'Gói dịch vụ sẵn sàng để <code>Client</code> (Nguyễn Minh Tuấn) chọn vào Workspace.'
-      },
-      {
-        id: 'B2',
-        time: '00:55 - 01:55',
-        role: 'client',
-        roleLabel: 'Cửa sổ 4 · Client (Nguyễn Minh Tuấn) + Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Xem lịch sử đàm phán & Chốt Gói dịch vụ trong Workspace',
-        route: `/workspaces/${WS_ID}/media-package`,
-        actions: [
-          'Mở màn hình Gói dịch vụ của Workspace <b>FPT University x FPT Smart Ads</b>.',
-          'Chỉ vào lịch sử đàm phán 3 phiên bản điều khoản giữa <code>Client</code> (Nguyễn Minh Tuấn) và <code>Manager</code> (Nguyễn Thành Lộc): <code>20M (v1)</code> → <code>17,5M (v2)</code> → chốt <code>18M (v3)</code>.',
-          'Hai bên xác nhận trạng thái <span class="state-badge">APPROVED</span>.'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/media-package/approve',
-        dbBefore: 'Postgres <code>workspace_media_packages</code>: <code>terms_version = 2</code>',
-        dbAfter: 'Postgres <code>workspace_media_packages</code>: <code>negotiation_status = APPROVED</code>, <code>terms_version = 3</code>.'
-      },
-      {
-        id: 'B3',
-        time: '01:55 - 03:00',
-        role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Bấm "Triển khai chiến dịch" để tự động sinh Công việc',
-        route: `/workspaces/${WS_ID}/campaigns`,
-        actions: [
-          'Mở chiến dịch <b>"Chiến dịch Tuyển sinh Ngành Vi mạch Bán dẫn & Sự kiện AI4VN 2026"</b> đang ở trạng thái <span class="state-badge">APPROVED</span> (cả Agency và Client đã duyệt ở <code>contentVersion = 1</code>).',
-          'Bấm nút <b>"Triển khai chiến dịch" (Deploy)</b> ngay trên sân khấu.',
-          'Chờ 5 giây để tiến trình ngầm hoàn tất và chuyển chiến dịch sang <span class="state-badge">IN_PROGRESS</span>.'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/campaigns/{campaignId}/deploy',
-        dbBefore: 'Postgres <code>media_campaigns</code>: <code>status = APPROVED</code>, <code>content_version = 1</code>',
-        dbAfter: 'Postgres <code>campaign_deployments</code>: <code>SUCCEEDED</code> · <code>media_campaigns.status = IN_PROGRESS</code> · Mongo <code>tasks</code> sẵn sàng.'
-      },
-      {
-        id: 'B4',
-        time: '03:00 - 04:00',
-        role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Giao việc cho Creator & Bật công tắc Duyệt 2 cấp',
-        route: `/workspaces/${WS_ID}/tasks`,
-        actions: [
-          'Chuyển sang màn hình <b>Bảng công việc (Kanban)</b>.',
-          'Mở công việc <b>"[Bài #1] Mở đăng ký học bổng ngành Thiết kế Vi mạch & AI tại Đại học FPT"</b>.',
-          'Giao cho <code>Creator</code> (<b>Nguyễn Chơn Phước</b> - <code>user13@demo.brandhub.test</code>) và bật công tắc <b>"Yêu cầu Khách hàng phê duyệt" (<code>requiresClientApproval = true</code>)</b>.'
-        ],
-        snippets: [],
-        api: 'PATCH /api/v1/workspaces/{workspaceId}/tasks/{taskId}',
-        dbBefore: 'Mongo <code>tasks</code>: <code>status = TODO</code>',
-        dbAfter: 'Mongo <code>tasks</code>: <code>assigneeId = 56034372...</code>, <code>requiresClientApproval = true</code>.'
-      }
-    ]
-  },
-  {
-    title: 'CHẶNG 2: SÁNG TẠO NỘI DUNG VỚI AI & KIỂM TRA TUÂN THỦ CỘNG ĐỒNG',
-    time: '04:00 - 08:30 (4,5 phút) · FR 3.6 & FR 3.7',
-    steps: [
-      {
-        id: 'B5',
-        time: '04:00 - 04:45',
-        role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
-        title: 'Bắt đầu làm việc & Tra cứu Kho tri thức thương hiệu Đại học FPT',
-        route: `/workspaces/${WS_ID}/tasks`,
-        actions: [
-          'Tại Cửa sổ 3 (<code>Creator</code> - Nguyễn Chơn Phước), mở công việc vừa được giao, bấm <b>"Bắt đầu làm"</b> (chuyển từ <code>TODO</code> sang <span class="state-badge">IN_PROGRESS</span>).',
-          'Mở <b>Soạn thảo Nội dung (Content Studio)</b> và kiểm tra hồ sơ thương hiệu <b>Đại học FPT (Tập đoàn FPT)</b> trong Brand Vault.'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/start',
-        dbBefore: 'Mongo <code>tasks</code>: <code>status = TODO</code>',
-        dbAfter: 'Mongo <code>tasks</code>: <code>status = IN_PROGRESS</code>, ghi nhận <code>firstStartedAt</code>.'
-      },
-      {
-        id: 'B6',
-        time: '04:45 - 06:30',
-        role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
-        title: 'Gọi AI tạo 3 phương án Caption đa góc tiếp cận',
-        route: `/workspaces/${WS_ID}/content-writing`,
-        actions: [
-          'Mở công cụ <b>AI tạo caption</b>, gõ tuần tự chủ đề học bổng Nguyễn Văn Đạo ngành Thiết kế Vi mạch & AI, chọn nền tảng <b>Facebook</b> và giọng điệu <b>Thân thiện (friendly)</b>.',
-          'Trình bày 3 phương án AI sinh ra: <code>HOOK_DRIVEN</code>, <code>STORYTELLING</code>, <code>DIRECT_CTA</code>.',
-          'Chọn 1 phương án đưa vào trình soạn thảo và xem trước giao diện thực tế (<b>Chỉ bấm tab Facebook / Instagram, không bấm X/Twitter</b>).'
-        ],
-        snippets: [
-          {
-            label: 'Chủ đề nhập vào AI tạo Caption (Bấm để Copy)',
-            text: 'Giới thiệu chương trình đào tạo ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, hưởng ứng mục tiêu 50.000 kỹ sư bán dẫn của Việt Nam đến năm 2030'
-          }
-        ],
-        api: 'POST /api/v1/ai/captions (business-service → ai-service :8082)',
-        dbBefore: 'Chưa có bản nháp bài viết hoặc đang ở <code>DRAFT</code> rỗng',
-        dbAfter: 'Mongo <code>posts</code>: tạo bản ghi <code>status = DRAFT</code>, <code>contentVersion = 1</code> + lưu snapshot <code>v1</code> vào <code>post_versions</code>.'
-      },
-      {
-        id: 'B7',
-        time: '06:30 - 08:30',
-        role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
-        title: 'Kiểm tra an toàn nội dung (BLOCKED → PASSED) & Nộp duyệt',
-        route: `/workspaces/${WS_ID}/tasks`,
-        actions: [
-          '<b>Thử nghiệm chặn vi phạm:</b> Dán câu thử vi phạm bên dưới vào trình soạn thảo → Bấm <b>"Kiểm tra tuân thủ"</b>. Hệ thống trả về <span class="state-badge warn">BLOCKED</span> và khóa nút nộp duyệt.',
-          '<b>Sửa lại chuẩn:</b> Thay bằng bài đăng chuẩn v1 giới thiệu ngành Thiết kế Vi mạch và Trí tuệ nhân tạo tại Đại học FPT, bấm kiểm tra lại → Hệ thống báo <span class="state-badge">PASSED</span>.',
-          'Bấm <b>"Nộp duyệt" (Submit for Review)</b>.'
-        ],
-        snippets: [
-          {
-            label: 'Câu thử vi phạm để hệ thống chặn BLOCKED (Bấm để Copy)',
-            text: 'Bài viết chứa nội dung kích động bạo lực và ngôn từ thù ghét vi phạm quy định an toàn thông tin.'
-          }
-        ],
-        api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/compliance-check → POST .../submit',
-        dbBefore: 'Mongo <code>tasks</code>: <code>IN_PROGRESS</code> · <code>posts</code>: <code>DRAFT</code>',
-        dbAfter: 'Postgres <code>content_moderation_reviews</code> ghi nhận lịch sử kiểm tra · Mongo <code>tasks</code>: <code>status = IN_REVIEW</code>, <code>reviewStep = MANAGER</code> · <code>posts</code>: <code>PENDING_APPROVAL</code>.'
-      }
-    ]
-  },
-  {
-    title: 'CHẶNG 3: PHÊ DUYỆT HAI CẤP (MANAGER → CLIENT) & ĐỐI CHIẾU LỊCH SỬ PHIÊN BẢN TỪNG TỪ',
-    time: '08:30 - 13:00 (4,5 phút) · FR 3.6',
-    steps: [
-      {
-        id: 'B8',
-        time: '08:30 - 09:30',
-        role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Phê duyệt Tầng 1 (Nội bộ FPT Smart Ads Agency)',
-        route: `/workspaces/${WS_ID}/task-approvals`,
-        actions: [
-          'Tại Cửa sổ 2 (<code>Manager</code> - Nguyễn Thành Lộc), mở màn hình <b>Phê duyệt công việc</b>.',
-          'Xem bài viết đang ở bước <code>reviewStep = MANAGER</code>, kiểm tra nội dung và bấm <b>"Phê duyệt"</b> để chuyển bài sang hàng đợi của Khách hàng (<code>CLIENT</code>).'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/approve',
-        dbBefore: 'Mongo <code>tasks</code>: <code>status = IN_REVIEW</code>, <code>reviewStep = MANAGER</code>',
-        dbAfter: 'Mongo <code>tasks</code>: <code>status = IN_REVIEW</code>, <code>reviewStep = CLIENT</code>.'
-      },
-      {
-        id: 'B9',
-        time: '09:30 - 10:30',
-        role: 'client',
-        roleLabel: 'Cửa sổ 4 · Client (Nguyễn Minh Tuấn)',
-        title: 'Đại diện Đại học FPT xem trước & Từ chối kèm lý do bắt buộc',
-        route: `/workspaces/${WS_ID}/task-approvals`,
-        actions: [
-          'Tại Cửa sổ 4 (<code>Client</code> - Nguyễn Minh Tuấn), mở bài viết vừa chuyển đến ở bước <code>CLIENT</code>.',
-          'Xem bản mô phỏng giao diện mạng xã hội, bấm <b>"Từ chối / Yêu cầu chỉnh sửa"</b> và điền lý do bổ sung học bổng Nguyễn Văn Đạo và kỳ thực tập tại FPT Software.'
-        ],
-        snippets: [
-          {
-            label: 'Lý do Client từ chối bài viết ở Vòng 1 (Bấm để Copy)',
-            text: 'Bài viết đã rõ ý chính. Nhờ bạn bổ sung thêm thông tin học bổng Nguyễn Văn Đạo từ 50% đến 100% và kỳ thực tập thực tế tại FPT Software từ năm thứ 3.'
-          }
-        ],
-        api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/reject',
-        dbBefore: 'Mongo <code>tasks</code>: <code>IN_REVIEW (CLIENT)</code> · <code>posts</code>: <code>PENDING_APPROVAL</code>',
-        dbAfter: 'Mongo <code>tasks</code>: trả về <code>IN_PROGRESS</code>, lưu lý do vào lịch sử phê duyệt · <code>posts</code>: trả về <code>DRAFT</code>.'
-      },
-      {
-        id: 'B10',
-        time: '10:30 - 11:50',
-        role: 'creator',
-        roleLabel: 'Cửa sổ 3 · Creator (Nguyễn Chơn Phước)',
-        title: 'Chỉnh sửa lên Phiên bản v2, So sánh từng từ (Version Diff) & Nộp lại',
-        route: `/workspaces/${WS_ID}/tasks`,
-        actions: [
-          'Tại Cửa sổ 3 (<code>Creator</code> - Nguyễn Chơn Phước), xem hộp thông báo lý do từ chối của <code>Client</code>.',
-          'Bổ sung câu thông tin học bổng Nguyễn Văn Đạo (50% - 100%) và thực tập tại FPT Software từ năm thứ 3, bấm <b>Lưu</b> (tự động nâng <code>contentVersion = 2</code>).',
-          'Mở <b>Lịch sử phiên bản (Version History)</b> để Hội đồng thấy rõ phần <b>so sánh từng từ (Diff)</b> giữa <code>v1</code> và <code>v2</code>, sau đó bấm <b>"Nộp duyệt lại"</b> (Vòng duyệt 2).'
-        ],
-        snippets: [
-          {
-            label: 'Đoạn văn bổ sung vào bản v2 theo góp ý của Client (Bấm để Copy)',
-            text: 'Sinh viên có cơ hội nhận học bổng Nguyễn Văn Đạo từ 50% đến 100% học phí và tham gia thực tập hưởng lương tại FPT Software ngay từ năm thứ 3.'
-          }
-        ],
-        api: 'PATCH /api/v1/workspaces/{workspaceId}/posts/{postId} → POST .../submit',
-        dbBefore: 'Mongo <code>posts</code>: <code>contentVersion = 1</code>, <code>status = DRAFT</code>',
-        dbAfter: 'Mongo <code>posts</code>: <code>contentVersion = 2</code> · <code>post_versions</code> thêm bản chụp <code>{postId}:2</code> · <code>tasks</code>: <code>IN_REVIEW</code> (<code>approvalRound = 2</code>).'
-      },
-      {
-        id: 'B11',
-        time: '11:50 - 13:00',
-        role: 'client',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc) → Cửa sổ 4 · Client (Nguyễn Minh Tuấn)',
-        title: 'Phê duyệt hoàn tất 2 cấp ở Vòng 2 (Mở khóa Xuất bản)',
-        route: `/workspaces/${WS_ID}/task-approvals`,
-        actions: [
-          '1. Bên Cửa sổ 2 (<code>Manager</code> - Nguyễn Thành Lộc): Bấm <b>"Phê duyệt"</b> bản <code>v2</code> → chuyển <code>reviewStep</code> sang <code>CLIENT</code>.',
-          '2. Bên Cửa sổ 4 (<code>Client</code> - Nguyễn Minh Tuấn): Kiểm tra bản <code>v2</code> đã bổ sung thông tin AI4VN & OJT, bấm <b>"Phê duyệt chính thức"</b>.'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/tasks/{taskId}/approve (x2)',
-        dbBefore: 'Mongo <code>tasks</code>: <code>IN_REVIEW</code> · <code>posts</code>: <code>PENDING_APPROVAL</code>',
-        dbAfter: 'Mongo <code>tasks</code>: <span class="state-badge">FINISHED</span> · <code>posts</code>: <span class="state-badge">APPROVED</span>.'
-      }
-    ]
-  },
-  {
-    title: 'CHẶNG 4: XUẤT BẢN LÊN MẠNG XÃ HỘI THẬT QUA HÀNG ĐỢI RABBITMQ & SSE',
-    time: '13:00 - 16:30 (3,5 phút) · FR 3.8',
-    steps: [
-      {
-        id: 'B12',
-        time: '13:00 - 13:45',
-        role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Kiểm tra 4 Tài khoản Mạng xã hội Đại học FPT đã kết nối OAuth 2.0',
-        route: `/workspaces/${WS_ID}/social-accounts`,
-        actions: [
-          'Mở màn hình <b>Tài khoản mạng xã hội</b> của Workspace.',
-          'Trình bày 4 nền tảng chuẩn đang ở trạng thái <span class="state-badge">CONNECTED / ACTIVE</span>: <b>Facebook</b> (<code>FPT University Official</code>), <b>Instagram</b> (<code>fptuniversity.official</code>), <b>TikTok</b> (<code>fptuniversity.vn</code>), <b>Threads</b> (<code>fptuniversity.official</code>).'
-        ],
-        snippets: [],
-        api: 'GET /api/v1/social/workspaces/{workspaceId}/accounts',
-        dbBefore: 'Mongo <code>social_accounts</code>: 4 bản ghi <code>ACTIVE</code> mã hóa token AES-128-ECB',
-        dbAfter: 'Sẵn sàng xuất bản bài viết đã được <code>Client</code> phê duyệt.'
-      },
-      {
-        id: 'B13',
-        time: '13:45 - 16:30',
-        role: 'manager',
-        roleLabel: 'Cửa sổ 2 · Manager (Nguyễn Thành Lộc)',
-        title: 'Đăng ngay lên 1 nền tảng (Facebook) & Xem Dashboard / Lịch nội dung',
-        route: `/workspaces/${WS_ID}/publish`,
-        actions: [
-          'Chọn bài viết vừa được duyệt (<span class="state-badge">APPROVED</span>).',
-          '<b>Lưu ý kỹ thuật quan trọng:</b> Chỉ tích chọn <b>1 nền tảng duy nhất (Facebook)</b> rồi bấm <b>"Đăng ngay"</b> (do khóa chống trùng Redis <code>processingPostIds:{postId}</code> giữ theo mã bài).',
-          'Quan sát trạng thái cập nhật trực tiếp qua SSE: <code>PENDING</code> → <code>IN_PROGRESS</code> → <span class="state-badge">PUBLISHED</span>.',
-          'Mở tiếp <b>Bảng điều khiển xuất bản</b> (<code>/publish/dashboard</code>) và <b>Lịch nội dung</b> (<code>/calendar</code>).'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/workspaces/{workspaceId}/posts/{postId}/publish',
-        dbBefore: 'Mongo <code>posts</code>: <code>status = APPROVED</code>',
-        dbAfter: 'RabbitMQ <code>publish.exchange</code> → <code>publisher-service</code> gọi Graph API → Mongo <code>posts.status = PUBLISHED</code>.'
-      }
-    ]
-  },
-  {
-    title: 'CHẶNG 5: THANH TOÁN THUÊ BAO QUA VIETQR SEPAY & QUẢN TRỊ HỆ THỐNG (ADMIN)',
-    time: '16:30 - 20:00 (3,5 phút) · FR 3.9 & FR 3.10',
-    steps: [
-      {
-        id: 'B14',
-        time: '16:30 - 18:15',
-        role: 'owner',
-        roleLabel: 'Cửa sổ 1 · Owner (Lê Trí Trung)',
-        title: 'Nâng cấp gói thuê bao Plus bằng chuyển khoản VietQR SePay thật',
-        route: `/subscription/plans`,
-        actions: [
-          'Tại Cửa sổ 1 (<code>Owner</code> - Lê Trí Trung), mở trang <b>Gói cước thuê bao</b> của <code>FPT Smart Ads Agency</code> (đang ở gói <code>Basic</code>).',
-          'Bấm <b>"Nâng cấp gói Plus"</b> → Màn hình Checkout sinh mã <b>VietQR SePay</b> (<code>2.000 VNĐ</code>) kèm mã đơn hàng.',
-          'Dùng ứng dụng ngân hàng trên điện thoại quét mã chuyển khoản thật → Webhook SePay gọi về hệ thống qua tunnel, tự động kích hoạt gói <span class="state-badge">PLUS</span> ngay trên giao diện.'
-        ],
-        snippets: [],
-        api: 'POST /api/v1/billing/subscription-orders → POST /api/v1/billing/webhooks/sepay',
-        dbBefore: 'Postgres <code>billing_orders</code>: <code>PENDING</code> · <code>agency_subscriptions</code>: <code>BASIC</code>',
-        dbAfter: 'Postgres <code>billing_orders</code>: <span class="state-badge">FULFILLED</span> · <code>billing_payments</code>: <code>VERIFIED</code> · <code>agency_subscriptions</code>: <span class="state-badge">PLUS</span>.'
-      },
-      {
-        id: 'B15',
-        time: '18:15 - 20:00',
-        role: 'admin',
-        roleLabel: 'Cửa sổ 5 · Admin (Hà Văn Ân)',
-        title: 'Giám sát Doanh thu MRR/ARR & Hàng đợi Kiểm duyệt Nội dung',
-        route: `/admin?view=revenue`,
-        actions: [
-          '1. Tại Cửa sổ 5 (<code>Admin</code> - Hà Văn Ân), mở <b>Quản trị Doanh thu</b> (<code>/admin?view=revenue</code>): Kiểm tra biểu đồ MRR/ARR và đơn hàng SePay vừa đối soát thành công.',
-          '2. Chuyển sang <b>Hàng đợi Kiểm duyệt Nội dung</b> (<code>/admin?view=moderation</code>): Xem các bản ghi bài viết bị gắn cờ/chặn từ bước kiểm tra tuân thủ cộng đồng (FR 3.10.4).',
-          '3. Hoàn tất 20 phút Live Demo và nhường mic lại cho <b>Lê Trí Trung</b> tổng kết.'
-        ],
-        snippets: [],
-        api: 'GET /api/v1/admin/revenue/summary & GET /api/v1/admin/moderation/reviews',
-        dbBefore: 'Postgres <code>billing_payments</code> & <code>content_moderation_reviews</code>',
-        dbAfter: 'Hiển thị biểu đồ doanh thu MRR/ARR và danh sách bản ghi kiểm duyệt nội dung.'
-      }
-    ]
-  }
-];
-
-const SELENIUM_STEP_BUTTONS = {
-  B1: [
-    { label: 'Bước 1.1: Chuyển sang Cửa sổ 1 (Owner) & Mở danh mục Gói mẫu', actionId: 'B1_NAV', kind: 'nav' }
-  ],
-  B2: [
-    { label: 'Bước 2.1: Chuyển sang Cửa sổ 4 (Client) & Mở Gói dịch vụ trong Workspace', actionId: 'B2_NAV', kind: 'nav' }
-  ],
-  B3: [
-    { label: 'Bước 3.1: Mở Chiến dịch (Manager) & Làm nổi bật nút "Triển khai" (Tự bấm)', actionId: 'B3_NAV', kind: 'nav' }
-  ],
-  B4: [
-    { label: 'Bước 4.1: Mở Bảng công việc (Manager) để giao Bài #1 cho Creator', actionId: 'B4_NAV', kind: 'nav' }
-  ],
-  B5: [
-    { label: 'Bước 5.1: Chuyển sang Cửa sổ 3 (Creator) & Mở danh sách công việc', actionId: 'B5_NAV', kind: 'nav' }
-  ],
-  B6: [
-    { label: 'Bước 6.1: Mở màn hình Soạn thảo Nội dung của Bài #1 (Creator)', actionId: 'B6_NAV_EDITOR', kind: 'nav' },
-    { label: 'Bước 6.2: Mở hộp thoại AI → Gõ từng cụm Chủ đề → Chọn Mục tiêu (Dừng trước nút Tạo)', actionId: 'B6_SEQ_FILL_AI', kind: 'seq' }
-  ],
-  B7: [
-    { label: 'Bước 7.1: Gõ từng cụm câu thử vi phạm vào bài viết (Để bạn bấm Kiểm tra → BLOCKED)', actionId: 'B7_FILL_VIOLATION', kind: 'seq' },
-    { label: 'Bước 7.2: Xóa câu vi phạm & Gõ lại bản chuẩn v1 Đại học FPT (Để bạn bấm Kiểm tra → PASSED & Nộp duyệt)', actionId: 'B7_CLEAN_AND_RESTORE', kind: 'seq' }
-  ],
-  B8: [
-    { label: 'Bước 8.1: Chuyển sang Cửa sổ 2 (Manager), Mở bài chờ duyệt Tầng 1 (Tự bấm Phê duyệt)', actionId: 'B8_NAV_MANAGER_APPROVAL', kind: 'nav' }
-  ],
-  B9: [
-    { label: 'Bước 9.1: Chuyển sang Cửa sổ 4 (Client), Mở bài chờ duyệt Tầng 2', actionId: 'B9_NAV_CLIENT_APPROVAL', kind: 'nav' },
-    { label: 'Bước 9.2: Mở hộp Từ chối → Gõ từng cụm lý do vào #task-review-note (Dừng trước nút Xác nhận)', actionId: 'B9_SEQ_FILL_REJECT_REASON', kind: 'seq' }
-  ],
-  B10: [
-    { label: 'Bước 10.1: Chuyển về Cửa sổ 3 (Creator), Mở trình chỉnh sửa bài viết', actionId: 'B10_NAV_CREATOR_FIX', kind: 'nav' },
-    { label: 'Bước 10.2: Gõ từng cụm câu bổ sung Học bổng Nguyễn Văn Đạo & thực tập FPT Software lên bản v2', actionId: 'B10_SEQ_FILL_V2', kind: 'seq' }
-  ],
-  B11: [
-    { label: 'Bước 11.1: Mở Cửa sổ 2 (Manager) duyệt Vòng 2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_MANAGER_V2', kind: 'nav' },
-    { label: 'Bước 11.2: Mở Cửa sổ 4 (Client) phê duyệt chính thức bản v2 (Tự bấm Phê duyệt)', actionId: 'B11_NAV_CLIENT_V2', kind: 'nav' }
-  ],
-  B12: [
-    { label: 'Bước 12.1: Mở màn hình 4 Tài khoản Mạng xã hội đã kết nối (Manager)', actionId: 'B12_NAV_SOCIAL', kind: 'nav' }
-  ],
-  B13: [
-    { label: 'Bước 13.1: Mở trang Xuất bản (Manager), chỉ tích 1 kênh Facebook & Tự bấm Đăng ngay', actionId: 'B13_NAV_PUBLISH', kind: 'nav' },
-    { label: 'Bước 13.2: Mở Bảng điều khiển kết quả xuất bản (/publish/dashboard)', actionId: 'B13_NAV_DASHBOARD', kind: 'nav' }
-  ],
-  B14: [
-    { label: 'Bước 14.1: Chuyển sang Cửa sổ 1 (Owner), Mở trang Nâng cấp gói Plus qua VietQR SePay', actionId: 'B14_NAV_PLANS', kind: 'nav' }
-  ],
-  B15: [
-    { label: 'Bước 15.1: Chuyển sang Cửa sổ 5 (Admin), Mở Quản trị Doanh thu MRR/ARR', actionId: 'B15_NAV_ADMIN_REVENUE', kind: 'nav' },
-    { label: 'Bước 15.2: Chuyển sang Cửa sổ 5 (Admin), Mở Hàng đợi Kiểm duyệt Nội dung', actionId: 'B15_NAV_ADMIN_MODERATION', kind: 'nav' }
-  ]
-};
-
-function renderSteps() {
-  const base = document.getElementById('baseUrlInput').value.replace(/\/+$/, '');
-  const container = document.getElementById('stepsContainer');
-  container.innerHTML = STAGES.map(stage => `
-    <div class="stage-header">
-      <h2>${stage.title}</h2>
-      <span>${stage.time}</span>
-    </div>
-    <div class="steps-grid">
-      ${stage.steps.map(s => {
-        const fullUrl = base + s.route;
-        const selBtns = SELENIUM_STEP_BUTTONS[s.id] || [];
-        return `
-          <div class="step-card ${s.role}" id="step-${s.id}">
-            <div class="step-meta">
-              <div class="step-num-row">
-                <input type="checkbox" style="width:18px;height:18px;cursor:pointer" onchange="toggleDone('${s.id}', this.checked)" title="Đánh dấu đã chạy xong bước này" />
-                <span class="step-num">${s.id}</span>
-                <span class="step-time">${s.time}</span>
-              </div>
-              <span class="role-pill ${s.role}">${s.roleLabel}</span>
-              <div class="step-title">${s.title}</div>
-              <div class="route-box" data-route="${s.route}">${fullUrl}</div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <a href="${fullUrl}" target="_blank" class="btn btn-primary route-link" data-route="${s.route}">Mở tab mới ↗</a>
-                <button class="btn btn-copy" onclick="copyRoute('${s.route}', this)">Copy URL</button>
-              </div>
-            </div>
-            <div class="step-body">
-              <div class="seq-actions-box">
-                <div class="seq-actions-title">
-                  <span>Điều khiển Selenium Tuần Tự (Gõ từng cụm từ · Không tự bấm Submit)</span>
-                  <span>Bước ${s.id}</span>
-                </div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap">
-                  ${selBtns.map(b => `
-                    <button class="btn ${b.kind === 'seq' ? 'btn-selenium-seq' : 'btn-selenium'}" onclick="runSeleniumAction('${b.actionId}', this)">
-                      ${b.label}
-                    </button>
-                  `).join('')}
-                </div>
-              </div>
-              <ul>
-                ${s.actions.map(a => `<li>${a}</li>`).join('')}
-              </ul>
-              ${s.snippets.map(sn => `
-                <div class="copy-snippet">
-                  <div class="copy-snippet-header">
-                    <span>${sn.label}</span>
-                    <button class="btn btn-copy" onclick="copyText(${JSON.stringify(sn.text)}, this)">Copy văn bản</button>
-                  </div>
-                  <div class="copy-snippet-text">${sn.text}</div>
-                </div>
-              `).join('')}
-            </div>
-            <div class="step-db">
-              <div class="step-db-title">API & Trạng thái Dữ liệu (DB)</div>
-              <div><b>API:</b> <code>${s.api}</code></div>
-              <div><b>Trước:</b> ${s.dbBefore}</div>
-              <div><b>Sau:</b> ${s.dbAfter}</div>
+  <!-- Slim Stage-Ready Sticky Header -->
+  <header class="sticky top-0 z-30 bg-white border-b border-orange-200 shadow-sm">
+    <div class="max-w-[1600px] mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2.5">
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white font-extrabold text-sm shadow-sm">
+            BH
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm sm:text-base font-bold text-slate-900">
+                Điều Khiển Thuyết Trình SE08
+              </h1>
+              <span class="hidden xl:inline-flex px-2 py-0.5 text-[11px] font-semibold rounded-full bg-orange-50 text-orange-700 border border-orange-200">
+                ĐH FPT 2027 • 4 Tuần
+              </span>
             </div>
           </div>
-        `;
-      }).join('')}
+        </div>
+
+        <!-- View Mode Segmented Switch -->
+        <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 text-xs font-semibold">
+          <button id="mode-stage-btn" onclick="setViewMode('stage')" class="px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer">
+            Sân khấu (Gọn)
+          </button>
+          <button id="mode-detail-btn" onclick="setViewMode('detail')" class="px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Chi tiết (2 cột)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- 20-Min Stopwatch -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs tabular-nums">
+          <span class="font-bold text-slate-900" id="timer-display">00:00</span>
+          <span class="text-slate-400">/ 20:00</span>
+          <button onclick="toggleTimer()" id="timer-btn" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
+            Chạy
+          </button>
+          <button onclick="resetTimer()" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 rounded text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
+            00:00
+          </button>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-700">
+          <span id="conn-dot" class="w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse"></span>
+          <span id="conn-label" class="font-semibold text-orange-700">Đang kiểm tra</span>
+        </div>
+
+        <!-- Window Layout Controls (Split vs Maximize) -->
+        <div class="hidden sm:inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
+          <button id="win-split-btn" onclick="arrangeWindows('split')" title="Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="px-2.5 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Chia màn hình
+          </button>
+          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="Phóng to toàn màn hình các cửa sổ Chrome" class="px-2 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Phóng to
+          </button>
+        </div>
+
+        <button onclick="loginAllRoles()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 shadow-sm cursor-pointer">
+          Đăng nhập 5 Vai trò
+        </button>
+
+        <button onclick="document.getElementById('reset-dialog').showModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
+          Khôi phục DB
+        </button>
+      </div>
     </div>
-  `).join('');
-}
 
-const SELENIUM_SERVER = 'http://localhost:3999';
+    <!-- Compact 5-Role Strip -->
+    <div class="bg-orange-50/40 border-t border-orange-100">
+      <div class="max-w-[1600px] mx-auto px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto">
+        <div id="roles-bar" class="flex items-center gap-1.5 min-w-0"></div>
+        <div class="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
+          <span>Phím tắt:</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">Space</kbd>
+          <span>chạy tiếp</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">← / →</kbd>
+          <span>đổi bước</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">1-4</kbd>
+          <span>nút con</span>
+        </div>
+      </div>
+    </div>
 
-async function syncSeleniumConfig() {
-  const baseUrl = document.getElementById('baseUrlInput').value.replace(/\/+$/, '');
-  const activeTaskId = document.getElementById('activeTaskIdInput').value.trim();
-  const chunkSpeed = document.getElementById('chunkSpeedSelect').value;
-  try {
-    const res = await fetch(`${SELENIUM_SERVER}/api/config`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        base_url: baseUrl,
-        active_task_id: activeTaskId,
-        chunk_speed: chunkSpeed
-      })
+    <!-- Horizontal 15-Step Quick-Jump Rail (Stage Mode) -->
+    <div id="stage-rail-wrap" class="bg-white border-t border-slate-100">
+      <div id="stage-rail" class="max-w-[1600px] mx-auto px-4 py-2 flex items-center gap-1.5 overflow-x-auto"></div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="main-layout" class="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
+    <!-- Left Sidebar (Only visible in Detail 2-column mode) -->
+    <aside id="detail-sidebar" class="hidden lg:col-span-4 space-y-2">
+      <div class="flex items-center justify-between px-1 mb-1">
+        <h2 class="text-xs font-bold uppercase text-slate-600">Lộ trình 15 bước</h2>
+        <span id="step-counter" class="text-xs font-semibold text-orange-600 tabular-nums">Bước 1/15</span>
+      </div>
+      <div id="steps-list" class="space-y-1.5 max-h-[calc(100dvh-230px)] overflow-y-auto pr-1"></div>
+    </aside>
+
+    <!-- Active Step Controller -->
+    <section id="active-section" class="space-y-4">
+      <div id="step-detail" class="p-4 sm:p-5 rounded-2xl bg-white border border-orange-200 shadow-sm space-y-4"></div>
+      <div id="step-fields-wrap"></div>
+      <details class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm">
+        <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+          <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">1 chạm mở đúng vai trò</span>
+        </summary>
+        <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE = window.location.port === '3999' ? '' : 'http://localhost:3999';
+
+    const ROLES = [
+      { role: 'Owner', shortLabel: 'Trung', fullName: 'Lê Trí Trung', email: 'user177@demo.brandhub.test' },
+      { role: 'Manager', shortLabel: 'Lộc', fullName: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test' },
+      { role: 'Creator', shortLabel: 'Phước', fullName: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test' },
+      { role: 'Client', shortLabel: 'ĐH FPT', fullName: 'Ban Tuyển sinh Đại học FPT', email: 'user59@demo.brandhub.test' },
+      { role: 'Admin', shortLabel: 'Admin', fullName: 'Quản trị viên BrandHub', email: 'admin@demo.brandhub.test' },
+    ];
+
+    const DEMO_TEXTS = {
+      out_of_scope_title: '[Tuần 3 - Phát sinh] Tổng hợp lịch xe đưa đón học sinh THPT dự Ngày hội FPTU Open Day 2027',
+      out_of_scope_desc:
+        'Bài thông báo chi tiết 08 điểm đón xe buýt miễn phí dành cho học sinh lớp 12 và phụ huynh tham gia trải nghiệm phòng Lab Thiết kế Vi mạch bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo năm 2027.',
+      out_of_scope_criteria:
+        'Ghi rõ khung giờ đón tại từng trường THPT, đầu mối sinh viên tình nguyện phụ trách mỗi tuyến xe và đính kèm đường dẫn đăng ký https://tuyensinh.fpt.edu.vn.',
+      subtask_desc:
+        'Biên soạn nội dung bài đăng tổng hợp điểm nhấn chuỗi Workshop phổ biến tiện ích học đường ĐH FPT tại các trường THPT và thông báo mở cổng xét Học bổng Nguyễn Văn Đạo năm 2027 cho khóa K23.',
+      subtask_criteria:
+        'Nêu rõ trải nghiệm kính VR và Robotics tại buổi Workshop, 3 mức học bổng 50%, 70%, 100% học phí, lộ trình thực tập doanh nghiệp OJT từ học kỳ 6 và đường dẫn https://tuyensinh.fpt.edu.vn.',
+      ai_topic:
+        'Tổng hợp điểm nhấn chuỗi Workshop trải nghiệm tiện ích học đường Đại học FPT dành cho học sinh THPT (đeo kính VR tham quan phòng Lab bán dẫn, điều khiển Robotics, tìm hiểu thư viện xanh, sân Vovinam và 40 CLB) kết hợp thông báo mở đăng ký xét Học bổng Nguyễn Văn Đạo năm 2027 tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM, Cần Thơ.',
+      violation_sample:
+        '\n\n[Đoạn văn kiểm thử bộ lọc an toàn]: Cam kết 100% việc làm lương ngàn đô ngay khi nhập học, tuyển thẳng không cần điều kiện, các nơi khác đều là bằng cấp vô giá trị!',
+      caption_v1_clean:
+        'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn\n#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
+      client_reject_note:
+        'Nội dung bản thảo v1 đã truyền tải rất tốt không khí thực tế của chuỗi Workshop tại các trường THPT. Tuy nhiên, Ban Tuyển sinh đề nghị bổ sung rõ 3 mức Học bổng Nguyễn Văn Đạo năm 2027 cụ thể (50%, 70% và 100% học phí toàn khóa) cùng thông tin học kỳ thực tập doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6 tại FPT Software và FPT Smart Cloud để phụ huynh và học sinh lớp 12 nắm đầy đủ quyền lợi trước khi duyệt xuất bản.',
+      caption_v2_addition:
+        '\n\nQuyền lợi học bổng và lộ trình thực tập doanh nghiệp dành cho khóa K23 (2027):\n- Chương trình Học bổng Nguyễn Văn Đạo năm 2027: Trao tặng các mức 50%, 70% và 100% học phí toàn khóa học cho học sinh THPT có thành tích học tập và năng lực nổi trội.\n- Học kỳ doanh nghiệp (On-the-Job Training - OJT): 100% sinh viên tham gia làm việc thực tế từ học kỳ 6 tại FPT Software, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác trong và ngoài nước.',
+    };
+
+    const STEPS = [
+      {
+        code: 'B1',
+        time: '00:00 - 01:15',
+        shortTitle: '7 Gói đa ngành & Gói ĐH FPT',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Danh mục 7 Gói truyền thông Đa lĩnh vực & Gói Tuyển sinh ĐH FPT 2027',
+        fr: 'FR 3.5.1 - 3.5.4',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/agency/359a1839-18c7-48e2-8a68-f5f68c3375b6/media-packages',
+        cue: 'Bấm [1] cuộn lướt qua 7 thẻ gói đa ngành rồi bấm [2] mở gói Tuyển sinh ĐH FPT 2027 (185 triệu VNĐ, 19 hạng mục) đã chốt trong Workspace.',
+        points: [
+          'SE08 Digital Agency chuẩn hóa sẵn 7 gói truyền thông chuyên biệt cho Giáo dục, SaaS, F&B, BĐS, Mỹ phẩm, TMĐT và Du lịch.',
+          'Gói Tuyển sinh Đại học FPT 2027 kéo dài 4 tuần (185 triệu VNĐ) gồm 19 hạng mục trải đủ 7 loại dịch vụ chuẩn.',
+        ],
+        script: 'Trong vai trò Owner Lê Trí Trung của SE08 Digital Agency, chúng em xây dựng danh mục 7 gói truyền thông chuyên biệt trên nhiều ngành nghề. Riêng gói Tuyển sinh Đại học FPT 2027 trị giá 185.000.000 VNĐ kéo dài 4 tuần gồm 19 hạng mục thuộc đủ 7 loại dịch vụ chuẩn.',
+        outcome: 'Hiển thị đầy đủ 7 thẻ gói truyền thông đa lĩnh vực ở trạng thái ACTIVE và gói ĐH FPT 2027 đã phê duyệt.',
+        actions: [
+          { id: 'B1_NAV', label: 'Mở Danh mục 7 Gói truyền thông đa lĩnh vực', desc: 'Điều hướng tới /agency/{agency_id}/media-packages' },
+          { id: 'B1_NAV_WS_PACKAGE', label: 'Mở Gói ĐH FPT 2027 đã thương thảo trong Workspace', desc: 'Điều hướng tới /workspaces/.../media-package' },
+        ],
+        fields: [
+          { name: 'Gói trọng tâm gắn cho Đại học FPT', type: 'Tự động điền sẵn', value: 'Gói Tuyển sinh Đại học FPT 2027: Chiến dịch Đa kênh & Chuỗi Workshop 4 Tuần (185.000.000 VNĐ - 19 hạng mục)' },
+          { name: '6 Gói đa lĩnh vực khác của SE08', type: 'Tự động điền sẵn', value: 'Công nghệ B2B SaaS | F&B Đồ uống | Bất động sản | Dược mỹ phẩm | Thương mại điện tử Mega Sale | Du lịch Nghỉ dưỡng' },
+        ],
+      },
+      {
+        code: 'B2',
+        time: '01:15 - 02:30',
+        shortTitle: 'Workspace, Thư viện KV & Chat',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Workspace ĐH FPT 2027, Thư viện 7 Key Visual Gemini & Chat nhóm',
+        fr: 'FR 3.4.9, 3.4.21, 3.5.5, 3.6.25',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/members',
+        cue: 'Nhấn Space lần lượt qua [1] -> [2] -> [3] -> [4] để lướt đội ngũ 5 thành viên SE08, Brand Profile ĐH FPT, 7 ảnh Key Visual Gemini trong /library và /chat.',
+        points: [
+          'Workspace quy tụ đủ 5 thành viên nhóm SE08 (Trung, Lộc, Phước, Tuấn, Ân) cùng Ban Tuyển sinh Đại học FPT.',
+          'Thư viện /library chia sẵn 4 thư mục tuần chứa 7 bộ Key Visual tạo bằng Gemini Nano Banana, 4 ảnh khuôn viên trường và 5 mẫu bài viết.',
+        ],
+        script: 'Không gian làm việc quy tụ đủ 5 thành viên nhóm SE08 cùng Ban Tuyển sinh Đại học FPT. Thư viện tài nguyên lưu sẵn 4 thư mục tuần với 7 bộ Key Visual tạo bằng Gemini Nano Banana cùng ảnh khuôn viên trường thực tế.',
+        outcome: 'Hiển thị thành viên SE08 trong Workspace, Hồ sơ thương hiệu ĐH FPT, 11 ấn phẩm hình ảnh trong /library và trao đổi trong /chat.',
+        actions: [
+          { id: 'B2_NAV', label: 'Mở Đội ngũ 5 Thành viên SE08 & Khách hàng (/members)', desc: 'Xem thành viên SE08 & Ban Tuyển sinh ĐH FPT' },
+          { id: 'B2_NAV_CLIENT_PROFILE', label: 'Mở Hồ sơ Thương hiệu Đại học FPT (/client-profile)', desc: 'Xem 5 cơ sở, học kỳ OJT & từ khóa hạn chế' },
+          { id: 'B2_NAV_LIBRARY', label: 'Mở Thư viện 7 ảnh Key Visual Gemini (/library)', desc: 'Xem 4 thư mục tuần và bộ ảnh Gemini Nano Banana + Unsplash' },
+          { id: 'B2_NAV_CHAT', label: 'Mở Kênh Trò chuyện nhóm SE08 & ĐH FPT (/chat)', desc: 'Xem trao đổi giữa team SE08 và Ban Tuyển sinh ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Đội ngũ SE08 & Khách hàng', type: 'Tự động điền sẵn', value: 'Lê Trí Trung (Owner), Nguyễn Thành Lộc (Manager), Phước - Tuấn - Ân (Creator), Ban Tuyển sinh Đại học FPT (Client)' },
+          { name: 'Từ khóa hạn chế (Brand Profile)', type: 'Tự động điền sẵn', value: 'cam kết 100% việc làm lương ngàn đô, học bổng ảo, tuyển thẳng không cần điều kiện, bằng cấp vô giá trị' },
+        ],
+      },
+      {
+        code: 'B3',
+        time: '02:30 - 04:15',
+        shortTitle: 'Chiến dịch 4 Tuần (3 bước)',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Điều phối Chiến dịch Tuyển sinh 4 Tuần (Brief, 20 Công việc, 6 Đối tác)',
+        fr: 'FR 3.5.6 - 3.5.13',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/campaigns',
+        cue: 'Bấm [1] -> [2] -> [3] (tự điền việc phát sinh lịch xe Open Day) -> Bấm [4] xem 6 đối tác VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel.',
+        points: [
+          'Master Brief 6 khối vạch rõ 4 tuần: Tuần 1 Coming Soon -> Tuần 2 Ngành học & Tiện ích -> Tuần 3 Workshop THPT & Open Day -> Tuần 4 Báo chí.',
+          'Quản lý 19 hạng mục gói + thêm việc phát sinh ngoài gói + điều phối 6 đối tác báo chí, truyền hình, KOL & LED THPT.',
+        ],
+        script: 'Chiến dịch 4 tuần đi từ Tuần 1 Coming Soon & Học bổng, sang Tuần 2 giới thiệu ngành học & phổ biến tiện ích học đường, Tuần 3 tổ chức chuỗi Workshop THPT & Ngày hội Open Day, đến Tuần 4 lên bài báo chí VnExpress/Thanh Niên/Dân Trí và nhắc chốt hồ sơ đa kênh.',
+        outcome: 'Trình diễn 3 bước của Chiến dịch 4 tuần, điền hộp thoại Công việc phát sinh và kiểm tra 6 đối tác truyền thông.',
+        actions: [
+          { id: 'B3_STEP_INFO', label: 'Mở Bước 1: Lộ trình 4 Tuần & Master Brief', desc: 'Hiển thị 6/6 khối Brief và bản Master Brief tổng hợp' },
+          { id: 'B3_STEP_TASKS', label: 'Mở Bước 2: Timeline 19 Hạng mục trong gói', desc: 'Hiển thị lịch trình 4 tuần và nút Thêm công việc phát sinh' },
+          { id: 'B3_FILL_OUT_OF_SCOPE', label: 'Điền thử Công việc phát sinh (Lịch xe Open Day)', desc: 'Tự động gõ Tên, Hạn xuất bản, Mô tả & Tiêu chí nghiệm thu' },
+          { id: 'B3_STEP_PARTNERS', label: 'Mở Bước 3: 6 Đối tác Báo chí / KOL & Triển khai', desc: 'Hiển thị VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel & LED THPT' },
+        ],
+        fields: [
+          { name: 'Tên công việc phát sinh ngoài gói', type: 'Nhập text', key: 'out_of_scope_title' },
+          { name: 'Mô tả công việc phát sinh', type: 'Nhập text', key: 'out_of_scope_desc' },
+          { name: 'Tiêu chí nghiệm thu', type: 'Nhập text', key: 'out_of_scope_criteria' },
+        ],
+      },
+      {
+        code: 'B4',
+        time: '04:15 - 05:45',
+        shortTitle: '20 Công việc, Khảo sát & Yêu cầu',
+        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
+        title: 'Phân bổ 20 Công việc cho 3 Creator SE08, Khảo sát THPT & Yêu cầu Client',
+        fr: 'FR 3.6.1 - 3.6.10, 3.6.28 - 3.6.32',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
+        cue: 'Bấm [1] xem 20 công việc & 5 Subtask bài Tuần 3, sau đó bấm [3] xem 8 phản hồi Khảo sát lớp 12 và [4] xem Yêu cầu từ ĐH FPT.',
+        points: [
+          '20 công việc chia theo chuyên môn 3 Creator SE08: Phước (Social), Tuấn (Key Visual, Reels & Workshop), Ân (Báo chí, Email & Khảo sát).',
+          'Bài trọng điểm Tuần 3 có 5 Role Subtasks phối hợp chéo, kèm trang Khảo sát lớp 12 (/tasks/.../survey) và Yêu cầu khách hàng (/requests).',
+        ],
+        script: '20 công việc trong 4 tuần được chia đều theo thế mạnh của Nguyễn Chơn Phước, Nguyễn Minh Tuấn và Hà Văn Ân. Tại bài trọng điểm Tuần 3, cả 5 Subtask con đều liên kết chặt chẽ giữa 3 thành viên.',
+        outcome: 'Hiển thị 20 công việc 4 tuần, 5 Subtask của bài Tuần 3, 8 phản hồi khảo sát học sinh THPT và 2 yêu cầu từ ĐH FPT.',
+        actions: [
+          { id: 'B4_NAV', label: 'Mở 20 Công việc 4 tuần & Xem 5 Subtask Tuần 3', desc: 'Mở trang Công việc và bật chi tiết [Tuần 3 - Bài trọng điểm]' },
+          { id: 'B4_FILL_SUBTASK', label: 'Điền mẫu Mô tả & Tiêu chí Subtask', desc: 'Gõ tự động mô tả và tiêu chí vào form Subtask' },
+          { id: 'B4_NAV_SURVEYS', label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)', desc: 'Xem 8 câu trả lời thực tế của học sinh lớp 12' },
+          { id: 'B4_NAV_REQUESTS', label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)', desc: 'Xem 2 yêu cầu bổ sung bài truyền thông từ ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Mô tả Subtask', type: 'Nhập text', key: 'subtask_desc' },
+          { name: 'Tiêu chí nghiệm thu Subtask', type: 'Nhập text', key: 'subtask_criteria' },
+        ],
+      },
+      {
+        code: 'B5',
+        time: '05:45 - 06:30',
+        shortTitle: 'Creator nhận bài Tuần 3',
+        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
+        title: 'Creator Nguyễn Chơn Phước nhận việc Tuần 3 & Kiểm tra tiến độ Subtask',
+        fr: 'FR 3.6.3, 3.6.4',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
+        cue: 'Chỉ vào các Subtask Nghiên cứu (Ân) và Key Visual (Tuấn) đã hoàn tất trên ngăn chi tiết công việc.',
+        points: [
+          'Cửa sổ chuyển sang Creator Nguyễn Chơn Phước; các bài Tuần 1-2 đã xuất bản, hiện tập trung vào [Tuần 3 - Bài trọng điểm].',
+          'Phần Nghiên cứu của Hà Văn Ân và Key Visual của Nguyễn Minh Tuấn đã duyệt sẵn.',
+        ],
+        script: 'Creator Nguyễn Chơn Phước mở [Tuần 3 - Bài trọng điểm], thấy phần Nghiên cứu của Hà Văn Ân và bộ Key Visual của Nguyễn Minh Tuấn đã duyệt xong, sẵn sàng vào /editor hoàn thiện bài viết.',
+        outcome: 'Creator xem chi tiết công việc [Tuần 3 - Bài trọng điểm] và mở Trình soạn thảo hợp nhất (/editor).',
+        actions: [
+          { id: 'B5_NAV', label: 'Mở việc của Creator & Chọn [Tuần 3 - Bài trọng điểm]', desc: 'Điều hướng tới /workspaces/{workspace_id}/tasks' },
+        ],
+        fields: [
+          { name: 'Subtask đang thực hiện', type: 'Tự động điền sẵn', value: 'Soạn nội dung bài viết (POST_CONTENT -> POST.CAPTION)' },
+        ],
+      },
+      {
+        code: 'B6',
+        time: '06:30 - 08:30',
+        shortTitle: 'Bắn ảnh Gemini & Gọi AI',
+        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
+        title: 'Bắn trực tiếp ảnh Key Visual Gemini lên bài viết & Gọi AI tạo Caption',
+        fr: 'FR 3.6.11, 3.6.25, 3.7.1, 3.7.2',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở /editor -> Bấm [2] bắn ngay ảnh Key Visual Gemini lên bài -> Bấm [3] đổi chế độ -> Bấm [4] tự điền 5 ô AI.',
+        points: [
+          'Trình soạn thảo /editor tách bài đăng thành 4 phần độc lập (BRIEF, MEDIA, CHANNELS, CAPTION).',
+          'Bấm [2] đẩy thẳng ảnh Key Visual tạo bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng.',
+        ],
+        script: 'Trên /editor, bấm "Bắn ảnh Key Visual Gemini lên bài viết" để đẩy trực tiếp ấn phẩm tạo sẵn bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng, chuyển đổi Quick/Docs Mode và gọi AI sinh bản thảo.',
+        outcome: 'Ảnh Key Visual Gemini hiển thị ngay trên bài viết & khung điện thoại 4 nền tảng; điền tuần tự 5 tham số vào modal AI.',
+        actions: [
+          { id: 'B6_NAV_EDITOR', label: 'Mở Trình soạn thảo hợp nhất (/editor)', desc: 'Điều hướng tới /editor?taskId={task_id}' },
+          { id: 'B6_PUSH_KEY_VISUAL', label: 'Bắn ảnh Key Visual Gemini lên bài viết', desc: 'Gắn ngay ảnh KV_Tuan3_FPTU_OpenDay_2027 từ Kho tài nguyên' },
+          { id: 'B6_TOGGLE_DOCS_MODE', label: 'Chuyển đổi Chế độ Nhanh / Tài liệu', desc: 'Chuyển đổi giữa Quick Mode và Docs Mode' },
+          { id: 'B6_SEQ_FILL_AI', label: 'Điền tuần tự 5 trường AI Tạo Caption', desc: 'Tự động điền Topic, Tone, Platform, Ngôn ngữ, Số hashtag' },
+        ],
+        fields: [
+          { name: 'Chủ đề bài viết (AI Topic)', type: 'Nhập text', key: 'ai_topic' },
+          { name: 'Tham số AI', type: 'Chọn dropdown', value: 'Giọng điệu: Chuyên nghiệp | Nền tảng: Facebook | Ngôn ngữ: Tiếng Việt | Số hashtag: 6' },
+        ],
+      },
+      {
+        code: 'B7',
+        time: '08:30 - 10:00',
+        shortTitle: 'Kiểm tra vi phạm & Gửi v1',
+        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
+        title: 'Kiểm duyệt an toàn nội dung (3.6.33) & Gửi duyệt phần POST.CAPTION (v1)',
+        fr: 'FR 3.6.33, 3.6.18',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] rồi nhấn "Kiểm tra vi phạm" trên Chrome -> Bấm [2] khôi phục bản sạch v1 rồi nhấn "Lưu thay đổi" và "Gửi duyệt" trên khung POST.CAPTION.',
+        points: [
+          'Chèn thử câu quảng cáo quá mức để kiểm chứng tính năng Kiểm tra vi phạm (FR 3.6.33) phát hiện từ cấm của ĐH FPT.',
+          'Khôi phục bản thảo sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT), bấm Lưu và Gửi duyệt phần POST.CAPTION.',
+        ],
+        script: 'Creator thử chèn một câu chứa từ khóa hạn chế để kiểm chứng tính năng Kiểm tra vi phạm (3.6.33). Sau đó khôi phục bản thảo sạch v1 tổng hợp chuỗi Workshop THPT, bấm Lưu và Gửi duyệt phần Nội dung bài đăng.',
+        outcome: 'Phần POST.CAPTION chuyển sang trạng thái SUBMITTED (v1).',
+        actions: [
+          { id: 'B7_FILL_VIOLATION', label: 'Chèn câu vi phạm để test Kiểm duyệt (3.6.33)', desc: 'Gõ câu chứa từ cấm và chỉ vào nút Kiểm tra vi phạm' },
+          { id: 'B7_CLEAN_AND_RESTORE', label: 'Khôi phục bản thảo sạch v1 & Chỉ nút Gửi duyệt', desc: 'Điền lại bản v1 chuẩn 2027 và chỉ vào nút Lưu / Gửi duyệt' },
+        ],
+        fields: [
+          { name: 'Câu mẫu thử nghiệm bộ lọc vi phạm', type: 'Nhập text', key: 'violation_sample' },
+          { name: 'Nội dung bản thảo sạch v1', type: 'Nhập text', key: 'caption_v1_clean' },
+        ],
+      },
+      {
+        code: 'B8',
+        time: '10:00 - 11:00',
+        shortTitle: 'Manager duyệt nội bộ v1',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Manager Nguyễn Thành Lộc duyệt nội bộ phần Nội dung bài đăng (v1)',
+        fr: 'FR 3.6.19',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Sau khi bấm [1], trên Chrome của Manager hãy bấm nút "Duyệt" tại thẻ Nội dung bài đăng (POST.CAPTION).',
+        points: [
+          'Cửa sổ chuyển sang Manager Nguyễn Thành Lộc duyệt tầng nội bộ cho riêng phần POST.CAPTION.',
+          'Các phần khác đã duyệt xong từ trước nên không cần duyệt lại.',
+        ],
+        script: 'Manager Nguyễn Thành Lộc mở màn hình Phê duyệt, rà soát phần Nội dung bài đăng (POST.CAPTION) và bấm Duyệt để chuyển sang Ban Tuyển sinh Đại học FPT.',
+        outcome: 'Phần POST.CAPTION chuyển sang trạng thái INTERNAL_APPROVED.',
+        actions: [
+          { id: 'B8_NAV_MANAGER_APPROVAL', label: 'Mở màn hình Duyệt của Manager & Chỉ nút Duyệt', desc: 'Điều hướng Manager tới /task-approvals' },
+        ],
+        fields: [
+          { name: 'Phần công việc cần duyệt', type: 'Bấm nút', value: 'Nội dung bài đăng (POST.CAPTION) - Phiên bản v1' },
+        ],
+      },
+      {
+        code: 'B9',
+        time: '11:00 - 12:15',
+        shortTitle: 'Client yêu cầu bổ sung v1',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Ban Tuyển sinh ĐH FPT nghiệm thu v1 & Yêu cầu bổ sung Học bổng + OJT',
+        fr: 'FR 3.6.20, 3.6.21',
+        role: 'Client',
+        actor: 'Ban Tuyển sinh Đại học FPT',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở màn hình Client -> Bấm [2] tự điền nhận xét -> Trên Chrome của Client bấm nút "Yêu cầu chỉnh sửa / Xác nhận".',
+        points: [
+          'Client chỉ thấy phần đầu ra (OUTPUT), không thấy tài liệu nháp nội bộ POST.BRIEF của Agency.',
+          'Ban Tuyển sinh bấm Yêu cầu chỉnh sửa phần POST.CAPTION để bổ sung rõ 3 mức học bổng 50%, 70%, 100% và kỳ thực tập OJT.',
+        ],
+        script: 'Ban Tuyển sinh Đại học FPT chỉ nhìn thấy các phần đầu ra (OUTPUT). Client bấm Yêu cầu chỉnh sửa phần POST.CAPTION, đề nghị bổ sung rõ 3 mức học bổng 50%, 70%, 100% năm 2027 và kỳ thực tập OJT từ học kỳ 6.',
+        outcome: 'Chỉ riêng phần POST.CAPTION quay về trạng thái RETURNED, còn Hình ảnh và Kênh đăng giữ nguyên trạng thái đã duyệt.',
+        actions: [
+          { id: 'B9_NAV_CLIENT_APPROVAL', label: 'Mở màn hình Nghiệm thu của Ban Tuyển sinh ĐH FPT', desc: 'Điều hướng Client tới /task-approvals' },
+          { id: 'B9_SEQ_FILL_REJECT_REASON', label: 'Điền nhận xét yêu cầu bổ sung Học bổng 2027 + OJT', desc: 'Tự động mở hộp thoại và gõ góp ý của nhà trường' },
+        ],
+        fields: [
+          { name: 'Ghi chú yêu cầu chỉnh sửa của Ban Tuyển sinh ĐH FPT', type: 'Nhập text', key: 'client_reject_note' },
+        ],
+      },
+      {
+        code: 'B10',
+        time: '12:15 - 13:45',
+        shortTitle: 'Creator sửa v2 & Xem Diff',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Creator cập nhật bản v2, Gửi duyệt lại & Mở đối chiếu Diff v1 vs v2',
+        fr: 'FR 3.6.11, 3.6.18',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở /editor -> Bấm [2] tự gõ thêm đoạn v2 rồi nhấn "Lưu thay đổi" & "Gửi duyệt" trên Chrome -> Bấm [3] mở bảng Diff v1/v2.',
+        points: [
+          'Creator đọc góp ý gắn ngay trên khung POST.CAPTION, bổ sung 3 mức Học bổng 2027 & kỳ OJT vào bản v2 và gửi duyệt lại.',
+          'Mở ngăn Lịch sử phiên bản đối chiếu trực quan từng dòng thay đổi giữa v1 và v2.',
+        ],
+        script: 'Creator đọc phản hồi của Ban Tuyển sinh ngay trên phần POST.CAPTION, bổ sung đoạn thông tin 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ thực tập OJT vào bản v2, gửi duyệt lại và mở bảng so sánh Diff từng dòng giữa v1 và v2.',
+        outcome: 'Ngăn Lịch sử phiên bản hiển thị rõ các dòng văn bản mới thêm giữa v1 và v2.',
+        actions: [
+          { id: 'B10_NAV_CREATOR_FIX', label: 'Mở lại Trình soạn thảo (/editor) của Creator', desc: 'Làm nổi bật phần POST.CAPTION bị trả về' },
+          { id: 'B10_SEQ_FILL_V2', label: 'Bổ sung đoạn Học bổng 50%-100% & OJT (v2)', desc: 'Gõ nối tiếp đoạn thông tin mới vào bài viết' },
+          { id: 'B10_OPEN_VERSION_DIFF', label: 'Mở Lịch sử phiên bản (So sánh Diff v1 vs v2)', desc: 'Mở ngăn đối chiếu trực quan v1 và v2' },
+        ],
+        fields: [
+          { name: 'Đoạn nội dung bổ sung vào bản v2', type: 'Nhập text', key: 'caption_v2_addition' },
+        ],
+      },
+      {
+        code: 'B11',
+        time: '13:45 - 15:00',
+        shortTitle: 'Duyệt hoàn tất v2 -> FINISHED',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Manager & Ban Tuyển sinh ĐH FPT phê duyệt hoàn tất bản v2',
+        fr: 'FR 3.6.19, 3.6.20',
+        role: 'Client',
+        actor: 'Nguyễn Thành Lộc -> Ban Tuyển sinh ĐH FPT',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] rồi nhấn "Duyệt" trên Chrome Manager -> Bấm [2] rồi nhấn "Duyệt" trên Chrome Client để thấy Task tự chuyển sang FINISHED.',
+        points: [
+          'Manager duyệt nội bộ bản v2, tiếp theo Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu chính thức.',
+          'Hệ thống tự động hoàn tất Công việc (FINISHED), đóng toàn bộ 5 Subtask và chuyển Bài đăng sang APPROVED.',
+        ],
+        script: 'Manager duyệt nội bộ bản v2 và Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu. Khi mọi phần đầu ra đều đạt CLIENT_APPROVED, hệ thống tự động hoàn tất Công việc (FINISHED) và chuyển Bài đăng sang APPROVED.',
+        outcome: '[Tuần 3 - Bài trọng điểm] chuyển sang FINISHED, cả 5 Subtask hoàn tất và bài đăng chuyển sang APPROVED.',
+        actions: [
+          { id: 'B11_NAV_MANAGER_V2', label: 'Mở màn hình Manager duyệt bản v2', desc: 'Điều hướng Manager tới /task-approvals' },
+          { id: 'B11_NAV_CLIENT_V2', label: 'Mở màn hình Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2', desc: 'Điều hướng Client tới /task-approvals' },
+        ],
+        fields: [
+          { name: 'Kết quả tự động khi đủ phần được duyệt', type: 'Tự động điền sẵn', value: 'Task -> FINISHED | Tất cả Subtask -> FINISHED | Post -> APPROVED' },
+        ],
+      },
+      {
+        code: 'B12',
+        time: '15:00 - 16:15',
+        shortTitle: '4 Kênh MXH, Hashtag & Email',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Kết nối 4 Nền tảng MXH, Bộ Hashtag Tuyển sinh & Mẫu Email Workshop',
+        fr: 'FR 3.4.23, 3.6.34, 3.8.1 - 3.8.5',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/social-accounts',
+        cue: 'Nhấn Space qua [1] -> [2] -> [3] -> [4] để trình bày 4 kết nối OAuth MXH, 8 Hashtag tuyển sinh, Mẫu Email và Lịch sử Lô gửi Email.',
+        points: [
+          'Cả 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads) đều đã kết nối OAuth hoạt động tốt.',
+          'Đi kèm bộ 8 Hashtag chuẩn mùa tuyển sinh 2027, 2 mẫu Email và lịch sử 2 lô gửi Email hoàn tất.',
+        ],
+        script: 'Manager kiểm tra kết nối OAuth với 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads), bộ 8 Hashtag chuẩn mùa tuyển sinh 2027 cùng mẫu Email và lịch sử gửi vé mời tham dự Workshop cho học sinh THPT.',
+        outcome: 'Hiển thị kết nối 4 nền tảng hoạt động tốt cùng bộ Hashtag, mẫu Email và lịch sử gửi Email.',
+        actions: [
+          { id: 'B12_NAV_SOCIAL', label: 'Mở Kết nối 4 Nền tảng Mạng xã hội (/social-accounts)', desc: 'Điều hướng tới /social-accounts' },
+          { id: 'B12_NAV_HASHTAGS', label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh', desc: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng' },
+          { id: 'B12_NAV_MAIL_TEMPLATES', label: 'Mở Mẫu Email mời dự Workshop THPT (/mail-templates)', desc: 'Xem mẫu Email gửi cho danh sách học sinh lớp 12' },
+          { id: 'B12_NAV_MAIL_BATCHES', label: 'Mở Lịch sử Lô gửi Email (/mail-templates/batches)', desc: 'Xem 2 đợt gửi vé mời Workshop & báo cáo tuần' },
+        ],
+        fields: [
+          { name: '4 nền tảng hỗ trợ', type: 'Tự động điền sẵn', value: 'Facebook, Instagram, TikTok, Threads' },
+        ],
+      },
+      {
+        code: 'B13',
+        time: '16:15 - 17:45',
+        shortTitle: 'Xuất bản, Lịch 4 tuần & Analytics',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Xuất bản Đa nền tảng, Lịch đăng bài 4 tuần (/calendar) & Dashboard',
+        fr: 'FR 3.8.8 - 3.8.15',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/posts/dashboard',
+        cue: 'Bấm [1] mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard) -> Bấm [2] xem Lịch 4 tuần (/calendar) -> Bấm [3] mở Dashboard thống kê tương tác.',
+        points: [
+          'Theo dõi danh sách bài viết đa nền tảng và kiểm tra Lịch xuất bản trực quan xuyên suốt 4 tuần (/calendar).',
+          'Toàn bộ chỉ số Reach, Impressions, Reactions từ 4 nền tảng đồng bộ trực tiếp về /dashboard.',
+        ],
+        script: 'Creator mở Bảng điều phối bài đăng đa nền tảng, kiểm tra Lịch đăng bài xuyên suốt 4 tuần (/calendar) và mở Dashboard phân tích tương tác thực tế.',
+        outcome: 'Danh sách bài viết hiển thị rõ trên /posts/dashboard, lịch 4 tuần hiển thị trên /calendar và đồng bộ số liệu về /dashboard.',
+        actions: [
+          { id: 'B13_NAV_PUBLISH', label: 'Mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard)', desc: 'Điều hướng tới /posts/dashboard' },
+          { id: 'B13_NAV_CALENDAR', label: 'Mở Lịch xuất bản Chiến dịch 4 tuần (/calendar)', desc: 'Xem lịch phân bổ bài viết từ Tuần 1 đến Tuần 4' },
+          { id: 'B13_NAV_DASHBOARD', label: 'Mở Bảng điều khiển Phân tích (/dashboard)', desc: 'Điều hướng tới /dashboard' },
+        ],
+        fields: [
+          { name: 'Chỉ số theo dõi 4 nền tảng', type: 'Tự động điền sẵn', value: 'Reach, Impressions, Reactions, Comments, Shares, Clicks (22 bản ghi publish_logs thực tế)' },
+        ],
+      },
+      {
+        code: 'B14',
+        time: '17:45 - 18:45',
+        shortTitle: 'Nâng cấp gói VietQR & Ví AI',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Owner nâng cấp gói cước SE08 Digital qua SePay / PayOS (VietQR) & Ví AI Credit',
+        fr: 'FR 3.9.1 - 3.9.6',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/subscription/plans',
+        cue: 'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay/PayOS) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
+        points: [
+          'Owner Lê Trí Trung kiểm tra ví AI (8.500 credits) và nâng cấp gói dịch vụ SaaS cho SE08 Digital Agency.',
+          'Tích hợp cổng SePay / PayOS sinh mã VietQR động và đối soát giao dịch tự động.',
+        ],
+        script: 'Owner Lê Trí Trung nâng cấp gói dịch vụ của SE08 Digital Agency qua cổng SePay / PayOS (VietQR) và kiểm tra Ví AI Credit 8.500 điểm.',
+        outcome: 'Hiển thị bảng gói cước, trang Ví AI 8.500 credits và mã thanh toán VietQR.',
+        actions: [
+          { id: 'B14_NAV_PLANS', label: 'Mở trang Nâng cấp gói dịch vụ (/subscription/plans)', desc: 'Điều hướng tới /subscription/plans' },
+          { id: 'B14_NAV_CREDITS', label: 'Mở Ví AI Credit SE08 Digital (/credit)', desc: 'Xem 8.500 AI credits & hạn mức Workspace ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Cổng thanh toán', type: 'Tự động điền sẵn', value: 'SePay / PayOS (VietQR) | Ví AI: 8.500 credits (hạn mức ĐH FPT: 5.000 credits)' },
+        ],
+      },
+      {
+        code: 'B15',
+        time: '18:45 - 20:00',
+        shortTitle: 'Admin Doanh thu & Kiểm duyệt',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Admin giám sát doanh thu nền tảng & Hàng đợi kiểm duyệt (3.10.4)',
+        fr: 'FR 3.10.1 - 3.10.14',
+        role: 'Admin',
+        actor: 'Quản trị viên BrandHub',
+        route: '/admin?view=revenue',
+        cue: 'Bấm [1] xem biểu đồ doanh thu toàn hệ thống -> Bấm [2] mở Hàng đợi kiểm duyệt nội dung (FR 3.10.4) kết thúc demo.',
+        points: [
+          'Quản trị viên BrandHub (Admin) theo dõi doanh thu gói đăng ký SaaS của toàn bộ các Agency.',
+          'Rà soát 3 bản ghi cảnh báo trong Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
+        ],
+        script: 'Quản trị viên BrandHub (Admin) giám sát doanh thu gói cước toàn hệ thống và rà soát Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
+        outcome: 'Hiển thị Dashboard doanh thu Admin và 3 bản ghi thực tế trong Hàng đợi kiểm duyệt nội dung.',
+        actions: [
+          { id: 'B15_NAV_ADMIN_REVENUE', label: 'Mở Dashboard Doanh thu hệ thống (Admin)', desc: 'Điều hướng tới /admin?view=revenue' },
+          { id: 'B15_NAV_ADMIN_MODERATION', label: 'Mở Hàng đợi Kiểm duyệt Nội dung (3.10.4)', desc: 'Điều hướng tới /admin?view=moderation' },
+        ],
+        fields: [
+          { name: 'Quyền hạn Admin', type: 'Tự động điền sẵn', value: 'Quản trị doanh thu SaaS, gói cước, bảng giá AI Credit & Hàng đợi kiểm duyệt nội dung' },
+        ],
+      },
+    ];
+
+    const QA_LINKS = [
+      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
+      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+      { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
+      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+      { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
+      { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
+      { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
+      { id: 'QA_AI_AMBASSADORS', label: 'AI Đại sứ ảo (/ai-studio/ambassadors)', role: 'Creator', desc: 'Nhân vật Minh Anh & Hoàng Khôi K23' },
+      { id: 'QA_CLIENT_PORTAL', label: 'Cổng Khách hàng (/portal)', role: 'Client', desc: '2 hạng mục Open Day chờ ĐH FPT duyệt' },
+      { id: 'QA_CLIENT_VAULT', label: 'Kho riêng Client Vault (/library)', role: 'Client', desc: 'Tư liệu gốc ĐH FPT chia sẻ sang SE08' },
+      { id: 'QA_COLLABORATORS', label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', desc: '6 đối tác ĐH FPT + 4 đối tác đa ngành' },
+      { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Owner', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+      { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Client', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
+    ];
+
+    let activeIdx = 0;
+    let roleStates = {};
+    let viewMode = 'stage';
+    let largeFont = true;
+    let doneActions = {};
+    let busy = false;
+    let windowMode = 'normal';
+
+    let elapsedSec = 0;
+    let timerId = null;
+
+    function fmtTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateTimerUI() {
+      document.getElementById('timer-display').textContent = fmtTime(elapsedSec);
+      document.getElementById('timer-btn').textContent = timerId ? 'Dừng' : 'Chạy';
+    }
+
+    function toggleTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      } else {
+        timerId = setInterval(() => {
+          elapsedSec += 1;
+          updateTimerUI();
+        }, 1000);
+      }
+      updateTimerUI();
+    }
+
+    function resetTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+      elapsedSec = 0;
+      updateTimerUI();
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      const stageBtn = document.getElementById('mode-stage-btn');
+      const detailBtn = document.getElementById('mode-detail-btn');
+      const mainEl = document.getElementById('main-layout');
+      const sidebarEl = document.getElementById('detail-sidebar');
+      const activeSecEl = document.getElementById('active-section');
+      const railWrap = document.getElementById('stage-rail-wrap');
+
+      if (mode === 'stage') {
+        stageBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
+        detailBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        mainEl.className = 'max-w-[1040px] mx-auto px-4 py-4 space-y-4';
+        sidebarEl.className = 'hidden';
+        activeSecEl.className = 'space-y-4';
+        railWrap.className = 'bg-white border-t border-slate-100';
+      } else {
+        detailBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
+        stageBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        mainEl.className = 'max-w-[1600px] mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6';
+        sidebarEl.className = 'lg:col-span-4 space-y-2';
+        activeSecEl.className = 'lg:col-span-8 space-y-4';
+        railWrap.className = 'hidden';
+      }
+      renderAll();
+    }
+
+    function toggleLargeFont() {
+      largeFont = !largeFont;
+      renderActiveStep();
+    }
+
+    function clearDoneMarks() {
+      doneActions = {};
+      renderAll();
+    }
+
+    function showToast(msg, isError = false) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.className = `fixed bottom-4 right-4 z-50 max-w-md px-4 py-3 rounded-xl shadow-lg border text-sm font-medium ${
+        isError ? 'bg-white border-orange-500 text-slate-900' : 'bg-orange-600 border-orange-700 text-white'
+      }`;
+      setTimeout(() => el.classList.add('hidden'), 4200);
+    }
+
+    function renderRolesBar() {
+      const bar = document.getElementById('roles-bar');
+      const currentRole = STEPS[activeIdx].role;
+      bar.innerHTML =
+        `<span class="text-[11px] font-bold text-slate-500 shrink-0 hidden sm:inline">Cửa sổ Chrome:</span>` +
+        ROLES.map((r) => {
+          const isCurrent = r.role === currentRole;
+          const alive = roleStates[r.role]?.alive;
+          return `
+            <button
+              onclick="loginRole('${r.role}')"
+              title="${r.role}: ${r.fullName} (${r.email}) - Bấm để đưa cửa sổ lên trước"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer ${
+                isCurrent
+                  ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-orange-300 hover:bg-orange-50/50'
+              }"
+            >
+              <span class="w-2 h-2 rounded-full ${
+                alive ? (isCurrent ? 'bg-white' : 'bg-orange-500') : 'bg-slate-300'
+              }"></span>
+              <span class="font-bold">${r.role}</span>
+              <span class="${isCurrent ? 'text-orange-100' : 'text-slate-500'}">· ${r.shortLabel}</span>
+            </button>
+          `;
+        }).join('');
+    }
+
+    function renderStageRail() {
+      const rail = document.getElementById('stage-rail');
+      rail.innerHTML = STEPS.map((s, idx) => {
+        const selected = idx === activeIdx;
+        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
+        const someDone = !allDone && s.actions.some((a) => Boolean(doneActions[a.id]));
+        return `
+          <button
+            id="rail-pill-${idx}"
+            onclick="selectStep(${idx})"
+            title="${s.code}: ${s.title} (${s.role})"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums ${
+              selected
+                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                : allDone
+                ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
+                : someDone
+                ? 'bg-orange-50/40 text-slate-800 border-orange-200'
+                : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
+            }"
+          >
+            <span class="font-extrabold">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
+            <span class="hidden md:inline max-w-[130px] truncate ${selected ? 'text-orange-50' : 'text-slate-600'}">${s.shortTitle}</span>
+          </button>
+        `;
+      }).join('');
+      const activePill = document.getElementById(`rail-pill-${activeIdx}`);
+      if (activePill) {
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+
+    function renderStepsList() {
+      const list = document.getElementById('steps-list');
+      document.getElementById('step-counter').textContent = `Bước ${activeIdx + 1}/${STEPS.length}`;
+      let html = '';
+      STEPS.forEach((s, idx) => {
+        if (idx === 0 || s.stage !== STEPS[idx - 1].stage) {
+          html += `<div class="pt-2.5 pb-1 px-2 text-[11px] font-bold uppercase text-orange-700">${s.stage}</div>`;
+        }
+        const selected = idx === activeIdx;
+        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
+        html += `
+          <button
+            onclick="selectStep(${idx})"
+            class="w-full text-left p-3 rounded-xl border flex items-start gap-3 cursor-pointer ${
+              selected
+                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                : 'bg-white text-slate-800 border-slate-200 hover:border-orange-300 hover:bg-orange-50/40'
+            }"
+          >
+            <span class="px-2 py-0.5 rounded-md text-xs font-extrabold shrink-0 mt-0.5 tabular-nums ${
+              selected
+                ? 'bg-white text-orange-700'
+                : allDone
+                ? 'bg-orange-100 text-orange-800 border border-orange-300'
+                : 'bg-orange-50 text-orange-700 border border-orange-200'
+            }">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
+            <div class="min-w-0 flex-1">
+              <div class="font-semibold text-xs leading-snug">${s.title}</div>
+              <div class="text-[11px] mt-1 tabular-nums ${selected ? 'text-orange-100' : 'text-slate-500'}">
+                <strong>${s.role}</strong> • ${s.actor} • ${s.time}
+              </div>
+            </div>
+          </button>
+        `;
+      });
+      list.innerHTML = html;
+    }
+
+    function buildFieldsHtml(s) {
+      return `
+        <div class="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden">
+          ${s.fields
+            .map((f, i) => {
+              const val = f.key ? DEMO_TEXTS[f.key] : f.value;
+              return `
+                <div class="p-3.5 bg-white space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-slate-900">${f.name}</span>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">${f.type}</span>
+                    </div>
+                    <button
+                      onclick="copyField('${f.key || ''}', ${i})"
+                      class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:text-orange-700 cursor-pointer"
+                    >Sao chép</button>
+                  </div>
+                  ${
+                    f.key
+                      ? `<textarea id="field-${f.key}" rows="3" oninput="DEMO_TEXTS['${f.key}'] = this.value" class="w-full p-2.5 text-xs text-slate-800 bg-orange-50/30 border border-orange-200 rounded-lg focus:bg-white focus:border-orange-500 focus:outline-none leading-relaxed">${val}</textarea>`
+                      : `<div id="static-field-${i}" class="p-2.5 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 whitespace-pre-wrap">${val}</div>`
+                  }
+                </div>
+              `;
+            })
+            .join('')}
+        </div>
+      `;
+    }
+
+    function renderActiveStep() {
+      const s = STEPS[activeIdx];
+      const prev = activeIdx > 0 ? STEPS[activeIdx - 1] : null;
+      const roleChanged = prev && prev.role !== s.role;
+      const nextActIdx = s.actions.findIndex((a) => !doneActions[a.id]);
+      const nextAct = nextActIdx >= 0 ? s.actions[nextActIdx] : null;
+
+      const detail = document.getElementById('step-detail');
+      detail.innerHTML = `
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="space-y-1.5 min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="px-2.5 py-0.5 rounded-lg bg-orange-600 text-white text-xs font-extrabold tabular-nums">Bước ${activeIdx + 1}/15 · ${s.code}</span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold">
+                ${s.role}: ${s.actor}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium tabular-nums">
+                Khung giờ: ${s.time}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium">
+                ${s.fr}
+              </span>
+              ${
+                roleChanged
+                  ? `<span class="px-2.5 py-0.5 rounded-full bg-orange-600 text-white text-xs font-bold">Chuyển cửa sổ sang ${s.role}</span>`
+                  : ''
+              }
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">${s.title}</h2>
+            <div class="text-xs text-slate-500 font-mono break-all">Trang đích: <span class="text-orange-600 font-semibold">${s.route}</span></div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button
+              onclick="selectStep(${Math.max(0, activeIdx - 1)})"
+              ${activeIdx === 0 ? 'disabled' : ''}
+              class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+            >← Trước</button>
+            <button
+              onclick="selectStep(${Math.min(STEPS.length - 1, activeIdx + 1)})"
+              ${activeIdx === STEPS.length - 1 ? 'disabled' : ''}
+              class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-800 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+            >Tiếp →</button>
+          </div>
+        </div>
+
+        <!-- Giant 1-Touch Smart Advance Hero Bar -->
+        <div class="p-3 rounded-xl bg-orange-50/70 border border-orange-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0 flex-1">
+            <div class="text-[11px] font-bold uppercase text-orange-800">
+              Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)
+            </div>
+            <div class="text-sm font-bold text-slate-900 mt-0.5 truncate">
+              ${
+                nextAct
+                  ? `Sẵn sàng chạy: [${nextActIdx + 1}/${s.actions.length}] ${nextAct.label}`
+                  : activeIdx < STEPS.length - 1
+                  ? `Đã chạy đủ thao tác ${s.code}! Nhấn để sang ${STEPS[activeIdx + 1].code}: ${STEPS[activeIdx + 1].shortTitle}`
+                  : 'Đã hoàn thành trọn vẹn cả 15 bước thuyết trình!'
+              }
+            </div>
+          </div>
+          <button
+            onclick="smartAdvance()"
+            ${!nextAct && activeIdx === STEPS.length - 1 ? 'disabled' : ''}
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-sm cursor-pointer disabled:opacity-40 shrink-0"
+          >
+            <span>${
+              nextAct
+                ? `Thực thi ngay (${nextActIdx + 1}/${s.actions.length})`
+                : activeIdx < STEPS.length - 1
+                ? `Sang bước ${STEPS[activeIdx + 1].code} →`
+                : 'Đã hoàn tất 15/15'
+            }</span>
+            <span class="bg-white/20 text-white px-1.5 py-0.5 rounded text-[11px] font-mono">Space</span>
+          </button>
+        </div>
+
+        <!-- Numbered Action Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+          ${s.actions
+            .map((a, idx) => {
+              const isDone = Boolean(doneActions[a.id]);
+              const isNext = nextAct && nextAct.id === a.id;
+              return `
+                <button
+                  onclick="runStepAction('${a.id}')"
+                  class="p-3.5 rounded-xl border text-left flex items-start gap-3 cursor-pointer ${
+                    isNext
+                      ? 'bg-orange-600 text-white border-orange-600 hover:bg-orange-700 shadow-sm ring-2 ring-orange-500/25'
+                      : isDone
+                      ? 'bg-orange-50/50 text-slate-900 border-orange-300 hover:bg-orange-100/60'
+                      : 'bg-white text-slate-900 border-slate-200 hover:border-orange-300 hover:bg-orange-50/30'
+                  }"
+                >
+                  <div class="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-xs tabular-nums ${
+                    isNext
+                      ? 'bg-white text-orange-700'
+                      : isDone
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-orange-100 text-orange-700'
+                  }">
+                    ${isDone ? '✓' : idx + 1}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="text-xs sm:text-sm font-bold leading-snug">${idx + 1}. ${a.label}</span>
+                      <span class="px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0 ${
+                        isNext
+                          ? 'bg-white/20 text-white'
+                          : isDone
+                          ? 'bg-orange-100 text-orange-800'
+                          : 'bg-slate-100 text-slate-600'
+                      }">${isNext ? `Phím ${idx + 1} · Tiếp` : isDone ? 'Đã chạy' : `Phím ${idx + 1}`}</span>
+                    </div>
+                    <div class="text-xs mt-0.5 ${isNext ? 'text-orange-100' : 'text-slate-600'}">${a.desc}</div>
+                  </div>
+                </button>
+              `;
+            })
+            .join('')}
+        </div>
+
+        <!-- On-Screen Browser Cue -->
+        <div class="px-3.5 py-2.5 rounded-xl bg-amber-50/70 border border-orange-200 text-xs sm:text-sm text-slate-800 leading-relaxed">
+          <strong class="text-orange-800">Thao tác kết hợp trên Chrome: </strong>${s.cue}
+        </div>
+
+        <!-- Scannable Teleprompter -->
+        <div class="space-y-2.5 pt-1 border-t border-slate-100">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="text-xs font-bold uppercase text-orange-800">Ý chính trình bày trước Hội đồng (${s.code})</div>
+            <div class="flex items-center gap-3">
+              ${
+                Object.keys(doneActions).length > 0
+                  ? `<button onclick="clearDoneMarks()" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
+                  : ''
+              }
+              <button onclick="toggleLargeFont()" class="px-2.5 py-1 rounded-lg text-xs font-semibold border cursor-pointer ${
+                largeFont
+                  ? 'bg-orange-50 text-orange-700 border-orange-200'
+                  : 'bg-white text-slate-600 border-slate-200'
+              }">
+                ${largeFont ? 'Chữ lớn: Bật' : 'Chữ lớn: Tắt'}
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2">
+            ${s.points
+              .map(
+                (pt, i) => `
+              <div class="px-3.5 py-2.5 rounded-xl bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${
+                largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed'
+              }">
+                <span class="w-5 h-5 rounded-full bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">${i + 1}</span>
+                <span class="font-medium">${pt}</span>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div class="md:col-span-2 p-3.5 rounded-xl bg-white border border-slate-200 space-y-1">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Lời dẫn gợi ý đầy đủ</div>
+              <p class="${largeFont ? 'text-sm' : 'text-xs'} text-slate-700 leading-relaxed">${s.script}</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <div class="text-[11px] font-bold text-slate-600 uppercase">Kết quả trên màn hình</div>
+              <p class="text-xs text-slate-600 leading-relaxed">${s.outcome}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const fieldsWrap = document.getElementById('step-fields-wrap');
+      if (viewMode === 'stage') {
+        fieldsWrap.innerHTML = `
+          <details class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <summary class="text-xs sm:text-sm font-bold text-slate-800 cursor-pointer flex items-center justify-between">
+              <span>Dữ liệu điền tự động &amp; Sao chép thủ công dự phòng (${s.fields.length} mục)</span>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">Bấm để mở khi cần</span>
+            </summary>
+            <div class="pt-3">${buildFieldsHtml(s)}</div>
+          </details>
+        `;
+      } else {
+        fieldsWrap.innerHTML = `
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900">Bảng Dữ liệu Chuẩn &amp; Nội dung Điền Nhanh (${s.code})</h3>
+              <span class="text-[11px] text-orange-700 font-semibold">Văn phong tự nhiên (Humanized Vietnamese)</span>
+            </div>
+            ${buildFieldsHtml(s)}
+          </div>
+        `;
+      }
+    }
+
+    function renderQaGrid() {
+      const grid = document.getElementById('qa-quick-grid');
+      if (!grid) return;
+      grid.innerHTML = QA_LINKS.map((item) => `
+        <button
+          onclick="runStepAction('${item.id}')"
+          class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer"
+        >
+          <div class="min-w-0">
+            <div class="text-xs font-bold text-slate-900 truncate">${item.label}</div>
+            <div class="text-[11px] text-slate-600 truncate mt-0.5">${item.desc}</div>
+          </div>
+          <span class="px-1.5 py-0.5 rounded bg-orange-50 text-orange-700 border border-orange-200 text-[10px] font-bold shrink-0">${item.role}</span>
+        </button>
+      `).join('');
+    }
+
+    function renderAll() {
+      renderRolesBar();
+      renderStageRail();
+      renderStepsList();
+      renderActiveStep();
+      renderQaGrid();
+    }
+
+    function selectStep(idx) {
+      activeIdx = Math.max(0, Math.min(STEPS.length - 1, idx));
+      renderAll();
+    }
+
+    function smartAdvance() {
+      if (busy) return;
+      const s = STEPS[activeIdx];
+      const nextAct = s.actions.find((a) => !doneActions[a.id]);
+      if (nextAct) {
+        runStepAction(nextAct.id);
+      } else if (activeIdx < STEPS.length - 1) {
+        selectStep(activeIdx + 1);
+      }
+    }
+
+    function copyField(key, idx) {
+      const text = key ? DEMO_TEXTS[key] : document.getElementById(`static-field-${idx}`)?.innerText || '';
+      navigator.clipboard.writeText(text);
+      showToast('Đã sao chép nội dung vào bộ nhớ tạm.');
+    }
+
+    async function runStepAction(actionId) {
+      if (busy) return;
+      if (!timerId && elapsedSec === 0) {
+        toggleTimer();
+      }
+      busy = true;
+      try {
+        const res = await fetch(`${API_BASE}/api/step-action`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action_id: actionId, payload: DEMO_TEXTS }),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          doneActions[actionId] = true;
+          renderAll();
+        }
+        showToast(data.ok ? data.message : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      } finally {
+        busy = false;
+      }
+    }
+
+    async function loginRole(role) {
+      if (busy) return;
+      busy = true;
+      try {
+        const res = await fetch(`${API_BASE}/api/login-role`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role, step_label: `Chuyển nhanh sang ${role}` }),
+        });
+        const data = await res.json();
+        showToast(data.ok ? `Đã đưa cửa sổ ${role} (${data.full_name}) lên trước màn hình.` : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      } finally {
+        busy = false;
+      }
+    }
+
+    async function arrangeWindows(mode) {
+      try {
+        const res = await fetch(`${API_BASE}/api/arrange-windows`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode }),
+        });
+        const data = await res.json();
+        showToast(data.ok ? data.message : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function loginAllRoles() {
+      showToast('Đang khởi tạo và đăng nhập 5 cửa sổ Chrome...');
+      try {
+        const res = await fetch(`${API_BASE}/api/login-all`, { method: 'POST' });
+        const data = await res.json();
+        showToast(data.ok ? 'Đã đăng nhập tự động cả 5 vai trò!' : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function confirmResetDemoData() {
+      document.getElementById('reset-dialog').close();
+      showToast('Đang khôi phục dữ liệu mẫu PostgreSQL & MongoDB...');
+      try {
+        const res = await fetch(`${API_BASE}/api/reset-data`, { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          doneActions = {};
+          activeIdx = 0;
+          resetTimer();
+          renderAll();
+        }
+        showToast(data.ok ? data.message : data.error, !data.ok);
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function pollStatus() {
+      try {
+        const res = await fetch(`${API_BASE}/api/status`);
+        const data = await res.json();
+        if (data.ok) {
+          roleStates = data.roles || {};
+          windowMode = data.window_mode || 'normal';
+          document.getElementById('conn-label').textContent = 'Đã kết nối';
+          document.getElementById('conn-label').className = 'font-semibold text-orange-700';
+          document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse';
+
+          const splitBtn = document.getElementById('win-split-btn');
+          const maxBtn = document.getElementById('win-max-btn');
+          if (splitBtn && maxBtn) {
+            splitBtn.className = `px-2.5 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+              windowMode === 'split' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
+            }`;
+            maxBtn.className = `px-2 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+              windowMode === 'maximize' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
+            }`;
+          }
+          renderRolesBar();
+        }
+      } catch (e) {
+        document.getElementById('conn-label').textContent = 'Chưa bật';
+        document.getElementById('conn-label').className = 'font-semibold text-slate-500';
+        document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+      if (document.getElementById('reset-dialog')?.open) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        smartAdvance();
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        selectStep(activeIdx + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        selectStep(activeIdx - 1);
+      } else if (['1', '2', '3', '4'].includes(e.key)) {
+        const act = STEPS[activeIdx].actions[Number(e.key) - 1];
+        if (act) {
+          e.preventDefault();
+          runStepAction(act.id);
+        }
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        loginRole(STEPS[activeIdx].role);
+      }
     });
-    const data = await res.json();
-    if (data.ok) {
-      document.getElementById('seleniumStatusText').textContent = data.state.status_message;
-    }
-  } catch (err) {
-    // Không báo lỗi ồn nếu chỉ mở file HTML tĩnh chưa bật server
-  }
-}
 
-async function runSeleniumAction(actionId, btn) {
-  const statusEl = document.getElementById('seleniumStatusText');
-  const oldLabel = btn ? btn.textContent : '';
-  if (btn) {
-    btn.disabled = true;
-    btn.textContent = 'Đang thực thi trên Chrome...';
-  }
-  statusEl.textContent = `Đang chạy thao tác Selenium [${actionId}]...`;
-
-  try {
-    await syncSeleniumConfig();
-    const res = await fetch(`${SELENIUM_SERVER}/api/action`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action_id: actionId })
-    });
-    const data = await res.json();
-    if (data.ok) {
-      statusEl.textContent = data.message;
-    } else {
-      statusEl.textContent = 'Lỗi: ' + (data.error || 'Có lỗi xảy ra khi điều khiển trình duyệt');
-    }
-  } catch (err) {
-    statusEl.textContent = 'Chưa kết nối được tới máy chủ Selenium (http://localhost:3999). Hãy chạy file run_demo_monitor.bat trước.';
-  } finally {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = oldLabel;
-    }
-  }
-}
-
-function setEnvPreset(url) {
-  document.getElementById('baseUrlInput').value = url;
-  const isLocal = url.includes('localhost');
-  document.getElementById('presetLocalBtn').className = isLocal ? 'btn btn-primary' : 'btn btn-outline';
-  document.getElementById('presetProdBtn').className = !isLocal ? 'btn btn-primary' : 'btn btn-outline';
-  updateAllLinks();
-  syncSeleniumConfig();
-}
-
-function updateAllLinks() {
-  const base = document.getElementById('baseUrlInput').value.replace(/\/+$/, '');
-  document.querySelectorAll('.route-box').forEach(el => {
-    el.textContent = base + el.getAttribute('data-route');
-  });
-  document.querySelectorAll('.route-link').forEach(el => {
-    el.href = base + el.getAttribute('data-route');
-  });
-  syncSeleniumConfig();
-}
-
-function copyText(text, btn) {
-  navigator.clipboard.writeText(text);
-  const old = btn.textContent;
-  btn.textContent = 'Đã copy';
-  btn.classList.add('copied');
-  setTimeout(() => {
-    btn.textContent = old;
-    btn.classList.remove('copied');
-  }, 1400);
-}
-
-function copyRoute(route, btn) {
-  const base = document.getElementById('baseUrlInput').value.replace(/\/+$/, '');
-  copyText(base + route, btn);
-}
-
-function toggleDone(id, checked) {
-  const card = document.getElementById('step-' + id);
-  if (checked) card.classList.add('done');
-  else card.classList.remove('done');
-}
-
-let timerInterval = null;
-let elapsedSeconds = 0;
-
-function toggleTimer() {
-  const btn = document.getElementById('timerBtn');
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    btn.textContent = 'Tiếp tục';
-  } else {
-    timerInterval = setInterval(() => {
-      elapsedSeconds++;
-      const m = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
-      const s = String(elapsedSeconds % 60).padStart(2, '0');
-      document.getElementById('timerDisplay').textContent = `${m}:${s}`;
-    }, 1000);
-    btn.textContent = 'Tạm dừng';
-  }
-}
-
-function resetTimer() {
-  if (timerInterval) clearInterval(timerInterval);
-  timerInterval = null;
-  elapsedSeconds = 0;
-  document.getElementById('timerDisplay').textContent = '00:00';
-  document.getElementById('timerBtn').textContent = 'Bắt đầu bấm giờ';
-}
-
-function switchDiagram(idx) {
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById('diagView' + i).style.display = (i === idx) ? (i === 4 ? 'block' : 'block') : 'none';
-    const b = document.getElementById('tabBtn' + i);
-    b.className = (i === idx) ? 'btn btn-primary' : 'btn btn-outline';
-  }
-}
-
-renderSteps();
-</script>
+    renderAll();
+    pollStatus();
+    setInterval(pollStatus, 4000);
+  </script>
 </body>
 </html>
