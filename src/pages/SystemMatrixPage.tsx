@@ -17,6 +17,14 @@ import {
 import type { PortalData, CanonicalRole } from '../types/portal';
 import { RoleBadge, CANONICAL_ROLES } from '../components/RoleBadge';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import {
+  AstryxBadge,
+  AstryxCard,
+  AstryxCode,
+  AstryxHeading,
+  AstryxTabList,
+  AstryxTab,
+} from '../components/astryx';
 
 interface SystemMatrixPageProps {
   data: PortalData;
@@ -47,83 +55,60 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-5 sm:py-6 space-y-5 sm:space-y-6">
       <div className="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
-          <h1 className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance">
-            <ShieldCheck className="w-5 h-5 text-sky-600 dark:text-sky-400 shrink-0" />
+          <AstryxHeading
+            level={1}
+            className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance"
+          >
+            <ShieldCheck className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
             <span>
               {tx(
                 'Ma trận Use Cases, Phân quyền RBAC & Thực thể ERD',
                 'Use Cases, RBAC Authorization Matrix & ERD Entities'
               )}
             </span>
-          </h1>
+          </AstryxHeading>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-pretty">
             {tx('Dữ liệu được lưu tại', 'Data stored in')}{' '}
-            <code className="font-mono text-slate-700 dark:text-slate-300">
-              src/data/useCases.json
-            </code>{' '}
+            <AstryxCode>src/data/useCases.json</AstryxCode>{' '}
             {tx('và', 'and')}{' '}
-            <code className="font-mono text-slate-700 dark:text-slate-300">
-              src/data/matrices.json
-            </code>
-            .
+            <AstryxCode>src/data/matrices.json</AstryxCode>.
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap">
-          <button
-            onClick={() => setActiveTab('uc')}
-            className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-              activeTab === 'uc'
-                ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
+        <div className="overflow-x-auto">
+          <AstryxTabList
+            value={activeTab}
+            onChange={(val) => setActiveTab(val as 'uc' | 'auth' | 'screens' | 'erd')}
+            size="sm"
+            hasDivider
           >
-            <Layers className="w-3.5 h-3.5" />
-            <span>141 Use Cases (UC-001 – UC-141)</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('auth')}
-            className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-              activeTab === 'auth'
-                ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>
-              {tx(
+            <AstryxTab
+              value="uc"
+              label="141 Use Cases (UC-001 – UC-141)"
+              icon={<Layers className="w-3.5 h-3.5" />}
+            />
+            <AstryxTab
+              value="auth"
+              label={tx(
                 'Ma trận Phân quyền (38 Màn hình × 6 Roles)',
                 'RBAC Matrix (38 Screens × 6 Roles)'
               )}
-            </span>
-          </button>
-          <button
-            onClick={() => setActiveTab('screens')}
-            className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-              activeTab === 'screens'
-                ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
-          >
-            <Monitor className="w-3.5 h-3.5" />
-            <span>
-              {tx(
+              icon={<ShieldCheck className="w-3.5 h-3.5" />}
+            />
+            <AstryxTab
+              value="screens"
+              label={tx(
                 '38 Màn hình & 12 Tác vụ Ngầm',
                 '38 Screens & 12 Background Tasks'
               )}
-            </span>
-          </button>
-          <button
-            onClick={() => setActiveTab('erd')}
-            className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-              activeTab === 'erd'
-                ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
-          >
-            <Database className="w-3.5 h-3.5" />
-            <span>{tx('28 Thực thể CSDL (ERD)', '28 Database Entities (ERD)')}</span>
-          </button>
+              icon={<Monitor className="w-3.5 h-3.5" />}
+            />
+            <AstryxTab
+              value="erd"
+              label={tx('28 Thực thể CSDL (ERD)', '28 Database Entities (ERD)')}
+              icon={<Database className="w-3.5 h-3.5" />}
+            />
+          </AstryxTabList>
         </div>
       </div>
 
@@ -141,7 +126,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                   'Tìm UC-001, 3.2.1, tên Use Case...',
                   'Search UC-001, 3.2.1, Use Case name...'
                 )}
-                className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-sky-600 outline-none"
+                className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-orange-600 outline-none"
               />
             </div>
             <div className="flex flex-wrap items-center gap-1 text-xs">
@@ -149,8 +134,8 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 onClick={() => setSelectedRole('all')}
                 className={`interactive-btn px-2.5 py-1 rounded border cursor-pointer ${
                   selectedRole === 'all'
-                    ? 'bg-sky-600 text-white border-sky-600 font-medium'
-                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                    ? 'bg-orange-600 text-white border-orange-600 font-medium'
+                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800'
                 }`}
               >
                 {tx('Tất cả', 'All')} ({data.useCases.length})
@@ -161,8 +146,8 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                   onClick={() => setSelectedRole(r === selectedRole ? 'all' : r)}
                   className={`interactive-btn px-2.5 py-1 rounded border cursor-pointer ${
                     selectedRole === r
-                      ? 'bg-sky-600 text-white border-sky-600 font-medium'
-                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                      ? 'bg-orange-600 text-white border-orange-600 font-medium'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800'
                   }`}
                 >
                   {r}
@@ -171,11 +156,11 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
             </div>
           </div>
 
-          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+          <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                  <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                     <th className="py-2.5 px-3 w-20">UC ID</th>
                     <th className="py-2.5 px-3 w-20">{tx('Mã FR', 'FR Code')}</th>
                     <th className="py-2.5 px-3">
@@ -191,18 +176,18 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                     return (
                       <tr
                         key={uc.id}
-                        className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                        className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                       >
                         <td className="py-2.5 px-3 font-mono text-slate-700 dark:text-slate-300 whitespace-nowrap align-top">
-                          {uc.id}
+                          <AstryxCode>{uc.id}</AstryxCode>
                         </td>
                         <td className="py-2.5 px-3 font-mono whitespace-nowrap align-top">
                           {uc.frCode ? (
                             <Link
                               to={`/frs/${uc.frCode}`}
-                              className="font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                              className="hover:underline"
                             >
-                              {uc.frCode}
+                              <AstryxBadge label={uc.frCode} variant="orange" />
                             </Link>
                           ) : (
                             <Minus className="w-3.5 h-3.5 text-slate-300" />
@@ -211,7 +196,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                         <td className="py-2.5 px-3 align-top">
                           <Link
                             to={uc.frCode ? `/frs/${uc.frCode}` : '/frs'}
-                            className="font-semibold text-slate-900 dark:text-slate-100 hover:text-sky-600 dark:hover:text-sky-400 hover:underline block"
+                            className="font-semibold text-slate-900 dark:text-slate-100 hover:text-orange-600 dark:hover:text-orange-400 hover:underline block"
                           >
                             {uc.name}
                           </Link>
@@ -236,14 +221,14 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                             <div className="inline-flex items-center gap-1 text-xs">
                               <Link
                                 to={`/figures/${frObj.figureId}`}
-                                className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
+                                className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
                               >
                                 <Layout className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                                 <span>Fig {frObj.figureNumber}</span>
                               </Link>
                               <Link
                                 to={`/figures/${frObj.sequenceFigureId}`}
-                                className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
+                                className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
                               >
                                 <GitCommitHorizontal className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                                 <span>Seq</span>
@@ -257,17 +242,17 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </AstryxCard>
         </div>
       )}
 
       {/* TAB 2: Screen Auth Matrix */}
       {activeTab === 'auth' && (
-        <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+        <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                   <th className="py-2.5 px-3 w-10">
                     <Hash className="w-3.5 h-3.5 text-slate-400" />
                   </th>
@@ -283,7 +268,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 {data.screenAuthorization.map((row, idx) => (
                   <tr
                     key={row.screen}
-                    className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                    className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                   >
                     <td className="py-2 px-3 font-mono text-slate-400">{idx + 1}</td>
                     <td className="py-2 px-3 font-medium text-slate-900 dark:text-slate-100">
@@ -293,11 +278,11 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                       (roleKey) => {
                         const val = row[roleKey];
                         const hasAccess =
-                          val && val !== '-' && val !== '-' && val.trim() !== '';
+                          val && val !== '-' && val.trim() !== '';
                         return (
                           <td key={roleKey} className="py-2 px-3 text-center">
                             {hasAccess ? (
-                              <Check className="w-4 h-4 text-sky-600 dark:text-sky-400 mx-auto" />
+                              <Check className="w-4 h-4 text-orange-600 dark:text-orange-400 mx-auto" />
                             ) : (
                               <Minus className="w-3.5 h-3.5 text-slate-300 dark:text-slate-700 mx-auto" />
                             )}
@@ -310,15 +295,15 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
               </tbody>
             </table>
           </div>
-        </div>
+        </AstryxCard>
       )}
 
       {/* TAB 3: Screens & Non-Screen Functions */}
       {activeTab === 'screens' && (
         <div className="space-y-6">
-          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900">
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 inline-flex items-center gap-2 w-full">
-              <Monitor className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+          <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900">
+            <div className="p-3 bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 inline-flex items-center gap-2 w-full">
+              <Monitor className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>
                 {tx('38 Màn hình Ứng dụng (SRS 2.4.2)', '38 Application Screens (SRS 2.4.2)')}
               </span>
@@ -339,7 +324,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                   {data.screenDescriptions.map((sc) => (
                     <tr
                       key={sc.index}
-                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                     >
                       <td className="py-2 px-3 font-mono text-slate-400">{sc.index}</td>
                       <td className="py-2 px-3 text-slate-600 dark:text-slate-300">
@@ -356,11 +341,11 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </AstryxCard>
 
-          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900">
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 inline-flex items-center gap-2 w-full">
-              <Cpu className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+          <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900">
+            <div className="p-3 bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 inline-flex items-center gap-2 w-full">
+              <Cpu className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>
                 {tx(
                   '12 Tác vụ Ngầm & Hệ thống (SRS 2.4.4)',
@@ -384,7 +369,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                   {data.nonScreenFunctions.map((fn) => (
                     <tr
                       key={fn.index}
-                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                     >
                       <td className="py-2 px-3 font-mono text-slate-400">{fn.index}</td>
                       <td className="py-2 px-3 text-slate-600 dark:text-slate-300">
@@ -401,7 +386,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </AstryxCard>
         </div>
       )}
 
@@ -417,17 +402,17 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
             </span>
             <Link
               to="/figures/r3-fig-9"
-              className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-sky-600 hover:bg-sky-700 text-white font-medium"
+              className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-orange-600 hover:bg-orange-700 text-white font-medium"
             >
               <span>{tx('Xem Sơ đồ ERD (Figure 9)', 'View ERD Diagram (Figure 9)')}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>
-          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900">
+          <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                  <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                     <th className="py-2.5 px-3 w-12">
                       <Hash className="w-3.5 h-3.5 text-slate-400" />
                     </th>
@@ -443,11 +428,11 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                   {data.entities.map((ent) => (
                     <tr
                       key={ent.index}
-                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                     >
                       <td className="py-2.5 px-3 font-mono text-slate-400">{ent.index}</td>
-                      <td className="py-2.5 px-3 font-mono font-semibold text-sky-700 dark:text-sky-400">
-                        {ent.entity}
+                      <td className="py-2.5 px-3 font-mono font-semibold">
+                        <AstryxBadge label={ent.entity} variant="orange" />
                       </td>
                       <td className="py-2.5 px-3 text-slate-700 dark:text-slate-300 text-pretty">
                         {ent.description}
@@ -457,7 +442,7 @@ export const SystemMatrixPage: React.FC<SystemMatrixPageProps> = ({ data }) => {
                 </tbody>
               </table>
             </div>
-          </div>
+          </AstryxCard>
         </div>
       )}
     </div>

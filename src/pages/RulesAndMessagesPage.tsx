@@ -11,6 +11,14 @@ import {
 } from 'lucide-react';
 import type { PortalData } from '../types/portal';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import {
+  AstryxBadge,
+  AstryxCard,
+  AstryxCode,
+  AstryxHeading,
+  AstryxSegmentedControl,
+  AstryxSegmentedControlItem,
+} from '../components/astryx';
 
 interface RulesAndMessagesPageProps {
   data: PortalData;
@@ -77,33 +85,37 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
     const lower = type.toLowerCase();
     if (lower.includes('success')) {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 font-mono text-[11px]">
-          <CheckCircle2 className="w-3 h-3 shrink-0" />
-          <span>{type}</span>
-        </span>
+        <AstryxBadge
+          label={type}
+          variant="success"
+          icon={<CheckCircle2 className="w-3 h-3 shrink-0" />}
+        />
       );
     }
     if (lower.includes('error')) {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800/70 bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-mono text-[11px]">
-          <XCircle className="w-3 h-3 shrink-0" />
-          <span>{type}</span>
-        </span>
+        <AstryxBadge
+          label={type}
+          variant="error"
+          icon={<XCircle className="w-3 h-3 shrink-0" />}
+        />
       );
     }
     if (lower.includes('warning')) {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/70 bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 font-mono text-[11px]">
-          <AlertTriangle className="w-3 h-3 shrink-0" />
-          <span>{type}</span>
-        </span>
+        <AstryxBadge
+          label={type}
+          variant="warning"
+          icon={<AlertTriangle className="w-3 h-3 shrink-0" />}
+        />
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-sky-200 dark:border-sky-800/70 bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 font-mono text-[11px]">
-        <Info className="w-3 h-3 shrink-0" />
-        <span>{type}</span>
-      </span>
+      <AstryxBadge
+        label={type}
+        variant="info"
+        icon={<Info className="w-3 h-3 shrink-0" />}
+      />
     );
   };
 
@@ -111,46 +123,39 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-5 sm:py-6 space-y-5 sm:space-y-6">
       <div className="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
-          <h1 className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance">
-            <BookOpen className="w-5 h-5 text-sky-600 dark:text-sky-400 shrink-0" />
+          <AstryxHeading
+            level={1}
+            className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance"
+          >
+            <BookOpen className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
             <span>
               65 Business Rules (BR-01 – BR-65) &amp; 60 System Messages (MSG01 – MSG60)
             </span>
-          </h1>
+          </AstryxHeading>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-pretty">
             {tx('Dữ liệu nằm tại', 'Data stored in')}{' '}
-            <code className="font-mono text-slate-700 dark:text-slate-300">
-              src/data/rulesAndMessages.json
-            </code>
-            .
+            <AstryxCode>src/data/rulesAndMessages.json</AstryxCode>.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 text-xs tabular-nums">
-            <button
-              onClick={() => setActiveTab('br')}
-              className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border cursor-pointer ${
-                activeTab === 'br'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Business Rules ({filteredBRs.length})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('msg')}
-              className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border cursor-pointer ${
-                activeTab === 'msg'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>System Messages ({filteredMSGs.length})</span>
-            </button>
-          </div>
+          <AstryxSegmentedControl
+            label={tx('Loại danh mục', 'Category')}
+            size="sm"
+            value={activeTab}
+            onChange={(val) => setActiveTab(val as 'br' | 'msg')}
+          >
+            <AstryxSegmentedControlItem
+              value="br"
+              label={`Business Rules (${filteredBRs.length})`}
+              icon={<BookOpen className="w-3.5 h-3.5" />}
+            />
+            <AstryxSegmentedControlItem
+              value="msg"
+              label={`System Messages (${filteredMSGs.length})`}
+              icon={<MessageSquare className="w-3.5 h-3.5" />}
+            />
+          </AstryxSegmentedControl>
 
           <div className="relative w-full sm:w-80">
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -162,18 +167,18 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
                 'Tìm BR-01, MSG05, từ khóa...',
                 'Search BR-01, MSG05, keyword...'
               )}
-              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-sky-600 outline-none"
+              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-orange-600 outline-none"
             />
           </div>
         </div>
       </div>
 
       {activeTab === 'br' ? (
-        <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+        <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                   <th className="py-2.5 px-3 w-24">{tx('Mã BR', 'BR Code')}</th>
                   <th className="py-2.5 px-3">
                     {tx('Nội dung Quy tắc Nghiệp vụ', 'Business Rule Definition')}
@@ -189,10 +194,10 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
                   return (
                     <tr
                       key={br.code}
-                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                     >
-                      <td className="py-3 px-3 font-mono font-semibold text-sky-700 dark:text-sky-400 align-top">
-                        {br.code}
+                      <td className="py-3 px-3 align-top">
+                        <AstryxBadge label={br.code} variant="orange" />
                       </td>
                       <td className="py-3 px-3 text-slate-700 dark:text-slate-300 leading-relaxed text-pretty align-top">
                         {br.definition}
@@ -204,7 +209,7 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
                               key={r.code}
                               to={`/frs/${r.code}`}
                               title={r.name}
-                              className="interactive-btn px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-950 hover:border-sky-200 dark:hover:border-sky-800 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-400"
+                              className="interactive-btn px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 hover:border-orange-200 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:text-orange-700"
                             >
                               {r.code}
                             </Link>
@@ -217,13 +222,13 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
               </tbody>
             </table>
           </div>
-        </div>
+        </AstryxCard>
       ) : (
-        <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+        <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+                <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                   <th className="py-2.5 px-3 w-20">{tx('Mã MSG', 'MSG Code')}</th>
                   <th className="py-2.5 px-3 w-32">{tx('Loại', 'Type')}</th>
                   <th className="py-2.5 px-3">
@@ -240,10 +245,10 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
                   return (
                     <tr
                       key={msg.code}
-                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                     >
-                      <td className="py-3 px-3 font-mono font-semibold text-sky-700 dark:text-sky-400 align-top">
-                        {msg.code}
+                      <td className="py-3 px-3 align-top">
+                        <AstryxCode>{msg.code}</AstryxCode>
                       </td>
                       <td className="py-3 px-3 align-top">
                         {renderMsgTypeBadge(msg.type)}
@@ -263,7 +268,7 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
                               key={r.code}
                               to={`/frs/${r.code}`}
                               title={r.name}
-                              className="interactive-btn px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-950 hover:border-sky-200 dark:hover:border-sky-800 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-400"
+                              className="interactive-btn px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 hover:border-orange-200 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:text-orange-700"
                             >
                               {r.code}
                             </Link>
@@ -276,7 +281,7 @@ export const RulesAndMessagesPage: React.FC<RulesAndMessagesPageProps> = ({ data
               </tbody>
             </table>
           </div>
-        </div>
+        </AstryxCard>
       )}
     </div>
   );

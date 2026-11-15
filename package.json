@@ -11,6 +11,9 @@
     "demo-monitor": "python -X utf8 scripts/demo/selenium_demo_monitor.py"
   },
   "dependencies": {
+    "@astryxdesign/core": "^0.7.16",
+    "@astryxdesign/theme-neutral": "^0.7.16",
+    "@stylexjs/stylex": "^0.19.2",
     "@tailwindcss/vite": "^4.1.0",
     "clsx": "^2.1.1",
     "lucide-react": "^1.17.0",
@@ -29,4 +32,3 @@
     "vite": "^6.3.5"
   }
 }
-

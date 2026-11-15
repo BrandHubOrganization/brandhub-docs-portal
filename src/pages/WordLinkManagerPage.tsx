@@ -13,6 +13,14 @@ import {
 import type { PortalData } from '../types/portal';
 import { getPortalBaseUrl, setPortalBaseUrl } from '../components/CopyLinkBar';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import {
+  AstryxButton,
+  AstryxCard,
+  AstryxCode,
+  AstryxHeading,
+  AstryxTabList,
+  AstryxTab,
+} from '../components/astryx';
 
 interface WordLinkManagerPageProps {
   data: PortalData;
@@ -89,48 +97,47 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
       <div className="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
           <div>
-            <h1 className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance">
-              <Link2 className="w-5 h-5 text-sky-600 dark:text-sky-400 shrink-0" />
+            <AstryxHeading
+              level={1}
+              className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance"
+            >
+              <Link2 className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
               <span>
                 {tx(
                   `Danh sách Đường Link Gắn vào Tài liệu Word (${filteredFigures.length} Figures)`,
                   `Word Document Deep-Link Manager (${filteredFigures.length} Figures)`
                 )}
               </span>
-            </h1>
+            </AstryxHeading>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-pretty">
               {tx(
                 'Sao chép từng đường link hoặc xuất file CSV để gắn vào các dòng chữ',
                 'Copy individual links or export CSV to attach to'
               )}{' '}
-              <code className="font-mono text-slate-700 dark:text-slate-300">
-                Figure X - ...
-              </code>{' '}
+              <AstryxCode>Figure X - ...</AstryxCode>{' '}
               {tx('trong báo cáo Word.', 'captions in Word reports.')}
             </p>
           </div>
 
-          <button
+          <AstryxButton
+            label={tx(
+              `Xuất file CSV (${filteredFigures.length} links)`,
+              `Export CSV (${filteredFigures.length} links)`
+            )}
+            variant="primary"
+            size="sm"
+            icon={<Download className="w-3.5 h-3.5" />}
             onClick={handleDownloadCsv}
-            className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-sky-600 hover:bg-sky-700 text-white text-xs font-medium cursor-pointer shrink-0 self-start sm:self-auto shadow-2xs"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>
-              {tx(
-                `Xuất file CSV (${filteredFigures.length} links)`,
-                `Export CSV (${filteredFigures.length} links)`
-              )}
-            </span>
-          </button>
+          />
         </div>
 
         {/* Base URL Config */}
         <form
           onSubmit={handleSaveBaseUrl}
-          className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+          className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-orange-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
         >
           <div className="inline-flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
-            <Globe className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
+            <Globe className="w-4 h-4 text-orange-600 dark:text-orange-400 shrink-0" />
             <span>
               <strong className="text-slate-900 dark:text-white">
                 {tx('Tên miền gốc (Base URL):', 'Portal Base URL:')}
@@ -139,9 +146,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                 'Nhập domain sau khi deploy (VD:',
                 'Enter your deployed domain (e.g.,'
               )}{' '}
-              <code className="font-mono text-sky-700 dark:text-sky-400">
-                https://brandhub-docs.vercel.app
-              </code>
+              <AstryxCode>https://brandhub-docs.vercel.app</AstryxCode>
               {tx(
                 ') để cập nhật toàn bộ đường link bên dưới.',
                 ') to update all generated deep-links below.'
@@ -153,53 +158,39 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
               type="text"
               value={baseUrlInput}
               onChange={(e) => setBaseUrlInput(e.target.value)}
-              className="w-full sm:w-72 px-3 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-sky-600"
+              className="w-full sm:w-72 px-3 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-orange-600"
             />
-            <button
+            <AstryxButton
               type="submit"
-              className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-sky-600 hover:bg-sky-700 text-white text-xs font-medium cursor-pointer shrink-0"
-            >
-              {savedToast ? (
-                <>
-                  <Check className="w-3.5 h-3.5" />
-                  <span>{tx('Đã lưu', 'Saved')}</span>
-                </>
-              ) : (
-                <>
-                  <Save className="w-3.5 h-3.5" />
-                  <span>{tx('Lưu', 'Save')}</span>
-                </>
-              )}
-            </button>
+              label={savedToast ? tx('Đã lưu', 'Saved') : tx('Lưu', 'Save')}
+              variant="primary"
+              size="sm"
+              icon={savedToast ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
+            />
           </div>
         </form>
 
         {/* Filter Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-          <div className="flex items-center gap-1.5 text-xs tabular-nums overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap">
-            <button
-              onClick={() => setSelectedReport('all')}
-              className={`interactive-btn px-2.5 py-1 rounded border shrink-0 cursor-pointer ${
-                selectedReport === 'all'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
+          <div className="overflow-x-auto">
+            <AstryxTabList
+              value={selectedReport}
+              onChange={setSelectedReport}
+              size="sm"
+              hasDivider
             >
-              {tx('Tất cả', 'All')} ({data.figures.length})
-            </button>
-            {data.reports.map((rep) => (
-              <button
-                key={rep.id}
-                onClick={() => setSelectedReport(rep.id)}
-                className={`interactive-btn px-2.5 py-1 rounded border shrink-0 cursor-pointer ${
-                  selectedReport === rep.id
-                    ? 'bg-sky-600 text-white border-sky-600 font-medium'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                {rep.code} ({rep.figureCount})
-              </button>
-            ))}
+              <AstryxTab
+                value="all"
+                label={`${tx('Tất cả', 'All')} (${data.figures.length})`}
+              />
+              {data.reports.map((rep) => (
+                <AstryxTab
+                  key={rep.id}
+                  value={rep.id}
+                  label={`${rep.code} (${rep.figureCount})`}
+                />
+              ))}
+            </AstryxTabList>
           </div>
 
           <div className="relative w-full sm:w-72">
@@ -212,18 +203,18 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                 'Tìm Figure 10, r3-fig-10, 3.2.1...',
                 'Search Figure 10, r3-fig-10, 3.2.1...'
               )}
-              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-sky-600 outline-none"
+              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-orange-600 outline-none"
             />
           </div>
         </div>
       </div>
 
       {/* Links Table */}
-      <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+      <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+              <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                 <th className="py-2.5 px-3 w-28">{tx('Mã Figure', 'Figure ID')}</th>
                 <th className="py-2.5 px-3">
                   {tx('Caption trong Word', 'Word Caption')}
@@ -242,15 +233,15 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                 return (
                   <tr
                     key={fig.id}
-                    className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
+                    className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
                   >
-                    <td className="py-2.5 px-3 font-mono text-xs text-sky-700 dark:text-sky-400 whitespace-nowrap">
-                      {fig.id}
+                    <td className="py-2.5 px-3 font-mono text-xs whitespace-nowrap">
+                      <AstryxCode>{fig.id}</AstryxCode>
                     </td>
                     <td className="py-2.5 px-3">
                       <Link
                         to={`/figures/${fig.id}`}
-                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-sky-600 dark:hover:text-sky-400 hover:underline"
+                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
                       >
                         {fig.caption}
                       </Link>
@@ -262,7 +253,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                         </code>
                         <button
                           onClick={() => copyText(`portal-${fig.id}`, portalUrl)}
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs shrink-0 cursor-pointer"
+                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs shrink-0 cursor-pointer"
                         >
                           {copiedKey === `portal-${fig.id}` ? (
                             <>
@@ -271,7 +262,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3 h-3 text-slate-500 dark:text-slate-400" />
+                              <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
                               <span>{tx('Copy link', 'Copy')}</span>
                             </>
                           )}
@@ -284,14 +275,14 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                           href={fig.imageUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
+                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
                         >
                           <ExternalLink className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                           <span>{tx('Mở ảnh', 'Open')}</span>
                         </a>
                         <button
                           onClick={() => copyText(`cloud-${fig.id}`, fig.imageUrl)}
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer"
+                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer"
                         >
                           {copiedKey === `cloud-${fig.id}` ? (
                             <>
@@ -300,7 +291,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3 h-3 text-slate-500 dark:text-slate-400" />
+                              <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
                               <span>Copy URL</span>
                             </>
                           )}
@@ -313,7 +304,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
             </tbody>
           </table>
         </div>
-      </div>
+      </AstryxCard>
     </div>
   );
 };

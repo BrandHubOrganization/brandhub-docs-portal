@@ -12,6 +12,15 @@ import {
 import type { PortalData, CanonicalRole } from '../types/portal';
 import { RoleBadge, CANONICAL_ROLES } from '../components/RoleBadge';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import {
+  AstryxBadge,
+  AstryxButton,
+  AstryxCard,
+  AstryxCode,
+  AstryxHeading,
+  AstryxTabList,
+  AstryxTab,
+} from '../components/astryx';
 
 interface FrExplorerPageProps {
   data: PortalData;
@@ -63,18 +72,21 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-5 sm:py-6 space-y-5 sm:space-y-6">
       <div className="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-5">
         <div>
-          <h1 className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance">
-            <FileText className="w-5 h-5 text-sky-600 dark:text-sky-400 shrink-0" />
+          <AstryxHeading
+            level={1}
+            className="inline-flex items-center gap-2 text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 text-balance"
+          >
+            <FileText className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
             <span>
               {tx(
                 'Danh sách 141 Functional Requirements (3.2.1 – 3.10.14)',
                 '141 Atomic Functional Requirements (3.2.1 – 3.10.14)'
               )}
             </span>
-          </h1>
+          </AstryxHeading>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-pretty">
             {tx('Hiển thị', 'Showing')}{' '}
-            <span className="font-mono font-semibold text-sky-700 dark:text-sky-400 tabular-nums">
+            <span className="font-mono font-semibold text-orange-700 dark:text-orange-400 tabular-nums">
               {filteredFRs.length}
             </span>{' '}
             {tx('trên tổng số', 'of')}{' '}
@@ -83,38 +95,30 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
               'yêu cầu chức năng. Dữ liệu từng phân hệ nằm trong',
               'functional requirements. Modular data stored in'
             )}{' '}
-            <code className="font-mono text-slate-700 dark:text-slate-300">
-              src/data/frs/domain-3.x.json
-            </code>
-            .
+            <AstryxCode>src/data/frs/domain-3.x.json</AstryxCode>.
           </p>
         </div>
 
-        {/* Domain Filter Pills */}
-        <div className="flex items-center gap-1.5 text-xs tabular-nums overflow-x-auto pb-1 sm:pb-0 sm:flex-wrap">
-          <button
-            onClick={() => setSelectedDomain('all')}
-            className={`interactive-btn px-2.5 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-              selectedDomain === 'all'
-                ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
+        {/* Domain Filter Tabs via Meta Astryx TabList */}
+        <div className="overflow-x-auto">
+          <AstryxTabList
+            value={selectedDomain}
+            onChange={setSelectedDomain}
+            size="sm"
+            hasDivider
           >
-            {tx('Tất cả', 'All')} ({data.frs.length})
-          </button>
-          {data.domains.map((dom) => (
-            <button
-              key={dom.code}
-              onClick={() => setSelectedDomain(dom.code)}
-              className={`interactive-btn px-2.5 py-1.5 rounded-md border shrink-0 cursor-pointer ${
-                selectedDomain === dom.code
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              {dom.code} {dom.title} ({dom.frCount})
-            </button>
-          ))}
+            <AstryxTab
+              value="all"
+              label={`${tx('Tất cả', 'All')} (${data.frs.length})`}
+            />
+            {data.domains.map((dom) => (
+              <AstryxTab
+                key={dom.code}
+                value={dom.code}
+                label={`${dom.code} ${dom.title} (${dom.frCount})`}
+              />
+            ))}
+          </AstryxTabList>
         </div>
 
         {/* Search & Role Select */}
@@ -129,7 +133,7 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
                 'Tìm theo mã FR (VD: 3.6.11), Use Case (UC-072), tên chức năng, BR-15, MSG20...',
                 'Search by FR code (3.6.11), Use Case (UC-072), title, BR-15, MSG20...'
               )}
-              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-sky-600 outline-none"
+              className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:border-orange-600 outline-none"
             />
           </div>
 
@@ -139,7 +143,7 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
-                className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 outline-none focus:border-sky-600"
+                className="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 outline-none focus:border-orange-600"
               >
                 <option value="all">{tx('Tất cả Role', 'All Roles')}</option>
                 {CANONICAL_ROLES.map((role) => (
@@ -151,24 +155,24 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
             </div>
 
             {(selectedDomain !== 'all' || selectedRole !== 'all' || query) && (
-              <button
+              <AstryxButton
+                label={tx('Xóa lọc', 'Reset')}
+                variant="secondary"
+                size="sm"
+                icon={<RotateCcw className="w-3 h-3" />}
                 onClick={resetFilters}
-                className="interactive-btn inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs text-slate-600 dark:text-slate-300 cursor-pointer shrink-0"
-              >
-                <RotateCcw className="w-3 h-3" />
-                <span>{tx('Xóa lọc', 'Reset')}</span>
-              </button>
+              />
             )}
           </div>
         </div>
       </div>
 
       {/* Table of FRs */}
-      <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
+      <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-2xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+              <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
                 <th className="py-2.5 px-3 w-20">{tx('Mã FR', 'FR Code')}</th>
                 <th className="py-2.5 px-3 w-20 hidden sm:table-cell">Use Case</th>
                 <th className="py-2.5 px-3">
@@ -184,20 +188,20 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
               {filteredFRs.map((fr) => (
                 <tr
                   key={fr.code}
-                  className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors group"
+                  className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors group"
                 >
-                  <td className="py-3 px-3 font-mono font-semibold text-sky-700 dark:text-sky-400 whitespace-nowrap align-top">
+                  <td className="py-3 px-3 whitespace-nowrap align-top">
                     <Link to={`/frs/${fr.code}`} className="hover:underline">
-                      {fr.code}
+                      <AstryxBadge label={fr.code} variant="orange" />
                     </Link>
                   </td>
                   <td className="py-3 px-3 font-mono text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap align-top hidden sm:table-cell">
-                    {fr.ucId}
+                    <AstryxCode>{fr.ucId}</AstryxCode>
                   </td>
                   <td className="py-3 px-3 align-top space-y-1">
                     <Link
                       to={`/frs/${fr.code}`}
-                      className="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 hover:underline block transition-colors"
+                      className="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 hover:underline block transition-colors"
                     >
                       {fr.title}
                     </Link>
@@ -215,7 +219,7 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
                           <Link
                             key={br}
                             to={`/rules?code=${br}`}
-                            className="font-mono text-[11px] text-slate-500 dark:text-slate-400 hover:text-sky-700 dark:hover:text-sky-400 hover:underline"
+                            className="font-mono text-[11px] text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 hover:underline"
                           >
                             {br}
                           </Link>
@@ -224,7 +228,7 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
                           <Link
                             key={msg}
                             to={`/rules?code=${msg}`}
-                            className="font-mono text-[11px] text-slate-500 dark:text-slate-400 hover:text-sky-700 dark:hover:text-sky-400 hover:underline"
+                            className="font-mono text-[11px] text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 hover:underline"
                           >
                             {msg}
                           </Link>
@@ -243,21 +247,21 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
                     <div className="inline-flex items-center gap-1 text-xs">
                       <Link
                         to={`/figures/${fr.figureId}`}
-                        className="interactive-btn hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200"
+                        className="interactive-btn hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200"
                       >
                         <Layout className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                         <span>Fig {fr.figureNumber}</span>
                       </Link>
                       <Link
                         to={`/figures/${fr.sequenceFigureId}`}
-                        className="interactive-btn hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200"
+                        className="interactive-btn hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200"
                       >
                         <GitCommitHorizontal className="w-3 h-3 text-slate-500 dark:text-slate-400" />
                         <span>Seq</span>
                       </Link>
                       <Link
                         to={`/frs/${fr.code}`}
-                        className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded bg-sky-600 hover:bg-sky-700 text-white font-medium shadow-2xs"
+                        className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded bg-orange-600 hover:bg-orange-700 text-white font-medium shadow-2xs"
                       >
                         <span>{tx('Chi tiết', 'Details')}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -269,7 +273,7 @@ export const FrExplorerPage: React.FC<FrExplorerPageProps> = ({ data }) => {
             </tbody>
           </table>
         </div>
-      </div>
+      </AstryxCard>
     </div>
   );
 };
