@@ -423,16 +423,16 @@ const DEMO_STEPS: DemoStep[] = [
     actorEmail: 'user1@demo.brandhub.test',
     routeTemplate: '/workspaces/{workspace_id}/tasks',
     manualBrowserCue:
-      'Bấm [1] xem bảng 20 công việc & 5 Subtask bài Tuần 3; bấm [3] xem 8 phiếu Khảo sát lớp 12 và bấm [4] xem Yêu cầu từ Ban Tuyển sinh.',
+      'Bấm [1] xem bảng 20 công việc & 5 Subtask bài Tuần 3; bấm [3] xem 16 phiếu Khảo sát lớp 12 và bấm [4] xem Yêu cầu từ Ban Tuyển sinh.',
     talkingPoints: [
       '20 công việc phân công chuyên môn hóa cho 3 Creator nhóm SE08: Phước (Social), Tuấn (Key Visual, Reels & Workshop), Ân (Báo chí, Email & Khảo sát).',
       'Bài trọng điểm Tuần 3 có 5 Role Subtasks phối hợp chéo giữa Ân (Nghiên cứu), Tuấn (Key Visual) và Phước (Soạn bài).',
-      'Liên kết trực tiếp với trang Khảo sát nguyện vọng học sinh lớp 12 (8 phản hồi) và trang Yêu cầu nội dung từ nhà trường.',
+      'Liên kết trực tiếp với trang Khảo sát nguyện vọng học sinh lớp 12 (16 phản hồi) và trang Yêu cầu nội dung từ nhà trường.',
     ],
     presenterScript:
       'Khi chiến dịch đi vào vận hành, toàn bộ 20 đầu việc trong 4 tuần được phân công rõ cho 3 Creator của nhóm SE08: Nguyễn Chơn Phước phụ trách nội dung đa nền tảng, Nguyễn Minh Tuấn đảm nhận thiết kế Key Visual, dựng Reels và kịch bản chuỗi Workshop THPT, còn Hà Văn Ân phụ trách thông cáo báo chí VnExpress/Thanh Niên, bản tin Email và khảo sát học sinh lớp 12. Đặc biệt ở bài trọng điểm Tuần 3 đang thực hiện, 5 Subtask con cũng được phối hợp chéo giữa Tuấn, Ân và Phước rất chặt chẽ.',
     expectedOutcome:
-      'Hiển thị đầy đủ 20 công việc theo tiến độ thực tế của tuần thứ 3, chi tiết 5 Subtask không thiếu trường nào, cùng bảng kết quả 8 phiếu khảo sát học sinh THPT và 2 yêu cầu từ khách hàng.',
+      'Hiển thị đầy đủ 20 công việc theo tiến độ thực tế của tuần thứ 3, chi tiết 5 Subtask không thiếu trường nào, cùng bảng kết quả 16 phiếu khảo sát học sinh THPT và 2 yêu cầu từ khách hàng.',
     fields: [
       {
         field: 'Bài trọng điểm đang thực hiện tại Tuần 3 (Task #1)',
@@ -471,7 +471,7 @@ const DEMO_STEPS: DemoStep[] = [
       {
         id: 'B4_NAV_SURVEYS',
         label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)',
-        description: 'Xem khảo sát 4 câu hỏi và 8 phản hồi thực tế của học sinh lớp 12',
+        description: 'Xem khảo sát 4 câu hỏi và 16 phản hồi thực tế của học sinh lớp 12',
         variant: 'outline',
         icon: <ClipboardList className="size-4" />,
       },
@@ -879,16 +879,16 @@ const DEMO_STEPS: DemoStep[] = [
     actorEmail: 'user1@demo.brandhub.test',
     routeTemplate: '/workspaces/{workspace_id}/social-accounts',
     manualBrowserCue:
-      'Bấm [1] -> [2] -> [3] -> [4] để lướt nhanh 4 kết nối OAuth (Facebook, Instagram, TikTok, Threads), 8 Hashtag tuyển sinh, Mẫu Email và Lịch sử gửi lô Email.',
+      'Bấm [1] -> [2] -> [3] -> [4] để lướt nhanh 4 kết nối OAuth (Facebook, Instagram, TikTok, Threads), 12 Hashtag tuyển sinh, Mẫu Email và Lịch sử gửi lô Email.',
     talkingPoints: [
       'Cả 4 nền tảng chính thức của hệ thống gồm Facebook, Instagram, TikTok và Threads đều đã kết nối OAuth hoạt động tốt.',
-      'Bộ 8 Hashtag chuẩn mùa tuyển sinh 2027 được phân loại sẵn để tái sử dụng nhất quán.',
+      'Bộ 12 Hashtag chuẩn mùa tuyển sinh 2027 được phân loại sẵn để tái sử dụng nhất quán.',
       'Mẫu Email và lịch sử gửi vé mời tham dự chuỗi Workshop THPT cho học sinh lớp 12 sẵn sàng trong cùng Workspace.',
     ],
     presenterScript:
       'Trước khi xuất bản đồng loạt, Manager kiểm tra hạ tầng kênh truyền thông của Workspace: cả 4 tài khoản chính thức của Tuyển sinh Đại học FPT trên Facebook, Instagram, TikTok và Threads đều đang kết nối hoạt động qua OAuth. Bên cạnh đó, bộ Hashtag bắt buộc của chiến dịch cùng mẫu Email và lịch sử gửi vé mời tham dự Workshop cho học sinh THPT cũng được chuẩn hóa đồng bộ.',
     expectedOutcome:
-      'Hiển thị 4 kết nối OAuth hoạt động tốt (Facebook, Instagram, TikTok, Threads), 8 Hashtag chiến dịch, 2 mẫu Email và 2 lô gửi Email hoàn tất.',
+      'Hiển thị 4 kết nối OAuth hoạt động tốt (Facebook, Instagram, TikTok, Threads), 12 Hashtag chiến dịch, 2 mẫu Email và 2 lô gửi Email hoàn tất.',
     fields: [
       {
         field: '4 tài khoản Mạng xã hội chính thức của chiến dịch',
@@ -900,7 +900,7 @@ const DEMO_STEPS: DemoStep[] = [
         field: 'Bộ Hashtag & Mẫu Email đi kèm chiến dịch',
         actionType: 'Tự động điền sẵn',
         value:
-          '8 Hashtag chuẩn (#DaiHocFPT, #TuyenSinhFPTU2027, #WorkshopTHPT...), 2 Mẫu Email & 2 Lô gửi Email (6 lượt gửi thành công)',
+          '12 Hashtag chuẩn (#DaiHocFPT, #TuyenSinhFPTU2027, #WorkshopTHPT...), 2 Mẫu Email & 2 Lô gửi Email (6 lượt gửi thành công)',
       },
     ],
     actions: [
@@ -914,7 +914,7 @@ const DEMO_STEPS: DemoStep[] = [
       {
         id: 'B12_NAV_HASHTAGS',
         label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh',
-        description: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng',
+        description: 'Xem 12 hashtag phân loại thương hiệu, ngành học và học bổng',
         variant: 'outline',
         icon: <Hash className="size-4" />,
       },
@@ -952,18 +952,18 @@ const DEMO_STEPS: DemoStep[] = [
     talkingPoints: [
       'Danh sách bài đăng phản ánh trọn vẹn 4 tuần: các bài Tuần 1-2 đã lên sóng, bài Tuần 3 sẵn sàng xuất bản và bài Tuần 4 đã hẹn giờ.',
       'Trang Lịch xuất bản /calendar hiển thị trực quan mật độ phủ sóng trên 4 nền tảng.',
-      'Toàn bộ chỉ số Reach, Impressions, Reactions từ 22 lượt phát hành đổ trực tiếp về Dashboard phân tích.',
+      'Toàn bộ chỉ số Reach, Impressions, Reactions từ 38 lượt phát hành đổ trực tiếp về Dashboard phân tích.',
     ],
     presenterScript:
       'Khi bài viết Tuần 3 đã ở trạng thái APPROVED, Creator theo dõi tiến độ phát hành trên Bảng điều phối bài đăng đa nền tảng. Mở sang trang Lịch xuất bản (/calendar), hội đồng có thể nhìn thấy bức tranh toàn cảnh 4 tuần tuyển sinh từ các bài đã lên sóng tới lịch hẹn chốt hồ sơ ở Tuần 4, đồng thời toàn bộ chỉ số Reach, Impressions và Reactions từ 4 nền tảng đều đổ về Dashboard phân tích theo thời gian thực.',
     expectedOutcome:
-      'Danh sách 13 bài viết hiển thị rõ trên /posts/dashboard, lịch đăng 4 tuần hiển thị trực quan trên /calendar và biểu đồ tương tác đa nền tảng cập nhật đầy đủ trên /dashboard.',
+      'Danh sách 17 bài viết hiển thị rõ trên /posts/dashboard, lịch đăng 4 tuần hiển thị trực quan trên /calendar và biểu đồ tương tác đa nền tảng cập nhật đầy đủ trên /dashboard.',
     fields: [
       {
         field: 'Chuỗi bài đăng đa nền tảng trong 4 tuần chiến dịch',
         actionType: 'Tự động điền sẵn',
         value:
-          'Các bài PUBLISHED (Tuần 1-2 & đầu Tuần 3, tổng 22 lượt phát hành trên FB/IG/TikTok/Threads) + bài APPROVED vừa duyệt + 2 bài SCHEDULED hẹn giờ Tuần 4',
+          'Các bài PUBLISHED (Tuần 1-2 & đầu Tuần 3, tổng 38 lượt phát hành trên FB/IG/TikTok/Threads) + bài APPROVED vừa duyệt + 2 bài SCHEDULED hẹn giờ Tuần 4',
       },
     ],
     actions: [
@@ -1067,7 +1067,7 @@ const DEMO_STEPS: DemoStep[] = [
         field: 'Phạm vi giám sát của Admin toàn nền tảng',
         actionType: 'Tự động điền sẵn',
         value:
-          'Thống kê doanh thu gói đăng ký SePay/PayOS, quản lý gói cước, cấu hình bảng giá AI Credit & Hàng đợi kiểm duyệt nội dung (FR 3.10.4)',
+          'Thống kê doanh thu gói đăng ký SePay (VietQR), quản lý gói cước, cấu hình bảng giá AI Credit & Hàng đợi kiểm duyệt nội dung (FR 3.10.4)',
       },
     ],
     actions: [

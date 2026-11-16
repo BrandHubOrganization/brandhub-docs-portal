@@ -16,7 +16,7 @@ của nhóm SE_08 triển khai Chiến dịch Tuyển sinh Đại học FPT 2027
       FPTU Open Day đến Báo chí chính thống VnExpress / Thanh Niên / Dân Trí)
     + Bắn trực tiếp ảnh Key Visual Gemini Nano Banana lên bài viết trên /editor chỉ với 1 cú nhấp
     + Gọi AI sinh Caption, Kiểm duyệt vi phạm (FR 3.6.33), Duyệt 2 tầng v1/v2 & Diff phiên bản
-    + Đa nền tảng (Facebook, Instagram, TikTok, Threads), Lịch đăng, Khảo sát THPT, SePay/PayOS & Admin.
+    + Đa nền tảng (Facebook, Instagram, TikTok, Threads), Lịch đăng, Khảo sát THPT, SePay (VietQR) & Admin.
 ================================================================================
 """
 
@@ -1627,13 +1627,13 @@ class DemoBrowserController:
             return {**res, "message": "Đã mở Dashboard phân tích số liệu Reach, Impressions và Reactions của chiến dịch."}
 
         # ----------------------------------------------------------------------
-        # B14: Owner nâng cấp gói dịch vụ qua SePay / PayOS (VietQR) & Ví AI Credit
+        # B14: Owner nâng cấp gói dịch vụ qua SePay (VietQR) & Ví AI Credit
         # ----------------------------------------------------------------------
         if action_id == "B14_NAV_PLANS":
             res = self.login_role(
                 "Owner",
                 "/subscription/plans",
-                "B14.1 - Nâng cấp gói cước Agency qua SePay / PayOS (VietQR)",
+                "B14.1 - Nâng cấp gói cước Agency qua SePay (VietQR)",
             )
             drv = self.drivers.get("Owner")
             if drv:
@@ -1644,7 +1644,7 @@ class DemoBrowserController:
                         "//button[contains(., 'Nâng cấp') or contains(., 'Chọn gói') or contains(., 'Enterprise')]",
                     )
                     if upg_btns:
-                        self.highlight_element(drv, upg_btns[-1], "OWNER: BẤM 'NÂNG CẤP' ĐỂ TẠO MÃ VIETQR (SEPAY/PAYOS)")
+                        self.highlight_element(drv, upg_btns[-1], "OWNER: BẤM 'NÂNG CẤP' ĐỂ TẠO MÃ VIETQR (SEPAY)")
                 except Exception:
                     pass
             return {**res, "message": "Đã mở trang Nâng cấp gói dịch vụ (/subscription/plans) của SE08 Digital Agency."}
