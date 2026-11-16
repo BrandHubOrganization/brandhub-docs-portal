@@ -13,6 +13,7 @@ import { SystemMatrixPage } from './pages/SystemMatrixPage';
 import { RulesAndMessagesPage } from './pages/RulesAndMessagesPage';
 import { WordLinkManagerPage } from './pages/WordLinkManagerPage';
 import { DemoMonitorPage } from './pages/DemoMonitorPage';
+import { AstryxCode } from './components/astryx';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
@@ -44,26 +45,26 @@ const AnimatedRoutes: React.FC = () => {
       <footer className="hidden md:block border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12 transition-colors">
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
           <div className="inline-flex items-center gap-1.5">
-            <FolderCode className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+            <FolderCode className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
             <span>
               {tx(
                 'BrandHub Documentation - Chỉnh sửa nội dung tại',
                 'BrandHub Documentation - Edit modular JSON files at'
               )}{' '}
-              <code className="font-mono text-slate-700 dark:text-slate-300">src/data/</code>
+              <AstryxCode className="font-mono text-slate-700 dark:text-slate-300">src/data/</AstryxCode>
             </span>
           </div>
           <div className="flex items-center gap-4">
             <Link
               to="/rules"
-              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-400 hover:underline"
+              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>Business Rules &amp; Messages</span>
             </Link>
             <Link
               to="/links"
-              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-sky-700 dark:hover:text-sky-400 hover:underline"
+              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
             >
               <Link2 className="w-3.5 h-3.5" />
               <span>{tx('Link gắn Word', 'Word Deep-Links')}</span>

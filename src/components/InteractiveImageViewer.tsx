@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SubImageItem } from '../types/portal';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import { AstryxButton, AstryxIconButton, AstryxCode } from './astryx';
 
 interface InteractiveImageViewerProps {
   imageUrl: string;
@@ -146,17 +147,17 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
       {/* Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-3 sm:px-4 py-2 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs">
         <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 tabular-nums min-w-0">
-          <ImageIcon className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+          <ImageIcon className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400 shrink-0" />
           <span className="font-semibold text-slate-800 dark:text-slate-100 truncate max-w-[260px] sm:max-w-[460px]">
             {caption || tx('Sơ đồ / Hình ảnh', 'Diagram / Figure')}
           </span>
           {currentW && currentH ? (
-            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400 dark:text-slate-500 font-mono shrink-0">
+            <AstryxCode className="hidden sm:inline-flex items-center gap-1 text-slate-400 dark:text-slate-500 font-mono shrink-0">
               <Maximize className="w-3 h-3" />
               <span>
                 {currentW}x{currentH}px
               </span>
-            </span>
+            </AstryxCode>
           ) : null}
           <span className="hidden xl:inline-flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 ml-1 shrink-0">
             <Hand className="w-3 h-3" />
@@ -170,30 +171,30 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 tabular-nums shrink-0">
-          <button
+          <AstryxIconButton
+            size="sm"
+            variant="secondary"
             onClick={handleZoomOut}
-            aria-label={tx('Thu nhỏ', 'Zoom out')}
-            className="interactive-btn inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 cursor-pointer"
-          >
-            <ZoomOut className="w-3.5 h-3.5" />
-          </button>
-          <span className="px-1.5 font-mono font-medium text-slate-700 dark:text-slate-200 min-w-[44px] text-center">
+            label={tx('Thu nhỏ', 'Zoom out')}
+            icon={<ZoomOut className="w-3.5 h-3.5" />}
+          />
+          <AstryxCode className="px-1.5 font-mono font-medium text-slate-700 dark:text-slate-200 min-w-[44px] text-center">
             {Math.round(scale * 100)}%
-          </span>
-          <button
+          </AstryxCode>
+          <AstryxIconButton
+            size="sm"
+            variant="secondary"
             onClick={handleZoomIn}
-            aria-label={tx('Phóng to', 'Zoom in')}
-            className="interactive-btn inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 cursor-pointer"
-          >
-            <ZoomIn className="w-3.5 h-3.5" />
-          </button>
-          <button
+            label={tx('Phóng to', 'Zoom in')}
+            icon={<ZoomIn className="w-3.5 h-3.5" />}
+          />
+          <AstryxButton
+            size="sm"
+            variant="secondary"
             onClick={handleReset}
-            className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 cursor-pointer"
-          >
-            <RotateCcw className="w-3 h-3" />
-            <span>100%</span>
-          </button>
+            icon={<RotateCcw className="w-3 h-3" />}
+            label="100%"
+          />
 
           <a
             href={currentUrl}
@@ -216,33 +217,24 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
             <span className="hidden sm:inline">{tx('Tải xuống', 'Download')}</span>
           </a>
 
-          <button
+          <AstryxButton
+            size="sm"
+            variant="primary"
             onClick={() => setIsFullscreen(!fullscreen)}
-            className="interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-sky-600 hover:bg-sky-700 text-white font-medium cursor-pointer"
-          >
-            {fullscreen ? (
-              <>
-                <Minimize2 className="w-3.5 h-3.5" />
-                <span>
-                  {tx('Thu nhỏ / Xem giải thích (Esc)', 'Minimize / Details (Esc)')}
-                </span>
-              </>
-            ) : (
-              <>
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">
-                  {tx('Toàn màn hình', 'Fullscreen')}
-                </span>
-              </>
-            )}
-          </button>
+            icon={fullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+            label={
+              fullscreen
+                ? tx('Thu nhỏ / Xem giải thích (Esc)', 'Minimize / Details (Esc)')
+                : tx('Toàn màn hình', 'Fullscreen')
+            }
+          />
         </div>
       </div>
 
       {/* Sub-images selector if Figure 2 */}
       {subImages && subImages.length > 0 && (
         <div className="flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-slate-50/60 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 overflow-x-auto text-xs">
-          <Layers className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+          <Layers className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400 shrink-0" />
           <span className="text-slate-600 dark:text-slate-300 font-medium shrink-0 mr-1">
             {tx('Phân hệ:', 'Packages:')}
           </span>
@@ -250,7 +242,7 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
             onClick={() => setActiveSubImg(null)}
             className={`interactive-btn px-2.5 py-1 rounded shrink-0 cursor-pointer ${
               activeSubImg === null
-                ? 'bg-sky-600 text-white font-medium'
+                ? 'bg-orange-600 text-white font-medium'
                 : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
           >
@@ -262,7 +254,7 @@ export const InteractiveImageViewer: React.FC<InteractiveImageViewerProps> = ({
               onClick={() => setActiveSubImg(sub)}
               className={`interactive-btn px-2.5 py-1 rounded shrink-0 cursor-pointer tabular-nums ${
                 activeSubImg?.id === sub.id
-                  ? 'bg-sky-600 text-white font-medium'
+                  ? 'bg-orange-600 text-white font-medium'
                   : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700'
               }`}
             >

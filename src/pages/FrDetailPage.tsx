@@ -18,6 +18,15 @@ import type { PortalData } from '../types/portal';
 import { InteractiveImageViewer } from '../components/InteractiveImageViewer';
 import { RoleBadge } from '../components/RoleBadge';
 import { useAppPreferences } from '../context/AppPreferencesContext';
+import {
+  AstryxBadge,
+  AstryxCard,
+  AstryxCode,
+  AstryxHeading,
+  AstryxSegmentedControl,
+  AstryxSegmentedControlItem,
+  BhEmptyState,
+} from '../components/astryx';
 
 interface FrDetailPageProps {
   data: PortalData;
@@ -70,18 +79,18 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
   if (!fr) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-        <div className="border border-slate-200 dark:border-slate-800 rounded-lg p-8 space-y-3 bg-white dark:bg-slate-900">
-          <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">
-            {tx('Không tìm thấy FR', 'FR not found')} &ldquo;{frCode}&rdquo;
-          </h1>
-          <Link
-            to="/frs"
-            className="interactive-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-sky-600 text-white text-xs font-medium"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{tx('Quay lại danh sách 141 FRs', 'Back to 141 FRs')}</span>
-          </Link>
-        </div>
+        <BhEmptyState
+          title={`${tx('Không tìm thấy FR', 'FR not found')} "${frCode}"`}
+          actions={
+            <Link
+              to="/frs"
+              className="interactive-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-orange-600 text-white text-xs font-medium"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>{tx('Quay lại danh sách 141 FRs', 'Back to 141 FRs')}</span>
+            </Link>
+          }
+        />
       </div>
     );
   }
@@ -96,7 +105,7 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
         <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 flex-wrap">
           <Link
             to="/frs"
-            className="interactive-btn inline-flex items-center gap-1.5 text-sky-700 dark:text-sky-400 hover:underline font-medium"
+            className="interactive-btn inline-flex items-center gap-1.5 text-orange-700 dark:text-orange-400 hover:underline font-medium"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{tx('Danh sách 141 FRs', '141 FRs List')}</span>
@@ -109,16 +118,14 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
             {fr.domainCode} {fr.domainTitle}
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-400 hidden sm:inline" />
-          <span className="font-mono text-slate-800 dark:text-slate-200 font-semibold">
-            {fr.code}
-          </span>
+          <AstryxCode>{fr.code}</AstryxCode>
         </div>
 
         <div className="flex items-center gap-2">
           {prevFr && (
             <Link
               to={`/frs/${prevFr.code}`}
-              className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+              className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               <span>{prevFr.code}</span>
@@ -127,7 +134,7 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
           {nextFr && (
             <Link
               to={`/frs/${nextFr.code}`}
-              className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+              className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
             >
               <span>{nextFr.code}</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -140,15 +147,9 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-2 font-mono flex-wrap">
-            <span className="font-semibold text-sky-700 dark:text-sky-400">
-              SRS {fr.code}
-            </span>
-            <ChevronRight className="w-3 h-3 text-slate-400" />
-            <span>{fr.ucId}</span>
-            <ChevronRight className="w-3 h-3 text-slate-400" />
-            <span>
-              {fr.domainCode} {fr.domainTitle}
-            </span>
+            <AstryxBadge label={`SRS ${fr.code}`} variant="orange" />
+            <AstryxCode>{fr.ucId}</AstryxCode>
+            <AstryxBadge label={`${fr.domainCode} ${fr.domainTitle}`} variant="neutral" />
           </div>
           <div className="flex flex-wrap gap-1">
             {fr.actors.map((actor) => (
@@ -157,9 +158,12 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
           </div>
         </div>
 
-        <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 text-balance">
+        <AstryxHeading
+          level={1}
+          className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 text-balance"
+        >
           {fr.code} ({fr.ucId}) - {fr.title}
-        </h1>
+        </AstryxHeading>
         {fr.viSummary && (
           <p className="text-sm text-slate-600 dark:text-slate-300 text-pretty">
             {fr.viSummary}
@@ -167,49 +171,36 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
         )}
       </div>
 
-      {/* 3-Diagram Switcher */}
+      {/* 3-Diagram Switcher via Meta Astryx SegmentedControl */}
       <div className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              onClick={() => setActiveTab('screen')}
-              className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border cursor-pointer ${
-                activeTab === 'screen'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <Layout className="w-3.5 h-3.5" />
-              <span>1. Screen Layout (Figure {fr.figureNumber})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('sequence')}
-              className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border cursor-pointer ${
-                activeTab === 'sequence'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <GitCommitHorizontal className="w-3.5 h-3.5" />
-              <span>2. Sequence Diagram ({fr.code})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('class')}
-              className={`interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border cursor-pointer ${
-                activeTab === 'class'
-                  ? 'bg-sky-600 text-white border-sky-600 font-medium shadow-xs'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
-              }`}
-            >
-              <Network className="w-3.5 h-3.5" />
-              <span>3. Class Diagram ({fr.domainCode})</span>
-            </button>
-          </div>
+          <AstryxSegmentedControl
+            label={tx('Chuyển đổi loại sơ đồ', 'Switch diagram type')}
+            size="sm"
+            value={activeTab}
+            onChange={(val) => setActiveTab(val as 'screen' | 'sequence' | 'class')}
+          >
+            <AstryxSegmentedControlItem
+              value="screen"
+              label={`1. Screen Layout (Figure ${fr.figureNumber})`}
+              icon={<Layout className="w-3.5 h-3.5" />}
+            />
+            <AstryxSegmentedControlItem
+              value="sequence"
+              label={`2. Sequence Diagram (${fr.code})`}
+              icon={<GitCommitHorizontal className="w-3.5 h-3.5" />}
+            />
+            <AstryxSegmentedControlItem
+              value="class"
+              label={`3. Class Diagram (${fr.domainCode})`}
+              icon={<Network className="w-3.5 h-3.5" />}
+            />
+          </AstryxSegmentedControl>
 
           {activeFig && (
             <Link
               to={`/figures/${activeFig.id}`}
-              className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-sky-700 dark:text-sky-400 font-medium"
+              className="interactive-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-orange-200 dark:border-slate-800 bg-orange-50/60 dark:bg-slate-900 hover:bg-orange-100 dark:hover:bg-slate-800 text-orange-700 dark:text-orange-400 font-medium"
             >
               <span>
                 {tx(
@@ -236,9 +227,9 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
       {/* SRS Details */}
       <div className="border-t border-slate-200 dark:border-slate-800 pt-6 space-y-6 text-sm">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-3 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-lg p-4">
+          <AstryxCard padding={4} className="space-y-3 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl">
             <h2 className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
-              <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <FileText className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>
                 {tx(
                   '1. Giải thích Chức năng & Màn hình',
@@ -272,11 +263,11 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
                 <dd className="text-pretty">{fr.dataProcessing}</dd>
               </div>
             </dl>
-          </div>
+          </AstryxCard>
 
-          <div className="space-y-3 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-lg p-4">
+          <AstryxCard padding={4} className="space-y-3 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl">
             <h2 className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
-              <Database className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <Database className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>
                 {tx('2. Thông tin Đầu vào & Đầu ra', '2. Input & Output Data')}
               </span>
@@ -307,16 +298,16 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
                 <dd className="text-pretty">{fr.dataSpecs.output}</dd>
               </div>
             </dl>
-          </div>
+          </AstryxCard>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <h2 className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
-              <ListChecks className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <ListChecks className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>{tx('3. Các bước thực hiện', '3. Execution Steps')}</span>
             </h2>
-            <ol className="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-lg p-4">
+            <ol className="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl p-4">
               {fr.normalFlow.map((step, idx) => (
                 <li key={idx} className="leading-relaxed text-pretty">
                   {step}
@@ -332,7 +323,7 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
                 {tx('4. Xử lý khi có lỗi', '4. Error & Exception Handling')}
               </span>
             </h2>
-            <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-lg p-4">
+            <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-xl p-4">
               {fr.abnormalCases.map((ab, idx) => (
                 <li key={idx} className="leading-relaxed text-pretty">
                   {ab}
@@ -345,7 +336,7 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
         {(linkedBRDetails.length > 0 || linkedMSGDetails.length > 0) && (
           <div className="space-y-2">
             <h2 className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
-              <BookOpen className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <BookOpen className="w-4 h-4 text-orange-600 dark:text-orange-400" />
               <span>
                 {tx(
                   '5. Quy tắc (BR) & Thông báo (MSG) liên quan',
@@ -353,28 +344,24 @@ export const FrDetailPage: React.FC<FrDetailPageProps> = ({ data }) => {
                 )}
               </span>
             </h2>
-            <div className="border border-slate-200 dark:border-slate-800 rounded-lg divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900 text-xs sm:text-sm">
+            <AstryxCard padding={0} className="border border-slate-200 dark:border-slate-800 rounded-xl divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900 text-xs sm:text-sm">
               {linkedBRDetails.map((br) => (
-                <div key={br.code} className="p-3">
-                  <span className="font-mono font-semibold text-sky-700 dark:text-sky-400">
-                    {br.code}:{' '}
-                  </span>
+                <div key={br.code} className="p-3 flex items-start gap-2">
+                  <AstryxBadge label={br.code} variant="orange" />
                   <span className="text-slate-700 dark:text-slate-300">
                     {br.definition}
                   </span>
                 </div>
               ))}
               {linkedMSGDetails.map((msg) => (
-                <div key={msg.code} className="p-3">
-                  <span className="font-mono font-semibold text-sky-700 dark:text-sky-400">
-                    {msg.code} ({msg.type}):{' '}
-                  </span>
+                <div key={msg.code} className="p-3 flex items-start gap-2">
+                  <AstryxBadge label={`${msg.code} (${msg.type})`} variant="info" />
                   <span className="text-slate-700 dark:text-slate-300">
                     &ldquo;{msg.content}&rdquo;
                   </span>
                 </div>
               ))}
-            </div>
+            </AstryxCard>
           </div>
         )}
       </div>

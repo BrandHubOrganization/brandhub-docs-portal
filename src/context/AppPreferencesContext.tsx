@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { Theme as AstryxTheme } from '@astryxdesign/core/theme';
+import { neutralTheme } from '@astryxdesign/theme-neutral';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type LanguageMode = 'vi' | 'en';
@@ -59,9 +61,10 @@ export const AppPreferencesProvider: React.FC<{ children: React.ReactNode }> = (
   const resolvedTheme: 'light' | 'dark' =
     theme === 'system' ? (systemDark ? 'dark' : 'light') : theme;
 
-  // Apply .dark class and color-scheme to <html>
+  // Apply .dark class, data-astryx-theme, and color-scheme to <html>
   useEffect(() => {
     const root = document.documentElement;
+    root.setAttribute('data-astryx-theme', 'neutral');
     if (resolvedTheme === 'dark') {
       root.classList.add('dark');
       root.style.colorScheme = 'dark';
@@ -121,7 +124,9 @@ export const AppPreferencesProvider: React.FC<{ children: React.ReactNode }> = (
         tx,
       }}
     >
-      {children}
+      <AstryxTheme theme={neutralTheme} mode={resolvedTheme}>
+        {children}
+      </AstryxTheme>
     </AppPreferencesContext.Provider>
   );
 };

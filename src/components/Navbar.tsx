@@ -15,6 +15,7 @@ import {
   PlayCircle,
 } from 'lucide-react';
 import { useAppPreferences, ThemeMode } from '../context/AppPreferencesContext';
+import { AstryxKbd, AstryxSegmentedControl, AstryxSegmentedControlItem } from './astryx';
 
 interface NavbarProps {
   onOpenSearch: () => void;
@@ -25,7 +26,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenSearch,
   totalFigures,
-  totalFrs,
 }) => {
   const { theme, setTheme, lang, toggleLang, tx } = useAppPreferences();
 
@@ -69,38 +69,20 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
   ];
 
-  const themeOptions: { mode: ThemeMode; icon: typeof Sun; title: string }[] = [
-    {
-      mode: 'light',
-      icon: Sun,
-      title: tx('Giao diện Sáng', 'Light Mode'),
-    },
-    {
-      mode: 'dark',
-      icon: Moon,
-      title: tx('Giao diện Tối', 'Dark Mode'),
-    },
-    {
-      mode: 'system',
-      icon: Monitor,
-      title: tx('Đồng bộ theo Hệ thống / Thiết bị', 'Sync with System Theme'),
-    },
-  ];
-
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+      <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-orange-200/80 dark:border-slate-800 transition-colors">
         <div className="max-w-6xl mx-auto px-3 sm:px-4 h-14 flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-4 lg:gap-6 min-w-0">
             <NavLink
               to="/"
               className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-base tracking-tight shrink-0 interactive-btn"
             >
-              <div className="w-7 h-7 rounded-md bg-sky-600 text-white flex items-center justify-center shadow-xs">
+              <div className="w-7 h-7 rounded-md bg-orange-600 text-white flex items-center justify-center shadow-xs">
                 <Layers className="w-4 h-4" />
               </div>
               <span>
-                <span className="text-sky-600 dark:text-sky-400">BrandHub</span>{' '}
+                <span className="text-orange-600 dark:text-orange-400">BrandHub</span>{' '}
                 <span className="font-medium text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
                   Docs
                 </span>
@@ -118,8 +100,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className={({ isActive }) =>
                       `interactive-btn inline-flex items-center gap-1.5 px-2.5 lg:px-3 py-1.5 rounded-md text-xs font-medium cursor-pointer ${
                         isActive
-                          ? 'bg-sky-600 text-white shadow-xs'
-                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                          ? 'bg-orange-600 text-white shadow-xs'
+                          : 'text-slate-600 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800 hover:text-orange-700 dark:hover:text-white'
                       }`
                     }
                   >
@@ -132,19 +114,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Search Trigger */}
+            {/* Search Trigger with AstryxKbd */}
             <button
               onClick={onOpenSearch}
               aria-label={tx('Tìm kiếm nhanh', 'Quick search')}
-              className="interactive-btn inline-flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-md bg-slate-100/80 dark:bg-slate-800 hover:bg-slate-200/70 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 cursor-pointer"
+              className="interactive-btn inline-flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-md bg-slate-100/80 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 cursor-pointer"
             >
-              <Search className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+              <Search className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
               <span className="hidden sm:inline">
                 {tx('Tìm kiếm...', 'Search...')}
               </span>
-              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded border border-slate-200 dark:border-slate-700">
-                Ctrl+K
-              </kbd>
+              <span className="hidden lg:inline-flex">
+                <AstryxKbd keys="mod+k" />
+              </span>
             </button>
 
             {/* VI / EN Language Toggle */}
@@ -154,43 +136,42 @@ export const Navbar: React.FC<NavbarProps> = ({
                 'Chuyển ngôn ngữ Tiếng Việt / Tiếng Anh',
                 'Switch language Vietnamese / English'
               )}
-              className="interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs font-mono font-semibold text-slate-700 dark:text-slate-200 cursor-pointer"
+              className="interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs font-mono font-semibold text-slate-700 dark:text-slate-200 cursor-pointer"
             >
-              <Languages className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+              <Languages className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
               <span>{lang.toUpperCase()}</span>
             </button>
 
-            {/* Light / Dark / System Segmented Switcher */}
-            <div
-              className="inline-flex items-center p-0.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
-              role="group"
-              aria-label={tx('Chế độ giao diện', 'Theme mode')}
-            >
-              {themeOptions.map((opt) => {
-                const Icon = opt.icon;
-                const active = theme === opt.mode;
-                return (
-                  <button
-                    key={opt.mode}
-                    onClick={() => setTheme(opt.mode)}
-                    title={opt.title}
-                    aria-label={opt.title}
-                    className={`interactive-btn p-1.5 rounded cursor-pointer ${
-                      active
-                        ? 'bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-xs'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                    }`}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                  </button>
-                );
-              })}
+            {/* Light / Dark / System Segmented Switcher via Meta Astryx SegmentedControl */}
+            <div className="hidden sm:block">
+              <AstryxSegmentedControl
+                label={tx('Chế độ giao diện', 'Theme mode')}
+                size="sm"
+                value={theme}
+                onChange={(val) => setTheme(val as ThemeMode)}
+              >
+                <AstryxSegmentedControlItem
+                  value="light"
+                  label={tx('Sáng', 'Light')}
+                  icon={<Sun className="w-3 h-3" />}
+                />
+                <AstryxSegmentedControlItem
+                  value="dark"
+                  label={tx('Tối', 'Dark')}
+                  icon={<Moon className="w-3 h-3" />}
+                />
+                <AstryxSegmentedControlItem
+                  value="system"
+                  label="Auto"
+                  icon={<Monitor className="w-3 h-3" />}
+                />
+              </AstryxSegmentedControl>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile Bottom Navigation Bar (Thumb-friendly responsive navigation) */}
+      {/* Mobile Bottom Navigation Bar */}
       <nav
         aria-label={tx('Điều hướng di động', 'Mobile navigation')}
         className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-1 py-1 flex items-center justify-around shadow-lg"
@@ -205,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={({ isActive }) =>
                 `interactive-btn flex flex-col items-center justify-center py-1.5 px-2 rounded-md text-[11px] font-medium min-w-[60px] ${
                   isActive
-                    ? 'text-sky-600 dark:text-sky-400 bg-sky-50/80 dark:bg-sky-950/50'
+                    ? 'text-orange-600 dark:text-orange-400 bg-orange-50/80 dark:bg-orange-950/50'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`
               }
