@@ -11,8 +11,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z",
       "version": 1
     },
     {
@@ -26,8 +26,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z",
       "version": 1
     },
     {
@@ -41,8 +41,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z",
       "version": 1
     },
     {
@@ -56,8 +56,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z",
       "version": 1
     },
     {
@@ -71,8 +71,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-27T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z",
+      "created_at": "2026-10-27T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z",
       "version": 1
     },
     {
@@ -86,8 +86,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-27T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z",
+      "created_at": "2026-10-27T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z",
       "version": 1
     }
   ],
@@ -124,8 +124,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-02T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000902",
@@ -159,8 +159,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-03T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-03T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000903",
@@ -194,8 +194,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-04T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-04T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000904",
@@ -229,8 +229,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-05T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-05T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000905",
@@ -264,8 +264,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-06T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-06T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000906",
@@ -299,8 +299,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-07T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-07T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000907",
@@ -334,8 +334,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-08T05:22:57Z",
-      "updated_at": "2026-11-15T17:22:57Z"
+      "created_at": "2026-11-08T08:06:51Z",
+      "updated_at": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000908",
@@ -368,8 +368,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000909",
@@ -402,8 +402,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-02T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-02T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000910",
@@ -436,8 +436,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-03T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-03T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000911",
@@ -470,8 +470,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-04T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-04T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000985",
@@ -505,8 +505,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-28T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-10-28T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000986",
@@ -540,8 +540,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-29T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-10-29T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000987",
@@ -575,8 +575,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-30T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-10-30T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000988",
@@ -610,8 +610,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-31T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-10-31T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     }
   ],
   "client_vault_shares": [
@@ -622,7 +622,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000981",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -632,7 +632,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000982",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -642,7 +642,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000985",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -652,7 +652,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000986",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -662,7 +662,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000987",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -672,7 +672,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000988",
-      "shared_at": "2026-10-31T05:22:57Z",
+      "shared_at": "2026-10-31T08:06:51Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     }
   ],
@@ -687,11 +687,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-facebook",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-10T05:22:57Z",
+      "token_expires_at": "2027-01-10T08:06:51Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-17T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-10-17T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000862",
@@ -703,11 +703,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-instagram",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-10T05:22:57Z",
+      "token_expires_at": "2027-01-10T08:06:51Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-17T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-10-17T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000863",
@@ -719,11 +719,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-tiktok",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-10T05:22:57Z",
+      "token_expires_at": "2027-01-10T08:06:51Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-17T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-10-17T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000864",
@@ -735,11 +735,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-threads",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-10T05:22:57Z",
+      "token_expires_at": "2027-01-10T08:06:51Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-17T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-10-17T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     }
   ],
   "tasks": [
@@ -753,7 +753,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -765,7 +765,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000701",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-03T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-10-31T11:00:00Z",
@@ -857,7 +857,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -869,7 +869,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000702",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-05T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-02T21:00:00Z",
@@ -950,7 +950,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -962,7 +962,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000703",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-07T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-04T11:00:00Z",
@@ -1054,7 +1054,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1066,7 +1066,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000704",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-09T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-06T11:00:00Z",
@@ -1158,7 +1158,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1170,7 +1170,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000705",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-10T10:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-07T12:00:00Z",
@@ -1262,7 +1262,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1274,7 +1274,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000751",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-12T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-09T11:00:00Z",
@@ -1366,7 +1366,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1378,7 +1378,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000707",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-13T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-10T21:00:00Z",
@@ -1459,7 +1459,7 @@
       "type": "EMAIL_NEWSLETTER",
       "status": "FINISHED",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1471,7 +1471,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000708",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-14T15:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-11T17:00:00Z",
@@ -1552,7 +1552,7 @@
       "type": "SURVEY",
       "status": "FINISHED",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1564,7 +1564,7 @@
       "sourceType": "CAMPAIGN_OUT_OF_SCOPE",
       "sourceRefId": null,
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-14T18:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-11T20:00:00Z",
@@ -1635,7 +1635,7 @@
       "type": "POST",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1647,8 +1647,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000706",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-15T11:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -1731,7 +1731,7 @@
       "type": "WORKSHOP",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1743,7 +1743,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000711",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-15T16:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-12T18:00:00Z",
@@ -1835,7 +1835,7 @@
       "type": "WORKSHOP",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1847,8 +1847,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000712",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-15T17:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -1931,7 +1931,7 @@
       "type": "KOL_BOOKING",
       "status": "IN_REVIEW",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1943,8 +1943,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000713",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-14T19:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2020,7 +2020,7 @@
       "lastSubmission": {
         "round": 1,
         "submittedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-        "submittedAt": "2026-11-16T01:22:57Z",
+        "submittedAt": "2026-11-16T04:06:51Z",
         "closedBy": null,
         "closedAt": null,
         "outcome": null
@@ -2036,7 +2036,7 @@
       "type": "EVENT_PLAN",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2048,8 +2048,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000714",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T18:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2132,7 +2132,7 @@
       "type": "KOL_BOOKING",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2144,8 +2144,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000715",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T20:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -2228,7 +2228,7 @@
       "type": "SHORT_VIDEO",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2240,8 +2240,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000716",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-17T22:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2313,7 +2313,7 @@
       "type": "PRESS_RECOMMENDATION",
       "status": "IN_REVIEW",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2325,8 +2325,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000717",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-19T11:00:00Z",
       "firstStartedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
@@ -2391,7 +2391,7 @@
       "lastSubmission": {
         "round": 1,
         "submittedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-        "submittedAt": "2026-11-16T01:22:57Z",
+        "submittedAt": "2026-11-16T04:06:51Z",
         "closedBy": null,
         "closedAt": null,
         "outcome": null
@@ -2407,7 +2407,7 @@
       "type": "PRESS_RECOMMENDATION",
       "status": "TODO",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2419,8 +2419,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000718",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
-      "updatedAt": "2026-11-16T04:52:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
+      "updatedAt": "2026-11-16T07:36:51Z",
       "workflowRevision": 0,
       "firstStartedAt": null,
       "firstStartedBy": null,
@@ -2492,7 +2492,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2504,7 +2504,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000719",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-23T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-20T11:00:00Z",
@@ -2596,7 +2596,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-01T06:22:57Z",
+      "assignedAt": "2026-11-01T09:06:51Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2608,7 +2608,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000720",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-01T05:22:57Z",
+      "createdAt": "2026-11-01T08:06:51Z",
       "updatedAt": "2026-11-28T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-25T11:00:00Z",
@@ -2713,7 +2713,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CAPTION",
@@ -2726,7 +2726,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.MEDIA",
@@ -2739,7 +2739,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CHANNELS",
@@ -2752,7 +2752,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SCRIPT",
@@ -2774,7 +2774,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SHOOT",
@@ -2789,7 +2789,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.EDIT",
@@ -2802,7 +2802,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CAPTION",
@@ -2815,7 +2815,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CHANNELS",
@@ -2828,7 +2828,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.BRIEF",
@@ -2851,7 +2851,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CAPTION",
@@ -2864,7 +2864,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.MEDIA",
@@ -2877,7 +2877,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CHANNELS",
@@ -2890,7 +2890,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.BRIEF",
@@ -2913,7 +2913,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CAPTION",
@@ -2926,7 +2926,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.MEDIA",
@@ -2939,7 +2939,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CHANNELS",
@@ -2952,7 +2952,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.BRIEF",
@@ -2975,7 +2975,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CAPTION",
@@ -2988,7 +2988,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.MEDIA",
@@ -3001,7 +3001,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CHANNELS",
@@ -3014,7 +3014,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.BRIEF",
@@ -3037,7 +3037,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CAPTION",
@@ -3050,7 +3050,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.MEDIA",
@@ -3063,7 +3063,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CHANNELS",
@@ -3076,7 +3076,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SCRIPT",
@@ -3098,7 +3098,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SHOOT",
@@ -3113,7 +3113,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.EDIT",
@@ -3126,7 +3126,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CAPTION",
@@ -3139,7 +3139,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CHANNELS",
@@ -3152,7 +3152,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.CONTENT",
@@ -3204,7 +3204,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-14T05:22:57Z"
+      "updatedAt": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.DESIGN",
@@ -3256,7 +3256,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-14T05:22:57Z"
+      "updatedAt": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.AUDIENCE",
@@ -3275,7 +3275,7 @@
         "batchId": "d7e00000-0000-4000-8000-000000000891"
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-14T05:22:57Z"
+      "updatedAt": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.REPORT",
@@ -3291,7 +3291,7 @@
         "comment": "100% thư mời kèm mã QR check-in đã gửi thành công tới danh sách học sinh lớp 12 đăng ký đợt 1."
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-14T05:22:57Z"
+      "updatedAt": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.FORM",
@@ -3304,7 +3304,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "updatedAt": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.DISTRIBUTION",
@@ -3322,7 +3322,7 @@
         "targetResponses": 500
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "updatedAt": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.REPORT",
@@ -3339,7 +3339,7 @@
         "recommendations": "<p>Tăng thời lượng thực hành tại trạm Lab Bán dẫn và bố trí thêm bàn tư vấn học bổng chuyên sâu tại Ngày hội FPTU Open Day 2027.</p>"
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "updatedAt": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.BRIEF",
@@ -3360,7 +3360,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T04:22:57Z"
+      "updatedAt": "2026-11-16T07:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA",
@@ -3373,7 +3373,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T04:22:57Z"
+      "updatedAt": "2026-11-16T07:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS",
@@ -3386,7 +3386,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T04:22:57Z"
+      "updatedAt": "2026-11-16T07:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CAPTION",
@@ -3399,7 +3399,7 @@
       "versionCount": 0,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T04:22:57Z"
+      "updatedAt": "2026-11-16T07:06:51Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.PROGRAM",
@@ -3425,7 +3425,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.SPEAKERS",
@@ -3459,7 +3459,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.LOGISTICS",
@@ -3478,7 +3478,7 @@
         "cost": 18500000
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REGISTRATION",
@@ -3493,7 +3493,7 @@
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REPORT",
@@ -3516,7 +3516,7 @@
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.PROGRAM",
@@ -3542,7 +3542,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.SPEAKERS",
@@ -3576,7 +3576,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.LOGISTICS",
@@ -3595,7 +3595,7 @@
         "cost": 18500000
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REGISTRATION",
@@ -3610,7 +3610,7 @@
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REPORT",
@@ -3633,7 +3633,7 @@
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T23:22:57Z"
+      "updatedAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.SHORTLIST",
@@ -3673,7 +3673,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DEAL",
@@ -3696,7 +3696,7 @@
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.BRIEF",
@@ -3728,7 +3728,7 @@
         "postDeadline": "2026-11-17"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DRAFT",
@@ -3747,7 +3747,7 @@
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.REPORT",
@@ -3767,7 +3767,7 @@
         "shares": 410
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.AGENDA",
@@ -3809,8 +3809,8 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T00:22:57Z",
-      "clientPendingSince": "2026-11-16T00:22:57Z"
+      "updatedAt": "2026-11-16T03:06:51Z",
+      "clientPendingSince": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.LOGISTICS",
@@ -3854,7 +3854,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T00:22:57Z"
+      "updatedAt": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.PROMOTION",
@@ -3886,8 +3886,8 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T00:22:57Z",
-      "clientPendingSince": "2026-11-16T00:22:57Z"
+      "updatedAt": "2026-11-16T03:06:51Z",
+      "clientPendingSince": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.RUNSHEET",
@@ -3924,7 +3924,7 @@
         "staffing": "<p>Tổng nhân sự vận hành: 04 thành viên SE08 Digital điều phối truyền thông tại chỗ, 15 cán bộ tư vấn tuyển sinh ĐH FPT và 35 sinh viên tình nguyện dẫn đoàn.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T00:22:57Z"
+      "updatedAt": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.REPORT",
@@ -3941,7 +3941,7 @@
         "lessons": "<p>Ưu tiên phân luồng giờ tham quan phòng Lab bán dẫn theo từng ca 25 phút để học sinh có nhiều thời gian tương tác thiết bị.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-16T00:22:57Z"
+      "updatedAt": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.SHORTLIST",
@@ -3981,7 +3981,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DEAL",
@@ -4004,7 +4004,7 @@
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.BRIEF",
@@ -4036,7 +4036,7 @@
         "postDeadline": "2026-11-19"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DRAFT",
@@ -4055,7 +4055,7 @@
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.REPORT",
@@ -4075,7 +4075,7 @@
         "shares": 410
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-16T01:22:57Z"
+      "updatedAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SCRIPT",
@@ -4097,7 +4097,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SHOOT",
@@ -4112,7 +4112,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.EDIT",
@@ -4125,7 +4125,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CAPTION",
@@ -4138,7 +4138,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CHANNELS",
@@ -4151,7 +4151,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-15T22:22:57Z"
+      "updatedAt": "2026-11-16T01:06:51Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.MEDIA_LIST",
@@ -4188,7 +4188,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.RELEASE",
@@ -4209,7 +4209,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.CONTACT_LOG",
@@ -4246,7 +4246,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.COVERAGE",
@@ -4267,7 +4267,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.MEDIA_LIST",
@@ -4304,7 +4304,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.RELEASE",
@@ -4325,7 +4325,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.CONTACT_LOG",
@@ -4362,7 +4362,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.COVERAGE",
@@ -4383,7 +4383,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T02:22:57Z"
+      "updatedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.BRIEF",
@@ -4406,7 +4406,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CAPTION",
@@ -4419,7 +4419,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.MEDIA",
@@ -4432,7 +4432,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CHANNELS",
@@ -4445,7 +4445,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.BRIEF",
@@ -4468,7 +4468,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CAPTION",
@@ -4481,7 +4481,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.MEDIA",
@@ -4494,7 +4494,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CHANNELS",
@@ -4507,7 +4507,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-15T21:22:57Z"
+      "updatedAt": "2026-11-16T00:06:51Z"
     }
   ],
   "task_section_versions": [
@@ -4527,7 +4527,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-16T02:22:57Z"
+      "submittedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA|1",
@@ -4544,7 +4544,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-16T02:22:57Z"
+      "submittedAt": "2026-11-16T05:06:51Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS|1",
@@ -4562,7 +4562,7 @@
         "scheduledAt": "2026-11-18T09:00:00Z"
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-16T02:22:57Z"
+      "submittedAt": "2026-11-16T05:06:51Z"
     }
   ],
   "task_comments": [
@@ -4579,7 +4579,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "282256f4-9303-3ccb-8a7c-8e8232874801",
-      "createdAt": "2026-11-16T00:22:57Z"
+      "createdAt": "2026-11-16T03:06:51Z"
     },
     {
       "_id": "6b01ced8-ccb5-3c82-8ce9-02f987945319",
@@ -4594,7 +4594,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "a10b79cc-c89c-3bcb-93f3-33cdd2797f20",
-      "createdAt": "2026-11-16T02:22:57Z"
+      "createdAt": "2026-11-16T05:06:51Z"
     }
   ],
   "task_approvals": [
@@ -4606,7 +4606,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-06T01:22:57Z"
+      "createdAt": "2026-11-06T04:06:51Z"
     },
     {
       "_id": "894056f7-5b31-3334-9018-e23ab2ac300b",
@@ -4616,7 +4616,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-06T03:22:57Z"
+      "createdAt": "2026-11-06T06:06:51Z"
     },
     {
       "_id": "29c64290-78a3-31d1-8511-de5b456221ee",
@@ -4626,7 +4626,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-07T01:22:57Z"
+      "createdAt": "2026-11-07T04:06:51Z"
     },
     {
       "_id": "2f2132d8-9450-3ef9-b383-e4ac102ae3be",
@@ -4636,7 +4636,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-07T03:22:57Z"
+      "createdAt": "2026-11-07T06:06:51Z"
     },
     {
       "_id": "c46e43f5-9c65-307e-b39c-6581e082efa8",
@@ -4646,7 +4646,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-08T01:22:57Z"
+      "createdAt": "2026-11-08T04:06:51Z"
     },
     {
       "_id": "5bcbace3-7a18-333e-a415-f97d2aca2f90",
@@ -4656,7 +4656,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-08T03:22:57Z"
+      "createdAt": "2026-11-08T06:06:51Z"
     },
     {
       "_id": "f92b170c-59bf-30ea-bb5c-621109031cf6",
@@ -4666,7 +4666,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-09T01:22:57Z"
+      "createdAt": "2026-11-09T04:06:51Z"
     },
     {
       "_id": "9e5187a6-3787-361a-9a70-54c55cbabfe0",
@@ -4676,7 +4676,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-09T03:22:57Z"
+      "createdAt": "2026-11-09T06:06:51Z"
     }
   ],
   "posts": [
@@ -4717,7 +4717,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-03T09:00:00Z",
       "published_at": "2026-11-03T09:05:00Z",
       "platform_post_id": "fptu2027_1",
@@ -4734,7 +4734,7 @@
         "LOVE": 515,
         "WOW": 184
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_1_0",
@@ -4772,7 +4772,7 @@
           "reachCount": 16605,
           "clickCount": 1084,
           "savedCount": 175,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4810,7 +4810,7 @@
           "reachCount": 9225,
           "clickCount": 602,
           "savedCount": 97,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4848,7 +4848,7 @@
           "reachCount": 7380,
           "clickCount": 482,
           "savedCount": 78,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4886,7 +4886,7 @@
           "reachCount": 3690,
           "clickCount": 241,
           "savedCount": 39,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4943,7 +4943,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-05T19:00:00Z",
       "published_at": "2026-11-05T19:05:00Z",
       "platform_post_id": "fptu2027_2",
@@ -4960,7 +4960,7 @@
         "LOVE": 957,
         "WOW": 342
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_2_0",
@@ -4998,7 +4998,7 @@
           "reachCount": 34290,
           "clickCount": 1431,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5036,7 +5036,7 @@
           "reachCount": 19050,
           "clickCount": 795,
           "savedCount": 211,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5074,7 +5074,7 @@
           "reachCount": 15240,
           "clickCount": 636,
           "savedCount": 169,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5130,7 +5130,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-07T09:00:00Z",
       "published_at": "2026-11-07T09:05:00Z",
       "platform_post_id": "fptu2027_3",
@@ -5147,7 +5147,7 @@
         "LOVE": 753,
         "WOW": 269
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_3_0",
@@ -5185,7 +5185,7 @@
           "reachCount": 23310,
           "clickCount": 2034,
           "savedCount": 504,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5223,7 +5223,7 @@
           "reachCount": 12950,
           "clickCount": 1130,
           "savedCount": 280,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5261,7 +5261,7 @@
           "reachCount": 10360,
           "clickCount": 904,
           "savedCount": 224,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5317,7 +5317,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-09T09:00:00Z",
       "published_at": "2026-11-09T09:05:00Z",
       "platform_post_id": "fptu2027_4",
@@ -5334,7 +5334,7 @@
         "LOVE": 546,
         "WOW": 195
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_4_0",
@@ -5372,7 +5372,7 @@
           "reachCount": 17730,
           "clickCount": 1300,
           "savedCount": 288,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5410,7 +5410,7 @@
           "reachCount": 9850,
           "clickCount": 722,
           "savedCount": 160,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5448,7 +5448,7 @@
           "reachCount": 7880,
           "clickCount": 578,
           "savedCount": 128,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5505,7 +5505,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-10T10:00:00Z",
       "published_at": "2026-11-10T10:05:00Z",
       "platform_post_id": "fptu2027_5",
@@ -5522,7 +5522,7 @@
         "LOVE": 453,
         "WOW": 162
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_5_0",
@@ -5560,7 +5560,7 @@
           "reachCount": 14895,
           "clickCount": 963,
           "savedCount": 229,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5598,7 +5598,7 @@
           "reachCount": 8275,
           "clickCount": 535,
           "savedCount": 127,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5636,7 +5636,7 @@
           "reachCount": 6620,
           "clickCount": 428,
           "savedCount": 102,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5674,7 +5674,7 @@
           "reachCount": 3310,
           "clickCount": 214,
           "savedCount": 51,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5737,7 +5737,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-12T09:00:00Z",
       "published_at": "2026-11-12T09:05:00Z",
       "platform_post_id": "fptu2027_60",
@@ -5754,7 +5754,7 @@
         "LOVE": 809,
         "WOW": 289
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_60_0",
@@ -5792,7 +5792,7 @@
           "reachCount": 25020,
           "clickCount": 1570,
           "savedCount": 351,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5830,7 +5830,7 @@
           "reachCount": 13900,
           "clickCount": 872,
           "savedCount": 195,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5868,7 +5868,7 @@
           "reachCount": 11120,
           "clickCount": 698,
           "savedCount": 156,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5923,7 +5923,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
       "updated_at": "2026-11-13T19:00:00Z",
       "published_at": "2026-11-13T19:05:00Z",
       "platform_post_id": "fptu2027_7",
@@ -5940,7 +5940,7 @@
         "LOVE": 1153,
         "WOW": 412
       },
-      "engagement_updated_at": "2026-11-16T03:22:57Z",
+      "engagement_updated_at": "2026-11-16T06:06:51Z",
       "cached_comments": [
         {
           "id": "cmt_7_0",
@@ -5978,7 +5978,7 @@
           "reachCount": 39780,
           "clickCount": 1764,
           "savedCount": 436,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6016,7 +6016,7 @@
           "reachCount": 22100,
           "clickCount": 980,
           "savedCount": 242,
-          "engagementUpdatedAt": "2026-11-16T03:22:57Z",
+          "engagementUpdatedAt": "2026-11-16T06:06:51Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6075,8 +6075,8 @@
       "ai_generated": false,
       "status": "DRAFT",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-16T05:02:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-16T07:46:51Z",
       "scheduled_at": "2026-11-18T09:00:00Z"
     },
     {
@@ -6110,8 +6110,8 @@
       "ai_generated": true,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-16T05:02:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-16T07:46:51Z",
       "scheduled_at": "2026-11-22T09:00:00Z"
     },
     {
@@ -6145,8 +6145,8 @@
       "ai_generated": false,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-16T05:02:57Z",
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-16T07:46:51Z",
       "scheduled_at": "2026-11-27T09:00:00Z"
     },
     {
@@ -6187,7 +6187,7 @@
         "LOVE": 354,
         "WOW": 118
       },
-      "engagement_updated_at": "2026-11-16T04:57:57Z",
+      "engagement_updated_at": "2026-11-16T07:41:51Z",
       "cached_comments": [
         {
           "id": "cmt_81_0",
@@ -6225,7 +6225,7 @@
           "reachCount": 12400,
           "clickCount": 895,
           "savedCount": 210,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6263,7 +6263,7 @@
           "reachCount": 7440,
           "clickCount": 537,
           "savedCount": 126,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6342,7 +6342,7 @@
         "LOVE": 702,
         "WOW": 234
       },
-      "engagement_updated_at": "2026-11-16T04:57:57Z",
+      "engagement_updated_at": "2026-11-16T07:41:51Z",
       "cached_comments": [
         {
           "id": "cmt_82_0",
@@ -6380,7 +6380,7 @@
           "reachCount": 24600,
           "clickCount": 1560,
           "savedCount": 445,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6418,7 +6418,7 @@
           "reachCount": 14760,
           "clickCount": 936,
           "savedCount": 267,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6456,7 +6456,7 @@
           "reachCount": 5904,
           "clickCount": 374,
           "savedCount": 106,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6530,7 +6530,7 @@
         "LOVE": 945,
         "WOW": 315
       },
-      "engagement_updated_at": "2026-11-16T04:57:57Z",
+      "engagement_updated_at": "2026-11-16T07:41:51Z",
       "cached_comments": [
         {
           "id": "cmt_83_0",
@@ -6568,7 +6568,7 @@
           "reachCount": 31750,
           "clickCount": 1930,
           "savedCount": 470,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6606,7 +6606,7 @@
           "reachCount": 19050,
           "clickCount": 1158,
           "savedCount": 282,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6644,7 +6644,7 @@
           "reachCount": 7620,
           "clickCount": 463,
           "savedCount": 112,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6682,7 +6682,7 @@
           "reachCount": 5080,
           "clickCount": 308,
           "savedCount": 75,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6762,7 +6762,7 @@
         "LOVE": 1158,
         "WOW": 386
       },
-      "engagement_updated_at": "2026-11-16T04:57:57Z",
+      "engagement_updated_at": "2026-11-16T07:41:51Z",
       "cached_comments": [
         {
           "id": "cmt_84_0",
@@ -6800,7 +6800,7 @@
           "reachCount": 39600,
           "clickCount": 2340,
           "savedCount": 575,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6838,7 +6838,7 @@
           "reachCount": 23760,
           "clickCount": 1404,
           "savedCount": 345,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6876,7 +6876,7 @@
           "reachCount": 9504,
           "clickCount": 561,
           "savedCount": 138,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6914,7 +6914,7 @@
           "reachCount": 6336,
           "clickCount": 374,
           "savedCount": 92,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6970,9 +6970,9 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-16T01:15:00Z",
-      "updated_at": "2026-11-16T04:15:00Z",
-      "published_at": "2026-11-16T04:15:00Z",
+      "created_at": "2026-11-16T04:15:00Z",
+      "updated_at": "2026-11-16T07:15:00Z",
+      "published_at": "2026-11-16T07:15:00Z",
       "platform_post_id": "fptu2027_85",
       "platform_post_url": "https://www.facebook.com/university.fpt.edu.vn/posts/20270085",
       "reaction_count": 2480,
@@ -6987,28 +6987,28 @@
         "LOVE": 744,
         "WOW": 248
       },
-      "engagement_updated_at": "2026-11-16T04:57:57Z",
+      "engagement_updated_at": "2026-11-16T07:41:51Z",
       "cached_comments": [
         {
           "id": "cmt_85_0",
           "authorName": "Phụ huynh Đặng Quốc Tuấn",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-          "commentedAt": "2026-11-16T04:35:00Z"
+          "commentedAt": "2026-11-16T07:35:00Z"
         },
         {
           "id": "cmt_85_1",
           "authorName": "Lê Gia Hân (THPT Trần Phú)",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-          "commentedAt": "2026-11-16T04:55:00Z"
+          "commentedAt": "2026-11-16T07:55:00Z"
         },
         {
           "id": "cmt_85_2",
           "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-          "commentedAt": "2026-11-16T05:15:00Z"
+          "commentedAt": "2026-11-16T08:15:00Z"
         }
       ],
       "platform_data": {
@@ -7017,7 +7017,7 @@
           "platformPostId": "facebook_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/facebook/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-16T04:15:00Z",
+          "publishedAt": "2026-11-16T07:15:00Z",
           "reactionCount": 1240,
           "commentCount": 156,
           "shareCount": 142,
@@ -7025,28 +7025,28 @@
           "reachCount": 25700,
           "clickCount": 1770,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-16T04:35:00Z"
+              "commentedAt": "2026-11-16T07:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-16T04:55:00Z"
+              "commentedAt": "2026-11-16T07:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-16T05:15:00Z"
+              "commentedAt": "2026-11-16T08:15:00Z"
             }
           ]
         },
@@ -7055,7 +7055,7 @@
           "platformPostId": "threads_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/threads/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-16T04:15:00Z",
+          "publishedAt": "2026-11-16T07:15:00Z",
           "reactionCount": 744,
           "commentCount": 93,
           "shareCount": 85,
@@ -7063,28 +7063,28 @@
           "reachCount": 15420,
           "clickCount": 1062,
           "savedCount": 228,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-16T04:35:00Z"
+              "commentedAt": "2026-11-16T07:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-16T04:55:00Z"
+              "commentedAt": "2026-11-16T07:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-16T05:15:00Z"
+              "commentedAt": "2026-11-16T08:15:00Z"
             }
           ]
         },
@@ -7093,7 +7093,7 @@
           "platformPostId": "instagram_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/instagram/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-16T04:15:00Z",
+          "publishedAt": "2026-11-16T07:15:00Z",
           "reactionCount": 297,
           "commentCount": 37,
           "shareCount": 34,
@@ -7101,28 +7101,28 @@
           "reachCount": 6168,
           "clickCount": 424,
           "savedCount": 91,
-          "engagementUpdatedAt": "2026-11-16T04:57:57Z",
+          "engagementUpdatedAt": "2026-11-16T07:41:51Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-16T04:35:00Z"
+              "commentedAt": "2026-11-16T07:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-16T04:55:00Z"
+              "commentedAt": "2026-11-16T07:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-16T05:15:00Z"
+              "commentedAt": "2026-11-16T08:15:00Z"
             }
           ]
         }
@@ -7145,8 +7145,8 @@
       "status": "PENDING_APPROVAL",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-14T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-11-14T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e000000000000000000192",
@@ -7165,8 +7165,8 @@
       "status": "APPROVED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-14T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-11-14T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e000000000000000000193",
@@ -7185,8 +7185,8 @@
       "status": "REJECTED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-14T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-11-14T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     }
   ],
   "post_versions": [
@@ -7197,7 +7197,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "e22e8981a571b7fac95f9d84baf607addc820acdd6261f362bacc1c696d81795",
-      "captured_at": "2026-11-14T05:22:57Z",
+      "captured_at": "2026-11-14T08:06:51Z",
       "content_text": "Cam kết tuyển thẳng 100% không cần xét học bạ, đóng phí giữ chỗ nhận ngay học bổng toàn phần!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7215,7 +7215,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "c724b821855887d94361ce529cba05b28cae4729ae853b3cb6a962b18a588c2c",
-      "captured_at": "2026-11-14T05:22:57Z",
+      "captured_at": "2026-11-14T08:06:51Z",
       "content_text": "Thông báo quy chế xét cấp Học bổng Nguyễn Văn Đạo năm 2027 mức 50%, 70%, 100% học phí tại 5 cơ sở.",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7233,7 +7233,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "ad484f6894791ec5cd166f088a9915d6fe1de3eeaee9dc494cd6ef88f5dbfd23",
-      "captured_at": "2026-11-14T05:22:57Z",
+      "captured_at": "2026-11-14T08:06:51Z",
       "content_text": "Tất cả các trường khác đều dạy lý thuyết lỗi thời, bằng cấp vô giá trị!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7568,7 +7568,7 @@
       "platform": "FACEBOOK",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-16T04:15:00Z"
+      "created_at": "2026-11-16T07:15:00Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000010051",
@@ -7577,7 +7577,7 @@
       "platform": "THREADS",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-16T04:15:00Z"
+      "created_at": "2026-11-16T07:15:00Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000010052",
@@ -7586,7 +7586,7 @@
       "platform": "INSTAGRAM",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-16T04:15:00Z"
+      "created_at": "2026-11-16T07:15:00Z"
     }
   ],
   "survey": {
@@ -7646,8 +7646,8 @@
         "required": false
       }
     ],
-    "createdAt": "2026-11-10T05:22:57Z",
-    "updatedAt": "2026-11-14T05:22:57Z"
+    "createdAt": "2026-11-10T08:06:51Z",
+    "updatedAt": "2026-11-14T08:06:51Z"
   },
   "workshop_surveys": [
     {
@@ -7685,8 +7685,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-09T05:22:57Z",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "createdAt": "2026-11-09T08:06:51Z",
+      "updatedAt": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000806",
@@ -7723,8 +7723,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-09T05:22:57Z",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "createdAt": "2026-11-09T08:06:51Z",
+      "updatedAt": "2026-11-15T08:06:51Z"
     }
   ],
   "survey_responses": [
@@ -7732,7 +7732,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000811",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T05:22:57Z",
+      "submittedAt": "2026-11-11T08:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7767,7 +7767,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000812",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T03:22:57Z",
+      "submittedAt": "2026-11-12T06:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7802,7 +7802,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000813",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T01:22:57Z",
+      "submittedAt": "2026-11-13T04:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7837,7 +7837,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000814",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T23:22:57Z",
+      "submittedAt": "2026-11-14T02:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7872,7 +7872,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000815",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-10T21:22:57Z",
+      "submittedAt": "2026-11-11T00:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7907,7 +7907,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000816",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T19:22:57Z",
+      "submittedAt": "2026-11-11T22:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7942,7 +7942,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000817",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T17:22:57Z",
+      "submittedAt": "2026-11-12T20:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7977,7 +7977,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000818",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T15:22:57Z",
+      "submittedAt": "2026-11-13T18:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8012,7 +8012,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000819",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-10T13:22:57Z",
+      "submittedAt": "2026-11-10T16:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8047,7 +8047,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000820",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T11:22:57Z",
+      "submittedAt": "2026-11-11T14:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8082,7 +8082,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000821",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T09:22:57Z",
+      "submittedAt": "2026-11-12T12:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8117,7 +8117,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000822",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T07:22:57Z",
+      "submittedAt": "2026-11-13T10:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8152,7 +8152,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000823",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-10T05:22:57Z",
+      "submittedAt": "2026-11-10T08:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8187,7 +8187,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000824",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T03:22:57Z",
+      "submittedAt": "2026-11-11T06:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8222,7 +8222,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000825",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T01:22:57Z",
+      "submittedAt": "2026-11-12T04:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8257,7 +8257,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000826",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T23:22:57Z",
+      "submittedAt": "2026-11-13T02:06:51Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8297,17 +8297,17 @@
       "title": "Bổ sung khảo sát nguyện vọng ngành học của học sinh lớp 12 trước buổi Workshop Tuần 3",
       "description": "Đề nghị nhóm SE08 thiết kế biểu mẫu khảo sát ngắn để thu thập câu hỏi của học sinh THPT về ngành Vi mạch, AI và tiện ích nội trú trước ngày diễn ra Workshop.",
       "type": "SURVEY",
-      "dueDate": "2026-11-14T05:22:57Z",
+      "dueDate": "2026-11-14T08:06:51Z",
       "status": "ACCEPTED",
       "version": 1,
       "generatedTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
       "reviewedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "reviewedAt": "2026-11-10T05:22:57Z",
+      "reviewedAt": "2026-11-10T08:06:51Z",
       "decisionNote": "Đã tiếp nhận và phân công Hà Văn Ân triển khai biểu mẫu khảo sát gắn trực tiếp vào chiến dịch.",
       "decidedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "decidedAt": "2026-11-10T05:22:57Z",
-      "createdAt": "2026-11-09T05:22:57Z",
-      "updatedAt": "2026-11-10T05:22:57Z",
+      "decidedAt": "2026-11-10T08:06:51Z",
+      "createdAt": "2026-11-09T08:06:51Z",
+      "updatedAt": "2026-11-10T08:06:51Z",
       "targetPlatforms": [],
       "history": []
     },
@@ -8318,11 +8318,11 @@
       "title": "Cập nhật thông tin tuyến xe buýt đón học sinh THPT dự Ngày hội FPTU Open Day 2027",
       "description": "Nhờ nhóm SE08 bổ sung bài thông báo lộ trình 08 điểm đón xe miễn phí dành cho học sinh lớp 12 và phụ huynh tham dự Ngày hội Open Day cuối tuần này.",
       "type": "POST",
-      "dueDate": "2026-11-18T05:22:57Z",
+      "dueDate": "2026-11-18T08:06:51Z",
       "status": "PENDING",
       "version": 1,
-      "createdAt": "2026-11-16T00:22:57Z",
-      "updatedAt": "2026-11-16T00:22:57Z",
+      "createdAt": "2026-11-16T03:06:51Z",
+      "updatedAt": "2026-11-16T03:06:51Z",
       "targetPlatforms": [
         "FACEBOOK",
         "INSTAGRAM",
@@ -8344,7 +8344,7 @@
       "100% sinh viên tham gia học kỳ thực tập tại doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6.",
       "Hệ sinh thái tiện ích học đường toàn diện: phòng Lab bán dẫn & AI, thư viện xanh, ký túc xá, Vovinam và hơn 40 CLB sinh viên."
     ],
-    "updated_at": "2026-11-16T05:22:57Z"
+    "updated_at": "2026-11-16T08:06:51Z"
   },
   "knowledge_documents": [
     {
@@ -8353,8 +8353,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Quy chế Tuyển sinh Khóa K23 & Học bổng Nguyễn Văn Đạo Năm 2027",
       "content": "Năm 2027, Trường Đại học FPT tuyển sinh khóa K23 tại 5 cơ sở: Hà Nội (Khu Công nghệ cao Hòa Lạc), Đà Nẵng (Khu đô thị FPT City), Quy Nhơn (Khu đô thị mới An Phú Thịnh), TP.HCM (Khu Công nghệ cao TP. Thủ Đức) và Cần Thơ (Quận Ninh Kiều). Chương trình Học bổng Nguyễn Văn Đạo năm 2027 gồm các mức 50%, 70% và 100% học phí toàn khóa học dành cho học sinh THPT có thành tích học tập xuất sắc, đạt giải kỳ thi học sinh giỏi hoặc đạt điểm cao tại kỳ thi học bổng của trường. Cổng đăng ký chính thức: https://tuyensinh.fpt.edu.vn.",
-      "created_at": "2026-11-01T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-01T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000842",
@@ -8362,8 +8362,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Đào tạo Ngành Thiết kế Vi mạch Bán dẫn, Trí tuệ Nhân tạo & Học kỳ Doanh nghiệp OJT",
       "content": "Sinh viên các chuyên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI), Kỹ thuật phần mềm, An toàn thông tin và Quản trị kinh doanh số học tập theo giáo trình chuẩn quốc tế, chú trọng tiếng Anh và ngoại ngữ thứ hai. Từ học kỳ 6, sinh viên bước vào học kỳ thực tập thực tế tại doanh nghiệp (On-the-Job Training - OJT) kéo dài 4 đến 8 tháng tại FPT Software, FPT Semiconductor, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác.",
-      "created_at": "2026-11-02T05:22:57Z",
-      "updated_at": "2026-11-14T05:22:57Z"
+      "created_at": "2026-11-02T08:06:51Z",
+      "updated_at": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000843",
@@ -8371,8 +8371,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Hệ sinh thái Tiện ích Campus & Chuỗi Workshop Hướng nghiệp THPT 2027",
       "content": "Khuôn viên Trường Đại học FPT tích hợp thư viện xanh nhiều tầng, phòng Lab thực hành chuyên sâu, ký túc xá nội trú, sân rèn luyện võ thuật Vovinam và hơn 40 câu lạc bộ sinh viên. Trong Tuần 3 của chiến dịch tuyển sinh 2027, nhà trường tổ chức chuỗi Workshop phổ biến tiện ích học đường cho học sinh lớp 12 kèm gian hàng trải nghiệm kính thực tế ảo VR, cánh tay Robotics và Ngày hội FPTU Open Day 2027.",
-      "created_at": "2026-11-04T05:22:57Z",
-      "updated_at": "2026-11-15T05:22:57Z"
+      "created_at": "2026-11-04T08:06:51Z",
+      "updated_at": "2026-11-15T08:06:51Z"
     }
   ],
   "mail_recipient_groups": [
@@ -8386,32 +8386,32 @@
           "name": "Nguyễn Hoàng Nam - THPT Phan Châu Trinh",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-12T05:22:57Z"
+          "importedAt": "2026-11-12T08:06:51Z"
         },
         {
           "email": "minhkhoi.2k9@demo.brandhub.test",
           "name": "Trần Minh Khôi - THPT Chuyên Lê Quý Đôn",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-12T05:22:57Z"
+          "importedAt": "2026-11-12T08:06:51Z"
         },
         {
           "email": "ngocanh.2k9@demo.brandhub.test",
           "name": "Võ Ngọc Ánh - THPT Hoàng Hoa Thám",
           "consent": true,
           "consentSource": "MANUAL",
-          "importedAt": "2026-11-13T05:22:57Z"
+          "importedAt": "2026-11-13T08:06:51Z"
         },
         {
           "email": "giahan.2k9@demo.brandhub.test",
           "name": "Lê Gia Hân - THPT Trần Phú",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-13T05:22:57Z"
+          "importedAt": "2026-11-13T08:06:51Z"
         }
       ],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-11T05:22:57Z"
+      "createdAt": "2026-11-11T08:06:51Z"
     }
   ],
   "mail_templates": [
@@ -8427,8 +8427,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Vé mời Workshop Trải nghiệm Tiện ích Đại học FPT 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Xin chào {{name}}, cảm ơn bạn đã đăng ký tham gia trải nghiệm phòng Lab bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo 2027.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Xem thông tin buổi Workshop\", \"urlType\": \"campaign\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-10T05:22:57Z",
-      "updatedAt": "2026-11-14T05:22:57Z"
+      "createdAt": "2026-11-10T08:06:51Z",
+      "updatedAt": "2026-11-14T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000882",
@@ -8442,8 +8442,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Báo cáo tiến độ tuần Chiến dịch Tuyển sinh 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Kính gửi {{name}}, nhóm SE08 Digital cập nhật số liệu bài đăng đa nền tảng và lượt đăng ký Workshop THPT trong tuần.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Mở Dashboard Chiến dịch\", \"urlType\": \"client\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-06T05:22:57Z",
-      "updatedAt": "2026-11-15T05:22:57Z"
+      "createdAt": "2026-11-06T08:06:51Z",
+      "updatedAt": "2026-11-15T08:06:51Z"
     }
   ],
   "chat_channels": [
@@ -8466,7 +8466,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-04T05:22:57Z"
+      "createdAt": "2026-11-04T08:06:51Z"
     },
     {
       "_id": "39455325-5b0a-3dc5-9d02-f962ab133f35",
@@ -8486,7 +8486,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-02T05:22:57Z"
+      "createdAt": "2026-11-02T08:06:51Z"
     }
   ],
   "chat_messages": [
@@ -8507,7 +8507,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": true,
-      "createdAt": "2026-11-15T03:22:57Z"
+      "createdAt": "2026-11-15T06:06:51Z"
     },
     {
       "_id": "d7e100000000000000000002",
@@ -8526,7 +8526,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T05:22:57Z"
+      "createdAt": "2026-11-15T08:06:51Z"
     },
     {
       "_id": "d7e100000000000000000003",
@@ -8545,7 +8545,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T07:22:57Z"
+      "createdAt": "2026-11-15T10:06:51Z"
     },
     {
       "_id": "d7e100000000000000000004",
@@ -8564,7 +8564,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T09:22:57Z"
+      "createdAt": "2026-11-15T12:06:51Z"
     },
     {
       "_id": "d7e100000000000000000005",
@@ -8583,7 +8583,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T11:22:57Z"
+      "createdAt": "2026-11-15T14:06:51Z"
     },
     {
       "_id": "d7e100000000000000000006",
@@ -8602,7 +8602,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T13:22:57Z"
+      "createdAt": "2026-11-15T16:06:51Z"
     },
     {
       "_id": "d7e100000000000000000007",
@@ -8621,7 +8621,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T15:22:57Z"
+      "createdAt": "2026-11-15T18:06:51Z"
     },
     {
       "_id": "d7e100000000000000000008",
@@ -8640,7 +8640,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T17:22:57Z"
+      "createdAt": "2026-11-15T20:06:51Z"
     },
     {
       "_id": "d7e100000000000000000009",
@@ -8659,7 +8659,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T19:22:57Z"
+      "createdAt": "2026-11-15T22:06:51Z"
     },
     {
       "_id": "d7e10000000000000000000a",
@@ -8678,7 +8678,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T21:22:57Z"
+      "createdAt": "2026-11-16T00:06:51Z"
     },
     {
       "_id": "d7e10000000000000000000b",
@@ -8697,7 +8697,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-15T23:22:57Z"
+      "createdAt": "2026-11-16T02:06:51Z"
     },
     {
       "_id": "d7e10000000000000000000c",
@@ -8716,7 +8716,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T01:22:57Z"
+      "createdAt": "2026-11-16T04:06:51Z"
     },
     {
       "_id": "d7e10000000000000000000d",
@@ -8735,7 +8735,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T03:22:57Z"
+      "createdAt": "2026-11-16T06:06:51Z"
     }
   ],
   "ai_usage_logs": [
@@ -8745,7 +8745,7 @@
       "feature": "caption_generation",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-04T05:22:57Z"
+      "created_at": "2026-11-04T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000951",
@@ -8753,7 +8753,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-05T05:22:57Z"
+      "created_at": "2026-11-05T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000952",
@@ -8761,7 +8761,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-06T05:22:57Z"
+      "created_at": "2026-11-06T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000953",
@@ -8769,7 +8769,7 @@
       "feature": "caption_generation",
       "model": "gpt-4o-mini",
       "success": true,
-      "created_at": "2026-11-07T05:22:57Z"
+      "created_at": "2026-11-07T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000954",
@@ -8777,7 +8777,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-08T05:22:57Z"
+      "created_at": "2026-11-08T08:06:51Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000955",
@@ -8785,7 +8785,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-09T05:22:57Z"
+      "created_at": "2026-11-09T08:06:51Z"
     }
   ],
   "report_jobs": [
@@ -8794,10 +8794,10 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "requested_by": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "status": "DONE",
-      "date_from": "2026-11-02T05:22:57Z",
-      "date_to": "2026-11-16T05:22:57Z",
-      "created_at": "2026-11-15T23:22:57Z",
-      "updated_at": "2026-11-15T23:22:57Z"
+      "date_from": "2026-11-02T08:06:51Z",
+      "date_to": "2026-11-16T08:06:51Z",
+      "created_at": "2026-11-16T02:06:51Z",
+      "updated_at": "2026-11-16T02:06:51Z"
     }
   ]
 }
