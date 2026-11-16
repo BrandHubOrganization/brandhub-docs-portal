@@ -36,6 +36,7 @@ import {
   MousePointerClick,
   ArrowRight,
   CheckCheck,
+  Trash2,
 } from 'lucide-react';
 import {
   AstryxBadge,
@@ -991,7 +992,7 @@ const DEMO_STEPS: DemoStep[] = [
     stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
     stageShort: 'GĐ 5: Xuất bản, SePay & Admin',
     timeBudget: '17:45 - 18:45',
-    title: 'Owner nâng cấp gói cước SE08 Digital qua SePay / PayOS (VietQR) & Ví AI Credit',
+    title: 'Owner nâng cấp gói cước SE08 Digital qua SePay (VietQR) & Ví AI Credit',
     shortTitle: 'Nâng cấp gói VietQR & Ví AI',
     frCode: 'FR 3.9.1 - 3.9.6',
     role: 'Owner',
@@ -999,28 +1000,28 @@ const DEMO_STEPS: DemoStep[] = [
     actorEmail: 'user177@demo.brandhub.test',
     routeTemplate: '/subscription/plans',
     manualBrowserCue:
-      'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay/PayOS) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
+      'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
     talkingPoints: [
       'Owner Lê Trí Trung kiểm tra hạn mức gói dịch vụ và ví tín dụng AI (hiện có 8.500 credits, cấp hạn mức 5.000 credits cho Workspace ĐH FPT).',
       'Thực hiện nâng cấp gói cước SaaS cho SE08 Digital Agency để mở rộng số lượng Workspace khách hàng.',
-      'Tích hợp cổng SePay / PayOS sinh mã VietQR động và tự động đối soát kích hoạt qua webhook.',
+      'Tích hợp cổng SePay sinh mã VietQR động và tự động đối soát kích hoạt qua webhook.',
     ],
     presenterScript:
-      'Để phục vụ đồng thời nhiều chiến dịch lớn cho khách hàng, Owner Lê Trí Trung truy cập trang Quản lý gói dịch vụ để nâng cấp gói cước qua cổng SePay / PayOS bằng mã VietQR động, đồng thời kiểm soát trực tiếp Ví tín dụng AI 8.500 điểm phân bổ cho từng Workspace.',
+      'Để phục vụ đồng thời nhiều chiến dịch lớn cho khách hàng, Owner Lê Trí Trung truy cập trang Quản lý gói dịch vụ để nâng cấp gói cước qua cổng SePay bằng mã VietQR động, đồng thời kiểm soát trực tiếp Ví tín dụng AI 8.500 điểm phân bổ cho từng Workspace.',
     expectedOutcome:
-      'Hiển thị bảng so sánh các gói dịch vụ SaaS qua SePay / PayOS và trang quản lý Ví AI Credit của SE08 Digital Agency.',
+      'Hiển thị bảng so sánh các gói dịch vụ SaaS qua SePay (VietQR) và trang quản lý Ví AI Credit của SE08 Digital Agency.',
     fields: [
       {
         field: 'Cổng thanh toán & Ví tín dụng AI của SE08 Digital Agency',
         actionType: 'Tự động điền sẵn',
-        value: 'Thanh toán quét mã VietQR qua SePay / PayOS | Số dư ví AI hiện tại: 8.500 credits (hạn mức Workspace ĐH FPT: 5.000 credits)',
+        value: 'Thanh toán quét mã VietQR qua SePay | Số dư ví AI hiện tại: 8.500 credits (hạn mức Workspace ĐH FPT: 5.000 credits)',
       },
     ],
     actions: [
       {
         id: 'B14_NAV_PLANS',
         label: 'Mở trang Nâng cấp gói dịch vụ (/subscription/plans)',
-        description: 'Điều hướng Owner tới /subscription/plans (SePay / PayOS VietQR)',
+        description: 'Điều hướng Owner tới /subscription/plans (SePay VietQR)',
         variant: 'primary',
         icon: <Play className="size-4" />,
       },
@@ -1050,7 +1051,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Bấm [1] xem biểu đồ doanh thu toàn nền tảng -> Bấm [2] mở Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) khép lại phần trình diễn.',
     talkingPoints: [
       'Góc nhìn Quản trị viên BrandHub (Admin) giám sát doanh thu gói đăng ký SaaS từ các Agency trên toàn nền tảng.',
-      'Theo dõi trạng thái đối soát các giao dịch thanh toán SePay / PayOS và cấu hình gói cước.',
+      'Theo dõi trạng thái đối soát các giao dịch thanh toán SePay (VietQR) và cấu hình gói cước.',
       'Kiểm soát Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) gồm 3 bản ghi cảnh báo thực tế để giữ môi trường xuất bản an toàn.',
     ],
     presenterScript:
@@ -1122,6 +1123,7 @@ export const DemoMonitorPage: React.FC = () => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
+  const [showCleanConfirm, setShowCleanConfirm] = useState<boolean>(false);
 
   // Chế độ hiển thị tối ưu cho thuyết trình sân khấu
   const [viewMode, setViewMode] = useState<string>('stage'); // 'stage' | 'detail'
@@ -1285,7 +1287,7 @@ export const DemoMonitorPage: React.FC = () => {
       ) {
         return;
       }
-      if (showResetConfirm || showConfigModal) return;
+      if (showResetConfirm || showCleanConfirm || showConfigModal) return;
 
       if (e.code === 'Space') {
         e.preventDefault();
@@ -1324,6 +1326,7 @@ export const DemoMonitorPage: React.FC = () => {
     handleSmartAdvance,
     showConfigModal,
     showResetConfirm,
+    showCleanConfirm,
     triggerStepAction,
   ]);
 
@@ -1391,9 +1394,37 @@ export const DemoMonitorPage: React.FC = () => {
         setActiveStepIndex(0);
         setElapsedSeconds(0);
         setTimerRunning(false);
-        showToast(data.message || 'Đã khôi phục dữ liệu PostgreSQL & MongoDB về trạng thái chuẩn.');
+        showToast(data.message || 'Đã khôi phục dữ liệu PostgreSQL, MongoDB & Redis về trạng thái chuẩn B1.');
       } else {
         showToast(data.error || 'Lỗi khi nạp lại dữ liệu mẫu.', true);
+      }
+    } catch {
+      showToast('Không kết nối được tới máy chủ Selenium (cổng 3999).', true);
+    } finally {
+      setBusyAction(null);
+    }
+  };
+
+  const handleCleanDatabase = async () => {
+    setShowCleanConfirm(false);
+    setBusyAction('CLEAN_DB');
+    try {
+      const res = await fetch(`${monitorUrl}/api/clean-data`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setDoneActions({});
+        setActiveStepIndex(0);
+        setElapsedSeconds(0);
+        setTimerRunning(false);
+        showToast(
+          data.message ||
+            'Đã xóa sạch toàn bộ dữ liệu mẫu và các bản ghi phát sinh sau buổi demo.'
+        );
+      } else {
+        showToast(data.error || 'Lỗi khi xóa dữ liệu demo.', true);
       }
     } catch {
       showToast('Không kết nối được tới máy chủ Selenium (cổng 3999).', true);
@@ -1490,7 +1521,7 @@ export const DemoMonitorPage: React.FC = () => {
       <AstryxDialog
         isOpen={showResetConfirm}
         onOpenChange={setShowResetConfirm}
-        width={440}
+        width={460}
         padding={5}
         aria-label="Xác nhận khôi phục dữ liệu gốc"
       >
@@ -1501,10 +1532,10 @@ export const DemoMonitorPage: React.FC = () => {
             </div>
             <div className="space-y-1">
               <AstryxHeading level={3} className="text-base font-bold text-slate-900 text-balance">
-                Khôi phục toàn bộ dữ liệu gốc PostgreSQL &amp; MongoDB?
+                Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?
               </AstryxHeading>
               <p className="text-xs text-slate-600 leading-relaxed text-pretty">
-                Thao tác này sẽ chạy lại kịch bản chuẩn bị dữ liệu ban đầu (đặt lại trạng thái bài trọng điểm Tuần 3 về bản nháp trước khi gửi duyệt v1 và xóa dấu tích tiến độ hiện tại).
+                Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 18 bài đăng) để sẵn sàng thuyết trình ngay.
               </p>
             </div>
           </div>
@@ -1520,6 +1551,48 @@ export const DemoMonitorPage: React.FC = () => {
               variant="primary"
               size="sm"
               onClick={handleResetDatabase}
+            />
+          </div>
+        </div>
+      </AstryxDialog>
+
+      {/* Hộp thoại xác nhận Xóa sạch toàn bộ dữ liệu vừa Demo (--clean) */}
+      <AstryxDialog
+        isOpen={showCleanConfirm}
+        onOpenChange={setShowCleanConfirm}
+        width={480}
+        padding={5}
+        aria-label="Xác nhận xóa sạch dữ liệu demo"
+      >
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+              <Trash2 className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <AstryxHeading level={3} className="text-base font-bold text-slate-900 text-balance">
+                Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa Demo?
+              </AstryxHeading>
+              <p className="text-xs text-slate-600 leading-relaxed text-pretty">
+                Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, khảo sát, thư viện ảnh, đơn VietQR phát sinh và xu hướng Redis để hệ thống sạch hoàn toàn sau buổi chạy thử.
+              </p>
+              <div className="p-2.5 rounded-lg bg-orange-50/70 border border-orange-200 text-[11px] text-orange-800 leading-relaxed">
+                7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp mới từ đầu.
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-2 pt-1">
+            <AstryxButton
+              label="Hủy"
+              variant="secondary"
+              size="sm"
+              onClick={() => setShowCleanConfirm(false)}
+            />
+            <AstryxButton
+              label="Xóa sạch dữ liệu Demo"
+              variant="primary"
+              size="sm"
+              onClick={handleCleanDatabase}
             />
           </div>
         </div>
@@ -1660,6 +1733,16 @@ export const DemoMonitorPage: React.FC = () => {
               isDisabled={busyAction !== null}
               isLoading={busyAction === 'RESET_DB'}
               onClick={() => setShowResetConfirm(true)}
+            />
+
+            <AstryxButton
+              label="Xóa dữ liệu Demo"
+              variant="secondary"
+              size="sm"
+              icon={<Trash2 className="size-3.5 text-orange-600" />}
+              isDisabled={busyAction !== null}
+              isLoading={busyAction === 'CLEAN_DB'}
+              onClick={() => setShowCleanConfirm(true)}
             />
 
             <button
