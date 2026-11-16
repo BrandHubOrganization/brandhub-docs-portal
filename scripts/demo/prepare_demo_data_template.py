@@ -130,6 +130,22 @@ def load_default_redis_url() -> str:
     return os.environ.get("REDIS_URL") or env_vals.get("REDIS_URL", "redis://:root@localhost:6379/0")
 
 
+def load_default_sepay_merchant() -> str:
+    """Đọc mã tài khoản đối soát SePay thực tế từ brandhub-business-service/.env."""
+    repo_root = find_repo_root()
+    env_file = repo_root / "brandhub-business-service" / ".env"
+    env_vals: dict[str, str] = {}
+    if env_file.exists():
+        for raw_line in env_file.read_text(encoding="utf-8", errors="ignore").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            env_vals[k.strip()] = v.strip().strip('"').strip("'")
+    val = os.environ.get("SEPAY_MERCHANT_ACCOUNT") or env_vals.get("SEPAY_MERCHANT_ACCOUNT", "")
+    return val.strip() or "BRANDHUB_SEPAY_VN"
+
+
 def load_asset_data_uri(filename: str) -> tuple[str, int]:
     """
     Tạo Data URI JPEG gọn nhẹ từ file ảnh đã sinh sẵn trong public/demo-assets/fptu-2027/
@@ -271,7 +287,7 @@ DEMO_ACCOUNTS = {
 PG_USER_IDS = {k: v["id"] for k, v in DEMO_ACCOUNTS.items()}
 
 # Đường dẫn ảnh Key Visual đã sinh sẵn bằng Gemini Nano Banana + ảnh Unsplash chọn lọc
-ASSET_BASE_URL = "http://localhost:3000/demo-assets/fptu-2027"
+ASSET_BASE_URL = "/demo-assets/fptu-2027"
 FPTU_VISUALS = {
     "week1_coming_soon": {
         "id": "d7e00000-0000-4000-8000-000000000901",
@@ -1468,6 +1484,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                             is_active = TRUE,
                             two_factor_enabled = FALSE,
                             require_password_reset = FALSE,
+                            last_login_at = NOW() - INTERVAL '45 minutes',
                             updated_at = NOW()
                         WHERE email = %s
                         RETURNING id;
@@ -1485,6 +1502,86 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                 creator3_id = resolved_ids["CREATOR_3"]
                 client_id = resolved_ids["CLIENT"]
                 admin_id = resolved_ids["ADMIN"]
+
+                demo_user_ids_clean = [owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id, admin_id]
+                demo_ws_ids_clean = [
+                    WORKSPACE_ID,
+                    "d7e00000-0000-4000-8000-000000000091",
+                    "d7e00000-0000-4000-8000-000000000092",
+                ]
+                # Dọn dẹp triệt để dữ liệu phát sinh sau lần chạy thử demo trước (strikes, AI nháp, canvas Yjs, đơn VietQR treo)
+                cur.execute(
+                    """
+                    UPDATE users
+                    SET status = 'ACTIVE', is_active = TRUE, clean_period_ends_at = NULL, reactivate_at = NULL
+                    WHERE id = ANY(%s::uuid[]);
+                    DELETE FROM sanction_reviews WHERE user_id = ANY(%s::uuid[]);
+                    UPDATE user_strikes SET converted_to_id = NULL WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM user_strikes WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM admin_account_operations WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM ai_caption_generations WHERE workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM ai_video_jobs WHERE workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM task_content_operations WHERE task_id IN (SELECT id FROM tasks WHERE workspace_id = ANY(%s::uuid[]));
+                    DELETE FROM task_content_snapshots WHERE task_id IN (SELECT id FROM tasks WHERE workspace_id = ANY(%s::uuid[]));
+                    DELETE FROM tasks WHERE workspace_id = ANY(%s::uuid[]);
+                    """,
+                    (
+                        demo_user_ids_clean,
+                        demo_user_ids_clean,
+                        demo_user_ids_clean,
+                        demo_user_ids_clean,
+                        demo_user_ids_clean,
+                        demo_ws_ids_clean,
+                        demo_ws_ids_clean,
+                        demo_ws_ids_clean,
+                        demo_ws_ids_clean,
+                        demo_ws_ids_clean,
+                    ),
+                )
+                cur.execute(
+                    """
+                    SELECT id::text FROM billing_orders
+                    WHERE agency_id = %s::uuid
+                      AND status IN ('PENDING_PAYMENT', 'EXPIRED', 'CANCELLED', 'REVIEW_REQUIRED')
+                      AND id NOT IN (SELECT order_id FROM agency_subscription_periods WHERE order_id IS NOT NULL)
+                      AND id NOT IN (SELECT order_id FROM credit_grants WHERE order_id IS NOT NULL)
+                      AND id NOT IN (SELECT order_id FROM storage_addon_subscriptions WHERE order_id IS NOT NULL);
+                    """,
+                    (AGENCY_ID,),
+                )
+                rehearsal_ords = [r[0] for r in cur.fetchall()]
+                if rehearsal_ords:
+                    cur.execute(
+                        """
+                        DELETE FROM subscription_operational_issues WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM subscription_provider_checks WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_payment_events WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_payments WHERE attempt_id IN (SELECT id FROM billing_payment_attempts WHERE order_id = ANY(%s::uuid[]));
+                        DELETE FROM billing_payment_attempts WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_order_fulfillments WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_orders WHERE id = ANY(%s::uuid[]);
+                        """,
+                        (
+                            rehearsal_ords,
+                            rehearsal_ords,
+                            rehearsal_ords,
+                            rehearsal_ords,
+                            rehearsal_ords,
+                            rehearsal_ords,
+                            rehearsal_ords,
+                        ),
+                    )
+                cur.execute(
+                    """
+                    DELETE FROM credit_reservation_allocations
+                    WHERE agency_id = %s::uuid
+                      AND reservation_id NOT IN (SELECT reservation_id FROM credit_operations WHERE reservation_id IS NOT NULL);
+                    DELETE FROM ai_credit_reservations
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT reservation_id FROM credit_operations WHERE reservation_id IS NOT NULL);
+                    """,
+                    (AGENCY_ID, AGENCY_ID),
+                )
 
                 # 2. Dọn sạch các Agency/Workspace ngẫu nhiên do Faker sinh trước đó gắn với Owner để không bị rác dữ liệu
                 cur.execute(
@@ -1519,7 +1616,13 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         """
                         UPDATE workspaces
                         SET status = 'SOFT_DELETED', deleted_at = NOW()
-                        WHERE agency_id = %s::uuid AND id <> %s::uuid AND deleted_at IS NULL;
+                        WHERE agency_id = %s::uuid
+                          AND id NOT IN (
+                              %s::uuid,
+                              'd7e00000-0000-4000-8000-000000000091'::uuid,
+                              'd7e00000-0000-4000-8000-000000000092'::uuid
+                          )
+                          AND deleted_at IS NULL;
                         """,
                         (AGENCY_ID, WORKSPACE_ID),
                     )
@@ -2271,7 +2374,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         ),
                         (
                             'd7e00000-0000-4000-8000-000000000102'::uuid,
-                            'Đối soát thanh toán tự động qua cổng SePay / PayOS (VietQR)',
+                            'Đối soát thanh toán tự động qua cổng SePay (VietQR)',
                             'Hoàn tất nâng cấp luồng xác nhận giao dịch nâng cấp gói Agency và nạp AI Credit thời gian thực.',
                             'MAINTENANCE', 'ALL', 'SENT',
                             NOW() - INTERVAL '3 days', 32, %s::uuid, NOW() - INTERVAL '3 days', NOW() - INTERVAL '3 days', 0
@@ -2468,7 +2571,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         creator_id,
                         "Ban Tuyển sinh ĐH FPT đã duyệt ảnh & kênh đăng Bài trọng điểm Tuần 3",
                         "Phần hình ảnh Workshop THPT và lịch đăng 4 nền tảng đã đạt yêu cầu, sẵn sàng hoàn thiện caption.",
-                        f"/workspaces/{WORKSPACE_ID}/tasks/{TASK_1_ID}/editor",
+                        f"/workspaces/{WORKSPACE_ID}/editor?taskId={TASK_1_ID}",
                         False,
                         2,
                     ),
@@ -2623,6 +2726,692 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                     """,
                     (client_id,),
                 )
+
+                # 18. Hai Workspace khách hàng đa ngành sạch sẽ của SE08 Digital Agency (để trình chuyển đổi Workspace giàu dữ liệu, 0 Faker)
+                companion_workspaces = [
+                    (
+                        "d7e00000-0000-4000-8000-000000000091",
+                        "CloudWork SaaS Vietnam x SE08 Digital",
+                        "TECHNOLOGY",
+                        "SIZE_51_200",
+                        "https://cloudwork.vn",
+                        "02873008899",
+                        "Quận 1, TP. Hồ Chí Minh",
+                        "Không gian triển khai nội dung ra mắt nền tảng quản trị hiệu suất doanh nghiệp B2B CloudWork 3.0.",
+                        "#2563EB",
+                        "Tối ưu vận hành số cho doanh nghiệp Việt",
+                        2021,
+                    ),
+                    (
+                        "d7e00000-0000-4000-8000-000000000092",
+                        "Tiệm Trà & Bánh Mùa Thu x SE08 Digital",
+                        "FNB",
+                        "SIZE_11_50",
+                        "https://muathuteabakery.vn",
+                        "02439996688",
+                        "Quận Hoàn Kiếm, Hà Nội & Quận Hải Châu, Đà Nẵng",
+                        "Không gian truyền thông chuỗi cửa hàng trà trái cây thủ công và bánh nướng theo mùa.",
+                        "#D97706",
+                        "Hương vị thủ công ấm áp mỗi ngày",
+                        2020,
+                    ),
+                ]
+                for cw_id, cw_name, cw_ind, cw_size, cw_web, cw_phone, cw_loc, cw_desc, cw_color, cw_tag, cw_year in companion_workspaces:
+                    cur.execute(
+                        """
+                        INSERT INTO workspaces (
+                            id, agency_id, name, created_by, timezone_config, settings,
+                            industry, company_size, website, phone, location, description,
+                            brand_color, logo_url, banner_url, tagline, founded_year,
+                            status, created_at, updated_at
+                        ) VALUES (
+                            %s::uuid, %s::uuid, %s, %s::uuid, 'Asia/Ho_Chi_Minh', '{"approvalMode":"TWO_TIER"}'::jsonb,
+                            %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s,
+                            'ACTIVE', NOW() - INTERVAL '40 days', NOW() - INTERVAL '1 day'
+                        )
+                        ON CONFLICT (id) DO UPDATE SET
+                            agency_id = EXCLUDED.agency_id,
+                            name = EXCLUDED.name,
+                            industry = EXCLUDED.industry,
+                            company_size = EXCLUDED.company_size,
+                            description = EXCLUDED.description,
+                            brand_color = EXCLUDED.brand_color,
+                            tagline = EXCLUDED.tagline,
+                            status = 'ACTIVE',
+                            deleted_at = NULL,
+                            updated_at = NOW();
+                        """,
+                        (
+                            cw_id,
+                            AGENCY_ID,
+                            cw_name,
+                            owner_id,
+                            cw_ind,
+                            cw_size,
+                            cw_web,
+                            cw_phone,
+                            cw_loc,
+                            cw_desc,
+                            cw_color,
+                            UNSPLASH_CAMPUS_PHOTOS[1]["url"],
+                            UNSPLASH_CAMPUS_PHOTOS[3]["url"],
+                            cw_tag,
+                            cw_year,
+                        ),
+                    )
+                    cur.execute("DELETE FROM workspace_members WHERE workspace_id = %s::uuid;", (cw_id,))
+                    for m_uid, m_role in [(manager_id, "MANAGER"), (creator_id, "CREATOR"), (creator2_id, "CREATOR")]:
+                        cur.execute(
+                            """
+                            INSERT INTO workspace_members (
+                                id, workspace_id, user_id, role, added_by, joined_at, is_active, created_at, updated_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, %s::workspace_member_role, %s::uuid,
+                                NOW() - INTERVAL '35 days', TRUE, NOW() - INTERVAL '35 days', NOW()
+                            );
+                            """,
+                            (java_name_uuid_from_bytes(f"ws-member:{cw_id}:{m_uid}"), cw_id, m_uid, m_role, owner_id),
+                        )
+
+                # 19. Đồng bộ Gói cước PLUS, Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                sepay_merchant = load_default_sepay_merchant()
+                for p_code, p_disp, p_price, p_ws, p_mem, p_cli, p_store, p_cred, p_conc, p_ver_ret, p_trash_ret, p_act_ret in [
+                    ("PLUS", "Plus Agency", 1990000, 10, 15, 50, 100000000000, 5000, 3, 90, 30, 180),
+                    ("ENTERPRISE", "Enterprise Agency", 5990000, 50, 50, 200, 1000000000000, 25000, 10, 365, 90, 365),
+                ]:
+                    cur.execute(
+                        "SELECT id FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
+                        (p_code,),
+                    )
+                    if not cur.fetchone():
+                        cur.execute(
+                            """
+                            INSERT INTO billing_plan_versions (
+                                id, code, version, display_name, price_monthly, currency,
+                                max_active_workspaces, max_internal_members, max_clients,
+                                storage_limit_bytes, monthly_ai_credits, max_concurrent_ai_jobs,
+                                version_retention_days, trash_retention_days, activity_retention_days, is_sellable
+                            ) VALUES (
+                                %s::uuid, %s,
+                                COALESCE((SELECT MAX(version) FROM billing_plan_versions WHERE code = %s), 0) + 1,
+                                %s, %s, 'VND',
+                                %s, %s, %s,
+                                %s, %s, %s,
+                                %s, %s, %s, TRUE
+                            );
+                            """,
+                            (
+                                java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}"),
+                                p_code,
+                                p_code,
+                                p_disp,
+                                p_price,
+                                p_ws,
+                                p_mem,
+                                p_cli,
+                                p_store,
+                                p_cred,
+                                p_conc,
+                                p_ver_ret,
+                                p_trash_ret,
+                                p_act_ret,
+                            ),
+                        )
+                cur.execute(
+                    "SELECT id, price_monthly, monthly_ai_credits FROM billing_plan_versions WHERE code = 'PLUS' AND is_sellable = TRUE ORDER BY version DESC LIMIT 1;"
+                )
+                plus_plan = cur.fetchone()
+                cur.execute(
+                    "SELECT id, price_monthly, monthly_ai_credits FROM billing_plan_versions WHERE code = 'ENTERPRISE' AND is_sellable = TRUE ORDER BY version DESC LIMIT 1;"
+                )
+                ent_plan = cur.fetchone()
+
+                if plus_plan:
+                    plus_ver_id, plus_price, plus_credits = str(plus_plan[0]), int(plus_plan[1] or 1990000), int(plus_plan[2] or 5000)
+                    ent_ver_id = str(ent_plan[0]) if ent_plan else plus_ver_id
+                    ent_price = int(ent_plan[1] or 5990000) if ent_plan else 5990000
+
+                    # Huỷ các đơn treo cũ trên SE08 để nút Gia hạn/Mua thêm trên /subscription/plans tạo mã VietQR mới ngay lập tức
+                    cur.execute(
+                        """
+                        UPDATE billing_orders
+                        SET status = 'EXPIRED', updated_at = NOW()
+                        WHERE agency_id = %s::uuid AND status IN ('PENDING_PAYMENT', 'PAID');
+                        """,
+                        (AGENCY_ID,),
+                    )
+
+                    se08_sub_id = java_name_uuid_from_bytes(f"agency-sub:{AGENCY_ID}")
+                    cur.execute(
+                        """
+                        INSERT INTO agency_subscriptions (
+                            id, agency_id, plan_version_id, status,
+                            current_period_start, current_period_end,
+                            migration_state, version, created_at, updated_at
+                        ) VALUES (
+                            %s::uuid, %s::uuid, %s::uuid, 'ACTIVE',
+                            (date_trunc('day', NOW() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC') - INTERVAL '10 days',
+                            ((date_trunc('day', NOW() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC') - INTERVAL '10 days') + INTERVAL '1 month',
+                            'READY', 1, NOW() - INTERVAL '60 days', NOW()
+                        )
+                        ON CONFLICT (agency_id) DO UPDATE SET
+                            plan_version_id = EXCLUDED.plan_version_id,
+                            status = 'ACTIVE',
+                            current_period_start = EXCLUDED.current_period_start,
+                            current_period_end = EXCLUDED.current_period_end,
+                            migration_state = 'READY',
+                            updated_at = NOW()
+                        RETURNING id, current_period_start, current_period_end;
+                        """,
+                        (se08_sub_id, AGENCY_ID, plus_ver_id),
+                    )
+                    sub_row = cur.fetchone()
+                    actual_sub_id = str(sub_row[0])
+                    p_start = sub_row[1]
+                    p_end = sub_row[2]
+
+                    def ensure_current_subscription_period(
+                        ag_id: str,
+                        sub_id: str,
+                        plan_vid: str,
+                        ord_id: str,
+                        per_start: Any,
+                        per_end: Any,
+                        fallback_key: str,
+                    ) -> str:
+                        cur.execute(
+                            """
+                            SELECT id::text FROM agency_subscription_periods
+                            WHERE agency_id = %s::uuid
+                            ORDER BY CASE status WHEN 'CURRENT' THEN 0 WHEN 'FUTURE' THEN 1 ELSE 2 END, ends_at DESC;
+                            """,
+                            (ag_id,),
+                        )
+                        existing_pids = [r[0] for r in cur.fetchall()]
+                        target_pid = existing_pids[0] if existing_pids else java_name_uuid_from_bytes(fallback_key)
+                        for old_pid in existing_pids[1:]:
+                            cur.execute(
+                                """
+                                UPDATE agency_subscription_periods
+                                SET status = 'ENDED',
+                                    starts_at = CASE
+                                        WHEN starts_at < %s AND ends_at > %s
+                                        THEN (SELECT MIN(starts_at) FROM agency_subscription_periods WHERE agency_id = %s::uuid) - INTERVAL '40 days'
+                                        ELSE starts_at
+                                    END,
+                                    ends_at = CASE
+                                        WHEN starts_at < %s AND ends_at > %s
+                                        THEN (SELECT MIN(starts_at) FROM agency_subscription_periods WHERE agency_id = %s::uuid) - INTERVAL '10 days'
+                                        ELSE ends_at
+                                    END
+                                WHERE id = %s::uuid;
+                                """,
+                                (per_end, per_start, ag_id, per_end, per_start, ag_id, old_pid),
+                            )
+                        cur.execute(
+                            """
+                            INSERT INTO agency_subscription_periods (
+                                id, agency_id, subscription_id, plan_version_id, order_id, starts_at, ends_at, status, created_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, %s::uuid, %s::uuid, %s, %s, 'CURRENT', NOW() - INTERVAL '10 days'
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                subscription_id = EXCLUDED.subscription_id,
+                                plan_version_id = EXCLUDED.plan_version_id,
+                                order_id = EXCLUDED.order_id,
+                                starts_at = EXCLUDED.starts_at,
+                                ends_at = EXCLUDED.ends_at,
+                                status = 'CURRENT';
+                            """,
+                            (target_pid, ag_id, sub_id, plan_vid, ord_id, per_start, per_end),
+                        )
+                        return target_pid
+
+                    def upsert_verified_sepay_receipt(
+                        ord_key: str,
+                        ag_id: str,
+                        payer_uid: str,
+                        kind: str,
+                        amt: int,
+                        p_ver_id: str | None,
+                        snap_dict: dict[str, Any],
+                        days_ago: int,
+                        hours_offset: int = 3,
+                        per_start: Any = None,
+                        per_end: Any = None,
+                    ) -> str:
+                        ord_id = java_name_uuid_from_bytes(f"bh-demo-order:{ord_key}")
+                        att_id = java_name_uuid_from_bytes(f"bh-demo-attempt:{ord_key}")
+                        pay_id = java_name_uuid_from_bytes(f"bh-demo-payment:{ord_key}")
+                        ord_code = "BH" + sha256_hex(ord_key)[:20].upper()
+                        prov_ref = "FT26320" + sha256_hex("ref:" + ord_key)[:9].upper()
+                        cur.execute(
+                            """
+                            INSERT INTO billing_orders (
+                                id, agency_id, payer_user_id, kind, status,
+                                idempotency_key, payload_hash, amount, currency,
+                                product_snapshot, plan_version_id, period_start, period_end,
+                                expires_at, paid_at, fulfilled_at, created_at, updated_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, %s, 'FULFILLED',
+                                %s, %s, %s, 'VND',
+                                %s::jsonb, %s::uuid, %s, %s,
+                                NOW() - (%s || ' days')::interval + INTERVAL '15 minutes',
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval,
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval,
+                                NOW() - (%s || ' days')::interval,
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                status = 'FULFILLED',
+                                amount = EXCLUDED.amount,
+                                product_snapshot = EXCLUDED.product_snapshot,
+                                period_start = EXCLUDED.period_start,
+                                period_end = EXCLUDED.period_end,
+                                paid_at = EXCLUDED.paid_at,
+                                fulfilled_at = EXCLUDED.fulfilled_at,
+                                updated_at = NOW();
+                            """,
+                            (
+                                ord_id,
+                                ag_id,
+                                payer_uid,
+                                kind,
+                                f"idem-{ord_key}",
+                                sha256_hex(f"payload:{ord_key}"),
+                                amt,
+                                json.dumps(snap_dict, ensure_ascii=False),
+                                p_ver_id,
+                                per_start,
+                                per_end,
+                                str(days_ago),
+                                str(days_ago),
+                                str(hours_offset),
+                                str(days_ago),
+                                str(hours_offset),
+                                str(days_ago),
+                                str(days_ago),
+                                str(hours_offset),
+                            ),
+                        )
+                        cur.execute(
+                            """
+                            INSERT INTO billing_payment_attempts (
+                                id, agency_id, order_id, provider, merchant_account,
+                                provider_order_code, payment_link_id, status, created_at, updated_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, 'SEEPAY', %s,
+                                %s, %s, 'SUCCEEDED',
+                                NOW() - (%s || ' days')::interval,
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                merchant_account = EXCLUDED.merchant_account,
+                                status = 'SUCCEEDED',
+                                updated_at = NOW();
+                            """,
+                            (
+                                att_id,
+                                ag_id,
+                                ord_id,
+                                sepay_merchant,
+                                ord_code,
+                                f"sepay-qr-{ord_code.lower()}",
+                                str(days_ago),
+                                str(days_ago),
+                                str(hours_offset),
+                            ),
+                        )
+                        cur.execute(
+                            """
+                            INSERT INTO billing_payments (
+                                id, agency_id, attempt_id, provider, merchant_account,
+                                provider_reference, amount, currency, paid_at, verification_state, created_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, 'SEEPAY', %s,
+                                %s, %s, 'VND',
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval,
+                                'VERIFIED',
+                                NOW() - (%s || ' days')::interval + (%s || ' hours')::interval
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                merchant_account = EXCLUDED.merchant_account,
+                                amount = EXCLUDED.amount,
+                                paid_at = EXCLUDED.paid_at,
+                                verification_state = 'VERIFIED';
+                            """,
+                            (
+                                pay_id,
+                                ag_id,
+                                att_id,
+                                sepay_merchant,
+                                prov_ref,
+                                amt,
+                                str(days_ago),
+                                str(hours_offset),
+                                str(days_ago),
+                                str(hours_offset),
+                            ),
+                        )
+                        return ord_id
+
+                    # 3 hóa đơn thực tế của SE08 Digital Agency (1 Gói Plus + 2 đợt nạp AI Credit)
+                    se08_sub_ord = upsert_verified_sepay_receipt(
+                        "se08-plus-202611",
+                        AGENCY_ID,
+                        owner_id,
+                        "SUBSCRIPTION",
+                        plus_price,
+                        plus_ver_id,
+                        {"action": "UPGRADE", "planCode": "PLUS", "planVersionId": plus_ver_id, "periodMonths": 1, "monthlyCredits": plus_credits},
+                        10,
+                        2,
+                        p_start,
+                        p_end,
+                    )
+                    se08_topup1_ord = upsert_verified_sepay_receipt(
+                        "se08-topup1-202611",
+                        AGENCY_ID,
+                        owner_id,
+                        "CREDIT_TOPUP",
+                        1000000,
+                        None,
+                        {"credits": 5000, "unitPriceVnd": 200},
+                        7,
+                        4,
+                    )
+                    se08_topup2_ord = upsert_verified_sepay_receipt(
+                        "se08-topup2-202611",
+                        AGENCY_ID,
+                        owner_id,
+                        "CREDIT_TOPUP",
+                        300000,
+                        None,
+                        {"credits": 1500, "unitPriceVnd": 200},
+                        2,
+                        5,
+                    )
+
+                    for ord_f, b_type in [
+                        (se08_sub_ord, "SUBSCRIPTION_PERIOD"),
+                        (se08_sub_ord, "CREDIT_GRANT"),
+                        (se08_topup1_ord, "CREDIT_GRANT"),
+                        (se08_topup2_ord, "CREDIT_GRANT"),
+                    ]:
+                        cur.execute(
+                            """
+                            INSERT INTO billing_order_fulfillments (id, agency_id, order_id, benefit_type, created_at)
+                            VALUES (%s::uuid, %s::uuid, %s::uuid, %s, NOW() - INTERVAL '2 days')
+                            ON CONFLICT (order_id, benefit_type) DO NOTHING;
+                            """,
+                            (java_name_uuid_from_bytes(f"fulfill:{ord_f}:{b_type}"), AGENCY_ID, ord_f, b_type),
+                        )
+
+                    se08_sub_period_id = ensure_current_subscription_period(
+                        AGENCY_ID,
+                        actual_sub_id,
+                        plus_ver_id,
+                        se08_sub_ord,
+                        p_start,
+                        p_end,
+                        f"sepay-period-nov:{AGENCY_ID}",
+                    )
+
+                    # Bổ sung 4 Agency Việt Nam trả phí trong tháng hiện tại để /admin?view=revenue có biểu đồ MRR/ARR & giao dịch đẹp mắt
+                    peer_agencies = [
+                        ("user2@demo.brandhub.test", "Trần Quốc Bảo", "d7e00000-0000-4000-8000-000000000081", "Sao Khuê Media Agency", "ENTERPRISE", ent_ver_id, ent_price, 12, 600000, 4),
+                        ("user3@demo.brandhub.test", "Lê Minh Khuê", "d7e00000-0000-4000-8000-000000000082", "CloudWork Creative Studio", "PLUS", plus_ver_id, plus_price, 8, 400000, 3),
+                        ("user4@demo.brandhub.test", "Phạm Hoàng Yến", "d7e00000-0000-4000-8000-000000000083", "Mùa Thu Brand Lab", "PLUS", plus_ver_id, plus_price, 5, 800000, 1),
+                        ("user5@demo.brandhub.test", "Đỗ Gia Hưng", "d7e00000-0000-4000-8000-000000000084", "Đông Á Digital Hub", "ENTERPRISE", ent_ver_id, ent_price, 1, 500000, 0),
+                    ]
+                    for p_email, p_fullname, p_ag_id, p_ag_name, p_code, p_vid, p_amt, sub_days_ago, top_amt, top_days_ago in peer_agencies:
+                        cur.execute(
+                            """
+                            UPDATE users
+                            SET full_name = %s, status = 'ACTIVE', is_active = TRUE, last_login_at = NOW() - INTERVAL '3 hours'
+                            WHERE email = %s RETURNING id;
+                            """,
+                            (p_fullname, p_email),
+                        )
+                        prow = cur.fetchone()
+                        if not prow:
+                            continue
+                        p_uid = str(prow[0])
+                        cur.execute(
+                            """
+                            INSERT INTO agencies (id, name, owner_id, description, category, company_size, status, created_at, updated_at)
+                            VALUES (%s::uuid, %s, %s::uuid, 'Đối tác Agency sử dụng nền tảng quản trị truyền thông BrandHub.', 'MARKETING', 'SIZE_11_50', 'ACTIVE', NOW() - INTERVAL '45 days', NOW())
+                            ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, owner_id = EXCLUDED.owner_id, status = 'ACTIVE', deleted_at = NULL;
+                            """,
+                            (p_ag_id, p_ag_name, p_uid),
+                        )
+                        p_sub_id = java_name_uuid_from_bytes(f"peer-sub:{p_ag_id}")
+                        cur.execute(
+                            """
+                            INSERT INTO agency_subscriptions (
+                                id, agency_id, plan_version_id, status, current_period_start, current_period_end, migration_state, version, created_at, updated_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, 'ACTIVE',
+                                NOW() - (%s || ' days')::interval,
+                                NOW() - (%s || ' days')::interval + INTERVAL '30 days',
+                                'READY', 1, NOW() - INTERVAL '30 days', NOW()
+                            )
+                            ON CONFLICT (agency_id) DO UPDATE SET
+                                plan_version_id = EXCLUDED.plan_version_id,
+                                status = 'ACTIVE',
+                                current_period_start = EXCLUDED.current_period_start,
+                                current_period_end = EXCLUDED.current_period_end,
+                                migration_state = 'READY',
+                                updated_at = NOW()
+                            RETURNING id, current_period_start, current_period_end;
+                            """,
+                            (p_sub_id, p_ag_id, p_vid, str(sub_days_ago), str(sub_days_ago)),
+                        )
+                        ps_row = cur.fetchone()
+                        ps_id, ps_start, ps_end = str(ps_row[0]), ps_row[1], ps_row[2]
+                        p_ord = upsert_verified_sepay_receipt(
+                            f"peer-sub-{p_ag_id}",
+                            p_ag_id,
+                            p_uid,
+                            "SUBSCRIPTION",
+                            p_amt,
+                            p_vid,
+                            {"action": "UPGRADE", "planCode": p_code, "planVersionId": p_vid, "periodMonths": 1},
+                            sub_days_ago,
+                            2,
+                            ps_start,
+                            ps_end,
+                        )
+                        ensure_current_subscription_period(
+                            p_ag_id,
+                            ps_id,
+                            p_vid,
+                            p_ord,
+                            ps_start,
+                            ps_end,
+                            f"peer-period:{p_ag_id}",
+                        )
+                        upsert_verified_sepay_receipt(
+                            f"peer-topup-{p_ag_id}",
+                            p_ag_id,
+                            p_uid,
+                            "CREDIT_TOPUP",
+                            top_amt,
+                            None,
+                            {"credits": top_amt // 200, "unitPriceVnd": 200},
+                            top_days_ago,
+                            1,
+                        )
+
+                    # Đồng bộ credit_grants (tổng khả dụng đúng 8.500 điểm), credit_usage_periods & ai_credit_reservations cho SE08
+                    cur.execute(
+                        "SELECT id::text FROM credit_grants WHERE period_id = %s::uuid AND source_type = 'PERIOD' LIMIT 1;",
+                        (se08_sub_period_id,),
+                    )
+                    ex_pg = cur.fetchone()
+                    grant_period_id = ex_pg[0] if ex_pg else java_name_uuid_from_bytes(f"grant-period:{se08_sub_period_id}")
+                    grant_topup1_id = java_name_uuid_from_bytes(f"grant-topup:{se08_topup1_ord}")
+                    grant_topup2_id = java_name_uuid_from_bytes(f"grant-topup:{se08_topup2_ord}")
+                    keep_grants = [grant_period_id, grant_topup1_id, grant_topup2_id]
+                    cur.execute(
+                        """
+                        UPDATE credit_grants
+                        SET expired = expired + available, available = 0
+                        WHERE agency_id = %s::uuid AND id <> ALL(%s::uuid[]) AND available > 0;
+                        """,
+                        (AGENCY_ID, keep_grants),
+                    )
+                    grant_rows = [
+                        (grant_period_id, "PERIOD", f"period:{se08_sub_period_id}", None, se08_sub_period_id, 5000, 4380, 620, p_start, p_end),
+                        (grant_topup1_id, "TOPUP", f"topup:{se08_topup1_ord}", se08_topup1_ord, None, 5000, 2620, 2380, p_start + timedelta(days=3), None),
+                        (grant_topup2_id, "TOPUP", f"topup:{se08_topup2_ord}", se08_topup2_ord, None, 1500, 1500, 0, p_start + timedelta(days=8), None),
+                    ]
+                    for g_id, g_src, g_skey, g_oid, g_pid, g_amt, g_avail, g_cons, g_from, g_exp in grant_rows:
+                        cur.execute(
+                            """
+                            INSERT INTO credit_grants (
+                                id, agency_id, source_type, source_key, order_id, period_id,
+                                amount, available, reserved, consumed, expired, revoked, valid_from, expires_at, created_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s, %s, %s::uuid, %s::uuid,
+                                %s, %s, 0, %s, 0, 0, %s, %s, %s
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                amount = EXCLUDED.amount,
+                                available = EXCLUDED.available,
+                                reserved = 0,
+                                consumed = EXCLUDED.consumed,
+                                expired = 0,
+                                revoked = 0,
+                                valid_from = EXCLUDED.valid_from,
+                                expires_at = EXCLUDED.expires_at;
+                            """,
+                            (g_id, AGENCY_ID, g_src, g_skey, g_oid, g_pid, g_amt, g_avail, g_cons, g_from, g_exp, g_from),
+                        )
+
+                    cur.execute(
+                        """
+                        UPDATE agency_credit_wallets
+                        SET available_credits = 8500,
+                            reserved_credits = 0,
+                            opening_balance_state = 'VERIFIED',
+                            updated_at = NOW()
+                        WHERE agency_id = %s::uuid;
+                        """,
+                        (AGENCY_ID,),
+                    )
+
+                    usage_period_id = java_name_uuid_from_bytes(f"credit-usage-period:{se08_sub_period_id}")
+                    cur.execute(
+                        """
+                        INSERT INTO credit_usage_periods (id, agency_id, starts_at, ends_at, kind, subscription_period_id)
+                        VALUES (%s::uuid, %s::uuid, %s, %s, 'PAID', %s::uuid)
+                        ON CONFLICT (agency_id, starts_at, kind) DO UPDATE SET
+                            ends_at = EXCLUDED.ends_at,
+                            subscription_period_id = EXCLUDED.subscription_period_id
+                        RETURNING id;
+                        """,
+                        (usage_period_id, AGENCY_ID, p_start, p_end, se08_sub_period_id),
+                    )
+                    actual_usage_period_id = str(cur.fetchone()[0])
+
+                    cur.execute(
+                        """
+                        INSERT INTO workspace_credit_usage (agency_id, workspace_id, period_id, used, reserved)
+                        VALUES (%s::uuid, %s::uuid, %s::uuid, 620, 0)
+                        ON CONFLICT (agency_id, workspace_id, period_id) DO UPDATE SET
+                            used = 620, reserved = 0;
+                        """,
+                        (AGENCY_ID, WORKSPACE_ID, actual_usage_period_id),
+                    )
+
+                    # Đọc bảng giá hiện hành để ghi nhận lịch sử tiêu dùng AI Credit thực tế của từng thành viên SE08
+                    price_map: dict[str, tuple[str, int]] = {}
+                    for op_n in ("CONTENT_GENERATE", "AMBASSADOR_GENERATE", "COMMERCIAL_IMAGE", "VIDEO_GENERATE"):
+                        cur.execute(
+                            "SELECT id, unit_credits FROM ai_credit_operation_prices WHERE operation = %s ORDER BY revision DESC LIMIT 1;",
+                            (op_n,),
+                        )
+                        pr = cur.fetchone()
+                        if pr:
+                            price_map[op_n] = (str(pr[0]), int(pr[1]))
+
+                    settled_ai_runs = [
+                        ("fptu2027-ai-phuoc-cap-w1", creator_id, "CONTENT_GENERATE", 8, 7),
+                        ("fptu2027-ai-phuoc-var-w2", creator_id, "CAPTION_VARIANTS", 1, 5),
+                        ("fptu2027-ai-phuoc-tag-w2", creator_id, "HASHTAG_GENERATE", 1, 4),
+                        ("fptu2027-ai-tuan-img-kv", creator2_id, "COMMERCIAL_IMAGE", 7, 6),
+                        ("fptu2027-ai-tuan-vid-reel", creator2_id, "VIDEO_GENERATE", 5, 3),
+                        ("fptu2027-ai-an-pr-draft", creator3_id, "CONTENT_GENERATE", 6, 2),
+                        ("fptu2027-ai-loc-brief", manager_id, "CONTENT_GENERATE", 6, 8),
+                        ("fptu2027-ai-trung-amb", owner_id, "AMBASSADOR_GENERATE", 2, 4),
+                    ]
+                    total_seeded_used = 0
+                    for r_key, r_actor, r_op, r_units, r_days_ago in settled_ai_runs:
+                        res_id = java_name_uuid_from_bytes(f"ai-res:{r_key}")
+                        if r_op in price_map:
+                            pr_id, u_cred = price_map[r_op]
+                            r_ver = pr_id
+                        else:
+                            pr_id, u_cred, r_ver = None, 0, "FREE_V1"
+                        amt_cred = u_cred * r_units
+                        total_seeded_used += amt_cred
+                        cur.execute(
+                            """
+                            INSERT INTO ai_credit_reservations (
+                                id, job_id, agency_id, workspace_id, actor_id, period_id,
+                                action, model, rate_version, status,
+                                reserved_amount, charged_amount, deadline,
+                                created_at, settled_at, request_key, payload_hash,
+                                price_id, unit_credits, units, successful_units,
+                                execution_state, execution_updated_at
+                            ) VALUES (
+                                %s::uuid, %s::uuid, %s::uuid, %s::uuid, %s::uuid, %s::uuid,
+                                %s, 'gemini-2.5-flash', %s, 'SETTLED',
+                                %s, %s, NOW() - (%s || ' days')::interval + INTERVAL '1 day',
+                                NOW() - (%s || ' days')::interval,
+                                NOW() - (%s || ' days')::interval + INTERVAL '1 minute',
+                                %s, %s,
+                                %s::uuid, %s, %s, %s,
+                                'SUCCEEDED', NOW() - (%s || ' days')::interval + INTERVAL '1 minute'
+                            )
+                            ON CONFLICT (id) DO UPDATE SET
+                                period_id = EXCLUDED.period_id,
+                                reserved_amount = EXCLUDED.reserved_amount,
+                                charged_amount = EXCLUDED.charged_amount,
+                                unit_credits = EXCLUDED.unit_credits,
+                                units = EXCLUDED.units,
+                                successful_units = EXCLUDED.successful_units,
+                                status = 'SETTLED';
+                            """,
+                            (
+                                res_id,
+                                res_id,
+                                AGENCY_ID,
+                                WORKSPACE_ID,
+                                r_actor,
+                                actual_usage_period_id,
+                                r_op,
+                                r_ver,
+                                amt_cred,
+                                amt_cred,
+                                str(r_days_ago),
+                                str(r_days_ago),
+                                str(r_days_ago),
+                                r_key,
+                                sha256_hex(r_key),
+                                pr_id,
+                                u_cred,
+                                r_units,
+                                r_units,
+                                str(r_days_ago),
+                            ),
+                        )
+                    cur.execute(
+                        "UPDATE workspace_credit_usage SET used = %s WHERE agency_id = %s::uuid AND workspace_id = %s::uuid AND period_id = %s::uuid;",
+                        (total_seeded_used, AGENCY_ID, WORKSPACE_ID, actual_usage_period_id),
+                    )
 
         print("[OK] Đã đồng bộ PostgreSQL thành công (SE08 Digital Agency, 7 Gói đa ngành, Chiến dịch ĐH FPT 2027 4 tuần).")
     finally:
@@ -2850,7 +3639,11 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
         ("Nguyễn Hoàng Nam (THPT Phan Châu Trinh)", "Cho em hỏi điểm học bạ lớp 12 bao nhiêu thì đủ điều kiện nộp hồ sơ xét Học bổng Nguyễn Văn Đạo năm 2027 ạ?"),
         ("Phụ huynh Lê Thu Hà", "Nhà trường cho cô hỏi buổi Workshop Chủ nhật này tại Đà Nẵng phụ huynh đi cùng con vào tham quan phòng Lab và ký túc xá được không?"),
         ("Trần Minh Khôi (2k9 - THPT Chuyên Lê Quý Đôn)", "Mình vừa tham gia buổi trải nghiệm kính VR và cánh tay robot hôm qua, phòng Lab Vi mạch nhìn thực tế rất hiện đại."),
-        (" Võ Ngọc Ánh (2k9)", "Ngành Quản trị kinh doanh số học kỳ 6 cũng được đi thực tập doanh nghiệp OJT như khối Công nghệ thông tin đúng không ạ?"),
+        ("Võ Ngọc Ánh (2k9 - THPT Hoàng Hoa Thám)", "Ngành Quản trị kinh doanh số học kỳ 6 cũng được đi thực tập doanh nghiệp OJT như khối Công nghệ thông tin đúng không ạ?"),
+        ("Phạm Gia Huy (THPT Chu Văn An - Hà Nội)", "Khuôn viên Hòa Lạc mùa này xanh quá, hẹn gặp các bạn 2k9 tại Ngày hội FPTU Open Day cuối tuần nhé!"),
+        ("Phụ huynh Đặng Quốc Tuấn", "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học."),
+        ("Lê Gia Hân (THPT Trần Phú)", "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi."),
+        ("Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)", "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?"),
     ]
 
     for s in specs:
@@ -3651,7 +4444,24 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
             p_id = POST_1_ID if t_id == TASK_1_ID else f"d7e00000-0000-4000-8000-{400 + s['idx']:012d}"
             p_status = s["post_status"]
             platforms = s["platforms"]
-            media_type = "IMAGE"  # Dùng ảnh thumbnail sắc nét cho cả bài đăng và bản xem trước Reels/TikTok
+            media_type = "VIDEO" if s["type"] == "SHORT_VIDEO" else "IMAGE"
+            media_items = [
+                {
+                    "material_id": None,
+                    "s3_key": None,
+                    "external_url": vis_url,
+                    "media_type": media_type,
+                }
+            ]
+            if s["type"] == "POST" and s["idx"] in (1, 60):
+                media_items.append(
+                    {
+                        "material_id": None,
+                        "s3_key": None,
+                        "external_url": UNSPLASH_CAMPUS_PHOTOS[1]["url"],
+                        "media_type": "IMAGE",
+                    }
+                )
 
             post_doc: dict[str, Any] = {
                 "_id": p_id,
@@ -3660,14 +4470,7 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
                 "created_by": assignee,
                 "content_text": s.get("caption", ""),
                 "hashtags": s.get("hashtags", []),
-                "media": [
-                    {
-                        "material_id": None,
-                        "s3_key": None,
-                        "external_url": vis_url,
-                        "media_type": media_type,
-                    }
-                ],
+                "media": media_items,
                 "target_platforms": platforms,
                 "platform": platforms[0],
                 "ai_generated": s["idx"] in (1, 4, 19),
@@ -3696,16 +4499,19 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
                     "WOW": int(m["reactions"] * 0.10),
                 }
                 post_doc["engagement_updated_at"] = now - timedelta(hours=2)
-                post_doc["cached_comments"] = [
+                cmt_offset = s["idx"] % len(sample_student_comments)
+                rotated_cmts = (sample_student_comments[cmt_offset:] + sample_student_comments[:cmt_offset])[:3]
+                built_cmts = [
                     {
                         "id": f"cmt_{s['idx']}_{ci}",
                         "authorName": author,
-                        "authorAvatar": None,
+                        "authorAvatar": UNSPLASH_CAMPUS_PHOTOS[0]["url"],
                         "content": ctext,
                         "commentedAt": pub_at + timedelta(hours=ci + 1),
                     }
-                    for ci, (author, ctext) in enumerate(sample_student_comments[:2])
+                    for ci, (author, ctext) in enumerate(rotated_cmts)
                 ]
+                post_doc["cached_comments"] = built_cmts
                 platform_data = {}
                 share_weights = [0.45, 0.25, 0.20, 0.10]
                 for pi, plat in enumerate(platforms):
@@ -3724,6 +4530,7 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
                         "clickCount": max(20, int(m["clicks"] * w)),
                         "savedCount": max(5, int(m["saves"] * w)),
                         "engagementUpdatedAt": now - timedelta(hours=2),
+                        "cachedComments": built_cmts,
                     }
                     publish_logs.append(
                         {
@@ -3744,6 +4551,182 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
                 post_doc["scheduled_at"] = due_dt
 
             posts.append(post_doc)
+
+    # 3a-extra. Năm bản tin cập nhật nhanh trải đều các ngày gần nhất (-8, -5, -2, -1, 0) để biểu đồ 7 ngày trên /dashboard & /posts/dashboard
+    # luôn liên tục không có ngày trống, có đủ 4 định dạng (Ảnh, Nhiều ảnh, Thước phim, Văn bản) và đủ đóng góp của cả 3 Creator SE08.
+    daily_pulse_specs = [
+        (
+            81,
+            creator3_id,
+            now - timedelta(days=8),
+            15,
+            ["THREADS", "FACEBOOK"],
+            [],
+            (
+                "GÓC GIẢI ĐÁP HỌC BỔNG NGUYỄN VĂN ĐẠO 2027 CHO 2K9\n\n"
+                "Tổng hợp 5 câu hỏi được học sinh lớp 12 gửi về nhiều nhất trong tuần đầu mở cổng thông tin khóa K23: "
+                "cách chuẩn bị minh chứng giải thưởng học sinh giỏi, lịch thi đánh giá năng lực học bổng và quyền lợi duy trì các mức 50%, 70%, 100% suốt khóa học.\n\n"
+                "Xem hướng dẫn chi tiết tại: https://tuyensinh.fpt.edu.vn"
+            ),
+            ["#HocBongNguyenVanDao", "#GiaiDapTuyenSinh", "#DaiHocFPT", "#2k9"],
+            {"reactions": 1180, "comments": 246, "shares": 132, "impressions": 31400, "reach": 24800, "clicks": 1790, "saves": 420},
+        ),
+        (
+            82,
+            creator3_id,
+            now - timedelta(days=5),
+            11,
+            ["FACEBOOK", "INSTAGRAM", "THREADS"],
+            [
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week2_semiconductor"]["url"], "media_type": "IMAGE"},
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week2_software_biz"]["url"], "media_type": "IMAGE"},
+            ],
+            (
+                "SO SÁNH NHANH LỘ TRÌNH HỌC TẬP KHỐI VI MẠCH BÁN DẪN, AI & KỸ THUẬT PHẦN MỀM TẠI ĐH FPT\n\n"
+                "Bộ infographic tóm tắt các học phần nền tảng, trang thiết bị phòng Lab thực hành và vị trí thực tập doanh nghiệp OJT từ học kỳ 6 "
+                "để các bạn học sinh lớp 12 dễ dàng đối chiếu với sở trường Toán, Lý, Tin của bản thân."
+            ),
+            ["#ViMachBanDan", "#KyThuatPhanMem", "#ChonNganh2027", "#FPTUniversity"],
+            {"reactions": 2340, "comments": 318, "shares": 295, "impressions": 62800, "reach": 49200, "clicks": 3120, "saves": 890},
+        ),
+        (
+            83,
+            creator2_id,
+            now - timedelta(days=2),
+            14,
+            ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            [
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week3_thpt_workshop"]["url"], "media_type": "IMAGE"},
+            ],
+            (
+                "HẬU TRƯỜNG CHUẨN BỊ 12 TRẠM TRẢI NGHIỆM VR & ROBOTICS ĐÓN HỌC SINH THPT TUẦN 3\n\n"
+                "Đội ngũ giảng viên và sinh viên các câu lạc bộ công nghệ Trường Đại học FPT đã hoàn tất lắp đặt khu vực thử nghiệm bo mạch FPGA, "
+                "kính thực tế ảo tham quan 5 cơ sở và bàn tư vấn hồ sơ Học bổng Nguyễn Văn Đạo năm 2027."
+            ),
+            ["#WorkshopTHPT2027", "#PhongLabFPTU", "#TraiNghiemCongNghe", "#DaiHocFPT"],
+            {"reactions": 3150, "comments": 392, "shares": 348, "impressions": 79400, "reach": 63500, "clicks": 3860, "saves": 940},
+        ),
+        (
+            84,
+            creator_id,
+            now - timedelta(days=1),
+            20,
+            ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            [
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week3_thpt_workshop"]["url"], "media_type": "IMAGE"},
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week3_openday_kol"]["url"], "media_type": "IMAGE"},
+            ],
+            (
+                "HƠN 420 HỌC SINH LỚP 12 KHU VỰC MIỀN TRUNG HÀO HỨNG TRẢI NGHIỆM WORKSHOP TIỆN ÍCH HỌC ĐƯỜNG ĐH FPT\n\n"
+                "Những khoảnh khắc rạng rỡ tại buổi Workshop đợt 1 hôm nay: từ trạm điều khiển cánh tay Robotics, tham quan thư viện xanh, "
+                "sân tập Vovinam đến phần giải đáp trực tiếp về kỳ thực tập OJT tại FPT Software.\n\n"
+                "Đăng ký tham dự đợt tiếp theo & Ngày hội FPTU Open Day 2027 tại: https://tuyensinh.fpt.edu.vn"
+            ),
+            ["#WorkshopTHPT2027", "#FPTUOpenDay", "#DaiHocFPT", "#TuyenSinhFPTU2027"],
+            {"reactions": 3860, "comments": 465, "shares": 512, "impressions": 98600, "reach": 79200, "clicks": 4680, "saves": 1150},
+        ),
+        (
+            85,
+            creator3_id,
+            now,
+            8,
+            ["FACEBOOK", "THREADS", "INSTAGRAM"],
+            [
+                {"material_id": None, "s3_key": None, "external_url": FPTU_VISUALS["week3_openday_kol"]["url"], "media_type": "IMAGE"},
+            ],
+            (
+                "CẬP NHẬT SÁNG NAY: MỞ BỔ SUNG ĐĂNG KÝ XE BUÝT ĐƯA ĐÓN HỌC SINH THPT DỰ NGÀY HỘI FPTU OPEN DAY 2027\n\n"
+                "Để thuận tiện cho học sinh lớp 12 và quý phụ huynh đến tham quan trực tiếp khuôn viên trường, phòng Lab bán dẫn và ký túc xá nội trú, "
+                "Ban Tuyển sinh Đại học FPT bố trí các tuyến xe đón miễn phí tại điểm hẹn trung tâm.\n\n"
+                "Xác nhận điểm đón ngay tại: https://tuyensinh.fpt.edu.vn"
+            ),
+            ["#FPTUOpenDay2027", "#DaiHocFPT", "#TuyenSinh2027", "#2k9ChonNganh"],
+            {"reactions": 2480, "comments": 312, "shares": 284, "impressions": 64200, "reach": 51400, "clicks": 3540, "saves": 760},
+        ),
+    ]
+    for dp_idx, dp_author, dp_day, dp_hour, dp_plats, dp_media, dp_text, dp_tags, dp_m in daily_pulse_specs:
+        dp_id = f"d7e00000-0000-4000-8000-{400 + dp_idx:012d}"
+        dp_pub = dp_day.replace(hour=min(dp_hour, max(0, now.hour - 1)) if dp_day.date() == now.date() else dp_hour, minute=15, second=0, microsecond=0)
+        if dp_pub > now:
+            dp_pub = now - timedelta(minutes=35)
+        c_off = dp_idx % len(sample_student_comments)
+        dp_cmts = (sample_student_comments[c_off:] + sample_student_comments[:c_off])[:3]
+        dp_built_cmts = [
+            {
+                "id": f"cmt_{dp_idx}_{ci}",
+                "authorName": author,
+                "authorAvatar": UNSPLASH_CAMPUS_PHOTOS[0]["url"],
+                "content": ctext,
+                "commentedAt": dp_pub + timedelta(minutes=20 * (ci + 1)),
+            }
+            for ci, (author, ctext) in enumerate(dp_cmts)
+        ]
+        dp_plat_data = {}
+        for pi, plat in enumerate(dp_plats):
+            w = [0.5, 0.3, 0.12, 0.08][pi] if pi < 4 else 0.15
+            dp_plat_data[plat] = {
+                "platform": plat,
+                "platformPostId": f"{plat.lower()}_2027_{dp_idx}",
+                "platformPostUrl": f"https://tuyensinh.fpt.edu.vn/social/{plat.lower()}/{dp_idx}",
+                "status": "PUBLISHED",
+                "publishedAt": dp_pub,
+                "reactionCount": max(30, int(dp_m["reactions"] * w)),
+                "commentCount": max(8, int(dp_m["comments"] * w)),
+                "shareCount": max(5, int(dp_m["shares"] * w)),
+                "impressionCount": max(800, int(dp_m["impressions"] * w)),
+                "reachCount": max(500, int(dp_m["reach"] * w)),
+                "clickCount": max(25, int(dp_m["clicks"] * w)),
+                "savedCount": max(10, int(dp_m["saves"] * w)),
+                "engagementUpdatedAt": now - timedelta(minutes=25),
+                "cachedComments": dp_built_cmts,
+            }
+            publish_logs.append(
+                {
+                    "_id": f"d7e00000-0000-4000-8000-{9200 + dp_idx * 10 + pi:012d}",
+                    "workspace_id": WORKSPACE_ID,
+                    "post_id": dp_id,
+                    "platform": plat,
+                    "result": "SUCCESS",
+                    "retry_count": 0,
+                    "created_at": dp_pub,
+                }
+            )
+        posts.append(
+            {
+                "_id": dp_id,
+                "workspace_id": WORKSPACE_ID,
+                "task_id": None,
+                "created_by": dp_author,
+                "content_text": dp_text,
+                "hashtags": dp_tags,
+                "media": dp_media,
+                "target_platforms": dp_plats,
+                "platform": dp_plats[0],
+                "ai_generated": dp_idx in (82, 84),
+                "status": "PUBLISHED",
+                "content_version": 1,
+                "created_at": dp_pub - timedelta(hours=3),
+                "updated_at": dp_pub,
+                "published_at": dp_pub,
+                "platform_post_id": f"fptu2027_{dp_idx}",
+                "platform_post_url": f"https://www.facebook.com/university.fpt.edu.vn/posts/202700{dp_idx}",
+                "reaction_count": dp_m["reactions"],
+                "comment_count": dp_m["comments"],
+                "share_count": dp_m["shares"],
+                "impression_count": dp_m["impressions"],
+                "reach_count": dp_m["reach"],
+                "click_count": dp_m["clicks"],
+                "saved_count": dp_m["saves"],
+                "reaction_breakdown": {
+                    "LIKE": int(dp_m["reactions"] * 0.60),
+                    "LOVE": int(dp_m["reactions"] * 0.30),
+                    "WOW": int(dp_m["reactions"] * 0.10),
+                },
+                "engagement_updated_at": now - timedelta(minutes=25),
+                "cached_comments": dp_built_cmts,
+                "platform_data": dp_plat_data,
+            }
+        )
 
     # 3b. Ba bài đăng đang chờ trong Hàng đợi Kiểm duyệt Admin (FR 3.10.4) khớp với content_moderation_reviews
     admin_mod_posts = [
@@ -3865,6 +4848,14 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
         ("Kỹ thuật phần mềm & An toàn thông tin", "Cần Thơ (Ninh Kiều)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Ký túc xá nội trú và tuyến xe buýt học đường"], "Phụ huynh muốn tìm hiểu chi tiết lộ trình học tiếng Anh dự bị cho tân sinh viên K23."),
         ("Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo (AI)", "Quy Nhơn (An Phú Thịnh)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Thư viện xanh và không gian tự học nhóm"], "Cơ sở Quy Nhơn chuyên sâu về AI có những dự án thực tập nào từ năm ba ạ?"),
         ("Ngôn ngữ Anh - Nhật - Hàn - Trung thương mại", "TP.HCM (Khu Công nghệ cao)", ["Sân tập Vovinam và hơn 40 CLB sinh viên", "Bàn tư vấn hồ sơ Học bổng Nguyễn Văn Đạo & học kỳ OJT"], "Cho em hỏi chương trình trao đổi học kỳ nước ngoài tại Nhật Bản đối với ngành Ngôn ngữ Nhật."),
+        ("Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo (AI)", "TP.HCM (Khu Công nghệ cao)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Bàn tư vấn hồ sơ Học bổng Nguyễn Văn Đạo & học kỳ OJT"], "Em học chuyên Lý tại TP.HCM muốn đăng ký tham quan phòng thực hành mạch số vào sáng Chủ nhật."),
+        ("Kỹ thuật phần mềm & An toàn thông tin", "Đà Nẵng (FPT City)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Sân tập Vovinam và hơn 40 CLB sinh viên"], "Em muốn hỏi lịch sinh hoạt CLB lập trình thi đấu và đội tuyển An toàn thông tin của trường ạ."),
+        ("Quản trị kinh doanh số & Thương mại điện tử", "Hà Nội (Hòa Lạc)", ["Thư viện xanh và không gian tự học nhóm", "Ký túc xá nội trú và tuyến xe buýt học đường"], "Nhà ở nội thành Hà Nội thì bắt tuyến xe buýt nào lên cơ sở Hòa Lạc vào dịp Open Day ạ?"),
+        ("Truyền thông đa phương tiện & Thiết kế Mỹ thuật số", "TP.HCM (Khu Công nghệ cao)", ["Thư viện xanh và không gian tự học nhóm", "Sân tập Vovinam và hơn 40 CLB sinh viên"], "Ngành Thiết kế Mỹ thuật số có xét học bổng năng khiếu cho học sinh có dự án sáng tạo cá nhân không ạ?"),
+        ("Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo (AI)", "Đà Nẵng (FPT City)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Ký túc xá nội trú và tuyến xe buýt học đường"], "Gia đình ở Quảng Ngãi muốn đăng ký nội trú trọn năm đầu tiên cho cháu tại FPT City Đà Nẵng."),
+        ("Kỹ thuật phần mềm & An toàn thông tin", "Quy Nhơn (An Phú Thịnh)", ["Phòng Lab Thiết kế Vi mạch bán dẫn, VR & Robotics", "Bàn tư vấn hồ sơ Học bổng Nguyễn Văn Đạo & học kỳ OJT"], "Cho em hỏi hạn chót nộp hồ sơ xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 tại cơ sở Quy Nhơn."),
+        ("Ngôn ngữ Anh - Nhật - Hàn - Trung thương mại", "Hà Nội (Hòa Lạc)", ["Thư viện xanh và không gian tự học nhóm", "Bàn tư vấn hồ sơ Học bổng Nguyễn Văn Đạo & học kỳ OJT"], "Em có chứng chỉ IELTS 7.0 thì được miễn những học phần tiếng Anh nào trong năm đầu tiên ạ?"),
+        ("Kỹ thuật phần mềm & An toàn thông tin", "Cần Thơ (Ninh Kiều)", ["Sân tập Vovinam và hơn 40 CLB sinh viên", "Ký túc xá nội trú và tuyến xe buýt học đường"], "Các anh chị khóa trên cho em hỏi kinh nghiệm chuẩn bị phỏng vấn thực tập OJT học kỳ 6 với ạ."),
     ]
     survey_responses = [
         {
@@ -4085,8 +5076,8 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
 
     ch_workshop_id = java_name_uuid_from_bytes(f"{WORKSPACE_ID}:ch-workshop-openday-2027")
     ch_internal_id = java_name_uuid_from_bytes(f"{WORKSPACE_ID}:ch-se08-internal-2027")
-    all_chat_members = sorted([manager_id, creator_id, creator2_id, creator3_id, client_id])
-    agency_chat_members = sorted([manager_id, creator_id, creator2_id, creator3_id])
+    all_chat_members = sorted([owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id])
+    agency_chat_members = sorted([owner_id, manager_id, creator_id, creator2_id, creator3_id])
 
     chat_channels = [
         {
@@ -4447,7 +5438,15 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
         db.brand_profiles.delete_many({"workspace_id": WORKSPACE_ID})
         db.knowledge_documents.delete_many({"workspace_id": WORKSPACE_ID})
         db.mail_recipient_groups.delete_many({"workspaceId": WORKSPACE_ID})
-        db.mail_templates.delete_many({"$or": [{"workspaceId": WORKSPACE_ID}, {"agencyId": AGENCY_ID}]})
+        db.mail_templates.delete_many(
+            {
+                "$or": [
+                    {"workspaceId": WORKSPACE_ID},
+                    {"agencyId": AGENCY_ID},
+                    {"name": {"$in": ["gg", "test", "Test", "demo", "abc"]}},
+                ]
+            }
+        )
         db.chat_channel_reads.delete_many({"workspaceId": WORKSPACE_ID})
         db.chat_channels.delete_many({"workspaceId": WORKSPACE_ID})
         db.chat_messages.delete_many({"workspaceId": WORKSPACE_ID})
@@ -4746,6 +5745,363 @@ def apply_redis_trends(redis_url: str, now: datetime) -> None:
     print(f"[OK] Đã đồng bộ Redis Trends thành công ({len(base_trends)} xu hướng chủ đạo suốt 7 ngày cho AI Studio & Workspace).")
 
 
+def clean_postgres(pg_uri: str) -> dict[str, str]:
+    """Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu phát sinh sau khi demo trong PostgreSQL (giữ lại tài khoản đăng nhập & khung Agency/Workspace rỗng)."""
+    try:
+        import psycopg2
+    except ImportError as exc:
+        raise RuntimeError("Cần cài đặt psycopg2-binary: pip install psycopg2-binary") from exc
+
+    resolved_ids = dict(PG_USER_IDS)
+    conn = psycopg2.connect(pg_uri)
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                for key, acc in DEMO_ACCOUNTS.items():
+                    cur.execute("SELECT id::text FROM users WHERE email = %s LIMIT 1;", (acc["email"],))
+                    row = cur.fetchone()
+                    if row and row[0]:
+                        resolved_ids[key] = str(row[0])
+
+                owner_id = resolved_ids["OWNER"]
+                manager_id = resolved_ids["MANAGER"]
+                creator_id = resolved_ids["CREATOR"]
+                creator2_id = resolved_ids["CREATOR_2"]
+                creator3_id = resolved_ids["CREATOR_3"]
+                client_id = resolved_ids["CLIENT"]
+                admin_id = resolved_ids["ADMIN"]
+
+                demo_users = [owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id, admin_id]
+                companion_ws_ids = [
+                    "d7e00000-0000-4000-8000-000000000091",
+                    "d7e00000-0000-4000-8000-000000000092",
+                ]
+                demo_ws_ids = [WORKSPACE_ID] + companion_ws_ids
+
+                # 1. Đặt lại trạng thái sạch cho 7 tài khoản Demo & xóa cảnh cáo phát sinh (B15)
+                cur.execute(
+                    """
+                    UPDATE users
+                    SET status = 'ACTIVE', is_active = TRUE, clean_period_ends_at = NULL, reactivate_at = NULL
+                    WHERE id = ANY(%s::uuid[]);
+                    DELETE FROM sanction_reviews WHERE user_id = ANY(%s::uuid[]);
+                    UPDATE user_strikes SET converted_to_id = NULL WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM user_strikes WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM admin_account_operations WHERE user_id = ANY(%s::uuid[]);
+                    DELETE FROM content_moderation_reviews WHERE workspace_id = ANY(%s::uuid[]);
+                    """,
+                    (demo_users, demo_users, demo_users, demo_users, demo_users, demo_ws_ids),
+                )
+
+                # 2. Xóa các bản nháp AI, Video Jobs & Yjs Canvas Tasks trong PostgreSQL
+                cur.execute(
+                    """
+                    DELETE FROM ai_caption_generations WHERE workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM ai_video_jobs WHERE workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM task_content_operations WHERE task_id IN (SELECT id FROM tasks WHERE workspace_id = ANY(%s::uuid[]));
+                    DELETE FROM task_content_snapshots WHERE task_id IN (SELECT id FROM tasks WHERE workspace_id = ANY(%s::uuid[]));
+                    DELETE FROM tasks WHERE workspace_id = ANY(%s::uuid[]);
+                    """,
+                    (demo_ws_ids, demo_ws_ids, demo_ws_ids, demo_ws_ids, demo_ws_ids),
+                )
+
+                # 3. Xóa Hashtag trước khi xóa Chiến dịch (do workspace_hashtags.campaign_id tham chiếu media_campaigns)
+                cur.execute("DELETE FROM workspace_hashtags WHERE workspace_id = ANY(%s::uuid[]);", (demo_ws_ids,))
+
+                # 4. Xóa Chiến dịch, Lịch sử duyệt chiến dịch, Đối tác & Gói truyền thông
+                cur.execute("DELETE FROM content_request_completion_jobs WHERE workspace_id = ANY(%s::uuid[]);", (demo_ws_ids,))
+                cur.execute(
+                    """
+                    DELETE FROM campaign_collaborators
+                    WHERE media_campaign_id IN (
+                        SELECT id FROM media_campaigns
+                        WHERE workspace_media_package_id IN (
+                            SELECT id FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[])
+                        )
+                    );
+                    DELETE FROM campaign_deployments
+                    WHERE campaign_id IN (
+                        SELECT id FROM media_campaigns
+                        WHERE workspace_media_package_id IN (
+                            SELECT id FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[])
+                        )
+                    );
+                    DELETE FROM campaign_review_events
+                    WHERE campaign_id IN (
+                        SELECT id FROM media_campaigns
+                        WHERE workspace_media_package_id IN (
+                            SELECT id FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[])
+                        )
+                    );
+                    DELETE FROM campaign_versions
+                    WHERE campaign_id IN (
+                        SELECT id FROM media_campaigns
+                        WHERE workspace_media_package_id IN (
+                            SELECT id FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[])
+                        )
+                    );
+                    DELETE FROM media_campaigns
+                    WHERE workspace_media_package_id IN (
+                        SELECT id FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[])
+                    );
+                    UPDATE workspaces SET workspace_media_package_id = NULL WHERE id = ANY(%s::uuid[]);
+                    """,
+                    (demo_ws_ids, demo_ws_ids, demo_ws_ids, demo_ws_ids, demo_ws_ids, demo_ws_ids),
+                )
+
+                cur.execute("SAVEPOINT sp_wmp_clean;")
+                try:
+                    cur.execute("DELETE FROM workspace_media_packages WHERE workspace_id = ANY(%s::uuid[]);", (demo_ws_ids,))
+                    cur.execute("RELEASE SAVEPOINT sp_wmp_clean;")
+                except Exception:
+                    cur.execute("ROLLBACK TO SAVEPOINT sp_wmp_clean;")
+
+                cur.execute(
+                    """
+                    DELETE FROM media_packages
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT package_id FROM workspace_media_packages WHERE package_id IS NOT NULL);
+                    DELETE FROM third_party_collaborators
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT collaborator_id FROM campaign_collaborators);
+                    DELETE FROM workspace_templates
+                    WHERE agency_id = %s::uuid OR source_workspace_id = ANY(%s::uuid[]);
+                    """,
+                    (AGENCY_ID, AGENCY_ID, AGENCY_ID, demo_ws_ids),
+                )
+
+                # 5. Xóa Lô gửi Email, Danh sách từ chối nhận thư, Lời mời & Chuông thông báo
+                admin_notif_ids = [
+                    "d7e00000-0000-4000-8000-000000000101",
+                    "d7e00000-0000-4000-8000-000000000102",
+                ]
+                cur.execute(
+                    """
+                    DELETE FROM mail_deliveries
+                    WHERE batch_id IN (
+                        SELECT id FROM mail_batches WHERE workspace_id = ANY(%s::uuid[]) OR agency_id = %s::uuid
+                    );
+                    DELETE FROM mail_batches WHERE workspace_id = ANY(%s::uuid[]) OR agency_id = %s::uuid;
+                    DELETE FROM mail_attachments WHERE workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM mail_suppressions WHERE workspace_id = ANY(%s::uuid[]) OR agency_id = %s::uuid;
+                    DELETE FROM mail_send_quota WHERE scope_id = ANY(%s);
+                    DELETE FROM user_notifications WHERE user_id = ANY(%s::uuid[]) OR notification_id = ANY(%s::uuid[]);
+                    DELETE FROM admin_email_outbox WHERE notification_id = ANY(%s::uuid[]);
+                    DELETE FROM admin_notifications WHERE id = ANY(%s::uuid[]);
+                    DELETE FROM agency_invitations WHERE agency_id = %s::uuid OR workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM workspace_invitations WHERE workspace_id = ANY(%s::uuid[]);
+                    """,
+                    (
+                        demo_ws_ids,
+                        AGENCY_ID,
+                        demo_ws_ids,
+                        AGENCY_ID,
+                        demo_ws_ids,
+                        demo_ws_ids,
+                        AGENCY_ID,
+                        demo_ws_ids + [AGENCY_ID],
+                        demo_users,
+                        admin_notif_ids,
+                        admin_notif_ids,
+                        admin_notif_ids,
+                        AGENCY_ID,
+                        demo_ws_ids,
+                        demo_ws_ids,
+                    ),
+                )
+
+                # 6. Xóa dữ liệu AI Credit Reservations, Hạn mức Workspace, Dung lượng Client Vault & Đơn VietQR phát sinh (B14)
+                cur.execute(
+                    """
+                    DELETE FROM credit_reservation_allocations
+                    WHERE agency_id = %s::uuid
+                      AND reservation_id NOT IN (SELECT reservation_id FROM credit_operations WHERE reservation_id IS NOT NULL);
+                    DELETE FROM ai_credit_reservations
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT reservation_id FROM credit_operations WHERE reservation_id IS NOT NULL);
+                    DELETE FROM workspace_credit_usage WHERE agency_id = %s::uuid AND workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM workspace_credit_limits WHERE agency_id = %s::uuid AND workspace_id = ANY(%s::uuid[]);
+                    DELETE FROM client_vault_storage_usage WHERE user_id = %s::uuid;
+                    """,
+                    (AGENCY_ID, AGENCY_ID, AGENCY_ID, demo_ws_ids, AGENCY_ID, demo_ws_ids, client_id),
+                )
+
+                # Xóa các credit_grants mẫu chưa ghi vào sổ cái bất biến credit_entries; phần còn lại chuyển về hết hạn (0 khả dụng)
+                cur.execute(
+                    """
+                    DELETE FROM credit_grants
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT grant_id FROM credit_entries)
+                      AND id NOT IN (SELECT grant_id FROM credit_reservation_allocations);
+                    UPDATE credit_grants
+                    SET expired = expired + available + reserved, available = 0, reserved = 0
+                    WHERE agency_id = %s::uuid AND (available > 0 OR reserved > 0);
+                    UPDATE agency_credit_wallets
+                    SET available_credits = 0, reserved_credits = 0, updated_at = NOW()
+                    WHERE agency_id = %s::uuid;
+                    """,
+                    (AGENCY_ID, AGENCY_ID, AGENCY_ID),
+                )
+
+                # Xóa các đơn thanh toán VietQR treo/phát sinh trên SE08 chưa gắn chu kỳ hoặc grant
+                cur.execute(
+                    """
+                    SELECT id::text FROM billing_orders
+                    WHERE agency_id = %s::uuid
+                      AND id NOT IN (SELECT order_id FROM agency_subscription_periods WHERE order_id IS NOT NULL)
+                      AND id NOT IN (SELECT order_id FROM credit_grants WHERE order_id IS NOT NULL)
+                      AND id NOT IN (SELECT order_id FROM storage_addon_subscriptions WHERE order_id IS NOT NULL);
+                    """,
+                    (AGENCY_ID,),
+                )
+                removable_orders = [r[0] for r in cur.fetchall()]
+                if removable_orders:
+                    cur.execute(
+                        """
+                        DELETE FROM subscription_operational_issues WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM subscription_provider_checks WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_payment_events WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_payments WHERE attempt_id IN (SELECT id FROM billing_payment_attempts WHERE order_id = ANY(%s::uuid[]));
+                        DELETE FROM billing_payment_attempts WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_order_fulfillments WHERE order_id = ANY(%s::uuid[]);
+                        DELETE FROM billing_orders WHERE id = ANY(%s::uuid[]);
+                        """,
+                        (
+                            removable_orders,
+                            removable_orders,
+                            removable_orders,
+                            removable_orders,
+                            removable_orders,
+                            removable_orders,
+                            removable_orders,
+                        ),
+                    )
+
+                # 7. Gỡ 2 Workspace phụ mẫu (CloudWork & Tiệm Trà Mùa Thu) để danh sách gọn gàng sau khi xóa Demo
+                cur.execute("SAVEPOINT sp_comp_ws;")
+                try:
+                    cur.execute("DELETE FROM workspace_members WHERE workspace_id = ANY(%s::uuid[]);", (companion_ws_ids,))
+                    cur.execute("DELETE FROM workspaces WHERE id = ANY(%s::uuid[]);", (companion_ws_ids,))
+                    cur.execute("RELEASE SAVEPOINT sp_comp_ws;")
+                except Exception:
+                    cur.execute("ROLLBACK TO SAVEPOINT sp_comp_ws;")
+                    cur.execute(
+                        "UPDATE workspaces SET status = 'SOFT_DELETED', deleted_at = NOW() WHERE id = ANY(%s::uuid[]);",
+                        (companion_ws_ids,),
+                    )
+
+        print("[OK] Đã xóa sạch toàn bộ dữ liệu mẫu và dữ liệu phát sinh trong PostgreSQL.")
+    finally:
+        conn.close()
+    return resolved_ids
+
+
+def clean_mongo(mongo_uri: str, mongo_db_name: str, client_user_id: str) -> None:
+    """Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu phát sinh trong MongoDB cho các Workspace Demo."""
+    try:
+        from pymongo import MongoClient
+    except ImportError as exc:
+        raise RuntimeError("Cần cài đặt pymongo: pip install pymongo") from exc
+
+    demo_ws_ids = [
+        WORKSPACE_ID,
+        "d7e00000-0000-4000-8000-000000000091",
+        "d7e00000-0000-4000-8000-000000000092",
+    ]
+    client = MongoClient(mongo_uri)
+    try:
+        try:
+            default_db = client.get_default_database()
+            db = default_db if default_db is not None else client[mongo_db_name]
+        except Exception:
+            db = client[mongo_db_name]
+
+        task_ids = [doc["_id"] for doc in db.tasks.find({"workspaceId": {"$in": demo_ws_ids}}, {"_id": 1})]
+        deterministic_task_ids = [
+            campaign_task_id(CAMPAIGN_ID, f"d7e00000-0000-4000-8000-{701 + i:012d}")
+            for i in range(25)
+        ] + [TASK_1_ID, SURVEY_TASK_ID]
+        task_ids = list(set(task_ids + deterministic_task_ids))
+        survey_ids = [doc["_id"] for doc in db.surveys.find({"workspaceId": {"$in": demo_ws_ids}}, {"_id": 1})]
+        survey_ids = list(set(survey_ids + [SURVEY_DOC_ID, "d7e00000-0000-4000-8000-000000000805", "d7e00000-0000-4000-8000-000000000806"]))
+
+        db.task_sections.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
+        db.task_section_versions.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
+        db.task_section_events.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
+        db.task_approvals.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
+        db.tasks.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.task_comments.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.posts.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.post_versions.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.publish_logs.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.material_references.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.material_versions.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.materials.delete_many(
+            {"$or": [{"workspace_id": {"$in": demo_ws_ids}}, {"scope_type": "CLIENT_VAULT", "owner_user_id": client_user_id}]}
+        )
+        db.material_folders.delete_many(
+            {"$or": [{"workspace_id": {"$in": demo_ws_ids}}, {"scope_type": "CLIENT_VAULT", "owner_user_id": client_user_id}]}
+        )
+        db.client_vault_shares.delete_many(
+            {"$or": [{"workspace_id": {"$in": demo_ws_ids}}, {"owner_user_id": client_user_id}]}
+        )
+        db.social_accounts.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.survey_responses.delete_many(
+            {"$or": [{"surveyId": {"$in": survey_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]}
+        )
+        db.surveys.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.content_requests.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.brand_profiles.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.knowledge_documents.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.mail_recipient_groups.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.mail_templates.delete_many(
+            {
+                "$or": [
+                    {"workspaceId": {"$in": demo_ws_ids}},
+                    {"agencyId": AGENCY_ID},
+                    {"name": {"$in": ["gg", "test", "Test", "demo", "abc"]}},
+                ]
+            }
+        )
+        db.chat_channel_reads.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.chat_schedules.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.chat_attachments.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.chat_channels.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.chat_messages.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+        db.ai_usage_logs.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.report_jobs.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.video_projects.delete_many({"workspaceId": {"$in": demo_ws_ids}})
+
+        print(f"[OK] Đã xóa sạch toàn bộ dữ liệu mẫu và dữ liệu phát sinh trong MongoDB ({db.name}).")
+    finally:
+        client.close()
+
+
+def clean_redis_trends(redis_url: str) -> None:
+    """Xóa bộ nhớ đệm Xu hướng mẫu trong Redis."""
+    try:
+        import redis as sync_redis
+    except ImportError:
+        return
+    try:
+        r = sync_redis.from_url(redis_url, decode_responses=True)
+        r.ping()
+    except Exception:
+        return
+
+    keys_to_delete: list[str] = [
+        "trends:FACEBOOK:VN",
+        "trends:INSTAGRAM:VN",
+        "trends:TIKTOK:VN",
+        "trends:THREADS:VN",
+    ]
+    for k in r.scan_iter("trends:v2:*"):
+        keys_to_delete.append(str(k))
+    if keys_to_delete:
+        r.delete(*keys_to_delete)
+    print(f"[OK] Đã xóa sạch {len(keys_to_delete)} khóa xu hướng mẫu trong Redis.")
+
+
 def json_default(obj: Any) -> Any:
     if isinstance(obj, datetime):
         return obj.strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -4757,11 +6113,18 @@ def main() -> None:
     default_redis_url = load_default_redis_url()
     parser = argparse.ArgumentParser(description="Prepare BrandHub FPT University 2027 4-Week Live Demo Data")
     parser.add_argument("--apply", action="store_true", help="Thực thi trực tiếp vào PostgreSQL, MongoDB và Redis")
+    parser.add_argument("--clean", action="store_true", help="Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu phát sinh sau khi demo")
     parser.add_argument("--pg-uri", default=default_pg_uri, help="PostgreSQL connection URI")
     parser.add_argument("--mongo-uri", default=default_mongo_uri, help="MongoDB connection URI")
     parser.add_argument("--mongo-db", default=default_mongo_db, help="MongoDB database name")
     parser.add_argument("--redis-url", default=default_redis_url, help="Redis connection URI")
     args = parser.parse_args()
+
+    if args.clean:
+        resolved_ids = clean_postgres(args.pg_uri)
+        clean_mongo(args.mongo_uri, args.mongo_db, resolved_ids["CLIENT"])
+        clean_redis_trends(args.redis_url)
+        return
 
     now = datetime.now(timezone.utc)
     pg_bundle = build_postgres_bundle(now)
@@ -4789,7 +6152,7 @@ def main() -> None:
         apply_mongo(args.mongo_uri, args.mongo_db, live_mongo_bundle, resolved_ids["CLIENT"])
         apply_redis_trends(args.redis_url, now)
     else:
-        print("\n[INFO] Thêm cờ `--apply` để nạp trực tiếp toàn bộ dữ liệu vào PostgreSQL, MongoDB & Redis.")
+        print("\n[INFO] Thêm cờ `--apply` để nạp trực tiếp dữ liệu hoặc `--clean` để xóa sạch dữ liệu sau khi demo.")
 
 
 if __name__ == "__main__":

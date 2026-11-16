@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Play,
   Pause,
@@ -15,6 +16,7 @@ import {
   Award,
   ExternalLink,
   RefreshCw,
+  ChevronLeft,
   ChevronRight,
   Sliders,
   Eye,
@@ -36,6 +38,9 @@ import {
   MousePointerClick,
   ArrowRight,
   CheckCheck,
+  Trash2,
+  HelpCircle,
+  ArrowLeft,
 } from 'lucide-react';
 import {
   AstryxBadge,
@@ -991,7 +996,7 @@ const DEMO_STEPS: DemoStep[] = [
     stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
     stageShort: 'GĐ 5: Xuất bản, SePay & Admin',
     timeBudget: '17:45 - 18:45',
-    title: 'Owner nâng cấp gói cước SE08 Digital qua SePay / PayOS (VietQR) & Ví AI Credit',
+    title: 'Owner nâng cấp gói cước SE08 Digital qua SePay (VietQR) & Ví AI Credit',
     shortTitle: 'Nâng cấp gói VietQR & Ví AI',
     frCode: 'FR 3.9.1 - 3.9.6',
     role: 'Owner',
@@ -999,28 +1004,28 @@ const DEMO_STEPS: DemoStep[] = [
     actorEmail: 'user177@demo.brandhub.test',
     routeTemplate: '/subscription/plans',
     manualBrowserCue:
-      'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay/PayOS) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
+      'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
     talkingPoints: [
       'Owner Lê Trí Trung kiểm tra hạn mức gói dịch vụ và ví tín dụng AI (hiện có 8.500 credits, cấp hạn mức 5.000 credits cho Workspace ĐH FPT).',
       'Thực hiện nâng cấp gói cước SaaS cho SE08 Digital Agency để mở rộng số lượng Workspace khách hàng.',
-      'Tích hợp cổng SePay / PayOS sinh mã VietQR động và tự động đối soát kích hoạt qua webhook.',
+      'Tích hợp cổng SePay sinh mã VietQR động và tự động đối soát kích hoạt qua webhook.',
     ],
     presenterScript:
-      'Để phục vụ đồng thời nhiều chiến dịch lớn cho khách hàng, Owner Lê Trí Trung truy cập trang Quản lý gói dịch vụ để nâng cấp gói cước qua cổng SePay / PayOS bằng mã VietQR động, đồng thời kiểm soát trực tiếp Ví tín dụng AI 8.500 điểm phân bổ cho từng Workspace.',
+      'Để phục vụ đồng thời nhiều chiến dịch lớn cho khách hàng, Owner Lê Trí Trung truy cập trang Quản lý gói dịch vụ để nâng cấp gói cước qua cổng SePay bằng mã VietQR động, đồng thời kiểm soát trực tiếp Ví tín dụng AI 8.500 điểm phân bổ cho từng Workspace.',
     expectedOutcome:
-      'Hiển thị bảng so sánh các gói dịch vụ SaaS qua SePay / PayOS và trang quản lý Ví AI Credit của SE08 Digital Agency.',
+      'Hiển thị bảng so sánh các gói dịch vụ SaaS qua SePay (VietQR) và trang quản lý Ví AI Credit của SE08 Digital Agency.',
     fields: [
       {
         field: 'Cổng thanh toán & Ví tín dụng AI của SE08 Digital Agency',
         actionType: 'Tự động điền sẵn',
-        value: 'Thanh toán quét mã VietQR qua SePay / PayOS | Số dư ví AI hiện tại: 8.500 credits (hạn mức Workspace ĐH FPT: 5.000 credits)',
+        value: 'Thanh toán quét mã VietQR qua SePay | Số dư ví AI hiện tại: 8.500 credits (hạn mức Workspace ĐH FPT: 5.000 credits)',
       },
     ],
     actions: [
       {
         id: 'B14_NAV_PLANS',
         label: 'Mở trang Nâng cấp gói dịch vụ (/subscription/plans)',
-        description: 'Điều hướng Owner tới /subscription/plans (SePay / PayOS VietQR)',
+        description: 'Điều hướng Owner tới /subscription/plans (SePay VietQR)',
         variant: 'primary',
         icon: <Play className="size-4" />,
       },
@@ -1050,7 +1055,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Bấm [1] xem biểu đồ doanh thu toàn nền tảng -> Bấm [2] mở Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) khép lại phần trình diễn.',
     talkingPoints: [
       'Góc nhìn Quản trị viên BrandHub (Admin) giám sát doanh thu gói đăng ký SaaS từ các Agency trên toàn nền tảng.',
-      'Theo dõi trạng thái đối soát các giao dịch thanh toán SePay / PayOS và cấu hình gói cước.',
+      'Theo dõi trạng thái đối soát các giao dịch thanh toán SePay (VietQR) và cấu hình gói cước.',
       'Kiểm soát Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) gồm 3 bản ghi cảnh báo thực tế để giữ môi trường xuất bản an toàn.',
     ],
     presenterScript:
@@ -1122,6 +1127,8 @@ export const DemoMonitorPage: React.FC = () => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
+  const [showCleanConfirm, setShowCleanConfirm] = useState<boolean>(false);
+  const [showGuideModal, setShowGuideModal] = useState<boolean>(false);
 
   // Chế độ hiển thị tối ưu cho thuyết trình sân khấu
   const [viewMode, setViewMode] = useState<string>('stage'); // 'stage' | 'detail'
@@ -1143,6 +1150,7 @@ export const DemoMonitorPage: React.FC = () => {
   });
 
   const activePillRef = useRef<HTMLButtonElement | null>(null);
+  const stepRailRef = useRef<HTMLDivElement | null>(null);
 
   const showToast = useCallback((text: string, isError = false) => {
     setToastMessage({ text, isError });
@@ -1285,7 +1293,7 @@ export const DemoMonitorPage: React.FC = () => {
       ) {
         return;
       }
-      if (showResetConfirm || showConfigModal) return;
+      if (showResetConfirm || showCleanConfirm || showGuideModal || showConfigModal) return;
 
       if (e.code === 'Space') {
         e.preventDefault();
@@ -1324,6 +1332,8 @@ export const DemoMonitorPage: React.FC = () => {
     handleSmartAdvance,
     showConfigModal,
     showResetConfirm,
+    showCleanConfirm,
+    showGuideModal,
     triggerStepAction,
   ]);
 
@@ -1391,9 +1401,37 @@ export const DemoMonitorPage: React.FC = () => {
         setActiveStepIndex(0);
         setElapsedSeconds(0);
         setTimerRunning(false);
-        showToast(data.message || 'Đã khôi phục dữ liệu PostgreSQL & MongoDB về trạng thái chuẩn.');
+        showToast(data.message || 'Đã khôi phục dữ liệu PostgreSQL, MongoDB & Redis về trạng thái chuẩn B1.');
       } else {
         showToast(data.error || 'Lỗi khi nạp lại dữ liệu mẫu.', true);
+      }
+    } catch {
+      showToast('Không kết nối được tới máy chủ Selenium (cổng 3999).', true);
+    } finally {
+      setBusyAction(null);
+    }
+  };
+
+  const handleCleanDatabase = async () => {
+    setShowCleanConfirm(false);
+    setBusyAction('CLEAN_DB');
+    try {
+      const res = await fetch(`${monitorUrl}/api/clean-data`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setDoneActions({});
+        setActiveStepIndex(0);
+        setElapsedSeconds(0);
+        setTimerRunning(false);
+        showToast(
+          data.message ||
+            'Đã xóa sạch toàn bộ dữ liệu mẫu và các bản ghi phát sinh sau buổi demo.'
+        );
+      } else {
+        showToast(data.error || 'Lỗi khi xóa dữ liệu demo.', true);
       }
     } catch {
       showToast('Không kết nối được tới máy chủ Selenium (cổng 3999).', true);
@@ -1425,6 +1463,22 @@ export const DemoMonitorPage: React.FC = () => {
     .replace('{workspace_id}', configIds.workspace_id)
     .replace('{campaign_id}', configIds.campaign_id)
     .replace('{task_id}', configIds.task_id);
+
+  const formatReadableDescription = (desc: string): string =>
+    desc
+      .replace('/agency/{agency_id}', '/agency/se08-digital')
+      .replace('/workspaces/{workspace_id}', '/workspaces/dh-fpt-2027')
+      .replace('{agency_id}', configIds.agency_id.slice(0, 8))
+      .replace('{workspace_id}', configIds.workspace_id.slice(0, 8))
+      .replace('{campaign_id}', configIds.campaign_id.slice(0, 8))
+      .replace('{task_id}', configIds.task_id.slice(0, 8));
+
+  const scrollStepRail = (dir: 'left' | 'right') => {
+    stepRailRef.current?.scrollBy({
+      left: dir === 'left' ? -320 : 320,
+      behavior: 'smooth',
+    });
+  };
 
   const visibleSteps = DEMO_STEPS.filter((step) => {
     if (stageFilter === 'all') return true;
@@ -1490,7 +1544,7 @@ export const DemoMonitorPage: React.FC = () => {
       <AstryxDialog
         isOpen={showResetConfirm}
         onOpenChange={setShowResetConfirm}
-        width={440}
+        width={460}
         padding={5}
         aria-label="Xác nhận khôi phục dữ liệu gốc"
       >
@@ -1501,10 +1555,10 @@ export const DemoMonitorPage: React.FC = () => {
             </div>
             <div className="space-y-1">
               <AstryxHeading level={3} className="text-base font-bold text-slate-900 text-balance">
-                Khôi phục toàn bộ dữ liệu gốc PostgreSQL &amp; MongoDB?
+                Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?
               </AstryxHeading>
               <p className="text-xs text-slate-600 leading-relaxed text-pretty">
-                Thao tác này sẽ chạy lại kịch bản chuẩn bị dữ liệu ban đầu (đặt lại trạng thái bài trọng điểm Tuần 3 về bản nháp trước khi gửi duyệt v1 và xóa dấu tích tiến độ hiện tại).
+                Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 18 bài đăng) để sẵn sàng thuyết trình ngay.
               </p>
             </div>
           </div>
@@ -1525,6 +1579,105 @@ export const DemoMonitorPage: React.FC = () => {
         </div>
       </AstryxDialog>
 
+      {/* Hộp thoại xác nhận Xóa sạch toàn bộ dữ liệu vừa Demo (--clean) */}
+      <AstryxDialog
+        isOpen={showCleanConfirm}
+        onOpenChange={setShowCleanConfirm}
+        width={480}
+        padding={5}
+        aria-label="Xác nhận xóa sạch dữ liệu demo"
+      >
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+              <Trash2 className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <AstryxHeading level={3} className="text-base font-bold text-slate-900 text-balance">
+                Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa Demo?
+              </AstryxHeading>
+              <p className="text-xs text-slate-600 leading-relaxed text-pretty">
+                Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, khảo sát, thư viện ảnh, đơn VietQR phát sinh và xu hướng Redis để hệ thống sạch hoàn toàn sau buổi chạy thử.
+              </p>
+              <div className="p-2.5 rounded-lg bg-orange-50/70 border border-orange-200 text-[11px] text-orange-800 leading-relaxed">
+                7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp mới từ đầu.
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-2 pt-1">
+            <AstryxButton
+              label="Hủy"
+              variant="secondary"
+              size="sm"
+              onClick={() => setShowCleanConfirm(false)}
+            />
+            <AstryxButton
+              label="Xóa sạch dữ liệu Demo"
+              variant="primary"
+              size="sm"
+              onClick={handleCleanDatabase}
+            />
+          </div>
+        </div>
+      </AstryxDialog>
+
+      {/* Hộp thoại Hướng dẫn sử dụng nhanh ngay trên Bàn điều khiển */}
+      <AstryxDialog
+        isOpen={showGuideModal}
+        onOpenChange={setShowGuideModal}
+        width={560}
+        padding={5}
+        aria-label="Hướng dẫn sử dụng Bàn điều khiển thuyết trình"
+      >
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+              <HelpCircle className="size-5" />
+            </div>
+            <div className="space-y-1">
+              <AstryxHeading level={3} className="text-base font-bold text-slate-900">
+                Hướng dẫn sử dụng Bàn điều khiển Thuyết trình (SE08)
+              </AstryxHeading>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Quy trình vận hành gọn nhẹ giúp nhóm điều phối mượt toàn bộ 15 bước bảo vệ trong 20 phút.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-2.5 text-xs text-slate-700 leading-relaxed">
+            <div className="p-3 rounded-xl bg-orange-50/60 border border-orange-200 space-y-1">
+              <div className="font-bold text-orange-800">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
+              <p>
+                Đảm bảo đèn trạng thái hiện <strong>Đã kết nối</strong> (:3999). Nhấn <strong>Khôi phục DB</strong> để dữ liệu về chuẩn Bước B1, sau đó nhấn <strong>Đăng nhập 5 Vai trò</strong> và chọn <strong>Chia màn hình</strong> (5 cửa sổ Chrome xếp gọn 71% bên trái, chừa 29% bên phải cho bàn điều khiển này).
+              </p>
+            </div>
+
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <div className="font-bold text-slate-900">2. Trong lúc thuyết trình (Chỉ cần 1 phím Space)</div>
+              <p>
+                Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>) để hệ thống tự đưa đúng cửa sổ vai trò lên trước, mở đúng trang và điền sẵn dữ liệu từng bước từ <strong>B1 → B15</strong>. Dùng phím <strong>1 - 4</strong> để chạy lẻ từng thao tác con, <strong>← / →</strong> để chuyển bước và <strong>R</strong> để bật nhanh cửa sổ Chrome của vai trò hiện tại.
+              </p>
+            </div>
+
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <div className="font-bold text-slate-900">3. Trả lời Hội đồng (Q&amp;A) &amp; Dọn dữ liệu sau buổi tập</div>
+              <p>
+                Cuộn xuống mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> ở cuối trang để mở ngay 14 màn hình chuyên sâu chỉ với 1 chạm. Sau khi tập dượt xong, nhấn <strong>Xóa dữ liệu Demo</strong> để xóa sạch toàn bộ dữ liệu mẫu và bản ghi vừa tạo; khi cần tập lần tiếp theo chỉ cần nhấn lại <strong>Khôi phục DB</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end pt-1">
+            <AstryxButton
+              label="Đã hiểu, bắt đầu ngay"
+              variant="primary"
+              size="sm"
+              onClick={() => setShowGuideModal(false)}
+            />
+          </div>
+        </div>
+      </AstryxDialog>
+
       {/* Thanh thông báo nổi (Toast) bằng Meta Astryx Banner */}
       {toastMessage && (
         <div className="fixed bottom-4 right-4 z-50 max-w-md shadow-lg rounded-xl overflow-hidden border border-orange-200 bg-white">
@@ -1538,24 +1691,31 @@ export const DemoMonitorPage: React.FC = () => {
         </div>
       )}
 
-      {/* Thanh Header gọn gàng chuẩn Trắng - Cam tối ưu cho sân khấu */}
-      <header className="sticky top-0 z-30 bg-white border-b border-orange-200 shadow-xs">
-        <div className="max-w-[1600px] mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
-          {/* Cụm thương hiệu + Chuyển chế độ Sân khấu / Chi tiết */}
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2.5">
-              <div className="size-9 rounded-xl bg-orange-600 flex items-center justify-center text-white font-bold text-sm shadow-xs">
+      {/* Thanh Header gọn gàng chuẩn Trắng - Cam tối ưu cho sân khấu (không bị chồng lấn sticky) */}
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-xs">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+          {/* Cụm thương hiệu + Nút về Docs + Chuyển chế độ Sân khấu / Chi tiết */}
+          <div className="flex flex-wrap items-center gap-2.5 min-w-0">
+            <Link
+              to="/"
+              title="Quay về cổng tài liệu BrandHub Docs"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-slate-200 bg-slate-50 hover:bg-orange-50 hover:border-orange-300 text-xs font-semibold text-slate-600 hover:text-orange-700 shrink-0"
+            >
+              <ArrowLeft className="size-3.5" />
+              <span className="hidden sm:inline">Docs</span>
+            </Link>
+
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="size-8 rounded-lg bg-orange-600 flex items-center justify-center text-white font-bold text-xs shadow-xs shrink-0">
                 BH
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <AstryxHeading level={1} className="text-sm sm:text-base font-bold text-slate-900 text-balance">
-                    Điều Khiển Thuyết Trình SE08
-                  </AstryxHeading>
-                  <span className="hidden xl:inline-flex">
-                    <AstryxBadge label="ĐH FPT 2027 • 4 Tuần" variant="orange" />
-                  </span>
-                </div>
+              <div className="flex items-center gap-2 min-w-0">
+                <AstryxHeading level={1} className="text-sm sm:text-base font-bold text-slate-900 truncate">
+                  Điều Khiển Thuyết Trình SE08
+                </AstryxHeading>
+                <span className="hidden 2xl:inline-flex shrink-0">
+                  <AstryxBadge label="ĐH FPT 2027 • 4 Tuần" variant="orange" />
+                </span>
               </div>
             </div>
 
@@ -1565,15 +1725,15 @@ export const DemoMonitorPage: React.FC = () => {
               value={viewMode}
               onChange={setViewMode}
             >
-              <AstryxSegmentedControlItem value="stage" label="Sân khấu (Gọn)" />
+              <AstryxSegmentedControlItem value="stage" label="Sân khấu" />
               <AstryxSegmentedControlItem value="detail" label="Chi tiết (2 cột)" />
             </AstryxSegmentedControl>
           </div>
 
-          {/* Cụm Đồng hồ 20 phút + Chia đôi màn hình + Đăng nhập 5 vai trò */}
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Cụm Đồng hồ 20 phút + Chia màn hình + Đăng nhập 5 vai trò + Khôi phục / Xóa DB */}
+          <div className="flex flex-wrap items-center gap-1.5">
             {/* Đồng hồ bấm giờ 20 phút */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs">
+            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs">
               <Clock className="size-3.5 text-orange-600 shrink-0" />
               <span className="font-bold text-slate-900 tabular-nums">
                 {formatStopwatch(elapsedSeconds)}
@@ -1583,7 +1743,7 @@ export const DemoMonitorPage: React.FC = () => {
                 type="button"
                 aria-label={timerRunning ? 'Tạm dừng đồng hồ' : 'Bắt đầu bấm giờ'}
                 onClick={() => setTimerRunning((v) => !v)}
-                className="p-1 rounded hover:bg-orange-100 text-orange-700 cursor-pointer"
+                className="p-0.5 rounded hover:bg-orange-100 text-orange-700 cursor-pointer"
               >
                 {timerRunning ? <Pause className="size-3" /> : <Play className="size-3" />}
               </button>
@@ -1594,30 +1754,30 @@ export const DemoMonitorPage: React.FC = () => {
                   setTimerRunning(false);
                   setElapsedSeconds(0);
                 }}
-                className="p-1 rounded hover:bg-orange-100 text-slate-500 hover:text-orange-700 cursor-pointer"
+                className="p-0.5 rounded hover:bg-orange-100 text-slate-500 hover:text-orange-700 cursor-pointer"
               >
                 <RotateCcw className="size-3" />
               </button>
             </div>
 
             {/* Trạng thái Selenium */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-700">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700">
               <AstryxStatusDot
                 variant={connected ? 'accent' : 'neutral'}
                 label={connected ? 'Selenium đã kết nối' : 'Selenium chưa bật'}
                 isPulsing={connected}
               />
-              <span className="hidden sm:inline">{connected ? 'Đã kết nối' : 'Chưa bật :3999'}</span>
+              <span>{connected ? 'Đã kết nối' : 'Chưa bật :3999'}</span>
             </div>
 
-            {/* Chia màn hình để Chrome không đè lên Bàn điều khiển */}
-            <div className="hidden md:inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
+            {/* Chia màn hình luôn hiển thị kể cả khi thu hẹp cửa sổ điều khiển xuống 29% */}
+            <div className="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
               <button
                 type="button"
                 onClick={() => handleArrangeWindows('split')}
                 disabled={busyAction !== null}
                 title="Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển"
-                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold cursor-pointer disabled:opacity-50 ${
+                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold cursor-pointer disabled:opacity-50 ${
                   status?.window_mode === 'split'
                     ? 'bg-orange-600 text-white'
                     : 'text-slate-700 hover:bg-orange-100/70'
@@ -1662,20 +1822,42 @@ export const DemoMonitorPage: React.FC = () => {
               onClick={() => setShowResetConfirm(true)}
             />
 
+            <AstryxButton
+              label="Xóa dữ liệu Demo"
+              variant="secondary"
+              size="sm"
+              icon={<Trash2 className="size-3.5 text-orange-600" />}
+              isDisabled={busyAction !== null}
+              isLoading={busyAction === 'CLEAN_DB'}
+              onClick={() => setShowCleanConfirm(true)}
+            />
+
             <button
               type="button"
+              title="Xem hướng dẫn sử dụng nhanh"
+              aria-label="Hướng dẫn sử dụng"
+              onClick={() => setShowGuideModal(true)}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-orange-200 bg-orange-50/60 hover:bg-orange-100 text-xs font-semibold text-orange-700 cursor-pointer"
+            >
+              <HelpCircle className="size-3.5" />
+              <span className="hidden lg:inline">Hướng dẫn</span>
+            </button>
+
+            <button
+              type="button"
+              title="Cấu hình ID & URL"
               aria-label="Mở cấu hình định danh Demo"
               onClick={() => setShowConfigModal((v) => !v)}
-              className="p-2 rounded-lg border border-slate-200 hover:border-orange-300 text-slate-600 hover:text-orange-700 cursor-pointer"
+              className="p-1.5 rounded-lg border border-slate-200 hover:border-orange-300 text-slate-600 hover:text-orange-700 cursor-pointer"
             >
               <Sliders className="size-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Dải 5 Vai trò siêu gọn: Bấm 1 chạm để bật ngay cửa sổ Chrome của vai trò đó lên trên cùng */}
+        {/* Dải 5 Vai trò siêu gọn: Ẩn thanh cuộn xám thô để giao diện liền mạch */}
         <div className="bg-orange-50/40 border-t border-orange-100">
-          <div className="max-w-[1600px] mx-auto px-4 py-1.5 flex items-center gap-2 overflow-x-auto">
+          <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-1.5 flex items-center gap-2 overflow-x-auto no-scrollbar">
             <span className="text-[11px] font-bold text-slate-500 shrink-0 hidden sm:inline">
               Cửa sổ Chrome:
             </span>
@@ -1713,7 +1895,7 @@ export const DemoMonitorPage: React.FC = () => {
                 );
               })}
             </div>
-            <div className="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
+            <div className="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
               <span>Phím nhanh:</span>
               <AstryxKbd keys="space" />
               <span>chạy tiếp</span>
@@ -1728,45 +1910,68 @@ export const DemoMonitorPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Thanh nhảy nhanh 15 bước B1 -> B15 (luôn hiện ở Chế độ Sân khấu để không tốn diện tích cột trái) */}
+        {/* Thanh nhảy nhanh 15 bước B1 -> B15: Ẩn thanh cuộn xám + có nút trượt trái/phải mượt mà */}
         {viewMode === 'stage' && (
           <div className="bg-white border-t border-slate-100">
-            <div className="max-w-[1600px] mx-auto px-4 py-2 flex items-center gap-1.5 overflow-x-auto">
-              {DEMO_STEPS.map((step, idx) => {
-                const isSelected = idx === activeStepIndex;
-                const isStepDone = step.actions.every((a) => Boolean(doneActions[a.id]));
-                const hasSomeDone = !isStepDone && step.actions.some((a) => Boolean(doneActions[a.id]));
-                return (
-                  <button
-                    key={step.code}
-                    ref={isSelected ? activePillRef : null}
-                    type="button"
-                    onClick={() => setActiveStepIndex(idx)}
-                    title={`${step.code}: ${step.title} (${step.role})`}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums ${
-                      isSelected
-                        ? 'bg-orange-600 text-white border-orange-600 shadow-xs'
-                        : isStepDone
-                        ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
-                        : hasSomeDone
-                        ? 'bg-orange-50/40 text-slate-800 border-orange-200'
-                        : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
-                    }`}
-                  >
-                    {isStepDone && !isSelected && (
-                      <Check className="size-3 text-orange-600 shrink-0" />
-                    )}
-                    <span className="font-extrabold">{step.code}</span>
-                    <span
-                      className={`hidden md:inline max-w-[130px] truncate ${
-                        isSelected ? 'text-orange-50' : 'text-slate-600'
+            <div className="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
+              <button
+                type="button"
+                aria-label="Cuộn danh sách bước sang trái"
+                onClick={() => scrollStepRail('left')}
+                className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
+              >
+                <ChevronLeft className="size-3.5" />
+              </button>
+
+              <div
+                ref={stepRailRef}
+                className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"
+              >
+                {DEMO_STEPS.map((step, idx) => {
+                  const isSelected = idx === activeStepIndex;
+                  const isStepDone = step.actions.every((a) => Boolean(doneActions[a.id]));
+                  const hasSomeDone = !isStepDone && step.actions.some((a) => Boolean(doneActions[a.id]));
+                  return (
+                    <button
+                      key={step.code}
+                      ref={isSelected ? activePillRef : null}
+                      type="button"
+                      onClick={() => setActiveStepIndex(idx)}
+                      title={`${step.code}: ${step.title} (${step.role})`}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums transition-colors ${
+                        isSelected
+                          ? 'bg-orange-600 text-white border-orange-600 shadow-xs'
+                          : isStepDone
+                          ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
+                          : hasSomeDone
+                          ? 'bg-orange-50/40 text-slate-800 border-orange-200'
+                          : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
                       }`}
                     >
-                      {step.shortTitle}
-                    </span>
-                  </button>
-                );
-              })}
+                      {isStepDone && !isSelected && (
+                        <Check className="size-3 text-orange-600 shrink-0" />
+                      )}
+                      <span className="font-extrabold">{step.code}</span>
+                      <span
+                        className={`hidden md:inline whitespace-nowrap ${
+                          isSelected ? 'text-orange-50' : 'text-slate-600'
+                        }`}
+                      >
+                        {step.shortTitle}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                type="button"
+                aria-label="Cuộn danh sách bước sang phải"
+                onClick={() => scrollStepRail('right')}
+                className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
+              >
+                <ChevronRight className="size-3.5" />
+              </button>
             </div>
           </div>
         )}
@@ -1971,16 +2176,16 @@ export const DemoMonitorPage: React.FC = () => {
                   {currentStep.title}
                 </AstryxHeading>
 
-                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-mono">
-                  <span>Trang đích:</span>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                  <span className="font-medium">Trang đích:</span>
                   <a
                     href={`${configIds.app_url}${resolvedRoute}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-orange-600 hover:underline inline-flex items-center gap-1 font-semibold break-all"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-orange-50/70 border border-orange-200/80 text-orange-800 hover:bg-orange-100 font-mono text-[11px] font-semibold break-all"
                   >
-                    <AstryxCode>{resolvedRoute}</AstryxCode>
-                    <ExternalLink className="size-3 shrink-0" />
+                    <span>{resolvedRoute}</span>
+                    <ExternalLink className="size-3 shrink-0 text-orange-600" />
                   </a>
                 </div>
               </div>
@@ -2095,12 +2300,12 @@ export const DemoMonitorPage: React.FC = () => {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs sm:text-sm font-bold leading-snug">
+                      <div className="flex items-start justify-between gap-2.5">
+                        <span className="text-xs sm:text-sm font-bold leading-snug text-pretty">
                           {idx + 1}. {act.label}
                         </span>
                         <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] font-bold shrink-0 ${
+                          className={`px-2 py-0.5 rounded-md text-[10px] font-bold shrink-0 whitespace-nowrap mt-0.5 ${
                             isNextRecommended
                               ? 'bg-white/20 text-white'
                               : isDone
@@ -2112,11 +2317,11 @@ export const DemoMonitorPage: React.FC = () => {
                         </span>
                       </div>
                       <div
-                        className={`text-xs mt-0.5 leading-normal ${
+                        className={`text-xs mt-1 leading-relaxed ${
                           isNextRecommended ? 'text-orange-100' : 'text-slate-600'
                         }`}
                       >
-                        {act.description}
+                        {formatReadableDescription(act.description)}
                       </div>
                     </div>
                   </button>

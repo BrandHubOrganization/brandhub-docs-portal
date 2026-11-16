@@ -520,23 +520,75 @@ class DemoBrowserController:
             results.append(res)
         return results
 
+    def _sync_open_browsers_storage(self, mode: str) -> int:
+        refreshed = 0
+        js_clean = """
+        try {
+            const emptyKeys = [
+                'brandhub.portal.fptu2027.v1',
+                'brandhub.library.templates.fptu2027.v2',
+                'brandhub.ambassadors.v2',
+                'brandhub.ambassador.jobs.v2'
+            ];
+            for (let i = window.localStorage.length - 1; i >= 0; i--) {
+                const k = window.localStorage.key(i);
+                if (!k) continue;
+                if (
+                    k.startsWith('brandhub.portal.fptu2027') ||
+                    k.startsWith('brandhub.library.templates.fptu2027') ||
+                    k.startsWith('brandhub.ambassadors.v2') ||
+                    k.startsWith('brandhub.ambassador.jobs.v2')
+                ) {
+                    if (arguments[0] === 'clean') {
+                        window.localStorage.setItem(k, '[]');
+                    } else {
+                        window.localStorage.removeItem(k);
+                    }
+                }
+            }
+            if (arguments[0] === 'clean') {
+                emptyKeys.forEach((k) => window.localStorage.setItem(k, '[]'));
+                const wsId = window.localStorage.getItem('brandhub.currentWorkspaceId');
+                if (wsId) {
+                    window.localStorage.setItem('brandhub.ambassadors.v2.' + wsId, '[]');
+                    window.localStorage.setItem('brandhub.ambassador.jobs.v2.' + wsId, '[]');
+                }
+            }
+        } catch (e) {}
+        """
+        with self.lock:
+            for drv in list(self.drivers.values()):
+                if not self.is_driver_alive(drv):
+                    continue
+                try:
+                    drv.execute_script(js_clean, mode)
+                    drv.refresh()
+                    refreshed += 1
+                except Exception:
+                    pass
+        return refreshed
+
     def reset_demo_database_data(self) -> dict[str, Any]:
         if not self.prep_script_path.exists():
             return {"ok": False, "error": f"Không tìm thấy script: {self.prep_script_path}"}
         try:
             proc = subprocess.run(
-                [sys.executable, str(self.prep_script_path), "--apply"],
+                [sys.executable, "-X", "utf8", str(self.prep_script_path), "--apply"],
                 cwd=str(self.prep_script_path.parent),
                 capture_output=True,
                 text=True,
-                timeout=45,
+                encoding="utf-8",
+                errors="replace",
+                timeout=60,
             )
             if proc.returncode == 0:
+                refreshed = self._sync_open_browsers_storage("reset")
+                extra = f" (đã làm mới {refreshed} cửa sổ Chrome)" if refreshed > 0 else ""
                 return {
                     "ok": True,
                     "message": (
-                        "Đã đồng bộ toàn bộ PostgreSQL & MongoDB: SE08 Digital Agency, 7 Gói đa lĩnh vực, "
-                        "Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần - 20 công việc) và 11 ảnh Key Visual."
+                        "Đã nạp lại dữ liệu chuẩn trên PostgreSQL, MongoDB và Redis: SE08 Digital Agency, "
+                        f"7 Gói đa lĩnh vực, Chiến dịch ĐH FPT 2027 (4 tuần, 20 công việc){extra}."
                     ),
                     "stdout": proc.stdout.strip(),
                 }
@@ -545,7 +597,38 @@ class DemoBrowserController:
                 "error": f"Script trả về mã lỗi {proc.returncode}: {proc.stderr.strip() or proc.stdout.strip()}",
             }
         except Exception as exc:
-            return {"ok": False, "error": f"Lỗi khi chạy prepare_demo_data_template.py: {exc}"}
+            return {"ok": False, "error": f"Lỗi khi chạy prepare_demo_data_template.py --apply: {exc}"}
+
+    def clean_demo_database_data(self) -> dict[str, Any]:
+        if not self.prep_script_path.exists():
+            return {"ok": False, "error": f"Không tìm thấy script: {self.prep_script_path}"}
+        try:
+            proc = subprocess.run(
+                [sys.executable, "-X", "utf8", str(self.prep_script_path), "--clean"],
+                cwd=str(self.prep_script_path.parent),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=60,
+            )
+            if proc.returncode == 0:
+                refreshed = self._sync_open_browsers_storage("clean")
+                extra = f" và làm mới {refreshed} cửa sổ Chrome" if refreshed > 0 else ""
+                return {
+                    "ok": True,
+                    "message": (
+                        "Đã xóa sạch toàn bộ dữ liệu mẫu cùng các bản ghi phát sinh sau buổi demo "
+                        f"trên PostgreSQL, MongoDB, Redis{extra}."
+                    ),
+                    "stdout": proc.stdout.strip(),
+                }
+            return {
+                "ok": False,
+                "error": f"Script trả về mã lỗi {proc.returncode}: {proc.stderr.strip() or proc.stdout.strip()}",
+            }
+        except Exception as exc:
+            return {"ok": False, "error": f"Lỗi khi xóa dữ liệu demo (--clean): {exc}"}
 
     # ==========================================================================
     # 3. THỰC THI CÁC BƯỚC KỊCH BẢN (B1 -> B15) & SUB-ACTIONS CHI TIẾT
@@ -1799,6 +1882,11 @@ class DemoMonitorRequestHandler(BaseHTTPRequestHandler):
 
         if parsed.path == "/api/reset-data":
             res = CONTROLLER.reset_demo_database_data()
+            self._send_json(res)
+            return
+
+        if parsed.path == "/api/clean-data":
+            res = CONTROLLER.clean_demo_database_data()
             self._send_json(res)
             return
 

@@ -9,47 +9,79 @@
 
 /* ============================================================================
  * Meta Astryx <-> BrandHub Custom Theme Overrides (White & Orange)
- * Reference: https://github.com/meta/astryx & https://astryx.atmeta.com/components
+ * Placed in @layer components so it wins over @scope inside @layer astryx-theme.
  * ============================================================================ */
-@layer astryx-theme {
+@layer components {
   :root,
-  [data-astryx-theme="neutral"] {
-    /* Primary Brand Accent — BrandHub Signature Orange (#EA580C / #F05A28) */
+  [data-astryx-theme="neutral"],
+  [data-astryx-theme="neutral"] [data-astryx-media="light"],
+  [data-astryx-theme="neutral"] [data-astryx-media="dark"] {
+    /* Primary Brand Accent — BrandHub Signature Orange (#EA580C) */
     --color-accent: light-dark(#ea580c, #f97316);
+    --color-on-accent: #ffffff;
     --color-accent-hover: light-dark(#c2410c, #fb923c);
     --color-accent-active: light-dark(#9a3412, #ea580c);
     --color-accent-subtle: light-dark(rgba(234, 88, 12, 0.08), rgba(249, 115, 22, 0.14));
-    --color-accent-muted: light-dark(rgba(234, 88, 12, 0.16), rgba(249, 115, 22, 0.24));
+    --color-accent-muted: light-dark(#fed7aa, rgba(249, 115, 22, 0.28));
     --color-text-accent: light-dark(#c2410c, #fb923c);
+    --color-icon-accent: light-dark(#ea580c, #fb923c);
     --color-border-accent: light-dark(rgba(234, 88, 12, 0.35), rgba(249, 115, 22, 0.45));
     --color-border-focus: light-dark(#ea580c, #f97316);
+    --astryx-theme-neutral-color-status-fill-accent: light-dark(#ea580c, #f97316);
 
     /* Minimalist Surface & Elevation Tokens (Clean White & Neutral) */
-    --color-background-primary: light-dark(#ffffff, #0b1120);
-    --color-background-secondary: light-dark(#f8fafc, #0f172a);
-    --color-background-tertiary: light-dark(#fff7ed, #1e293b);
-    --color-surface-card: light-dark(#ffffff, #111827);
-    --color-surface-elevated: light-dark(#ffffff, #1e293b);
-    --color-border-subtle: light-dark(#e2e8f0, #1e293b);
-    --color-border-default: light-dark(#cbd5e1, #334155);
-    --color-border-strong: light-dark(#94a3b8, #475569);
+    --color-background-surface: light-dark(#ffffff, #111827);
+    --color-background-body: light-dark(#f8fafc, #0b1120);
+    --color-background-card: light-dark(#ffffff, #111827);
+    --color-background-popover: light-dark(#ffffff, #1e293b);
+    --color-background-muted: light-dark(#fff7ed, #1e293b);
+    --color-border: light-dark(#e2e8f0, #1e293b);
+    --color-border-emphasized: light-dark(#cbd5e1, #334155);
 
-    /* Semantic Status Colors harmonized with BrandHub */
-    --color-background-orange: light-dark(#fff7ed, rgba(234, 88, 12, 0.16));
+    /* Semantic Orange Tokens harmonized with BrandHub */
+    --color-background-orange: light-dark(#fff7ed, rgba(234, 88, 12, 0.18));
     --color-border-orange: light-dark(#fdba74, rgba(249, 115, 22, 0.42));
     --color-text-orange: light-dark(#c2410c, #fb923c);
+    --color-icon-orange: light-dark(#ea580c, #fb923c);
 
     /* Typography Alignment */
-    --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-family-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-
-    /* Minimalist Radius Tokens */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
+    --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-code: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
+}
+
+/* Clean scrollbars & scrollbar-free horizontal pill rails */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #fdba74 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fdba74;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ea580c;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @layer base {

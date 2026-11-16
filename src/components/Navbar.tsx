@@ -72,8 +72,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-orange-200/80 dark:border-slate-800 transition-colors">
-        <div className="max-w-6xl mx-auto px-3 sm:px-4 h-14 flex items-center justify-between gap-2 sm:gap-4">
-          <div className="flex items-center gap-4 lg:gap-6 min-w-0">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-4 h-14 flex items-center justify-between gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 lg:gap-4 min-w-0 flex-1">
             <NavLink
               to="/"
               className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-base tracking-tight shrink-0 interactive-btn"
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </NavLink>
 
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1 min-w-0 overflow-x-auto no-scrollbar py-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     to={item.to}
                     end={item.end}
                     className={({ isActive }) =>
-                      `interactive-btn inline-flex items-center gap-1.5 px-2.5 lg:px-3 py-1.5 rounded-md text-xs font-medium cursor-pointer ${
+                      `interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium shrink-0 cursor-pointer ${
                         isActive
                           ? 'bg-orange-600 text-white shadow-xs'
                           : 'text-slate-600 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800 hover:text-orange-700 dark:hover:text-white'
@@ -106,7 +106,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }
                   >
                     <Icon className="w-3.5 h-3.5 shrink-0" />
-                    <span className="whitespace-nowrap">{item.label}</span>
+                    <span className="whitespace-nowrap hidden xl:inline">{item.label}</span>
+                    <span className="whitespace-nowrap xl:hidden">{item.shortLabel}</span>
                   </NavLink>
                 );
               })}

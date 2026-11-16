@@ -15,13 +15,28 @@ import { WordLinkManagerPage } from './pages/WordLinkManagerPage';
 import { DemoMonitorPage } from './pages/DemoMonitorPage';
 import { AstryxCode } from './components/astryx';
 
-const AnimatedRoutes: React.FC = () => {
+const AppShell: React.FC<{
+  searchOpen: boolean;
+  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ searchOpen, setSearchOpen }) => {
   const location = useLocation();
   const { tx } = useAppPreferences();
+  const isStageController = location.pathname === '/demo-monitor';
 
   return (
-    <>
-      <main key={location.pathname} className="flex-1 animate-page-in pb-16 md:pb-0">
+    <div className="min-h-dvh flex flex-col bg-slate-50/40 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+      {!isStageController && (
+        <Navbar
+          onOpenSearch={() => setSearchOpen(true)}
+          totalFigures={portalData.projectInfo.totalFigures}
+          totalFrs={portalData.projectInfo.totalFrs}
+        />
+      )}
+
+      <main
+        key={location.pathname}
+        className={isStageController ? 'flex-1' : 'flex-1 animate-page-in pb-16 md:pb-0'}
+      >
         <Routes location={location}>
           <Route path="/" element={<FiguresCatalogPage data={portalData} />} />
           <Route path="/figures" element={<FiguresCatalogPage data={portalData} />} />
@@ -42,37 +57,45 @@ const AnimatedRoutes: React.FC = () => {
         </Routes>
       </main>
 
-      <footer className="hidden md:block border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12 transition-colors">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <div className="inline-flex items-center gap-1.5">
-            <FolderCode className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
-            <span>
-              {tx(
-                'BrandHub Documentation - Chỉnh sửa nội dung tại',
-                'BrandHub Documentation - Edit modular JSON files at'
-              )}{' '}
-              <AstryxCode className="font-mono text-slate-700 dark:text-slate-300">src/data/</AstryxCode>
-            </span>
+      {!isStageController && (
+        <footer className="hidden md:block border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12 transition-colors">
+          <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <div className="inline-flex items-center gap-1.5">
+              <FolderCode className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
+              <span>
+                {tx(
+                  'BrandHub Documentation - Chỉnh sửa nội dung tại',
+                  'BrandHub Documentation - Edit modular JSON files at'
+                )}{' '}
+                <AstryxCode className="font-mono text-slate-700 dark:text-slate-300">src/data/</AstryxCode>
+              </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <Link
+                to="/rules"
+                className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Business Rules &amp; Messages</span>
+              </Link>
+              <Link
+                to="/links"
+                className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
+              >
+                <Link2 className="w-3.5 h-3.5" />
+                <span>{tx('Link gắn Word', 'Word Deep-Links')}</span>
+              </Link>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <Link
-              to="/rules"
-              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Business Rules &amp; Messages</span>
-            </Link>
-            <Link
-              to="/links"
-              className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
-            >
-              <Link2 className="w-3.5 h-3.5" />
-              <span>{tx('Link gắn Word', 'Word Deep-Links')}</span>
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </>
+        </footer>
+      )}
+
+      <GlobalSearchModal
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        data={portalData}
+      />
+    </div>
   );
 };
 
@@ -93,21 +116,7 @@ export const App: React.FC = () => {
   return (
     <AppPreferencesProvider>
       <BrowserRouter>
-        <div className="min-h-dvh flex flex-col bg-slate-50/40 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-          <Navbar
-            onOpenSearch={() => setSearchOpen(true)}
-            totalFigures={portalData.projectInfo.totalFigures}
-            totalFrs={portalData.projectInfo.totalFrs}
-          />
-
-          <AnimatedRoutes />
-
-          <GlobalSearchModal
-            isOpen={searchOpen}
-            onClose={() => setSearchOpen(false)}
-            data={portalData}
-          />
-        </div>
+        <AppShell searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
       </BrowserRouter>
     </AppPreferencesProvider>
   );

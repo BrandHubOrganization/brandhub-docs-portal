@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="vi" data-astryx-theme="neutral">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrandHub: Bàn Điều Khiển Thuyết Trình SE08 (Astryx White &amp; Orange)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root, [data-astryx-theme="neutral"] {
+      --astryx-color-accent: #f05a28;
+      --astryx-color-accent-hover: #ea580c;
+      --astryx-color-accent-active: #c2410c;
+      --astryx-color-surface: #ffffff;
+      --astryx-color-border-subtle: #fed7aa;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #FFFFFF;
+      color: #0F172A;
+    }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #FDBA74; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #EA580C; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    dialog::backdrop { background: rgba(15, 23, 42, 0.35); }
+  </style>
+</head>
+<body class="min-h-dvh bg-white text-slate-900">
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-md px-4 py-3 rounded-xl shadow-lg border bg-orange-600 border-orange-700 text-white text-sm font-medium"></div>
+
+  <!-- Safe Reset Confirmation Dialog -->
+  <dialog id="reset-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-md w-full text-slate-900">
+    <div class="space-y-4">
+      <div class="space-y-1.5">
+        <h3 class="text-base font-bold text-slate-900">Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 18 bài đăng) để sẵn sàng thuyết trình ngay.
+        </p>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button onclick="document.getElementById('reset-dialog').close()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+          Hủy
+        </button>
+        <button onclick="confirmResetDemoData()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+          Đồng ý khôi phục
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Clean All Demo Data Confirmation Dialog -->
+  <dialog id="clean-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-md w-full text-slate-900">
+    <div class="space-y-4">
+      <div class="space-y-1.5">
+        <h3 class="text-base font-bold text-slate-900">Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa Demo?</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, khảo sát, thư viện ảnh, đơn VietQR phát sinh và xu hướng Redis để hệ thống sạch hoàn toàn sau buổi chạy thử.
+        </p>
+        <div class="p-2.5 rounded-lg bg-orange-50/70 border border-orange-200 text-[11px] text-orange-800 leading-relaxed">
+          7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp mới từ đầu.
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button onclick="document.getElementById('clean-dialog').close()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+          Hủy
+        </button>
+        <button onclick="confirmCleanDemoData()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+          Xóa sạch dữ liệu Demo
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Quick Usage Guide Dialog -->
+  <dialog id="guide-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-lg w-full text-slate-900">
+    <div class="space-y-4">
+      <div class="space-y-1">
+        <h3 class="text-base font-bold text-slate-900">Hướng dẫn sử dụng Bàn điều khiển Thuyết trình (SE08)</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Quy trình 3 bước giúp nhóm điều phối mượt toàn bộ 15 bước bảo vệ trong 20 phút.
+        </p>
+      </div>
+      <div class="space-y-2.5 text-xs text-slate-700 leading-relaxed">
+        <div class="p-3 rounded-xl bg-orange-50/60 border border-orange-200 space-y-1">
+          <div class="font-bold text-orange-800">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
+          <p>Đảm bảo trạng thái hiện <strong>Đã kết nối</strong>. Nhấn <strong>Khôi phục DB</strong> để về chuẩn Bước B1, tiếp theo nhấn <strong>Đăng nhập 5 Vai trò</strong> rồi chọn <strong>Chia màn hình</strong> (5 cửa sổ Chrome xếp 71% bên trái, bàn điều khiển 29% bên phải).</p>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+          <div class="font-bold text-slate-900">2. Trong lúc thuyết trình (Chỉ cần phím Space)</div>
+          <p>Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>) để hệ thống tự bật đúng cửa sổ vai trò, mở đúng trang và điền sẵn dữ liệu từ <strong>B1 → B15</strong>. Dùng phím <strong>1 - 4</strong> chạy lẻ thao tác con, <strong>← / →</strong> đổi bước và <strong>R</strong> gọi nhanh cửa sổ vai trò hiện tại.</p>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+          <div class="font-bold text-slate-900">3. Trả lời Q&amp;A &amp; Dọn sạch sau buổi tập</div>
+          <p>Cuộn xuống mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> để mở ngay 14 màn hình chuyên sâu. Sau khi chạy thử xong, nhấn <strong>Xóa dữ liệu Demo</strong> để dọn sạch toàn bộ dữ liệu mẫu và bản ghi vừa tạo; lần tới tập lại chỉ cần bấm <strong>Khôi phục DB</strong>.</p>
+        </div>
+      </div>
+      <div class="flex justify-end pt-1">
+        <button onclick="document.getElementById('guide-dialog').close()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+          Đã hiểu, bắt đầu ngay
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Slim Stage-Ready Sticky Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-sm">
+    <div class="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white font-extrabold text-xs shadow-sm">
+            BH
+          </div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm sm:text-base font-bold text-slate-900">
+              Điều Khiển Thuyết Trình SE08
+            </h1>
+            <span class="hidden 2xl:inline-flex px-2 py-0.5 text-[11px] font-semibold rounded-full bg-orange-50 text-orange-700 border border-orange-200">
+              ĐH FPT 2027 • 4 Tuần
+            </span>
+          </div>
+        </div>
+
+        <!-- View Mode Segmented Switch -->
+        <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 text-xs font-semibold">
+          <button id="mode-stage-btn" onclick="setViewMode('stage')" class="px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer">
+            Sân khấu
+          </button>
+          <button id="mode-detail-btn" onclick="setViewMode('detail')" class="px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Chi tiết (2 cột)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <!-- 20-Min Stopwatch -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs tabular-nums">
+          <span class="font-bold text-slate-900" id="timer-display">00:00</span>
+          <span class="text-slate-400">/ 20:00</span>
+          <button onclick="toggleTimer()" id="timer-btn" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
+            Chạy
+          </button>
+          <button onclick="resetTimer()" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 rounded text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
+            00:00
+          </button>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-700">
+          <span id="conn-dot" class="w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse"></span>
+          <span id="conn-label" class="font-semibold text-orange-700">Đang kiểm tra</span>
+        </div>
+
+        <!-- Window Layout Controls (Always visible even in narrow 29% split pane) -->
+        <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
+          <button id="win-split-btn" onclick="arrangeWindows('split')" title="Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="px-2 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Chia màn hình
+          </button>
+          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="Phóng to toàn màn hình các cửa sổ Chrome" class="px-2 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+            Phóng to
+          </button>
+        </div>
+
+        <button onclick="loginAllRoles()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 shadow-sm cursor-pointer">
+          Đăng nhập 5 Vai trò
+        </button>
+
+        <button onclick="document.getElementById('reset-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
+          Khôi phục DB
+        </button>
+
+        <button onclick="document.getElementById('clean-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
+          Xóa dữ liệu Demo
+        </button>
+
+        <button onclick="document.getElementById('guide-dialog').showModal()" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-orange-50/70 text-orange-700 border border-orange-200 hover:bg-orange-100 cursor-pointer">
+          ? Hướng dẫn
+        </button>
+      </div>
+    </div>
+
+    <!-- Compact 5-Role Strip -->
+    <div class="bg-orange-50/40 border-t border-orange-100">
+      <div class="max-w-[1600px] mx-auto px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+        <div id="roles-bar" class="flex items-center gap-1.5 min-w-0"></div>
+        <div class="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
+          <span>Phím tắt:</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">Space</kbd>
+          <span>chạy tiếp</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">← / →</kbd>
+          <span>đổi bước</span>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">1-4</kbd>
+          <span>nút con</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal 15-Step Quick-Jump Rail (Scrollbar-free + Chevron Scroll Buttons) -->
+    <div id="stage-rail-wrap" class="bg-white border-t border-slate-100">
+      <div class="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
+        <button onclick="scrollStepRail(-320)" aria-label="Cuộn sang trái" class="px-2 py-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-xs font-bold text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer">‹</button>
+        <div id="stage-rail" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"></div>
+        <button onclick="scrollStepRail(320)" aria-label="Cuộn sang phải" class="px-2 py-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-xs font-bold text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer">›</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="main-layout" class="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
+    <!-- Left Sidebar (Only visible in Detail 2-column mode) -->
+    <aside id="detail-sidebar" class="hidden lg:col-span-4 space-y-2">
+      <div class="flex items-center justify-between px-1 mb-1">
+        <h2 class="text-xs font-bold uppercase text-slate-600">Lộ trình 15 bước</h2>
+        <span id="step-counter" class="text-xs font-semibold text-orange-600 tabular-nums">Bước 1/15</span>
+      </div>
+      <div id="steps-list" class="space-y-1.5 max-h-[calc(100dvh-230px)] overflow-y-auto pr-1"></div>
+    </aside>
+
+    <!-- Active Step Controller -->
+    <section id="active-section" class="space-y-4">
+      <div id="step-detail" class="p-4 sm:p-5 rounded-2xl bg-white border border-orange-200 shadow-sm space-y-4"></div>
+      <div id="step-fields-wrap"></div>
+      <details class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm">
+        <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+          <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">1 chạm mở đúng vai trò</span>
+        </summary>
+        <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE = window.location.port === '3999' ? '' : 'http://localhost:3999';
+
+    const ROLES = [
+      { role: 'Owner', shortLabel: 'Trung', fullName: 'Lê Trí Trung', email: 'user177@demo.brandhub.test' },
+      { role: 'Manager', shortLabel: 'Lộc', fullName: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test' },
+      { role: 'Creator', shortLabel: 'Phước', fullName: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test' },
+      { role: 'Client', shortLabel: 'ĐH FPT', fullName: 'Ban Tuyển sinh Đại học FPT', email: 'user59@demo.brandhub.test' },
+      { role: 'Admin', shortLabel: 'Admin', fullName: 'Quản trị viên BrandHub', email: 'admin@demo.brandhub.test' },
+    ];
+
+    const DEMO_TEXTS = {
+      out_of_scope_title: '[Tuần 3 - Phát sinh] Tổng hợp lịch xe đưa đón học sinh THPT dự Ngày hội FPTU Open Day 2027',
+      out_of_scope_desc:
+        'Bài thông báo chi tiết 08 điểm đón xe buýt miễn phí dành cho học sinh lớp 12 và phụ huynh tham gia trải nghiệm phòng Lab Thiết kế Vi mạch bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo năm 2027.',
+      out_of_scope_criteria:
+        'Ghi rõ khung giờ đón tại từng trường THPT, đầu mối sinh viên tình nguyện phụ trách mỗi tuyến xe và đính kèm đường dẫn đăng ký https://tuyensinh.fpt.edu.vn.',
+      subtask_desc:
+        'Biên soạn nội dung bài đăng tổng hợp điểm nhấn chuỗi Workshop phổ biến tiện ích học đường ĐH FPT tại các trường THPT và thông báo mở cổng xét Học bổng Nguyễn Văn Đạo năm 2027 cho khóa K23.',
+      subtask_criteria:
+        'Nêu rõ trải nghiệm kính VR và Robotics tại buổi Workshop, 3 mức học bổng 50%, 70%, 100% học phí, lộ trình thực tập doanh nghiệp OJT từ học kỳ 6 và đường dẫn https://tuyensinh.fpt.edu.vn.',
+      ai_topic:
+        'Tổng hợp điểm nhấn chuỗi Workshop trải nghiệm tiện ích học đường Đại học FPT dành cho học sinh THPT (đeo kính VR tham quan phòng Lab bán dẫn, điều khiển Robotics, tìm hiểu thư viện xanh, sân Vovinam và 40 CLB) kết hợp thông báo mở đăng ký xét Học bổng Nguyễn Văn Đạo năm 2027 tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM, Cần Thơ.',
+      violation_sample:
+        '\n\n[Đoạn văn kiểm thử bộ lọc an toàn]: Cam kết 100% việc làm lương ngàn đô ngay khi nhập học, tuyển thẳng không cần điều kiện, các nơi khác đều là bằng cấp vô giá trị!',
+      caption_v1_clean:
+        'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn\n#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
+      client_reject_note:
+        'Nội dung bản thảo v1 đã truyền tải rất tốt không khí thực tế của chuỗi Workshop tại các trường THPT. Tuy nhiên, Ban Tuyển sinh đề nghị bổ sung rõ 3 mức Học bổng Nguyễn Văn Đạo năm 2027 cụ thể (50%, 70% và 100% học phí toàn khóa) cùng thông tin học kỳ thực tập doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6 tại FPT Software và FPT Smart Cloud để phụ huynh và học sinh lớp 12 nắm đầy đủ quyền lợi trước khi duyệt xuất bản.',
+      caption_v2_addition:
+        '\n\nQuyền lợi học bổng và lộ trình thực tập doanh nghiệp dành cho khóa K23 (2027):\n- Chương trình Học bổng Nguyễn Văn Đạo năm 2027: Trao tặng các mức 50%, 70% và 100% học phí toàn khóa học cho học sinh THPT có thành tích học tập và năng lực nổi trội.\n- Học kỳ doanh nghiệp (On-the-Job Training - OJT): 100% sinh viên tham gia làm việc thực tế từ học kỳ 6 tại FPT Software, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác trong và ngoài nước.',
+    };
+
+    const STEPS = [
+      {
+        code: 'B1',
+        time: '00:00 - 01:15',
+        shortTitle: '7 Gói đa ngành & Gói ĐH FPT',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Danh mục 7 Gói truyền thông Đa lĩnh vực & Gói Tuyển sinh ĐH FPT 2027',
+        fr: 'FR 3.5.1 - 3.5.4',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/agency/359a1839-18c7-48e2-8a68-f5f68c3375b6/media-packages',
+        cue: 'Bấm [1] cuộn lướt qua 7 thẻ gói đa ngành rồi bấm [2] mở gói Tuyển sinh ĐH FPT 2027 (185 triệu VNĐ, 19 hạng mục) đã chốt trong Workspace.',
+        points: [
+          'SE08 Digital Agency chuẩn hóa sẵn 7 gói truyền thông chuyên biệt cho Giáo dục, SaaS, F&B, BĐS, Mỹ phẩm, TMĐT và Du lịch.',
+          'Gói Tuyển sinh Đại học FPT 2027 kéo dài 4 tuần (185 triệu VNĐ) gồm 19 hạng mục trải đủ 7 loại dịch vụ chuẩn.',
+        ],
+        script: 'Trong vai trò Owner Lê Trí Trung của SE08 Digital Agency, chúng em xây dựng danh mục 7 gói truyền thông chuyên biệt trên nhiều ngành nghề. Riêng gói Tuyển sinh Đại học FPT 2027 trị giá 185.000.000 VNĐ kéo dài 4 tuần gồm 19 hạng mục thuộc đủ 7 loại dịch vụ chuẩn.',
+        outcome: 'Hiển thị đầy đủ 7 thẻ gói truyền thông đa lĩnh vực ở trạng thái ACTIVE và gói ĐH FPT 2027 đã phê duyệt.',
+        actions: [
+          { id: 'B1_NAV', label: 'Mở Danh mục 7 Gói truyền thông đa lĩnh vực', desc: 'Điều hướng tới /agency/{agency_id}/media-packages' },
+          { id: 'B1_NAV_WS_PACKAGE', label: 'Mở Gói ĐH FPT 2027 đã thương thảo trong Workspace', desc: 'Điều hướng tới /workspaces/.../media-package' },
+        ],
+        fields: [
+          { name: 'Gói trọng tâm gắn cho Đại học FPT', type: 'Tự động điền sẵn', value: 'Gói Tuyển sinh Đại học FPT 2027: Chiến dịch Đa kênh & Chuỗi Workshop 4 Tuần (185.000.000 VNĐ - 19 hạng mục)' },
+          { name: '6 Gói đa lĩnh vực khác của SE08', type: 'Tự động điền sẵn', value: 'Công nghệ B2B SaaS | F&B Đồ uống | Bất động sản | Dược mỹ phẩm | Thương mại điện tử Mega Sale | Du lịch Nghỉ dưỡng' },
+        ],
+      },
+      {
+        code: 'B2',
+        time: '01:15 - 02:30',
+        shortTitle: 'Workspace, Thư viện KV & Chat',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Workspace ĐH FPT 2027, Thư viện 7 Key Visual Gemini & Chat nhóm',
+        fr: 'FR 3.4.9, 3.4.21, 3.5.5, 3.6.25',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/members',
+        cue: 'Nhấn Space lần lượt qua [1] -> [2] -> [3] -> [4] để lướt đội ngũ 5 thành viên SE08, Brand Profile ĐH FPT, 7 ảnh Key Visual Gemini trong /library và /chat.',
+        points: [
+          'Workspace quy tụ đủ 5 thành viên nhóm SE08 (Trung, Lộc, Phước, Tuấn, Ân) cùng Ban Tuyển sinh Đại học FPT.',
+          'Thư viện /library chia sẵn 4 thư mục tuần chứa 7 bộ Key Visual tạo bằng Gemini Nano Banana, 4 ảnh khuôn viên trường và 5 mẫu bài viết.',
+        ],
+        script: 'Không gian làm việc quy tụ đủ 5 thành viên nhóm SE08 cùng Ban Tuyển sinh Đại học FPT. Thư viện tài nguyên lưu sẵn 4 thư mục tuần với 7 bộ Key Visual tạo bằng Gemini Nano Banana cùng ảnh khuôn viên trường thực tế.',
+        outcome: 'Hiển thị thành viên SE08 trong Workspace, Hồ sơ thương hiệu ĐH FPT, 11 ấn phẩm hình ảnh trong /library và trao đổi trong /chat.',
+        actions: [
+          { id: 'B2_NAV', label: 'Mở Đội ngũ 5 Thành viên SE08 & Khách hàng (/members)', desc: 'Xem thành viên SE08 & Ban Tuyển sinh ĐH FPT' },
+          { id: 'B2_NAV_CLIENT_PROFILE', label: 'Mở Hồ sơ Thương hiệu Đại học FPT (/client-profile)', desc: 'Xem 5 cơ sở, học kỳ OJT & từ khóa hạn chế' },
+          { id: 'B2_NAV_LIBRARY', label: 'Mở Thư viện 7 ảnh Key Visual Gemini (/library)', desc: 'Xem 4 thư mục tuần và bộ ảnh Gemini Nano Banana + Unsplash' },
+          { id: 'B2_NAV_CHAT', label: 'Mở Kênh Trò chuyện nhóm SE08 & ĐH FPT (/chat)', desc: 'Xem trao đổi giữa team SE08 và Ban Tuyển sinh ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Đội ngũ SE08 & Khách hàng', type: 'Tự động điền sẵn', value: 'Lê Trí Trung (Owner), Nguyễn Thành Lộc (Manager), Phước - Tuấn - Ân (Creator), Ban Tuyển sinh Đại học FPT (Client)' },
+          { name: 'Từ khóa hạn chế (Brand Profile)', type: 'Tự động điền sẵn', value: 'cam kết 100% việc làm lương ngàn đô, học bổng ảo, tuyển thẳng không cần điều kiện, bằng cấp vô giá trị' },
+        ],
+      },
+      {
+        code: 'B3',
+        time: '02:30 - 04:15',
+        shortTitle: 'Chiến dịch 4 Tuần (3 bước)',
+        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
+        title: 'Điều phối Chiến dịch Tuyển sinh 4 Tuần (Brief, 20 Công việc, 6 Đối tác)',
+        fr: 'FR 3.5.6 - 3.5.13',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/campaigns',
+        cue: 'Bấm [1] -> [2] -> [3] (tự điền việc phát sinh lịch xe Open Day) -> Bấm [4] xem 6 đối tác VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel.',
+        points: [
+          'Master Brief 6 khối vạch rõ 4 tuần: Tuần 1 Coming Soon -> Tuần 2 Ngành học & Tiện ích -> Tuần 3 Workshop THPT & Open Day -> Tuần 4 Báo chí.',
+          'Quản lý 19 hạng mục gói + thêm việc phát sinh ngoài gói + điều phối 6 đối tác báo chí, truyền hình, KOL & LED THPT.',
+        ],
+        script: 'Chiến dịch 4 tuần đi từ Tuần 1 Coming Soon & Học bổng, sang Tuần 2 giới thiệu ngành học & phổ biến tiện ích học đường, Tuần 3 tổ chức chuỗi Workshop THPT & Ngày hội Open Day, đến Tuần 4 lên bài báo chí VnExpress/Thanh Niên/Dân Trí và nhắc chốt hồ sơ đa kênh.',
+        outcome: 'Trình diễn 3 bước của Chiến dịch 4 tuần, điền hộp thoại Công việc phát sinh và kiểm tra 6 đối tác truyền thông.',
+        actions: [
+          { id: 'B3_STEP_INFO', label: 'Mở Bước 1: Lộ trình 4 Tuần & Master Brief', desc: 'Hiển thị 6/6 khối Brief và bản Master Brief tổng hợp' },
+          { id: 'B3_STEP_TASKS', label: 'Mở Bước 2: Timeline 19 Hạng mục trong gói', desc: 'Hiển thị lịch trình 4 tuần và nút Thêm công việc phát sinh' },
+          { id: 'B3_FILL_OUT_OF_SCOPE', label: 'Điền thử Công việc phát sinh (Lịch xe Open Day)', desc: 'Tự động gõ Tên, Hạn xuất bản, Mô tả & Tiêu chí nghiệm thu' },
+          { id: 'B3_STEP_PARTNERS', label: 'Mở Bước 3: 6 Đối tác Báo chí / KOL & Triển khai', desc: 'Hiển thị VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel & LED THPT' },
+        ],
+        fields: [
+          { name: 'Tên công việc phát sinh ngoài gói', type: 'Nhập text', key: 'out_of_scope_title' },
+          { name: 'Mô tả công việc phát sinh', type: 'Nhập text', key: 'out_of_scope_desc' },
+          { name: 'Tiêu chí nghiệm thu', type: 'Nhập text', key: 'out_of_scope_criteria' },
+        ],
+      },
+      {
+        code: 'B4',
+        time: '04:15 - 05:45',
+        shortTitle: '20 Công việc, Khảo sát & Yêu cầu',
+        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
+        title: 'Phân bổ 20 Công việc cho 3 Creator SE08, Khảo sát THPT & Yêu cầu Client',
+        fr: 'FR 3.6.1 - 3.6.10, 3.6.28 - 3.6.32',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
+        cue: 'Bấm [1] xem 20 công việc & 5 Subtask bài Tuần 3, sau đó bấm [3] xem 8 phản hồi Khảo sát lớp 12 và [4] xem Yêu cầu từ ĐH FPT.',
+        points: [
+          '20 công việc chia theo chuyên môn 3 Creator SE08: Phước (Social), Tuấn (Key Visual, Reels & Workshop), Ân (Báo chí, Email & Khảo sát).',
+          'Bài trọng điểm Tuần 3 có 5 Role Subtasks phối hợp chéo, kèm trang Khảo sát lớp 12 (/tasks/.../survey) và Yêu cầu khách hàng (/requests).',
+        ],
+        script: '20 công việc trong 4 tuần được chia đều theo thế mạnh của Nguyễn Chơn Phước, Nguyễn Minh Tuấn và Hà Văn Ân. Tại bài trọng điểm Tuần 3, cả 5 Subtask con đều liên kết chặt chẽ giữa 3 thành viên.',
+        outcome: 'Hiển thị 20 công việc 4 tuần, 5 Subtask của bài Tuần 3, 8 phản hồi khảo sát học sinh THPT và 2 yêu cầu từ ĐH FPT.',
+        actions: [
+          { id: 'B4_NAV', label: 'Mở 20 Công việc 4 tuần & Xem 5 Subtask Tuần 3', desc: 'Mở trang Công việc và bật chi tiết [Tuần 3 - Bài trọng điểm]' },
+          { id: 'B4_FILL_SUBTASK', label: 'Điền mẫu Mô tả & Tiêu chí Subtask', desc: 'Gõ tự động mô tả và tiêu chí vào form Subtask' },
+          { id: 'B4_NAV_SURVEYS', label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)', desc: 'Xem 8 câu trả lời thực tế của học sinh lớp 12' },
+          { id: 'B4_NAV_REQUESTS', label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)', desc: 'Xem 2 yêu cầu bổ sung bài truyền thông từ ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Mô tả Subtask', type: 'Nhập text', key: 'subtask_desc' },
+          { name: 'Tiêu chí nghiệm thu Subtask', type: 'Nhập text', key: 'subtask_criteria' },
+        ],
+      },
+      {
+        code: 'B5',
+        time: '05:45 - 06:30',
+        shortTitle: 'Creator nhận bài Tuần 3',
+        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
+        title: 'Creator Nguyễn Chơn Phước nhận việc Tuần 3 & Kiểm tra tiến độ Subtask',
+        fr: 'FR 3.6.3, 3.6.4',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
+        cue: 'Chỉ vào các Subtask Nghiên cứu (Ân) và Key Visual (Tuấn) đã hoàn tất trên ngăn chi tiết công việc.',
+        points: [
+          'Cửa sổ chuyển sang Creator Nguyễn Chơn Phước; các bài Tuần 1-2 đã xuất bản, hiện tập trung vào [Tuần 3 - Bài trọng điểm].',
+          'Phần Nghiên cứu của Hà Văn Ân và Key Visual của Nguyễn Minh Tuấn đã duyệt sẵn.',
+        ],
+        script: 'Creator Nguyễn Chơn Phước mở [Tuần 3 - Bài trọng điểm], thấy phần Nghiên cứu của Hà Văn Ân và bộ Key Visual của Nguyễn Minh Tuấn đã duyệt xong, sẵn sàng vào /editor hoàn thiện bài viết.',
+        outcome: 'Creator xem chi tiết công việc [Tuần 3 - Bài trọng điểm] và mở Trình soạn thảo hợp nhất (/editor).',
+        actions: [
+          { id: 'B5_NAV', label: 'Mở việc của Creator & Chọn [Tuần 3 - Bài trọng điểm]', desc: 'Điều hướng tới /workspaces/{workspace_id}/tasks' },
+        ],
+        fields: [
+          { name: 'Subtask đang thực hiện', type: 'Tự động điền sẵn', value: 'Soạn nội dung bài viết (POST_CONTENT -> POST.CAPTION)' },
+        ],
+      },
+      {
+        code: 'B6',
+        time: '06:30 - 08:30',
+        shortTitle: 'Bắn ảnh Gemini & Gọi AI',
+        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
+        title: 'Bắn trực tiếp ảnh Key Visual Gemini lên bài viết & Gọi AI tạo Caption',
+        fr: 'FR 3.6.11, 3.6.25, 3.7.1, 3.7.2',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở /editor -> Bấm [2] bắn ngay ảnh Key Visual Gemini lên bài -> Bấm [3] đổi chế độ -> Bấm [4] tự điền 5 ô AI.',
+        points: [
+          'Trình soạn thảo /editor tách bài đăng thành 4 phần độc lập (BRIEF, MEDIA, CHANNELS, CAPTION).',
+          'Bấm [2] đẩy thẳng ảnh Key Visual tạo bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng.',
+        ],
+        script: 'Trên /editor, bấm "Bắn ảnh Key Visual Gemini lên bài viết" để đẩy trực tiếp ấn phẩm tạo sẵn bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng, chuyển đổi Quick/Docs Mode và gọi AI sinh bản thảo.',
+        outcome: 'Ảnh Key Visual Gemini hiển thị ngay trên bài viết & khung điện thoại 4 nền tảng; điền tuần tự 5 tham số vào modal AI.',
+        actions: [
+          { id: 'B6_NAV_EDITOR', label: 'Mở Trình soạn thảo hợp nhất (/editor)', desc: 'Điều hướng tới /editor?taskId={task_id}' },
+          { id: 'B6_PUSH_KEY_VISUAL', label: 'Bắn ảnh Key Visual Gemini lên bài viết', desc: 'Gắn ngay ảnh KV_Tuan3_FPTU_OpenDay_2027 từ Kho tài nguyên' },
+          { id: 'B6_TOGGLE_DOCS_MODE', label: 'Chuyển đổi Chế độ Nhanh / Tài liệu', desc: 'Chuyển đổi giữa Quick Mode và Docs Mode' },
+          { id: 'B6_SEQ_FILL_AI', label: 'Điền tuần tự 5 trường AI Tạo Caption', desc: 'Tự động điền Topic, Tone, Platform, Ngôn ngữ, Số hashtag' },
+        ],
+        fields: [
+          { name: 'Chủ đề bài viết (AI Topic)', type: 'Nhập text', key: 'ai_topic' },
+          { name: 'Tham số AI', type: 'Chọn dropdown', value: 'Giọng điệu: Chuyên nghiệp | Nền tảng: Facebook | Ngôn ngữ: Tiếng Việt | Số hashtag: 6' },
+        ],
+      },
+      {
+        code: 'B7',
+        time: '08:30 - 10:00',
+        shortTitle: 'Kiểm tra vi phạm & Gửi v1',
+        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
+        title: 'Kiểm duyệt an toàn nội dung (3.6.33) & Gửi duyệt phần POST.CAPTION (v1)',
+        fr: 'FR 3.6.33, 3.6.18',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] rồi nhấn "Kiểm tra vi phạm" trên Chrome -> Bấm [2] khôi phục bản sạch v1 rồi nhấn "Lưu thay đổi" và "Gửi duyệt" trên khung POST.CAPTION.',
+        points: [
+          'Chèn thử câu quảng cáo quá mức để kiểm chứng tính năng Kiểm tra vi phạm (FR 3.6.33) phát hiện từ cấm của ĐH FPT.',
+          'Khôi phục bản thảo sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT), bấm Lưu và Gửi duyệt phần POST.CAPTION.',
+        ],
+        script: 'Creator thử chèn một câu chứa từ khóa hạn chế để kiểm chứng tính năng Kiểm tra vi phạm (3.6.33). Sau đó khôi phục bản thảo sạch v1 tổng hợp chuỗi Workshop THPT, bấm Lưu và Gửi duyệt phần Nội dung bài đăng.',
+        outcome: 'Phần POST.CAPTION chuyển sang trạng thái SUBMITTED (v1).',
+        actions: [
+          { id: 'B7_FILL_VIOLATION', label: 'Chèn câu vi phạm để test Kiểm duyệt (3.6.33)', desc: 'Gõ câu chứa từ cấm và chỉ vào nút Kiểm tra vi phạm' },
+          { id: 'B7_CLEAN_AND_RESTORE', label: 'Khôi phục bản thảo sạch v1 & Chỉ nút Gửi duyệt', desc: 'Điền lại bản v1 chuẩn 2027 và chỉ vào nút Lưu / Gửi duyệt' },
+        ],
+        fields: [
+          { name: 'Câu mẫu thử nghiệm bộ lọc vi phạm', type: 'Nhập text', key: 'violation_sample' },
+          { name: 'Nội dung bản thảo sạch v1', type: 'Nhập text', key: 'caption_v1_clean' },
+        ],
+      },
+      {
+        code: 'B8',
+        time: '10:00 - 11:00',
+        shortTitle: 'Manager duyệt nội bộ v1',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Manager Nguyễn Thành Lộc duyệt nội bộ phần Nội dung bài đăng (v1)',
+        fr: 'FR 3.6.19',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Sau khi bấm [1], trên Chrome của Manager hãy bấm nút "Duyệt" tại thẻ Nội dung bài đăng (POST.CAPTION).',
+        points: [
+          'Cửa sổ chuyển sang Manager Nguyễn Thành Lộc duyệt tầng nội bộ cho riêng phần POST.CAPTION.',
+          'Các phần khác đã duyệt xong từ trước nên không cần duyệt lại.',
+        ],
+        script: 'Manager Nguyễn Thành Lộc mở màn hình Phê duyệt, rà soát phần Nội dung bài đăng (POST.CAPTION) và bấm Duyệt để chuyển sang Ban Tuyển sinh Đại học FPT.',
+        outcome: 'Phần POST.CAPTION chuyển sang trạng thái INTERNAL_APPROVED.',
+        actions: [
+          { id: 'B8_NAV_MANAGER_APPROVAL', label: 'Mở màn hình Duyệt của Manager & Chỉ nút Duyệt', desc: 'Điều hướng Manager tới /task-approvals' },
+        ],
+        fields: [
+          { name: 'Phần công việc cần duyệt', type: 'Bấm nút', value: 'Nội dung bài đăng (POST.CAPTION) - Phiên bản v1' },
+        ],
+      },
+      {
+        code: 'B9',
+        time: '11:00 - 12:15',
+        shortTitle: 'Client yêu cầu bổ sung v1',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Ban Tuyển sinh ĐH FPT nghiệm thu v1 & Yêu cầu bổ sung Học bổng + OJT',
+        fr: 'FR 3.6.20, 3.6.21',
+        role: 'Client',
+        actor: 'Ban Tuyển sinh Đại học FPT',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở màn hình Client -> Bấm [2] tự điền nhận xét -> Trên Chrome của Client bấm nút "Yêu cầu chỉnh sửa / Xác nhận".',
+        points: [
+          'Client chỉ thấy phần đầu ra (OUTPUT), không thấy tài liệu nháp nội bộ POST.BRIEF của Agency.',
+          'Ban Tuyển sinh bấm Yêu cầu chỉnh sửa phần POST.CAPTION để bổ sung rõ 3 mức học bổng 50%, 70%, 100% và kỳ thực tập OJT.',
+        ],
+        script: 'Ban Tuyển sinh Đại học FPT chỉ nhìn thấy các phần đầu ra (OUTPUT). Client bấm Yêu cầu chỉnh sửa phần POST.CAPTION, đề nghị bổ sung rõ 3 mức học bổng 50%, 70%, 100% năm 2027 và kỳ thực tập OJT từ học kỳ 6.',
+        outcome: 'Chỉ riêng phần POST.CAPTION quay về trạng thái RETURNED, còn Hình ảnh và Kênh đăng giữ nguyên trạng thái đã duyệt.',
+        actions: [
+          { id: 'B9_NAV_CLIENT_APPROVAL', label: 'Mở màn hình Nghiệm thu của Ban Tuyển sinh ĐH FPT', desc: 'Điều hướng Client tới /task-approvals' },
+          { id: 'B9_SEQ_FILL_REJECT_REASON', label: 'Điền nhận xét yêu cầu bổ sung Học bổng 2027 + OJT', desc: 'Tự động mở hộp thoại và gõ góp ý của nhà trường' },
+        ],
+        fields: [
+          { name: 'Ghi chú yêu cầu chỉnh sửa của Ban Tuyển sinh ĐH FPT', type: 'Nhập text', key: 'client_reject_note' },
+        ],
+      },
+      {
+        code: 'B10',
+        time: '12:15 - 13:45',
+        shortTitle: 'Creator sửa v2 & Xem Diff',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Creator cập nhật bản v2, Gửi duyệt lại & Mở đối chiếu Diff v1 vs v2',
+        fr: 'FR 3.6.11, 3.6.18',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] mở /editor -> Bấm [2] tự gõ thêm đoạn v2 rồi nhấn "Lưu thay đổi" & "Gửi duyệt" trên Chrome -> Bấm [3] mở bảng Diff v1/v2.',
+        points: [
+          'Creator đọc góp ý gắn ngay trên khung POST.CAPTION, bổ sung 3 mức Học bổng 2027 & kỳ OJT vào bản v2 và gửi duyệt lại.',
+          'Mở ngăn Lịch sử phiên bản đối chiếu trực quan từng dòng thay đổi giữa v1 và v2.',
+        ],
+        script: 'Creator đọc phản hồi của Ban Tuyển sinh ngay trên phần POST.CAPTION, bổ sung đoạn thông tin 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ thực tập OJT vào bản v2, gửi duyệt lại và mở bảng so sánh Diff từng dòng giữa v1 và v2.',
+        outcome: 'Ngăn Lịch sử phiên bản hiển thị rõ các dòng văn bản mới thêm giữa v1 và v2.',
+        actions: [
+          { id: 'B10_NAV_CREATOR_FIX', label: 'Mở lại Trình soạn thảo (/editor) của Creator', desc: 'Làm nổi bật phần POST.CAPTION bị trả về' },
+          { id: 'B10_SEQ_FILL_V2', label: 'Bổ sung đoạn Học bổng 50%-100% & OJT (v2)', desc: 'Gõ nối tiếp đoạn thông tin mới vào bài viết' },
+          { id: 'B10_OPEN_VERSION_DIFF', label: 'Mở Lịch sử phiên bản (So sánh Diff v1 vs v2)', desc: 'Mở ngăn đối chiếu trực quan v1 và v2' },
+        ],
+        fields: [
+          { name: 'Đoạn nội dung bổ sung vào bản v2', type: 'Nhập text', key: 'caption_v2_addition' },
+        ],
+      },
+      {
+        code: 'B11',
+        time: '13:45 - 15:00',
+        shortTitle: 'Duyệt hoàn tất v2 -> FINISHED',
+        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
+        title: 'Manager & Ban Tuyển sinh ĐH FPT phê duyệt hoàn tất bản v2',
+        fr: 'FR 3.6.19, 3.6.20',
+        role: 'Client',
+        actor: 'Nguyễn Thành Lộc -> Ban Tuyển sinh ĐH FPT',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
+        cue: 'Bấm [1] rồi nhấn "Duyệt" trên Chrome Manager -> Bấm [2] rồi nhấn "Duyệt" trên Chrome Client để thấy Task tự chuyển sang FINISHED.',
+        points: [
+          'Manager duyệt nội bộ bản v2, tiếp theo Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu chính thức.',
+          'Hệ thống tự động hoàn tất Công việc (FINISHED), đóng toàn bộ 5 Subtask và chuyển Bài đăng sang APPROVED.',
+        ],
+        script: 'Manager duyệt nội bộ bản v2 và Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu. Khi mọi phần đầu ra đều đạt CLIENT_APPROVED, hệ thống tự động hoàn tất Công việc (FINISHED) và chuyển Bài đăng sang APPROVED.',
+        outcome: '[Tuần 3 - Bài trọng điểm] chuyển sang FINISHED, cả 5 Subtask hoàn tất và bài đăng chuyển sang APPROVED.',
+        actions: [
+          { id: 'B11_NAV_MANAGER_V2', label: 'Mở màn hình Manager duyệt bản v2', desc: 'Điều hướng Manager tới /task-approvals' },
+          { id: 'B11_NAV_CLIENT_V2', label: 'Mở màn hình Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2', desc: 'Điều hướng Client tới /task-approvals' },
+        ],
+        fields: [
+          { name: 'Kết quả tự động khi đủ phần được duyệt', type: 'Tự động điền sẵn', value: 'Task -> FINISHED | Tất cả Subtask -> FINISHED | Post -> APPROVED' },
+        ],
+      },
+      {
+        code: 'B12',
+        time: '15:00 - 16:15',
+        shortTitle: '4 Kênh MXH, Hashtag & Email',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Kết nối 4 Nền tảng MXH, Bộ Hashtag Tuyển sinh & Mẫu Email Workshop',
+        fr: 'FR 3.4.23, 3.6.34, 3.8.1 - 3.8.5',
+        role: 'Manager',
+        actor: 'Nguyễn Thành Lộc',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/social-accounts',
+        cue: 'Nhấn Space qua [1] -> [2] -> [3] -> [4] để trình bày 4 kết nối OAuth MXH, 8 Hashtag tuyển sinh, Mẫu Email và Lịch sử Lô gửi Email.',
+        points: [
+          'Cả 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads) đều đã kết nối OAuth hoạt động tốt.',
+          'Đi kèm bộ 8 Hashtag chuẩn mùa tuyển sinh 2027, 2 mẫu Email và lịch sử 2 lô gửi Email hoàn tất.',
+        ],
+        script: 'Manager kiểm tra kết nối OAuth với 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads), bộ 8 Hashtag chuẩn mùa tuyển sinh 2027 cùng mẫu Email và lịch sử gửi vé mời tham dự Workshop cho học sinh THPT.',
+        outcome: 'Hiển thị kết nối 4 nền tảng hoạt động tốt cùng bộ Hashtag, mẫu Email và lịch sử gửi Email.',
+        actions: [
+          { id: 'B12_NAV_SOCIAL', label: 'Mở Kết nối 4 Nền tảng Mạng xã hội (/social-accounts)', desc: 'Điều hướng tới /social-accounts' },
+          { id: 'B12_NAV_HASHTAGS', label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh', desc: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng' },
+          { id: 'B12_NAV_MAIL_TEMPLATES', label: 'Mở Mẫu Email mời dự Workshop THPT (/mail-templates)', desc: 'Xem mẫu Email gửi cho danh sách học sinh lớp 12' },
+          { id: 'B12_NAV_MAIL_BATCHES', label: 'Mở Lịch sử Lô gửi Email (/mail-templates/batches)', desc: 'Xem 2 đợt gửi vé mời Workshop & báo cáo tuần' },
+        ],
+        fields: [
+          { name: '4 nền tảng hỗ trợ', type: 'Tự động điền sẵn', value: 'Facebook, Instagram, TikTok, Threads' },
+        ],
+      },
+      {
+        code: 'B13',
+        time: '16:15 - 17:45',
+        shortTitle: 'Xuất bản, Lịch 4 tuần & Analytics',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Xuất bản Đa nền tảng, Lịch đăng bài 4 tuần (/calendar) & Dashboard',
+        fr: 'FR 3.8.8 - 3.8.15',
+        role: 'Creator',
+        actor: 'Nguyễn Chơn Phước',
+        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/posts/dashboard',
+        cue: 'Bấm [1] mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard) -> Bấm [2] xem Lịch 4 tuần (/calendar) -> Bấm [3] mở Dashboard thống kê tương tác.',
+        points: [
+          'Theo dõi danh sách bài viết đa nền tảng và kiểm tra Lịch xuất bản trực quan xuyên suốt 4 tuần (/calendar).',
+          'Toàn bộ chỉ số Reach, Impressions, Reactions từ 4 nền tảng đồng bộ trực tiếp về /dashboard.',
+        ],
+        script: 'Creator mở Bảng điều phối bài đăng đa nền tảng, kiểm tra Lịch đăng bài xuyên suốt 4 tuần (/calendar) và mở Dashboard phân tích tương tác thực tế.',
+        outcome: 'Danh sách bài viết hiển thị rõ trên /posts/dashboard, lịch 4 tuần hiển thị trên /calendar và đồng bộ số liệu về /dashboard.',
+        actions: [
+          { id: 'B13_NAV_PUBLISH', label: 'Mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard)', desc: 'Điều hướng tới /posts/dashboard' },
+          { id: 'B13_NAV_CALENDAR', label: 'Mở Lịch xuất bản Chiến dịch 4 tuần (/calendar)', desc: 'Xem lịch phân bổ bài viết từ Tuần 1 đến Tuần 4' },
+          { id: 'B13_NAV_DASHBOARD', label: 'Mở Bảng điều khiển Phân tích (/dashboard)', desc: 'Điều hướng tới /dashboard' },
+        ],
+        fields: [
+          { name: 'Chỉ số theo dõi 4 nền tảng', type: 'Tự động điền sẵn', value: 'Reach, Impressions, Reactions, Comments, Shares, Clicks (22 bản ghi publish_logs thực tế)' },
+        ],
+      },
+      {
+        code: 'B14',
+        time: '17:45 - 18:45',
+        shortTitle: 'Nâng cấp gói VietQR & Ví AI',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Owner nâng cấp gói cước SE08 Digital qua SePay (VietQR) & Ví AI Credit',
+        fr: 'FR 3.9.1 - 3.9.6',
+        role: 'Owner',
+        actor: 'Lê Trí Trung',
+        route: '/subscription/plans',
+        cue: 'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
+        points: [
+          'Owner Lê Trí Trung kiểm tra ví AI (8.500 credits) và nâng cấp gói dịch vụ SaaS cho SE08 Digital Agency.',
+          'Tích hợp cổng SePay sinh mã VietQR động và đối soát giao dịch tự động.',
+        ],
+        script: 'Owner Lê Trí Trung nâng cấp gói dịch vụ của SE08 Digital Agency qua cổng SePay (VietQR) và kiểm tra Ví AI Credit 8.500 điểm.',
+        outcome: 'Hiển thị bảng gói cước, trang Ví AI 8.500 credits và mã thanh toán VietQR.',
+        actions: [
+          { id: 'B14_NAV_PLANS', label: 'Mở trang Nâng cấp gói dịch vụ (/subscription/plans)', desc: 'Điều hướng tới /subscription/plans' },
+          { id: 'B14_NAV_CREDITS', label: 'Mở Ví AI Credit SE08 Digital (/credit)', desc: 'Xem 8.500 AI credits & hạn mức Workspace ĐH FPT' },
+        ],
+        fields: [
+          { name: 'Cổng thanh toán', type: 'Tự động điền sẵn', value: 'SePay (VietQR) | Ví AI: 8.500 credits (hạn mức ĐH FPT: 5.000 credits)' },
+        ],
+      },
+      {
+        code: 'B15',
+        time: '18:45 - 20:00',
+        shortTitle: 'Admin Doanh thu & Kiểm duyệt',
+        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
+        title: 'Admin giám sát doanh thu nền tảng & Hàng đợi kiểm duyệt (3.10.4)',
+        fr: 'FR 3.10.1 - 3.10.14',
+        role: 'Admin',
+        actor: 'Quản trị viên BrandHub',
+        route: '/admin?view=revenue',
+        cue: 'Bấm [1] xem biểu đồ doanh thu toàn hệ thống -> Bấm [2] mở Hàng đợi kiểm duyệt nội dung (FR 3.10.4) kết thúc demo.',
+        points: [
+          'Quản trị viên BrandHub (Admin) theo dõi doanh thu gói đăng ký SaaS của toàn bộ các Agency.',
+          'Rà soát 3 bản ghi cảnh báo trong Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
+        ],
+        script: 'Quản trị viên BrandHub (Admin) giám sát doanh thu gói cước toàn hệ thống và rà soát Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
+        outcome: 'Hiển thị Dashboard doanh thu Admin và 3 bản ghi thực tế trong Hàng đợi kiểm duyệt nội dung.',
+        actions: [
+          { id: 'B15_NAV_ADMIN_REVENUE', label: 'Mở Dashboard Doanh thu hệ thống (Admin)', desc: 'Điều hướng tới /admin?view=revenue' },
+          { id: 'B15_NAV_ADMIN_MODERATION', label: 'Mở Hàng đợi Kiểm duyệt Nội dung (3.10.4)', desc: 'Điều hướng tới /admin?view=moderation' },
+        ],
+        fields: [
+          { name: 'Quyền hạn Admin', type: 'Tự động điền sẵn', value: 'Quản trị doanh thu SaaS, gói cước, bảng giá AI Credit & Hàng đợi kiểm duyệt nội dung' },
+        ],
+      },
+    ];
+
+    const QA_LINKS = [
+      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
+      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+      { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
+      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+      { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
+      { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
+      { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
+      { id: 'QA_AI_AMBASSADORS', label: 'AI Đại sứ ảo (/ai-studio/ambassadors)', role: 'Creator', desc: 'Nhân vật Minh Anh & Hoàng Khôi K23' },
+      { id: 'QA_CLIENT_PORTAL', label: 'Cổng Khách hàng (/portal)', role: 'Client', desc: '2 hạng mục Open Day chờ ĐH FPT duyệt' },
+      { id: 'QA_CLIENT_VAULT', label: 'Kho riêng Client Vault (/library)', role: 'Client', desc: 'Tư liệu gốc ĐH FPT chia sẻ sang SE08' },
+      { id: 'QA_COLLABORATORS', label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', desc: '6 đối tác ĐH FPT + 4 đối tác đa ngành' },
+      { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Owner', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+      { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Client', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
+    ];
+
+    let activeIdx = 0;
+    let roleStates = {};
+    let viewMode = 'stage';
+    let largeFont = true;
+    let doneActions = {};
+    let busy = false;
+    let windowMode = 'normal';
+
+    let elapsedSec = 0;
+    let timerId = null;
+
+    function fmtTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateTimerUI() {
+      document.getElementById('timer-display').textContent = fmtTime(elapsedSec);
+      document.getElementById('timer-btn').textContent = timerId ? 'Dừng' : 'Chạy';
+    }
+
+    function toggleTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      } else {
+        timerId = setInterval(() => {
+          elapsedSec += 1;
+          updateTimerUI();
+        }, 1000);
+      }
+      updateTimerUI();
+    }
+
+    function resetTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+      elapsedSec = 0;
+      updateTimerUI();
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      const stageBtn = document.getElementById('mode-stage-btn');
+      const detailBtn = document.getElementById('mode-detail-btn');
+      const mainEl = document.getElementById('main-layout');
+      const sidebarEl = document.getElementById('detail-sidebar');
+      const activeSecEl = document.getElementById('active-section');
+      const railWrap = document.getElementById('stage-rail-wrap');
+
+      if (mode === 'stage') {
+        stageBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
+        detailBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        mainEl.className = 'max-w-[1040px] mx-auto px-4 py-4 space-y-4';
+        sidebarEl.className = 'hidden';
+        activeSecEl.className = 'space-y-4';
+        railWrap.className = 'bg-white border-t border-slate-100';
+      } else {
+        detailBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
+        stageBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        mainEl.className = 'max-w-[1600px] mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6';
+        sidebarEl.className = 'lg:col-span-4 space-y-2';
+        activeSecEl.className = 'lg:col-span-8 space-y-4';
+        railWrap.className = 'hidden';
+      }
+      renderAll();
+    }
+
+    function toggleLargeFont() {
+      largeFont = !largeFont;
+      renderActiveStep();
+    }
+
+    function clearDoneMarks() {
+      doneActions = {};
+      renderAll();
+    }
+
+    function showToast(msg, isError = false) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.className = `fixed bottom-4 right-4 z-50 max-w-md px-4 py-3 rounded-xl shadow-lg border text-sm font-medium ${
+        isError ? 'bg-white border-orange-500 text-slate-900' : 'bg-orange-600 border-orange-700 text-white'
+      }`;
+      setTimeout(() => el.classList.add('hidden'), 4200);
+    }
+
+    function renderRolesBar() {
+      const bar = document.getElementById('roles-bar');
+      const currentRole = STEPS[activeIdx].role;
+      bar.innerHTML =
+        `<span class="text-[11px] font-bold text-slate-500 shrink-0 hidden sm:inline">Cửa sổ Chrome:</span>` +
+        ROLES.map((r) => {
+          const isCurrent = r.role === currentRole;
+          const alive = roleStates[r.role]?.alive;
+          return `
+            <button
+              onclick="loginRole('${r.role}')"
+              title="${r.role}: ${r.fullName} (${r.email}) - Bấm để đưa cửa sổ lên trước"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer ${
+                isCurrent
+                  ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-orange-300 hover:bg-orange-50/50'
+              }"
+            >
+              <span class="w-2 h-2 rounded-full ${
+                alive ? (isCurrent ? 'bg-white' : 'bg-orange-500') : 'bg-slate-300'
+              }"></span>
+              <span class="font-bold">${r.role}</span>
+              <span class="${isCurrent ? 'text-orange-100' : 'text-slate-500'}">· ${r.shortLabel}</span>
+            </button>
+          `;
+        }).join('');
+    }
+
+    function scrollStepRail(dx) {
+      document.getElementById('stage-rail')?.scrollBy({ left: dx, behavior: 'smooth' });
+    }
+
+    function formatReadableDesc(desc) {
+      return String(desc || '')
+        .replace('/agency/{agency_id}', '/agency/se08-digital')
+        .replace('/workspaces/{workspace_id}', '/workspaces/dh-fpt-2027')
+        .replace('{agency_id}', '359a1839')
+        .replace('{workspace_id}', 'b47477c4')
+        .replace('{task_id}', 'c6453698');
+    }
+
+    function renderStageRail() {
+      const rail = document.getElementById('stage-rail');
+      rail.innerHTML = STEPS.map((s, idx) => {
+        const selected = idx === activeIdx;
+        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
+        const someDone = !allDone && s.actions.some((a) => Boolean(doneActions[a.id]));
+        return `
+          <button
+            id="rail-pill-${idx}"
+            onclick="selectStep(${idx})"
+            title="${s.code}: ${s.title} (${s.role})"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums ${
+              selected
+                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                : allDone
+                ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
+                : someDone
+                ? 'bg-orange-50/40 text-slate-800 border-orange-200'
+                : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
+            }"
+          >
+            <span class="font-extrabold">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
+            <span class="hidden md:inline whitespace-nowrap ${selected ? 'text-orange-50' : 'text-slate-600'}">${s.shortTitle}</span>
+          </button>
+        `;
+      }).join('');
+      const activePill = document.getElementById(`rail-pill-${activeIdx}`);
+      if (activePill) {
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+
+    function renderStepsList() {
+      const list = document.getElementById('steps-list');
+      document.getElementById('step-counter').textContent = `Bước ${activeIdx + 1}/${STEPS.length}`;
+      let html = '';
+      STEPS.forEach((s, idx) => {
+        if (idx === 0 || s.stage !== STEPS[idx - 1].stage) {
+          html += `<div class="pt-2.5 pb-1 px-2 text-[11px] font-bold uppercase text-orange-700">${s.stage}</div>`;
+        }
+        const selected = idx === activeIdx;
+        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
+        html += `
+          <button
+            onclick="selectStep(${idx})"
+            class="w-full text-left p-3 rounded-xl border flex items-start gap-3 cursor-pointer ${
+              selected
+                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
+                : 'bg-white text-slate-800 border-slate-200 hover:border-orange-300 hover:bg-orange-50/40'
+            }"
+          >
+            <span class="px-2 py-0.5 rounded-md text-xs font-extrabold shrink-0 mt-0.5 tabular-nums ${
+              selected
+                ? 'bg-white text-orange-700'
+                : allDone
+                ? 'bg-orange-100 text-orange-800 border border-orange-300'
+                : 'bg-orange-50 text-orange-700 border border-orange-200'
+            }">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
+            <div class="min-w-0 flex-1">
+              <div class="font-semibold text-xs leading-snug">${s.title}</div>
+              <div class="text-[11px] mt-1 tabular-nums ${selected ? 'text-orange-100' : 'text-slate-500'}">
+                <strong>${s.role}</strong> • ${s.actor} • ${s.time}
+              </div>
+            </div>
+          </button>
+        `;
+      });
+      list.innerHTML = html;
+    }
+
+    function buildFieldsHtml(s) {
+      return `
+        <div class="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden">
+          ${s.fields
+            .map((f, i) => {
+              const val = f.key ? DEMO_TEXTS[f.key] : f.value;
+              return `
+                <div class="p-3.5 bg-white space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-slate-900">${f.name}</span>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">${f.type}</span>
+                    </div>
+                    <button
+                      onclick="copyField('${f.key || ''}', ${i})"
+                      class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:text-orange-700 cursor-pointer"
+                    >Sao chép</button>
+                  </div>
+                  ${
+                    f.key
+                      ? `<textarea id="field-${f.key}" rows="3" oninput="DEMO_TEXTS['${f.key}'] = this.value" class="w-full p-2.5 text-xs text-slate-800 bg-orange-50/30 border border-orange-200 rounded-lg focus:bg-white focus:border-orange-500 focus:outline-none leading-relaxed">${val}</textarea>`
+                      : `<div id="static-field-${i}" class="p-2.5 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 whitespace-pre-wrap">${val}</div>`
+                  }
+                </div>
+              `;
+            })
+            .join('')}
+        </div>
+      `;
+    }
+
+    function renderActiveStep() {
+      const s = STEPS[activeIdx];
+      const prev = activeIdx > 0 ? STEPS[activeIdx - 1] : null;
+      const roleChanged = prev && prev.role !== s.role;
+      const nextActIdx = s.actions.findIndex((a) => !doneActions[a.id]);
+      const nextAct = nextActIdx >= 0 ? s.actions[nextActIdx] : null;
+
+      const detail = document.getElementById('step-detail');
+      detail.innerHTML = `
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="space-y-1.5 min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="px-2.5 py-0.5 rounded-lg bg-orange-600 text-white text-xs font-extrabold tabular-nums">Bước ${activeIdx + 1}/15 · ${s.code}</span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold">
+                ${s.role}: ${s.actor}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium tabular-nums">
+                Khung giờ: ${s.time}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium">
+                ${s.fr}
+              </span>
+              ${
+                roleChanged
+                  ? `<span class="px-2.5 py-0.5 rounded-full bg-orange-600 text-white text-xs font-bold">Chuyển cửa sổ sang ${s.role}</span>`
+                  : ''
+              }
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">${s.title}</h2>
+            <div class="text-xs text-slate-500 font-mono break-all">Trang đích: <span class="text-orange-600 font-semibold">${s.route}</span></div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button
+              onclick="selectStep(${Math.max(0, activeIdx - 1)})"
+              ${activeIdx === 0 ? 'disabled' : ''}
+              class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+            >← Trước</button>
+            <button
+              onclick="selectStep(${Math.min(STEPS.length - 1, activeIdx + 1)})"
+              ${activeIdx === STEPS.length - 1 ? 'disabled' : ''}
+              class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-800 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+            >Tiếp →</button>
+          </div>
+        </div>
+
+        <!-- Giant 1-Touch Smart Advance Hero Bar -->
+        <div class="p-3 rounded-xl bg-orange-50/70 border border-orange-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0 flex-1">
+            <div class="text-[11px] font-bold uppercase text-orange-800">
+              Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)
+            </div>
+            <div class="text-sm font-bold text-slate-900 mt-0.5 truncate">
+              ${
+                nextAct
+                  ? `Sẵn sàng chạy: [${nextActIdx + 1}/${s.actions.length}] ${nextAct.label}`
+                  : activeIdx < STEPS.length - 1
+                  ? `Đã chạy đủ thao tác ${s.code}! Nhấn để sang ${STEPS[activeIdx + 1].code}: ${STEPS[activeIdx + 1].shortTitle}`
+                  : 'Đã hoàn thành trọn vẹn cả 15 bước thuyết trình!'
+              }
+            </div>
+          </div>
+          <button
+            onclick="smartAdvance()"
+            ${!nextAct && activeIdx === STEPS.length - 1 ? 'disabled' : ''}
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-sm cursor-pointer disabled:opacity-40 shrink-0"
+          >
+            <span>${
+              nextAct
+                ? `Thực thi ngay (${nextActIdx + 1}/${s.actions.length})`
+                : activeIdx < STEPS.length - 1
+                ? `Sang bước ${STEPS[activeIdx + 1].code} →`
+                : 'Đã hoàn tất 15/15'
+            }</span>
+            <span class="bg-white/20 text-white px-1.5 py-0.5 rounded text-[11px] font-mono">Space</span>
+          </button>
+        </div>
+
+        <!-- Numbered Action Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+          ${s.actions
+            .map((a, idx) => {
+              const isDone = Boolean(doneActions[a.id]);
+              const isNext = nextAct && nextAct.id === a.id;
+              return `
+                <button
+                  onclick="runStepAction('${a.id}')"
+                  class="p-3.5 rounded-xl border text-left flex items-start gap-3 cursor-pointer ${
+                    isNext
+                      ? 'bg-orange-600 text-white border-orange-600 hover:bg-orange-700 shadow-sm ring-2 ring-orange-500/25'
+                      : isDone
+                      ? 'bg-orange-50/50 text-slate-900 border-orange-300 hover:bg-orange-100/60'
+                      : 'bg-white text-slate-900 border-slate-200 hover:border-orange-300 hover:bg-orange-50/30'
+                  }"
+                >
+                  <div class="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-xs tabular-nums ${
+                    isNext
+                      ? 'bg-white text-orange-700'
+                      : isDone
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-orange-100 text-orange-700'
+                  }">
+                    ${isDone ? '✓' : idx + 1}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-start justify-between gap-2.5">
+                      <span class="text-xs sm:text-sm font-bold leading-snug">${idx + 1}. ${a.label}</span>
+                      <span class="px-2 py-0.5 rounded-md text-[10px] font-bold shrink-0 whitespace-nowrap mt-0.5 ${
+                        isNext
+                          ? 'bg-white/20 text-white'
+                          : isDone
+                          ? 'bg-orange-100 text-orange-800'
+                          : 'bg-slate-100 text-slate-600'
+                      }">${isNext ? `Phím ${idx + 1} · Tiếp` : isDone ? 'Đã chạy' : `Phím ${idx + 1}`}</span>
+                    </div>
+                    <div class="text-xs mt-1 leading-relaxed ${isNext ? 'text-orange-100' : 'text-slate-600'}">${formatReadableDesc(a.desc)}</div>
+                  </div>
+                </button>
+              `;
+            })
+            .join('')}
+        </div>
+
+        <!-- On-Screen Browser Cue -->
+        <div class="px-3.5 py-2.5 rounded-xl bg-amber-50/70 border border-orange-200 text-xs sm:text-sm text-slate-800 leading-relaxed">
+          <strong class="text-orange-800">Thao tác kết hợp trên Chrome: </strong>${s.cue}
+        </div>
+
+        <!-- Scannable Teleprompter -->
+        <div class="space-y-2.5 pt-1 border-t border-slate-100">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="text-xs font-bold uppercase text-orange-800">Ý chính trình bày trước Hội đồng (${s.code})</div>
+            <div class="flex items-center gap-3">
+              ${
+                Object.keys(doneActions).length > 0
+                  ? `<button onclick="clearDoneMarks()" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
+                  : ''
+              }
+              <button onclick="toggleLargeFont()" class="px-2.5 py-1 rounded-lg text-xs font-semibold border cursor-pointer ${
+                largeFont
+                  ? 'bg-orange-50 text-orange-700 border-orange-200'
+                  : 'bg-white text-slate-600 border-slate-200'
+              }">
+                ${largeFont ? 'Chữ lớn: Bật' : 'Chữ lớn: Tắt'}
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2">
+            ${s.points
+              .map(
+                (pt, i) => `
+              <div class="px-3.5 py-2.5 rounded-xl bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${
+                largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed'
+              }">
+                <span class="w-5 h-5 rounded-full bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">${i + 1}</span>
+                <span class="font-medium">${pt}</span>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div class="md:col-span-2 p-3.5 rounded-xl bg-white border border-slate-200 space-y-1">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Lời dẫn gợi ý đầy đủ</div>
+              <p class="${largeFont ? 'text-sm' : 'text-xs'} text-slate-700 leading-relaxed">${s.script}</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <div class="text-[11px] font-bold text-slate-600 uppercase">Kết quả trên màn hình</div>
+              <p class="text-xs text-slate-600 leading-relaxed">${s.outcome}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const fieldsWrap = document.getElementById('step-fields-wrap');
+      if (viewMode === 'stage') {
+        fieldsWrap.innerHTML = `
+          <details class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <summary class="text-xs sm:text-sm font-bold text-slate-800 cursor-pointer flex items-center justify-between">
+              <span>Dữ liệu điền tự động &amp; Sao chép thủ công dự phòng (${s.fields.length} mục)</span>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">Bấm để mở khi cần</span>
+            </summary>
+            <div class="pt-3">${buildFieldsHtml(s)}</div>
+          </details>
+        `;
+      } else {
+        fieldsWrap.innerHTML = `
+          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900">Bảng Dữ liệu Chuẩn &amp; Nội dung Điền Nhanh (${s.code})</h3>
+              <span class="text-[11px] text-orange-700 font-semibold">Văn phong tự nhiên (Humanized Vietnamese)</span>
+            </div>
+            ${buildFieldsHtml(s)}
+          </div>
+        `;
+      }
+    }
+
+    function renderQaGrid() {
+      const grid = document.getElementById('qa-quick-grid');
+      if (!grid) return;
+      grid.innerHTML = QA_LINKS.map((item) => `
+        <button
+          onclick="runStepAction('${item.id}')"
+          class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer"
+        >
+          <div class="min-w-0">
+            <div class="text-xs font-bold text-slate-900 truncate">${item.label}</div>
+            <div class="text-[11px] text-slate-600 truncate mt-0.5">${item.desc}</div>
+          </div>
+          <span class="px-1.5 py-0.5 rounded bg-orange-50 text-orange-700 border border-orange-200 text-[10px] font-bold shrink-0">${item.role}</span>
+        </button>
+      `).join('');
+    }
+
+    function renderAll() {
+      renderRolesBar();
+      renderStageRail();
+      renderStepsList();
+      renderActiveStep();
+      renderQaGrid();
+    }
+
+    function selectStep(idx) {
+      activeIdx = Math.max(0, Math.min(STEPS.length - 1, idx));
+      renderAll();
+    }
+
+    function smartAdvance() {
+      if (busy) return;
+      const s = STEPS[activeIdx];
+      const nextAct = s.actions.find((a) => !doneActions[a.id]);
+      if (nextAct) {
+        runStepAction(nextAct.id);
+      } else if (activeIdx < STEPS.length - 1) {
+        selectStep(activeIdx + 1);
+      }
+    }
+
+    function copyField(key, idx) {
+      const text = key ? DEMO_TEXTS[key] : document.getElementById(`static-field-${idx}`)?.innerText || '';
+      navigator.clipboard.writeText(text);
+      showToast('Đã sao chép nội dung vào bộ nhớ tạm.');
+    }
+
+    async function runStepAction(actionId) {
+      if (busy) return;
+      if (!timerId && elapsedSec === 0) {
+        toggleTimer();
+      }
+      busy = true;
+      try {
+        const res = await fetch(`${API_BASE}/api/step-action`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action_id: actionId, payload: DEMO_TEXTS }),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          doneActions[actionId] = true;
+          renderAll();
+        }
+        showToast(data.ok ? data.message : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      } finally {
+        busy = false;
+      }
+    }
+
+    async function loginRole(role) {
+      if (busy) return;
+      busy = true;
+      try {
+        const res = await fetch(`${API_BASE}/api/login-role`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role, step_label: `Chuyển nhanh sang ${role}` }),
+        });
+        const data = await res.json();
+        showToast(data.ok ? `Đã đưa cửa sổ ${role} (${data.full_name}) lên trước màn hình.` : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      } finally {
+        busy = false;
+      }
+    }
+
+    async function arrangeWindows(mode) {
+      try {
+        const res = await fetch(`${API_BASE}/api/arrange-windows`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode }),
+        });
+        const data = await res.json();
+        showToast(data.ok ? data.message : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function loginAllRoles() {
+      showToast('Đang khởi tạo và đăng nhập 5 cửa sổ Chrome...');
+      try {
+        const res = await fetch(`${API_BASE}/api/login-all`, { method: 'POST' });
+        const data = await res.json();
+        showToast(data.ok ? 'Đã đăng nhập tự động cả 5 vai trò!' : data.error, !data.ok);
+        pollStatus();
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function confirmResetDemoData() {
+      document.getElementById('reset-dialog').close();
+      showToast('Đang khôi phục dữ liệu mẫu PostgreSQL, MongoDB & Redis...');
+      try {
+        const res = await fetch(`${API_BASE}/api/reset-data`, { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          doneActions = {};
+          activeIdx = 0;
+          resetTimer();
+          renderAll();
+        }
+        showToast(data.ok ? data.message : data.error, !data.ok);
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function confirmCleanDemoData() {
+      document.getElementById('clean-dialog').close();
+      showToast('Đang xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa demo...');
+      try {
+        const res = await fetch(`${API_BASE}/api/clean-data`, { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          doneActions = {};
+          activeIdx = 0;
+          resetTimer();
+          renderAll();
+        }
+        showToast(data.ok ? data.message : data.error, !data.ok);
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
+    async function pollStatus() {
+      try {
+        const res = await fetch(`${API_BASE}/api/status`);
+        const data = await res.json();
+        if (data.ok) {
+          roleStates = data.roles || {};
+          windowMode = data.window_mode || 'normal';
+          document.getElementById('conn-label').textContent = 'Đã kết nối';
+          document.getElementById('conn-label').className = 'font-semibold text-orange-700';
+          document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse';
+
+          const splitBtn = document.getElementById('win-split-btn');
+          const maxBtn = document.getElementById('win-max-btn');
+          if (splitBtn && maxBtn) {
+            splitBtn.className = `px-2.5 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+              windowMode === 'split' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
+            }`;
+            maxBtn.className = `px-2 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+              windowMode === 'maximize' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
+            }`;
+          }
+          renderRolesBar();
+        }
+      } catch (e) {
+        document.getElementById('conn-label').textContent = 'Chưa bật';
+        document.getElementById('conn-label').className = 'font-semibold text-slate-500';
+        document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+      if (document.getElementById('reset-dialog')?.open || document.getElementById('clean-dialog')?.open || document.getElementById('guide-dialog')?.open) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        smartAdvance();
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        selectStep(activeIdx + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        selectStep(activeIdx - 1);
+      } else if (['1', '2', '3', '4'].includes(e.key)) {
+        const act = STEPS[activeIdx].actions[Number(e.key) - 1];
+        if (act) {
+          e.preventDefault();
+          runStepAction(act.id);
+        }
+      } else if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        loginRole(STEPS[activeIdx].role);
+      }
+    });
+
+    renderAll();
+    pollStatus();
+    setInterval(pollStatus, 4000);
+  </script>
+</body>
+</html>
