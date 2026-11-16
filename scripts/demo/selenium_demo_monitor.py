@@ -475,9 +475,13 @@ class DemoBrowserController:
                     for pwd_try in candidate_passwords:
                         try:
                             email_input = wait.until(
-                                EC.presence_of_element_located((By.CSS_SELECTOR, "#email, input[type='email']"))
+                                EC.presence_of_element_located(
+                                    (By.CSS_SELECTOR, "#email, input[type='email'], input[placeholder*='company.com']")
+                                )
                             )
-                            pwd_input = driver.find_element(By.CSS_SELECTOR, "#password, input[type='password']")
+                            pwd_input = driver.find_element(
+                                By.CSS_SELECTOR, "#password, input[type='password']"
+                            )
                             self.react_set_value(driver, email_input, info["email"], append=False, human_typing=False)
                             self.react_set_value(driver, pwd_input, pwd_try, append=False, human_typing=False)
 
@@ -1927,6 +1931,7 @@ def main() -> None:
     print(f"  - Bàn điều khiển HTML  : http://localhost:{args.port}")
     print(f"  - Cổng API điều khiển  : http://localhost:{args.port}/api/status")
     print("=" * 78)
+    print(f"Running on http://127.0.0.1:{args.port} (Press CTRL+C to quit)")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
