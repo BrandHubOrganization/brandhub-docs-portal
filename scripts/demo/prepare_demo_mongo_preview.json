@@ -11,8 +11,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z",
       "version": 1
     },
     {
@@ -26,8 +26,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z",
       "version": 1
     },
     {
@@ -41,8 +41,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z",
       "version": 1
     },
     {
@@ -56,8 +56,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z",
       "version": 1
     },
     {
@@ -71,8 +71,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-28T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z",
+      "created_at": "2026-10-28T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z",
       "version": 1
     },
     {
@@ -86,8 +86,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-28T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z",
+      "created_at": "2026-10-28T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z",
       "version": 1
     }
   ],
@@ -124,8 +124,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-03T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-03T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000902",
@@ -159,8 +159,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-04T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-04T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000903",
@@ -194,8 +194,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-05T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-05T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000904",
@@ -229,8 +229,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-06T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-06T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000905",
@@ -264,8 +264,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-07T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-07T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000906",
@@ -299,8 +299,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-08T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-08T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000907",
@@ -334,8 +334,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-09T08:07:02Z",
-      "updated_at": "2026-11-16T20:07:02Z"
+      "created_at": "2026-11-09T08:48:44Z",
+      "updated_at": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000908",
@@ -368,8 +368,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000909",
@@ -402,8 +402,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-03T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-03T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000910",
@@ -436,8 +436,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-04T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-04T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000911",
@@ -470,8 +470,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-05T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-05T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000985",
@@ -505,8 +505,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-29T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-10-29T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000986",
@@ -540,8 +540,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-30T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-10-30T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000987",
@@ -575,8 +575,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-31T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-10-31T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000988",
@@ -610,8 +610,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-01T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-01T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     }
   ],
   "client_vault_shares": [
@@ -622,7 +622,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000981",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -632,7 +632,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000982",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -642,7 +642,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000985",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -652,7 +652,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000986",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -662,7 +662,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000987",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -672,7 +672,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000988",
-      "shared_at": "2026-11-01T08:07:02Z",
+      "shared_at": "2026-11-01T08:48:44Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     }
   ],
@@ -687,11 +687,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-facebook",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:07:02Z",
+      "token_expires_at": "2027-01-11T08:48:44Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-10-18T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000862",
@@ -703,11 +703,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-instagram",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:07:02Z",
+      "token_expires_at": "2027-01-11T08:48:44Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-10-18T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000863",
@@ -719,11 +719,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-tiktok",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:07:02Z",
+      "token_expires_at": "2027-01-11T08:48:44Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-10-18T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000864",
@@ -735,11 +735,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-threads",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:07:02Z",
+      "token_expires_at": "2027-01-11T08:48:44Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-10-18T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     }
   ],
   "tasks": [
@@ -753,7 +753,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -765,7 +765,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000701",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-04T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-01T11:00:00Z",
@@ -783,10 +783,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-04T09:00:00Z",
+          "dueDate": "2026-11-01T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-01T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 1 - Coming Soon] Khởi động mùa Tuyển sinh Đại học FPT 2027 tại 5 cơ sở toàn quốc\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "5cb54186-c458-31e4-b910-7e32082cc437",
@@ -794,10 +796,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-04T09:00:00Z",
+          "dueDate": "2026-11-02T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-01T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-01T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 1 - Coming Soon] Khởi động mùa Tuyển sinh Đại học FPT 2027 tại 5 cơ sở toàn quốc\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "4c2059d4-1905-382f-bb13-92ded5b9583c",
@@ -805,10 +809,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-04T09:00:00Z",
+          "dueDate": "2026-11-03T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-01T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-02T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 1 - Coming Soon] Khởi động mùa Tuyển sinh Đại học FPT 2027 tại 5 cơ sở toàn quốc\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "59ce327a-19fb-34a7-bdca-73c20ed89326",
@@ -816,10 +822,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-04T09:00:00Z",
+          "dueDate": "2026-11-03T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-01T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-03T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 1 - Coming Soon] Khởi động mùa Tuyển sinh Đại học FPT 2027 tại 5 cơ sở toàn quốc\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "3b6a0d97-25ea-39dc-85ea-aa24de5d01a4",
@@ -829,8 +837,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-04T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-01T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-03T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 1 - Coming Soon] Khởi động mùa Tuyển sinh Đại học FPT 2027 tại 5 cơ sở toàn quốc\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -857,7 +867,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -869,7 +879,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000702",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-06T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-03T21:00:00Z",
@@ -887,10 +897,12 @@
           "name": "Ý tưởng & Kịch bản",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-06T19:00:00Z",
+          "dueDate": "2026-11-04T13:00:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-03T19:00:00Z",
-          "subtaskRole": "VIDEO_SCRIPT"
+          "subtaskRole": "VIDEO_SCRIPT",
+          "description": "Lên ý tưởng và kịch bản phân cảnh cho video \"[Tuần 1 - Reels/TikTok #1] Hé lộ kiến trúc xanh 5 cơ sở Đại học FPT đón tân sinh viên K23\": hook 3 giây đầu, 4-6 cảnh quay tại campus, lời thoại và nhạc nền phù hợp xu hướng TikTok.",
+          "acceptanceCriteria": "Kịch bản có storyboard từng cảnh, thời lượng 30-60 giây, danh sách đạo cụ/địa điểm và được Manager duyệt."
         },
         {
           "id": "e3ada038-9ae4-357b-a67b-f1e2e68e9647",
@@ -898,10 +910,12 @@
           "name": "Quay",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-06T19:00:00Z",
+          "dueDate": "2026-11-05T07:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-03T19:00:00Z",
-          "subtaskRole": "VIDEO_SHOOT"
+          "plannedStartDate": "2026-11-04T13:00:00Z",
+          "subtaskRole": "VIDEO_SHOOT",
+          "description": "Quay footage cho \"[Tuần 1 - Reels/TikTok #1] Hé lộ kiến trúc xanh 5 cơ sở Đại học FPT đón tân sinh viên K23\" tại campus theo kịch bản đã duyệt, quay dọc 9:16, có dự phòng b-roll.",
+          "acceptanceCriteria": "Đủ footage cho mọi phân cảnh, độ phân giải tối thiểu 1080p, âm thanh thu rõ và file được upload vào thư mục tuần trong /library."
         },
         {
           "id": "3da635e1-73f7-3779-8490-0000f46f70f8",
@@ -909,10 +923,12 @@
           "name": "Dựng / hậu kỳ",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-06T19:00:00Z",
+          "dueDate": "2026-11-06T01:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-03T19:00:00Z",
-          "subtaskRole": "VIDEO_EDIT"
+          "plannedStartDate": "2026-11-05T07:00:00Z",
+          "subtaskRole": "VIDEO_EDIT",
+          "description": "Dựng và hậu kỳ video \"[Tuần 1 - Reels/TikTok #1] Hé lộ kiến trúc xanh 5 cơ sở Đại học FPT đón tân sinh viên K23\": cắt nhịp nhanh, chèn phụ đề tiếng Việt, color grading tông cam FPTU và end-card CTA.",
+          "acceptanceCriteria": "Video hoàn chỉnh 30-60 giây, phụ đề khớp lời thoại, không vi phạm bản quyền nhạc, xuất bản 9:16 và được duyệt nội bộ."
         },
         {
           "id": "a7728333-5b3a-363e-ad68-8062878f8b4a",
@@ -922,8 +938,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-06T19:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-03T19:00:00Z",
-          "subtaskRole": "VIDEO_PUBLISH"
+          "plannedStartDate": "2026-11-06T01:00:00Z",
+          "subtaskRole": "VIDEO_PUBLISH",
+          "description": "Viết caption, chọn ảnh bìa và đăng video \"[Tuần 1 - Reels/TikTok #1] Hé lộ kiến trúc xanh 5 cơ sở Đại học FPT đón tân sinh viên K23\" lên TikTok, Instagram Reels và Facebook Reels.",
+          "acceptanceCriteria": "Video được đăng đúng lịch trên 3 nền tảng, caption có hashtag chiến dịch và link đăng ký tư vấn."
         }
       ],
       "typeMetadata": {
@@ -950,7 +968,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -962,7 +980,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000703",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-08T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-05T11:00:00Z",
@@ -980,10 +998,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-08T09:00:00Z",
+          "dueDate": "2026-11-05T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-05T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 1 - Học bổng] Công bố quy chế Học bổng Nguyễn Văn Đạo 2027 mức 50%, 70% và 100%\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "920e4d26-7d96-336a-8362-61af6be24eb7",
@@ -991,10 +1011,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-08T09:00:00Z",
+          "dueDate": "2026-11-06T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-05T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-05T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 1 - Học bổng] Công bố quy chế Học bổng Nguyễn Văn Đạo 2027 mức 50%, 70% và 100%\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "5ed32bae-13b6-303a-abdd-03c19ef2f36f",
@@ -1002,10 +1024,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-08T09:00:00Z",
+          "dueDate": "2026-11-07T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-05T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-06T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 1 - Học bổng] Công bố quy chế Học bổng Nguyễn Văn Đạo 2027 mức 50%, 70% và 100%\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "b2c7dcf0-6c48-34d0-88b3-a19091845421",
@@ -1013,10 +1037,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-08T09:00:00Z",
+          "dueDate": "2026-11-07T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-05T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-07T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 1 - Học bổng] Công bố quy chế Học bổng Nguyễn Văn Đạo 2027 mức 50%, 70% và 100%\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "88bc29ad-19cb-36d9-a00a-266597000a98",
@@ -1026,8 +1052,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-08T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-05T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-07T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 1 - Học bổng] Công bố quy chế Học bổng Nguyễn Văn Đạo 2027 mức 50%, 70% và 100%\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -1054,7 +1082,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1066,7 +1094,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000704",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-10T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-07T11:00:00Z",
@@ -1084,10 +1112,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-10T09:00:00Z",
+          "dueDate": "2026-11-07T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-07T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 2 - Ngành học #1] Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo: Lộ trình thực hành phòng Lab\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "613e086f-b94a-3827-97bf-04803284056a",
@@ -1095,10 +1125,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-10T09:00:00Z",
+          "dueDate": "2026-11-08T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-07T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-07T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 2 - Ngành học #1] Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo: Lộ trình thực hành phòng Lab\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "db534bc4-8e59-3547-a6f5-8ce7b07d806f",
@@ -1106,10 +1138,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-10T09:00:00Z",
+          "dueDate": "2026-11-09T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-07T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-08T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 2 - Ngành học #1] Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo: Lộ trình thực hành phòng Lab\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "d42d49f4-4ad4-3b05-9020-32f1e0a2cf10",
@@ -1117,10 +1151,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-10T09:00:00Z",
+          "dueDate": "2026-11-09T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-07T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-09T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 2 - Ngành học #1] Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo: Lộ trình thực hành phòng Lab\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "a7f373ba-a140-3037-9a37-f8f6b59453b7",
@@ -1130,8 +1166,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-10T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-07T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-09T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 2 - Ngành học #1] Thiết kế Vi mạch bán dẫn & Trí tuệ nhân tạo: Lộ trình thực hành phòng Lab\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -1158,7 +1196,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1170,7 +1208,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000705",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-11T10:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-08T12:00:00Z",
@@ -1188,10 +1226,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-11T10:00:00Z",
+          "dueDate": "2026-11-09T00:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-08T10:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 2 - Ngành học #2] Kỹ thuật phần mềm, An toàn thông tin & Quản trị kinh doanh số 2027\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "25d2df2d-7c9d-3508-8639-a66dc027ff35",
@@ -1199,10 +1239,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-11T10:00:00Z",
+          "dueDate": "2026-11-09T14:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-08T10:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-09T00:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 2 - Ngành học #2] Kỹ thuật phần mềm, An toàn thông tin & Quản trị kinh doanh số 2027\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "29b886a0-b97d-3911-ae5e-22f840b6aba3",
@@ -1210,10 +1252,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-11T10:00:00Z",
+          "dueDate": "2026-11-10T05:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-08T10:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-09T14:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 2 - Ngành học #2] Kỹ thuật phần mềm, An toàn thông tin & Quản trị kinh doanh số 2027\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "99b2b018-e8f4-35a6-a2dd-eb61ee1d3766",
@@ -1221,10 +1265,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-11T10:00:00Z",
+          "dueDate": "2026-11-10T19:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-08T10:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-10T05:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 2 - Ngành học #2] Kỹ thuật phần mềm, An toàn thông tin & Quản trị kinh doanh số 2027\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "f6bef2e1-b897-302a-a879-86196280fde3",
@@ -1234,8 +1280,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-11T10:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-08T10:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-10T19:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 2 - Ngành học #2] Kỹ thuật phần mềm, An toàn thông tin & Quản trị kinh doanh số 2027\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -1262,7 +1310,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1274,7 +1322,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000751",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-13T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-10T11:00:00Z",
@@ -1292,10 +1340,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-13T09:00:00Z",
+          "dueDate": "2026-11-10T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-10T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 2 - Tiện ích Campus] Khám phá thư viện xanh, sân Vovinam, ký túc xá & 40 CLB sinh viên FPTU\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "19859215-b8d6-3d4e-8365-b9731d77f797",
@@ -1303,10 +1353,12 @@
           "name": "Viết content",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-13T09:00:00Z",
+          "dueDate": "2026-11-11T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-10T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-10T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 2 - Tiện ích Campus] Khám phá thư viện xanh, sân Vovinam, ký túc xá & 40 CLB sinh viên FPTU\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "3602f850-2667-3d85-b33d-7f340b726fbd",
@@ -1314,10 +1366,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-13T09:00:00Z",
+          "dueDate": "2026-11-12T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-10T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-11T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 2 - Tiện ích Campus] Khám phá thư viện xanh, sân Vovinam, ký túc xá & 40 CLB sinh viên FPTU\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "c349779b-4992-3f27-8603-752ef1e952f0",
@@ -1325,10 +1379,12 @@
           "name": "Biên tập",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-13T09:00:00Z",
+          "dueDate": "2026-11-12T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-10T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-12T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 2 - Tiện ích Campus] Khám phá thư viện xanh, sân Vovinam, ký túc xá & 40 CLB sinh viên FPTU\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "db434a2b-bbfc-3105-9dd4-4bab38f5e30b",
@@ -1338,8 +1394,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-13T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-10T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-12T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 2 - Tiện ích Campus] Khám phá thư viện xanh, sân Vovinam, ký túc xá & 40 CLB sinh viên FPTU\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -1366,7 +1424,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1378,7 +1436,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000707",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-14T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-11T21:00:00Z",
@@ -1396,10 +1454,12 @@
           "name": "Ý tưởng & Kịch bản",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-14T19:00:00Z",
+          "dueDate": "2026-11-12T13:00:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-11T19:00:00Z",
-          "subtaskRole": "VIDEO_SCRIPT"
+          "subtaskRole": "VIDEO_SCRIPT",
+          "description": "Lên ý tưởng và kịch bản phân cảnh cho video \"[Tuần 2 - Reels/TikTok #2] Một ngày trải nghiệm phòng Lab bán dẫn, giờ Vovinam và CLB tại FPTU\": hook 3 giây đầu, 4-6 cảnh quay tại campus, lời thoại và nhạc nền phù hợp xu hướng TikTok.",
+          "acceptanceCriteria": "Kịch bản có storyboard từng cảnh, thời lượng 30-60 giây, danh sách đạo cụ/địa điểm và được Manager duyệt."
         },
         {
           "id": "bd66b87e-8ede-3102-9744-750369dfdadc",
@@ -1407,10 +1467,12 @@
           "name": "Quay",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-14T19:00:00Z",
+          "dueDate": "2026-11-13T07:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-11T19:00:00Z",
-          "subtaskRole": "VIDEO_SHOOT"
+          "plannedStartDate": "2026-11-12T13:00:00Z",
+          "subtaskRole": "VIDEO_SHOOT",
+          "description": "Quay footage cho \"[Tuần 2 - Reels/TikTok #2] Một ngày trải nghiệm phòng Lab bán dẫn, giờ Vovinam và CLB tại FPTU\" tại campus theo kịch bản đã duyệt, quay dọc 9:16, có dự phòng b-roll.",
+          "acceptanceCriteria": "Đủ footage cho mọi phân cảnh, độ phân giải tối thiểu 1080p, âm thanh thu rõ và file được upload vào thư mục tuần trong /library."
         },
         {
           "id": "3afb4507-61b8-36fc-aa6f-2ca2618fa11a",
@@ -1418,10 +1480,12 @@
           "name": "Dựng / hậu kỳ",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-14T19:00:00Z",
+          "dueDate": "2026-11-14T01:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-11T19:00:00Z",
-          "subtaskRole": "VIDEO_EDIT"
+          "plannedStartDate": "2026-11-13T07:00:00Z",
+          "subtaskRole": "VIDEO_EDIT",
+          "description": "Dựng và hậu kỳ video \"[Tuần 2 - Reels/TikTok #2] Một ngày trải nghiệm phòng Lab bán dẫn, giờ Vovinam và CLB tại FPTU\": cắt nhịp nhanh, chèn phụ đề tiếng Việt, color grading tông cam FPTU và end-card CTA.",
+          "acceptanceCriteria": "Video hoàn chỉnh 30-60 giây, phụ đề khớp lời thoại, không vi phạm bản quyền nhạc, xuất bản 9:16 và được duyệt nội bộ."
         },
         {
           "id": "f15d0da7-4e74-3201-a3aa-5650cb4b8227",
@@ -1431,8 +1495,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T19:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-11T19:00:00Z",
-          "subtaskRole": "VIDEO_PUBLISH"
+          "plannedStartDate": "2026-11-14T01:00:00Z",
+          "subtaskRole": "VIDEO_PUBLISH",
+          "description": "Viết caption, chọn ảnh bìa và đăng video \"[Tuần 2 - Reels/TikTok #2] Một ngày trải nghiệm phòng Lab bán dẫn, giờ Vovinam và CLB tại FPTU\" lên TikTok, Instagram Reels và Facebook Reels.",
+          "acceptanceCriteria": "Video được đăng đúng lịch trên 3 nền tảng, caption có hashtag chiến dịch và link đăng ký tư vấn."
         }
       ],
       "typeMetadata": {
@@ -1459,7 +1525,7 @@
       "type": "EMAIL_NEWSLETTER",
       "status": "FINISHED",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1471,7 +1537,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000708",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-15T15:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-12T17:00:00Z",
@@ -1489,10 +1555,12 @@
           "name": "Viết nội dung",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-15T15:00:00Z",
+          "dueDate": "2026-11-13T09:00:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-12T15:00:00Z",
-          "subtaskRole": "EMAIL_CONTENT"
+          "subtaskRole": "EMAIL_CONTENT",
+          "description": "Viết nội dung bản tin email \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\": tiêu đề, preheader, thân bài về học bổng/OJT và CTA đăng ký.",
+          "acceptanceCriteria": "Tiêu đề dưới 60 ký tự, nội dung không lỗi chính tả, có 1 CTA chính và được Manager duyệt."
         },
         {
           "id": "05dcb55c-a88d-3e5c-ae1e-1c42fd4afcdc",
@@ -1500,10 +1568,12 @@
           "name": "Thiết kế template",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-15T15:00:00Z",
+          "dueDate": "2026-11-14T03:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-12T15:00:00Z",
-          "subtaskRole": "EMAIL_DESIGN"
+          "plannedStartDate": "2026-11-13T09:00:00Z",
+          "subtaskRole": "EMAIL_DESIGN",
+          "description": "Thiết kế template email cho \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\" theo nhận diện FPTU, hiển thị tốt trên mobile và Gmail/Outlook.",
+          "acceptanceCriteria": "Template responsive, ảnh có alt text, test hiển thị trên 3 client email không lỗi bố cục."
         },
         {
           "id": "88be43d1-b078-3d40-9e43-ae7b1adf8d11",
@@ -1511,10 +1581,12 @@
           "name": "Danh sách & lịch gửi",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-15T15:00:00Z",
+          "dueDate": "2026-11-14T21:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-12T15:00:00Z",
-          "subtaskRole": "EMAIL_SEND"
+          "plannedStartDate": "2026-11-14T03:00:00Z",
+          "subtaskRole": "EMAIL_SEND",
+          "description": "Chuẩn bị danh sách người nhận (học sinh, phụ huynh đã đăng ký) và lên lịch gửi \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\".",
+          "acceptanceCriteria": "Danh sách đã loại email hủy đăng ký, gửi thử thành công và lịch gửi được xác nhận."
         },
         {
           "id": "e5f4159a-2cf6-3f54-984b-aa3082afd831",
@@ -1524,8 +1596,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-15T15:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-12T15:00:00Z",
-          "subtaskRole": "EMAIL_REPORT"
+          "plannedStartDate": "2026-11-14T21:00:00Z",
+          "subtaskRole": "EMAIL_REPORT",
+          "description": "Báo cáo hiệu quả email \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\": tỉ lệ mở, click, hủy đăng ký.",
+          "acceptanceCriteria": "Có số liệu open rate, click rate sau 48 giờ và đề xuất tối ưu cho bản tin kế tiếp."
         }
       ],
       "typeMetadata": {
@@ -1552,7 +1626,7 @@
       "type": "SURVEY",
       "status": "FINISHED",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1564,7 +1638,7 @@
       "sourceType": "CAMPAIGN_OUT_OF_SCOPE",
       "sourceRefId": null,
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-15T18:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-12T20:00:00Z",
@@ -1582,10 +1656,12 @@
           "name": "Thiết kế bảng hỏi",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-15T18:00:00Z",
+          "dueDate": "2026-11-13T18:00:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-12T18:00:00Z",
-          "subtaskRole": "SURVEY_DESIGN"
+          "subtaskRole": "SURVEY_DESIGN",
+          "description": "Thiết kế bảng hỏi cho \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" khảo sát nhu cầu chọn ngành và mối quan tâm học bổng của học sinh lớp 12.",
+          "acceptanceCriteria": "Bảng hỏi 8-12 câu, không câu hỏi dẫn dắt, đã chạy thử với 5 học sinh và được Manager duyệt."
         },
         {
           "id": "0890ab1d-1d31-3153-a0f9-96875ca16a4e",
@@ -1593,10 +1669,12 @@
           "name": "Phân phối & thu thập",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-15T18:00:00Z",
+          "dueDate": "2026-11-14T18:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-12T18:00:00Z",
-          "subtaskRole": "SURVEY_DISTRIBUTE"
+          "plannedStartDate": "2026-11-13T18:00:00Z",
+          "subtaskRole": "SURVEY_DISTRIBUTE",
+          "description": "Phân phối khảo sát \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" tại các buổi Workshop THPT và qua fanpage, thu thập phản hồi.",
+          "acceptanceCriteria": "Thu về tối thiểu số phản hồi mục tiêu, dữ liệu sạch không trùng lặp."
         },
         {
           "id": "d07b83fc-94ca-339e-ab80-ac0fb3b8b7a2",
@@ -1606,8 +1684,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-15T18:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-12T18:00:00Z",
-          "subtaskRole": "SURVEY_ANALYSIS"
+          "plannedStartDate": "2026-11-14T18:00:00Z",
+          "subtaskRole": "SURVEY_ANALYSIS",
+          "description": "Phân tích kết quả khảo sát \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" và rút ra insight cho nội dung tuần tiếp theo.",
+          "acceptanceCriteria": "Báo cáo có biểu đồ, 3-5 insight chính và đề xuất áp dụng vào kế hoạch nội dung."
         }
       ],
       "typeMetadata": {
@@ -1635,7 +1715,7 @@
       "type": "POST",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1647,8 +1727,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000706",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T11:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -1665,10 +1745,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T09:00:00Z",
+          "dueDate": "2026-11-16T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-16T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 3 - Bài trọng điểm] Điểm nhấn Chuỗi Workshop THPT & Mở đăng ký Học bổng Vi mạch, AI đợt 1 năm 2027\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "bdf8c977-9b3e-35a9-8120-104e1b04cd33",
@@ -1676,10 +1758,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T09:00:00Z",
+          "dueDate": "2026-11-17T13:48:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-16T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 3 - Bài trọng điểm] Điểm nhấn Chuỗi Workshop THPT & Mở đăng ký Học bổng Vi mạch, AI đợt 1 năm 2027\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "a9eca5ad-4568-3c40-9f8e-2f8ef79925dd",
@@ -1687,10 +1771,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T09:00:00Z",
+          "dueDate": "2026-11-18T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-16T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-17T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 3 - Bài trọng điểm] Điểm nhấn Chuỗi Workshop THPT & Mở đăng ký Học bổng Vi mạch, AI đợt 1 năm 2027\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "8f2b4a53-b20c-3d49-9b62-874809be32de",
@@ -1698,10 +1784,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T09:00:00Z",
+          "dueDate": "2026-11-18T18:36:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-18T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 3 - Bài trọng điểm] Điểm nhấn Chuỗi Workshop THPT & Mở đăng ký Học bổng Vi mạch, AI đợt 1 năm 2027\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "2f048a52-6055-34d1-9f23-644c8299d580",
@@ -1711,8 +1799,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-19T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-16T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-18T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 3 - Bài trọng điểm] Điểm nhấn Chuỗi Workshop THPT & Mở đăng ký Học bổng Vi mạch, AI đợt 1 năm 2027\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -1731,7 +1821,7 @@
       "type": "WORKSHOP",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1743,7 +1833,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000711",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-16T16:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-13T18:00:00Z",
@@ -1761,10 +1851,12 @@
           "name": "Nội dung chương trình",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-16T16:00:00Z",
+          "dueDate": "2026-11-14T06:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-13T16:00:00Z",
-          "subtaskRole": "WORKSHOP_PROGRAM"
+          "subtaskRole": "WORKSHOP_PROGRAM",
+          "description": "Xây dựng nội dung chương trình cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": timeline 90 phút gồm giới thiệu ngành, trải nghiệm VR/Robotics và tư vấn Học bổng 2027.",
+          "acceptanceCriteria": "Có agenda chi tiết theo phút, slide trình chiếu và kịch bản MC được Ban Tuyển sinh xác nhận."
         },
         {
           "id": "419ac6be-efd6-3921-aa48-7fc8ef933532",
@@ -1772,10 +1864,12 @@
           "name": "Diễn giả",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-16T16:00:00Z",
+          "dueDate": "2026-11-14T20:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-13T16:00:00Z",
-          "subtaskRole": "WORKSHOP_SPEAKER"
+          "plannedStartDate": "2026-11-14T06:24:00Z",
+          "subtaskRole": "WORKSHOP_SPEAKER",
+          "description": "Mời và brief diễn giả cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\" (giảng viên ngành Vi mạch/AI và đại diện sinh viên OJT).",
+          "acceptanceCriteria": "Ít nhất 2 diễn giả xác nhận tham gia, nhận đủ brief nội dung và lịch tổng duyệt."
         },
         {
           "id": "6204ac27-dc76-31ca-bbbd-bda7b1c3ef01",
@@ -1783,10 +1877,12 @@
           "name": "Hậu cần",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-16T16:00:00Z",
+          "dueDate": "2026-11-15T11:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-13T16:00:00Z",
-          "subtaskRole": "WORKSHOP_LOGISTICS"
+          "plannedStartDate": "2026-11-14T20:48:00Z",
+          "subtaskRole": "WORKSHOP_LOGISTICS",
+          "description": "Chuẩn bị hậu cần cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": thiết bị VR, cánh tay robot demo, backdrop, quà tặng và xe đưa đón học sinh.",
+          "acceptanceCriteria": "Checklist hậu cần hoàn tất 100%, thiết bị chạy thử trước 1 ngày, có phương án dự phòng thiết bị."
         },
         {
           "id": "1f95e61f-36c6-325d-8f5e-005327441c2a",
@@ -1794,10 +1890,12 @@
           "name": "Đăng ký & truyền thông",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-16T16:00:00Z",
+          "dueDate": "2026-11-16T01:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-13T16:00:00Z",
-          "subtaskRole": "WORKSHOP_REGISTRATION"
+          "plannedStartDate": "2026-11-15T11:12:00Z",
+          "subtaskRole": "WORKSHOP_REGISTRATION",
+          "description": "Mở form đăng ký và truyền thông cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\" qua fanpage, email và nhóm phụ huynh các trường THPT.",
+          "acceptanceCriteria": "Form đăng ký hoạt động, đạt tối thiểu 80% chỉ tiêu người tham dự, gửi email vé mời QR trước 2 ngày."
         },
         {
           "id": "3f38f79b-3e92-3fda-9f64-3a449e540ee5",
@@ -1807,8 +1905,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-16T16:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-13T16:00:00Z",
-          "subtaskRole": "WORKSHOP_REPORT"
+          "plannedStartDate": "2026-11-16T01:36:00Z",
+          "subtaskRole": "WORKSHOP_REPORT",
+          "description": "Tổng kết \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": số người tham dự, phản hồi khảo sát, ảnh hoạt động và đề xuất cho buổi tiếp theo.",
+          "acceptanceCriteria": "Báo cáo có số liệu tham dự, tỉ lệ hài lòng, 10 ảnh tiêu biểu và được gửi Client trong 48 giờ."
         }
       ],
       "typeMetadata": {
@@ -1835,7 +1935,7 @@
       "type": "WORKSHOP",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1847,8 +1947,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000712",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T17:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -1865,10 +1965,12 @@
           "name": "Nội dung chương trình",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T15:00:00Z",
+          "dueDate": "2026-11-17T05:24:00Z",
           "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-16T15:00:00Z",
-          "subtaskRole": "WORKSHOP_PROGRAM"
+          "subtaskRole": "WORKSHOP_PROGRAM",
+          "description": "Xây dựng nội dung chương trình cho \"[Tuần 3 - Workshop #2] Workshop định hướng ngành Bán dẫn, AI & phổ biến tiện ích OJT cho cụm THPT Hà Nội - TP.HCM\": timeline 90 phút gồm giới thiệu ngành, trải nghiệm VR/Robotics và tư vấn Học bổng 2027.",
+          "acceptanceCriteria": "Có agenda chi tiết theo phút, slide trình chiếu và kịch bản MC được Ban Tuyển sinh xác nhận."
         },
         {
           "id": "74359a66-bfc0-34e1-89fb-86af162470d4",
@@ -1876,10 +1978,12 @@
           "name": "Diễn giả",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T15:00:00Z",
+          "dueDate": "2026-11-17T19:48:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T15:00:00Z",
-          "subtaskRole": "WORKSHOP_SPEAKER"
+          "plannedStartDate": "2026-11-17T05:24:00Z",
+          "subtaskRole": "WORKSHOP_SPEAKER",
+          "description": "Mời và brief diễn giả cho \"[Tuần 3 - Workshop #2] Workshop định hướng ngành Bán dẫn, AI & phổ biến tiện ích OJT cho cụm THPT Hà Nội - TP.HCM\" (giảng viên ngành Vi mạch/AI và đại diện sinh viên OJT).",
+          "acceptanceCriteria": "Ít nhất 2 diễn giả xác nhận tham gia, nhận đủ brief nội dung và lịch tổng duyệt."
         },
         {
           "id": "efd9d6cb-9334-3a92-ae01-24de255666e9",
@@ -1887,10 +1991,12 @@
           "name": "Hậu cần",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T15:00:00Z",
+          "dueDate": "2026-11-18T10:12:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T15:00:00Z",
-          "subtaskRole": "WORKSHOP_LOGISTICS"
+          "plannedStartDate": "2026-11-17T19:48:00Z",
+          "subtaskRole": "WORKSHOP_LOGISTICS",
+          "description": "Chuẩn bị hậu cần cho \"[Tuần 3 - Workshop #2] Workshop định hướng ngành Bán dẫn, AI & phổ biến tiện ích OJT cho cụm THPT Hà Nội - TP.HCM\": thiết bị VR, cánh tay robot demo, backdrop, quà tặng và xe đưa đón học sinh.",
+          "acceptanceCriteria": "Checklist hậu cần hoàn tất 100%, thiết bị chạy thử trước 1 ngày, có phương án dự phòng thiết bị."
         },
         {
           "id": "afb128ac-4612-3610-bf65-924e65f3adc5",
@@ -1898,10 +2004,12 @@
           "name": "Đăng ký & truyền thông",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-19T15:00:00Z",
+          "dueDate": "2026-11-19T00:36:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T15:00:00Z",
-          "subtaskRole": "WORKSHOP_REGISTRATION"
+          "plannedStartDate": "2026-11-18T10:12:00Z",
+          "subtaskRole": "WORKSHOP_REGISTRATION",
+          "description": "Mở form đăng ký và truyền thông cho \"[Tuần 3 - Workshop #2] Workshop định hướng ngành Bán dẫn, AI & phổ biến tiện ích OJT cho cụm THPT Hà Nội - TP.HCM\" qua fanpage, email và nhóm phụ huynh các trường THPT.",
+          "acceptanceCriteria": "Form đăng ký hoạt động, đạt tối thiểu 80% chỉ tiêu người tham dự, gửi email vé mời QR trước 2 ngày."
         },
         {
           "id": "1b107580-18f4-3a06-bcba-edd27a416896",
@@ -1911,8 +2019,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-19T15:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-16T15:00:00Z",
-          "subtaskRole": "WORKSHOP_REPORT"
+          "plannedStartDate": "2026-11-19T00:36:00Z",
+          "subtaskRole": "WORKSHOP_REPORT",
+          "description": "Tổng kết \"[Tuần 3 - Workshop #2] Workshop định hướng ngành Bán dẫn, AI & phổ biến tiện ích OJT cho cụm THPT Hà Nội - TP.HCM\": số người tham dự, phản hồi khảo sát, ảnh hoạt động và đề xuất cho buổi tiếp theo.",
+          "acceptanceCriteria": "Báo cáo có số liệu tham dự, tỉ lệ hài lòng, 10 ảnh tiêu biểu và được gửi Client trong 48 giờ."
         }
       ],
       "typeMetadata": {
@@ -1931,7 +2041,7 @@
       "type": "KOL_BOOKING",
       "status": "IN_REVIEW",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1943,8 +2053,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000713",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-15T19:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -1961,10 +2071,12 @@
           "name": "Tìm & đề xuất KOL",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-18T17:00:00Z",
+          "dueDate": "2026-11-16T07:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-15T17:00:00Z",
-          "subtaskRole": "KOL_SOURCING"
+          "subtaskRole": "KOL_SOURCING",
+          "description": "Tìm và đề xuất KOL/KOC công nghệ, giáo dục phù hợp tệp học sinh 2k9 cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\".",
+          "acceptanceCriteria": "Danh sách tối thiểu 5 KOL kèm chỉ số follower, tương tác trung bình và báo giá; đã được Manager chọn shortlist."
         },
         {
           "id": "62719631-9444-3752-b49d-9591765be08f",
@@ -1972,10 +2084,12 @@
           "name": "Đàm phán",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-18T17:00:00Z",
+          "dueDate": "2026-11-16T21:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-15T17:00:00Z",
-          "subtaskRole": "KOL_NEGOTIATION"
+          "plannedStartDate": "2026-11-16T07:24:00Z",
+          "subtaskRole": "KOL_NEGOTIATION",
+          "description": "Đàm phán chi phí, quyền lợi và lịch đăng với KOL đã chọn cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\".",
+          "acceptanceCriteria": "Chi phí nằm trong ngân sách gói, điều khoản rõ ràng về số bài/quyền sử dụng nội dung và có xác nhận bằng văn bản."
         },
         {
           "id": "d0feb4d3-33cc-3b44-89e8-0cb3ea4ae485",
@@ -1983,10 +2097,12 @@
           "name": "Brief cho KOL",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-18T17:00:00Z",
+          "dueDate": "2026-11-17T12:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-15T17:00:00Z",
-          "subtaskRole": "KOL_BRIEF"
+          "plannedStartDate": "2026-11-16T21:48:00Z",
+          "subtaskRole": "KOL_BRIEF",
+          "description": "Soạn brief cho KOL thực hiện \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\": thông điệp chính, từ khóa cần tránh, hashtag và mốc thời gian.",
+          "acceptanceCriteria": "Brief được KOL xác nhận đã đọc, có danh sách từ khóa hạn chế theo Brand Profile ĐH FPT."
         },
         {
           "id": "4f237a95-66d5-382d-8a2e-12828c3ffdc8",
@@ -1994,10 +2110,12 @@
           "name": "Duyệt nội dung KOL",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-18T17:00:00Z",
+          "dueDate": "2026-11-18T02:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-15T17:00:00Z",
-          "subtaskRole": "KOL_CONTENT_REVIEW"
+          "plannedStartDate": "2026-11-17T12:12:00Z",
+          "subtaskRole": "KOL_CONTENT_REVIEW",
+          "description": "Duyệt bản nháp nội dung KOL gửi cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\" trước khi đăng.",
+          "acceptanceCriteria": "Nội dung đúng brief, không chứa từ khóa hạn chế, có Client duyệt cuối trước giờ đăng."
         },
         {
           "id": "c4baf375-3b68-347d-9e4f-14f63a7ed7d5",
@@ -2007,8 +2125,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T17:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-15T17:00:00Z",
-          "subtaskRole": "KOL_TRACKING"
+          "plannedStartDate": "2026-11-18T02:36:00Z",
+          "subtaskRole": "KOL_TRACKING",
+          "description": "Theo dõi hiệu quả bài đăng KOL cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\": reach, tương tác, lượt click link đăng ký.",
+          "acceptanceCriteria": "Báo cáo số liệu sau 72 giờ đăng, so sánh với cam kết và đề xuất KOL cho đợt sau."
         }
       ],
       "typeMetadata": {
@@ -2020,7 +2140,7 @@
       "lastSubmission": {
         "round": 1,
         "submittedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-        "submittedAt": "2026-11-17T04:07:02Z",
+        "submittedAt": "2026-11-17T04:48:44Z",
         "closedBy": null,
         "closedAt": null,
         "outcome": null
@@ -2036,7 +2156,7 @@
       "type": "EVENT_PLAN",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2048,8 +2168,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000714",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-17T18:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2066,10 +2186,12 @@
           "name": "Concept & Agenda",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T16:00:00Z",
+          "dueDate": "2026-11-18T06:24:00Z",
           "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-17T16:00:00Z",
-          "subtaskRole": "EVENT_AGENDA"
+          "subtaskRole": "EVENT_AGENDA",
+          "description": "Lên concept và agenda cho \"[Tuần 3 - Sự kiện lớn] Ngày hội FPTU Open Day 2027: Một ngày làm sinh viên Đại học FPT\": chủ đề, các khu trải nghiệm, khung giờ sân khấu và tuyến tham quan.",
+          "acceptanceCriteria": "Agenda chi tiết theo giờ, sơ đồ khu vực và concept visual được Ban Tuyển sinh phê duyệt."
         },
         {
           "id": "b78b852f-ef1c-3266-a6f2-04caba8fcfeb",
@@ -2077,10 +2199,12 @@
           "name": "Hậu cần & Địa điểm",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T16:00:00Z",
+          "dueDate": "2026-11-18T20:48:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T16:00:00Z",
-          "subtaskRole": "EVENT_LOGISTICS"
+          "plannedStartDate": "2026-11-18T06:24:00Z",
+          "subtaskRole": "EVENT_LOGISTICS",
+          "description": "Điều phối hậu cần và địa điểm cho \"[Tuần 3 - Sự kiện lớn] Ngày hội FPTU Open Day 2027: Một ngày làm sinh viên Đại học FPT\": sân khấu, âm thanh ánh sáng, gian hàng ngành học và đón tiếp.",
+          "acceptanceCriteria": "Hợp đồng nhà cung cấp đã ký, tổng duyệt kỹ thuật hoàn tất trước 1 ngày, có sơ đồ phân luồng khách."
         },
         {
           "id": "51f4e9fc-f693-391c-80d5-b1953f1fca5f",
@@ -2088,10 +2212,12 @@
           "name": "Truyền thông sự kiện",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T16:00:00Z",
+          "dueDate": "2026-11-19T11:12:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T16:00:00Z",
-          "subtaskRole": "EVENT_PROMOTION"
+          "plannedStartDate": "2026-11-18T20:48:00Z",
+          "subtaskRole": "EVENT_PROMOTION",
+          "description": "Truyền thông trước sự kiện \"[Tuần 3 - Sự kiện lớn] Ngày hội FPTU Open Day 2027: Một ngày làm sinh viên Đại học FPT\": countdown trên 4 nền tảng, email mời và phối hợp KOL.",
+          "acceptanceCriteria": "Đủ chuỗi bài countdown theo lịch, lượt đăng ký đạt chỉ tiêu và thông tin sự kiện nhất quán mọi kênh."
         },
         {
           "id": "8d8448da-74aa-3ef5-b622-ca8065849458",
@@ -2099,10 +2225,12 @@
           "name": "Điều phối tại chỗ",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T16:00:00Z",
+          "dueDate": "2026-11-20T01:36:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T16:00:00Z",
-          "subtaskRole": "EVENT_ONSITE"
+          "plannedStartDate": "2026-11-19T11:12:00Z",
+          "subtaskRole": "EVENT_ONSITE",
+          "description": "Điều phối tại chỗ trong ngày diễn ra \"[Tuần 3 - Sự kiện lớn] Ngày hội FPTU Open Day 2027: Một ngày làm sinh viên Đại học FPT\": quản lý timeline sân khấu, đội tình nguyện viên và livestream bài đăng nhanh.",
+          "acceptanceCriteria": "Chương trình chạy đúng timeline (lệch dưới 10 phút), không sự cố an toàn, có ít nhất 3 bài đăng cập nhật trong ngày."
         },
         {
           "id": "ab9f50f9-9f7c-3a79-89ef-b8fd5829307c",
@@ -2112,8 +2240,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-20T16:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T16:00:00Z",
-          "subtaskRole": "EVENT_REPORT"
+          "plannedStartDate": "2026-11-20T01:36:00Z",
+          "subtaskRole": "EVENT_REPORT",
+          "description": "Báo cáo sau sự kiện \"[Tuần 3 - Sự kiện lớn] Ngày hội FPTU Open Day 2027: Một ngày làm sinh viên Đại học FPT\": lượt khách, lead đăng ký tư vấn, độ phủ truyền thông và bài học kinh nghiệm.",
+          "acceptanceCriteria": "Báo cáo đầy đủ số liệu, so sánh với KPI ban đầu và được gửi Client trong 3 ngày làm việc."
         }
       ],
       "typeMetadata": {
@@ -2132,7 +2262,7 @@
       "type": "KOL_BOOKING",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2144,8 +2274,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000715",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-17T20:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -2162,10 +2292,12 @@
           "name": "Tìm & đề xuất KOL",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T18:00:00Z",
+          "dueDate": "2026-11-18T08:24:00Z",
           "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-17T18:00:00Z",
-          "subtaskRole": "KOL_SOURCING"
+          "subtaskRole": "KOL_SOURCING",
+          "description": "Tìm và đề xuất KOL/KOC công nghệ, giáo dục phù hợp tệp học sinh 2k9 cho \"[Tuần 3 - KOL #2] Đại sứ Sinh viên khóa K19 kể chuyện kỳ thực tập OJT tại FPT Software trong Open Day\".",
+          "acceptanceCriteria": "Danh sách tối thiểu 5 KOL kèm chỉ số follower, tương tác trung bình và báo giá; đã được Manager chọn shortlist."
         },
         {
           "id": "7e1dcfb0-fc7e-377a-963b-f730c38a3b4a",
@@ -2173,10 +2305,12 @@
           "name": "Đàm phán",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T18:00:00Z",
+          "dueDate": "2026-11-18T22:48:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T18:00:00Z",
-          "subtaskRole": "KOL_NEGOTIATION"
+          "plannedStartDate": "2026-11-18T08:24:00Z",
+          "subtaskRole": "KOL_NEGOTIATION",
+          "description": "Đàm phán chi phí, quyền lợi và lịch đăng với KOL đã chọn cho \"[Tuần 3 - KOL #2] Đại sứ Sinh viên khóa K19 kể chuyện kỳ thực tập OJT tại FPT Software trong Open Day\".",
+          "acceptanceCriteria": "Chi phí nằm trong ngân sách gói, điều khoản rõ ràng về số bài/quyền sử dụng nội dung và có xác nhận bằng văn bản."
         },
         {
           "id": "37ae734f-3459-3bca-b6a1-122354b2a8dc",
@@ -2184,10 +2318,12 @@
           "name": "Brief cho KOL",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T18:00:00Z",
+          "dueDate": "2026-11-19T13:12:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T18:00:00Z",
-          "subtaskRole": "KOL_BRIEF"
+          "plannedStartDate": "2026-11-18T22:48:00Z",
+          "subtaskRole": "KOL_BRIEF",
+          "description": "Soạn brief cho KOL thực hiện \"[Tuần 3 - KOL #2] Đại sứ Sinh viên khóa K19 kể chuyện kỳ thực tập OJT tại FPT Software trong Open Day\": thông điệp chính, từ khóa cần tránh, hashtag và mốc thời gian.",
+          "acceptanceCriteria": "Brief được KOL xác nhận đã đọc, có danh sách từ khóa hạn chế theo Brand Profile ĐH FPT."
         },
         {
           "id": "66b3777a-5261-3415-b45e-e22ef9bc052c",
@@ -2195,10 +2331,12 @@
           "name": "Duyệt nội dung KOL",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-20T18:00:00Z",
+          "dueDate": "2026-11-20T03:36:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T18:00:00Z",
-          "subtaskRole": "KOL_CONTENT_REVIEW"
+          "plannedStartDate": "2026-11-19T13:12:00Z",
+          "subtaskRole": "KOL_CONTENT_REVIEW",
+          "description": "Duyệt bản nháp nội dung KOL gửi cho \"[Tuần 3 - KOL #2] Đại sứ Sinh viên khóa K19 kể chuyện kỳ thực tập OJT tại FPT Software trong Open Day\" trước khi đăng.",
+          "acceptanceCriteria": "Nội dung đúng brief, không chứa từ khóa hạn chế, có Client duyệt cuối trước giờ đăng."
         },
         {
           "id": "2f2bdd8c-785f-367e-a6f4-4d4e881f4542",
@@ -2208,8 +2346,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-20T18:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-17T18:00:00Z",
-          "subtaskRole": "KOL_TRACKING"
+          "plannedStartDate": "2026-11-20T03:36:00Z",
+          "subtaskRole": "KOL_TRACKING",
+          "description": "Theo dõi hiệu quả bài đăng KOL cho \"[Tuần 3 - KOL #2] Đại sứ Sinh viên khóa K19 kể chuyện kỳ thực tập OJT tại FPT Software trong Open Day\": reach, tương tác, lượt click link đăng ký.",
+          "acceptanceCriteria": "Báo cáo số liệu sau 72 giờ đăng, so sánh với cam kết và đề xuất KOL cho đợt sau."
         }
       ],
       "typeMetadata": {
@@ -2228,7 +2368,7 @@
       "type": "SHORT_VIDEO",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2240,8 +2380,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000716",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-18T22:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2258,10 +2398,12 @@
           "name": "Ý tưởng & Kịch bản",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-21T20:00:00Z",
+          "dueDate": "2026-11-19T14:00:00Z",
           "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-18T20:00:00Z",
-          "subtaskRole": "VIDEO_SCRIPT"
+          "subtaskRole": "VIDEO_SCRIPT",
+          "description": "Lên ý tưởng và kịch bản phân cảnh cho video \"[Tuần 3 - Reels/TikTok #3] Video Recap không khí học sinh THPT hào hứng thử nghiệm VR & Robotics tại Workshop\": hook 3 giây đầu, 4-6 cảnh quay tại campus, lời thoại và nhạc nền phù hợp xu hướng TikTok.",
+          "acceptanceCriteria": "Kịch bản có storyboard từng cảnh, thời lượng 30-60 giây, danh sách đạo cụ/địa điểm và được Manager duyệt."
         },
         {
           "id": "4e0c6938-355d-3c61-9cf6-70825f3bf781",
@@ -2269,10 +2411,12 @@
           "name": "Quay",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-21T20:00:00Z",
+          "dueDate": "2026-11-20T08:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-18T20:00:00Z",
-          "subtaskRole": "VIDEO_SHOOT"
+          "plannedStartDate": "2026-11-19T14:00:00Z",
+          "subtaskRole": "VIDEO_SHOOT",
+          "description": "Quay footage cho \"[Tuần 3 - Reels/TikTok #3] Video Recap không khí học sinh THPT hào hứng thử nghiệm VR & Robotics tại Workshop\" tại campus theo kịch bản đã duyệt, quay dọc 9:16, có dự phòng b-roll.",
+          "acceptanceCriteria": "Đủ footage cho mọi phân cảnh, độ phân giải tối thiểu 1080p, âm thanh thu rõ và file được upload vào thư mục tuần trong /library."
         },
         {
           "id": "39acfaef-e996-3ebe-9535-042f48decedf",
@@ -2280,10 +2424,12 @@
           "name": "Dựng / hậu kỳ",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-21T20:00:00Z",
+          "dueDate": "2026-11-21T02:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-18T20:00:00Z",
-          "subtaskRole": "VIDEO_EDIT"
+          "plannedStartDate": "2026-11-20T08:00:00Z",
+          "subtaskRole": "VIDEO_EDIT",
+          "description": "Dựng và hậu kỳ video \"[Tuần 3 - Reels/TikTok #3] Video Recap không khí học sinh THPT hào hứng thử nghiệm VR & Robotics tại Workshop\": cắt nhịp nhanh, chèn phụ đề tiếng Việt, color grading tông cam FPTU và end-card CTA.",
+          "acceptanceCriteria": "Video hoàn chỉnh 30-60 giây, phụ đề khớp lời thoại, không vi phạm bản quyền nhạc, xuất bản 9:16 và được duyệt nội bộ."
         },
         {
           "id": "3b01d24e-35b7-3f6a-b850-a2290e4b642f",
@@ -2293,8 +2439,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-21T20:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-18T20:00:00Z",
-          "subtaskRole": "VIDEO_PUBLISH"
+          "plannedStartDate": "2026-11-21T02:00:00Z",
+          "subtaskRole": "VIDEO_PUBLISH",
+          "description": "Viết caption, chọn ảnh bìa và đăng video \"[Tuần 3 - Reels/TikTok #3] Video Recap không khí học sinh THPT hào hứng thử nghiệm VR & Robotics tại Workshop\" lên TikTok, Instagram Reels và Facebook Reels.",
+          "acceptanceCriteria": "Video được đăng đúng lịch trên 3 nền tảng, caption có hashtag chiến dịch và link đăng ký tư vấn."
         }
       ],
       "typeMetadata": {
@@ -2313,7 +2461,7 @@
       "type": "PRESS_RECOMMENDATION",
       "status": "IN_REVIEW",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2325,8 +2473,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000717",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-20T11:00:00Z",
       "firstStartedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
@@ -2343,10 +2491,12 @@
           "name": "Lập danh sách báo",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-23T09:00:00Z",
+          "dueDate": "2026-11-21T03:00:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-20T09:00:00Z",
-          "subtaskRole": "PRESS_MEDIA_LIST"
+          "subtaskRole": "PRESS_MEDIA_LIST",
+          "description": "Lập danh sách báo chí mục tiêu cho \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\" (VnExpress, Thanh Niên, Dân Trí, Tuổi Trẻ) kèm đầu mối phóng viên giáo dục.",
+          "acceptanceCriteria": "Danh sách tối thiểu 4 đầu báo, có tên và kênh liên hệ phóng viên, được Manager xác nhận."
         },
         {
           "id": "da4c0d1b-7aca-329d-ac84-fe85f9f6e20d",
@@ -2354,10 +2504,12 @@
           "name": "Viết thông cáo",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-23T09:00:00Z",
+          "dueDate": "2026-11-21T21:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-20T09:00:00Z",
-          "subtaskRole": "PRESS_RELEASE"
+          "plannedStartDate": "2026-11-21T03:00:00Z",
+          "subtaskRole": "PRESS_RELEASE",
+          "description": "Viết thông cáo báo chí \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\" theo chuẩn tin giáo dục: sự kiện, số liệu, trích dẫn đại diện nhà trường.",
+          "acceptanceCriteria": "Thông cáo dưới 800 chữ, có trích dẫn được Ban Tuyển sinh duyệt, kèm 3 ảnh chất lượng cao."
         },
         {
           "id": "4708f552-fd3e-3a8a-ae89-18d884ecddba",
@@ -2365,10 +2517,12 @@
           "name": "Liên hệ & pitching",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-23T09:00:00Z",
+          "dueDate": "2026-11-22T15:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-20T09:00:00Z",
-          "subtaskRole": "PRESS_PITCHING"
+          "plannedStartDate": "2026-11-21T21:00:00Z",
+          "subtaskRole": "PRESS_PITCHING",
+          "description": "Gửi thông cáo và pitching phóng viên các báo đã chọn cho \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\".",
+          "acceptanceCriteria": "100% đầu báo trong danh sách đã được liên hệ, ghi nhận phản hồi và lịch dự kiến đăng."
         },
         {
           "id": "5b5fcfa4-e17b-3e03-b63b-5e6eea9ce8b3",
@@ -2378,8 +2532,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-23T09:00:00Z",
           "status": "IN_PROGRESS",
-          "plannedStartDate": "2026-11-20T09:00:00Z",
-          "subtaskRole": "PRESS_TRACKING"
+          "plannedStartDate": "2026-11-22T15:00:00Z",
+          "subtaskRole": "PRESS_TRACKING",
+          "description": "Theo dõi các bài báo đăng tải về \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\" và tổng hợp link, độ phủ.",
+          "acceptanceCriteria": "Bảng tổng hợp link bài đăng, tiêu đề, ngày đăng và được gửi Client cuối tuần."
         }
       ],
       "typeMetadata": {
@@ -2391,7 +2547,7 @@
       "lastSubmission": {
         "round": 1,
         "submittedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-        "submittedAt": "2026-11-17T04:07:02Z",
+        "submittedAt": "2026-11-17T04:48:44Z",
         "closedBy": null,
         "closedAt": null,
         "outcome": null
@@ -2407,7 +2563,7 @@
       "type": "PRESS_RECOMMENDATION",
       "status": "TODO",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2419,8 +2575,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000718",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
-      "updatedAt": "2026-11-17T07:37:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
+      "updatedAt": "2026-11-17T08:18:44Z",
       "workflowRevision": 0,
       "firstStartedAt": null,
       "firstStartedBy": null,
@@ -2437,10 +2593,12 @@
           "name": "Lập danh sách báo",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-26T09:00:00Z",
+          "dueDate": "2026-11-24T03:00:00Z",
           "status": "TODO",
           "plannedStartDate": "2026-11-23T09:00:00Z",
-          "subtaskRole": "PRESS_MEDIA_LIST"
+          "subtaskRole": "PRESS_MEDIA_LIST",
+          "description": "Lập danh sách báo chí mục tiêu cho \"[Tuần 4 - Báo chí #2] Bài phân tích trên Báo Thanh Niên & Dân Trí: Giá trị thực tiễn từ học kỳ doanh nghiệp OJT năm thứ ba\" (VnExpress, Thanh Niên, Dân Trí, Tuổi Trẻ) kèm đầu mối phóng viên giáo dục.",
+          "acceptanceCriteria": "Danh sách tối thiểu 4 đầu báo, có tên và kênh liên hệ phóng viên, được Manager xác nhận."
         },
         {
           "id": "946e1dd9-1d67-321a-ab97-8ded32267073",
@@ -2448,10 +2606,12 @@
           "name": "Viết thông cáo",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-26T09:00:00Z",
+          "dueDate": "2026-11-24T21:00:00Z",
           "status": "TODO",
-          "plannedStartDate": "2026-11-23T09:00:00Z",
-          "subtaskRole": "PRESS_RELEASE"
+          "plannedStartDate": "2026-11-24T03:00:00Z",
+          "subtaskRole": "PRESS_RELEASE",
+          "description": "Viết thông cáo báo chí \"[Tuần 4 - Báo chí #2] Bài phân tích trên Báo Thanh Niên & Dân Trí: Giá trị thực tiễn từ học kỳ doanh nghiệp OJT năm thứ ba\" theo chuẩn tin giáo dục: sự kiện, số liệu, trích dẫn đại diện nhà trường.",
+          "acceptanceCriteria": "Thông cáo dưới 800 chữ, có trích dẫn được Ban Tuyển sinh duyệt, kèm 3 ảnh chất lượng cao."
         },
         {
           "id": "e8b7d11e-07c8-3af0-b717-1ae198815dbe",
@@ -2459,10 +2619,12 @@
           "name": "Liên hệ & pitching",
           "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-26T09:00:00Z",
+          "dueDate": "2026-11-25T15:00:00Z",
           "status": "TODO",
-          "plannedStartDate": "2026-11-23T09:00:00Z",
-          "subtaskRole": "PRESS_PITCHING"
+          "plannedStartDate": "2026-11-24T21:00:00Z",
+          "subtaskRole": "PRESS_PITCHING",
+          "description": "Gửi thông cáo và pitching phóng viên các báo đã chọn cho \"[Tuần 4 - Báo chí #2] Bài phân tích trên Báo Thanh Niên & Dân Trí: Giá trị thực tiễn từ học kỳ doanh nghiệp OJT năm thứ ba\".",
+          "acceptanceCriteria": "100% đầu báo trong danh sách đã được liên hệ, ghi nhận phản hồi và lịch dự kiến đăng."
         },
         {
           "id": "63e62c9a-eb91-36d3-ac02-c234e03bbfe8",
@@ -2472,8 +2634,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-26T09:00:00Z",
           "status": "TODO",
-          "plannedStartDate": "2026-11-23T09:00:00Z",
-          "subtaskRole": "PRESS_TRACKING"
+          "plannedStartDate": "2026-11-25T15:00:00Z",
+          "subtaskRole": "PRESS_TRACKING",
+          "description": "Theo dõi các bài báo đăng tải về \"[Tuần 4 - Báo chí #2] Bài phân tích trên Báo Thanh Niên & Dân Trí: Giá trị thực tiễn từ học kỳ doanh nghiệp OJT năm thứ ba\" và tổng hợp link, độ phủ.",
+          "acceptanceCriteria": "Bảng tổng hợp link bài đăng, tiêu đề, ngày đăng và được gửi Client cuối tuần."
         }
       ],
       "typeMetadata": {
@@ -2492,7 +2656,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2504,7 +2668,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000719",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-24T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-21T11:00:00Z",
@@ -2522,10 +2686,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-24T09:00:00Z",
+          "dueDate": "2026-11-21T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-21T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 4 - Đa nền tảng #1] Câu chuyện học sinh lớp 12 tìm thấy ngành học mơ ước sau buổi Workshop trải nghiệm FPTU\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "d14b517d-70fd-3772-99c0-3ca8ec84d01d",
@@ -2533,10 +2699,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-24T09:00:00Z",
+          "dueDate": "2026-11-22T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-21T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-21T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 4 - Đa nền tảng #1] Câu chuyện học sinh lớp 12 tìm thấy ngành học mơ ước sau buổi Workshop trải nghiệm FPTU\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "4b986600-4f62-3b27-8def-e733e0fbd87d",
@@ -2544,10 +2712,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-24T09:00:00Z",
+          "dueDate": "2026-11-23T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-21T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-22T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 4 - Đa nền tảng #1] Câu chuyện học sinh lớp 12 tìm thấy ngành học mơ ước sau buổi Workshop trải nghiệm FPTU\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "fceed8f9-a090-33c2-86db-52badb9af460",
@@ -2555,10 +2725,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-24T09:00:00Z",
+          "dueDate": "2026-11-23T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-21T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-23T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 4 - Đa nền tảng #1] Câu chuyện học sinh lớp 12 tìm thấy ngành học mơ ước sau buổi Workshop trải nghiệm FPTU\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "3e2ec7b7-8299-37b0-a300-bb2c8e407d23",
@@ -2568,8 +2740,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-24T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-21T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-23T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 4 - Đa nền tảng #1] Câu chuyện học sinh lớp 12 tìm thấy ngành học mơ ước sau buổi Workshop trải nghiệm FPTU\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -2596,7 +2770,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:07:02Z",
+      "assignedAt": "2026-11-02T09:48:44Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2608,7 +2782,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000720",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:07:02Z",
+      "createdAt": "2026-11-02T08:48:44Z",
       "updatedAt": "2026-11-29T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-26T11:00:00Z",
@@ -2626,10 +2800,12 @@
           "name": "Nghiên cứu / Phỏng vấn",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-29T09:00:00Z",
+          "dueDate": "2026-11-26T23:24:00Z",
           "status": "FINISHED",
           "plannedStartDate": "2026-11-26T09:00:00Z",
-          "subtaskRole": "POST_RESEARCH"
+          "subtaskRole": "POST_RESEARCH",
+          "description": "Thu thập thông tin đầu vào cho bài \"[Tuần 4 - Đa nền tảng #2] Nhắc hạn hoàn tất hồ sơ xét tuyển & Học bổng Nguyễn Văn Đạo đợt 1 năm 2027\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+          "acceptanceCriteria": "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết."
         },
         {
           "id": "d7187847-68f3-371b-9b70-4d3b085927e5",
@@ -2637,10 +2813,12 @@
           "name": "Viết content",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-29T09:00:00Z",
+          "dueDate": "2026-11-27T13:48:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-26T09:00:00Z",
-          "subtaskRole": "POST_CONTENT"
+          "plannedStartDate": "2026-11-26T23:24:00Z",
+          "subtaskRole": "POST_CONTENT",
+          "description": "Viết caption chính cho \"[Tuần 4 - Đa nền tảng #2] Nhắc hạn hoàn tất hồ sơ xét tuyển & Học bổng Nguyễn Văn Đạo đợt 1 năm 2027\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+          "acceptanceCriteria": "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33)."
         },
         {
           "id": "d52826ef-b15e-3614-8c9a-d4404aa5783a",
@@ -2648,10 +2826,12 @@
           "name": "Media (quay/chụp/thiết kế)",
           "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-29T09:00:00Z",
+          "dueDate": "2026-11-28T04:12:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-26T09:00:00Z",
-          "subtaskRole": "POST_MEDIA"
+          "plannedStartDate": "2026-11-27T13:48:00Z",
+          "subtaskRole": "POST_MEDIA",
+          "description": "Chuẩn bị hình ảnh/Key Visual cho \"[Tuần 4 - Đa nền tảng #2] Nhắc hạn hoàn tất hồ sơ xét tuyển & Học bổng Nguyễn Văn Đạo đợt 1 năm 2027\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+          "acceptanceCriteria": "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor."
         },
         {
           "id": "7490a105-6388-3ba8-99f9-2363d53654b7",
@@ -2659,10 +2839,12 @@
           "name": "Biên tập",
           "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
-          "dueDate": "2026-11-29T09:00:00Z",
+          "dueDate": "2026-11-28T18:36:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-26T09:00:00Z",
-          "subtaskRole": "POST_EDITING"
+          "plannedStartDate": "2026-11-28T04:12:00Z",
+          "subtaskRole": "POST_EDITING",
+          "description": "Biên tập lại toàn bộ nội dung \"[Tuần 4 - Đa nền tảng #2] Nhắc hạn hoàn tất hồ sơ xét tuyển & Học bổng Nguyễn Văn Đạo đợt 1 năm 2027\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+          "acceptanceCriteria": "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager."
         },
         {
           "id": "34eec72a-5c3f-3af8-8d7c-61558c4178b4",
@@ -2672,8 +2854,10 @@
           "supervisorOverrideId": null,
           "dueDate": "2026-11-29T09:00:00Z",
           "status": "FINISHED",
-          "plannedStartDate": "2026-11-26T09:00:00Z",
-          "subtaskRole": "POST_PUBLISHING"
+          "plannedStartDate": "2026-11-28T18:36:00Z",
+          "subtaskRole": "POST_PUBLISHING",
+          "description": "Lên lịch đăng \"[Tuần 4 - Đa nền tảng #2] Nhắc hạn hoàn tất hồ sơ xét tuyển & Học bổng Nguyễn Văn Đạo đợt 1 năm 2027\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+          "acceptanceCriteria": "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log."
         }
       ],
       "typeMetadata": {
@@ -2713,7 +2897,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CAPTION",
@@ -2726,7 +2910,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.MEDIA",
@@ -2739,7 +2923,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CHANNELS",
@@ -2752,7 +2936,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SCRIPT",
@@ -2774,7 +2958,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SHOOT",
@@ -2789,7 +2973,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.EDIT",
@@ -2802,7 +2986,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CAPTION",
@@ -2815,7 +2999,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CHANNELS",
@@ -2828,7 +3012,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.BRIEF",
@@ -2851,7 +3035,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CAPTION",
@@ -2864,7 +3048,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.MEDIA",
@@ -2877,7 +3061,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CHANNELS",
@@ -2890,7 +3074,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.BRIEF",
@@ -2913,7 +3097,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CAPTION",
@@ -2926,7 +3110,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.MEDIA",
@@ -2939,7 +3123,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CHANNELS",
@@ -2952,7 +3136,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.BRIEF",
@@ -2975,7 +3159,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CAPTION",
@@ -2988,7 +3172,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.MEDIA",
@@ -3001,7 +3185,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CHANNELS",
@@ -3014,7 +3198,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.BRIEF",
@@ -3037,7 +3221,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CAPTION",
@@ -3050,7 +3234,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.MEDIA",
@@ -3063,7 +3247,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CHANNELS",
@@ -3076,7 +3260,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SCRIPT",
@@ -3098,7 +3282,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SHOOT",
@@ -3113,7 +3297,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.EDIT",
@@ -3126,7 +3310,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CAPTION",
@@ -3139,7 +3323,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CHANNELS",
@@ -3152,7 +3336,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.CONTENT",
@@ -3204,7 +3388,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:07:02Z"
+      "updatedAt": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.DESIGN",
@@ -3256,7 +3440,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:07:02Z"
+      "updatedAt": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.AUDIENCE",
@@ -3275,7 +3459,7 @@
         "batchId": "d7e00000-0000-4000-8000-000000000891"
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:07:02Z"
+      "updatedAt": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.REPORT",
@@ -3291,7 +3475,7 @@
         "comment": "100% thư mời kèm mã QR check-in đã gửi thành công tới danh sách học sinh lớp 12 đăng ký đợt 1."
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:07:02Z"
+      "updatedAt": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.FORM",
@@ -3304,7 +3488,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "updatedAt": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.DISTRIBUTION",
@@ -3322,7 +3506,7 @@
         "targetResponses": 500
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "updatedAt": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.REPORT",
@@ -3339,7 +3523,7 @@
         "recommendations": "<p>Tăng thời lượng thực hành tại trạm Lab Bán dẫn và bố trí thêm bàn tư vấn học bổng chuyên sâu tại Ngày hội FPTU Open Day 2027.</p>"
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "updatedAt": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.BRIEF",
@@ -3360,7 +3544,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:07:02Z"
+      "updatedAt": "2026-11-17T07:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA",
@@ -3373,7 +3557,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:07:02Z"
+      "updatedAt": "2026-11-17T07:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS",
@@ -3386,7 +3570,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:07:02Z"
+      "updatedAt": "2026-11-17T07:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CAPTION",
@@ -3399,7 +3583,7 @@
       "versionCount": 0,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:07:02Z"
+      "updatedAt": "2026-11-17T07:48:44Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.PROGRAM",
@@ -3425,7 +3609,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.SPEAKERS",
@@ -3459,7 +3643,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.LOGISTICS",
@@ -3478,7 +3662,7 @@
         "cost": 18500000
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REGISTRATION",
@@ -3493,7 +3677,7 @@
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REPORT",
@@ -3516,7 +3700,7 @@
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.PROGRAM",
@@ -3542,7 +3726,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.SPEAKERS",
@@ -3576,7 +3760,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.LOGISTICS",
@@ -3595,7 +3779,7 @@
         "cost": 18500000
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REGISTRATION",
@@ -3610,7 +3794,7 @@
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REPORT",
@@ -3633,7 +3817,7 @@
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:07:02Z"
+      "updatedAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.SHORTLIST",
@@ -3673,7 +3857,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DEAL",
@@ -3696,7 +3880,7 @@
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.BRIEF",
@@ -3728,7 +3912,7 @@
         "postDeadline": "2026-11-18"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DRAFT",
@@ -3747,7 +3931,7 @@
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.REPORT",
@@ -3767,7 +3951,7 @@
         "shares": 410
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.AGENDA",
@@ -3809,8 +3993,8 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:07:02Z",
-      "clientPendingSince": "2026-11-17T03:07:02Z"
+      "updatedAt": "2026-11-17T03:48:44Z",
+      "clientPendingSince": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.LOGISTICS",
@@ -3854,7 +4038,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:07:02Z"
+      "updatedAt": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.PROMOTION",
@@ -3886,8 +4070,8 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:07:02Z",
-      "clientPendingSince": "2026-11-17T03:07:02Z"
+      "updatedAt": "2026-11-17T03:48:44Z",
+      "clientPendingSince": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.RUNSHEET",
@@ -3924,7 +4108,7 @@
         "staffing": "<p>Tổng nhân sự vận hành: 04 thành viên SE08 Digital điều phối truyền thông tại chỗ, 15 cán bộ tư vấn tuyển sinh ĐH FPT và 35 sinh viên tình nguyện dẫn đoàn.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:07:02Z"
+      "updatedAt": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.REPORT",
@@ -3941,7 +4125,7 @@
         "lessons": "<p>Ưu tiên phân luồng giờ tham quan phòng Lab bán dẫn theo từng ca 25 phút để học sinh có nhiều thời gian tương tác thiết bị.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:07:02Z"
+      "updatedAt": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.SHORTLIST",
@@ -3981,7 +4165,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DEAL",
@@ -4004,7 +4188,7 @@
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.BRIEF",
@@ -4036,7 +4220,7 @@
         "postDeadline": "2026-11-20"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DRAFT",
@@ -4055,7 +4239,7 @@
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.REPORT",
@@ -4075,7 +4259,7 @@
         "shares": 410
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:07:02Z"
+      "updatedAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SCRIPT",
@@ -4097,7 +4281,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SHOOT",
@@ -4112,7 +4296,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.EDIT",
@@ -4125,7 +4309,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CAPTION",
@@ -4138,7 +4322,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CHANNELS",
@@ -4151,7 +4335,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:07:02Z"
+      "updatedAt": "2026-11-17T01:48:44Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.MEDIA_LIST",
@@ -4188,7 +4372,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.RELEASE",
@@ -4209,7 +4393,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.CONTACT_LOG",
@@ -4246,7 +4430,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.COVERAGE",
@@ -4267,7 +4451,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.MEDIA_LIST",
@@ -4304,7 +4488,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.RELEASE",
@@ -4325,7 +4509,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.CONTACT_LOG",
@@ -4362,7 +4546,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.COVERAGE",
@@ -4383,7 +4567,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:07:02Z"
+      "updatedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.BRIEF",
@@ -4406,7 +4590,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CAPTION",
@@ -4419,7 +4603,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.MEDIA",
@@ -4432,7 +4616,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CHANNELS",
@@ -4445,7 +4629,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.BRIEF",
@@ -4468,7 +4652,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CAPTION",
@@ -4481,7 +4665,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.MEDIA",
@@ -4494,7 +4678,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CHANNELS",
@@ -4507,7 +4691,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:07:02Z"
+      "updatedAt": "2026-11-17T00:48:44Z"
     }
   ],
   "task_section_versions": [
@@ -4527,7 +4711,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:07:02Z"
+      "submittedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA|1",
@@ -4544,7 +4728,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:07:02Z"
+      "submittedAt": "2026-11-17T05:48:44Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS|1",
@@ -4562,7 +4746,7 @@
         "scheduledAt": "2026-11-19T09:00:00Z"
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:07:02Z"
+      "submittedAt": "2026-11-17T05:48:44Z"
     }
   ],
   "task_comments": [
@@ -4579,7 +4763,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "282256f4-9303-3ccb-8a7c-8e8232874801",
-      "createdAt": "2026-11-17T03:07:02Z"
+      "createdAt": "2026-11-17T03:48:44Z"
     },
     {
       "_id": "6b01ced8-ccb5-3c82-8ce9-02f987945319",
@@ -4594,7 +4778,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "a10b79cc-c89c-3bcb-93f3-33cdd2797f20",
-      "createdAt": "2026-11-17T05:07:02Z"
+      "createdAt": "2026-11-17T05:48:44Z"
     }
   ],
   "task_approvals": [
@@ -4606,7 +4790,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-07T04:07:02Z"
+      "createdAt": "2026-11-07T04:48:44Z"
     },
     {
       "_id": "894056f7-5b31-3334-9018-e23ab2ac300b",
@@ -4616,7 +4800,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-07T06:07:02Z"
+      "createdAt": "2026-11-07T06:48:44Z"
     },
     {
       "_id": "29c64290-78a3-31d1-8511-de5b456221ee",
@@ -4626,7 +4810,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-08T04:07:02Z"
+      "createdAt": "2026-11-08T04:48:44Z"
     },
     {
       "_id": "2f2132d8-9450-3ef9-b383-e4ac102ae3be",
@@ -4636,7 +4820,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-08T06:07:02Z"
+      "createdAt": "2026-11-08T06:48:44Z"
     },
     {
       "_id": "c46e43f5-9c65-307e-b39c-6581e082efa8",
@@ -4646,7 +4830,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-09T04:07:02Z"
+      "createdAt": "2026-11-09T04:48:44Z"
     },
     {
       "_id": "5bcbace3-7a18-333e-a415-f97d2aca2f90",
@@ -4656,7 +4840,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-09T06:07:02Z"
+      "createdAt": "2026-11-09T06:48:44Z"
     },
     {
       "_id": "f92b170c-59bf-30ea-bb5c-621109031cf6",
@@ -4666,7 +4850,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-10T04:07:02Z"
+      "createdAt": "2026-11-10T04:48:44Z"
     },
     {
       "_id": "9e5187a6-3787-361a-9a70-54c55cbabfe0",
@@ -4676,7 +4860,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-10T06:07:02Z"
+      "createdAt": "2026-11-10T06:48:44Z"
     }
   ],
   "posts": [
@@ -4717,7 +4901,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-04T09:00:00Z",
       "published_at": "2026-11-04T09:05:00Z",
       "platform_post_id": "fptu2027_1",
@@ -4734,7 +4918,7 @@
         "LOVE": 515,
         "WOW": 184
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_1_0",
@@ -4772,7 +4956,7 @@
           "reachCount": 16605,
           "clickCount": 1084,
           "savedCount": 175,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4810,7 +4994,7 @@
           "reachCount": 9225,
           "clickCount": 602,
           "savedCount": 97,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4848,7 +5032,7 @@
           "reachCount": 7380,
           "clickCount": 482,
           "savedCount": 78,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4886,7 +5070,7 @@
           "reachCount": 3690,
           "clickCount": 241,
           "savedCount": 39,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4943,7 +5127,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-06T19:00:00Z",
       "published_at": "2026-11-06T19:05:00Z",
       "platform_post_id": "fptu2027_2",
@@ -4960,7 +5144,7 @@
         "LOVE": 957,
         "WOW": 342
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_2_0",
@@ -4998,7 +5182,7 @@
           "reachCount": 34290,
           "clickCount": 1431,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5036,7 +5220,7 @@
           "reachCount": 19050,
           "clickCount": 795,
           "savedCount": 211,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5074,7 +5258,7 @@
           "reachCount": 15240,
           "clickCount": 636,
           "savedCount": 169,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5130,7 +5314,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-08T09:00:00Z",
       "published_at": "2026-11-08T09:05:00Z",
       "platform_post_id": "fptu2027_3",
@@ -5147,7 +5331,7 @@
         "LOVE": 753,
         "WOW": 269
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_3_0",
@@ -5185,7 +5369,7 @@
           "reachCount": 23310,
           "clickCount": 2034,
           "savedCount": 504,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5223,7 +5407,7 @@
           "reachCount": 12950,
           "clickCount": 1130,
           "savedCount": 280,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5261,7 +5445,7 @@
           "reachCount": 10360,
           "clickCount": 904,
           "savedCount": 224,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5317,7 +5501,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-10T09:00:00Z",
       "published_at": "2026-11-10T09:05:00Z",
       "platform_post_id": "fptu2027_4",
@@ -5334,7 +5518,7 @@
         "LOVE": 546,
         "WOW": 195
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_4_0",
@@ -5372,7 +5556,7 @@
           "reachCount": 17730,
           "clickCount": 1300,
           "savedCount": 288,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5410,7 +5594,7 @@
           "reachCount": 9850,
           "clickCount": 722,
           "savedCount": 160,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5448,7 +5632,7 @@
           "reachCount": 7880,
           "clickCount": 578,
           "savedCount": 128,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5505,7 +5689,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-11T10:00:00Z",
       "published_at": "2026-11-11T10:05:00Z",
       "platform_post_id": "fptu2027_5",
@@ -5522,7 +5706,7 @@
         "LOVE": 453,
         "WOW": 162
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_5_0",
@@ -5560,7 +5744,7 @@
           "reachCount": 14895,
           "clickCount": 963,
           "savedCount": 229,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5598,7 +5782,7 @@
           "reachCount": 8275,
           "clickCount": 535,
           "savedCount": 127,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5636,7 +5820,7 @@
           "reachCount": 6620,
           "clickCount": 428,
           "savedCount": 102,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5674,7 +5858,7 @@
           "reachCount": 3310,
           "clickCount": 214,
           "savedCount": 51,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5737,7 +5921,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-13T09:00:00Z",
       "published_at": "2026-11-13T09:05:00Z",
       "platform_post_id": "fptu2027_60",
@@ -5754,7 +5938,7 @@
         "LOVE": 809,
         "WOW": 289
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_60_0",
@@ -5792,7 +5976,7 @@
           "reachCount": 25020,
           "clickCount": 1570,
           "savedCount": 351,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5830,7 +6014,7 @@
           "reachCount": 13900,
           "clickCount": 872,
           "savedCount": 195,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5868,7 +6052,7 @@
           "reachCount": 11120,
           "clickCount": 698,
           "savedCount": 156,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -5923,7 +6107,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
       "updated_at": "2026-11-14T19:00:00Z",
       "published_at": "2026-11-14T19:05:00Z",
       "platform_post_id": "fptu2027_7",
@@ -5940,7 +6124,7 @@
         "LOVE": 1153,
         "WOW": 412
       },
-      "engagement_updated_at": "2026-11-17T06:07:02Z",
+      "engagement_updated_at": "2026-11-17T06:48:44Z",
       "cached_comments": [
         {
           "id": "cmt_7_0",
@@ -5978,7 +6162,7 @@
           "reachCount": 39780,
           "clickCount": 1764,
           "savedCount": 436,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6016,7 +6200,7 @@
           "reachCount": 22100,
           "clickCount": 980,
           "savedCount": 242,
-          "engagementUpdatedAt": "2026-11-17T06:07:02Z",
+          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6075,8 +6259,8 @@
       "ai_generated": false,
       "status": "DRAFT",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-17T07:47:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-17T08:28:44Z",
       "scheduled_at": "2026-11-19T09:00:00Z"
     },
     {
@@ -6110,8 +6294,8 @@
       "ai_generated": true,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-17T07:47:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-17T08:28:44Z",
       "scheduled_at": "2026-11-23T09:00:00Z"
     },
     {
@@ -6145,8 +6329,8 @@
       "ai_generated": false,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-17T07:47:02Z",
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-17T08:28:44Z",
       "scheduled_at": "2026-11-28T09:00:00Z"
     },
     {
@@ -6187,7 +6371,7 @@
         "LOVE": 354,
         "WOW": 118
       },
-      "engagement_updated_at": "2026-11-17T07:42:02Z",
+      "engagement_updated_at": "2026-11-17T08:23:44Z",
       "cached_comments": [
         {
           "id": "cmt_81_0",
@@ -6225,7 +6409,7 @@
           "reachCount": 12400,
           "clickCount": 895,
           "savedCount": 210,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6263,7 +6447,7 @@
           "reachCount": 7440,
           "clickCount": 537,
           "savedCount": 126,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6342,7 +6526,7 @@
         "LOVE": 702,
         "WOW": 234
       },
-      "engagement_updated_at": "2026-11-17T07:42:02Z",
+      "engagement_updated_at": "2026-11-17T08:23:44Z",
       "cached_comments": [
         {
           "id": "cmt_82_0",
@@ -6380,7 +6564,7 @@
           "reachCount": 24600,
           "clickCount": 1560,
           "savedCount": 445,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6418,7 +6602,7 @@
           "reachCount": 14760,
           "clickCount": 936,
           "savedCount": 267,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6456,7 +6640,7 @@
           "reachCount": 5904,
           "clickCount": 374,
           "savedCount": 106,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6530,7 +6714,7 @@
         "LOVE": 945,
         "WOW": 315
       },
-      "engagement_updated_at": "2026-11-17T07:42:02Z",
+      "engagement_updated_at": "2026-11-17T08:23:44Z",
       "cached_comments": [
         {
           "id": "cmt_83_0",
@@ -6568,7 +6752,7 @@
           "reachCount": 31750,
           "clickCount": 1930,
           "savedCount": 470,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6606,7 +6790,7 @@
           "reachCount": 19050,
           "clickCount": 1158,
           "savedCount": 282,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6644,7 +6828,7 @@
           "reachCount": 7620,
           "clickCount": 463,
           "savedCount": 112,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6682,7 +6866,7 @@
           "reachCount": 5080,
           "clickCount": 308,
           "savedCount": 75,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6762,7 +6946,7 @@
         "LOVE": 1158,
         "WOW": 386
       },
-      "engagement_updated_at": "2026-11-17T07:42:02Z",
+      "engagement_updated_at": "2026-11-17T08:23:44Z",
       "cached_comments": [
         {
           "id": "cmt_84_0",
@@ -6800,7 +6984,7 @@
           "reachCount": 39600,
           "clickCount": 2340,
           "savedCount": 575,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6838,7 +7022,7 @@
           "reachCount": 23760,
           "clickCount": 1404,
           "savedCount": 345,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6876,7 +7060,7 @@
           "reachCount": 9504,
           "clickCount": 561,
           "savedCount": 138,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6914,7 +7098,7 @@
           "reachCount": 6336,
           "clickCount": 374,
           "savedCount": 92,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -6987,7 +7171,7 @@
         "LOVE": 744,
         "WOW": 248
       },
-      "engagement_updated_at": "2026-11-17T07:42:02Z",
+      "engagement_updated_at": "2026-11-17T08:23:44Z",
       "cached_comments": [
         {
           "id": "cmt_85_0",
@@ -7025,7 +7209,7 @@
           "reachCount": 25700,
           "clickCount": 1770,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
@@ -7063,7 +7247,7 @@
           "reachCount": 15420,
           "clickCount": 1062,
           "savedCount": 228,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
@@ -7101,7 +7285,7 @@
           "reachCount": 6168,
           "clickCount": 424,
           "savedCount": 91,
-          "engagementUpdatedAt": "2026-11-17T07:42:02Z",
+          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
@@ -7145,8 +7329,8 @@
       "status": "PENDING_APPROVAL",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-11-15T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e000000000000000000192",
@@ -7165,8 +7349,8 @@
       "status": "APPROVED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-11-15T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e000000000000000000193",
@@ -7185,8 +7369,8 @@
       "status": "REJECTED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-11-15T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     }
   ],
   "post_versions": [
@@ -7197,7 +7381,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "e22e8981a571b7fac95f9d84baf607addc820acdd6261f362bacc1c696d81795",
-      "captured_at": "2026-11-15T08:07:02Z",
+      "captured_at": "2026-11-15T08:48:44Z",
       "content_text": "Cam kết tuyển thẳng 100% không cần xét học bạ, đóng phí giữ chỗ nhận ngay học bổng toàn phần!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7215,7 +7399,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "c724b821855887d94361ce529cba05b28cae4729ae853b3cb6a962b18a588c2c",
-      "captured_at": "2026-11-15T08:07:02Z",
+      "captured_at": "2026-11-15T08:48:44Z",
       "content_text": "Thông báo quy chế xét cấp Học bổng Nguyễn Văn Đạo năm 2027 mức 50%, 70%, 100% học phí tại 5 cơ sở.",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7233,7 +7417,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "ad484f6894791ec5cd166f088a9915d6fe1de3eeaee9dc494cd6ef88f5dbfd23",
-      "captured_at": "2026-11-15T08:07:02Z",
+      "captured_at": "2026-11-15T08:48:44Z",
       "content_text": "Tất cả các trường khác đều dạy lý thuyết lỗi thời, bằng cấp vô giá trị!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7646,8 +7830,8 @@
         "required": false
       }
     ],
-    "createdAt": "2026-11-11T08:07:02Z",
-    "updatedAt": "2026-11-15T08:07:02Z"
+    "createdAt": "2026-11-11T08:48:44Z",
+    "updatedAt": "2026-11-15T08:48:44Z"
   },
   "workshop_surveys": [
     {
@@ -7685,8 +7869,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-10T08:07:02Z",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "createdAt": "2026-11-10T08:48:44Z",
+      "updatedAt": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000806",
@@ -7723,8 +7907,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-10T08:07:02Z",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "createdAt": "2026-11-10T08:48:44Z",
+      "updatedAt": "2026-11-16T08:48:44Z"
     }
   ],
   "survey_responses": [
@@ -7732,7 +7916,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000811",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T08:07:02Z",
+      "submittedAt": "2026-11-12T08:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7767,7 +7951,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000812",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T06:07:02Z",
+      "submittedAt": "2026-11-13T06:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7802,7 +7986,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000813",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T04:07:02Z",
+      "submittedAt": "2026-11-14T04:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7837,7 +8021,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000814",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-15T02:07:02Z",
+      "submittedAt": "2026-11-15T02:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7872,7 +8056,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000815",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T00:07:02Z",
+      "submittedAt": "2026-11-12T00:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7907,7 +8091,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000816",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T22:07:02Z",
+      "submittedAt": "2026-11-12T22:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7942,7 +8126,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000817",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T20:07:02Z",
+      "submittedAt": "2026-11-13T20:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7977,7 +8161,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000818",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T18:07:02Z",
+      "submittedAt": "2026-11-14T18:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8012,7 +8196,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000819",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T16:07:02Z",
+      "submittedAt": "2026-11-11T16:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8047,7 +8231,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000820",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T14:07:02Z",
+      "submittedAt": "2026-11-12T14:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8082,7 +8266,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000821",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T12:07:02Z",
+      "submittedAt": "2026-11-13T12:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8117,7 +8301,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000822",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T10:07:02Z",
+      "submittedAt": "2026-11-14T10:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8152,7 +8336,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000823",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T08:07:02Z",
+      "submittedAt": "2026-11-11T08:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8187,7 +8371,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000824",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T06:07:02Z",
+      "submittedAt": "2026-11-12T06:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8222,7 +8406,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000825",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T04:07:02Z",
+      "submittedAt": "2026-11-13T04:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8257,7 +8441,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000826",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T02:07:02Z",
+      "submittedAt": "2026-11-14T02:48:44Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8297,17 +8481,17 @@
       "title": "Bổ sung khảo sát nguyện vọng ngành học của học sinh lớp 12 trước buổi Workshop Tuần 3",
       "description": "Đề nghị nhóm SE08 thiết kế biểu mẫu khảo sát ngắn để thu thập câu hỏi của học sinh THPT về ngành Vi mạch, AI và tiện ích nội trú trước ngày diễn ra Workshop.",
       "type": "SURVEY",
-      "dueDate": "2026-11-15T08:07:02Z",
+      "dueDate": "2026-11-15T08:48:44Z",
       "status": "ACCEPTED",
       "version": 1,
       "generatedTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
       "reviewedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "reviewedAt": "2026-11-11T08:07:02Z",
+      "reviewedAt": "2026-11-11T08:48:44Z",
       "decisionNote": "Đã tiếp nhận và phân công Hà Văn Ân triển khai biểu mẫu khảo sát gắn trực tiếp vào chiến dịch.",
       "decidedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "decidedAt": "2026-11-11T08:07:02Z",
-      "createdAt": "2026-11-10T08:07:02Z",
-      "updatedAt": "2026-11-11T08:07:02Z",
+      "decidedAt": "2026-11-11T08:48:44Z",
+      "createdAt": "2026-11-10T08:48:44Z",
+      "updatedAt": "2026-11-11T08:48:44Z",
       "targetPlatforms": [],
       "history": []
     },
@@ -8318,11 +8502,11 @@
       "title": "Cập nhật thông tin tuyến xe buýt đón học sinh THPT dự Ngày hội FPTU Open Day 2027",
       "description": "Nhờ nhóm SE08 bổ sung bài thông báo lộ trình 08 điểm đón xe miễn phí dành cho học sinh lớp 12 và phụ huynh tham dự Ngày hội Open Day cuối tuần này.",
       "type": "POST",
-      "dueDate": "2026-11-19T08:07:02Z",
+      "dueDate": "2026-11-19T08:48:44Z",
       "status": "PENDING",
       "version": 1,
-      "createdAt": "2026-11-17T03:07:02Z",
-      "updatedAt": "2026-11-17T03:07:02Z",
+      "createdAt": "2026-11-17T03:48:44Z",
+      "updatedAt": "2026-11-17T03:48:44Z",
       "targetPlatforms": [
         "FACEBOOK",
         "INSTAGRAM",
@@ -8344,7 +8528,7 @@
       "100% sinh viên tham gia học kỳ thực tập tại doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6.",
       "Hệ sinh thái tiện ích học đường toàn diện: phòng Lab bán dẫn & AI, thư viện xanh, ký túc xá, Vovinam và hơn 40 CLB sinh viên."
     ],
-    "updated_at": "2026-11-17T08:07:02Z"
+    "updated_at": "2026-11-17T08:48:44Z"
   },
   "knowledge_documents": [
     {
@@ -8353,8 +8537,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Quy chế Tuyển sinh Khóa K23 & Học bổng Nguyễn Văn Đạo Năm 2027",
       "content": "Năm 2027, Trường Đại học FPT tuyển sinh khóa K23 tại 5 cơ sở: Hà Nội (Khu Công nghệ cao Hòa Lạc), Đà Nẵng (Khu đô thị FPT City), Quy Nhơn (Khu đô thị mới An Phú Thịnh), TP.HCM (Khu Công nghệ cao TP. Thủ Đức) và Cần Thơ (Quận Ninh Kiều). Chương trình Học bổng Nguyễn Văn Đạo năm 2027 gồm các mức 50%, 70% và 100% học phí toàn khóa học dành cho học sinh THPT có thành tích học tập xuất sắc, đạt giải kỳ thi học sinh giỏi hoặc đạt điểm cao tại kỳ thi học bổng của trường. Cổng đăng ký chính thức: https://tuyensinh.fpt.edu.vn.",
-      "created_at": "2026-11-02T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-02T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000842",
@@ -8362,8 +8546,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Đào tạo Ngành Thiết kế Vi mạch Bán dẫn, Trí tuệ Nhân tạo & Học kỳ Doanh nghiệp OJT",
       "content": "Sinh viên các chuyên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI), Kỹ thuật phần mềm, An toàn thông tin và Quản trị kinh doanh số học tập theo giáo trình chuẩn quốc tế, chú trọng tiếng Anh và ngoại ngữ thứ hai. Từ học kỳ 6, sinh viên bước vào học kỳ thực tập thực tế tại doanh nghiệp (On-the-Job Training - OJT) kéo dài 4 đến 8 tháng tại FPT Software, FPT Semiconductor, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác.",
-      "created_at": "2026-11-03T08:07:02Z",
-      "updated_at": "2026-11-15T08:07:02Z"
+      "created_at": "2026-11-03T08:48:44Z",
+      "updated_at": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000843",
@@ -8371,8 +8555,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Hệ sinh thái Tiện ích Campus & Chuỗi Workshop Hướng nghiệp THPT 2027",
       "content": "Khuôn viên Trường Đại học FPT tích hợp thư viện xanh nhiều tầng, phòng Lab thực hành chuyên sâu, ký túc xá nội trú, sân rèn luyện võ thuật Vovinam và hơn 40 câu lạc bộ sinh viên. Trong Tuần 3 của chiến dịch tuyển sinh 2027, nhà trường tổ chức chuỗi Workshop phổ biến tiện ích học đường cho học sinh lớp 12 kèm gian hàng trải nghiệm kính thực tế ảo VR, cánh tay Robotics và Ngày hội FPTU Open Day 2027.",
-      "created_at": "2026-11-05T08:07:02Z",
-      "updated_at": "2026-11-16T08:07:02Z"
+      "created_at": "2026-11-05T08:48:44Z",
+      "updated_at": "2026-11-16T08:48:44Z"
     }
   ],
   "mail_recipient_groups": [
@@ -8386,32 +8570,32 @@
           "name": "Nguyễn Hoàng Nam - THPT Phan Châu Trinh",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-13T08:07:02Z"
+          "importedAt": "2026-11-13T08:48:44Z"
         },
         {
           "email": "minhkhoi.2k9@demo.brandhub.test",
           "name": "Trần Minh Khôi - THPT Chuyên Lê Quý Đôn",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-13T08:07:02Z"
+          "importedAt": "2026-11-13T08:48:44Z"
         },
         {
           "email": "ngocanh.2k9@demo.brandhub.test",
           "name": "Võ Ngọc Ánh - THPT Hoàng Hoa Thám",
           "consent": true,
           "consentSource": "MANUAL",
-          "importedAt": "2026-11-14T08:07:02Z"
+          "importedAt": "2026-11-14T08:48:44Z"
         },
         {
           "email": "giahan.2k9@demo.brandhub.test",
           "name": "Lê Gia Hân - THPT Trần Phú",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-14T08:07:02Z"
+          "importedAt": "2026-11-14T08:48:44Z"
         }
       ],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-12T08:07:02Z"
+      "createdAt": "2026-11-12T08:48:44Z"
     }
   ],
   "mail_templates": [
@@ -8427,8 +8611,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Vé mời Workshop Trải nghiệm Tiện ích Đại học FPT 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Xin chào {{name}}, cảm ơn bạn đã đăng ký tham gia trải nghiệm phòng Lab bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo 2027.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Xem thông tin buổi Workshop\", \"urlType\": \"campaign\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-11T08:07:02Z",
-      "updatedAt": "2026-11-15T08:07:02Z"
+      "createdAt": "2026-11-11T08:48:44Z",
+      "updatedAt": "2026-11-15T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000882",
@@ -8442,8 +8626,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Báo cáo tiến độ tuần Chiến dịch Tuyển sinh 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Kính gửi {{name}}, nhóm SE08 Digital cập nhật số liệu bài đăng đa nền tảng và lượt đăng ký Workshop THPT trong tuần.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Mở Dashboard Chiến dịch\", \"urlType\": \"client\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-07T08:07:02Z",
-      "updatedAt": "2026-11-16T08:07:02Z"
+      "createdAt": "2026-11-07T08:48:44Z",
+      "updatedAt": "2026-11-16T08:48:44Z"
     }
   ],
   "chat_channels": [
@@ -8466,7 +8650,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-05T08:07:02Z"
+      "createdAt": "2026-11-05T08:48:44Z"
     },
     {
       "_id": "39455325-5b0a-3dc5-9d02-f962ab133f35",
@@ -8486,7 +8670,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-03T08:07:02Z"
+      "createdAt": "2026-11-03T08:48:44Z"
     }
   ],
   "chat_messages": [
@@ -8507,7 +8691,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": true,
-      "createdAt": "2026-11-16T06:07:02Z"
+      "createdAt": "2026-11-16T06:48:44Z"
     },
     {
       "_id": "d7e100000000000000000002",
@@ -8526,7 +8710,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T08:07:02Z"
+      "createdAt": "2026-11-16T08:48:44Z"
     },
     {
       "_id": "d7e100000000000000000003",
@@ -8545,7 +8729,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T10:07:02Z"
+      "createdAt": "2026-11-16T10:48:44Z"
     },
     {
       "_id": "d7e100000000000000000004",
@@ -8564,7 +8748,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T12:07:02Z"
+      "createdAt": "2026-11-16T12:48:44Z"
     },
     {
       "_id": "d7e100000000000000000005",
@@ -8583,7 +8767,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T14:07:02Z"
+      "createdAt": "2026-11-16T14:48:44Z"
     },
     {
       "_id": "d7e100000000000000000006",
@@ -8602,7 +8786,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T16:07:02Z"
+      "createdAt": "2026-11-16T16:48:44Z"
     },
     {
       "_id": "d7e100000000000000000007",
@@ -8621,7 +8805,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T18:07:02Z"
+      "createdAt": "2026-11-16T18:48:44Z"
     },
     {
       "_id": "d7e100000000000000000008",
@@ -8640,7 +8824,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T20:07:02Z"
+      "createdAt": "2026-11-16T20:48:44Z"
     },
     {
       "_id": "d7e100000000000000000009",
@@ -8659,7 +8843,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T22:07:02Z"
+      "createdAt": "2026-11-16T22:48:44Z"
     },
     {
       "_id": "d7e10000000000000000000a",
@@ -8678,7 +8862,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T00:07:02Z"
+      "createdAt": "2026-11-17T00:48:44Z"
     },
     {
       "_id": "d7e10000000000000000000b",
@@ -8697,7 +8881,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T02:07:02Z"
+      "createdAt": "2026-11-17T02:48:44Z"
     },
     {
       "_id": "d7e10000000000000000000c",
@@ -8716,7 +8900,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T04:07:02Z"
+      "createdAt": "2026-11-17T04:48:44Z"
     },
     {
       "_id": "d7e10000000000000000000d",
@@ -8735,7 +8919,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T06:07:02Z"
+      "createdAt": "2026-11-17T06:48:44Z"
     }
   ],
   "ai_usage_logs": [
@@ -8745,7 +8929,7 @@
       "feature": "caption_generation",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-05T08:07:02Z"
+      "created_at": "2026-11-05T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000951",
@@ -8753,7 +8937,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-06T08:07:02Z"
+      "created_at": "2026-11-06T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000952",
@@ -8761,7 +8945,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-07T08:07:02Z"
+      "created_at": "2026-11-07T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000953",
@@ -8769,7 +8953,7 @@
       "feature": "caption_generation",
       "model": "gpt-4o-mini",
       "success": true,
-      "created_at": "2026-11-08T08:07:02Z"
+      "created_at": "2026-11-08T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000954",
@@ -8777,7 +8961,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-09T08:07:02Z"
+      "created_at": "2026-11-09T08:48:44Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000955",
@@ -8785,7 +8969,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-10T08:07:02Z"
+      "created_at": "2026-11-10T08:48:44Z"
     }
   ],
   "report_jobs": [
@@ -8794,10 +8978,10 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "requested_by": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "status": "DONE",
-      "date_from": "2026-11-03T08:07:02Z",
-      "date_to": "2026-11-17T08:07:02Z",
-      "created_at": "2026-11-17T02:07:02Z",
-      "updated_at": "2026-11-17T02:07:02Z"
+      "date_from": "2026-11-03T08:48:44Z",
+      "date_to": "2026-11-17T08:48:44Z",
+      "created_at": "2026-11-17T02:48:44Z",
+      "updated_at": "2026-11-17T02:48:44Z"
     }
   ]
 }
