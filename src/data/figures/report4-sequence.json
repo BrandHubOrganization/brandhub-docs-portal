@@ -8,9 +8,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.1 Sign Up",
     "caption": "Sequence Diagram 3.2.1 - Sign Up",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_1.png",
-    "imageWidth": 1876,
-    "imageHeight": 1444,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926340/brandhub-diagrams/r4-3-2-1-sign-up.png",
+    "imageWidth": 2036,
+    "imageHeight": 999,
     "actors": [
       "Guest"
     ],
@@ -312,9 +312,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.2 Sign In with Email",
     "caption": "Sequence Diagram 3.2.2 - Sign In with Email",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/seq-3_2_2.png",
-    "imageWidth": 1876,
-    "imageHeight": 1212,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926342/brandhub-diagrams/r4-3-2-2-sign-in-with-email.png",
+    "imageWidth": 2036,
+    "imageHeight": 775,
     "actors": [
       "Guest",
       "Owner",
@@ -587,9 +587,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.3 Sign In with Google OAuth",
     "caption": "Sequence Diagram 3.2.3 - Sign In with Google OAuth",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_3.png",
-    "imageWidth": 1876,
-    "imageHeight": 1560,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926343/brandhub-diagrams/r4-3-2-3-sign-in-with-google-oauth.png",
+    "imageWidth": 2036,
+    "imageHeight": 1055,
     "actors": [
       "Guest",
       "Owner",
@@ -912,9 +912,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.4 Reset Password",
     "caption": "Sequence Diagram 3.2.4 - Reset Password",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_4.png",
-    "imageWidth": 2136,
-    "imageHeight": 2530,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926348/brandhub-diagrams/r4-3-2-4-reset-password.png",
+    "imageWidth": 2276,
+    "imageHeight": 1673,
     "actors": [
       "Owner",
       "Manager",
@@ -1324,9 +1324,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.5 Change Password",
     "caption": "Sequence Diagram 3.2.5 - Change Password",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374228/brandhub-docs-portal/report4/seq-3_2_5.png",
-    "imageWidth": 1616,
-    "imageHeight": 2776,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926350/brandhub-diagrams/r4-3-2-5-change-password.png",
+    "imageWidth": 1796,
+    "imageHeight": 2189,
     "actors": [
       "Owner",
       "Manager",
@@ -1710,9 +1710,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.6 OTP Verification",
     "caption": "Sequence Diagram 3.2.6 - OTP Verification",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_6.png",
-    "imageWidth": 2136,
-    "imageHeight": 2140,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926352/brandhub-diagrams/r4-3-2-6-otp-verification.png",
+    "imageWidth": 2276,
+    "imageHeight": 1427,
     "actors": [
       "Guest",
       "Owner",
@@ -2114,9 +2114,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.7 Two-Factor Authentication (2FA, TOTP)",
     "caption": "Sequence Diagram 3.2.7 - Two-Factor Authentication (2FA, TOTP)",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_7.png",
-    "imageWidth": 2136,
-    "imageHeight": 1850,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926354/brandhub-diagrams/r4-3-2-7-two-factor-authentication-2fa-totp.png",
+    "imageWidth": 2276,
+    "imageHeight": 1240,
     "actors": [
       "Owner",
       "Manager",
@@ -2490,9 +2490,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.8 Logout",
     "caption": "Sequence Diagram 3.2.8 - Logout",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_8.png",
-    "imageWidth": 1356,
-    "imageHeight": 1801,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926356/brandhub-diagrams/r4-3-2-8-logout.png",
+    "imageWidth": 1316,
+    "imageHeight": 1294,
     "actors": [
       "Owner",
       "Manager",
@@ -2763,9 +2763,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.2.9 Delete Account",
     "caption": "Sequence Diagram 3.2.9 - Delete Account",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_2_9.png",
-    "imageWidth": 2136,
-    "imageHeight": 2120,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926358/brandhub-diagrams/r4-3-2-9-delete-account.png",
+    "imageWidth": 2276,
+    "imageHeight": 1669,
     "actors": [
       "Owner",
       "Manager",
@@ -3150,9 +3150,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.3.1 View User Profile",
     "caption": "Sequence Diagram 3.3.1 - View User Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_1.png",
-    "imageWidth": 2656,
-    "imageHeight": 2443,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926362/brandhub-diagrams/r4-3-3-1-view-user-profile.png",
+    "imageWidth": 2756,
+    "imageHeight": 1660,
     "actors": [
       "Owner",
       "Manager",
@@ -3574,9 +3574,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.3.2 Update User Profile",
     "caption": "Sequence Diagram 3.3.2 - Update User Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374229/brandhub-docs-portal/report4/seq-3_3_2.png",
-    "imageWidth": 1876,
-    "imageHeight": 2441,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926366/brandhub-diagrams/r4-3-3-2-update-user-profile.png",
+    "imageWidth": 2036,
+    "imageHeight": 1739,
     "actors": [
       "Owner",
       "Manager",
@@ -3969,9 +3969,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.3.3 View Client Profile",
     "caption": "Sequence Diagram 3.3.3 - View Client Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374230/brandhub-docs-portal/report4/seq-3_3_3.png",
-    "imageWidth": 2656,
-    "imageHeight": 1529,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926368/brandhub-diagrams/r4-3-3-3-view-client-profile.png",
+    "imageWidth": 2756,
+    "imageHeight": 1008,
     "actors": [
       "Manager",
       "Client"
@@ -4309,9 +4309,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.3.4 Update Client Profile",
     "caption": "Sequence Diagram 3.3.4 - Update Client Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_3_4.png",
-    "imageWidth": 1876,
-    "imageHeight": 2618,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926370/brandhub-diagrams/r4-3-3-4-update-client-profile.png",
+    "imageWidth": 2036,
+    "imageHeight": 1917,
     "actors": [
       "Manager",
       "Client"
@@ -4702,9 +4702,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.1 List Agency",
     "caption": "Sequence Diagram 3.4.1 - List Agency",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_1.png",
-    "imageWidth": 2276,
-    "imageHeight": 1572,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926375/brandhub-diagrams/r4-3-4-1-list-agency.png",
+    "imageWidth": 2356,
+    "imageHeight": 1177,
     "actors": [
       "Owner",
       "Manager",
@@ -5061,9 +5061,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.2 View Agency Dashboard",
     "caption": "Sequence Diagram 3.4.2 - View Agency Dashboard",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_2.png",
-    "imageWidth": 1876,
-    "imageHeight": 1587,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926401/brandhub-diagrams/r4-3-4-2-view-agency-dashboard.png",
+    "imageWidth": 2036,
+    "imageHeight": 1213,
     "actors": [
       "Owner"
     ],
@@ -5379,9 +5379,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.3 Create Agency",
     "caption": "Sequence Diagram 3.4.3 - Create Agency",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_3.png",
-    "imageWidth": 2396,
-    "imageHeight": 1837,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926418/brandhub-diagrams/r4-3-4-3-create-agency.png",
+    "imageWidth": 2516,
+    "imageHeight": 1192,
     "actors": [
       "Owner",
       "Manager",
@@ -5759,9 +5759,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.4 View Agency Profile",
     "caption": "Sequence Diagram 3.4.4 - View Agency Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374231/brandhub-docs-portal/report4/seq-3_4_4.png",
-    "imageWidth": 2656,
-    "imageHeight": 2362,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926420/brandhub-diagrams/r4-3-4-4-view-agency-profile.png",
+    "imageWidth": 2756,
+    "imageHeight": 1543,
     "actors": [
       "Owner",
       "Manager",
@@ -6181,9 +6181,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.5 Update Agency Profile",
     "caption": "Sequence Diagram 3.4.5 - Update Agency Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_5.png",
-    "imageWidth": 2396,
-    "imageHeight": 3510,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926422/brandhub-diagrams/r4-3-4-5-update-agency-profile.png",
+    "imageWidth": 2516,
+    "imageHeight": 2322,
     "actors": [
       "Owner"
     ],
@@ -6592,9 +6592,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.6 Remove Agency",
     "caption": "Sequence Diagram 3.4.6 - Remove Agency",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_6.png",
-    "imageWidth": 2136,
-    "imageHeight": 2396,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926424/brandhub-diagrams/r4-3-4-6-remove-agency.png",
+    "imageWidth": 2276,
+    "imageHeight": 1662,
     "actors": [
       "Owner"
     ],
@@ -6992,9 +6992,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.7 Invite Agency Member",
     "caption": "Sequence Diagram 3.4.7 - Invite Agency Member",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_7.png",
-    "imageWidth": 3176,
-    "imageHeight": 2956,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926426/brandhub-diagrams/r4-3-4-7-invite-agency-member.png",
+    "imageWidth": 2756,
+    "imageHeight": 1497,
     "actors": [
       "Owner"
     ],
@@ -7415,9 +7415,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.8 View Agency Invitation Status",
     "caption": "Sequence Diagram 3.4.8 - View Agency Invitation Status",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_8.png",
-    "imageWidth": 2656,
-    "imageHeight": 3953,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926429/brandhub-diagrams/r4-3-4-8-view-agency-invitation-status.png",
+    "imageWidth": 2756,
+    "imageHeight": 2829,
     "actors": [
       "Owner",
       "Manager",
@@ -7836,9 +7836,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.9 Accept Agency Invitation",
     "caption": "Sequence Diagram 3.4.9 - Accept Agency Invitation",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374232/brandhub-docs-portal/report4/seq-3_4_9.png",
-    "imageWidth": 3176,
-    "imageHeight": 3288,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926432/brandhub-diagrams/r4-3-4-9-accept-agency-invitation.png",
+    "imageWidth": 3236,
+    "imageHeight": 2387,
     "actors": [
       "Owner",
       "Manager",
@@ -8278,9 +8278,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.10 Decline Agency Invitation",
     "caption": "Sequence Diagram 3.4.10 - Decline Agency Invitation",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_10.png",
-    "imageWidth": 2916,
-    "imageHeight": 3263,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926377/brandhub-diagrams/r4-3-4-10-decline-agency-invitation.png",
+    "imageWidth": 2996,
+    "imageHeight": 2443,
     "actors": [
       "Owner",
       "Manager",
@@ -8710,9 +8710,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.11 Remove Agency Member",
     "caption": "Sequence Diagram 3.4.11 - Remove Agency Member",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_11.png",
-    "imageWidth": 2136,
-    "imageHeight": 2192,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926380/brandhub-diagrams/r4-3-4-11-remove-agency-member.png",
+    "imageWidth": 2276,
+    "imageHeight": 1519,
     "actors": [
       "Owner"
     ],
@@ -9103,9 +9103,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.12 List Workspace",
     "caption": "Sequence Diagram 3.4.12 - List Workspace",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_12.png",
-    "imageWidth": 2916,
-    "imageHeight": 3699,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926383/brandhub-diagrams/r4-3-4-12-list-workspace.png",
+    "imageWidth": 2996,
+    "imageHeight": 2826,
     "actors": [
       "Owner",
       "Manager",
@@ -9535,9 +9535,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.13 View Workspace Dashboard",
     "caption": "Sequence Diagram 3.4.13 - View Workspace Dashboard",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374233/brandhub-docs-portal/report4/seq-3_4_13.png",
-    "imageWidth": 2916,
-    "imageHeight": 2921,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926385/brandhub-diagrams/r4-3-4-13-view-workspace-dashboard.png",
+    "imageWidth": 2996,
+    "imageHeight": 2136,
     "actors": [
       "Owner",
       "Manager",
@@ -9968,9 +9968,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.14 Create Workspace",
     "caption": "Sequence Diagram 3.4.14 - Create Workspace",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_14.png",
-    "imageWidth": 2916,
-    "imageHeight": 3908,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926388/brandhub-diagrams/r4-3-4-14-create-workspace.png",
+    "imageWidth": 2996,
+    "imageHeight": 2953,
     "actors": [
       "Owner"
     ],
@@ -10402,9 +10402,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.15 View Workspace Profile",
     "caption": "Sequence Diagram 3.4.15 - View Workspace Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_15.png",
-    "imageWidth": 2396,
-    "imageHeight": 2058,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926390/brandhub-diagrams/r4-3-4-15-view-workspace-profile.png",
+    "imageWidth": 2516,
+    "imageHeight": 1462,
     "actors": [
       "Owner",
       "Manager",
@@ -10788,9 +10788,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.16 Update Workspace Profile",
     "caption": "Sequence Diagram 3.4.16 - Update Workspace Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_16.png",
-    "imageWidth": 2396,
-    "imageHeight": 3852,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926392/brandhub-diagrams/r4-3-4-16-update-workspace-profile.png",
+    "imageWidth": 2516,
+    "imageHeight": 2522,
     "actors": [
       "Owner",
       "Manager"
@@ -11201,9 +11201,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.17 Delete Workspace",
     "caption": "Sequence Diagram 3.4.17 - Delete Workspace",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_17.png",
-    "imageWidth": 2396,
-    "imageHeight": 4674,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926394/brandhub-diagrams/r4-3-4-17-delete-workspace.png",
+    "imageWidth": 2516,
+    "imageHeight": 3134,
     "actors": [
       "Owner"
     ],
@@ -11612,9 +11612,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.18 Leave Workspace",
     "caption": "Sequence Diagram 3.4.18 - Leave Workspace",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374234/brandhub-docs-portal/report4/seq-3_4_18.png",
-    "imageWidth": 1876,
-    "imageHeight": 2021,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926396/brandhub-diagrams/r4-3-4-18-leave-workspace.png",
+    "imageWidth": 2036,
+    "imageHeight": 1490,
     "actors": [
       "Owner",
       "Manager",
@@ -11987,9 +11987,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.19 Save Workspace Template",
     "caption": "Sequence Diagram 3.4.19 - Save Workspace Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_19.png",
-    "imageWidth": 2396,
-    "imageHeight": 1686,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926399/brandhub-diagrams/r4-3-4-19-save-workspace-template.png",
+    "imageWidth": 2516,
+    "imageHeight": 1198,
     "actors": [
       "Owner"
     ],
@@ -12333,9 +12333,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.20 View Workspace Templates",
     "caption": "Sequence Diagram 3.4.20 - View Workspace Templates",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_20.png",
-    "imageWidth": 2136,
-    "imageHeight": 3117,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926403/brandhub-diagrams/r4-3-4-20-view-workspace-templates.png",
+    "imageWidth": 2276,
+    "imageHeight": 1010,
     "actors": [
       "Owner"
     ],
@@ -12732,9 +12732,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.21 Apply Workspace Template",
     "caption": "Sequence Diagram 3.4.21 - Apply Workspace Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_21.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926405/brandhub-diagrams/r4-3-4-21-apply-workspace-template.png",
+    "imageWidth": 2036,
+    "imageHeight": 1250,
     "actors": [
       "Owner"
     ],
@@ -12889,9 +12889,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.22 Delete Workspace Template",
     "caption": "Sequence Diagram 3.4.22 - Delete Workspace Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374235/brandhub-docs-portal/report4/seq-3_4_22.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926407/brandhub-diagrams/r4-3-4-22-delete-workspace-template.png",
+    "imageWidth": 2036,
+    "imageHeight": 1230,
     "actors": [
       "Owner"
     ],
@@ -13045,9 +13045,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.23 View Workspace Members",
     "caption": "Sequence Diagram 3.4.23 - View Workspace Members",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_23.png",
-    "imageWidth": 2656,
-    "imageHeight": 2986,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926410/brandhub-diagrams/r4-3-4-23-view-workspace-members.png",
+    "imageWidth": 2756,
+    "imageHeight": 2331,
     "actors": [
       "Owner",
       "Manager",
@@ -13467,9 +13467,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.24 Add Workspace Member",
     "caption": "Sequence Diagram 3.4.24 - Add Workspace Member",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_24.png",
-    "imageWidth": 2396,
-    "imageHeight": 2089,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926411/brandhub-diagrams/r4-3-4-24-add-workspace-member.png",
+    "imageWidth": 2516,
+    "imageHeight": 1450,
     "actors": [
       "Owner",
       "Manager"
@@ -13862,9 +13862,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.25 Update Workspace Member Role",
     "caption": "Sequence Diagram 3.4.25 - Update Workspace Member Role",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374236/brandhub-docs-portal/report4/seq-3_4_25.png",
-    "imageWidth": 2396,
-    "imageHeight": 2817,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926414/brandhub-diagrams/r4-3-4-25-update-workspace-member-role.png",
+    "imageWidth": 2516,
+    "imageHeight": 1992,
     "actors": [
       "Owner",
       "Manager"
@@ -14273,9 +14273,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.4.26 Remove Workspace Member",
     "caption": "Sequence Diagram 3.4.26 - Remove Workspace Member",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_4_26.png",
-    "imageWidth": 1876,
-    "imageHeight": 2250,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926416/brandhub-diagrams/r4-3-4-26-remove-workspace-member.png",
+    "imageWidth": 2036,
+    "imageHeight": 1586,
     "actors": [
       "Owner",
       "Manager"
@@ -14665,9 +14665,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.1 Create Media Package",
     "caption": "Sequence Diagram 3.5.1 - Create Media Package",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_1.png",
-    "imageWidth": 1876,
-    "imageHeight": 2865,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926437/brandhub-diagrams/r4-3-5-1-create-media-package.png",
+    "imageWidth": 2036,
+    "imageHeight": 2355,
     "actors": [
       "Owner"
     ],
@@ -15054,9 +15054,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.2 View Template Media Package",
     "caption": "Sequence Diagram 3.5.2 - View Template Media Package",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_2.png",
-    "imageWidth": 1876,
-    "imageHeight": 1908,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926449/brandhub-diagrams/r4-3-5-2-view-template-media-package.png",
+    "imageWidth": 2036,
+    "imageHeight": 1575,
     "actors": [
       "Owner",
       "Manager",
@@ -15427,9 +15427,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.3 Request Media Package",
     "caption": "Sequence Diagram 3.5.3 - Request Media Package",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_3.png",
-    "imageWidth": 1876,
-    "imageHeight": 1560,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926451/brandhub-diagrams/r4-3-5-3-request-media-package.png",
+    "imageWidth": 2036,
+    "imageHeight": 1241,
     "actors": [
       "Manager",
       "Client"
@@ -15746,9 +15746,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.4 Approve Media Package",
     "caption": "Sequence Diagram 3.5.4 - Approve Media Package",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_4.png",
-    "imageWidth": 1876,
-    "imageHeight": 2919,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926453/brandhub-diagrams/r4-3-5-4-approve-media-package.png",
+    "imageWidth": 2036,
+    "imageHeight": 2346,
     "actors": [
       "Manager",
       "Client"
@@ -16137,9 +16137,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.5 Create Media Campaign",
     "caption": "Sequence Diagram 3.5.5 - Create Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_5.png",
-    "imageWidth": 1876,
-    "imageHeight": 2924,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926456/brandhub-diagrams/r4-3-5-5-create-media-campaign.png",
+    "imageWidth": 2036,
+    "imageHeight": 1722,
     "actors": [
       "Manager"
     ],
@@ -16529,9 +16529,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.6 View Media Campaign",
     "caption": "Sequence Diagram 3.5.6 - View Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374237/brandhub-docs-portal/report4/seq-3_5_6.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926459/brandhub-diagrams/r4-3-5-6-view-media-campaign.png",
+    "imageWidth": 1796,
+    "imageHeight": 751,
     "actors": [
       "Manager",
       "Creator",
@@ -16686,9 +16686,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.7 Update Media Campaign",
     "caption": "Sequence Diagram 3.5.7 - Update Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_7.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926462/brandhub-diagrams/r4-3-5-7-update-media-campaign.png",
+    "imageWidth": 1796,
+    "imageHeight": 1226,
     "actors": [
       "Manager",
       "Client"
@@ -16843,9 +16843,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.8 Approve Media Campaign",
     "caption": "Sequence Diagram 3.5.8 - Approve Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_8.png",
-    "imageWidth": 1876,
-    "imageHeight": 2787,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926464/brandhub-diagrams/r4-3-5-8-approve-media-campaign.png",
+    "imageWidth": 2036,
+    "imageHeight": 2268,
     "actors": [
       "Manager",
       "Client"
@@ -17234,9 +17234,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.9 Complete Media Campaign",
     "caption": "Sequence Diagram 3.5.9 - Complete Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374238/brandhub-docs-portal/report4/seq-3_5_9.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926466/brandhub-diagrams/r4-3-5-9-complete-media-campaign.png",
+    "imageWidth": 2036,
+    "imageHeight": 1408,
     "actors": [
       "Manager"
     ],
@@ -17389,9 +17389,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.10 Create Content Request",
     "caption": "Sequence Diagram 3.5.10 - Create Content Request",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374239/brandhub-docs-portal/report4/seq-3_5_10.png",
-    "imageWidth": 1616,
-    "imageHeight": 1427,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926440/brandhub-diagrams/r4-3-5-10-create-content-request.png",
+    "imageWidth": 1796,
+    "imageHeight": 1258,
     "actors": [
       "Manager",
       "Client"
@@ -17661,9 +17661,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.11 Track Request Status",
     "caption": "Sequence Diagram 3.5.11 - Track Request Status",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_11.png",
-    "imageWidth": 1876,
-    "imageHeight": 3486,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926442/brandhub-diagrams/r4-3-5-11-track-request-status.png",
+    "imageWidth": 2036,
+    "imageHeight": 3203,
     "actors": [
       "Manager",
       "Client"
@@ -18053,9 +18053,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.12 Update Request",
     "caption": "Sequence Diagram 3.5.12 - Update Request",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_12.png",
-    "imageWidth": 1616,
-    "imageHeight": 2098,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926444/brandhub-diagrams/r4-3-5-12-update-request.png",
+    "imageWidth": 1796,
+    "imageHeight": 1863,
     "actors": [
       "Manager",
       "Client"
@@ -18406,9 +18406,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.5.13 Cancel Request",
     "caption": "Sequence Diagram 3.5.13 - Cancel Request",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_5_13.png",
-    "imageWidth": 1616,
-    "imageHeight": 2098,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926447/brandhub-diagrams/r4-3-5-13-cancel-request.png",
+    "imageWidth": 1796,
+    "imageHeight": 1847,
     "actors": [
       "Manager",
       "Client"
@@ -18760,9 +18760,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.1 Identify Task Detail",
     "caption": "Sequence Diagram 3.6.1 - Identify Task Detail",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_1.png",
-    "imageWidth": 1616,
-    "imageHeight": 2373,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926473/brandhub-diagrams/r4-3-6-1-identify-task-detail.png",
+    "imageWidth": 1796,
+    "imageHeight": 1975,
     "actors": [
       "Manager"
     ],
@@ -19140,9 +19140,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.2 Assign Task to Creator",
     "caption": "Sequence Diagram 3.6.2 - Assign Task to Creator",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_2.png",
-    "imageWidth": 1876,
-    "imageHeight": 3316,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926495/brandhub-diagrams/r4-3-6-2-assign-task-to-creator.png",
+    "imageWidth": 2036,
+    "imageHeight": 2895,
     "actors": [
       "Manager"
     ],
@@ -19531,9 +19531,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.3 Add Comments on Task",
     "caption": "Sequence Diagram 3.6.3 - Add Comments on Task",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_3.png",
-    "imageWidth": 1876,
-    "imageHeight": 2301,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926524/brandhub-diagrams/r4-3-6-3-add-comments-on-task.png",
+    "imageWidth": 2036,
+    "imageHeight": 1911,
     "actors": [
       "Owner",
       "Manager",
@@ -19925,9 +19925,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.4 List Task View",
     "caption": "Sequence Diagram 3.6.4 - List Task View",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374240/brandhub-docs-portal/report4/seq-3_6_4.png",
-    "imageWidth": 1876,
-    "imageHeight": 1154,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926540/brandhub-diagrams/r4-3-6-4-list-task-view.png",
+    "imageWidth": 2036,
+    "imageHeight": 786,
     "actors": [
       "Owner",
       "Manager",
@@ -20184,9 +20184,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.5 Calendar Task View",
     "caption": "Sequence Diagram 3.6.5 - Calendar Task View",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_5.png",
-    "imageWidth": 1876,
-    "imageHeight": 2048,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926542/brandhub-diagrams/r4-3-6-5-calendar-task-view.png",
+    "imageWidth": 2036,
+    "imageHeight": 1538,
     "actors": [
       "Owner",
       "Manager",
@@ -20562,9 +20562,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.6 Gantt Timeline Task View",
     "caption": "Sequence Diagram 3.6.6 - Gantt Timeline Task View",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_6.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926544/brandhub-diagrams/r4-3-6-6-gantt-timeline-task-view.png",
+    "imageWidth": 1876,
+    "imageHeight": 738,
     "actors": [
       "Owner",
       "Manager",
@@ -20802,9 +20802,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.7 Kanban Board Task View",
     "caption": "Sequence Diagram 3.6.7 - Kanban Board Task View",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374241/brandhub-docs-portal/report4/seq-3_6_7.png",
-    "imageWidth": 1876,
-    "imageHeight": 2352,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926546/brandhub-diagrams/r4-3-6-7-kanban-board-task-view.png",
+    "imageWidth": 2036,
+    "imageHeight": 1786,
     "actors": [
       "Owner",
       "Manager",
@@ -21197,9 +21197,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.8 View Task Filter",
     "caption": "Sequence Diagram 3.6.8 - View Task Filter",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374242/brandhub-docs-portal/report4/seq-3_6_8.png",
-    "imageWidth": 1876,
-    "imageHeight": 1239,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926547/brandhub-diagrams/r4-3-6-8-view-task-filter.png",
+    "imageWidth": 2036,
+    "imageHeight": 953,
     "actors": [
       "Owner",
       "Manager",
@@ -21464,9 +21464,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.9 Approval Sequence (Creator -> Manager -> Client)",
     "caption": "Sequence Diagram 3.6.9 - Approval Sequence (Creator -> Manager -> Client)",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_9.png",
-    "imageWidth": 2656,
-    "imageHeight": 7265,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926550/brandhub-diagrams/r4-3-6-9-approval-sequence-creator-manager-client.png",
+    "imageWidth": 2756,
+    "imageHeight": 5680,
     "actors": [
       "Manager",
       "Creator",
@@ -21888,9 +21888,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.10 Content Writing View",
     "caption": "Sequence Diagram 3.6.10 - Content Writing View",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374242/brandhub-docs-portal/report4/seq-3_6_10.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926475/brandhub-diagrams/r4-3-6-10-content-writing-view.png",
+    "imageWidth": 2036,
+    "imageHeight": 1291,
     "actors": [
       "Manager",
       "Creator"
@@ -22044,9 +22044,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.11 View Material Repository",
     "caption": "Sequence Diagram 3.6.11 - View Material Repository",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_11.png",
-    "imageWidth": 3436,
-    "imageHeight": 2478,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926477/brandhub-diagrams/r4-3-6-11-view-material-repository.png",
+    "imageWidth": 2516,
+    "imageHeight": 1703,
     "actors": [
       "Owner",
       "Manager",
@@ -22495,9 +22495,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.12 Add Material Repository",
     "caption": "Sequence Diagram 3.6.12 - Add Material Repository",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_12.png",
-    "imageWidth": 2136,
-    "imageHeight": 2594,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926479/brandhub-diagrams/r4-3-6-12-add-material-repository.png",
+    "imageWidth": 2276,
+    "imageHeight": 1862,
     "actors": [
       "Manager",
       "Creator",
@@ -22899,9 +22899,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.13 Update Material Repository",
     "caption": "Sequence Diagram 3.6.13 - Update Material Repository",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_13.png",
-    "imageWidth": 1876,
-    "imageHeight": 1874,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926482/brandhub-diagrams/r4-3-6-13-update-material-repository.png",
+    "imageWidth": 2036,
+    "imageHeight": 1399,
     "actors": [
       "Manager",
       "Creator"
@@ -23244,9 +23244,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.14 Remove Material Repository",
     "caption": "Sequence Diagram 3.6.14 - Remove Material Repository",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_14.png",
-    "imageWidth": 2396,
-    "imageHeight": 2840,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926484/brandhub-diagrams/r4-3-6-14-remove-material-repository.png",
+    "imageWidth": 2516,
+    "imageHeight": 2112,
     "actors": [
       "Manager",
       "Creator"
@@ -23656,9 +23656,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.15 Connect Google Drive Storage",
     "caption": "Sequence Diagram 3.6.15 - Connect Google Drive Storage",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_15.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926486/brandhub-diagrams/r4-3-6-15-connect-google-drive-storage.png",
+    "imageWidth": 2036,
+    "imageHeight": 932,
     "actors": [
       "Manager",
       "Client"
@@ -23812,9 +23812,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.16 Sync Material from Google Drive",
     "caption": "Sequence Diagram 3.6.16 - Sync Material from Google Drive",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_16.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926488/brandhub-diagrams/r4-3-6-16-sync-material-from-google-drive.png",
+    "imageWidth": 2276,
+    "imageHeight": 955,
     "actors": [
       "Manager",
       "Client"
@@ -23970,9 +23970,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.17 Disconnect Google Drive Storage",
     "caption": "Sequence Diagram 3.6.17 - Disconnect Google Drive Storage",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374243/brandhub-docs-portal/report4/seq-3_6_17.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926489/brandhub-diagrams/r4-3-6-17-disconnect-google-drive-storage.png",
+    "imageWidth": 2036,
+    "imageHeight": 1007,
     "actors": [
       "Manager",
       "Client"
@@ -24126,9 +24126,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.18 Apply Watermark",
     "caption": "Sequence Diagram 3.6.18 - Apply Watermark",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374244/brandhub-docs-portal/report4/seq-3_6_18.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926491/brandhub-diagrams/r4-3-6-18-apply-watermark.png",
+    "imageWidth": 2276,
+    "imageHeight": 1385,
     "actors": [
       "Creator"
     ],
@@ -24282,9 +24282,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.19 Download Material",
     "caption": "Sequence Diagram 3.6.19 - Download Material",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_19.png",
-    "imageWidth": 2656,
-    "imageHeight": 2222,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926493/brandhub-diagrams/r4-3-6-19-download-material.png",
+    "imageWidth": 2756,
+    "imageHeight": 1669,
     "actors": [
       "Owner",
       "Manager",
@@ -24704,9 +24704,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.20 Apply Hashtag",
     "caption": "Sequence Diagram 3.6.20 - Apply Hashtag",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_20.png",
-    "imageWidth": 2656,
-    "imageHeight": 2880,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926497/brandhub-diagrams/r4-3-6-20-apply-hashtag.png",
+    "imageWidth": 2756,
+    "imageHeight": 2180,
     "actors": [
       "Creator"
     ],
@@ -25124,9 +25124,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.21 View Hashtag Collection",
     "caption": "Sequence Diagram 3.6.21 - View Hashtag Collection",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_21.png",
-    "imageWidth": 2396,
-    "imageHeight": 2106,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926502/brandhub-diagrams/r4-3-6-21-view-hashtag-collection.png",
+    "imageWidth": 2516,
+    "imageHeight": 1598,
     "actors": [
       "Owner",
       "Manager",
@@ -25527,9 +25527,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.22 Add Hashtag Collection",
     "caption": "Sequence Diagram 3.6.22 - Add Hashtag Collection",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_22.png",
-    "imageWidth": 2396,
-    "imageHeight": 2880,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926505/brandhub-diagrams/r4-3-6-22-add-hashtag-collection.png",
+    "imageWidth": 2516,
+    "imageHeight": 2162,
     "actors": [
       "Manager",
       "Creator",
@@ -25938,9 +25938,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.23 Update Hashtag Collection",
     "caption": "Sequence Diagram 3.6.23 - Update Hashtag Collection",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_23.png",
-    "imageWidth": 1876,
-    "imageHeight": 1874,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926508/brandhub-diagrams/r4-3-6-23-update-hashtag-collection.png",
+    "imageWidth": 2036,
+    "imageHeight": 1411,
     "actors": [
       "Manager",
       "Creator"
@@ -26283,9 +26283,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.24 Remove Hashtag Collection",
     "caption": "Sequence Diagram 3.6.24 - Remove Hashtag Collection",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_24.png",
-    "imageWidth": 1876,
-    "imageHeight": 1990,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926511/brandhub-diagrams/r4-3-6-24-remove-hashtag-collection.png",
+    "imageWidth": 2036,
+    "imageHeight": 1499,
     "actors": [
       "Manager",
       "Creator"
@@ -26648,9 +26648,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.25 Create Survey",
     "caption": "Sequence Diagram 3.6.25 - Create Survey",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_25.png",
-    "imageWidth": 2136,
-    "imageHeight": 2141,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926513/brandhub-diagrams/r4-3-6-25-create-survey.png",
+    "imageWidth": 2276,
+    "imageHeight": 1740,
     "actors": [
       "Manager",
       "Creator"
@@ -27048,9 +27048,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.26 View Survey Analysis",
     "caption": "Sequence Diagram 3.6.26 - View Survey Analysis",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374245/brandhub-docs-portal/report4/seq-3_6_26.png",
-    "imageWidth": 2136,
-    "imageHeight": 1587,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926514/brandhub-diagrams/r4-3-6-26-view-survey-analysis.png",
+    "imageWidth": 2276,
+    "imageHeight": 1223,
     "actors": [
       "Manager",
       "Client"
@@ -27376,9 +27376,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.27 Generate Meeting Link",
     "caption": "Sequence Diagram 3.6.27 - Generate Meeting Link",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374246/brandhub-docs-portal/report4/seq-3_6_27.png",
-    "imageWidth": 2396,
-    "imageHeight": 2151,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926516/brandhub-diagrams/r4-3-6-27-generate-meeting-link.png",
+    "imageWidth": 2516,
+    "imageHeight": 1545,
     "actors": [
       "Owner",
       "Manager",
@@ -27779,9 +27779,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.28 View Mail Template",
     "caption": "Sequence Diagram 3.6.28 - View Mail Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374246/brandhub-docs-portal/report4/seq-3_6_28.png",
-    "imageWidth": 2136,
-    "imageHeight": 1280,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926518/brandhub-diagrams/r4-3-6-28-view-mail-template.png",
+    "imageWidth": 2276,
+    "imageHeight": 971,
     "actors": [
       "Manager",
       "Creator"
@@ -28053,9 +28053,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.29 Create Mail Template",
     "caption": "Sequence Diagram 3.6.29 - Create Mail Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_29.png",
-    "imageWidth": 2396,
-    "imageHeight": 2345,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926522/brandhub-diagrams/r4-3-6-29-create-mail-template.png",
+    "imageWidth": 2516,
+    "imageHeight": 1811,
     "actors": [
       "Manager",
       "Creator"
@@ -28463,9 +28463,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.30 Update Mail Template",
     "caption": "Sequence Diagram 3.6.30 - Update Mail Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_30.png",
-    "imageWidth": 2136,
-    "imageHeight": 2294,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926527/brandhub-diagrams/r4-3-6-30-update-mail-template.png",
+    "imageWidth": 2276,
+    "imageHeight": 2379,
     "actors": [
       "Manager",
       "Creator"
@@ -28827,9 +28827,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.31 Delete Mail Template",
     "caption": "Sequence Diagram 3.6.31 - Delete Mail Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374247/brandhub-docs-portal/report4/seq-3_6_31.png",
-    "imageWidth": 1876,
-    "imageHeight": 1909,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926529/brandhub-diagrams/r4-3-6-31-delete-mail-template.png",
+    "imageWidth": 2036,
+    "imageHeight": 1994,
     "actors": [
       "Manager",
       "Creator"
@@ -29155,9 +29155,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.32 Send Email via Template",
     "caption": "Sequence Diagram 3.6.32 - Send Email via Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_32.png",
-    "imageWidth": 4216,
-    "imageHeight": 5794,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926531/brandhub-diagrams/r4-3-6-32-send-email-via-template.png",
+    "imageWidth": 4196,
+    "imageHeight": 4231,
     "actors": [
       "Manager",
       "Creator"
@@ -29637,9 +29637,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.33 Check Compliance Content",
     "caption": "Sequence Diagram 3.6.33 - Check Compliance Content",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_33.png",
-    "imageWidth": 2656,
-    "imageHeight": 2707,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926533/brandhub-diagrams/r4-3-6-33-check-compliance-content.png",
+    "imageWidth": 2756,
+    "imageHeight": 1992,
     "actors": [
       "Manager",
       "Creator"
@@ -30058,9 +30058,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.34 View Content History",
     "caption": "Sequence Diagram 3.6.34 - View Content History",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_34.png",
-    "imageWidth": 2136,
-    "imageHeight": 2899,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926536/brandhub-diagrams/r4-3-6-34-view-content-history.png",
+    "imageWidth": 2276,
+    "imageHeight": 2112,
     "actors": [
       "Manager",
       "Creator"
@@ -30459,9 +30459,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.6.35 Chat Realtime",
     "caption": "Sequence Diagram 3.6.35 - Chat Realtime",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_6_35.png",
-    "imageWidth": 1876,
-    "imageHeight": 3100,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926538/brandhub-diagrams/r4-3-6-35-chat-realtime.png",
+    "imageWidth": 2036,
+    "imageHeight": 2633,
     "actors": [
       "Owner",
       "Manager",
@@ -30851,9 +30851,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.1 View Trending Topics Suggestions",
     "caption": "Sequence Diagram 3.7.1 - View Trending Topics Suggestions",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_1.png",
-    "imageWidth": 1356,
-    "imageHeight": 1653,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926554/brandhub-diagrams/r4-3-7-1-view-trending-topics-suggestions.png",
+    "imageWidth": 1316,
+    "imageHeight": 1141,
     "actors": [
       "Manager",
       "Creator"
@@ -31112,9 +31112,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.2 View AI Trend Knowledge Graph",
     "caption": "Sequence Diagram 3.7.2 - View AI Trend Knowledge Graph",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_2.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926576/brandhub-diagrams/r4-3-7-2-view-ai-trend-knowledge-graph.png",
+    "imageWidth": 1796,
+    "imageHeight": 967,
     "actors": [
       "Manager",
       "Admin"
@@ -31266,9 +31266,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.3 View Brand Knowledge Documents",
     "caption": "Sequence Diagram 3.7.3 - View Brand Knowledge Documents",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_3.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926578/brandhub-diagrams/r4-3-7-3-view-brand-knowledge-documents.png",
+    "imageWidth": 1636,
+    "imageHeight": 651,
     "actors": [
       "Manager",
       "Creator",
@@ -31422,9 +31422,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.4 Upload Brand Knowledge Document",
     "caption": "Sequence Diagram 3.7.4 - Upload Brand Knowledge Document",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374248/brandhub-docs-portal/report4/seq-3_7_4.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926579/brandhub-diagrams/r4-3-7-4-upload-brand-knowledge-document.png",
+    "imageWidth": 2036,
+    "imageHeight": 1175,
     "actors": [
       "Manager",
       "Client"
@@ -31577,9 +31577,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.5 Delete Brand Knowledge Document",
     "caption": "Sequence Diagram 3.7.5 - Delete Brand Knowledge Document",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_5.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926581/brandhub-diagrams/r4-3-7-5-delete-brand-knowledge-document.png",
+    "imageWidth": 2036,
+    "imageHeight": 1165,
     "actors": [
       "Manager",
       "Client"
@@ -31733,9 +31733,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.6 Generate Caption",
     "caption": "Sequence Diagram 3.7.6 - Generate Caption",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374249/brandhub-docs-portal/report4/seq-3_7_6.png",
-    "imageWidth": 1876,
-    "imageHeight": 1212,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926583/brandhub-diagrams/r4-3-7-6-generate-caption.png",
+    "imageWidth": 2036,
+    "imageHeight": 841,
     "actors": [
       "Creator"
     ],
@@ -32001,9 +32001,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.7 Generate Ambassador",
     "caption": "Sequence Diagram 3.7.7 - Generate Ambassador",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_7.png",
-    "imageWidth": 2396,
-    "imageHeight": 2686,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926585/brandhub-diagrams/r4-3-7-7-generate-ambassador.png",
+    "imageWidth": 2516,
+    "imageHeight": 2030,
     "actors": [
       "Creator"
     ],
@@ -32415,9 +32415,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.8 View Image Style Template",
     "caption": "Sequence Diagram 3.7.8 - View Image Style Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_8.png",
-    "imageWidth": 1356,
-    "imageHeight": 1834,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926587/brandhub-diagrams/r4-3-7-8-view-image-style-template.png",
+    "imageWidth": 1316,
+    "imageHeight": 1579,
     "actors": [
       "Creator"
     ],
@@ -32730,9 +32730,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.9 Generate Image",
     "caption": "Sequence Diagram 3.7.9 - Generate Image",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_9.png",
-    "imageWidth": 1876,
-    "imageHeight": 1995,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926589/brandhub-diagrams/r4-3-7-9-generate-image.png",
+    "imageWidth": 2036,
+    "imageHeight": 1815,
     "actors": [
       "Creator"
     ],
@@ -33089,9 +33089,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.10 View Video Style Template",
     "caption": "Sequence Diagram 3.7.10 - View Video Style Template",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_10.png",
-    "imageWidth": 1356,
-    "imageHeight": 1510,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926556/brandhub-diagrams/r4-3-7-10-view-video-style-template.png",
+    "imageWidth": 1316,
+    "imageHeight": 934,
     "actors": [
       "Creator"
     ],
@@ -33332,9 +33332,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.11 Generate Video",
     "caption": "Sequence Diagram 3.7.11 - Generate Video",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_11.png",
-    "imageWidth": 2136,
-    "imageHeight": 1328,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926558/brandhub-diagrams/r4-3-7-11-generate-video.png",
+    "imageWidth": 2276,
+    "imageHeight": 893,
     "actors": [
       "Creator"
     ],
@@ -33629,9 +33629,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.12 Export File",
     "caption": "Sequence Diagram 3.7.12 - Export File",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_12.png",
-    "imageWidth": 2136,
-    "imageHeight": 1758,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926561/brandhub-diagrams/r4-3-7-12-export-file.png",
+    "imageWidth": 2276,
+    "imageHeight": 1222,
     "actors": [
       "Manager",
       "Creator"
@@ -33966,9 +33966,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.13 Crawl Schedule Config",
     "caption": "Sequence Diagram 3.7.13 - Crawl Schedule Config",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374250/brandhub-docs-portal/report4/seq-3_7_13.png",
-    "imageWidth": 2136,
-    "imageHeight": 2182,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926563/brandhub-diagrams/r4-3-7-13-crawl-schedule-config.png",
+    "imageWidth": 2276,
+    "imageHeight": 1477,
     "actors": [
       "Admin"
     ],
@@ -34312,9 +34312,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.14 Suggest Hashtag Trend",
     "caption": "Sequence Diagram 3.7.14 - Suggest Hashtag Trend",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_14.png",
-    "imageWidth": 1876,
-    "imageHeight": 1526,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926565/brandhub-diagrams/r4-3-7-14-suggest-hashtag-trend.png",
+    "imageWidth": 2036,
+    "imageHeight": 1042,
     "actors": [
       "Creator"
     ],
@@ -34602,9 +34602,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.15 View Collaborator Directory",
     "caption": "Sequence Diagram 3.7.15 - View Collaborator Directory",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_15.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926567/brandhub-diagrams/r4-3-7-15-view-collaborator-directory.png",
+    "imageWidth": 1636,
+    "imageHeight": 711,
     "actors": [
       "Owner",
       "Manager"
@@ -34757,9 +34757,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.16 Create Collaborator Profile",
     "caption": "Sequence Diagram 3.7.16 - Create Collaborator Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374251/brandhub-docs-portal/report4/seq-3_7_16.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926568/brandhub-diagrams/r4-3-7-16-create-collaborator-profile.png",
+    "imageWidth": 1796,
+    "imageHeight": 1069,
     "actors": [
       "Owner",
       "Manager"
@@ -34913,9 +34913,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.17 Update Collaborator Profile",
     "caption": "Sequence Diagram 3.7.17 - Update Collaborator Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_17.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926570/brandhub-diagrams/r4-3-7-17-update-collaborator-profile.png",
+    "imageWidth": 1796,
+    "imageHeight": 1184,
     "actors": [
       "Owner",
       "Manager"
@@ -35068,9 +35068,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.18 Remove Collaborator Profile",
     "caption": "Sequence Diagram 3.7.18 - Remove Collaborator Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_7_18.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926572/brandhub-diagrams/r4-3-7-18-remove-collaborator-profile.png",
+    "imageWidth": 1796,
+    "imageHeight": 1119,
     "actors": [
       "Owner",
       "Manager"
@@ -35225,9 +35225,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.7.19 Recommend Collaborator",
     "caption": "Sequence Diagram 3.7.19 - Recommend Collaborator",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_7_19.png",
-    "imageWidth": 3176,
-    "imageHeight": 2614,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926574/brandhub-diagrams/r4-3-7-19-recommend-collaborator.png",
+    "imageWidth": 3236,
+    "imageHeight": 1995,
     "actors": [
       "Manager",
       "Client"
@@ -35665,9 +35665,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.1 Connect Social Account",
     "caption": "Sequence Diagram 3.8.1 - Connect Social Account",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374252/brandhub-docs-portal/report4/seq-3_8_1.png",
-    "imageWidth": 1616,
-    "imageHeight": 1560,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926594/brandhub-diagrams/r4-3-8-1-connect-social-account.png",
+    "imageWidth": 1556,
+    "imageHeight": 1061,
     "actors": [
       "Manager",
       "Client"
@@ -35975,9 +35975,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.2 Disconnect Account",
     "caption": "Sequence Diagram 3.8.2 - Disconnect Account",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_2.png",
-    "imageWidth": 2656,
-    "imageHeight": 2133,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926613/brandhub-diagrams/r4-3-8-2-disconnect-account.png",
+    "imageWidth": 2756,
+    "imageHeight": 1478,
     "actors": [
       "Manager",
       "Client"
@@ -36387,9 +36387,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.3 View Dashboard Post",
     "caption": "Sequence Diagram 3.8.3 - View Dashboard Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_3.png",
-    "imageWidth": 1756,
-    "imageHeight": 1286,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926616/brandhub-diagrams/r4-3-8-3-view-dashboard-post.png",
+    "imageWidth": 1876,
+    "imageHeight": 1234,
     "actors": [
       "Owner",
       "Manager",
@@ -36689,9 +36689,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.4 View Posted Detail",
     "caption": "Sequence Diagram 3.8.4 - View Posted Detail",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_4.png",
-    "imageWidth": 2916,
-    "imageHeight": 1618,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926618/brandhub-diagrams/r4-3-8-4-view-posted-detail.png",
+    "imageWidth": 2996,
+    "imageHeight": 1153,
     "actors": [
       "Owner",
       "Manager",
@@ -37058,9 +37058,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.5 Preview Post",
     "caption": "Sequence Diagram 3.8.5 - Preview Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_5.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926620/brandhub-diagrams/r4-3-8-5-preview-post.png",
+    "imageWidth": 1876,
+    "imageHeight": 781,
     "actors": [
       "Manager",
       "Creator",
@@ -37295,9 +37295,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.6 Schedule Platform Post",
     "caption": "Sequence Diagram 3.8.6 - Schedule Platform Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_6.png",
-    "imageWidth": 1876,
-    "imageHeight": 1471,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926623/brandhub-diagrams/r4-3-8-6-schedule-platform-post.png",
+    "imageWidth": 2036,
+    "imageHeight": 1224,
     "actors": [
       "Manager",
       "Creator"
@@ -37604,9 +37604,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.7 Track Post Status",
     "caption": "Sequence Diagram 3.8.7 - Track Post Status",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374253/brandhub-docs-portal/report4/seq-3_8_7.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926625/brandhub-diagrams/r4-3-8-7-track-post-status.png",
+    "imageWidth": 1876,
+    "imageHeight": 793,
     "actors": [
       "Owner",
       "Manager",
@@ -37843,9 +37843,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.8 Publish Facebook Post",
     "caption": "Sequence Diagram 3.8.8 - Publish Facebook Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374254/brandhub-docs-portal/report4/seq-3_8_8.png",
-    "imageWidth": 2656,
-    "imageHeight": 3248,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926631/brandhub-diagrams/r4-3-8-8-publish-facebook-post.png",
+    "imageWidth": 2756,
+    "imageHeight": 2559,
     "actors": [
       "Manager",
       "Creator"
@@ -38270,9 +38270,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.9 Publish Facebook Story",
     "caption": "Sequence Diagram 3.8.9 - Publish Facebook Story",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374254/brandhub-docs-portal/report4/seq-3_8_9.png",
-    "imageWidth": 2656,
-    "imageHeight": 3145,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926633/brandhub-diagrams/r4-3-8-9-publish-facebook-story.png",
+    "imageWidth": 2756,
+    "imageHeight": 2515,
     "actors": [
       "Manager",
       "Creator"
@@ -38698,9 +38698,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.10 Publish Facebook Reels",
     "caption": "Sequence Diagram 3.8.10 - Publish Facebook Reels",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_10.png",
-    "imageWidth": 2136,
-    "imageHeight": 1560,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926597/brandhub-diagrams/r4-3-8-10-publish-facebook-reels.png",
+    "imageWidth": 2276,
+    "imageHeight": 1241,
     "actors": [
       "Manager",
       "Creator"
@@ -39033,9 +39033,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.11 Publish Instagram Post",
     "caption": "Sequence Diagram 3.8.11 - Publish Instagram Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_11.png",
-    "imageWidth": 2136,
-    "imageHeight": 1676,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926599/brandhub-diagrams/r4-3-8-11-publish-instagram-post.png",
+    "imageWidth": 2276,
+    "imageHeight": 1317,
     "actors": [
       "Manager",
       "Creator"
@@ -39387,9 +39387,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.12 Publish Instagram Reels",
     "caption": "Sequence Diagram 3.8.12 - Publish Instagram Reels",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_12.png",
-    "imageWidth": 2136,
-    "imageHeight": 1734,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926604/brandhub-diagrams/r4-3-8-12-publish-instagram-reels.png",
+    "imageWidth": 2276,
+    "imageHeight": 1301,
     "actors": [
       "Manager",
       "Creator"
@@ -39749,9 +39749,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.13 Publish Instagram Story",
     "caption": "Sequence Diagram 3.8.13 - Publish Instagram Story",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_13.png",
-    "imageWidth": 2136,
-    "imageHeight": 1328,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926607/brandhub-diagrams/r4-3-8-13-publish-instagram-story.png",
+    "imageWidth": 2276,
+    "imageHeight": 1045,
     "actors": [
       "Manager",
       "Creator"
@@ -40049,9 +40049,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.14 Publish TikTok Video",
     "caption": "Sequence Diagram 3.8.14 - Publish TikTok Video",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_14.png",
-    "imageWidth": 2916,
-    "imageHeight": 3161,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926609/brandhub-diagrams/r4-3-8-14-publish-tiktok-video.png",
+    "imageWidth": 2996,
+    "imageHeight": 2438,
     "actors": [
       "Manager",
       "Creator"
@@ -40487,9 +40487,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.8.15 Publish Threads Post",
     "caption": "Sequence Diagram 3.8.15 - Publish Threads Post",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_8_15.png",
-    "imageWidth": 2136,
-    "imageHeight": 1676,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926611/brandhub-diagrams/r4-3-8-15-publish-threads-post.png",
+    "imageWidth": 2276,
+    "imageHeight": 1285,
     "actors": [
       "Manager",
       "Creator"
@@ -40841,9 +40841,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.1 Upgrade Plan",
     "caption": "Sequence Diagram 3.9.1 - Upgrade Plan",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_9_1.png",
-    "imageWidth": 1876,
-    "imageHeight": 1682,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926640/brandhub-diagrams/r4-3-9-1-upgrade-plan.png",
+    "imageWidth": 2036,
+    "imageHeight": 1266,
     "actors": [
       "Owner"
     ],
@@ -41161,9 +41161,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.2 Make Payment (SePay)",
     "caption": "Sequence Diagram 3.9.2 - Make Payment (SePay)",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374255/brandhub-docs-portal/report4/seq-3_9_2.png",
-    "imageWidth": 2656,
-    "imageHeight": 2048,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926643/brandhub-diagrams/r4-3-9-2-make-payment-sepay.png",
+    "imageWidth": 2036,
+    "imageHeight": 1535,
     "actors": [
       "Owner"
     ],
@@ -41326,9 +41326,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.3 View Invoice History",
     "caption": "Sequence Diagram 3.9.3 - View Invoice History",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374256/brandhub-docs-portal/report4/seq-3_9_3.png",
-    "imageWidth": 1616,
-    "imageHeight": 1410,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926645/brandhub-diagrams/r4-3-9-3-view-invoice-history.png",
+    "imageWidth": 1796,
+    "imageHeight": 995,
     "actors": [
       "Owner"
     ],
@@ -41588,9 +41588,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.4 View AI Credit Tracking",
     "caption": "Sequence Diagram 3.9.4 - View AI Credit Tracking",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_4.png",
-    "imageWidth": 2656,
-    "imageHeight": 2993,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926648/brandhub-diagrams/r4-3-9-4-view-ai-credit-tracking.png",
+    "imageWidth": 2756,
+    "imageHeight": 2226,
     "actors": [
       "Owner",
       "Manager"
@@ -42009,9 +42009,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.5 Buy Credit",
     "caption": "Sequence Diagram 3.9.5 - Buy Credit",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_5.png",
-    "imageWidth": 2136,
-    "imageHeight": 1914,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926650/brandhub-diagrams/r4-3-9-5-buy-credit.png",
+    "imageWidth": 2276,
+    "imageHeight": 1434,
     "actors": [
       "Owner"
     ],
@@ -42375,9 +42375,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.9.6 Set Credit",
     "caption": "Sequence Diagram 3.9.6 - Set Credit",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_9_6.png",
-    "imageWidth": 1876,
-    "imageHeight": 1874,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926652/brandhub-diagrams/r4-3-9-6-set-credit.png",
+    "imageWidth": 2036,
+    "imageHeight": 1459,
     "actors": [
       "Owner"
     ],
@@ -42721,9 +42721,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.1 Push Notification",
     "caption": "Sequence Diagram 3.10.1 - Push Notification",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_1.png",
-    "imageWidth": 1876,
-    "imageHeight": 1270,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926302/brandhub-diagrams/r4-3-10-1-push-notification.png",
+    "imageWidth": 2036,
+    "imageHeight": 843,
     "actors": [
       "Admin"
     ],
@@ -42995,9 +42995,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.2 Platform Statistics Overview",
     "caption": "Sequence Diagram 3.10.2 - Platform Statistics Overview",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_2.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926316/brandhub-diagrams/r4-3-10-2-platform-statistics-overview.png",
+    "imageWidth": 1876,
+    "imageHeight": 721,
     "actors": [
       "Admin"
     ],
@@ -43232,9 +43232,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.3 System Health Monitoring",
     "caption": "Sequence Diagram 3.10.3 - System Health Monitoring",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374257/brandhub-docs-portal/report4/seq-3_10_3.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926321/brandhub-diagrams/r4-3-10-3-system-health-monitoring.png",
+    "imageWidth": 1876,
+    "imageHeight": 721,
     "actors": [
       "Admin"
     ],
@@ -43468,9 +43468,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.4 Content Moderation Queue",
     "caption": "Sequence Diagram 3.10.4 - Content Moderation Queue",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_4.png",
-    "imageWidth": 1876,
-    "imageHeight": 1444,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926323/brandhub-diagrams/r4-3-10-4-content-moderation-queue.png",
+    "imageWidth": 2036,
+    "imageHeight": 1093,
     "actors": [
       "Admin"
     ],
@@ -43770,9 +43770,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.5 Update User Violation Status",
     "caption": "Sequence Diagram 3.10.5 - Update User Violation Status",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_5.png",
-    "imageWidth": 2916,
-    "imageHeight": 3503,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926325/brandhub-diagrams/r4-3-10-5-update-user-violation-status.png",
+    "imageWidth": 2996,
+    "imageHeight": 2664,
     "actors": [
       "Admin"
     ],
@@ -44201,9 +44201,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.6 View User",
     "caption": "Sequence Diagram 3.10.6 - View User",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_6.png",
-    "imageWidth": 2656,
-    "imageHeight": 2796,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926328/brandhub-diagrams/r4-3-10-6-view-user.png",
+    "imageWidth": 2756,
+    "imageHeight": 2194,
     "actors": [
       "Admin"
     ],
@@ -44619,9 +44619,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.7 Create User",
     "caption": "Sequence Diagram 3.10.7 - Create User",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374258/brandhub-docs-portal/report4/seq-3_10_7.png",
-    "imageWidth": 1876,
-    "imageHeight": 1444,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926331/brandhub-diagrams/r4-3-10-7-create-user.png",
+    "imageWidth": 2036,
+    "imageHeight": 1077,
     "actors": [
       "Admin"
     ],
@@ -44921,9 +44921,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.8 Update User",
     "caption": "Sequence Diagram 3.10.8 - Update User",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_8.png",
-    "imageWidth": 1876,
-    "imageHeight": 1386,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926333/brandhub-diagrams/r4-3-10-8-update-user.png",
+    "imageWidth": 2036,
+    "imageHeight": 1017,
     "actors": [
       "Admin"
     ],
@@ -45215,9 +45215,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.9 Deactivate User",
     "caption": "Sequence Diagram 3.10.9 - Deactivate User",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_9.png",
-    "imageWidth": 1876,
-    "imageHeight": 2069,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926335/brandhub-diagrams/r4-3-10-9-deactivate-user.png",
+    "imageWidth": 2036,
+    "imageHeight": 1439,
     "actors": [
       "Admin"
     ],
@@ -45608,9 +45608,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.10 View AI Credit Price List",
     "caption": "Sequence Diagram 3.10.10 - View AI Credit Price List",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_10.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926305/brandhub-diagrams/r4-3-10-10-view-ai-credit-price-list.png",
+    "imageWidth": 1636,
+    "imageHeight": 635,
     "actors": [
       "Owner",
       "Admin"
@@ -45764,9 +45764,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.11 Update AI Credit Price",
     "caption": "Sequence Diagram 3.10.11 - Update AI Credit Price",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_11.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926307/brandhub-diagrams/r4-3-10-11-update-ai-credit-price.png",
+    "imageWidth": 2036,
+    "imageHeight": 1167,
     "actors": [
       "Admin"
     ],
@@ -45921,9 +45921,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.12 Import AI Credit Price CSV",
     "caption": "Sequence Diagram 3.10.12 - Import AI Credit Price CSV",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_12.png",
-    "imageWidth": 1920,
-    "imageHeight": 1050,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926309/brandhub-diagrams/r4-3-10-12-import-ai-credit-price-csv.png",
+    "imageWidth": 2036,
+    "imageHeight": 1109,
     "actors": [
       "Admin"
     ],
@@ -46087,9 +46087,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.13 View Revenue Dashboard",
     "caption": "Sequence Diagram 3.10.13 - View Revenue Dashboard",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374259/brandhub-docs-portal/report4/seq-3_10_13.png",
-    "imageWidth": 1756,
-    "imageHeight": 907,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926312/brandhub-diagrams/r4-3-10-13-view-revenue-dashboard.png",
+    "imageWidth": 1876,
+    "imageHeight": 721,
     "actors": [
       "Admin"
     ],
@@ -46324,9 +46324,9 @@
     "category": "UML Sequence Diagram",
     "title": "Sequence Diagram - 3.10.14 Export Report File PDF",
     "caption": "Sequence Diagram 3.10.14 - Export Report File PDF",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374260/brandhub-docs-portal/report4/seq-3_10_14.png",
-    "imageWidth": 1876,
-    "imageHeight": 1792,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926314/brandhub-diagrams/r4-3-10-14-export-report-file-pdf.png",
+    "imageWidth": 2036,
+    "imageHeight": 1271,
     "actors": [
       "Admin"
     ],

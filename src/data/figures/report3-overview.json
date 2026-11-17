@@ -8,9 +8,9 @@
     "category": "Architecture & Context",
     "title": "System Context Diagram",
     "caption": "Figure 1 - System Context Diagram",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374184/brandhub-docs-portal/report3/r3-fig-1.jpg",
-    "imageWidth": 1093,
-    "imageHeight": 728,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794937928/brandhub-diagrams/system-context-diagram.png",
+    "imageWidth": 1712,
+    "imageHeight": 1152,
     "actors": [
       "Guest",
       "Owner",
@@ -168,9 +168,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Guest",
     "caption": "Figure 3 - Screen Flow for Guest",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-3.jpg",
-    "imageWidth": 791,
-    "imageHeight": 419,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940528/brandhub-diagrams/screen-flow-guest.png",
+    "imageWidth": 1706,
+    "imageHeight": 904,
     "actors": [
       "Guest"
     ],
@@ -203,9 +203,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Client",
     "caption": "Figure 4 - Screen Flow for Client",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-4.jpg",
-    "imageWidth": 980,
-    "imageHeight": 462,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940524/brandhub-diagrams/screen-flow-client.png",
+    "imageWidth": 2306,
+    "imageHeight": 1336,
     "actors": [
       "Client"
     ],
@@ -238,9 +238,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Admin",
     "caption": "Figure 5 - Screen Flow for Admin",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-5.jpg",
-    "imageWidth": 1712,
-    "imageHeight": 592,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940522/brandhub-diagrams/screen-flow-admin.png",
+    "imageWidth": 2306,
+    "imageHeight": 1024,
     "actors": [
       "Admin"
     ],
@@ -273,9 +273,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Owner",
     "caption": "Figure 6 - Screen Flow for Owner",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-6.jpg",
-    "imageWidth": 1848,
-    "imageHeight": 1174,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940535/brandhub-diagrams/screen-flow-owner.png",
+    "imageWidth": 2306,
+    "imageHeight": 1232,
     "actors": [
       "Owner"
     ],
@@ -308,9 +308,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Manager",
     "caption": "Figure 7 - Screen Flow for Manager",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-7.png",
-    "imageWidth": 1538,
-    "imageHeight": 638,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940532/brandhub-diagrams/screen-flow-manager.png",
+    "imageWidth": 2306,
+    "imageHeight": 1752,
     "actors": [
       "Manager"
     ],
@@ -343,9 +343,9 @@
     "category": "Screen Flow",
     "title": "Screen Flow for Creator",
     "caption": "Figure 8 - Screen Flow for Creator",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-8.png",
-    "imageWidth": 1315,
-    "imageHeight": 802,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940527/brandhub-diagrams/screen-flow-creator.png",
+    "imageWidth": 2306,
+    "imageHeight": 1440,
     "actors": [
       "Creator"
     ],
@@ -378,9 +378,9 @@
     "category": "Database & ERD",
     "title": "Entity Relationship Diagram",
     "caption": "Figure 9 - Entity Relationship Diagram",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374186/brandhub-docs-portal/report3/r3-fig-9.png",
-    "imageWidth": 1377,
-    "imageHeight": 657,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794940382/brandhub-diagrams/entity-relationship-diagram.png",
+    "imageWidth": 4686,
+    "imageHeight": 2624,
     "actors": [
       "Guest",
       "Owner",
