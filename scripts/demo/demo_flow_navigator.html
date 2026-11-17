@@ -127,10 +127,10 @@
 
         <!-- View Mode Segmented Switch -->
         <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 text-xs font-semibold">
-          <button id="mode-stage-btn" onclick="setViewMode('stage')" class="px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer">
+          <button id="mode-stage-btn" onclick="setViewMode('stage')" title="Chế độ trình chiếu gọn, 1 cột: chỉ hiện bước đang chạy — dùng lúc thuyết trình thật" class="px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer">
             Sân khấu
           </button>
-          <button id="mode-detail-btn" onclick="setViewMode('detail')" class="px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer">
+          <button id="mode-detail-btn" onclick="setViewMode('detail')" title="Hiện đầy đủ danh sách bước + nội dung 2 cột — dùng lúc soát kịch bản trước giờ demo" class="px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer">
             Chi tiết (2 cột)
           </button>
         </div>
@@ -141,10 +141,10 @@
         <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs tabular-nums">
           <span class="font-bold text-slate-900" id="timer-display">00:00</span>
           <span class="text-slate-400">/ 20:00</span>
-          <button onclick="toggleTimer()" id="timer-btn" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
+          <button onclick="toggleTimer()" id="timer-btn" title="Bật/tạm dừng đồng hồ đếm 20 phút (tự chạy khi bấm thao tác đầu tiên)" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
             Chạy
           </button>
-          <button onclick="resetTimer()" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 rounded text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
+          <button onclick="resetTimer()" title="Đặt lại đồng hồ về 00:00 và dừng đếm" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 rounded text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
             00:00
           </button>
         </div>
@@ -165,15 +165,15 @@
           </button>
         </div>
 
-        <button onclick="loginAllRoles()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 shadow-sm cursor-pointer">
+        <button onclick="loginAllRoles()" title="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin. Chạy trước giờ bảo vệ ~10 phút" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 shadow-sm cursor-pointer">
           Đăng nhập 5 Vai trò
         </button>
 
-        <button onclick="document.getElementById('reset-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
+        <button onclick="document.getElementById('reset-dialog').showModal()" title="Nạp lại dữ liệu mẫu chuẩn Bước B1 (xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên). Dùng trước mỗi lần tập dượt" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
           Khôi phục DB
         </button>
 
-        <button onclick="document.getElementById('clean-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
+        <button onclick="document.getElementById('clean-dialog').showModal()" title="Xóa sạch dữ liệu mẫu và mọi bản ghi phát sinh lúc demo, đưa về khung rỗng (không nạp lại gì). Dùng sau khi demo xong" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
           Xóa dữ liệu Demo
         </button>
 
@@ -974,6 +974,7 @@
           </div>
           <button
             onclick="smartAdvance()"
+            title="Chạy thao tác tiếp theo trong bước, hoặc qua bước kế nếu bước hiện tại đã xong hết (tương đương phím Space)"
             ${!nextAct && activeIdx === STEPS.length - 1 ? 'disabled' : ''}
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-sm cursor-pointer disabled:opacity-40 shrink-0"
           >
@@ -1045,10 +1046,10 @@
             <div class="flex items-center gap-3">
               ${
                 Object.keys(doneActions).length > 0
-                  ? `<button onclick="clearDoneMarks()" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
+                  ? `<button onclick="clearDoneMarks()" title="Bỏ hết dấu tích 'đã chạy', không ảnh hưởng dữ liệu thật — chỉ reset trạng thái hiển thị" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
                   : ''
               }
-              <button onclick="toggleLargeFont()" class="px-2.5 py-1 rounded-lg text-xs font-semibold border cursor-pointer ${
+              <button onclick="toggleLargeFont()" title="Phóng to cỡ chữ phần Ý chính và Lời dẫn gợi ý, dễ đọc hơn khi đứng xa máy chiếu" class="px-2.5 py-1 rounded-lg text-xs font-semibold border cursor-pointer ${
                 largeFont
                   ? 'bg-orange-50 text-orange-700 border-orange-200'
                   : 'bg-white text-slate-600 border-slate-200'

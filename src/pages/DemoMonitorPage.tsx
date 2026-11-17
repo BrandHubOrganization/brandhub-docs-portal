@@ -1539,7 +1539,7 @@ export const DemoMonitorPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-dvh bg-white text-slate-900 font-sans">
+    <div className="demo-monitor-root min-h-dvh bg-white text-slate-900 font-sans">
       {/* Hộp thoại xác nhận trước khi khôi phục DB để tránh bấm nhầm trên sân khấu */}
       <AstryxDialog
         isOpen={showResetConfirm}
@@ -1719,15 +1719,19 @@ export const DemoMonitorPage: React.FC = () => {
               </div>
             </div>
 
-            <AstryxSegmentedControl
-              label="Chế độ giao diện"
-              size="sm"
-              value={viewMode}
-              onChange={setViewMode}
+            <div
+              title="Sân khấu: gọn 1 cột, chỉ hiện bước đang chạy — dùng lúc thuyết trình thật. Chi tiết: 2 cột đầy đủ — dùng lúc soát kịch bản trước giờ demo."
             >
-              <AstryxSegmentedControlItem value="stage" label="Sân khấu" />
-              <AstryxSegmentedControlItem value="detail" label="Chi tiết (2 cột)" />
-            </AstryxSegmentedControl>
+              <AstryxSegmentedControl
+                label="Chế độ giao diện"
+                size="sm"
+                value={viewMode}
+                onChange={setViewMode}
+              >
+                <AstryxSegmentedControlItem value="stage" label="Sân khấu" />
+                <AstryxSegmentedControlItem value="detail" label="Chi tiết (2 cột)" />
+              </AstryxSegmentedControl>
+            </div>
           </div>
 
           {/* Cụm Đồng hồ 20 phút + Chia màn hình + Đăng nhập 5 vai trò + Khôi phục / Xóa DB */}
@@ -1741,6 +1745,7 @@ export const DemoMonitorPage: React.FC = () => {
               <span className="text-slate-400 tabular-nums">/ 20:00</span>
               <button
                 type="button"
+                title={timerRunning ? 'Tạm dừng đồng hồ đếm 20 phút' : 'Bắt đầu bấm giờ đếm 20 phút (tự chạy khi bấm thao tác đầu tiên)'}
                 aria-label={timerRunning ? 'Tạm dừng đồng hồ' : 'Bắt đầu bấm giờ'}
                 onClick={() => setTimerRunning((v) => !v)}
                 className="p-0.5 rounded hover:bg-orange-100 text-orange-700 cursor-pointer"
@@ -1749,6 +1754,7 @@ export const DemoMonitorPage: React.FC = () => {
               </button>
               <button
                 type="button"
+                title="Đặt lại đồng hồ về 00:00 và dừng đếm"
                 aria-label="Đặt lại đồng hồ về 00:00"
                 onClick={() => {
                   setTimerRunning(false);
@@ -1804,6 +1810,7 @@ export const DemoMonitorPage: React.FC = () => {
 
             <AstryxButton
               label="Đăng nhập 5 Vai trò"
+              tooltip="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin. Chạy trước giờ bảo vệ ~10 phút."
               variant="primary"
               size="sm"
               icon={<Users className="size-3.5" />}
@@ -1814,6 +1821,7 @@ export const DemoMonitorPage: React.FC = () => {
 
             <AstryxButton
               label="Khôi phục DB"
+              tooltip="Nạp lại dữ liệu mẫu chuẩn Bước B1 (Agency, 7 Gói truyền thông, Chiến dịch 4 tuần...). Xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên. Dùng trước mỗi lần tập dượt."
               variant="secondary"
               size="sm"
               icon={<Database className="size-3.5 text-orange-600" />}
@@ -1824,6 +1832,7 @@ export const DemoMonitorPage: React.FC = () => {
 
             <AstryxButton
               label="Xóa dữ liệu Demo"
+              tooltip="Xóa sạch toàn bộ dữ liệu mẫu và mọi bản ghi phát sinh lúc demo, đưa Agency/Workspace về khung rỗng. Tài khoản đăng nhập vẫn giữ. Dùng sau khi demo xong, không nạp lại gì — cần demo tiếp thì bấm Khôi phục DB."
               variant="secondary"
               size="sm"
               icon={<Trash2 className="size-3.5 text-orange-600" />}
@@ -1916,6 +1925,7 @@ export const DemoMonitorPage: React.FC = () => {
             <div className="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
               <button
                 type="button"
+                title="Cuộn danh sách 15 bước sang trái"
                 aria-label="Cuộn danh sách bước sang trái"
                 onClick={() => scrollStepRail('left')}
                 className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
@@ -1966,6 +1976,7 @@ export const DemoMonitorPage: React.FC = () => {
 
               <button
                 type="button"
+                title="Cuộn danh sách 15 bước sang phải"
                 aria-label="Cuộn danh sách bước sang phải"
                 onClick={() => scrollStepRail('right')}
                 className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
@@ -2038,6 +2049,7 @@ export const DemoMonitorPage: React.FC = () => {
             <div className="flex justify-end">
               <AstryxButton
                 label="Lưu cấu hình"
+                tooltip="Lưu lại ID Agency/Workspace/Package/Campaign/Task và URL App để các nút Thực thi tự động điền đúng dữ liệu"
                 variant="primary"
                 size="sm"
                 onClick={handleSaveConfig}
@@ -2193,6 +2205,7 @@ export const DemoMonitorPage: React.FC = () => {
               <div className="flex items-center gap-2 shrink-0">
                 <AstryxButton
                   label="← Trước"
+                  tooltip="Lùi về bước demo trước đó (phím mũi tên trái)"
                   variant="secondary"
                   size="sm"
                   isDisabled={activeStepIndex === 0}
@@ -2200,6 +2213,7 @@ export const DemoMonitorPage: React.FC = () => {
                 />
                 <AstryxButton
                   label="Tiếp →"
+                  tooltip="Qua bước demo kế tiếp (phím mũi tên phải)"
                   variant="secondary"
                   size="sm"
                   isDisabled={activeStepIndex === DEMO_STEPS.length - 1}
@@ -2351,17 +2365,20 @@ export const DemoMonitorPage: React.FC = () => {
                   {Object.keys(doneActions).length > 0 && (
                     <button
                       type="button"
+                      title="Bỏ hết dấu tích 'đã chạy' trên các thao tác, không ảnh hưởng dữ liệu thật — chỉ reset trạng thái hiển thị"
                       onClick={() => setDoneActions({})}
                       className="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer"
                     >
                       Xóa dấu tích đã chạy
                     </button>
                   )}
-                  <AstryxSwitch
-                    label="Chữ lớn dễ đọc"
-                    value={largeScript}
-                    onChange={setLargeScript}
-                  />
+                  <div title="Phóng to cỡ chữ phần Ý chính và Lời dẫn gợi ý, dễ đọc hơn khi đứng xa máy chiếu">
+                    <AstryxSwitch
+                      label="Chữ lớn dễ đọc"
+                      value={largeScript}
+                      onChange={setLargeScript}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -2460,6 +2477,7 @@ export const DemoMonitorPage: React.FC = () => {
                     key={item.id}
                     type="button"
                     disabled={busyAction !== null}
+                    title={`${item.label} (vai trò ${item.role}) — bấm để tự mở đúng trang và vai trò này`}
                     onClick={() => triggerStepAction(item.id)}
                     className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer disabled:opacity-50"
                   >
@@ -2489,6 +2507,7 @@ export const DemoMonitorPage: React.FC = () => {
               href="http://localhost:3999"
               target="_blank"
               rel="noreferrer"
+              title="Mở trực tiếp giao diện Bàn điều khiển HTML tĩnh phục vụ từ cổng 3999 (bản dự phòng, không cần qua Docs Portal)"
               className="font-semibold text-orange-700 hover:underline inline-flex items-center gap-1"
             >
               <span>Mở bản HTML độc lập (:3999)</span>
