@@ -691,7 +691,7 @@ class DemoBrowserController:
         if action_id == "B2_NAV_CLIENT_PROFILE":
             res = self.login_role(
                 "Owner",
-                f"/workspaces/{ws_id}/client-profile",
+                f"/workspaces/{ws_id}/clients",
                 "B2.2 - Hồ sơ Thương hiệu (Brand Profile) Trường Đại học FPT",
             )
             return {
