@@ -333,8 +333,27 @@ class DemoBrowserController:
             document.body.appendChild(el);
         })(arguments[0], arguments[1], arguments[2], arguments[3]);
         """
+        args = (info["role"], info["full_name"], info["email"], step_label)
         try:
-            driver.execute_script(js, info["role"], info["full_name"], info["email"], step_label)
+            driver.execute_script(js, *args)
+        except Exception:
+            pass
+        # Re-inject on every page load so navigation/reload does not drop the badge.
+        boot = js.replace(
+            "(arguments[0], arguments[1], arguments[2], arguments[3])",
+            "(" + ", ".join(json.dumps(a) for a in args) + ")",
+        )
+        boot = (
+            "(function(){var run=function(){" + boot + "};"
+            "if(document.body){run();}else{document.addEventListener('DOMContentLoaded',run);}})();"
+        )
+        hud_ids = self.__dict__.setdefault("_hud_script_ids", {})
+        try:
+            old_id = hud_ids.get(id(driver))
+            if old_id:
+                driver.execute_cdp_cmd("Page.removeScriptToEvaluateOnNewDocument", {"identifier": old_id})
+            res = driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": boot})
+            hud_ids[id(driver)] = res.get("identifier")
         except Exception:
             pass
 
