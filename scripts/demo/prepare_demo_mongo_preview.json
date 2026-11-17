@@ -11,8 +11,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z",
       "version": 1
     },
     {
@@ -26,8 +26,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z",
       "version": 1
     },
     {
@@ -41,8 +41,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z",
       "version": 1
     },
     {
@@ -56,8 +56,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z",
       "version": 1
     },
     {
@@ -71,8 +71,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-28T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z",
+      "created_at": "2026-10-28T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z",
       "version": 1
     },
     {
@@ -86,8 +86,8 @@
       "parent_folder_id": null,
       "ancestor_ids": [],
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-28T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z",
+      "created_at": "2026-10-28T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z",
       "version": 1
     }
   ],
@@ -124,8 +124,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-03T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-03T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000902",
@@ -159,8 +159,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-04T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-04T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000903",
@@ -194,8 +194,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-05T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-05T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000904",
@@ -229,8 +229,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-06T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-06T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000905",
@@ -264,8 +264,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-07T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-07T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000906",
@@ -299,8 +299,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-08T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-08T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000907",
@@ -334,8 +334,8 @@
       "ai_source": "GEMINI_NANO_BANANA",
       "created_by": "38fcc012-0aff-426f-8466-05de1109ee13",
       "updated_by": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "created_at": "2026-11-09T08:48:44Z",
-      "updated_at": "2026-11-16T20:48:44Z"
+      "created_at": "2026-11-09T09:56:58Z",
+      "updated_at": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000908",
@@ -368,8 +368,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000909",
@@ -402,8 +402,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-03T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-03T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000910",
@@ -436,8 +436,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-04T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-04T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000911",
@@ -470,8 +470,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-05T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-05T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000985",
@@ -505,8 +505,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-29T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-10-29T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000986",
@@ -540,8 +540,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-30T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-10-30T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000987",
@@ -575,8 +575,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-10-31T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-10-31T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000988",
@@ -610,8 +610,8 @@
       "draft": false,
       "created_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "updated_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-      "created_at": "2026-11-01T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-01T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     }
   ],
   "client_vault_shares": [
@@ -622,7 +622,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000981",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -632,7 +632,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "FOLDER",
       "resource_id": "d7e00000-0000-4000-8000-000000000982",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -642,7 +642,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000985",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -652,7 +652,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000986",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -662,7 +662,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000987",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     },
     {
@@ -672,7 +672,7 @@
       "client_profile_id": "d7e00000-0000-4000-8000-000000000001",
       "resource_type": "MATERIAL",
       "resource_id": "d7e00000-0000-4000-8000-000000000988",
-      "shared_at": "2026-11-01T08:48:44Z",
+      "shared_at": "2026-11-01T09:56:58Z",
       "shared_by": "b663ffe6-6693-41d3-8df5-27805e4dc8b6"
     }
   ],
@@ -687,11 +687,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-facebook",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:48:44Z",
+      "token_expires_at": "2027-01-11T09:56:58Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-10-18T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000862",
@@ -703,11 +703,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-instagram",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:48:44Z",
+      "token_expires_at": "2027-01-11T09:56:58Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-10-18T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000863",
@@ -719,11 +719,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-tiktok",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:48:44Z",
+      "token_expires_at": "2027-01-11T09:56:58Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-10-18T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000864",
@@ -735,11 +735,11 @@
       "avatar_url": "/demo-assets/fptu-2027/fptu-week1-coming-soon.jpg",
       "encrypted_token": "demo-token-threads",
       "encrypted_iv": "0123456789abcdef",
-      "token_expires_at": "2027-01-11T08:48:44Z",
+      "token_expires_at": "2027-01-11T09:56:58Z",
       "token_status": "ACTIVE",
       "is_active": true,
-      "created_at": "2026-10-18T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-10-18T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     }
   ],
   "tasks": [
@@ -753,7 +753,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -765,7 +765,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000701",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-04T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-01T11:00:00Z",
@@ -807,7 +807,7 @@
           "id": "4c2059d4-1905-382f-bb13-92ded5b9583c",
           "parentTaskId": "5398bc49-1d70-3b87-acea-84659f6ef3af",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-03T04:12:00Z",
           "status": "FINISHED",
@@ -867,7 +867,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -879,7 +879,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000702",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-06T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-03T21:00:00Z",
@@ -968,7 +968,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -980,7 +980,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000703",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-08T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-05T11:00:00Z",
@@ -1022,7 +1022,7 @@
           "id": "5ed32bae-13b6-303a-abdd-03c19ef2f36f",
           "parentTaskId": "7549501c-132b-39eb-a8bc-8609531c7ade",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-07T04:12:00Z",
           "status": "FINISHED",
@@ -1082,7 +1082,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1094,7 +1094,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000704",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-10T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-07T11:00:00Z",
@@ -1136,7 +1136,7 @@
           "id": "db534bc4-8e59-3547-a6f5-8ce7b07d806f",
           "parentTaskId": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-09T04:12:00Z",
           "status": "FINISHED",
@@ -1196,7 +1196,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1208,7 +1208,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000705",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-11T10:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-08T12:00:00Z",
@@ -1250,7 +1250,7 @@
           "id": "29b886a0-b97d-3911-ae5e-22f840b6aba3",
           "parentTaskId": "a8d477e1-2b44-345a-ac80-f683dccbb03d",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-10T05:12:00Z",
           "status": "FINISHED",
@@ -1310,7 +1310,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1322,7 +1322,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000751",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-13T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-10T11:00:00Z",
@@ -1424,7 +1424,7 @@
       "type": "SHORT_VIDEO",
       "status": "FINISHED",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1436,7 +1436,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000707",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-14T19:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-11T21:00:00Z",
@@ -1523,9 +1523,9 @@
       "name": "[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT",
       "description": "Thiết kế và gửi bản tin Email chứa cẩm nang chọn ngành năm 2027 cùng mã QR check-in chuỗi Workshop phổ biến tiện ích học đường tới danh sách học sinh THPT đã đăng ký.",
       "type": "EMAIL_NEWSLETTER",
-      "status": "FINISHED",
-      "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "status": "IN_PROGRESS",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1537,11 +1537,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000708",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-15T15:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-12T17:00:00Z",
-      "firstStartedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -1553,10 +1553,10 @@
           "id": "a5e62b0a-0777-37fb-9970-0c1978b29170",
           "parentTaskId": "b6a13469-05c4-3af0-88b1-ba2ca510d18f",
           "name": "Viết nội dung",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-13T09:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-12T15:00:00Z",
           "subtaskRole": "EMAIL_CONTENT",
           "description": "Viết nội dung bản tin email \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\": tiêu đề, preheader, thân bài về học bổng/OJT và CTA đăng ký.",
@@ -1566,10 +1566,10 @@
           "id": "05dcb55c-a88d-3e5c-ae1e-1c42fd4afcdc",
           "parentTaskId": "b6a13469-05c4-3af0-88b1-ba2ca510d18f",
           "name": "Thiết kế template",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T03:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-13T09:00:00Z",
           "subtaskRole": "EMAIL_DESIGN",
           "description": "Thiết kế template email cho \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\" theo nhận diện FPTU, hiển thị tốt trên mobile và Gmail/Outlook.",
@@ -1579,10 +1579,10 @@
           "id": "88be43d1-b078-3d40-9e43-ae7b1adf8d11",
           "parentTaskId": "b6a13469-05c4-3af0-88b1-ba2ca510d18f",
           "name": "Danh sách & lịch gửi",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T21:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-14T03:00:00Z",
           "subtaskRole": "EMAIL_SEND",
           "description": "Chuẩn bị danh sách người nhận (học sinh, phụ huynh đã đăng ký) và lên lịch gửi \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\".",
@@ -1592,10 +1592,10 @@
           "id": "e5f4159a-2cf6-3f54-984b-aa3082afd831",
           "parentTaskId": "b6a13469-05c4-3af0-88b1-ba2ca510d18f",
           "name": "Báo cáo",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-15T15:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-14T21:00:00Z",
           "subtaskRole": "EMAIL_REPORT",
           "description": "Báo cáo hiệu quả email \"[Tuần 2 - Bản tin Email] Cẩm nang ngành học 2027 & Vé mời học sinh lớp 12 dự chuỗi Workshop THPT\": tỉ lệ mở, click, hủy đăng ký.",
@@ -1606,14 +1606,6 @@
         "acceptanceCriteria": "Gửi tới tập người nhận đã xác nhận đồng ý (consent), tỷ lệ vào hộp thư chính cao và có liên kết xác nhận tham dự.",
         "sortOrder": 8,
         "weekNumber": 2
-      },
-      "lastSubmission": {
-        "round": 1,
-        "submittedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-        "submittedAt": "2026-11-15T07:00:00Z",
-        "closedBy": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-        "closedAt": "2026-11-15T13:00:00Z",
-        "outcome": "APPROVED"
       }
     },
     {
@@ -1624,9 +1616,9 @@
       "name": "[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12",
       "description": "Bảng khảo sát trực tuyến thu thập nguyện vọng ngành học, mức độ quan tâm về học bổng, ký túc xá và câu hỏi học sinh lớp 12 muốn giải đáp tại buổi Workshop Tuần 3.",
       "type": "SURVEY",
-      "status": "FINISHED",
-      "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "status": "IN_PROGRESS",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1638,11 +1630,11 @@
       "sourceType": "CAMPAIGN_OUT_OF_SCOPE",
       "sourceRefId": null,
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-15T18:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-12T20:00:00Z",
-      "firstStartedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -1654,10 +1646,10 @@
           "id": "e25a4aa8-8167-3095-b6bc-59130adbe379",
           "parentTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
           "name": "Thiết kế bảng hỏi",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-13T18:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-12T18:00:00Z",
           "subtaskRole": "SURVEY_DESIGN",
           "description": "Thiết kế bảng hỏi cho \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" khảo sát nhu cầu chọn ngành và mối quan tâm học bổng của học sinh lớp 12.",
@@ -1667,10 +1659,10 @@
           "id": "0890ab1d-1d31-3153-a0f9-96875ca16a4e",
           "parentTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
           "name": "Phân phối & thu thập",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T18:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-13T18:00:00Z",
           "subtaskRole": "SURVEY_DISTRIBUTE",
           "description": "Phân phối khảo sát \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" tại các buổi Workshop THPT và qua fanpage, thu thập phản hồi.",
@@ -1680,10 +1672,10 @@
           "id": "d07b83fc-94ca-339e-ab80-ac0fb3b8b7a2",
           "parentTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
           "name": "Phân tích & báo cáo",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-15T18:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-14T18:00:00Z",
           "subtaskRole": "SURVEY_ANALYSIS",
           "description": "Phân tích kết quả khảo sát \"[Tuần 2 - Khảo sát THPT] Khảo sát nhu cầu tìm hiểu ngành học & tiện ích ĐH FPT của học sinh lớp 12\" và rút ra insight cho nội dung tuần tiếp theo.",
@@ -1695,14 +1687,6 @@
         "sortOrder": 9,
         "weekNumber": 2,
         "outOfScope": true
-      },
-      "lastSubmission": {
-        "round": 1,
-        "submittedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-        "submittedAt": "2026-11-15T10:00:00Z",
-        "closedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-        "closedAt": "2026-11-15T16:00:00Z",
-        "outcome": "APPROVED"
       }
     },
     {
@@ -1715,7 +1699,7 @@
       "type": "POST",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1727,8 +1711,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000706",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T11:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -1769,7 +1753,7 @@
           "id": "a9eca5ad-4568-3c40-9f8e-2f8ef79925dd",
           "parentTaskId": "c6453698-cf56-38c1-96d2-90ccdd985228",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T04:12:00Z",
           "status": "FINISHED",
@@ -1819,9 +1803,9 @@
       "name": "[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung",
       "description": "Buổi Workshop đầu tiên đón 420 học sinh lớp 12 các trường THPT tại Đà Nẵng và Quảng Nam trực tiếp trải nghiệm kính VR tham quan 5 cơ sở, điều khiển cánh tay robot và tìm hiểu đời sống nội trú.",
       "type": "WORKSHOP",
-      "status": "FINISHED",
-      "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "status": "IN_PROGRESS",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1833,11 +1817,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000711",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-16T16:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-13T18:00:00Z",
-      "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -1849,10 +1833,10 @@
           "id": "56db3735-2975-3d04-99e3-82a998ea011a",
           "parentTaskId": "c1176d26-249c-3d32-bbad-f720b3a518a4",
           "name": "Nội dung chương trình",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T06:24:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-13T16:00:00Z",
           "subtaskRole": "WORKSHOP_PROGRAM",
           "description": "Xây dựng nội dung chương trình cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": timeline 90 phút gồm giới thiệu ngành, trải nghiệm VR/Robotics và tư vấn Học bổng 2027.",
@@ -1862,10 +1846,10 @@
           "id": "419ac6be-efd6-3921-aa48-7fc8ef933532",
           "parentTaskId": "c1176d26-249c-3d32-bbad-f720b3a518a4",
           "name": "Diễn giả",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-14T20:48:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-14T06:24:00Z",
           "subtaskRole": "WORKSHOP_SPEAKER",
           "description": "Mời và brief diễn giả cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\" (giảng viên ngành Vi mạch/AI và đại diện sinh viên OJT).",
@@ -1875,10 +1859,10 @@
           "id": "6204ac27-dc76-31ca-bbbd-bda7b1c3ef01",
           "parentTaskId": "c1176d26-249c-3d32-bbad-f720b3a518a4",
           "name": "Hậu cần",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-15T11:12:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-14T20:48:00Z",
           "subtaskRole": "WORKSHOP_LOGISTICS",
           "description": "Chuẩn bị hậu cần cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": thiết bị VR, cánh tay robot demo, backdrop, quà tặng và xe đưa đón học sinh.",
@@ -1888,10 +1872,10 @@
           "id": "1f95e61f-36c6-325d-8f5e-005327441c2a",
           "parentTaskId": "c1176d26-249c-3d32-bbad-f720b3a518a4",
           "name": "Đăng ký & truyền thông",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-16T01:36:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-15T11:12:00Z",
           "subtaskRole": "WORKSHOP_REGISTRATION",
           "description": "Mở form đăng ký và truyền thông cho \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\" qua fanpage, email và nhóm phụ huynh các trường THPT.",
@@ -1901,10 +1885,10 @@
           "id": "3f38f79b-3e92-3fda-9f64-3a449e540ee5",
           "parentTaskId": "c1176d26-249c-3d32-bbad-f720b3a518a4",
           "name": "Tổng kết",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-16T16:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-16T01:36:00Z",
           "subtaskRole": "WORKSHOP_REPORT",
           "description": "Tổng kết \"[Tuần 3 - Workshop #1] Workshop phổ biến tiện ích học đường & trải nghiệm VR, Robotics cho THPT khu vực miền Trung\": số người tham dự, phản hồi khảo sát, ảnh hoạt động và đề xuất cho buổi tiếp theo.",
@@ -1915,14 +1899,6 @@
         "acceptanceCriteria": "Hoàn thành toàn bộ 5 hạng mục chương trình, diễn giả, hậu cần, danh sách check-in và báo cáo tổng kết sau buổi.",
         "sortOrder": 11,
         "weekNumber": 3
-      },
-      "lastSubmission": {
-        "round": 1,
-        "submittedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-        "submittedAt": "2026-11-16T08:00:00Z",
-        "closedBy": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
-        "closedAt": "2026-11-16T14:00:00Z",
-        "outcome": "APPROVED"
       }
     },
     {
@@ -1935,7 +1911,7 @@
       "type": "WORKSHOP",
       "status": "IN_PROGRESS",
       "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -1947,8 +1923,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000712",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-16T17:00:00Z",
       "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -2039,9 +2015,9 @@
       "name": "[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT",
       "description": "Điều phối lịch xuất hiện và duyệt kịch bản chia sẻ thực tế của khách mời công nghệ về xu hướng nghề nghiệp kỹ sư AI, bán dẫn dành cho thế hệ 2k9 tại buổi Workshop và Open Day.",
       "type": "KOL_BOOKING",
-      "status": "IN_REVIEW",
-      "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "status": "IN_PROGRESS",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2053,11 +2029,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000713",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-15T19:00:00Z",
-      "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -2069,10 +2045,10 @@
           "id": "d569f299-e3ce-3347-a122-130f0ac24ca7",
           "parentTaskId": "3f1ae3a9-6518-35df-a596-1013c055e279",
           "name": "Tìm & đề xuất KOL",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-16T07:24:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-15T17:00:00Z",
           "subtaskRole": "KOL_SOURCING",
           "description": "Tìm và đề xuất KOL/KOC công nghệ, giáo dục phù hợp tệp học sinh 2k9 cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\".",
@@ -2082,10 +2058,10 @@
           "id": "62719631-9444-3752-b49d-9591765be08f",
           "parentTaskId": "3f1ae3a9-6518-35df-a596-1013c055e279",
           "name": "Đàm phán",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-16T21:48:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-16T07:24:00Z",
           "subtaskRole": "KOL_NEGOTIATION",
           "description": "Đàm phán chi phí, quyền lợi và lịch đăng với KOL đã chọn cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\".",
@@ -2095,10 +2071,10 @@
           "id": "d0feb4d3-33cc-3b44-89e8-0cb3ea4ae485",
           "parentTaskId": "3f1ae3a9-6518-35df-a596-1013c055e279",
           "name": "Brief cho KOL",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-17T12:12:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-16T21:48:00Z",
           "subtaskRole": "KOL_BRIEF",
           "description": "Soạn brief cho KOL thực hiện \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\": thông điệp chính, từ khóa cần tránh, hashtag và mốc thời gian.",
@@ -2108,10 +2084,10 @@
           "id": "4f237a95-66d5-382d-8a2e-12828c3ffdc8",
           "parentTaskId": "3f1ae3a9-6518-35df-a596-1013c055e279",
           "name": "Duyệt nội dung KOL",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T02:36:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-17T12:12:00Z",
           "subtaskRole": "KOL_CONTENT_REVIEW",
           "description": "Duyệt bản nháp nội dung KOL gửi cho \"[Tuần 3 - KOL #1] Phối hợp Creator công nghệ Duy Luân & Schannel giao lưu cùng học sinh tại Workshop THPT\" trước khi đăng.",
@@ -2121,7 +2097,7 @@
           "id": "c4baf375-3b68-347d-9e4f-14f63a7ed7d5",
           "parentTaskId": "3f1ae3a9-6518-35df-a596-1013c055e279",
           "name": "Theo dõi & báo cáo",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T17:00:00Z",
           "status": "IN_PROGRESS",
@@ -2135,15 +2111,6 @@
         "acceptanceCriteria": "Bản dự thảo nội dung chia sẻ của KOL bám sát định hướng giáo dục, không dùng thuật ngữ quá hàn lâm với học sinh lớp 12.",
         "sortOrder": 13,
         "weekNumber": 3
-      },
-      "reviewStep": "MANAGER",
-      "lastSubmission": {
-        "round": 1,
-        "submittedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-        "submittedAt": "2026-11-17T04:48:44Z",
-        "closedBy": null,
-        "closedAt": null,
-        "outcome": null
       }
     },
     {
@@ -2155,8 +2122,8 @@
       "description": "Sự kiện trọng điểm cuối Tuần 3 đón học sinh THPT và phụ huynh tham quan trực tiếp khuôn viên trường, dự lớp học thử, xem biểu diễn Vovinam và tư vấn hồ sơ Học bổng Nguyễn Văn Đạo 2027.",
       "type": "EVENT_PLAN",
       "status": "IN_PROGRESS",
-      "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2168,11 +2135,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000714",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-17T18:00:00Z",
-      "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -2184,7 +2151,7 @@
           "id": "0268b817-08ac-3630-8de8-ca22e2d8d371",
           "parentTaskId": "85a66c1c-b49b-3788-8bc3-a21336649041",
           "name": "Concept & Agenda",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T06:24:00Z",
           "status": "IN_PROGRESS",
@@ -2197,7 +2164,7 @@
           "id": "b78b852f-ef1c-3266-a6f2-04caba8fcfeb",
           "parentTaskId": "85a66c1c-b49b-3788-8bc3-a21336649041",
           "name": "Hậu cần & Địa điểm",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-18T20:48:00Z",
           "status": "IN_PROGRESS",
@@ -2210,7 +2177,7 @@
           "id": "51f4e9fc-f693-391c-80d5-b1953f1fca5f",
           "parentTaskId": "85a66c1c-b49b-3788-8bc3-a21336649041",
           "name": "Truyền thông sự kiện",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-19T11:12:00Z",
           "status": "IN_PROGRESS",
@@ -2223,7 +2190,7 @@
           "id": "8d8448da-74aa-3ef5-b622-ca8065849458",
           "parentTaskId": "85a66c1c-b49b-3788-8bc3-a21336649041",
           "name": "Điều phối tại chỗ",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-20T01:36:00Z",
           "status": "IN_PROGRESS",
@@ -2236,7 +2203,7 @@
           "id": "ab9f50f9-9f7c-3a79-89ef-b8fd5829307c",
           "parentTaskId": "85a66c1c-b49b-3788-8bc3-a21336649041",
           "name": "Báo cáo sau sự kiện",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-20T16:00:00Z",
           "status": "IN_PROGRESS",
@@ -2262,7 +2229,7 @@
       "type": "KOL_BOOKING",
       "status": "IN_PROGRESS",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2274,8 +2241,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000715",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-17T20:00:00Z",
       "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -2367,8 +2334,8 @@
       "description": "Dựng video ngắn tổng hợp những khoảnh khắc ấn tượng và phỏng vấn nhanh cảm nhận của các bạn học sinh lớp 12 khi lần đầu bước vào phòng Lab và thư viện Đại học FPT.",
       "type": "SHORT_VIDEO",
       "status": "IN_PROGRESS",
-      "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2380,11 +2347,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000716",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-18T22:00:00Z",
-      "firstStartedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -2396,7 +2363,7 @@
           "id": "f9a12fd6-ed2b-3c4a-9746-d8c9944ddced",
           "parentTaskId": "31a69211-9cec-30f0-b3f0-4e01ac3315a1",
           "name": "Ý tưởng & Kịch bản",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-19T14:00:00Z",
           "status": "IN_PROGRESS",
@@ -2409,7 +2376,7 @@
           "id": "4e0c6938-355d-3c61-9cf6-70825f3bf781",
           "parentTaskId": "31a69211-9cec-30f0-b3f0-4e01ac3315a1",
           "name": "Quay",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-20T08:00:00Z",
           "status": "IN_PROGRESS",
@@ -2422,7 +2389,7 @@
           "id": "39acfaef-e996-3ebe-9535-042f48decedf",
           "parentTaskId": "31a69211-9cec-30f0-b3f0-4e01ac3315a1",
           "name": "Dựng / hậu kỳ",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-21T02:00:00Z",
           "status": "IN_PROGRESS",
@@ -2435,7 +2402,7 @@
           "id": "3b01d24e-35b7-3f6a-b850-a2290e4b642f",
           "parentTaskId": "31a69211-9cec-30f0-b3f0-4e01ac3315a1",
           "name": "Caption & Đăng",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-21T20:00:00Z",
           "status": "IN_PROGRESS",
@@ -2459,9 +2426,9 @@
       "name": "[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT",
       "description": "Thông cáo và bài viết chuyên sâu gửi VnExpress Giáo dục tổng kết chuỗi Workshop trải nghiệm tiện ích học đường cho hơn 2.000 học sinh lớp 12 cùng định hướng đào tạo nhân lực công nghệ 2027.",
       "type": "PRESS_RECOMMENDATION",
-      "status": "IN_REVIEW",
-      "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "status": "IN_PROGRESS",
+      "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2473,11 +2440,11 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000717",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 3,
       "firstStartedAt": "2026-11-20T11:00:00Z",
-      "firstStartedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+      "firstStartedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "inputReferences": [
         {
           "label": "Cổng thông tin Tuyển sinh Đại học FPT 2027",
@@ -2489,10 +2456,10 @@
           "id": "b398ec4f-4043-3225-a0ec-a8e442cf1f2d",
           "parentTaskId": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",
           "name": "Lập danh sách báo",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-21T03:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-20T09:00:00Z",
           "subtaskRole": "PRESS_MEDIA_LIST",
           "description": "Lập danh sách báo chí mục tiêu cho \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\" (VnExpress, Thanh Niên, Dân Trí, Tuổi Trẻ) kèm đầu mối phóng viên giáo dục.",
@@ -2502,10 +2469,10 @@
           "id": "da4c0d1b-7aca-329d-ac84-fe85f9f6e20d",
           "parentTaskId": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",
           "name": "Viết thông cáo",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-21T21:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-21T03:00:00Z",
           "subtaskRole": "PRESS_RELEASE",
           "description": "Viết thông cáo báo chí \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\" theo chuẩn tin giáo dục: sự kiện, số liệu, trích dẫn đại diện nhà trường.",
@@ -2515,10 +2482,10 @@
           "id": "4708f552-fd3e-3a8a-ae89-18d884ecddba",
           "parentTaskId": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",
           "name": "Liên hệ & pitching",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-22T15:00:00Z",
-          "status": "FINISHED",
+          "status": "IN_PROGRESS",
           "plannedStartDate": "2026-11-21T21:00:00Z",
           "subtaskRole": "PRESS_PITCHING",
           "description": "Gửi thông cáo và pitching phóng viên các báo đã chọn cho \"[Tuần 4 - Báo chí #1] Tuyến bài VnExpress Giáo dục: Đại học FPT đưa phòng Lab bán dẫn và tiện ích số đến gần học sinh THPT\".",
@@ -2528,7 +2495,7 @@
           "id": "5b5fcfa4-e17b-3e03-b63b-5e6eea9ce8b3",
           "parentTaskId": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",
           "name": "Theo dõi đưa tin",
-          "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-23T09:00:00Z",
           "status": "IN_PROGRESS",
@@ -2542,15 +2509,6 @@
         "acceptanceCriteria": "Văn phong báo chí chính luận, có số liệu học sinh tham dự thực tế và phát ngôn chính thức từ đại diện Ban Tuyển sinh ĐH FPT.",
         "sortOrder": 17,
         "weekNumber": 4
-      },
-      "reviewStep": "MANAGER",
-      "lastSubmission": {
-        "round": 1,
-        "submittedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-        "submittedAt": "2026-11-17T04:48:44Z",
-        "closedBy": null,
-        "closedAt": null,
-        "outcome": null
       }
     },
     {
@@ -2563,7 +2521,7 @@
       "type": "PRESS_RECOMMENDATION",
       "status": "TODO",
       "assigneeId": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2575,8 +2533,8 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000718",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
-      "updatedAt": "2026-11-17T08:18:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
+      "updatedAt": "2026-11-17T09:26:58Z",
       "workflowRevision": 0,
       "firstStartedAt": null,
       "firstStartedBy": null,
@@ -2656,7 +2614,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2668,7 +2626,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000719",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-24T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-21T11:00:00Z",
@@ -2710,7 +2668,7 @@
           "id": "4b986600-4f62-3b27-8def-e733e0fbd87d",
           "parentTaskId": "cc51eadf-d39e-3533-9dd4-9352094f128f",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-23T04:12:00Z",
           "status": "FINISHED",
@@ -2770,7 +2728,7 @@
       "type": "POST",
       "status": "FINISHED",
       "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "assignedAt": "2026-11-02T09:48:44Z",
+      "assignedAt": "2026-11-02T10:56:58Z",
       "assignedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "supervisorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "initialManager": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -2782,7 +2740,7 @@
       "sourceType": "CAMPAIGN",
       "sourceRefId": "d7e00000-0000-4000-8000-000000000720",
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-02T08:48:44Z",
+      "createdAt": "2026-11-02T09:56:58Z",
       "updatedAt": "2026-11-29T09:00:00Z",
       "workflowRevision": 2,
       "firstStartedAt": "2026-11-26T11:00:00Z",
@@ -2824,7 +2782,7 @@
           "id": "d52826ef-b15e-3614-8c9a-d4404aa5783a",
           "parentTaskId": "7c566ff3-c720-3812-983e-d7f3450f4736",
           "name": "Media (quay/chụp/thiết kế)",
-          "assigneeId": "38fcc012-0aff-426f-8466-05de1109ee13",
+          "assigneeId": "56034372-e963-4717-8dfa-e68e34d34c7a",
           "supervisorOverrideId": null,
           "dueDate": "2026-11-28T04:12:00Z",
           "status": "FINISHED",
@@ -2897,7 +2855,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CAPTION",
@@ -2910,7 +2868,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.MEDIA",
@@ -2923,7 +2881,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "5398bc49-1d70-3b87-acea-84659f6ef3af|POST.CHANNELS",
@@ -2936,7 +2894,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SCRIPT",
@@ -2958,7 +2916,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.SHOOT",
@@ -2973,7 +2931,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.EDIT",
@@ -2986,7 +2944,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CAPTION",
@@ -2999,7 +2957,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "21aa50d2-c690-373c-b332-5696527a7ad9|VIDEO.CHANNELS",
@@ -3012,7 +2970,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.BRIEF",
@@ -3035,7 +2993,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CAPTION",
@@ -3048,7 +3006,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.MEDIA",
@@ -3061,7 +3019,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7549501c-132b-39eb-a8bc-8609531c7ade|POST.CHANNELS",
@@ -3074,7 +3032,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.BRIEF",
@@ -3097,7 +3055,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CAPTION",
@@ -3110,7 +3068,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.MEDIA",
@@ -3123,7 +3081,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6|POST.CHANNELS",
@@ -3136,7 +3094,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.BRIEF",
@@ -3159,7 +3117,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CAPTION",
@@ -3172,7 +3130,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.MEDIA",
@@ -3185,7 +3143,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "a8d477e1-2b44-345a-ac80-f683dccbb03d|POST.CHANNELS",
@@ -3198,7 +3156,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.BRIEF",
@@ -3221,7 +3179,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CAPTION",
@@ -3234,7 +3192,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.MEDIA",
@@ -3247,7 +3205,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "f12c8c2a-256a-3171-a0f5-2346974c5d35|POST.CHANNELS",
@@ -3260,7 +3218,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SCRIPT",
@@ -3282,7 +3240,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.SHOOT",
@@ -3297,7 +3255,7 @@
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.EDIT",
@@ -3310,7 +3268,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CAPTION",
@@ -3323,7 +3281,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "67158200-07ef-3a98-aaac-e8c408b5522c|VIDEO.CHANNELS",
@@ -3336,7 +3294,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.CONTENT",
@@ -3387,8 +3345,8 @@
           }
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.DESIGN",
@@ -3439,8 +3397,8 @@
           }
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.AUDIENCE",
@@ -3458,8 +3416,8 @@
         "scheduledAt": "2026-11-14T08:30",
         "batchId": "d7e00000-0000-4000-8000-000000000891"
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f|EMAIL.REPORT",
@@ -3474,8 +3432,8 @@
         "note": "<p>100% thư mời kèm mã QR check-in đã gửi thành công tới danh sách học sinh lớp 12 đăng ký đợt 1, không phát sinh lỗi trả thư.</p>",
         "comment": "100% thư mời kèm mã QR check-in đã gửi thành công tới danh sách học sinh lớp 12 đăng ký đợt 1."
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-15T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.FORM",
@@ -3487,8 +3445,8 @@
       "revision": 2,
       "versionCount": 1,
       "content": {},
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.DISTRIBUTION",
@@ -3505,8 +3463,8 @@
         "closeAt": "2026-11-24T23:59",
         "targetResponses": 500
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3|SURVEY.REPORT",
@@ -3522,8 +3480,8 @@
         "conclusion": "<p>Học sinh và phụ huynh đặc biệt muốn trải nghiệm trực tiếp phòng Lab công nghệ và nghe giải đáp cụ thể về điều kiện xét Học bổng Nguyễn Văn Đạo cũng như học kỳ thực tập OJT.</p>",
         "recommendations": "<p>Tăng thời lượng thực hành tại trạm Lab Bán dẫn và bố trí thêm bàn tư vấn học bổng chuyên sâu tại Ngày hội FPTU Open Day 2027.</p>"
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.BRIEF",
@@ -3544,7 +3502,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:48:44Z"
+      "updatedAt": "2026-11-17T08:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA",
@@ -3557,7 +3515,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:48:44Z"
+      "updatedAt": "2026-11-17T08:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS",
@@ -3570,7 +3528,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:48:44Z"
+      "updatedAt": "2026-11-17T08:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CAPTION",
@@ -3583,7 +3541,7 @@
       "versionCount": 0,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T07:48:44Z"
+      "updatedAt": "2026-11-17T08:56:58Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.PROGRAM",
@@ -3608,8 +3566,8 @@
           "Bộ kính thực tế ảo VR & mô hình cánh tay Robotics"
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.SPEAKERS",
@@ -3642,8 +3600,8 @@
           }
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.LOGISTICS",
@@ -3661,8 +3619,8 @@
         "meetingUrl": "https://tuyensinh.fpt.edu.vn/workshop-thpt-2027",
         "cost": 18500000
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REGISTRATION",
@@ -3676,8 +3634,8 @@
       "content": {
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "c1176d26-249c-3d32-bbad-f720b3a518a4|WORKSHOP.REPORT",
@@ -3699,8 +3657,8 @@
         ],
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.PROGRAM",
@@ -3726,7 +3684,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.SPEAKERS",
@@ -3760,7 +3718,7 @@
         ]
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.LOGISTICS",
@@ -3779,7 +3737,7 @@
         "cost": 18500000
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REGISTRATION",
@@ -3794,7 +3752,7 @@
         "promotionPlan": "Phối hợp Bí thư Đoàn 18 trường THPT, gửi bản tin Email kèm mã QR check-in và thông báo trên Fanpage Tuyển sinh ĐH FPT."
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "b562ce80-52de-3112-a715-520ff867211d|WORKSHOP.REPORT",
@@ -3817,7 +3775,7 @@
         "lessons": "<p>Bổ sung thêm 2 bàn tư vấn riêng cho nhóm học sinh hỏi sâu về hồ sơ xét Học bổng Nguyễn Văn Đạo.</p>"
       },
       "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T02:48:44Z"
+      "updatedAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.SHORTLIST",
@@ -3856,8 +3814,8 @@
           }
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DEAL",
@@ -3879,8 +3837,8 @@
         ],
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.BRIEF",
@@ -3911,8 +3869,8 @@
         ],
         "postDeadline": "2026-11-18"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.DRAFT",
@@ -3930,8 +3888,8 @@
         ],
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "3f1ae3a9-6518-35df-a596-1013c055e279|KOL.REPORT",
@@ -3950,8 +3908,8 @@
         "comments": 215,
         "shares": 410
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.AGENDA",
@@ -3992,9 +3950,9 @@
           }
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:48:44Z",
-      "clientPendingSince": "2026-11-17T03:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T04:56:58Z",
+      "clientPendingSince": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.LOGISTICS",
@@ -4037,8 +3995,8 @@
           "Teabreak / Catering"
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.PROMOTION",
@@ -4069,9 +4027,9 @@
           }
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:48:44Z",
-      "clientPendingSince": "2026-11-17T03:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T04:56:58Z",
+      "clientPendingSince": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.RUNSHEET",
@@ -4107,8 +4065,8 @@
         ],
         "staffing": "<p>Tổng nhân sự vận hành: 04 thành viên SE08 Digital điều phối truyền thông tại chỗ, 15 cán bộ tư vấn tuyển sinh ĐH FPT và 35 sinh viên tình nguyện dẫn đoàn.</p>"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "85a66c1c-b49b-3788-8bc3-a21336649041|EVENT.REPORT",
@@ -4124,8 +4082,8 @@
         "attendeeCount": 1500,
         "lessons": "<p>Ưu tiên phân luồng giờ tham quan phòng Lab bán dẫn theo từng ca 25 phút để học sinh có nhiều thời gian tương tác thiết bị.</p>"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T03:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.SHORTLIST",
@@ -4165,7 +4123,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DEAL",
@@ -4188,7 +4146,7 @@
         "terms": "<p>Thanh toán 50% khi chốt kịch bản, 50% sau 5 ngày nghiệm thu chỉ số. Cho phép Ban Tuyển sinh ĐH FPT sử dụng video làm tư liệu truyền thông tuyển sinh khóa K23 trong 6 tháng.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.BRIEF",
@@ -4220,7 +4178,7 @@
         "postDeadline": "2026-11-20"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.DRAFT",
@@ -4239,7 +4197,7 @@
         "reviewNote": "<p>Góc quay sáng rõ, lời thoại tự nhiên, nêu chính xác thông tin học kỳ OJT và Học bổng Nguyễn Văn Đạo 2027.</p>"
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "e22dcd90-6818-305b-82a9-451385013cfa|KOL.REPORT",
@@ -4259,7 +4217,7 @@
         "shares": 410
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T04:48:44Z"
+      "updatedAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SCRIPT",
@@ -4280,8 +4238,8 @@
           "Cảnh 5 (38-45s): Thông tin Học bổng Nguyễn Văn Đạo 2027 & lời mời đăng ký tại bio"
         ]
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.SHOOT",
@@ -4295,8 +4253,8 @@
       "content": {
         "rawFootageNote": "Đã quay 4K 60fps tại Campus Đà Nẵng & Hòa Lạc"
       },
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.EDIT",
@@ -4308,8 +4266,8 @@
       "revision": 2,
       "versionCount": 1,
       "content": {},
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CAPTION",
@@ -4321,8 +4279,8 @@
       "revision": 2,
       "versionCount": 1,
       "content": {},
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1|VIDEO.CHANNELS",
@@ -4334,8 +4292,8 @@
       "revision": 2,
       "versionCount": 1,
       "content": {},
-      "updatedBy": "38fcc012-0aff-426f-8466-05de1109ee13",
-      "updatedAt": "2026-11-17T01:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T02:56:58Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.MEDIA_LIST",
@@ -4371,8 +4329,8 @@
           }
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.RELEASE",
@@ -4392,8 +4350,8 @@
           "d7e00000-0000-4000-8000-000000000907"
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.CONTACT_LOG",
@@ -4429,8 +4387,8 @@
           }
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06|PRESS.COVERAGE",
@@ -4450,8 +4408,8 @@
           }
         ]
       },
-      "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.MEDIA_LIST",
@@ -4488,7 +4446,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.RELEASE",
@@ -4509,7 +4467,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.CONTACT_LOG",
@@ -4546,7 +4504,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "eda0031d-455e-3d50-84a0-ab21e4cd7acd|PRESS.COVERAGE",
@@ -4567,7 +4525,7 @@
         ]
       },
       "updatedBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "updatedAt": "2026-11-17T05:48:44Z"
+      "updatedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.BRIEF",
@@ -4590,7 +4548,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CAPTION",
@@ -4603,7 +4561,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.MEDIA",
@@ -4616,7 +4574,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "cc51eadf-d39e-3533-9dd4-9352094f128f|POST.CHANNELS",
@@ -4629,7 +4587,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.BRIEF",
@@ -4652,7 +4610,7 @@
         ]
       },
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CAPTION",
@@ -4665,7 +4623,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.MEDIA",
@@ -4678,7 +4636,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "7c566ff3-c720-3812-983e-d7f3450f4736|POST.CHANNELS",
@@ -4691,7 +4649,7 @@
       "versionCount": 1,
       "content": {},
       "updatedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "updatedAt": "2026-11-17T00:48:44Z"
+      "updatedAt": "2026-11-17T01:56:58Z"
     }
   ],
   "task_section_versions": [
@@ -4711,7 +4669,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:48:44Z"
+      "submittedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.MEDIA|1",
@@ -4728,7 +4686,7 @@
         ]
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:48:44Z"
+      "submittedAt": "2026-11-17T06:56:58Z"
     },
     {
       "_id": "c6453698-cf56-38c1-96d2-90ccdd985228|POST.CHANNELS|1",
@@ -4746,7 +4704,7 @@
         "scheduledAt": "2026-11-19T09:00:00Z"
       },
       "submittedBy": "56034372-e963-4717-8dfa-e68e34d34c7a",
-      "submittedAt": "2026-11-17T05:48:44Z"
+      "submittedAt": "2026-11-17T06:56:58Z"
     }
   ],
   "task_comments": [
@@ -4763,7 +4721,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "282256f4-9303-3ccb-8a7c-8e8232874801",
-      "createdAt": "2026-11-17T03:48:44Z"
+      "createdAt": "2026-11-17T04:56:58Z"
     },
     {
       "_id": "6b01ced8-ccb5-3c82-8ce9-02f987945319",
@@ -4778,7 +4736,7 @@
       ],
       "attachmentIds": [],
       "clientRequestId": "a10b79cc-c89c-3bcb-93f3-33cdd2797f20",
-      "createdAt": "2026-11-17T05:48:44Z"
+      "createdAt": "2026-11-17T06:56:58Z"
     }
   ],
   "task_approvals": [
@@ -4790,7 +4748,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-07T04:48:44Z"
+      "createdAt": "2026-11-07T05:56:58Z"
     },
     {
       "_id": "894056f7-5b31-3334-9018-e23ab2ac300b",
@@ -4800,7 +4758,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-07T06:48:44Z"
+      "createdAt": "2026-11-07T07:56:58Z"
     },
     {
       "_id": "29c64290-78a3-31d1-8511-de5b456221ee",
@@ -4810,7 +4768,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-08T04:48:44Z"
+      "createdAt": "2026-11-08T05:56:58Z"
     },
     {
       "_id": "2f2132d8-9450-3ef9-b383-e4ac102ae3be",
@@ -4820,7 +4778,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-08T06:48:44Z"
+      "createdAt": "2026-11-08T07:56:58Z"
     },
     {
       "_id": "c46e43f5-9c65-307e-b39c-6581e082efa8",
@@ -4830,7 +4788,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-09T04:48:44Z"
+      "createdAt": "2026-11-09T05:56:58Z"
     },
     {
       "_id": "5bcbace3-7a18-333e-a415-f97d2aca2f90",
@@ -4840,7 +4798,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-09T06:48:44Z"
+      "createdAt": "2026-11-09T07:56:58Z"
     },
     {
       "_id": "f92b170c-59bf-30ea-bb5c-621109031cf6",
@@ -4850,7 +4808,7 @@
       "action": "APPROVE",
       "actorId": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "comment": "Nội dung và hình ảnh bám sát định hướng chiến dịch Tuyển sinh ĐH FPT 2027, chuyển Ban Tuyển sinh duyệt xuất bản.",
-      "createdAt": "2026-11-10T04:48:44Z"
+      "createdAt": "2026-11-10T05:56:58Z"
     },
     {
       "_id": "9e5187a6-3787-361a-9a70-54c55cbabfe0",
@@ -4860,7 +4818,7 @@
       "action": "APPROVE",
       "actorId": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
       "comment": "Thông tin ngành học, tiện ích 5 cơ sở và quy chế học bổng chính xác. Đồng ý đăng tải.",
-      "createdAt": "2026-11-10T06:48:44Z"
+      "createdAt": "2026-11-10T07:56:58Z"
     }
   ],
   "posts": [
@@ -4901,7 +4859,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-04T09:00:00Z",
       "published_at": "2026-11-04T09:05:00Z",
       "platform_post_id": "fptu2027_1",
@@ -4918,7 +4876,7 @@
         "LOVE": 515,
         "WOW": 184
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_1_0",
@@ -4956,7 +4914,7 @@
           "reachCount": 16605,
           "clickCount": 1084,
           "savedCount": 175,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -4994,7 +4952,7 @@
           "reachCount": 9225,
           "clickCount": 602,
           "savedCount": 97,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -5032,7 +4990,7 @@
           "reachCount": 7380,
           "clickCount": 482,
           "savedCount": 78,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -5070,7 +5028,7 @@
           "reachCount": 3690,
           "clickCount": 241,
           "savedCount": 39,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_1_0",
@@ -5127,7 +5085,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-06T19:00:00Z",
       "published_at": "2026-11-06T19:05:00Z",
       "platform_post_id": "fptu2027_2",
@@ -5144,7 +5102,7 @@
         "LOVE": 957,
         "WOW": 342
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_2_0",
@@ -5182,7 +5140,7 @@
           "reachCount": 34290,
           "clickCount": 1431,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5220,7 +5178,7 @@
           "reachCount": 19050,
           "clickCount": 795,
           "savedCount": 211,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5258,7 +5216,7 @@
           "reachCount": 15240,
           "clickCount": 636,
           "savedCount": 169,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_2_0",
@@ -5314,7 +5272,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-08T09:00:00Z",
       "published_at": "2026-11-08T09:05:00Z",
       "platform_post_id": "fptu2027_3",
@@ -5331,7 +5289,7 @@
         "LOVE": 753,
         "WOW": 269
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_3_0",
@@ -5369,7 +5327,7 @@
           "reachCount": 23310,
           "clickCount": 2034,
           "savedCount": 504,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5407,7 +5365,7 @@
           "reachCount": 12950,
           "clickCount": 1130,
           "savedCount": 280,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5445,7 +5403,7 @@
           "reachCount": 10360,
           "clickCount": 904,
           "savedCount": 224,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_3_0",
@@ -5501,7 +5459,7 @@
       "ai_generated": true,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-10T09:00:00Z",
       "published_at": "2026-11-10T09:05:00Z",
       "platform_post_id": "fptu2027_4",
@@ -5518,7 +5476,7 @@
         "LOVE": 546,
         "WOW": 195
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_4_0",
@@ -5556,7 +5514,7 @@
           "reachCount": 17730,
           "clickCount": 1300,
           "savedCount": 288,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5594,7 +5552,7 @@
           "reachCount": 9850,
           "clickCount": 722,
           "savedCount": 160,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5632,7 +5590,7 @@
           "reachCount": 7880,
           "clickCount": 578,
           "savedCount": 128,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_4_0",
@@ -5689,7 +5647,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-11T10:00:00Z",
       "published_at": "2026-11-11T10:05:00Z",
       "platform_post_id": "fptu2027_5",
@@ -5706,7 +5664,7 @@
         "LOVE": 453,
         "WOW": 162
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_5_0",
@@ -5744,7 +5702,7 @@
           "reachCount": 14895,
           "clickCount": 963,
           "savedCount": 229,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5782,7 +5740,7 @@
           "reachCount": 8275,
           "clickCount": 535,
           "savedCount": 127,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5820,7 +5778,7 @@
           "reachCount": 6620,
           "clickCount": 428,
           "savedCount": 102,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5858,7 +5816,7 @@
           "reachCount": 3310,
           "clickCount": 214,
           "savedCount": 51,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_5_0",
@@ -5921,7 +5879,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-13T09:00:00Z",
       "published_at": "2026-11-13T09:05:00Z",
       "platform_post_id": "fptu2027_60",
@@ -5938,7 +5896,7 @@
         "LOVE": 809,
         "WOW": 289
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_60_0",
@@ -5976,7 +5934,7 @@
           "reachCount": 25020,
           "clickCount": 1570,
           "savedCount": 351,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -6014,7 +5972,7 @@
           "reachCount": 13900,
           "clickCount": 872,
           "savedCount": 195,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -6052,7 +6010,7 @@
           "reachCount": 11120,
           "clickCount": 698,
           "savedCount": 156,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_60_0",
@@ -6107,7 +6065,7 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
       "updated_at": "2026-11-14T19:00:00Z",
       "published_at": "2026-11-14T19:05:00Z",
       "platform_post_id": "fptu2027_7",
@@ -6124,7 +6082,7 @@
         "LOVE": 1153,
         "WOW": 412
       },
-      "engagement_updated_at": "2026-11-17T06:48:44Z",
+      "engagement_updated_at": "2026-11-17T07:56:58Z",
       "cached_comments": [
         {
           "id": "cmt_7_0",
@@ -6162,7 +6120,7 @@
           "reachCount": 39780,
           "clickCount": 1764,
           "savedCount": 436,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6200,7 +6158,7 @@
           "reachCount": 22100,
           "clickCount": 980,
           "savedCount": 242,
-          "engagementUpdatedAt": "2026-11-17T06:48:44Z",
+          "engagementUpdatedAt": "2026-11-17T07:56:58Z",
           "cachedComments": [
             {
               "id": "cmt_7_0",
@@ -6259,8 +6217,8 @@
       "ai_generated": false,
       "status": "DRAFT",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-17T08:28:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-17T09:36:58Z",
       "scheduled_at": "2026-11-19T09:00:00Z"
     },
     {
@@ -6294,8 +6252,8 @@
       "ai_generated": true,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-17T08:28:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-17T09:36:58Z",
       "scheduled_at": "2026-11-23T09:00:00Z"
     },
     {
@@ -6329,8 +6287,8 @@
       "ai_generated": false,
       "status": "SCHEDULED",
       "content_version": 1,
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-17T08:28:44Z",
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-17T09:36:58Z",
       "scheduled_at": "2026-11-28T09:00:00Z"
     },
     {
@@ -6371,7 +6329,7 @@
         "LOVE": 354,
         "WOW": 118
       },
-      "engagement_updated_at": "2026-11-17T08:23:44Z",
+      "engagement_updated_at": "2026-11-17T09:31:58Z",
       "cached_comments": [
         {
           "id": "cmt_81_0",
@@ -6409,7 +6367,7 @@
           "reachCount": 12400,
           "clickCount": 895,
           "savedCount": 210,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6447,7 +6405,7 @@
           "reachCount": 7440,
           "clickCount": 537,
           "savedCount": 126,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_81_0",
@@ -6526,7 +6484,7 @@
         "LOVE": 702,
         "WOW": 234
       },
-      "engagement_updated_at": "2026-11-17T08:23:44Z",
+      "engagement_updated_at": "2026-11-17T09:31:58Z",
       "cached_comments": [
         {
           "id": "cmt_82_0",
@@ -6564,7 +6522,7 @@
           "reachCount": 24600,
           "clickCount": 1560,
           "savedCount": 445,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6602,7 +6560,7 @@
           "reachCount": 14760,
           "clickCount": 936,
           "savedCount": 267,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6640,7 +6598,7 @@
           "reachCount": 5904,
           "clickCount": 374,
           "savedCount": 106,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_82_0",
@@ -6714,7 +6672,7 @@
         "LOVE": 945,
         "WOW": 315
       },
-      "engagement_updated_at": "2026-11-17T08:23:44Z",
+      "engagement_updated_at": "2026-11-17T09:31:58Z",
       "cached_comments": [
         {
           "id": "cmt_83_0",
@@ -6752,7 +6710,7 @@
           "reachCount": 31750,
           "clickCount": 1930,
           "savedCount": 470,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6790,7 +6748,7 @@
           "reachCount": 19050,
           "clickCount": 1158,
           "savedCount": 282,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6828,7 +6786,7 @@
           "reachCount": 7620,
           "clickCount": 463,
           "savedCount": 112,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6866,7 +6824,7 @@
           "reachCount": 5080,
           "clickCount": 308,
           "savedCount": 75,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_83_0",
@@ -6946,7 +6904,7 @@
         "LOVE": 1158,
         "WOW": 386
       },
-      "engagement_updated_at": "2026-11-17T08:23:44Z",
+      "engagement_updated_at": "2026-11-17T09:31:58Z",
       "cached_comments": [
         {
           "id": "cmt_84_0",
@@ -6984,7 +6942,7 @@
           "reachCount": 39600,
           "clickCount": 2340,
           "savedCount": 575,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -7022,7 +6980,7 @@
           "reachCount": 23760,
           "clickCount": 1404,
           "savedCount": 345,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -7060,7 +7018,7 @@
           "reachCount": 9504,
           "clickCount": 561,
           "savedCount": 138,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -7098,7 +7056,7 @@
           "reachCount": 6336,
           "clickCount": 374,
           "savedCount": 92,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_84_0",
@@ -7154,9 +7112,9 @@
       "ai_generated": false,
       "status": "PUBLISHED",
       "content_version": 1,
-      "created_at": "2026-11-17T04:15:00Z",
-      "updated_at": "2026-11-17T07:15:00Z",
-      "published_at": "2026-11-17T07:15:00Z",
+      "created_at": "2026-11-17T05:15:00Z",
+      "updated_at": "2026-11-17T08:15:00Z",
+      "published_at": "2026-11-17T08:15:00Z",
       "platform_post_id": "fptu2027_85",
       "platform_post_url": "https://www.facebook.com/university.fpt.edu.vn/posts/20270085",
       "reaction_count": 2480,
@@ -7171,28 +7129,28 @@
         "LOVE": 744,
         "WOW": 248
       },
-      "engagement_updated_at": "2026-11-17T08:23:44Z",
+      "engagement_updated_at": "2026-11-17T09:31:58Z",
       "cached_comments": [
         {
           "id": "cmt_85_0",
           "authorName": "Phụ huynh Đặng Quốc Tuấn",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-          "commentedAt": "2026-11-17T07:35:00Z"
+          "commentedAt": "2026-11-17T08:35:00Z"
         },
         {
           "id": "cmt_85_1",
           "authorName": "Lê Gia Hân (THPT Trần Phú)",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-          "commentedAt": "2026-11-17T07:55:00Z"
+          "commentedAt": "2026-11-17T08:55:00Z"
         },
         {
           "id": "cmt_85_2",
           "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
           "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
           "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-          "commentedAt": "2026-11-17T08:15:00Z"
+          "commentedAt": "2026-11-17T09:15:00Z"
         }
       ],
       "platform_data": {
@@ -7201,7 +7159,7 @@
           "platformPostId": "facebook_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/facebook/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-17T07:15:00Z",
+          "publishedAt": "2026-11-17T08:15:00Z",
           "reactionCount": 1240,
           "commentCount": 156,
           "shareCount": 142,
@@ -7209,28 +7167,28 @@
           "reachCount": 25700,
           "clickCount": 1770,
           "savedCount": 380,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-17T07:35:00Z"
+              "commentedAt": "2026-11-17T08:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-17T07:55:00Z"
+              "commentedAt": "2026-11-17T08:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-17T08:15:00Z"
+              "commentedAt": "2026-11-17T09:15:00Z"
             }
           ]
         },
@@ -7239,7 +7197,7 @@
           "platformPostId": "threads_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/threads/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-17T07:15:00Z",
+          "publishedAt": "2026-11-17T08:15:00Z",
           "reactionCount": 744,
           "commentCount": 93,
           "shareCount": 85,
@@ -7247,28 +7205,28 @@
           "reachCount": 15420,
           "clickCount": 1062,
           "savedCount": 228,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-17T07:35:00Z"
+              "commentedAt": "2026-11-17T08:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-17T07:55:00Z"
+              "commentedAt": "2026-11-17T08:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-17T08:15:00Z"
+              "commentedAt": "2026-11-17T09:15:00Z"
             }
           ]
         },
@@ -7277,7 +7235,7 @@
           "platformPostId": "instagram_2027_85",
           "platformPostUrl": "https://tuyensinh.fpt.edu.vn/social/instagram/85",
           "status": "PUBLISHED",
-          "publishedAt": "2026-11-17T07:15:00Z",
+          "publishedAt": "2026-11-17T08:15:00Z",
           "reactionCount": 297,
           "commentCount": 37,
           "shareCount": 34,
@@ -7285,28 +7243,28 @@
           "reachCount": 6168,
           "clickCount": 424,
           "savedCount": 91,
-          "engagementUpdatedAt": "2026-11-17T08:23:44Z",
+          "engagementUpdatedAt": "2026-11-17T09:31:58Z",
           "cachedComments": [
             {
               "id": "cmt_85_0",
               "authorName": "Phụ huynh Đặng Quốc Tuấn",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Gia đình rất quan tâm chương trình thực tập 4 đến 8 tháng tại FPT Software từ năm ba, nhờ ban tư vấn gửi thêm lộ trình môn học.",
-              "commentedAt": "2026-11-17T07:35:00Z"
+              "commentedAt": "2026-11-17T08:35:00Z"
             },
             {
               "id": "cmt_85_1",
               "authorName": "Lê Gia Hân (THPT Trần Phú)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Đã nhận được email vé mời QR tham dự Workshop sáng thứ Bảy rồi ạ, nhóm lớp em đăng ký 6 bạn cùng đi.",
-              "commentedAt": "2026-11-17T07:55:00Z"
+              "commentedAt": "2026-11-17T08:55:00Z"
             },
             {
               "id": "cmt_85_2",
               "authorName": "Đỗ Minh Nhật (2k9 - THPT Nguyễn Thượng Hiền)",
               "authorAvatar": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
               "content": "Cho mình hỏi chuyên ngành Trí tuệ nhân tạo ở cơ sở TP.HCM và Quy Nhơn có học chung khung giáo trình quốc tế không ạ?",
-              "commentedAt": "2026-11-17T08:15:00Z"
+              "commentedAt": "2026-11-17T09:15:00Z"
             }
           ]
         }
@@ -7329,8 +7287,8 @@
       "status": "PENDING_APPROVAL",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-11-15T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e000000000000000000192",
@@ -7349,8 +7307,8 @@
       "status": "APPROVED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-11-15T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e000000000000000000193",
@@ -7369,8 +7327,8 @@
       "status": "REJECTED",
       "content_version": 1,
       "seed_tag": "fptu-2027-mod",
-      "created_at": "2026-11-15T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-11-15T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     }
   ],
   "post_versions": [
@@ -7381,7 +7339,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "e22e8981a571b7fac95f9d84baf607addc820acdd6261f362bacc1c696d81795",
-      "captured_at": "2026-11-15T08:48:44Z",
+      "captured_at": "2026-11-15T09:56:58Z",
       "content_text": "Cam kết tuyển thẳng 100% không cần xét học bạ, đóng phí giữ chỗ nhận ngay học bổng toàn phần!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7399,7 +7357,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "c724b821855887d94361ce529cba05b28cae4729ae853b3cb6a962b18a588c2c",
-      "captured_at": "2026-11-15T08:48:44Z",
+      "captured_at": "2026-11-15T09:56:58Z",
       "content_text": "Thông báo quy chế xét cấp Học bổng Nguyễn Văn Đạo năm 2027 mức 50%, 70%, 100% học phí tại 5 cơ sở.",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7417,7 +7375,7 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "created_by": "56034372-e963-4717-8dfa-e68e34d34c7a",
       "content_hash": "ad484f6894791ec5cd166f088a9915d6fe1de3eeaee9dc494cd6ef88f5dbfd23",
-      "captured_at": "2026-11-15T08:48:44Z",
+      "captured_at": "2026-11-15T09:56:58Z",
       "content_text": "Tất cả các trường khác đều dạy lý thuyết lỗi thời, bằng cấp vô giá trị!",
       "hashtags": [
         "#TuyenSinhFPTU2027"
@@ -7752,7 +7710,7 @@
       "platform": "FACEBOOK",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-17T07:15:00Z"
+      "created_at": "2026-11-17T08:15:00Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000010051",
@@ -7761,7 +7719,7 @@
       "platform": "THREADS",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-17T07:15:00Z"
+      "created_at": "2026-11-17T08:15:00Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000010052",
@@ -7770,7 +7728,7 @@
       "platform": "INSTAGRAM",
       "result": "SUCCESS",
       "retry_count": 0,
-      "created_at": "2026-11-17T07:15:00Z"
+      "created_at": "2026-11-17T08:15:00Z"
     }
   ],
   "survey": {
@@ -7830,8 +7788,8 @@
         "required": false
       }
     ],
-    "createdAt": "2026-11-11T08:48:44Z",
-    "updatedAt": "2026-11-15T08:48:44Z"
+    "createdAt": "2026-11-11T09:56:58Z",
+    "updatedAt": "2026-11-15T09:56:58Z"
   },
   "workshop_surveys": [
     {
@@ -7869,8 +7827,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-10T08:48:44Z",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "createdAt": "2026-11-10T09:56:58Z",
+      "updatedAt": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000806",
@@ -7907,8 +7865,8 @@
           "required": true
         }
       ],
-      "createdAt": "2026-11-10T08:48:44Z",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "createdAt": "2026-11-10T09:56:58Z",
+      "updatedAt": "2026-11-16T09:56:58Z"
     }
   ],
   "survey_responses": [
@@ -7916,7 +7874,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000811",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T08:48:44Z",
+      "submittedAt": "2026-11-12T09:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7951,7 +7909,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000812",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T06:48:44Z",
+      "submittedAt": "2026-11-13T07:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -7986,7 +7944,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000813",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T04:48:44Z",
+      "submittedAt": "2026-11-14T05:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8021,7 +7979,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000814",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-15T02:48:44Z",
+      "submittedAt": "2026-11-15T03:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8056,7 +8014,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000815",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T00:48:44Z",
+      "submittedAt": "2026-11-12T01:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8091,7 +8049,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000816",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T22:48:44Z",
+      "submittedAt": "2026-11-12T23:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8126,7 +8084,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000817",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T20:48:44Z",
+      "submittedAt": "2026-11-13T21:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8161,7 +8119,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000818",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T18:48:44Z",
+      "submittedAt": "2026-11-14T19:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8196,7 +8154,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000819",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T16:48:44Z",
+      "submittedAt": "2026-11-11T17:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8231,7 +8189,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000820",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T14:48:44Z",
+      "submittedAt": "2026-11-12T15:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8266,7 +8224,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000821",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T12:48:44Z",
+      "submittedAt": "2026-11-13T13:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8301,7 +8259,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000822",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T10:48:44Z",
+      "submittedAt": "2026-11-14T11:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8336,7 +8294,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000823",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-11T08:48:44Z",
+      "submittedAt": "2026-11-11T09:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8371,7 +8329,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000824",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-12T06:48:44Z",
+      "submittedAt": "2026-11-12T07:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8406,7 +8364,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000825",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-13T04:48:44Z",
+      "submittedAt": "2026-11-13T05:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8441,7 +8399,7 @@
       "_id": "d7e00000-0000-4000-8000-000000000826",
       "surveyId": "d7e00000-0000-4000-8000-000000000801",
       "taskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
-      "submittedAt": "2026-11-14T02:48:44Z",
+      "submittedAt": "2026-11-14T03:56:58Z",
       "answers": [
         {
           "questionId": "q1_major",
@@ -8481,17 +8439,17 @@
       "title": "Bổ sung khảo sát nguyện vọng ngành học của học sinh lớp 12 trước buổi Workshop Tuần 3",
       "description": "Đề nghị nhóm SE08 thiết kế biểu mẫu khảo sát ngắn để thu thập câu hỏi của học sinh THPT về ngành Vi mạch, AI và tiện ích nội trú trước ngày diễn ra Workshop.",
       "type": "SURVEY",
-      "dueDate": "2026-11-15T08:48:44Z",
+      "dueDate": "2026-11-15T09:56:58Z",
       "status": "ACCEPTED",
       "version": 1,
       "generatedTaskId": "2a100fd3-db57-3355-bef4-45dfbb4cf2f3",
       "reviewedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "reviewedAt": "2026-11-11T08:48:44Z",
+      "reviewedAt": "2026-11-11T09:56:58Z",
       "decisionNote": "Đã tiếp nhận và phân công Hà Văn Ân triển khai biểu mẫu khảo sát gắn trực tiếp vào chiến dịch.",
       "decidedBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "decidedAt": "2026-11-11T08:48:44Z",
-      "createdAt": "2026-11-10T08:48:44Z",
-      "updatedAt": "2026-11-11T08:48:44Z",
+      "decidedAt": "2026-11-11T09:56:58Z",
+      "createdAt": "2026-11-10T09:56:58Z",
+      "updatedAt": "2026-11-11T09:56:58Z",
       "targetPlatforms": [],
       "history": []
     },
@@ -8502,11 +8460,11 @@
       "title": "Cập nhật thông tin tuyến xe buýt đón học sinh THPT dự Ngày hội FPTU Open Day 2027",
       "description": "Nhờ nhóm SE08 bổ sung bài thông báo lộ trình 08 điểm đón xe miễn phí dành cho học sinh lớp 12 và phụ huynh tham dự Ngày hội Open Day cuối tuần này.",
       "type": "POST",
-      "dueDate": "2026-11-19T08:48:44Z",
+      "dueDate": "2026-11-19T09:56:58Z",
       "status": "PENDING",
       "version": 1,
-      "createdAt": "2026-11-17T03:48:44Z",
-      "updatedAt": "2026-11-17T03:48:44Z",
+      "createdAt": "2026-11-17T04:56:58Z",
+      "updatedAt": "2026-11-17T04:56:58Z",
       "targetPlatforms": [
         "FACEBOOK",
         "INSTAGRAM",
@@ -8528,7 +8486,7 @@
       "100% sinh viên tham gia học kỳ thực tập tại doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6.",
       "Hệ sinh thái tiện ích học đường toàn diện: phòng Lab bán dẫn & AI, thư viện xanh, ký túc xá, Vovinam và hơn 40 CLB sinh viên."
     ],
-    "updated_at": "2026-11-17T08:48:44Z"
+    "updated_at": "2026-11-17T09:56:58Z"
   },
   "knowledge_documents": [
     {
@@ -8537,8 +8495,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Quy chế Tuyển sinh Khóa K23 & Học bổng Nguyễn Văn Đạo Năm 2027",
       "content": "Năm 2027, Trường Đại học FPT tuyển sinh khóa K23 tại 5 cơ sở: Hà Nội (Khu Công nghệ cao Hòa Lạc), Đà Nẵng (Khu đô thị FPT City), Quy Nhơn (Khu đô thị mới An Phú Thịnh), TP.HCM (Khu Công nghệ cao TP. Thủ Đức) và Cần Thơ (Quận Ninh Kiều). Chương trình Học bổng Nguyễn Văn Đạo năm 2027 gồm các mức 50%, 70% và 100% học phí toàn khóa học dành cho học sinh THPT có thành tích học tập xuất sắc, đạt giải kỳ thi học sinh giỏi hoặc đạt điểm cao tại kỳ thi học bổng của trường. Cổng đăng ký chính thức: https://tuyensinh.fpt.edu.vn.",
-      "created_at": "2026-11-02T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-02T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000842",
@@ -8546,8 +8504,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Đào tạo Ngành Thiết kế Vi mạch Bán dẫn, Trí tuệ Nhân tạo & Học kỳ Doanh nghiệp OJT",
       "content": "Sinh viên các chuyên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI), Kỹ thuật phần mềm, An toàn thông tin và Quản trị kinh doanh số học tập theo giáo trình chuẩn quốc tế, chú trọng tiếng Anh và ngoại ngữ thứ hai. Từ học kỳ 6, sinh viên bước vào học kỳ thực tập thực tế tại doanh nghiệp (On-the-Job Training - OJT) kéo dài 4 đến 8 tháng tại FPT Software, FPT Semiconductor, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác.",
-      "created_at": "2026-11-03T08:48:44Z",
-      "updated_at": "2026-11-15T08:48:44Z"
+      "created_at": "2026-11-03T09:56:58Z",
+      "updated_at": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000843",
@@ -8555,8 +8513,8 @@
       "client_id": "d7e00000-0000-4000-8000-000000000001",
       "title": "Hệ sinh thái Tiện ích Campus & Chuỗi Workshop Hướng nghiệp THPT 2027",
       "content": "Khuôn viên Trường Đại học FPT tích hợp thư viện xanh nhiều tầng, phòng Lab thực hành chuyên sâu, ký túc xá nội trú, sân rèn luyện võ thuật Vovinam và hơn 40 câu lạc bộ sinh viên. Trong Tuần 3 của chiến dịch tuyển sinh 2027, nhà trường tổ chức chuỗi Workshop phổ biến tiện ích học đường cho học sinh lớp 12 kèm gian hàng trải nghiệm kính thực tế ảo VR, cánh tay Robotics và Ngày hội FPTU Open Day 2027.",
-      "created_at": "2026-11-05T08:48:44Z",
-      "updated_at": "2026-11-16T08:48:44Z"
+      "created_at": "2026-11-05T09:56:58Z",
+      "updated_at": "2026-11-16T09:56:58Z"
     }
   ],
   "mail_recipient_groups": [
@@ -8570,32 +8528,32 @@
           "name": "Nguyễn Hoàng Nam - THPT Phan Châu Trinh",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-13T08:48:44Z"
+          "importedAt": "2026-11-13T09:56:58Z"
         },
         {
           "email": "minhkhoi.2k9@demo.brandhub.test",
           "name": "Trần Minh Khôi - THPT Chuyên Lê Quý Đôn",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-13T08:48:44Z"
+          "importedAt": "2026-11-13T09:56:58Z"
         },
         {
           "email": "ngocanh.2k9@demo.brandhub.test",
           "name": "Võ Ngọc Ánh - THPT Hoàng Hoa Thám",
           "consent": true,
           "consentSource": "MANUAL",
-          "importedAt": "2026-11-14T08:48:44Z"
+          "importedAt": "2026-11-14T09:56:58Z"
         },
         {
           "email": "giahan.2k9@demo.brandhub.test",
           "name": "Lê Gia Hân - THPT Trần Phú",
           "consent": true,
           "consentSource": "CSV_IMPORT",
-          "importedAt": "2026-11-14T08:48:44Z"
+          "importedAt": "2026-11-14T09:56:58Z"
         }
       ],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-12T08:48:44Z"
+      "createdAt": "2026-11-12T09:56:58Z"
     }
   ],
   "mail_templates": [
@@ -8611,8 +8569,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Vé mời Workshop Trải nghiệm Tiện ích Đại học FPT 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Xin chào {{name}}, cảm ơn bạn đã đăng ký tham gia trải nghiệm phòng Lab bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo 2027.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Xem thông tin buổi Workshop\", \"urlType\": \"campaign\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
-      "createdAt": "2026-11-11T08:48:44Z",
-      "updatedAt": "2026-11-15T08:48:44Z"
+      "createdAt": "2026-11-11T09:56:58Z",
+      "updatedAt": "2026-11-15T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000882",
@@ -8626,8 +8584,8 @@
       "layoutJson": "{\"version\": 1, \"locale\": \"vi\", \"blocks\": [{\"id\": \"b1\", \"type\": \"header\", \"props\": {}}, {\"id\": \"b2\", \"type\": \"heading\", \"props\": {\"text\": \"Báo cáo tiến độ tuần Chiến dịch Tuyển sinh 2027\", \"align\": \"left\"}}, {\"id\": \"b3\", \"type\": \"paragraph\", \"props\": {\"text\": \"Kính gửi {{name}}, nhóm SE08 Digital cập nhật số liệu bài đăng đa nền tảng và lượt đăng ký Workshop THPT trong tuần.\"}}, {\"id\": \"b4\", \"type\": \"cta_button\", \"props\": {\"label\": \"Mở Dashboard Chiến dịch\", \"urlType\": \"client\"}}, {\"id\": \"b5\", \"type\": \"footer\", \"props\": {}}]}",
       "attachments": [],
       "createdBy": "48a55552-71bd-468c-ba02-fa849eeb7682",
-      "createdAt": "2026-11-07T08:48:44Z",
-      "updatedAt": "2026-11-16T08:48:44Z"
+      "createdAt": "2026-11-07T09:56:58Z",
+      "updatedAt": "2026-11-16T09:56:58Z"
     }
   ],
   "chat_channels": [
@@ -8650,7 +8608,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-05T08:48:44Z"
+      "createdAt": "2026-11-05T09:56:58Z"
     },
     {
       "_id": "39455325-5b0a-3dc5-9d02-f962ab133f35",
@@ -8670,7 +8628,7 @@
       ],
       "archived": false,
       "managersOnly": false,
-      "createdAt": "2026-11-03T08:48:44Z"
+      "createdAt": "2026-11-03T09:56:58Z"
     }
   ],
   "chat_messages": [
@@ -8691,7 +8649,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": true,
-      "createdAt": "2026-11-16T06:48:44Z"
+      "createdAt": "2026-11-16T07:56:58Z"
     },
     {
       "_id": "d7e100000000000000000002",
@@ -8710,7 +8668,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T08:48:44Z"
+      "createdAt": "2026-11-16T09:56:58Z"
     },
     {
       "_id": "d7e100000000000000000003",
@@ -8729,7 +8687,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T10:48:44Z"
+      "createdAt": "2026-11-16T11:56:58Z"
     },
     {
       "_id": "d7e100000000000000000004",
@@ -8748,7 +8706,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T12:48:44Z"
+      "createdAt": "2026-11-16T13:56:58Z"
     },
     {
       "_id": "d7e100000000000000000005",
@@ -8767,7 +8725,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T14:48:44Z"
+      "createdAt": "2026-11-16T15:56:58Z"
     },
     {
       "_id": "d7e100000000000000000006",
@@ -8786,7 +8744,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T16:48:44Z"
+      "createdAt": "2026-11-16T17:56:58Z"
     },
     {
       "_id": "d7e100000000000000000007",
@@ -8805,7 +8763,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T18:48:44Z"
+      "createdAt": "2026-11-16T19:56:58Z"
     },
     {
       "_id": "d7e100000000000000000008",
@@ -8824,7 +8782,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T20:48:44Z"
+      "createdAt": "2026-11-16T21:56:58Z"
     },
     {
       "_id": "d7e100000000000000000009",
@@ -8843,7 +8801,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-16T22:48:44Z"
+      "createdAt": "2026-11-16T23:56:58Z"
     },
     {
       "_id": "d7e10000000000000000000a",
@@ -8862,7 +8820,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T00:48:44Z"
+      "createdAt": "2026-11-17T01:56:58Z"
     },
     {
       "_id": "d7e10000000000000000000b",
@@ -8881,7 +8839,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T02:48:44Z"
+      "createdAt": "2026-11-17T03:56:58Z"
     },
     {
       "_id": "d7e10000000000000000000c",
@@ -8900,7 +8858,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T04:48:44Z"
+      "createdAt": "2026-11-17T05:56:58Z"
     },
     {
       "_id": "d7e10000000000000000000d",
@@ -8919,7 +8877,7 @@
       "attachmentIds": [],
       "reactions": {},
       "pinned": false,
-      "createdAt": "2026-11-17T06:48:44Z"
+      "createdAt": "2026-11-17T07:56:58Z"
     }
   ],
   "ai_usage_logs": [
@@ -8929,7 +8887,7 @@
       "feature": "caption_generation",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-05T08:48:44Z"
+      "created_at": "2026-11-05T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000951",
@@ -8937,7 +8895,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-06T08:48:44Z"
+      "created_at": "2026-11-06T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000952",
@@ -8945,7 +8903,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-07T08:48:44Z"
+      "created_at": "2026-11-07T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000953",
@@ -8953,7 +8911,7 @@
       "feature": "caption_generation",
       "model": "gpt-4o-mini",
       "success": true,
-      "created_at": "2026-11-08T08:48:44Z"
+      "created_at": "2026-11-08T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000954",
@@ -8961,7 +8919,7 @@
       "feature": "compliance_check",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-09T08:48:44Z"
+      "created_at": "2026-11-09T09:56:58Z"
     },
     {
       "_id": "d7e00000-0000-4000-8000-000000000955",
@@ -8969,7 +8927,7 @@
       "feature": "hashtag_suggestion",
       "model": "gemini-2.5-flash",
       "success": true,
-      "created_at": "2026-11-10T08:48:44Z"
+      "created_at": "2026-11-10T09:56:58Z"
     }
   ],
   "report_jobs": [
@@ -8978,10 +8936,10 @@
       "workspace_id": "b47477c4-13ad-44ff-8c49-f73f1837461b",
       "requested_by": "48a55552-71bd-468c-ba02-fa849eeb7682",
       "status": "DONE",
-      "date_from": "2026-11-03T08:48:44Z",
-      "date_to": "2026-11-17T08:48:44Z",
-      "created_at": "2026-11-17T02:48:44Z",
-      "updated_at": "2026-11-17T02:48:44Z"
+      "date_from": "2026-11-03T09:56:58Z",
+      "date_to": "2026-11-17T09:56:58Z",
+      "created_at": "2026-11-17T03:56:58Z",
+      "updated_at": "2026-11-17T03:56:58Z"
     }
   ]
 }

@@ -25,7 +25,11 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import contextlib
+import io
+import runpy
 import subprocess
+import traceback
 import sys
 import threading
 import time
@@ -194,6 +198,7 @@ class DemoBrowserController:
         self.profile_base_dir.mkdir(parents=True, exist_ok=True)
         self.repo_root = Path(__file__).resolve().parents[2]
         self.prep_script_path = Path(__file__).resolve().parent / "prepare_demo_data_template.py"
+        self._prep_lock = threading.Lock()
 
     def format_route(self, route_template: str) -> str:
         return route_template.format(**self.ids)
@@ -589,19 +594,35 @@ class DemoBrowserController:
                     pass
         return refreshed
 
+    def _run_prep_script(self, flag: str) -> subprocess.CompletedProcess:
+        """Chạy prepare_demo_data_template.py ngay trong tiến trình monitor.
+
+        Không spawn python con: khi monitor được Repo Runner chạy nền, tiến trình con
+        (Python bản Microsoft Store) chết lúc khởi tạo với 0xC0000142 (3221225794).
+        """
+        buf = io.StringIO()
+        old_argv = sys.argv
+        code = 0
+        with self._prep_lock:
+            sys.argv = [str(self.prep_script_path), flag]
+            try:
+                with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+                    runpy.run_path(str(self.prep_script_path), run_name="__main__")
+            except SystemExit as exc:
+                code = exc.code if isinstance(exc.code, int) else (0 if exc.code is None else 1)
+            except Exception:
+                code = 1
+                buf.write(traceback.format_exc())
+            finally:
+                sys.argv = old_argv
+        out = buf.getvalue()
+        return subprocess.CompletedProcess([flag], code, stdout=out, stderr=out if code else "")
+
     def reset_demo_database_data(self) -> dict[str, Any]:
         if not self.prep_script_path.exists():
             return {"ok": False, "error": f"Không tìm thấy script: {self.prep_script_path}"}
         try:
-            proc = subprocess.run(
-                [sys.executable, "-X", "utf8", str(self.prep_script_path), "--apply"],
-                cwd=str(self.prep_script_path.parent),
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                timeout=60,
-            )
+            proc = self._run_prep_script("--apply")
             if proc.returncode == 0:
                 refreshed = self._sync_open_browsers_storage("reset")
                 extra = f" (đã làm mới {refreshed} cửa sổ Chrome)" if refreshed > 0 else ""
@@ -624,15 +645,7 @@ class DemoBrowserController:
         if not self.prep_script_path.exists():
             return {"ok": False, "error": f"Không tìm thấy script: {self.prep_script_path}"}
         try:
-            proc = subprocess.run(
-                [sys.executable, "-X", "utf8", str(self.prep_script_path), "--clean"],
-                cwd=str(self.prep_script_path.parent),
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                timeout=60,
-            )
+            proc = self._run_prep_script("--clean")
             if proc.returncode == 0:
                 refreshed = self._sync_open_browsers_storage("clean")
                 extra = f" và làm mới {refreshed} cửa sổ Chrome" if refreshed > 0 else ""
