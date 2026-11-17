@@ -16,7 +16,7 @@ của nhóm SE_08 triển khai Chiến dịch Tuyển sinh Đại học FPT 2027
       FPTU Open Day đến Báo chí chính thống VnExpress / Thanh Niên / Dân Trí)
     + Bắn trực tiếp ảnh Key Visual Gemini Nano Banana lên bài viết trên /editor chỉ với 1 cú nhấp
     + Gọi AI sinh Caption, Kiểm duyệt vi phạm (FR 3.6.33), Duyệt 2 tầng v1/v2 & Diff phiên bản
-    + Đa nền tảng (Facebook, Instagram, TikTok, Threads), Lịch đăng, Khảo sát THPT, SePay/PayOS & Admin.
+    + Đa nền tảng (Facebook, Instagram, TikTok, Threads), Lịch đăng, Khảo sát THPT, SePay (VietQR) & Admin.
 ================================================================================
 """
 
@@ -281,6 +281,7 @@ class DemoBrowserController:
         (function(role, name, email, stepLabel) {
             const old = document.getElementById('bh-demo-hud-badge');
             if (old) old.remove();
+            const collapsed = window.localStorage.getItem('bh-demo-hud-collapsed') === '1';
             const el = document.createElement('div');
             el.id = 'bh-demo-hud-badge';
             el.style.cssText = [
@@ -297,17 +298,32 @@ class DemoBrowserController:
                 'box-shadow:0 10px 25px rgba(15,23,42,0.12)',
                 'border:1px solid #FED7AA',
                 'border-left:5px solid #EA580C',
-                'pointer-events:none',
+                'pointer-events:auto',
                 'display:flex',
                 'align-items:center',
                 'gap:10px'
             ].join(';');
-            el.innerHTML = `
+            const fullHtml = `
                 <span style="background:#EA580C;color:#fff;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.4px;text-transform:uppercase;font-size:11px;">${role}</span>
                 <span style="font-weight:700;color:#0F172A;">${name}</span>
                 <span style="color:#64748B;">(${email})</span>
                 ${stepLabel ? `<span style="background:#FFF7ED;color:#C2410C;border:1px solid #FDBA74;padding:2px 8px;border-radius:6px;font-weight:700;">${stepLabel}</span>` : ''}
+                <button id="bh-demo-hud-toggle" title="Thu gọn" style="margin-left:4px;border:none;background:#F1F5F9;color:#475569;width:20px;height:20px;border-radius:5px;cursor:pointer;font-size:13px;line-height:1;font-weight:700;">&#8211;</button>
             `;
+            const collapsedHtml = `
+                <span style="background:#EA580C;color:#fff;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.4px;text-transform:uppercase;font-size:11px;">${role}</span>
+                <button id="bh-demo-hud-toggle" title="Mở rộng" style="border:none;background:#F1F5F9;color:#475569;width:20px;height:20px;border-radius:5px;cursor:pointer;font-size:13px;line-height:1;font-weight:700;">&#43;</button>
+            `;
+            function render(isCollapsed) {
+                el.innerHTML = isCollapsed ? collapsedHtml : fullHtml;
+                el.style.padding = isCollapsed ? '4px 8px' : '8px 14px';
+                document.getElementById('bh-demo-hud-toggle').onclick = function() {
+                    const next = window.localStorage.getItem('bh-demo-hud-collapsed') !== '1';
+                    window.localStorage.setItem('bh-demo-hud-collapsed', next ? '1' : '0');
+                    render(next);
+                };
+            }
+            render(collapsed);
             document.body.appendChild(el);
         })(arguments[0], arguments[1], arguments[2], arguments[3]);
         """
@@ -475,9 +491,13 @@ class DemoBrowserController:
                     for pwd_try in candidate_passwords:
                         try:
                             email_input = wait.until(
-                                EC.presence_of_element_located((By.CSS_SELECTOR, "#email, input[type='email']"))
+                                EC.presence_of_element_located(
+                                    (By.CSS_SELECTOR, "#email, input[type='email'], input[placeholder*='company.com']")
+                                )
                             )
-                            pwd_input = driver.find_element(By.CSS_SELECTOR, "#password, input[type='password']")
+                            pwd_input = driver.find_element(
+                                By.CSS_SELECTOR, "#password, input[type='password']"
+                            )
                             self.react_set_value(driver, email_input, info["email"], append=False, human_typing=False)
                             self.react_set_value(driver, pwd_input, pwd_try, append=False, human_typing=False)
 
@@ -687,9 +707,20 @@ class DemoBrowserController:
         if action_id == "B2_NAV_CLIENT_PROFILE":
             res = self.login_role(
                 "Owner",
-                f"/workspaces/{ws_id}/client-profile",
+                f"/workspaces/{ws_id}/clients",
                 "B2.2 - Hồ sơ Thương hiệu (Brand Profile) Trường Đại học FPT",
             )
+            try:
+                driver = self.ensure_driver("Owner")
+                wait = WebDriverWait(driver, 10)
+                row = wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, "//tr[.//text()[contains(., 'Ban Tuyển sinh Đại học FPT')]]")
+                    )
+                )
+                row.click()
+            except Exception:
+                pass
             return {
                 **res,
                 "message": "Đã mở Hồ sơ Thương hiệu Đại học FPT (5 cơ sở đào tạo, học kỳ OJT và từ khóa hạn chế kiểm duyệt).",
@@ -1627,13 +1658,13 @@ class DemoBrowserController:
             return {**res, "message": "Đã mở Dashboard phân tích số liệu Reach, Impressions và Reactions của chiến dịch."}
 
         # ----------------------------------------------------------------------
-        # B14: Owner nâng cấp gói dịch vụ qua SePay / PayOS (VietQR) & Ví AI Credit
+        # B14: Owner nâng cấp gói dịch vụ qua SePay (VietQR) & Ví AI Credit
         # ----------------------------------------------------------------------
         if action_id == "B14_NAV_PLANS":
             res = self.login_role(
                 "Owner",
                 "/subscription/plans",
-                "B14.1 - Nâng cấp gói cước Agency qua SePay / PayOS (VietQR)",
+                "B14.1 - Nâng cấp gói cước Agency qua SePay (VietQR)",
             )
             drv = self.drivers.get("Owner")
             if drv:
@@ -1644,7 +1675,7 @@ class DemoBrowserController:
                         "//button[contains(., 'Nâng cấp') or contains(., 'Chọn gói') or contains(., 'Enterprise')]",
                     )
                     if upg_btns:
-                        self.highlight_element(drv, upg_btns[-1], "OWNER: BẤM 'NÂNG CẤP' ĐỂ TẠO MÃ VIETQR (SEPAY/PAYOS)")
+                        self.highlight_element(drv, upg_btns[-1], "OWNER: BẤM 'NÂNG CẤP' ĐỂ TẠO MÃ VIETQR (SEPAY)")
                 except Exception:
                     pass
             return {**res, "message": "Đã mở trang Nâng cấp gói dịch vụ (/subscription/plans) của SE08 Digital Agency."}
@@ -1927,6 +1958,7 @@ def main() -> None:
     print(f"  - Bàn điều khiển HTML  : http://localhost:{args.port}")
     print(f"  - Cổng API điều khiển  : http://localhost:{args.port}/api/status")
     print("=" * 78)
+    print(f"Running on http://127.0.0.1:{args.port} (Press CTRL+C to quit)")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

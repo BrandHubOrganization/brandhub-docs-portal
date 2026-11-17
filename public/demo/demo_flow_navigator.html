@@ -8,33 +8,44 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     :root, [data-astryx-theme="neutral"] {
-      --astryx-color-accent: #f05a28;
-      --astryx-color-accent-hover: #ea580c;
-      --astryx-color-accent-active: #c2410c;
+      --astryx-color-accent: #ea6c3b;
+      --astryx-color-accent-hover: #d95d2c;
+      --astryx-color-accent-active: #c24f21;
       --astryx-color-surface: #ffffff;
       --astryx-color-border-subtle: #fed7aa;
     }
+    *, *::before, *::after {
+      border-radius: 0 !important;
+    }
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: #FFFFFF;
+      background-color: #FAFAFA;
       color: #0F172A;
     }
     .tabular-nums { font-variant-numeric: tabular-nums; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #FDBA74; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #EA580C; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    dialog::backdrop { background: rgba(15, 23, 42, 0.35); }
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 0 !important; }
+    ::-webkit-scrollbar-thumb:hover { background: #EA6C3B; }
+    dialog::backdrop { background: rgba(15, 23, 42, 0.4); }
+    button:focus-visible, a:focus-visible {
+      outline: none !important;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ea6c3b !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-dvh bg-white text-slate-900">
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-md px-4 py-3 rounded-xl shadow-lg border bg-orange-600 border-orange-700 text-white text-sm font-medium"></div>
+  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-md px-4 py-3 border bg-orange-600 border-orange-700 text-white text-sm font-medium"></div>
 
   <!-- Safe Reset Confirmation Dialog -->
-  <dialog id="reset-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-md w-full text-slate-900">
+  <dialog id="reset-dialog" class="border border-slate-200 bg-white p-5 max-w-md w-full text-slate-900">
     <div class="space-y-4">
       <div class="space-y-1.5">
         <h3 class="text-base font-bold text-slate-900">Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?</h3>
@@ -43,10 +54,10 @@
         </p>
       </div>
       <div class="flex items-center justify-end gap-2 pt-1">
-        <button onclick="document.getElementById('reset-dialog').close()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+        <button onclick="document.getElementById('reset-dialog').close()" class="px-3.5 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
           Hủy
         </button>
-        <button onclick="confirmResetDemoData()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+        <button onclick="confirmResetDemoData()" class="px-4 py-1.5 text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
           Đồng ý khôi phục
         </button>
       </div>
@@ -54,185 +65,131 @@
   </dialog>
 
   <!-- Clean All Demo Data Confirmation Dialog -->
-  <dialog id="clean-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-md w-full text-slate-900">
+  <dialog id="clean-dialog" class="border border-slate-200 bg-white p-5 max-w-md w-full text-slate-900">
     <div class="space-y-4">
       <div class="space-y-1.5">
         <h3 class="text-base font-bold text-slate-900">Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa Demo?</h3>
         <p class="text-xs text-slate-600 leading-relaxed">
           Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, khảo sát, thư viện ảnh, đơn VietQR phát sinh và xu hướng Redis để hệ thống sạch hoàn toàn sau buổi chạy thử.
         </p>
-        <div class="p-2.5 rounded-lg bg-orange-50/70 border border-orange-200 text-[11px] text-orange-800 leading-relaxed">
+        <div class="p-2.5 bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed">
           7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp mới từ đầu.
         </div>
       </div>
       <div class="flex items-center justify-end gap-2 pt-1">
-        <button onclick="document.getElementById('clean-dialog').close()" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+        <button onclick="document.getElementById('clean-dialog').close()" class="px-3.5 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
           Hủy
         </button>
-        <button onclick="confirmCleanDemoData()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
+        <button onclick="confirmCleanDemoData()" class="px-4 py-1.5 text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
           Xóa sạch dữ liệu Demo
         </button>
       </div>
     </div>
   </dialog>
 
-  <!-- Quick Usage Guide Dialog -->
-  <dialog id="guide-dialog" class="rounded-2xl border border-orange-200 bg-white p-5 shadow-xl max-w-lg w-full text-slate-900">
-    <div class="space-y-4">
-      <div class="space-y-1">
-        <h3 class="text-base font-bold text-slate-900">Hướng dẫn sử dụng Bàn điều khiển Thuyết trình (SE08)</h3>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Quy trình 3 bước giúp nhóm điều phối mượt toàn bộ 15 bước bảo vệ trong 20 phút.
-        </p>
-      </div>
-      <div class="space-y-2.5 text-xs text-slate-700 leading-relaxed">
-        <div class="p-3 rounded-xl bg-orange-50/60 border border-orange-200 space-y-1">
-          <div class="font-bold text-orange-800">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
-          <p>Đảm bảo trạng thái hiện <strong>Đã kết nối</strong>. Nhấn <strong>Khôi phục DB</strong> để về chuẩn Bước B1, tiếp theo nhấn <strong>Đăng nhập 5 Vai trò</strong> rồi chọn <strong>Chia màn hình</strong> (5 cửa sổ Chrome xếp 71% bên trái, bàn điều khiển 29% bên phải).</p>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-          <div class="font-bold text-slate-900">2. Trong lúc thuyết trình (Chỉ cần phím Space)</div>
-          <p>Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>) để hệ thống tự bật đúng cửa sổ vai trò, mở đúng trang và điền sẵn dữ liệu từ <strong>B1 → B15</strong>. Dùng phím <strong>1 - 4</strong> chạy lẻ thao tác con, <strong>← / →</strong> đổi bước và <strong>R</strong> gọi nhanh cửa sổ vai trò hiện tại.</p>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-          <div class="font-bold text-slate-900">3. Trả lời Q&amp;A &amp; Dọn sạch sau buổi tập</div>
-          <p>Cuộn xuống mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> để mở ngay 14 màn hình chuyên sâu. Sau khi chạy thử xong, nhấn <strong>Xóa dữ liệu Demo</strong> để dọn sạch toàn bộ dữ liệu mẫu và bản ghi vừa tạo; lần tới tập lại chỉ cần bấm <strong>Khôi phục DB</strong>.</p>
-        </div>
-      </div>
-      <div class="flex justify-end pt-1">
-        <button onclick="document.getElementById('guide-dialog').close()" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
-          Đã hiểu, bắt đầu ngay
-        </button>
-      </div>
-    </div>
-  </dialog>
-
   <!-- Slim Stage-Ready Sticky Header -->
-  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-sm">
-    <div class="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-[1600px] mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2.5">
       <div class="flex flex-wrap items-center gap-3">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white font-extrabold text-xs shadow-sm">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 bg-[#ea6c3b] flex items-center justify-center text-white font-extrabold text-sm">
             BH
           </div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-sm sm:text-base font-bold text-slate-900">
-              Điều Khiển Thuyết Trình SE08
-            </h1>
-            <span class="hidden 2xl:inline-flex px-2 py-0.5 text-[11px] font-semibold rounded-full bg-orange-50 text-orange-700 border border-orange-200">
-              ĐH FPT 2027 • 4 Tuần
-            </span>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm sm:text-base font-bold text-slate-900">
+                Điều Khiển Thuyết Trình SE08
+              </h1>
+              <span class="hidden xl:inline-flex px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">
+                ĐH FPT 2027 • 4 Tuần
+              </span>
+            </div>
           </div>
         </div>
 
-        <!-- View Mode Segmented Switch -->
-        <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 text-xs font-semibold">
-          <button id="mode-stage-btn" onclick="setViewMode('stage')" class="px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer">
-            Sân khấu
-          </button>
-          <button id="mode-detail-btn" onclick="setViewMode('detail')" class="px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer">
-            Chi tiết (2 cột)
-          </button>
         </div>
-      </div>
 
-      <div class="flex flex-wrap items-center gap-1.5">
+      <div class="flex flex-wrap items-center gap-2">
         <!-- 20-Min Stopwatch -->
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs tabular-nums">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 text-xs tabular-nums">
           <span class="font-bold text-slate-900" id="timer-display">00:00</span>
           <span class="text-slate-400">/ 20:00</span>
-          <button onclick="toggleTimer()" id="timer-btn" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
+          <button onclick="toggleTimer()" id="timer-btn" title="Bật/tạm dừng đồng hồ đếm 20 phút (tự chạy khi bấm thao tác đầu tiên)" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
             Chạy
           </button>
-          <button onclick="resetTimer()" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 rounded text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
+          <button onclick="resetTimer()" title="Đặt lại đồng hồ về 00:00 và dừng đếm" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
             00:00
           </button>
         </div>
 
         <!-- Connection Status -->
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-700">
-          <span id="conn-dot" class="w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse"></span>
-          <span id="conn-label" class="font-semibold text-orange-700">Đang kiểm tra</span>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-slate-200 text-xs font-medium text-slate-700">
+          <span id="conn-dot" class="w-2.5 h-2.5 bg-[#ea6c3b] animate-pulse"></span>
+          <span id="conn-label" class="font-medium text-slate-700">Đang kiểm tra</span>
         </div>
 
-        <!-- Window Layout Controls (Always visible even in narrow 29% split pane) -->
-        <div class="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
-          <button id="win-split-btn" onclick="arrangeWindows('split')" title="Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="px-2 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
-            Chia màn hình
+        <div class="inline-flex items-center border border-slate-200 bg-white">
+          <button id="win-split-btn" onclick="arrangeWindows('split')" title="1 Màn hình laptop: Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">
+            Chia màn hình (70/30)
           </button>
-          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="Phóng to toàn màn hình các cửa sổ Chrome" class="px-2 py-1 rounded-md text-xs font-semibold text-slate-700 hover:bg-orange-100/70 cursor-pointer">
-            Phóng to
+          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="2 Màn hình HDMI: Phóng to toàn màn hình các cửa sổ Chrome ra máy chiếu ngoài" class="inline-flex items-center gap-1 px-2 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors border-l border-slate-200">
+            2 Màn hình
           </button>
         </div>
 
-        <button onclick="loginAllRoles()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 shadow-sm cursor-pointer">
+        <button onclick="loginAllRoles()" title="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin. Chạy trước giờ bảo vệ ~10 phút" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
           Đăng nhập 5 Vai trò
         </button>
 
-        <button onclick="document.getElementById('reset-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
+        <button onclick="document.getElementById('reset-dialog').showModal()" title="Nạp lại dữ liệu mẫu chuẩn Bước B1 (xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên). Dùng trước mỗi lần tập dượt" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
           Khôi phục DB
         </button>
 
-        <button onclick="document.getElementById('clean-dialog').showModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
+        <button onclick="document.getElementById('clean-dialog').showModal()" title="Xóa sạch dữ liệu mẫu và mọi bản ghi phát sinh lúc demo, đưa về khung rỗng (không nạp lại gì). Dùng sau khi demo xong" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
           Xóa dữ liệu Demo
-        </button>
-
-        <button onclick="document.getElementById('guide-dialog').showModal()" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-orange-50/70 text-orange-700 border border-orange-200 hover:bg-orange-100 cursor-pointer">
-          ? Hướng dẫn
         </button>
       </div>
     </div>
 
     <!-- Compact 5-Role Strip -->
-    <div class="bg-orange-50/40 border-t border-orange-100">
-      <div class="max-w-[1600px] mx-auto px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+    <div class="bg-slate-50 border-t border-slate-200">
+      <div class="max-w-[1600px] mx-auto px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto">
         <div id="roles-bar" class="flex items-center gap-1.5 min-w-0"></div>
-        <div class="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
+        <div class="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
           <span>Phím tắt:</span>
-          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">Space</kbd>
+          <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 font-mono text-[10px] font-bold">Space</kbd>
           <span>chạy tiếp</span>
-          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">← / →</kbd>
+          <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 font-mono text-[10px] font-bold">← / →</kbd>
           <span>đổi bước</span>
-          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] font-bold">1-4</kbd>
+          <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 font-mono text-[10px] font-bold">1-4</kbd>
           <span>nút con</span>
         </div>
       </div>
     </div>
 
-    <!-- Horizontal 15-Step Quick-Jump Rail (Scrollbar-free + Chevron Scroll Buttons) -->
-    <div id="stage-rail-wrap" class="bg-white border-t border-slate-100">
-      <div class="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
-        <button onclick="scrollStepRail(-320)" aria-label="Cuộn sang trái" class="px-2 py-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-xs font-bold text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer">‹</button>
-        <div id="stage-rail" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"></div>
-        <button onclick="scrollStepRail(320)" aria-label="Cuộn sang phải" class="px-2 py-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-xs font-bold text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer">›</button>
-      </div>
-    </div>
   </header>
 
-  <!-- Main Container -->
-  <main id="main-layout" class="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
-    <!-- Left Sidebar (Only visible in Detail 2-column mode) -->
-    <aside id="detail-sidebar" class="hidden lg:col-span-4 space-y-2">
-      <div class="flex items-center justify-between px-1 mb-1">
-        <h2 class="text-xs font-bold uppercase text-slate-600">Lộ trình 15 bước</h2>
-        <span id="step-counter" class="text-xs font-semibold text-orange-600 tabular-nums">Bước 1/15</span>
-      </div>
-      <div id="steps-list" class="space-y-1.5 max-h-[calc(100dvh-230px)] overflow-y-auto pr-1"></div>
-    </aside>
+  <!-- Main Layout: Sidebar dọc 15 bước bên trái + nội dung bước hiện tại bên phải -->
+  <div class="flex items-start">
+    <nav id="stage-rail-wrap" aria-label="Danh sách 15 bước demo" class="hidden lg:block w-[280px] shrink-0 self-start sticky top-0 max-h-dvh overflow-y-auto border-r border-slate-200 bg-white">
+      <div id="stage-rail" class="divide-y divide-slate-100"></div>
+    </nav>
 
-    <!-- Active Step Controller -->
-    <section id="active-section" class="space-y-4">
-      <div id="step-detail" class="p-4 sm:p-5 rounded-2xl bg-white border border-orange-200 shadow-sm space-y-4"></div>
-      <div id="step-fields-wrap"></div>
-      <details class="p-4 rounded-2xl bg-white border border-orange-200 shadow-sm">
-        <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
-          <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
-          <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">1 chạm mở đúng vai trò</span>
-        </summary>
-        <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
-      </details>
-    </section>
-  </main>
+    <main id="main-layout" class="flex-1 min-w-0 max-w-[1040px] mx-auto px-4 py-4 space-y-4">
+      <!-- Active Step Controller -->
+      <section id="active-section" class="space-y-4">
+        <div id="step-detail" class="p-4 sm:p-5 bg-white border border-slate-200 shadow-xs space-y-4"></div>
+        <div id="step-fields-wrap"></div>
+        <details class="p-4 bg-white border border-slate-200 shadow-xs">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+            <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
+            <span class="px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">1 chạm mở đúng vai trò</span>
+          </summary>
+          <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
+        </details>
+      </section>
+    </main>
+  </div>
 
   <script>
     const API_BASE = window.location.port === '3999' ? '' : 'http://localhost:3999';
@@ -733,15 +690,15 @@
       const railWrap = document.getElementById('stage-rail-wrap');
 
       if (mode === 'stage') {
-        stageBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
-        detailBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        stageBtn.className = 'px-2.5 py-1 bg-orange-600 text-white cursor-pointer';
+        detailBtn.className = 'px-2.5 py-1 text-slate-700 hover:bg-orange-100/70 cursor-pointer';
         mainEl.className = 'max-w-[1040px] mx-auto px-4 py-4 space-y-4';
         sidebarEl.className = 'hidden';
         activeSecEl.className = 'space-y-4';
         railWrap.className = 'bg-white border-t border-slate-100';
       } else {
-        detailBtn.className = 'px-2.5 py-1 rounded-md bg-orange-600 text-white cursor-pointer';
-        stageBtn.className = 'px-2.5 py-1 rounded-md text-slate-700 hover:bg-orange-100/70 cursor-pointer';
+        detailBtn.className = 'px-2.5 py-1 bg-orange-600 text-white cursor-pointer';
+        stageBtn.className = 'px-2.5 py-1 text-slate-700 hover:bg-orange-100/70 cursor-pointer';
         mainEl.className = 'max-w-[1600px] mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6';
         sidebarEl.className = 'lg:col-span-4 space-y-2';
         activeSecEl.className = 'lg:col-span-8 space-y-4';
@@ -763,7 +720,7 @@
     function showToast(msg, isError = false) {
       const el = document.getElementById('toast');
       el.textContent = msg;
-      el.className = `fixed bottom-4 right-4 z-50 max-w-md px-4 py-3 rounded-xl shadow-lg border text-sm font-medium ${
+      el.className = `fixed bottom-4 right-4 z-50 max-w-md px-4 py-3 border text-sm font-medium ${
         isError ? 'bg-white border-orange-500 text-slate-900' : 'bg-orange-600 border-orange-700 text-white'
       }`;
       setTimeout(() => el.classList.add('hidden'), 4200);
@@ -781,33 +738,14 @@
             <button
               onclick="loginRole('${r.role}')"
               title="${r.role}: ${r.fullName} (${r.email}) - Bấm để đưa cửa sổ lên trước"
-              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer ${
-                isCurrent
-                  ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-orange-300 hover:bg-orange-50/50'
-              }"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 border text-xs font-semibold shrink-0 cursor-pointer ${ isCurrent ? 'bg-orange-600 text-white border-orange-600' : 'bg-white text-slate-700 border-slate-200 hover:border-orange-300 hover:bg-orange-50/50' }"
             >
-              <span class="w-2 h-2 rounded-full ${
-                alive ? (isCurrent ? 'bg-white' : 'bg-orange-500') : 'bg-slate-300'
-              }"></span>
+              <span class="w-2 h-2 ${ alive ? (isCurrent ? 'bg-white' : 'bg-orange-500') : 'bg-slate-300' }"></span>
               <span class="font-bold">${r.role}</span>
               <span class="${isCurrent ? 'text-orange-100' : 'text-slate-500'}">· ${r.shortLabel}</span>
             </button>
           `;
         }).join('');
-    }
-
-    function scrollStepRail(dx) {
-      document.getElementById('stage-rail')?.scrollBy({ left: dx, behavior: 'smooth' });
-    }
-
-    function formatReadableDesc(desc) {
-      return String(desc || '')
-        .replace('/agency/{agency_id}', '/agency/se08-digital')
-        .replace('/workspaces/{workspace_id}', '/workspaces/dh-fpt-2027')
-        .replace('{agency_id}', '359a1839')
-        .replace('{workspace_id}', 'b47477c4')
-        .replace('{task_id}', 'c6453698');
     }
 
     function renderStageRail() {
@@ -821,68 +759,25 @@
             id="rail-pill-${idx}"
             onclick="selectStep(${idx})"
             title="${s.code}: ${s.title} (${s.role})"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums ${
-              selected
-                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
-                : allDone
-                ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
-                : someDone
-                ? 'bg-orange-50/40 text-slate-800 border-orange-200'
-                : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
-            }"
+            class="w-full flex items-start gap-2.5 px-3.5 py-2.5 text-left cursor-pointer border-l-2 ${ selected ? 'bg-orange-50 border-l-orange-600' : someDone ? 'bg-slate-50 border-l-transparent hover:bg-slate-100' : 'bg-white border-l-transparent hover:bg-slate-50' }"
           >
-            <span class="font-extrabold">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
-            <span class="hidden md:inline whitespace-nowrap ${selected ? 'text-orange-50' : 'text-slate-600'}">${s.shortTitle}</span>
+            <span class="font-mono text-[11px] font-bold shrink-0 mt-0.5 ${ selected ? 'text-orange-600' : allDone ? 'text-slate-500' : 'text-slate-400' }">${allDone ? '✓' : s.code}</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-xs leading-snug ${ selected ? 'font-bold text-orange-950' : allDone ? 'font-medium text-slate-600' : 'font-medium text-slate-700' }">${s.shortTitle}</span>
+              <span class="block text-[11px] text-slate-500 mt-0.5">${s.role}</span>
+            </span>
           </button>
         `;
       }).join('');
       const activePill = document.getElementById(`rail-pill-${activeIdx}`);
       if (activePill) {
-        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-    }
-
-    function renderStepsList() {
-      const list = document.getElementById('steps-list');
-      document.getElementById('step-counter').textContent = `Bước ${activeIdx + 1}/${STEPS.length}`;
-      let html = '';
-      STEPS.forEach((s, idx) => {
-        if (idx === 0 || s.stage !== STEPS[idx - 1].stage) {
-          html += `<div class="pt-2.5 pb-1 px-2 text-[11px] font-bold uppercase text-orange-700">${s.stage}</div>`;
-        }
-        const selected = idx === activeIdx;
-        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
-        html += `
-          <button
-            onclick="selectStep(${idx})"
-            class="w-full text-left p-3 rounded-xl border flex items-start gap-3 cursor-pointer ${
-              selected
-                ? 'bg-orange-600 text-white border-orange-600 shadow-sm'
-                : 'bg-white text-slate-800 border-slate-200 hover:border-orange-300 hover:bg-orange-50/40'
-            }"
-          >
-            <span class="px-2 py-0.5 rounded-md text-xs font-extrabold shrink-0 mt-0.5 tabular-nums ${
-              selected
-                ? 'bg-white text-orange-700'
-                : allDone
-                ? 'bg-orange-100 text-orange-800 border border-orange-300'
-                : 'bg-orange-50 text-orange-700 border border-orange-200'
-            }">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
-            <div class="min-w-0 flex-1">
-              <div class="font-semibold text-xs leading-snug">${s.title}</div>
-              <div class="text-[11px] mt-1 tabular-nums ${selected ? 'text-orange-100' : 'text-slate-500'}">
-                <strong>${s.role}</strong> • ${s.actor} • ${s.time}
-              </div>
-            </div>
-          </button>
-        `;
-      });
-      list.innerHTML = html;
     }
 
     function buildFieldsHtml(s) {
       return `
-        <div class="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden">
+        <div class="divide-y divide-slate-100 border border-slate-200 overflow-hidden">
           ${s.fields
             .map((f, i) => {
               const val = f.key ? DEMO_TEXTS[f.key] : f.value;
@@ -891,17 +786,17 @@
                   <div class="flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
                       <span class="text-xs font-bold text-slate-900">${f.name}</span>
-                      <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-orange-700 border border-orange-200">${f.type}</span>
+                      <span class="px-2 py-0.5 text-[10px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">${f.type}</span>
                     </div>
                     <button
                       onclick="copyField('${f.key || ''}', ${i})"
-                      class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:text-orange-700 cursor-pointer"
+                      class="px-2.5 py-1 text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 hover:text-orange-700 cursor-pointer"
                     >Sao chép</button>
                   </div>
                   ${
                     f.key
-                      ? `<textarea id="field-${f.key}" rows="3" oninput="DEMO_TEXTS['${f.key}'] = this.value" class="w-full p-2.5 text-xs text-slate-800 bg-orange-50/30 border border-orange-200 rounded-lg focus:bg-white focus:border-orange-500 focus:outline-none leading-relaxed">${val}</textarea>`
-                      : `<div id="static-field-${i}" class="p-2.5 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 whitespace-pre-wrap">${val}</div>`
+                      ? `<textarea id="field-${f.key}" rows="3" oninput="DEMO_TEXTS['${f.key}'] = this.value" class="w-full p-2.5 text-xs text-slate-800 bg-orange-50/30 border border-orange-200 focus:bg-white focus:border-orange-500 focus:outline-none leading-relaxed">${val}</textarea>`
+                      : `<div id="static-field-${i}" class="p-2.5 text-xs text-slate-700 bg-slate-50 border border-slate-200 whitespace-pre-wrap">${val}</div>`
                   }
                 </div>
               `;
@@ -923,19 +818,19 @@
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div class="space-y-1.5 min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2.5 py-0.5 rounded-lg bg-orange-600 text-white text-xs font-extrabold tabular-nums">Bước ${activeIdx + 1}/15 · ${s.code}</span>
-              <span class="px-2.5 py-0.5 rounded-lg bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold">
+              <span class="px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold">Bước ${activeIdx + 1}/15 · ${s.code}</span>
+              <span class="px-2.5 py-0.5 bg-orange-50 text-orange-800 border border-orange-200 text-xs font-bold">
                 ${s.role}: ${s.actor}
               </span>
-              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium tabular-nums">
+              <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium tabular-nums">
                 Khung giờ: ${s.time}
               </span>
-              <span class="px-2.5 py-0.5 rounded-lg bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium">
+              <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium">
                 ${s.fr}
               </span>
               ${
                 roleChanged
-                  ? `<span class="px-2.5 py-0.5 rounded-full bg-orange-600 text-white text-xs font-bold">Chuyển cửa sổ sang ${s.role}</span>`
+                  ? `<span class="px-2.5 py-0.5 bg-amber-50 text-amber-900 border border-amber-300 text-xs font-bold">Chuyển cửa sổ sang ${s.role}</span>`
                   : ''
               }
             </div>
@@ -946,20 +841,20 @@
             <button
               onclick="selectStep(${Math.max(0, activeIdx - 1)})"
               ${activeIdx === 0 ? 'disabled' : ''}
-              class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+              class="px-3 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
             >← Trước</button>
             <button
               onclick="selectStep(${Math.min(STEPS.length - 1, activeIdx + 1)})"
               ${activeIdx === STEPS.length - 1 ? 'disabled' : ''}
-              class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-800 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
+              class="px-3.5 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-800 hover:border-orange-300 disabled:opacity-40 cursor-pointer"
             >Tiếp →</button>
           </div>
         </div>
 
         <!-- Giant 1-Touch Smart Advance Hero Bar -->
-        <div class="p-3 rounded-xl bg-orange-50/70 border border-orange-200 flex flex-wrap items-center justify-between gap-3">
+        <div class="p-3 bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3">
           <div class="min-w-0 flex-1">
-            <div class="text-[11px] font-bold uppercase text-orange-800">
+            <div class="text-[11px] font-bold uppercase text-slate-600">
               Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)
             </div>
             <div class="text-sm font-bold text-slate-900 mt-0.5 truncate">
@@ -974,8 +869,9 @@
           </div>
           <button
             onclick="smartAdvance()"
+            title="Chạy thao tác tiếp theo trong bước, hoặc qua bước kế nếu bước hiện tại đã xong hết (tương đương phím Space)"
             ${!nextAct && activeIdx === STEPS.length - 1 ? 'disabled' : ''}
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-sm cursor-pointer disabled:opacity-40 shrink-0"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#ea6c3b] hover:bg-[#d95d2c] text-white font-bold text-sm cursor-pointer disabled:opacity-40 shrink-0"
           >
             <span>${
               nextAct
@@ -984,7 +880,7 @@
                 ? `Sang bước ${STEPS[activeIdx + 1].code} →`
                 : 'Đã hoàn tất 15/15'
             }</span>
-            <span class="bg-white/20 text-white px-1.5 py-0.5 rounded text-[11px] font-mono">Space</span>
+            <span class="bg-white/20 text-white px-1.5 py-0.5 text-[11px] font-mono">Space</span>
           </button>
         </div>
 
@@ -997,35 +893,17 @@
               return `
                 <button
                   onclick="runStepAction('${a.id}')"
-                  class="p-3.5 rounded-xl border text-left flex items-start gap-3 cursor-pointer ${
-                    isNext
-                      ? 'bg-orange-600 text-white border-orange-600 hover:bg-orange-700 shadow-sm ring-2 ring-orange-500/25'
-                      : isDone
-                      ? 'bg-orange-50/50 text-slate-900 border-orange-300 hover:bg-orange-100/60'
-                      : 'bg-white text-slate-900 border-slate-200 hover:border-orange-300 hover:bg-orange-50/30'
-                  }"
+                  class="p-3.5 border text-left flex items-start gap-3 cursor-pointer ${ isNext ? 'bg-orange-600 text-white border-orange-600 hover:bg-orange-700 ring-2 ring-orange-500/25' : isDone ? 'bg-orange-50/50 text-slate-900 border-orange-300 hover:bg-orange-100/60' : 'bg-white text-slate-900 border-slate-200 hover:border-orange-300 hover:bg-orange-50/30' }"
                 >
-                  <div class="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-xs tabular-nums ${
-                    isNext
-                      ? 'bg-white text-orange-700'
-                      : isDone
-                      ? 'bg-orange-600 text-white'
-                      : 'bg-orange-100 text-orange-700'
-                  }">
+                  <div class="w-8 h-8 shrink-0 flex items-center justify-center font-extrabold text-xs tabular-nums ${ isNext ? 'bg-white text-orange-700' : isDone ? 'bg-orange-600 text-white' : 'bg-orange-100 text-orange-700' }">
                     ${isDone ? '✓' : idx + 1}
                   </div>
                   <div class="min-w-0 flex-1">
-                    <div class="flex items-start justify-between gap-2.5">
+                    <div class="flex items-center justify-between gap-2">
                       <span class="text-xs sm:text-sm font-bold leading-snug">${idx + 1}. ${a.label}</span>
-                      <span class="px-2 py-0.5 rounded-md text-[10px] font-bold shrink-0 whitespace-nowrap mt-0.5 ${
-                        isNext
-                          ? 'bg-white/20 text-white'
-                          : isDone
-                          ? 'bg-orange-100 text-orange-800'
-                          : 'bg-slate-100 text-slate-600'
-                      }">${isNext ? `Phím ${idx + 1} · Tiếp` : isDone ? 'Đã chạy' : `Phím ${idx + 1}`}</span>
+                      <span class="px-1.5 py-0.5 text-[10px] font-bold shrink-0 ${ isNext ? 'bg-orange-100 text-orange-900 border border-orange-200' : isDone ? 'bg-slate-200 text-slate-700' : 'bg-slate-100 text-slate-600' }">${isNext ? `Phím ${idx + 1} · Tiếp` : isDone ? 'Đã chạy' : `Phím ${idx + 1}`}</span>
                     </div>
-                    <div class="text-xs mt-1 leading-relaxed ${isNext ? 'text-orange-100' : 'text-slate-600'}">${formatReadableDesc(a.desc)}</div>
+                    <div class="text-xs mt-0.5 text-slate-600">${a.desc}</div>
                   </div>
                 </button>
               `;
@@ -1033,26 +911,28 @@
             .join('')}
         </div>
 
-        <!-- On-Screen Browser Cue -->
-        <div class="px-3.5 py-2.5 rounded-xl bg-amber-50/70 border border-orange-200 text-xs sm:text-sm text-slate-800 leading-relaxed">
-          <strong class="text-orange-800">Thao tác kết hợp trên Chrome: </strong>${s.cue}
+        <!-- On-Screen Browser Cue chuẩn Craft Floor (1px border thanh lịch) -->
+        <div class="px-3.5 py-2.5 bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 flex items-start gap-2.5">
+          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-orange-100 text-orange-900 border border-orange-200 shrink-0 mt-0.5 font-mono">
+            CHROME CUE
+          </span>
+          <div class="leading-relaxed">
+            <strong class="text-slate-900 font-bold">Thao tác kết hợp: </strong>
+            <span class="text-slate-700">${s.cue}</span>
+          </div>
         </div>
 
         <!-- Scannable Teleprompter -->
         <div class="space-y-2.5 pt-1 border-t border-slate-100">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="text-xs font-bold uppercase text-orange-800">Ý chính trình bày trước Hội đồng (${s.code})</div>
+            <div class="text-xs font-bold uppercase text-slate-700">Ý chính trình bày trước Hội đồng (${s.code})</div>
             <div class="flex items-center gap-3">
               ${
                 Object.keys(doneActions).length > 0
-                  ? `<button onclick="clearDoneMarks()" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
+                  ? `<button onclick="clearDoneMarks()" title="Bỏ hết dấu tích 'đã chạy', không ảnh hưởng dữ liệu thật — chỉ reset trạng thái hiển thị" class="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer">Xóa dấu tích đã chạy</button>`
                   : ''
               }
-              <button onclick="toggleLargeFont()" class="px-2.5 py-1 rounded-lg text-xs font-semibold border cursor-pointer ${
-                largeFont
-                  ? 'bg-orange-50 text-orange-700 border-orange-200'
-                  : 'bg-white text-slate-600 border-slate-200'
-              }">
+              <button onclick="toggleLargeFont()" title="Phóng to cỡ chữ phần Ý chính và Lời dẫn gợi ý, dễ đọc hơn khi đứng xa máy chiếu" class="px-2.5 py-1 text-xs font-semibold border cursor-pointer ${ largeFont ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-white text-slate-600 border-slate-200' }">
                 ${largeFont ? 'Chữ lớn: Bật' : 'Chữ lớn: Tắt'}
               </button>
             </div>
@@ -1062,10 +942,8 @@
             ${s.points
               .map(
                 (pt, i) => `
-              <div class="px-3.5 py-2.5 rounded-xl bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${
-                largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed'
-              }">
-                <span class="w-5 h-5 rounded-full bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">${i + 1}</span>
+              <div class="px-3.5 py-2.5 bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${ largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed' }">
+                <span class="w-5 h-5 bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">${i + 1}</span>
                 <span class="font-medium">${pt}</span>
               </div>
             `
@@ -1074,11 +952,11 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-            <div class="md:col-span-2 p-3.5 rounded-xl bg-white border border-slate-200 space-y-1">
+            <div class="md:col-span-2 p-3.5 bg-white border border-slate-200 space-y-1">
               <div class="text-[11px] font-bold text-slate-500 uppercase">Lời dẫn gợi ý đầy đủ</div>
               <p class="${largeFont ? 'text-sm' : 'text-xs'} text-slate-700 leading-relaxed">${s.script}</p>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <div class="p-3.5 bg-slate-50 border border-slate-200 space-y-1">
               <div class="text-[11px] font-bold text-slate-600 uppercase">Kết quả trên màn hình</div>
               <p class="text-xs text-slate-600 leading-relaxed">${s.outcome}</p>
             </div>
@@ -1089,17 +967,17 @@
       const fieldsWrap = document.getElementById('step-fields-wrap');
       if (viewMode === 'stage') {
         fieldsWrap.innerHTML = `
-          <details class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <details class="p-4 bg-white border border-slate-200">
             <summary class="text-xs sm:text-sm font-bold text-slate-800 cursor-pointer flex items-center justify-between">
               <span>Dữ liệu điền tự động &amp; Sao chép thủ công dự phòng (${s.fields.length} mục)</span>
-              <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">Bấm để mở khi cần</span>
+              <span class="px-2 py-0.5 text-[11px] font-semibold bg-slate-100 text-slate-600">Bấm để mở khi cần</span>
             </summary>
             <div class="pt-3">${buildFieldsHtml(s)}</div>
           </details>
         `;
       } else {
         fieldsWrap.innerHTML = `
-          <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+          <div class="p-5 bg-white border border-slate-200 space-y-3">
             <div class="flex items-center justify-between">
               <h3 class="text-sm font-bold text-slate-900">Bảng Dữ liệu Chuẩn &amp; Nội dung Điền Nhanh (${s.code})</h3>
               <span class="text-[11px] text-orange-700 font-semibold">Văn phong tự nhiên (Humanized Vietnamese)</span>
@@ -1116,13 +994,13 @@
       grid.innerHTML = QA_LINKS.map((item) => `
         <button
           onclick="runStepAction('${item.id}')"
-          class="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer"
+          class="p-2.5 border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer"
         >
           <div class="min-w-0">
             <div class="text-xs font-bold text-slate-900 truncate">${item.label}</div>
             <div class="text-[11px] text-slate-600 truncate mt-0.5">${item.desc}</div>
           </div>
-          <span class="px-1.5 py-0.5 rounded bg-orange-50 text-orange-700 border border-orange-200 text-[10px] font-bold shrink-0">${item.role}</span>
+          <span class="px-1.5 py-0.5 bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-bold shrink-0">${item.role}</span>
         </button>
       `).join('');
     }
@@ -1130,7 +1008,6 @@
     function renderAll() {
       renderRolesBar();
       renderStageRail();
-      renderStepsList();
       renderActiveStep();
       renderQaGrid();
     }
@@ -1273,16 +1150,16 @@
           roleStates = data.roles || {};
           windowMode = data.window_mode || 'normal';
           document.getElementById('conn-label').textContent = 'Đã kết nối';
-          document.getElementById('conn-label').className = 'font-semibold text-orange-700';
-          document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-orange-600 animate-pulse';
+          document.getElementById('conn-label').className = 'font-medium text-slate-700';
+          document.getElementById('conn-dot').className = 'w-2.5 h-2.5 bg-[#ea6c3b] animate-pulse';
 
           const splitBtn = document.getElementById('win-split-btn');
           const maxBtn = document.getElementById('win-max-btn');
           if (splitBtn && maxBtn) {
-            splitBtn.className = `px-2.5 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+            splitBtn.className = `px-2.5 py-1 text-xs font-semibold cursor-pointer ${
               windowMode === 'split' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
             }`;
-            maxBtn.className = `px-2 py-1 rounded-md text-xs font-semibold cursor-pointer ${
+            maxBtn.className = `px-2 py-1 text-xs font-semibold cursor-pointer ${
               windowMode === 'maximize' ? 'bg-orange-600 text-white' : 'text-slate-700 hover:bg-orange-100/70'
             }`;
           }
@@ -1291,15 +1168,74 @@
       } catch (e) {
         document.getElementById('conn-label').textContent = 'Chưa bật';
         document.getElementById('conn-label').className = 'font-semibold text-slate-500';
-        document.getElementById('conn-dot').className = 'w-2.5 h-2.5 rounded-full bg-slate-300';
+        document.getElementById('conn-dot').className = 'w-2.5 h-2.5 bg-slate-300';
       }
+    }
+
+    
+    function cancelBusy() {
+      busy = false;
+      showToast('Đã hủy trạng thái chờ khẩn cấp. Bạn có thể tiếp tục thao tác.');
+      renderActiveStep();
+    }
+
+    async function syncCurrentStepRoute() {
+      const s = STEPS[activeIdx];
+      showToast(`Đang đồng bộ cửa sổ ${s.role} tới ${s.route}...`);
+      try {
+        const res = await fetch(`${API_BASE}/api/login-role`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role: s.role, route: s.route, step_label: `Đồng bộ tới ${s.code}` })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast(`Đã đưa cửa sổ ${s.role} tới ${s.route}.`);
+        } else {
+          showToast(data.error || 'Lỗi khi đồng bộ Chrome.', true);
+        }
+      } catch (err) {
+        showToast('Không kết nối được tới Selenium (:3999).', true);
+      }
+    }
+
+    function resetCurrentStep() {
+      const s = STEPS[activeIdx];
+      s.actions.forEach((a) => {
+        delete doneActions[a.id];
+      });
+      showToast(`Đã làm mới bước ${s.code}. Sẵn sàng chạy lại.`);
+      renderAll();
+      syncCurrentStepRoute();
+    }
+
+    function copyAllStepData() {
+      const s = STEPS[activeIdx];
+      if (!s.fields || !s.fields.length) {
+        showToast('Bước này không có trường dữ liệu cần nhập.');
+        return;
+      }
+      const lines = s.fields.map((f) => {
+        const val = f.key ? DEMO_TEXTS[f.key] : f.value;
+        return `[${f.name}] (${f.type}):\n${val}`;
+      });
+      const allText = lines.join('\n\n---\n\n');
+      navigator.clipboard.writeText(allText);
+      showToast(`Đã chép trọn bộ ${s.fields.length} trường dữ liệu bước ${s.code} vào Clipboard.`);
     }
 
     window.addEventListener('keydown', (e) => {
       const tag = e.target?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
-      if (document.getElementById('reset-dialog')?.open || document.getElementById('clean-dialog')?.open || document.getElementById('guide-dialog')?.open) return;
+      if (document.getElementById('reset-dialog')?.open || document.getElementById('clean-dialog')?.open) return;
 
+      if (e.key === 'Escape') {
+        if (busy) {
+          e.preventDefault();
+          cancelBusy();
+          return;
+        }
+      }
       if (e.code === 'Space') {
         e.preventDefault();
         smartAdvance();

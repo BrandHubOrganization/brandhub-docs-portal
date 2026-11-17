@@ -22,7 +22,7 @@ Bao phủ liên kết dữ liệu xuyên suốt toàn bộ các trang trên hệ
      kèm ảnh thực tế Unsplash hiển thị trực tiếp cho cả Agency và Client
   6. Đa nền tảng xuất bản (Facebook, Instagram, TikTok, Threads), Lịch đăng bài,
      Dashboard tương tác, Khảo sát học sinh THPT, Yêu cầu nội dung, Nhóm Hashtag,
-     Mẫu Email, Trò chuyện nhóm, Kho tri thức AI (GraphRAG), Gói cước SePay/PayOS & Admin.
+     Mẫu Email, Trò chuyện nhóm, Kho tri thức AI (GraphRAG), Gói cước SePay (VietQR) & Admin.
 
 Cách chạy:
   1. Tự động đọc cấu hình từ brandhub-business-service/.env và nạp vào DB:
@@ -280,7 +280,7 @@ DEMO_ACCOUNTS = {
         "full_name": "Quản trị viên BrandHub",
         "role": "Admin",
         "title": "Quản trị Vận hành Nền tảng BrandHub",
-        "bio": "Giám sát doanh thu gói cước SePay/PayOS, vận hành hạ tầng và xử lý hàng đợi kiểm duyệt nội dung cộng đồng.",
+        "bio": "Giám sát doanh thu gói cước SePay (VietQR), vận hành hạ tầng và xử lý hàng đợi kiểm duyệt nội dung cộng đồng.",
     },
 }
 

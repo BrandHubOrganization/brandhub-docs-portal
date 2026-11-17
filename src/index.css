@@ -16,39 +16,114 @@
   [data-astryx-theme="neutral"],
   [data-astryx-theme="neutral"] [data-astryx-media="light"],
   [data-astryx-theme="neutral"] [data-astryx-media="dark"] {
-    /* Primary Brand Accent — BrandHub Signature Orange (#EA580C) */
-    --color-accent: light-dark(#ea580c, #f97316);
+    /* Primary Brand Accent — Softened Warm Orange (Thanh thoát, dịu nhẹ, không bị gắt) */
+    --color-accent: light-dark(#ea6c3b, #f97316);
     --color-on-accent: #ffffff;
-    --color-accent-hover: light-dark(#c2410c, #fb923c);
-    --color-accent-active: light-dark(#9a3412, #ea580c);
-    --color-accent-subtle: light-dark(rgba(234, 88, 12, 0.08), rgba(249, 115, 22, 0.14));
-    --color-accent-muted: light-dark(#fed7aa, rgba(249, 115, 22, 0.28));
-    --color-text-accent: light-dark(#c2410c, #fb923c);
-    --color-icon-accent: light-dark(#ea580c, #fb923c);
-    --color-border-accent: light-dark(rgba(234, 88, 12, 0.35), rgba(249, 115, 22, 0.45));
-    --color-border-focus: light-dark(#ea580c, #f97316);
-    --astryx-theme-neutral-color-status-fill-accent: light-dark(#ea580c, #f97316);
+    --color-accent-hover: light-dark(#d95d2c, #fb923c);
+    --color-accent-active: light-dark(#c24f21, #ea580c);
+    --color-accent-subtle: light-dark(rgba(234, 108, 59, 0.08), rgba(249, 115, 22, 0.12));
+    --color-accent-muted: light-dark(#fed7aa, rgba(249, 115, 22, 0.25));
+    --color-text-accent: light-dark(#c24f21, #fb923c);
+    --color-icon-accent: light-dark(#ea6c3b, #fb923c);
+    --color-border-accent: light-dark(rgba(234, 108, 59, 0.25), rgba(249, 115, 22, 0.35));
+    --color-border-focus: light-dark(#ea6c3b, #f97316);
+    --astryx-theme-neutral-color-status-fill-accent: light-dark(#ea6c3b, #f97316);
 
     /* Minimalist Surface & Elevation Tokens (Clean White & Neutral) */
     --color-background-surface: light-dark(#ffffff, #111827);
     --color-background-body: light-dark(#f8fafc, #0b1120);
     --color-background-card: light-dark(#ffffff, #111827);
     --color-background-popover: light-dark(#ffffff, #1e293b);
-    --color-background-muted: light-dark(#fff7ed, #1e293b);
+    --color-background-muted: light-dark(#fffaf5, #1e293b);
     --color-border: light-dark(#e2e8f0, #1e293b);
     --color-border-emphasized: light-dark(#cbd5e1, #334155);
 
-    /* Semantic Orange Tokens harmonized with BrandHub */
-    --color-background-orange: light-dark(#fff7ed, rgba(234, 88, 12, 0.18));
-    --color-border-orange: light-dark(#fdba74, rgba(249, 115, 22, 0.42));
-    --color-text-orange: light-dark(#c2410c, #fb923c);
-    --color-icon-orange: light-dark(#ea580c, #fb923c);
+    /* Semantic Orange Tokens — Softened Pastel / Warm Nude */
+    --color-background-orange: light-dark(#fffaf5, rgba(234, 108, 59, 0.12));
+    --color-border-orange: light-dark(#fed7aa, rgba(249, 115, 22, 0.3));
+    --color-text-orange: light-dark(#c24f21, #fb923c);
+    --color-icon-orange: light-dark(#ea6c3b, #fb923c);
 
     /* Typography Alignment */
     --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-family-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-family-code: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
+
+  /* Triệt để loại bỏ góc bo tròn trong Bàn Điều Khiển Thuyết Trình (Crisp 0px Square Corners) */
+  .demo-monitor-root,
+  .demo-monitor-root * {
+    border-radius: 0 !important;
+  }
+
+  /* Accessibility: Crisp Focus Rings for Keyboard Navigation */
+  .demo-monitor-root button:focus-visible,
+  .demo-monitor-root a:focus-visible,
+  .demo-monitor-root input:focus-visible,
+  .demo-monitor-root textarea:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ea6c3b !important;
+  }
+
+  /* Theming: Dark Mode Adaptation for Demo Monitor */
+  html.dark .demo-monitor-root {
+    background-color: #0b1120 !important;
+    color: #f1f5f9 !important;
+  }
+  html.dark .demo-monitor-root button:focus-visible,
+  html.dark .demo-monitor-root a:focus-visible,
+  html.dark .demo-monitor-root input:focus-visible,
+  html.dark .demo-monitor-root textarea:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #0f172a, 0 0 0 4px #fb923c !important;
+  }
+  html.dark .demo-monitor-root header,
+  html.dark .demo-monitor-root .bg-white {
+    background-color: #111827 !important;
+    color: #f1f5f9 !important;
+  }
+  html.dark .demo-monitor-root .bg-slate-50,
+  html.dark .demo-monitor-root .bg-slate-50\/50,
+  html.dark .demo-monitor-root .bg-slate-50\/70,
+  html.dark .demo-monitor-root .bg-slate-50\/80 {
+    background-color: #1e293b !important;
+    color: #e2e8f0 !important;
+  }
+  html.dark .demo-monitor-root .border-slate-200,
+  html.dark .demo-monitor-root .border-slate-200\/80 {
+    border-color: #334155 !important;
+  }
+  html.dark .demo-monitor-root .text-slate-900 {
+    color: #f8fafc !important;
+  }
+  html.dark .demo-monitor-root .text-slate-800,
+  html.dark .demo-monitor-root .text-slate-700 {
+    color: #cbd5e1 !important;
+  }
+  html.dark .demo-monitor-root .text-slate-600,
+  html.dark .demo-monitor-root .text-slate-500 {
+    color: #94a3b8 !important;
+  }
+  html.dark .demo-monitor-root .bg-orange-50 {
+    background-color: rgba(234, 108, 59, 0.15) !important;
+    color: #fed7aa !important;
+  }
+  html.dark .demo-monitor-root .border-orange-200,
+  html.dark .demo-monitor-root .border-orange-300,
+  html.dark .demo-monitor-root .border-orange-400 {
+    border-color: rgba(234, 108, 59, 0.45) !important;
+  }
+
+  /* Motion Sensitivity: Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 }
 
 /* Clean scrollbars & scrollbar-free horizontal pill rails */
