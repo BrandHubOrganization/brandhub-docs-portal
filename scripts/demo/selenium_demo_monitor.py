@@ -281,6 +281,7 @@ class DemoBrowserController:
         (function(role, name, email, stepLabel) {
             const old = document.getElementById('bh-demo-hud-badge');
             if (old) old.remove();
+            const collapsed = window.localStorage.getItem('bh-demo-hud-collapsed') === '1';
             const el = document.createElement('div');
             el.id = 'bh-demo-hud-badge';
             el.style.cssText = [
@@ -297,17 +298,32 @@ class DemoBrowserController:
                 'box-shadow:0 10px 25px rgba(15,23,42,0.12)',
                 'border:1px solid #FED7AA',
                 'border-left:5px solid #EA580C',
-                'pointer-events:none',
+                'pointer-events:auto',
                 'display:flex',
                 'align-items:center',
                 'gap:10px'
             ].join(';');
-            el.innerHTML = `
+            const fullHtml = `
                 <span style="background:#EA580C;color:#fff;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.4px;text-transform:uppercase;font-size:11px;">${role}</span>
                 <span style="font-weight:700;color:#0F172A;">${name}</span>
                 <span style="color:#64748B;">(${email})</span>
                 ${stepLabel ? `<span style="background:#FFF7ED;color:#C2410C;border:1px solid #FDBA74;padding:2px 8px;border-radius:6px;font-weight:700;">${stepLabel}</span>` : ''}
+                <button id="bh-demo-hud-toggle" title="Thu gọn" style="margin-left:4px;border:none;background:#F1F5F9;color:#475569;width:20px;height:20px;border-radius:5px;cursor:pointer;font-size:13px;line-height:1;font-weight:700;">&#8211;</button>
             `;
+            const collapsedHtml = `
+                <span style="background:#EA580C;color:#fff;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:0.4px;text-transform:uppercase;font-size:11px;">${role}</span>
+                <button id="bh-demo-hud-toggle" title="Mở rộng" style="border:none;background:#F1F5F9;color:#475569;width:20px;height:20px;border-radius:5px;cursor:pointer;font-size:13px;line-height:1;font-weight:700;">&#43;</button>
+            `;
+            function render(isCollapsed) {
+                el.innerHTML = isCollapsed ? collapsedHtml : fullHtml;
+                el.style.padding = isCollapsed ? '4px 8px' : '8px 14px';
+                document.getElementById('bh-demo-hud-toggle').onclick = function() {
+                    const next = window.localStorage.getItem('bh-demo-hud-collapsed') !== '1';
+                    window.localStorage.setItem('bh-demo-hud-collapsed', next ? '1' : '0');
+                    render(next);
+                };
+            }
+            render(collapsed);
             document.body.appendChild(el);
         })(arguments[0], arguments[1], arguments[2], arguments[3]);
         """
@@ -694,6 +710,17 @@ class DemoBrowserController:
                 f"/workspaces/{ws_id}/clients",
                 "B2.2 - Hồ sơ Thương hiệu (Brand Profile) Trường Đại học FPT",
             )
+            try:
+                driver = self.ensure_driver("Owner")
+                wait = WebDriverWait(driver, 10)
+                row = wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, "//tr[.//text()[contains(., 'Ban Tuyển sinh Đại học FPT')]]")
+                    )
+                )
+                row.click()
+            except Exception:
+                pass
             return {
                 **res,
                 "message": "Đã mở Hồ sơ Thương hiệu Đại học FPT (5 cơ sở đào tạo, học kỳ OJT và từ khóa hạn chế kiểm duyệt).",
