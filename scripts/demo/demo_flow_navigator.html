@@ -28,6 +28,16 @@
     ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 0 !important; }
     ::-webkit-scrollbar-thumb:hover { background: #EA6C3B; }
     dialog::backdrop { background: rgba(15, 23, 42, 0.4); }
+    button:focus-visible, a:focus-visible {
+      outline: none !important;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ea6c3b !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body class="min-h-dvh bg-white text-slate-900">
@@ -157,30 +167,29 @@
       </div>
     </div>
 
-    <!-- Horizontal 15-Step Quick-Jump Rail (Stage Mode) -->
-    <div id="stage-rail-wrap" class="bg-white border-t border-slate-200">
-      <div id="stage-rail" class="max-w-[1600px] mx-auto px-4 py-2 flex items-center gap-1.5 overflow-x-auto"></div>
-    </div>
   </header>
 
-  <!-- Main Container -->
-  <main id="main-layout" class="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
-    <!-- Left Sidebar (Only visible in Detail 2-column mode) -->
-    
+  <!-- Main Layout: Sidebar dọc 15 bước bên trái + nội dung bước hiện tại bên phải -->
+  <div class="flex items-start">
+    <nav id="stage-rail-wrap" aria-label="Danh sách 15 bước demo" class="hidden lg:block w-[280px] shrink-0 self-start sticky top-0 max-h-dvh overflow-y-auto border-r border-slate-200 bg-white">
+      <div id="stage-rail" class="divide-y divide-slate-100"></div>
+    </nav>
 
-    <!-- Active Step Controller -->
-    <section id="active-section" class="space-y-4">
-      <div id="step-detail" class="p-4 sm:p-5 bg-white border border-slate-200 shadow-xs space-y-4"></div>
-      <div id="step-fields-wrap"></div>
-      <details class="p-4 bg-white border border-slate-200 shadow-xs">
-        <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
-          <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
-          <span class="px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">1 chạm mở đúng vai trò</span>
-        </summary>
-        <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
-      </details>
-    </section>
-  </main>
+    <main id="main-layout" class="flex-1 min-w-0 max-w-[1040px] mx-auto px-4 py-4 space-y-4">
+      <!-- Active Step Controller -->
+      <section id="active-section" class="space-y-4">
+        <div id="step-detail" class="p-4 sm:p-5 bg-white border border-slate-200 shadow-xs space-y-4"></div>
+        <div id="step-fields-wrap"></div>
+        <details class="p-4 bg-white border border-slate-200 shadow-xs">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+            <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
+            <span class="px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">1 chạm mở đúng vai trò</span>
+          </summary>
+          <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
+        </details>
+      </section>
+    </main>
+  </div>
 
   <script>
     const API_BASE = window.location.port === '3999' ? '' : 'http://localhost:3999';
@@ -750,45 +759,20 @@
             id="rail-pill-${idx}"
             onclick="selectStep(${idx})"
             title="${s.code}: ${s.title} (${s.role})"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border text-xs font-semibold shrink-0 cursor-pointer tabular-nums ${ selected ? 'bg-orange-600 text-white border-orange-600' : allDone ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70' : someDone ? 'bg-orange-50/40 text-slate-800 border-orange-200' : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300' }"
+            class="w-full flex items-start gap-2.5 px-3.5 py-2.5 text-left cursor-pointer border-l-2 ${ selected ? 'bg-orange-50 border-l-orange-600' : someDone ? 'bg-slate-50 border-l-transparent hover:bg-slate-100' : 'bg-white border-l-transparent hover:bg-slate-50' }"
           >
-            <span class="font-extrabold">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
-            <span class="hidden md:inline max-w-[130px] truncate ${selected ? 'text-orange-50' : 'text-slate-600'}">${s.shortTitle}</span>
+            <span class="font-mono text-[11px] font-bold shrink-0 mt-0.5 ${ selected ? 'text-orange-600' : allDone ? 'text-slate-500' : 'text-slate-400' }">${allDone ? '✓' : s.code}</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-xs leading-snug ${ selected ? 'font-bold text-orange-950' : allDone ? 'font-medium text-slate-600' : 'font-medium text-slate-700' }">${s.shortTitle}</span>
+              <span class="block text-[11px] text-slate-500 mt-0.5">${s.role}</span>
+            </span>
           </button>
         `;
       }).join('');
       const activePill = document.getElementById(`rail-pill-${activeIdx}`);
       if (activePill) {
-        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-    }
-
-    function renderStepsList() {
-      const list = document.getElementById('steps-list');
-      document.getElementById('step-counter').textContent = `Bước ${activeIdx + 1}/${STEPS.length}`;
-      let html = '';
-      STEPS.forEach((s, idx) => {
-        if (idx === 0 || s.stage !== STEPS[idx - 1].stage) {
-          html += `<div class="pt-2.5 pb-1 px-2 text-[11px] font-bold uppercase text-orange-700">${s.stage}</div>`;
-        }
-        const selected = idx === activeIdx;
-        const allDone = s.actions.every((a) => Boolean(doneActions[a.id]));
-        html += `
-          <button
-            onclick="selectStep(${idx})"
-            class="w-full text-left p-3 border flex items-start gap-3 cursor-pointer ${ selected ? 'bg-orange-600 text-white border-orange-600' : 'bg-white text-slate-800 border-slate-200 hover:border-orange-300 hover:bg-orange-50/40' }"
-          >
-            <span class="px-2 py-0.5 text-xs font-extrabold shrink-0 mt-0.5 tabular-nums ${ selected ? 'bg-white text-orange-700' : allDone ? 'bg-orange-100 text-orange-800 border border-orange-300' : 'bg-orange-50 text-orange-800 border border-orange-200' }">${allDone && !selected ? '✓ ' + s.code : s.code}</span>
-            <div class="min-w-0 flex-1">
-              <div class="font-semibold text-xs leading-snug">${s.title}</div>
-              <div class="text-[11px] mt-1 tabular-nums ${selected ? 'text-orange-100' : 'text-slate-500'}">
-                <strong>${s.role}</strong> • ${s.actor} • ${s.time}
-              </div>
-            </div>
-          </button>
-        `;
-      });
-      list.innerHTML = html;
     }
 
     function buildFieldsHtml(s) {
@@ -898,7 +882,6 @@
             }</span>
             <span class="bg-white/20 text-white px-1.5 py-0.5 text-[11px] font-mono">Space</span>
           </button>
-          </div>
         </div>
 
         <!-- Numbered Action Cards -->
@@ -928,9 +911,15 @@
             .join('')}
         </div>
 
-        <!-- On-Screen Browser Cue -->
-        <div class="px-3.5 py-2.5 bg-slate-50 border-l-4 border-l-[#ea6c3b] border border-slate-200 text-xs sm:text-sm text-slate-800 leading-relaxed">
-          <strong class="text-slate-900 font-bold">Thao tác kết hợp trên Chrome: </strong>${s.cue}
+        <!-- On-Screen Browser Cue chuẩn Craft Floor (1px border thanh lịch) -->
+        <div class="px-3.5 py-2.5 bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 flex items-start gap-2.5">
+          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-orange-100 text-orange-900 border border-orange-200 shrink-0 mt-0.5 font-mono">
+            CHROME CUE
+          </span>
+          <div class="leading-relaxed">
+            <strong class="text-slate-900 font-bold">Thao tác kết hợp: </strong>
+            <span class="text-slate-700">${s.cue}</span>
+          </div>
         </div>
 
         <!-- Scannable Teleprompter -->
@@ -1019,7 +1008,6 @@
     function renderAll() {
       renderRolesBar();
       renderStageRail();
-      renderStepsList();
       renderActiveStep();
       renderQaGrid();
     }

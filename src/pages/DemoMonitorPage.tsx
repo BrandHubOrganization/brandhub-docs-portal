@@ -16,8 +16,6 @@ import {
   Award,
   ExternalLink,
   RefreshCw,
-  ChevronLeft,
-  ChevronRight,
       Database,
   Globe,
   GitCompare,
@@ -95,6 +93,7 @@ interface SubActionButton {
   description: string;
   variant: 'primary' | 'outline' | 'subtle';
   icon: React.ReactNode;
+  localOnly?: boolean;
 }
 
 interface DemoStep {
@@ -192,6 +191,68 @@ const DEFAULT_DEMO_TEXTS: Record<string, string> = {
 };
 
 const DEMO_STEPS: DemoStep[] = [
+  {
+    stepNumber: 0,
+    code: 'B0',
+    stage: 'Chuẩn bị trước khi thuyết trình',
+    stageShort: 'GĐ 0: Chuẩn bị',
+    timeBudget: 'Trước 00:00',
+    title: 'Checklist chuẩn bị trước khi bắt đầu thuyết trình trước Hội đồng',
+    shortTitle: 'Checklist chuẩn bị',
+    frCode: '—',
+    role: 'Owner',
+    actorName: 'Lê Trí Trung',
+    actorEmail: 'user177@demo.brandhub.test',
+    routeTemplate: '',
+    manualBrowserCue:
+      'Tick từng việc trong danh sách sau khi đã xác nhận xong, tránh quên bước nào trước khi vào B1.',
+    talkingPoints: [],
+    presenterScript: '',
+    expectedOutcome: 'Tất cả 5 mục chuẩn bị đều được tick Đã xong trước khi bấm Tiếp để vào B1.',
+    fields: [],
+    actions: [
+      {
+        id: 'B0_OPEN_5_CHROME',
+        label: 'Mở 5 cửa sổ Chrome & Đăng nhập 5 vai trò',
+        description: 'Dùng nút "Đăng nhập 5 Vai trò" trên thanh header, kiểm tra cả 5 cửa sổ đã đăng nhập đúng tài khoản',
+        variant: 'primary',
+        icon: <Users className="size-4" />,
+        localOnly: true,
+      },
+      {
+        id: 'B0_RESTORE_DB',
+        label: 'Khôi phục DB về trạng thái demo chuẩn',
+        description: 'Dùng nút "Khôi phục DB" trên thanh header để nạp lại dữ liệu nền B1',
+        variant: 'outline',
+        icon: <RefreshCw className="size-4" />,
+        localOnly: true,
+      },
+      {
+        id: 'B0_CHECK_NETWORK',
+        label: 'Kiểm tra mạng ổn định & tắt VPN lạ',
+        description: 'Đảm bảo Wi-Fi/mạng phòng bảo vệ đủ mạnh cho 5 cửa sổ Chrome chạy song song',
+        variant: 'outline',
+        icon: <Play className="size-4" />,
+        localOnly: true,
+      },
+      {
+        id: 'B0_OPEN_BANK_APP',
+        label: 'Mở sẵn app ngân hàng (demo thanh toán SePay)',
+        description: 'Đăng nhập sẵn app ngân hàng trên điện thoại cho phần quét VietQR ở các bước thanh toán',
+        variant: 'outline',
+        icon: <FileText className="size-4" />,
+        localOnly: true,
+      },
+      {
+        id: 'B0_SILENCE_NOTIFICATIONS',
+        label: 'Tắt thông báo Windows & khóa màn hình',
+        description: 'Bật chế độ Tập trung (Focus Assist / Do Not Disturb), tắt thông báo chat/email nổi lên khi demo',
+        variant: 'outline',
+        icon: <CheckCheck className="size-4" />,
+        localOnly: true,
+      },
+    ],
+  },
   {
     stepNumber: 1,
     code: 'B1',
@@ -1141,7 +1202,6 @@ export const DemoMonitorPage: React.FC = () => {
   });
 
   const activePillRef = useRef<HTMLButtonElement | null>(null);
-  const stepRailRef = useRef<HTMLDivElement | null>(null);
 
   const showToast = useCallback((text: string, isError = false) => {
     setToastMessage({ text, isError });
@@ -1202,6 +1262,11 @@ export const DemoMonitorPage: React.FC = () => {
   const triggerStepAction = useCallback(
     async (actionId: string) => {
       if (busyAction !== null) return;
+      const actionDef = DEMO_STEPS.flatMap((s) => s.actions).find((a) => a.id === actionId);
+      if (actionDef?.localOnly) {
+        setDoneActions((prev) => ({ ...prev, [actionId]: !prev[actionId] }));
+        return;
+      }
       if (!timerRunning && elapsedSeconds === 0) {
         setTimerRunning(true);
       }
@@ -1359,6 +1424,7 @@ export const DemoMonitorPage: React.FC = () => {
       });
       const data = await res.json();
       if (data.ok) {
+        setDoneActions((prev) => ({ ...prev, B0_OPEN_5_CHROME: true }));
         showToast('Đã mở và đăng nhập tự động cả 5 cửa sổ Chrome cho 5 vai trò!');
       } else {
         showToast(data.error || 'Có lỗi khi đăng nhập 5 vai trò.', true);
@@ -1403,7 +1469,10 @@ export const DemoMonitorPage: React.FC = () => {
       });
       const data = await res.json();
       if (data.ok) {
-        setDoneActions({});
+        setDoneActions((prev) => ({
+          ...Object.fromEntries(Object.entries(prev).filter(([k]) => k.startsWith('B0_'))),
+          B0_RESTORE_DB: true,
+        }));
         setActiveStepIndex(0);
         setElapsedSeconds(0);
         setTimerRunning(false);
@@ -1516,13 +1585,6 @@ export const DemoMonitorPage: React.FC = () => {
     navigator.clipboard.writeText(allText);
     showToast(`Đã chép trọn bộ ${currentStep.fields.length} trường dữ liệu bước ${currentStep.code} vào Clipboard. Bạn có thể dán tay trên Chrome.`);
   }, [currentStep.code, currentStep.fields, customTexts, showToast]);
-
-  const scrollStepRail = (dir: 'left' | 'right') => {
-    stepRailRef.current?.scrollBy({
-      left: dir === 'left' ? -320 : 320,
-      behavior: 'smooth',
-    });
-  };
 
   const renderFieldsTable = () => (
     <div className="divide-y divide-slate-100 border border-slate-200 rounded-none overflow-hidden">
@@ -1769,15 +1831,15 @@ export const DemoMonitorPage: React.FC = () => {
               <span className="font-bold text-slate-900 tabular-nums">
                 {formatStopwatch(elapsedSeconds)}
               </span>
-              <span className="text-slate-400 tabular-nums">/ 20:00</span>
+              <span className="text-slate-600 dark:text-slate-400 tabular-nums font-medium">/ 20:00</span>
               <button
                 type="button"
                 title={timerRunning ? 'Tạm dừng đồng hồ đếm 20 phút' : 'Bắt đầu bấm giờ đếm 20 phút (tự chạy khi bấm Thao tác 1)'}
                 aria-label={timerRunning ? 'Tạm dừng đồng hồ' : 'Bắt đầu bấm giờ'}
                 onClick={() => setTimerRunning((v) => !v)}
-                className="p-0.5 rounded-none hover:bg-slate-200/70 text-slate-700 cursor-pointer"
+                className="min-w-[28px] min-h-[28px] inline-flex items-center justify-center p-1 rounded-none hover:bg-slate-200/80 text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ea6c3b] cursor-pointer"
               >
-                {timerRunning ? <Pause className="size-3" /> : <Play className="size-3" />}
+                {timerRunning ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
               </button>
               <button
                 type="button"
@@ -1787,9 +1849,9 @@ export const DemoMonitorPage: React.FC = () => {
                   setTimerRunning(false);
                   setElapsedSeconds(0);
                 }}
-                className="p-0.5 rounded-none hover:bg-slate-200/70 text-slate-500 hover:text-slate-800 cursor-pointer"
+                className="min-w-[28px] min-h-[28px] inline-flex items-center justify-center p-1 rounded-none hover:bg-slate-200/80 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ea6c3b] cursor-pointer"
               >
-                <RotateCcw className="size-3" />
+                <RotateCcw className="size-3.5" />
               </button>
             </div>
 
@@ -1958,71 +2020,59 @@ export const DemoMonitorPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Thanh nhảy nhanh 15 bước B1 -> B15: Thanh mảnh, góc vuông, mượt mà */}
-        <div className="bg-white border-t border-slate-200">
-          <div className="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
-            <button
-              type="button"
-              title="Cuộn danh sách 15 bước sang trái"
-              aria-label="Cuộn danh sách bước sang trái"
-              onClick={() => scrollStepRail('left')}
-              className="p-1 rounded-none border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 cursor-pointer"
-            >
-              <ChevronLeft className="size-3.5" />
-            </button>
-
-            <div
-              ref={stepRailRef}
-              className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"
-            >
-              {DEMO_STEPS.map((step, idx) => {
-                const isSelected = idx === activeStepIndex;
-                const isDone = step.actions.every((a) => Boolean(doneActions[a.id]));
-                return (
-                  <button
-                    key={step.code}
-                    ref={isSelected ? activePillRef : null}
-                    type="button"
-                    onClick={() => setActiveStepIndex(idx)}
-                    title={`Bước ${step.stepNumber}: ${step.title} (${step.role})`}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none text-xs whitespace-nowrap cursor-pointer transition-colors shrink-0 border ${
-                      isSelected
-                        ? 'bg-orange-50 text-orange-950 border-orange-400 font-bold shadow-xs'
-                        : isDone
-                        ? 'bg-slate-100 text-slate-700 border-slate-200'
-                        : 'bg-white text-slate-600 border-slate-200 hover:border-orange-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    <span
-                      className={`font-mono text-[11px] font-bold ${
-                        isSelected ? 'text-[#ea6c3b]' : isDone ? 'text-slate-600' : 'text-slate-500'
-                      }`}
-                    >
-                      {isDone ? `✓ ${step.code}` : step.code}
-                    </span>
-                    <span className="hidden sm:inline font-medium truncate max-w-[140px]">
-                      {step.shortTitle}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <button
-              type="button"
-              title="Cuộn danh sách 15 bước sang phải"
-              aria-label="Cuộn danh sách bước sang phải"
-              onClick={() => scrollStepRail('right')}
-              className="p-1 rounded-none border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 cursor-pointer"
-            >
-              <ChevronRight className="size-3.5" />
-            </button>
-          </div>
-        </div>
       </header>
 
-      {/* Bố cục chính: Tối giản 1 cột lớn tinh gọn tuyệt đối cho người thuyết trình */}
-      <main className="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
+      {/* Bố cục chính: Sidebar dọc 15 bước bên trái + nội dung bước hiện tại bên phải */}
+      <div className="flex items-start">
+        {/* Sidebar dọc B1 -> B15: liệt kê đủ cả quy trình cho Hội đồng theo dõi tổng quan */}
+        <nav
+          aria-label="Danh sách 15 bước demo"
+          className="hidden lg:block w-[280px] shrink-0 self-start sticky top-0 max-h-dvh overflow-y-auto border-r border-slate-200 bg-white"
+        >
+          <div className="divide-y divide-slate-100">
+            {DEMO_STEPS.map((step, idx) => {
+              const isSelected = idx === activeStepIndex;
+              const isDone = step.actions.every((a) => Boolean(doneActions[a.id]));
+              const hasSomeDone = !isDone && step.actions.some((a) => Boolean(doneActions[a.id]));
+              return (
+                <button
+                  key={step.code}
+                  ref={isSelected ? activePillRef : null}
+                  type="button"
+                  onClick={() => setActiveStepIndex(idx)}
+                  title={`Bước ${step.stepNumber}: ${step.title} (${step.role})`}
+                  className={`w-full flex items-start gap-2.5 px-3.5 py-2.5 text-left cursor-pointer transition-colors border-l-2 ${
+                    isSelected
+                      ? 'bg-orange-50 border-l-[#ea6c3b]'
+                      : hasSomeDone
+                      ? 'bg-slate-50 border-l-transparent hover:bg-slate-100'
+                      : 'bg-white border-l-transparent hover:bg-slate-50'
+                  }`}
+                >
+                  <span
+                    className={`font-mono text-[11px] font-bold shrink-0 mt-0.5 ${
+                      isSelected ? 'text-[#ea6c3b]' : isDone ? 'text-blue-600' : 'text-slate-400'
+                    }`}
+                  >
+                    {isDone ? '✓' : step.code}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={`block text-xs leading-snug text-pretty ${
+                        isSelected ? 'font-bold text-orange-950' : isDone ? 'font-medium text-slate-600' : 'font-medium text-slate-700'
+                      }`}
+                    >
+                      {step.shortTitle}
+                    </span>
+                    <span className="block text-[11px] text-slate-500 mt-0.5">{step.role}</span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+
+        <main className="flex-1 min-w-0 max-w-[1040px] mx-auto px-4 py-4 space-y-4">
         {/* Khu vực Điều khiển Chính của Bước Hiện Tại */}
         <AstryxCard padding={4} className="rounded-none bg-white border border-slate-200 shadow-xs space-y-4">
           {/* Hàng 1: Định danh Bước + Báo đổi vai + Nút Trước/Tiếp */}
@@ -2247,11 +2297,13 @@ export const DemoMonitorPage: React.FC = () => {
             })}
           </div>
 
-          {/* Hàng 4: Chỉ dẫn thao tác tay trên Chrome */}
-          <div className="px-3.5 py-2.5 rounded-none bg-slate-50 border-l-4 border-l-[#ea6c3b] border border-slate-200 flex items-start gap-2.5">
-            <MousePointerClick className="size-4 text-[#ea6c3b] shrink-0 mt-0.5" />
+          {/* Hàng 4: Chỉ dẫn thao tác tay trên Chrome chuẩn Craft Floor (1px border thanh lịch) */}
+          <div className="px-3.5 py-2.5 rounded-none bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+            <span className="px-1.5 py-0.5 rounded-none text-[10px] font-bold bg-orange-100 text-orange-900 border border-orange-200 shrink-0 mt-0.5 font-mono">
+              CHROME CUE
+            </span>
             <div className="text-xs sm:text-sm text-slate-800 leading-relaxed text-pretty">
-              <strong className="text-slate-900 font-bold">Thao tác kết hợp trên Chrome: </strong>
+              <strong className="text-slate-900 font-bold">Thao tác kết hợp: </strong>
               <span className="text-slate-700">{currentStep.manualBrowserCue}</span>
             </div>
           </div>
@@ -2389,7 +2441,8 @@ export const DemoMonitorPage: React.FC = () => {
             <ExternalLink className="size-3.5" />
           </a>
         </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };

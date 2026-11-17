@@ -55,6 +55,75 @@
   .demo-monitor-root * {
     border-radius: 0 !important;
   }
+
+  /* Accessibility: Crisp Focus Rings for Keyboard Navigation */
+  .demo-monitor-root button:focus-visible,
+  .demo-monitor-root a:focus-visible,
+  .demo-monitor-root input:focus-visible,
+  .demo-monitor-root textarea:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ea6c3b !important;
+  }
+
+  /* Theming: Dark Mode Adaptation for Demo Monitor */
+  html.dark .demo-monitor-root {
+    background-color: #0b1120 !important;
+    color: #f1f5f9 !important;
+  }
+  html.dark .demo-monitor-root button:focus-visible,
+  html.dark .demo-monitor-root a:focus-visible,
+  html.dark .demo-monitor-root input:focus-visible,
+  html.dark .demo-monitor-root textarea:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #0f172a, 0 0 0 4px #fb923c !important;
+  }
+  html.dark .demo-monitor-root header,
+  html.dark .demo-monitor-root .bg-white {
+    background-color: #111827 !important;
+    color: #f1f5f9 !important;
+  }
+  html.dark .demo-monitor-root .bg-slate-50,
+  html.dark .demo-monitor-root .bg-slate-50\/50,
+  html.dark .demo-monitor-root .bg-slate-50\/70,
+  html.dark .demo-monitor-root .bg-slate-50\/80 {
+    background-color: #1e293b !important;
+    color: #e2e8f0 !important;
+  }
+  html.dark .demo-monitor-root .border-slate-200,
+  html.dark .demo-monitor-root .border-slate-200\/80 {
+    border-color: #334155 !important;
+  }
+  html.dark .demo-monitor-root .text-slate-900 {
+    color: #f8fafc !important;
+  }
+  html.dark .demo-monitor-root .text-slate-800,
+  html.dark .demo-monitor-root .text-slate-700 {
+    color: #cbd5e1 !important;
+  }
+  html.dark .demo-monitor-root .text-slate-600,
+  html.dark .demo-monitor-root .text-slate-500 {
+    color: #94a3b8 !important;
+  }
+  html.dark .demo-monitor-root .bg-orange-50 {
+    background-color: rgba(234, 108, 59, 0.15) !important;
+    color: #fed7aa !important;
+  }
+  html.dark .demo-monitor-root .border-orange-200,
+  html.dark .demo-monitor-root .border-orange-300,
+  html.dark .demo-monitor-root .border-orange-400 {
+    border-color: rgba(234, 108, 59, 0.45) !important;
+  }
+
+  /* Motion Sensitivity: Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 }
 
 /* Clean scrollbars & scrollbar-free horizontal pill rails */
