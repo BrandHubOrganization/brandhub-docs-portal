@@ -18,9 +18,7 @@ import {
   RefreshCw,
   ChevronLeft,
   ChevronRight,
-  Sliders,
-  Eye,
-  Database,
+      Database,
   Globe,
   GitCompare,
   FileText,
@@ -34,7 +32,9 @@ import {
   ClipboardList,
   Columns2,
   Maximize2,
-  Clock,
+  Compass,
+  ClipboardCheck,
+    Clock,
   MousePointerClick,
   ArrowRight,
   CheckCheck,
@@ -52,13 +52,10 @@ import {
   AstryxDivider,
   AstryxCode,
   AstryxHeading,
-  AstryxSegmentedControl,
-  AstryxSegmentedControlItem,
-  AstryxCollapsible,
+    AstryxCollapsible,
   AstryxDialog,
   AstryxKbd,
-  AstryxSwitch,
-} from '../components/astryx';
+  } from '../components/astryx';
 
 interface RoleStatus {
   alive: boolean;
@@ -1125,15 +1122,9 @@ export const DemoMonitorPage: React.FC = () => {
   const [busyAction, setBusyAction] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<{ text: string; isError?: boolean } | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
   const [showCleanConfirm, setShowCleanConfirm] = useState<boolean>(false);
   const [showGuideModal, setShowGuideModal] = useState<boolean>(false);
-
-  // Chế độ hiển thị tối ưu cho thuyết trình sân khấu
-  const [viewMode, setViewMode] = useState<string>('stage'); // 'stage' | 'detail'
-  const [stageFilter, setStageFilter] = useState<string>('all');
-  const [largeScript, setLargeScript] = useState<boolean>(true);
   const [doneActions, setDoneActions] = useState<Record<string, boolean>>({});
 
   // Đồng hồ bấm giờ 20 phút bảo vệ đồ án
@@ -1244,7 +1235,7 @@ export const DemoMonitorPage: React.FC = () => {
     [busyAction, customTexts, elapsedSeconds, fetchMonitorStatus, monitorUrl, showToast, timerRunning]
   );
 
-  // Nút dẫn dắt thông minh 1 chạm (Phím Space): Chạy thao tác kế tiếp trong bước, nếu xong hết thì qua bước mới
+  // Nút dẫn dắt thông minh 1 chạm (Phím Space): Chạy thao tác kế tiếp trong bước, nếu xong hết thì sang bước sau
   const handleSmartAdvance = useCallback(() => {
     if (busyAction !== null) return;
     if (nextPendingAction) {
@@ -1280,6 +1271,14 @@ export const DemoMonitorPage: React.FC = () => {
     [busyAction, fetchMonitorStatus, monitorUrl, showToast]
   );
 
+  // Xử lý sự cố 2: Hủy kẹt khẩn cấp (Phím Esc)
+  const handleCancelBusy = useCallback(() => {
+    if (busyAction !== null) {
+      setBusyAction(null);
+      showToast('Đã hủy trạng thái chờ khẩn cấp. Bạn có thể tiếp tục điều khiển.');
+    }
+  }, [busyAction, showToast]);
+
   // Hỗ trợ phím tắt rảnh tay trên sân khấu & bút trình chiếu (PageUp / PageDown / Space / 1-4 / Mũi tên)
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -1293,8 +1292,15 @@ export const DemoMonitorPage: React.FC = () => {
       ) {
         return;
       }
-      if (showResetConfirm || showCleanConfirm || showGuideModal || showConfigModal) return;
+      if (showResetConfirm || showCleanConfirm || showGuideModal) return;
 
+      if (e.key === 'Escape') {
+        if (busyAction !== null) {
+          e.preventDefault();
+          handleCancelBusy();
+          return;
+        }
+      }
       if (e.code === 'Space') {
         e.preventDefault();
         handleSmartAdvance();
@@ -1330,7 +1336,7 @@ export const DemoMonitorPage: React.FC = () => {
     currentStep,
     handleLoginSingleRole,
     handleSmartAdvance,
-    showConfigModal,
+    handleCancelBusy,
     showResetConfirm,
     showCleanConfirm,
     showGuideModal,
@@ -1365,7 +1371,7 @@ export const DemoMonitorPage: React.FC = () => {
     }
   };
 
-  const handleArrangeWindows = async (mode: 'split' | 'maximize') => {
+  const handleArrangeWindows = async (mode: 'split' | 'maximize' = 'split') => {
     setBusyAction(`ARRANGE_${mode}`);
     try {
       const res = await fetch(`${monitorUrl}/api/arrange-windows`, {
@@ -1440,24 +1446,6 @@ export const DemoMonitorPage: React.FC = () => {
     }
   };
 
-  const handleSaveConfig = async () => {
-    try {
-      const res = await fetch(`${monitorUrl}/api/config`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(configIds),
-      });
-      const data = await res.json();
-      if (data.ok) {
-        showToast('Đã cập nhật cấu hình ID chiến dịch và công việc.');
-        setShowConfigModal(false);
-        fetchMonitorStatus();
-      }
-    } catch {
-      showToast('Không thể lưu cấu hình vào cổng 3999.', true);
-    }
-  };
-
   const resolvedRoute = currentStep.routeTemplate
     .replace('{agency_id}', configIds.agency_id)
     .replace('{workspace_id}', configIds.workspace_id)
@@ -1473,6 +1461,62 @@ export const DemoMonitorPage: React.FC = () => {
       .replace('{campaign_id}', configIds.campaign_id.slice(0, 8))
       .replace('{task_id}', configIds.task_id.slice(0, 8));
 
+  // Xử lý sự cố 3: Đồng bộ URL Chrome ngay tới bước đang chọn (Teleport Tab)
+  const handleSyncCurrentStepRoute = useCallback(async () => {
+    if (busyAction !== null) return;
+    setBusyAction(`SYNC_${currentStep.code}`);
+    try {
+      const res = await fetch(`${monitorUrl}/api/login-role`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          role: currentStep.role,
+          route: resolvedRoute,
+          step_label: `Đồng bộ tới ${currentStep.code}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        showToast(`Đã đưa cửa sổ ${currentStep.role} (${data.full_name || currentStep.actorName}) tới ${resolvedRoute}.`);
+      } else {
+        showToast(data.error || 'Lỗi khi đồng bộ trang Chrome.', true);
+      }
+      await fetchMonitorStatus();
+    } catch {
+      showToast('Không kết nối được tới máy chủ Selenium (cổng 3999).', true);
+    } finally {
+      setBusyAction(null);
+    }
+  }, [busyAction, currentStep.actorName, currentStep.code, currentStep.role, fetchMonitorStatus, monitorUrl, resolvedRoute, showToast]);
+
+  // Xử lý sự cố 4: Diễn tập lại riêng bước này (Single Step Rollback)
+  const handleResetCurrentStep = useCallback(() => {
+    setDoneActions((prev) => {
+      const next = { ...prev };
+      currentStep.actions.forEach((a) => {
+        delete next[a.id];
+      });
+      return next;
+    });
+    showToast(`Đã làm mới bước ${currentStep.code}. Sẵn sàng chạy lại từ đầu.`);
+    handleSyncCurrentStepRoute();
+  }, [currentStep.actions, currentStep.code, handleSyncCurrentStepRoute, showToast]);
+
+  // Xử lý sự cố 5: Chế độ Dự phòng thao tác tay 1-chạm (Copy-All-to-Clipboard)
+  const handleCopyAllStepData = useCallback(() => {
+    if (!currentStep.fields.length) {
+      showToast('Bước này không có trường dữ liệu cần nhập.');
+      return;
+    }
+    const lines = currentStep.fields.map((f) => {
+      const val = f.copyKey ? customTexts[f.copyKey] ?? f.value : f.value;
+      return `[${f.field}] (${f.actionType}):\n${val}`;
+    });
+    const allText = lines.join('\n\n---\n\n');
+    navigator.clipboard.writeText(allText);
+    showToast(`Đã chép trọn bộ ${currentStep.fields.length} trường dữ liệu bước ${currentStep.code} vào Clipboard. Bạn có thể dán tay trên Chrome.`);
+  }, [currentStep.code, currentStep.fields, customTexts, showToast]);
+
   const scrollStepRail = (dir: 'left' | 'right') => {
     stepRailRef.current?.scrollBy({
       left: dir === 'left' ? -320 : 320,
@@ -1480,22 +1524,19 @@ export const DemoMonitorPage: React.FC = () => {
     });
   };
 
-  const visibleSteps = DEMO_STEPS.filter((step) => {
-    if (stageFilter === 'all') return true;
-    return step.stage.startsWith(`Giai đoạn ${stageFilter}`);
-  });
-
   const renderFieldsTable = () => (
-    <div className="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden">
+    <div className="divide-y divide-slate-100 border border-slate-200 rounded-none overflow-hidden">
       {currentStep.fields.map((f, i) => {
         const liveValue = f.copyKey ? customTexts[f.copyKey] ?? f.value : f.value;
         const isCopied = copiedKey === `${currentStep.code}_${i}`;
         return (
-          <div key={i} className="p-3.5 bg-white hover:bg-orange-50/20 space-y-2">
+          <div key={i} className="p-3.5 bg-white hover:bg-slate-50/50 space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold text-slate-900">{f.field}</span>
-                <AstryxBadge label={f.actionType} variant="orange" />
+                <span className="px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200 rounded-none">
+                  {f.actionType}
+                </span>
               </div>
 
               <AstryxButton
@@ -1504,9 +1545,9 @@ export const DemoMonitorPage: React.FC = () => {
                 size="sm"
                 icon={
                   isCopied ? (
-                    <Check className="size-3 text-orange-600" />
+                    <Check className="size-3 text-[#ea6c3b]" />
                   ) : (
-                    <Copy className="size-3 text-orange-600" />
+                    <Copy className="size-3 text-slate-600" />
                   )
                 }
                 onClick={() => handleCopy(liveValue, `${currentStep.code}_${i}`)}
@@ -1523,15 +1564,15 @@ export const DemoMonitorPage: React.FC = () => {
                     [f.copyKey!]: e.target.value,
                   }))
                 }
-                className="w-full p-2.5 text-xs text-slate-800 bg-orange-50/30 border border-orange-200 rounded-lg focus:bg-white focus:border-orange-500 focus:outline-none leading-relaxed"
+                className="w-full p-2.5 text-xs text-slate-800 bg-slate-50 border border-slate-200 rounded-none focus:bg-white focus:border-orange-300 focus:outline-none leading-relaxed font-mono"
               />
             ) : (
-              <div className="p-2.5 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200/80 whitespace-pre-wrap leading-relaxed">
+              <div className="p-2.5 text-xs text-slate-700 bg-slate-50 rounded-none border border-slate-200/80 whitespace-pre-wrap leading-relaxed font-mono">
                 {liveValue}
               </div>
             )}
 
-            {f.note && <div className="text-[11px] text-orange-700 font-medium">Lưu ý: {f.note}</div>}
+            {f.note && <div className="text-[11px] text-slate-600 font-medium">Lưu ý: {f.note}</div>}
           </div>
         );
       })}
@@ -1539,7 +1580,7 @@ export const DemoMonitorPage: React.FC = () => {
   );
 
   return (
-    <div className="demo-monitor-root min-h-dvh bg-white text-slate-900 font-sans">
+    <div className="demo-monitor-root min-h-dvh bg-slate-50/50 text-slate-900 font-sans">
       {/* Hộp thoại xác nhận trước khi khôi phục DB để tránh bấm nhầm trên sân khấu */}
       <AstryxDialog
         isOpen={showResetConfirm}
@@ -1548,9 +1589,9 @@ export const DemoMonitorPage: React.FC = () => {
         padding={5}
         aria-label="Xác nhận khôi phục dữ liệu gốc"
       >
-        <div className="space-y-4">
+        <div className="space-y-4 rounded-none">
           <div className="flex items-start gap-3">
-            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+            <div className="size-10 rounded-none bg-orange-50 text-[#ea6c3b] border border-orange-200 flex items-center justify-center shrink-0">
               <Database className="size-5" />
             </div>
             <div className="space-y-1">
@@ -1558,7 +1599,7 @@ export const DemoMonitorPage: React.FC = () => {
                 Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?
               </AstryxHeading>
               <p className="text-xs text-slate-600 leading-relaxed text-pretty">
-                Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 18 bài đăng) để sẵn sàng thuyết trình ngay.
+                Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 20 công việc, 7 gói đa ngành) về trạng thái khởi điểm B1.
               </p>
             </div>
           </div>
@@ -1587,9 +1628,9 @@ export const DemoMonitorPage: React.FC = () => {
         padding={5}
         aria-label="Xác nhận xóa sạch dữ liệu demo"
       >
-        <div className="space-y-4">
+        <div className="space-y-4 rounded-none">
           <div className="flex items-start gap-3">
-            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+            <div className="size-10 rounded-none bg-red-50 text-red-600 border border-red-200 flex items-center justify-center shrink-0">
               <Trash2 className="size-5" />
             </div>
             <div className="space-y-1.5">
@@ -1597,10 +1638,10 @@ export const DemoMonitorPage: React.FC = () => {
                 Xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa Demo?
               </AstryxHeading>
               <p className="text-xs text-slate-600 leading-relaxed text-pretty">
-                Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, khảo sát, thư viện ảnh, đơn VietQR phát sinh và xu hướng Redis để hệ thống sạch hoàn toàn sau buổi chạy thử.
+                Thao tác này sẽ xóa toàn bộ 7 gói truyền thông mẫu, chiến dịch 4 tuần, 20 công việc, bài viết, nhật ký xuất bản và khảo sát đã tạo. Đưa Agency và Workspace về trạng thái hoàn toàn trống để sẵn sàng cho lần diễn tập hoặc chấm thi tiếp theo.
               </p>
-              <div className="p-2.5 rounded-lg bg-orange-50/70 border border-orange-200 text-[11px] text-orange-800 leading-relaxed">
-                7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp mới từ đầu.
+              <div className="p-2.5 rounded-none bg-slate-50 border border-slate-200 text-[11px] text-slate-600 leading-relaxed">
+                7 tài khoản đăng nhập vẫn được giữ nguyên. Lần tới khi cần diễn tập lại, bạn chỉ cần nhấn nút <strong>Khôi phục DB</strong> để nạp lại đầy đủ dữ liệu trong 3 giây.
               </div>
             </div>
           </div>
@@ -1629,9 +1670,9 @@ export const DemoMonitorPage: React.FC = () => {
         padding={5}
         aria-label="Hướng dẫn sử dụng Bàn điều khiển thuyết trình"
       >
-        <div className="space-y-4">
+        <div className="space-y-4 rounded-none">
           <div className="flex items-start gap-3">
-            <div className="size-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+            <div className="size-10 rounded-none bg-orange-50 text-[#ea6c3b] border border-orange-200 flex items-center justify-center shrink-0">
               <HelpCircle className="size-5" />
             </div>
             <div className="space-y-1">
@@ -1645,24 +1686,24 @@ export const DemoMonitorPage: React.FC = () => {
           </div>
 
           <div className="space-y-2.5 text-xs text-slate-700 leading-relaxed">
-            <div className="p-3 rounded-xl bg-orange-50/60 border border-orange-200 space-y-1">
-              <div className="font-bold text-orange-800">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
+            <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
+              <div className="font-bold text-slate-900">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
               <p>
-                Đảm bảo đèn trạng thái hiện <strong>Đã kết nối</strong> (:3999). Nhấn <strong>Khôi phục DB</strong> để dữ liệu về chuẩn Bước B1, sau đó nhấn <strong>Đăng nhập 5 Vai trò</strong> và chọn <strong>Chia màn hình</strong> (5 cửa sổ Chrome xếp gọn 71% bên trái, chừa 29% bên phải cho bàn điều khiển này).
+                Đảm bảo đèn trạng thái hiện <strong>Đã kết nối</strong> (:3999). Nhấn <strong>Khôi phục DB</strong> để đảm bảo dữ liệu mới nhất, sau đó nhấn <strong>Đăng nhập 5 Vai trò</strong> để tự mở 5 tab Chrome. Bấm <strong>Chia màn hình (70/30)</strong> để Chrome chiếm 70% bên trái và Bàn điều khiển chiếm 30% bên phải.
               </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
               <div className="font-bold text-slate-900">2. Trong lúc thuyết trình (Chỉ cần 1 phím Space)</div>
               <p>
-                Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>) để hệ thống tự đưa đúng cửa sổ vai trò lên trước, mở đúng trang và điền sẵn dữ liệu từng bước từ <strong>B1 → B15</strong>. Dùng phím <strong>1 - 4</strong> để chạy lẻ từng thao tác con, <strong>← / →</strong> để chuyển bước và <strong>R</strong> để bật nhanh cửa sổ Chrome của vai trò hiện tại.
+                Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>). Hệ thống tự động chuyển đúng cửa sổ vai trò, chạy các thao tác con, và tự nhảy sang bước tiếp theo khi hoàn tất.
               </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-              <div className="font-bold text-slate-900">3. Trả lời Hội đồng (Q&amp;A) &amp; Dọn dữ liệu sau buổi tập</div>
+            <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
+              <div className="font-bold text-slate-900">3. Trả lời Hội đồng (Q&amp;A) &amp; Dọn dữ liệu sau buổi bảo vệ</div>
               <p>
-                Cuộn xuống mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> ở cuối trang để mở ngay 14 màn hình chuyên sâu chỉ với 1 chạm. Sau khi tập dượt xong, nhấn <strong>Xóa dữ liệu Demo</strong> để xóa sạch toàn bộ dữ liệu mẫu và bản ghi vừa tạo; khi cần tập lần tiếp theo chỉ cần nhấn lại <strong>Khôi phục DB</strong>.
+                Mở mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> ở cuối trang để mở ngay 14 màn hình chuyên sâu. Khi thuyết trình xong, bấm <strong>Xóa dữ liệu Demo</strong> để dọn sạch hệ thống.
               </p>
             </div>
           </div>
@@ -1678,9 +1719,9 @@ export const DemoMonitorPage: React.FC = () => {
         </div>
       </AstryxDialog>
 
-      {/* Thanh thông báo nổi (Toast) bằng Meta Astryx Banner */}
+      {/* Thanh thông báo nổi (Toast) */}
       {toastMessage && (
-        <div className="fixed bottom-4 right-4 z-50 max-w-md shadow-lg rounded-xl overflow-hidden border border-orange-200 bg-white">
+        <div className="fixed bottom-4 right-4 z-50 max-w-md shadow-md rounded-none overflow-hidden border border-slate-200">
           <AstryxBanner
             status={toastMessage.isError ? 'warning' : 'info'}
             title={toastMessage.isError ? 'Thông báo điều khiển' : 'Đã thực thi'}
@@ -1691,64 +1732,50 @@ export const DemoMonitorPage: React.FC = () => {
         </div>
       )}
 
-      {/* Thanh Header gọn gàng chuẩn Trắng - Cam tối ưu cho sân khấu (không bị chồng lấn sticky) */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-orange-200 shadow-xs">
-        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 flex flex-wrap items-center justify-between gap-2">
-          {/* Cụm thương hiệu + Nút về Docs + Chuyển chế độ Sân khấu / Chi tiết */}
-          <div className="flex flex-wrap items-center gap-2.5 min-w-0">
+      {/* Thanh Header chuẩn Minimalist: Màu trắng thanh lịch, điểm cam ấm nhẹ, góc vuông sắc nét */}
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 flex flex-wrap items-center justify-between gap-2.5">
+          {/* Cụm thương hiệu + Nút về Docs */}
+          <div className="flex items-center gap-2.5 min-w-0">
             <Link
               to="/"
               title="Quay về cổng tài liệu BrandHub Docs"
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-slate-200 bg-slate-50 hover:bg-orange-50 hover:border-orange-300 text-xs font-semibold text-slate-600 hover:text-orange-700 shrink-0"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-none border border-slate-200 hover:border-orange-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold cursor-pointer transition-colors"
             >
               <ArrowLeft className="size-3.5" />
               <span className="hidden sm:inline">Docs</span>
             </Link>
 
             <div className="flex items-center gap-2 min-w-0">
-              <div className="size-8 rounded-lg bg-orange-600 flex items-center justify-center text-white font-bold text-xs shadow-xs shrink-0">
+              <div className="size-8 rounded-none bg-[#ea6c3b] flex items-center justify-center text-white font-extrabold text-sm shadow-xs">
                 BH
               </div>
               <div className="flex items-center gap-2 min-w-0">
                 <AstryxHeading level={1} className="text-sm sm:text-base font-bold text-slate-900 truncate">
                   Điều Khiển Thuyết Trình SE08
                 </AstryxHeading>
-                <span className="hidden 2xl:inline-flex shrink-0">
-                  <AstryxBadge label="ĐH FPT 2027 • 4 Tuần" variant="orange" />
+                <span className="hidden xl:inline-flex px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200 rounded-none">
+                  ĐH FPT 2027 • 4 Tuần
                 </span>
               </div>
-            </div>
-
-            <div
-              title="Sân khấu: gọn 1 cột, chỉ hiện bước đang chạy — dùng lúc thuyết trình thật. Chi tiết: 2 cột đầy đủ — dùng lúc soát kịch bản trước giờ demo."
-            >
-              <AstryxSegmentedControl
-                label="Chế độ giao diện"
-                size="sm"
-                value={viewMode}
-                onChange={setViewMode}
-              >
-                <AstryxSegmentedControlItem value="stage" label="Sân khấu" />
-                <AstryxSegmentedControlItem value="detail" label="Chi tiết (2 cột)" />
-              </AstryxSegmentedControl>
             </div>
           </div>
 
           {/* Cụm Đồng hồ 20 phút + Chia màn hình + Đăng nhập 5 vai trò + Khôi phục / Xóa DB */}
           <div className="flex flex-wrap items-center gap-1.5">
             {/* Đồng hồ bấm giờ 20 phút */}
-            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-50/80 border border-orange-200 text-xs">
-              <Clock className="size-3.5 text-orange-600 shrink-0" />
+            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-none bg-slate-50 border border-slate-200 text-xs">
+              <Clock className="size-3.5 text-[#ea6c3b] shrink-0" />
               <span className="font-bold text-slate-900 tabular-nums">
                 {formatStopwatch(elapsedSeconds)}
               </span>
               <span className="text-slate-400 tabular-nums">/ 20:00</span>
               <button
                 type="button"
-                title={timerRunning ? 'Tạm dừng đồng hồ đếm 20 phút' : 'Bắt đầu bấm giờ đếm 20 phút (tự chạy khi bấm thao tác đầu tiên)'}
+                title={timerRunning ? 'Tạm dừng đồng hồ đếm 20 phút' : 'Bắt đầu bấm giờ đếm 20 phút (tự chạy khi bấm Thao tác 1)'}
                 aria-label={timerRunning ? 'Tạm dừng đồng hồ' : 'Bắt đầu bấm giờ'}
                 onClick={() => setTimerRunning((v) => !v)}
-                className="p-0.5 rounded hover:bg-orange-100 text-orange-700 cursor-pointer"
+                className="p-0.5 rounded-none hover:bg-slate-200/70 text-slate-700 cursor-pointer"
               >
                 {timerRunning ? <Pause className="size-3" /> : <Play className="size-3" />}
               </button>
@@ -1760,117 +1787,123 @@ export const DemoMonitorPage: React.FC = () => {
                   setTimerRunning(false);
                   setElapsedSeconds(0);
                 }}
-                className="p-0.5 rounded hover:bg-orange-100 text-slate-500 hover:text-orange-700 cursor-pointer"
+                className="p-0.5 rounded-none hover:bg-slate-200/70 text-slate-500 hover:text-slate-800 cursor-pointer"
               >
                 <RotateCcw className="size-3" />
               </button>
             </div>
 
             {/* Trạng thái Selenium */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-white border border-slate-200 text-xs">
               <AstryxStatusDot
                 variant={connected ? 'accent' : 'neutral'}
                 label={connected ? 'Selenium đã kết nối' : 'Selenium chưa bật'}
                 isPulsing={connected}
               />
-              <span>{connected ? 'Đã kết nối' : 'Chưa bật :3999'}</span>
+              <span className="text-slate-700 font-medium">{connected ? 'Đã kết nối' : 'Chưa bật :3999'}</span>
             </div>
 
-            {/* Chia màn hình luôn hiển thị kể cả khi thu hẹp cửa sổ điều khiển xuống 29% */}
-            <div className="inline-flex items-center rounded-lg border border-orange-200 bg-orange-50/50 p-0.5 gap-0.5">
+            {/* Xử lý sự cố 6: Tùy chọn hiển thị 1 Màn hình (70/30) vs 2 Màn hình (Chiếu ngoài) */}
+            <div className="inline-flex items-center border border-slate-200 bg-white">
               <button
                 type="button"
                 onClick={() => handleArrangeWindows('split')}
                 disabled={busyAction !== null}
-                title="Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển"
-                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold cursor-pointer disabled:opacity-50 ${
+                title="1 Màn hình laptop: Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển"
+                className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none text-xs font-semibold cursor-pointer transition-colors ${
                   status?.window_mode === 'split'
-                    ? 'bg-orange-600 text-white'
-                    : 'text-slate-700 hover:bg-orange-100/70'
+                    ? 'bg-orange-50 text-orange-950 font-bold'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
-                <Columns2 className="size-3.5" />
-                <span>Chia màn hình</span>
+                <Columns2 className="size-3.5 text-slate-600" />
+                <span>Chia màn hình (70/30)</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleArrangeWindows('maximize')}
                 disabled={busyAction !== null}
-                title="Phóng to toàn màn hình các cửa sổ Chrome (dùng khi có 2 màn hình)"
-                className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold cursor-pointer disabled:opacity-50 ${
+                title="2 Màn hình HDMI: Phóng to toàn màn hình các cửa sổ Chrome ra máy chiếu ngoài, giữ Bàn điều khiển trên laptop"
+                className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-none text-xs font-semibold cursor-pointer transition-colors border-l border-slate-200 ${
                   status?.window_mode === 'maximize'
-                    ? 'bg-orange-600 text-white'
-                    : 'text-slate-700 hover:bg-orange-100/70'
+                    ? 'bg-orange-50 text-orange-950 font-bold'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
-                <Maximize2 className="size-3.5" />
-                <span className="hidden xl:inline">Phóng to</span>
+                <Maximize2 className="size-3.5 text-slate-600" />
+                <span className="hidden xl:inline">2 Màn hình</span>
               </button>
             </div>
 
-            <AstryxButton
-              label="Đăng nhập 5 Vai trò"
-              tooltip="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin. Chạy trước giờ bảo vệ ~10 phút."
-              variant="primary"
-              size="sm"
-              icon={<Users className="size-3.5" />}
-              isDisabled={busyAction !== null}
-              isLoading={busyAction === 'LOGIN_ALL'}
+            {/* Nút Đăng nhập 5 Vai trò: Cam ấm dịu, góc vuông */}
+            <button
+              type="button"
+              disabled={busyAction !== null}
               onClick={handleLoginAll}
-            />
+              title="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#ea6c3b] hover:bg-[#d95d2c] text-white text-xs font-semibold border border-[#ea6c3b] cursor-pointer shadow-xs transition-colors disabled:opacity-50"
+            >
+              {busyAction === 'LOGIN_ALL' ? (
+                <RefreshCw className="size-3.5 animate-spin" />
+              ) : (
+                <Users className="size-3.5" />
+              )}
+              <span>Đăng nhập 5 Vai trò</span>
+            </button>
 
-            <AstryxButton
-              label="Khôi phục DB"
-              tooltip="Nạp lại dữ liệu mẫu chuẩn Bước B1 (Agency, 7 Gói truyền thông, Chiến dịch 4 tuần...). Xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên. Dùng trước mỗi lần tập dượt."
-              variant="secondary"
-              size="sm"
-              icon={<Database className="size-3.5 text-orange-600" />}
-              isDisabled={busyAction !== null}
-              isLoading={busyAction === 'RESET_DB'}
+            {/* Khôi phục DB */}
+            <button
+              type="button"
+              disabled={busyAction !== null}
               onClick={() => setShowResetConfirm(true)}
-            />
+              title="Nạp lại dữ liệu mẫu chuẩn Bước B1 (Agency, 7 Gói truyền thông, Chiến dịch 4 tuần)"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-none bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 cursor-pointer transition-colors disabled:opacity-50"
+            >
+              {busyAction === 'RESET_DB' ? (
+                <RefreshCw className="size-3.5 animate-spin" />
+              ) : (
+                <Database className="size-3.5 text-slate-600" />
+              )}
+              <span>Khôi phục DB</span>
+            </button>
 
-            <AstryxButton
-              label="Xóa dữ liệu Demo"
-              tooltip="Xóa sạch toàn bộ dữ liệu mẫu và mọi bản ghi phát sinh lúc demo, đưa Agency/Workspace về khung rỗng. Tài khoản đăng nhập vẫn giữ. Dùng sau khi demo xong, không nạp lại gì — cần demo tiếp thì bấm Khôi phục DB."
-              variant="secondary"
-              size="sm"
-              icon={<Trash2 className="size-3.5 text-orange-600" />}
-              isDisabled={busyAction !== null}
-              isLoading={busyAction === 'CLEAN_DB'}
+            {/* Xóa dữ liệu Demo */}
+            <button
+              type="button"
+              disabled={busyAction !== null}
               onClick={() => setShowCleanConfirm(true)}
-            />
+              title="Xóa sạch toàn bộ dữ liệu mẫu và mọi bản ghi phát sinh lúc demo"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-none bg-white hover:bg-red-50 border border-slate-200 hover:border-red-300 text-xs font-semibold text-slate-700 hover:text-red-700 cursor-pointer transition-colors disabled:opacity-50"
+            >
+              {busyAction === 'CLEAN_DB' ? (
+                <RefreshCw className="size-3.5 animate-spin" />
+              ) : (
+                <Trash2 className="size-3.5 text-slate-600 hover:text-red-600" />
+              )}
+              <span>Xóa dữ liệu Demo</span>
+            </button>
 
+            {/* Hướng dẫn */}
             <button
               type="button"
               title="Xem hướng dẫn sử dụng nhanh"
               aria-label="Hướng dẫn sử dụng"
               onClick={() => setShowGuideModal(true)}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-orange-200 bg-orange-50/60 hover:bg-orange-100 text-xs font-semibold text-orange-700 cursor-pointer"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none border border-slate-200 hover:border-orange-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold cursor-pointer transition-colors"
             >
-              <HelpCircle className="size-3.5" />
+              <HelpCircle className="size-3.5 text-slate-600" />
               <span className="hidden lg:inline">Hướng dẫn</span>
-            </button>
-
-            <button
-              type="button"
-              title="Cấu hình ID & URL"
-              aria-label="Mở cấu hình định danh Demo"
-              onClick={() => setShowConfigModal((v) => !v)}
-              className="p-1.5 rounded-lg border border-slate-200 hover:border-orange-300 text-slate-600 hover:text-orange-700 cursor-pointer"
-            >
-              <Sliders className="size-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Dải 5 Vai trò siêu gọn: Ẩn thanh cuộn xám thô để giao diện liền mạch */}
-        <div className="bg-orange-50/40 border-t border-orange-100">
-          <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-1.5 flex items-center gap-2 overflow-x-auto no-scrollbar">
-            <span className="text-[11px] font-bold text-slate-500 shrink-0 hidden sm:inline">
-              Cửa sổ Chrome:
-            </span>
-            <div className="flex items-center gap-1.5 flex-1 min-w-0">
+        {/* Dải 5 Vai trò: Nền sáng thanh lịch, góc vuông sắc nét, không chói gắt */}
+        <div className="bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-[11px] font-bold text-slate-500 shrink-0 hidden sm:inline mr-1">
+                Cửa sổ Chrome:
+              </span>
               {CANONICAL_ROLES.map((item) => {
                 const roleStat = status?.roles?.[item.role];
                 const isCurrentStepRole = currentStep.role === item.role;
@@ -1881,29 +1914,35 @@ export const DemoMonitorPage: React.FC = () => {
                     disabled={busyAction !== null}
                     onClick={() => handleLoginSingleRole(item.role)}
                     title={`${item.role}: ${item.fullName} (${item.email}) - Bấm để đưa cửa sổ lên trước`}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer disabled:opacity-50 ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none border text-xs cursor-pointer transition-colors ${
                       isCurrentStepRole
-                        ? 'bg-orange-600 text-white border-orange-600 shadow-xs'
-                        : 'bg-white text-slate-700 border-slate-200 hover:border-orange-300 hover:bg-orange-50/50'
+                        ? 'bg-orange-50 text-orange-950 border-orange-400 font-bold shadow-xs'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-orange-200 hover:bg-slate-50'
                     }`}
                   >
                     <span
-                      className={`size-2 rounded-full shrink-0 ${
+                      className={`size-2 rounded-none shrink-0 ${
                         roleStat?.alive
                           ? isCurrentStepRole
-                            ? 'bg-white'
-                            : 'bg-orange-500'
+                            ? 'bg-[#ea6c3b]'
+                            : 'bg-amber-500'
                           : 'bg-slate-300'
                       }`}
                     />
                     <span className="font-bold">{item.role}</span>
-                    <span className={isCurrentStepRole ? 'text-orange-100' : 'text-slate-500'}>
+                    <span className={isCurrentStepRole ? 'text-orange-800' : 'text-slate-500'}>
                       · {item.shortLabel}
                     </span>
+                    {!roleStat?.alive && (
+                      <span className="text-red-500 font-semibold text-[10px] ml-0.5">
+                        (Mở lại)
+                      </span>
+                    )}
                   </button>
                 );
               })}
             </div>
+
             <div className="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-500 shrink-0">
               <span>Phím nhanh:</span>
               <AstryxKbd keys="space" />
@@ -1919,329 +1958,193 @@ export const DemoMonitorPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Thanh nhảy nhanh 15 bước B1 -> B15: Ẩn thanh cuộn xám + có nút trượt trái/phải mượt mà */}
-        {viewMode === 'stage' && (
-          <div className="bg-white border-t border-slate-100">
-            <div className="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
-              <button
-                type="button"
-                title="Cuộn danh sách 15 bước sang trái"
-                aria-label="Cuộn danh sách bước sang trái"
-                onClick={() => scrollStepRail('left')}
-                className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
-              >
-                <ChevronLeft className="size-3.5" />
-              </button>
+        {/* Thanh nhảy nhanh 15 bước B1 -> B15: Thanh mảnh, góc vuông, mượt mà */}
+        <div className="bg-white border-t border-slate-200">
+          <div className="max-w-[1600px] mx-auto px-2 sm:px-4 py-1.5 flex items-center gap-1.5">
+            <button
+              type="button"
+              title="Cuộn danh sách 15 bước sang trái"
+              aria-label="Cuộn danh sách bước sang trái"
+              onClick={() => scrollStepRail('left')}
+              className="p-1 rounded-none border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 cursor-pointer"
+            >
+              <ChevronLeft className="size-3.5" />
+            </button>
 
-              <div
-                ref={stepRailRef}
-                className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"
-              >
-                {DEMO_STEPS.map((step, idx) => {
-                  const isSelected = idx === activeStepIndex;
-                  const isStepDone = step.actions.every((a) => Boolean(doneActions[a.id]));
-                  const hasSomeDone = !isStepDone && step.actions.some((a) => Boolean(doneActions[a.id]));
-                  return (
-                    <button
-                      key={step.code}
-                      ref={isSelected ? activePillRef : null}
-                      type="button"
-                      onClick={() => setActiveStepIndex(idx)}
-                      title={`${step.code}: ${step.title} (${step.role})`}
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold shrink-0 cursor-pointer tabular-nums transition-colors ${
-                        isSelected
-                          ? 'bg-orange-600 text-white border-orange-600 shadow-xs'
-                          : isStepDone
-                          ? 'bg-orange-50 text-orange-800 border-orange-300 hover:bg-orange-100/70'
-                          : hasSomeDone
-                          ? 'bg-orange-50/40 text-slate-800 border-orange-200'
-                          : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300'
-                      }`}
-                    >
-                      {isStepDone && !isSelected && (
-                        <Check className="size-3 text-orange-600 shrink-0" />
-                      )}
-                      <span className="font-extrabold">{step.code}</span>
-                      <span
-                        className={`hidden md:inline whitespace-nowrap ${
-                          isSelected ? 'text-orange-50' : 'text-slate-600'
-                        }`}
-                      >
-                        {step.shortTitle}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                title="Cuộn danh sách 15 bước sang phải"
-                aria-label="Cuộn danh sách bước sang phải"
-                onClick={() => scrollStepRail('right')}
-                className="p-1 rounded-md border border-slate-200 bg-white hover:bg-orange-50 hover:border-orange-300 text-slate-500 hover:text-orange-700 shrink-0 cursor-pointer"
-              >
-                <ChevronRight className="size-3.5" />
-              </button>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Hộp thoại Cấu hình nhanh (nếu bật) */}
-      {showConfigModal && (
-        <div className="max-w-[1600px] mx-auto px-4 pt-4">
-          <AstryxCard variant="orange" padding={4} className="rounded-2xl border border-orange-200 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                <Terminal className="size-4 text-orange-600" />
-                <span>Cấu hình định danh Demo &amp; Cổng điều khiển Selenium</span>
-              </h2>
-              <AstryxButton
-                label="Đóng"
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowConfigModal(false)}
-              />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">Monitor API (:3999)</label>
-                <input
-                  value={monitorUrl}
-                  onChange={(e) => setMonitorUrl(e.target.value)}
-                  className="w-full px-3 py-1.5 text-xs rounded-lg bg-white border border-slate-200 focus:border-orange-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">Web App URL (:3000)</label>
-                <input
-                  value={configIds.app_url}
-                  onChange={(e) => setConfigIds({ ...configIds, app_url: e.target.value })}
-                  className="w-full px-3 py-1.5 text-xs rounded-lg bg-white border border-slate-200 focus:border-orange-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">Workspace ID</label>
-                <input
-                  value={configIds.workspace_id}
-                  onChange={(e) => setConfigIds({ ...configIds, workspace_id: e.target.value })}
-                  className="w-full px-3 py-1.5 text-xs font-mono rounded-lg bg-white border border-slate-200 focus:border-orange-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">Campaign ID</label>
-                <input
-                  value={configIds.campaign_id}
-                  onChange={(e) => setConfigIds({ ...configIds, campaign_id: e.target.value })}
-                  className="w-full px-3 py-1.5 text-xs font-mono rounded-lg bg-white border border-slate-200 focus:border-orange-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-[11px] font-semibold text-slate-600 mb-1">Task Tuần 3 ID</label>
-                <input
-                  value={configIds.task_id}
-                  onChange={(e) => setConfigIds({ ...configIds, task_id: e.target.value })}
-                  className="w-full px-3 py-1.5 text-xs font-mono rounded-lg bg-white border border-slate-200 focus:border-orange-500 focus:outline-none"
-                />
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <AstryxButton
-                label="Lưu cấu hình"
-                tooltip="Lưu lại ID Agency/Workspace/Package/Campaign/Task và URL App để các nút Thực thi tự động điền đúng dữ liệu"
-                variant="primary"
-                size="sm"
-                onClick={handleSaveConfig}
-              />
-            </div>
-          </AstryxCard>
-        </div>
-      )}
-
-      {/* Bố cục chính: Tối giản 1 cột lớn ở Chế độ Sân khấu | 2 cột ở Chế độ Chi tiết */}
-      <main
-        className={`mx-auto px-4 py-4 ${
-          viewMode === 'stage'
-            ? 'max-w-[1040px] space-y-4'
-            : 'max-w-[1600px] grid grid-cols-1 lg:grid-cols-12 gap-6'
-        }`}
-      >
-        {/* Cột trái (Chỉ hiện ở Chế độ Chi tiết 2 cột) */}
-        {viewMode === 'detail' && (
-          <aside className="lg:col-span-4 space-y-3">
-            <AstryxCard padding={3} className="rounded-xl border border-orange-200 bg-white space-y-2.5">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase text-slate-600">
-                  Tiến độ ({completedStepsCount}/15 bước đã chạy)
-                </span>
-                <AstryxBadge label={`Bước ${currentStep.stepNumber}/15`} variant="orange" />
-              </div>
-              <AstryxProgressBar
-                label="Tiến độ các bước demo"
-                isLabelHidden
-                value={currentStep.stepNumber}
-                max={15}
-                variant="accent"
-              />
-              <div className="pt-1 overflow-x-auto">
-                <AstryxSegmentedControl
-                  label="Lọc theo giai đoạn"
-                  size="sm"
-                  value={stageFilter}
-                  onChange={setStageFilter}
-                >
-                  <AstryxSegmentedControlItem value="all" label="Tất cả (15)" />
-                  <AstryxSegmentedControlItem value="1" label="GĐ 1" />
-                  <AstryxSegmentedControlItem value="2" label="GĐ 2" />
-                  <AstryxSegmentedControlItem value="3" label="GĐ 3" />
-                  <AstryxSegmentedControlItem value="4" label="GĐ 4" />
-                  <AstryxSegmentedControlItem value="5" label="GĐ 5" />
-                </AstryxSegmentedControl>
-              </div>
-            </AstryxCard>
-
-            <div className="space-y-1.5 max-h-[calc(100dvh-260px)] overflow-y-auto pr-1">
-              {visibleSteps.map((step) => {
-                const idx = DEMO_STEPS.findIndex((s) => s.code === step.code);
+            <div
+              ref={stepRailRef}
+              className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-1 min-w-0 py-0.5"
+            >
+              {DEMO_STEPS.map((step, idx) => {
                 const isSelected = idx === activeStepIndex;
-                const prev = idx > 0 ? DEMO_STEPS[idx - 1] : null;
-                const showStageHeader = stageFilter === 'all' && (!prev || step.stage !== prev.stage);
                 const isDone = step.actions.every((a) => Boolean(doneActions[a.id]));
-
                 return (
-                  <React.Fragment key={step.code}>
-                    {showStageHeader && (
-                      <div className="pt-2.5 pb-1 px-2 text-[11px] font-bold uppercase text-orange-700">
-                        {step.stage}
-                      </div>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => setActiveStepIndex(idx)}
-                      className={`w-full text-left p-3 rounded-xl border flex items-start gap-3 cursor-pointer ${
-                        isSelected
-                          ? 'bg-orange-600 text-white border-orange-600 shadow-xs'
-                          : 'bg-white text-slate-800 border-slate-200 hover:border-orange-300 hover:bg-orange-50/40'
+                  <button
+                    key={step.code}
+                    ref={isSelected ? activePillRef : null}
+                    type="button"
+                    onClick={() => setActiveStepIndex(idx)}
+                    title={`Bước ${step.stepNumber}: ${step.title} (${step.role})`}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none text-xs whitespace-nowrap cursor-pointer transition-colors shrink-0 border ${
+                      isSelected
+                        ? 'bg-orange-50 text-orange-950 border-orange-400 font-bold shadow-xs'
+                        : isDone
+                        ? 'bg-slate-100 text-slate-700 border-slate-200'
+                        : 'bg-white text-slate-600 border-slate-200 hover:border-orange-200 hover:bg-slate-50'
+                    }`}
+                  >
+                    <span
+                      className={`font-mono text-[11px] font-bold ${
+                        isSelected ? 'text-[#ea6c3b]' : isDone ? 'text-slate-600' : 'text-slate-500'
                       }`}
                     >
-                      <span
-                        className={`px-2 py-0.5 rounded-md text-xs font-extrabold shrink-0 mt-0.5 tabular-nums ${
-                          isSelected
-                            ? 'bg-white text-orange-700'
-                            : isDone
-                            ? 'bg-orange-100 text-orange-800 border border-orange-300'
-                            : 'bg-orange-50 text-orange-700 border border-orange-200'
-                        }`}
-                      >
-                        {isDone && !isSelected ? `✓ ${step.code}` : step.code}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="font-semibold text-xs leading-snug">{step.title}</div>
-                        <div
-                          className={`flex items-center gap-2 mt-1 text-[11px] tabular-nums ${
-                            isSelected ? 'text-orange-100' : 'text-slate-500'
-                          }`}
-                        >
-                          <span className="font-semibold">{step.role}</span>
-                          <span>•</span>
-                          <span className="truncate">{step.actorName}</span>
-                          <span>•</span>
-                          <span>{step.timeBudget}</span>
-                        </div>
-                      </div>
-                      <ChevronRight
-                        className={`size-4 shrink-0 mt-1 ${
-                          isSelected ? 'text-white' : 'text-slate-300'
-                        }`}
-                      />
-                    </button>
-                  </React.Fragment>
+                      {isDone ? `✓ ${step.code}` : step.code}
+                    </span>
+                    <span className="hidden sm:inline font-medium truncate max-w-[140px]">
+                      {step.shortTitle}
+                    </span>
+                  </button>
                 );
               })}
             </div>
-          </aside>
-        )}
 
+            <button
+              type="button"
+              title="Cuộn danh sách 15 bước sang phải"
+              aria-label="Cuộn danh sách bước sang phải"
+              onClick={() => scrollStepRail('right')}
+              className="p-1 rounded-none border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 cursor-pointer"
+            >
+              <ChevronRight className="size-3.5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Bố cục chính: Tối giản 1 cột lớn tinh gọn tuyệt đối cho người thuyết trình */}
+      <main className="max-w-[1040px] mx-auto px-4 py-4 space-y-4">
         {/* Khu vực Điều khiển Chính của Bước Hiện Tại */}
-        <section className={viewMode === 'detail' ? 'lg:col-span-8 space-y-4' : 'space-y-4'}>
-          <AstryxCard padding={4} className="rounded-2xl bg-white border border-orange-200 shadow-xs space-y-4">
-            {/* Hàng 1: Định danh Bước + Báo đổi vai + Nút Trước/Tiếp */}
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="space-y-1.5 min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <AstryxBadge label={`Bước ${currentStep.stepNumber}/15 · ${currentStep.code}`} variant="orange" />
-                  <AstryxBadge
-                    label={`${currentStep.role}: ${currentStep.actorName}`}
-                    variant="orange"
-                  />
-                  <AstryxBadge label={`Khung giờ: ${currentStep.timeBudget}`} variant="neutral" />
-                  <AstryxBadge label={currentStep.frCode} variant="neutral" />
-                  {roleChangedFromPrev && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-600 text-white">
-                      Chuyển cửa sổ sang {currentStep.role}
-                    </span>
-                  )}
-                </div>
-
-                <AstryxHeading level={2} className="text-lg sm:text-xl font-bold text-slate-900 text-balance">
-                  {currentStep.title}
-                </AstryxHeading>
-
-                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                  <span className="font-medium">Trang đích:</span>
-                  <a
-                    href={`${configIds.app_url}${resolvedRoute}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-orange-50/70 border border-orange-200/80 text-orange-800 hover:bg-orange-100 font-mono text-[11px] font-semibold break-all"
-                  >
-                    <span>{resolvedRoute}</span>
-                    <ExternalLink className="size-3 shrink-0 text-orange-600" />
-                  </a>
-                </div>
+        <AstryxCard padding={4} className="rounded-none bg-white border border-slate-200 shadow-xs space-y-4">
+          {/* Hàng 1: Định danh Bước + Báo đổi vai + Nút Trước/Tiếp */}
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="space-y-1.5 min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="px-2 py-0.5 text-xs font-bold bg-slate-100 text-slate-800 border border-slate-200 rounded-none">
+                  Bước {currentStep.stepNumber}/15 · {currentStep.code}
+                </span>
+                <span className="px-2 py-0.5 text-xs font-semibold bg-orange-50 text-orange-900 border border-orange-200 rounded-none">
+                  {currentStep.role}: {currentStep.actorName}
+                </span>
+                <span className="px-2 py-0.5 text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200 rounded-none">
+                  Khung giờ: {currentStep.timeBudget}
+                </span>
+                <span className="px-2 py-0.5 text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200 rounded-none">
+                  {currentStep.frCode}
+                </span>
+                {roleChangedFromPrev && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-none text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300">
+                    Chuyển cửa sổ sang {currentStep.role}
+                  </span>
+                )}
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <AstryxButton
-                  label="← Trước"
-                  tooltip="Lùi về bước demo trước đó (phím mũi tên trái)"
-                  variant="secondary"
-                  size="sm"
-                  isDisabled={activeStepIndex === 0}
-                  onClick={() => setActiveStepIndex((i) => Math.max(0, i - 1))}
-                />
-                <AstryxButton
-                  label="Tiếp →"
-                  tooltip="Qua bước demo kế tiếp (phím mũi tên phải)"
-                  variant="secondary"
-                  size="sm"
-                  isDisabled={activeStepIndex === DEMO_STEPS.length - 1}
-                  onClick={() => setActiveStepIndex((i) => Math.min(DEMO_STEPS.length - 1, i + 1))}
-                />
+              <AstryxHeading level={2} className="text-lg sm:text-xl font-bold text-slate-900 text-balance">
+                {currentStep.title}
+              </AstryxHeading>
+
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                <span className="font-medium">Trang đích:</span>
+                <a
+                  href={`${configIds.app_url}${resolvedRoute}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-none bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-mono"
+                >
+                  <span>{resolvedRoute}</span>
+                  <ExternalLink className="size-3 shrink-0 text-slate-500" />
+                </a>
+                <button
+                  type="button"
+                  onClick={handleSyncCurrentStepRoute}
+                  disabled={busyAction !== null}
+                  title="Xử lý sự cố: Đưa ngay cửa sổ Chrome của vai trò này tới đúng trang đích của bước hiện tại"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-none bg-white hover:bg-orange-50 text-slate-700 hover:text-orange-950 border border-slate-200 text-xs font-semibold cursor-pointer transition-colors"
+                >
+                  <Compass className="size-3 text-[#ea6c3b]" />
+                  <span>Đồng bộ Chrome tới bước này</span>
+                </button>
               </div>
             </div>
 
-            {/* Hàng 2: NÚT DẪN THUYẾT TRÌNH 1 CHẠM (SPACE) - Chỉ cần bấm liên tục nút này suốt buổi bảo vệ */}
-            <div className="p-3 rounded-xl bg-orange-50/70 border border-orange-200 flex flex-wrap items-center justify-between gap-3">
-              <div className="min-w-0 flex-1">
-                <div className="text-[11px] font-bold uppercase text-orange-800 flex items-center gap-1.5">
-                  <Sparkles className="size-3.5 text-orange-600 shrink-0" />
-                  <span>Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)</span>
-                </div>
-                <div className="text-sm font-bold text-slate-900 mt-0.5 truncate">
-                  {nextPendingAction
-                    ? `Sẵn sàng chạy: [${
-                        currentStep.actions.findIndex((a) => a.id === nextPendingAction.id) + 1
-                      }/${currentStep.actions.length}] ${nextPendingAction.label}`
-                    : activeStepIndex < DEMO_STEPS.length - 1
-                    ? `Đã chạy đủ thao tác ${currentStep.code}! Nhấn để chuyển sang ${
-                        DEMO_STEPS[activeStepIndex + 1].code
-                      }: ${DEMO_STEPS[activeStepIndex + 1].shortTitle}`
-                    : 'Đã hoàn thành trọn vẹn cả 15 bước thuyết trình!'}
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={handleResetCurrentStep}
+                title="Xử lý sự cố: Xóa dấu tích đã chạy của riêng bước này và điều hướng Chrome về lại trạng thái chuẩn bị để diễn tập lại"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 cursor-pointer transition-colors"
+              >
+                <RotateCcw className="size-3 text-slate-600" />
+                <span className="hidden sm:inline">Chạy lại bước</span>
+              </button>
+              <button
+                type="button"
+                onClick={handleCopyAllStepData}
+                title="Xử lý sự cố: Sao chép toàn bộ dữ liệu mẫu của bước này vào Clipboard để dán tay nhanh trên Chrome"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 cursor-pointer transition-colors"
+              >
+                <ClipboardCheck className="size-3 text-slate-600" />
+                <span className="hidden sm:inline">Chép dữ liệu bước</span>
+              </button>
+              <AstryxButton
+                label="← Trước"
+                tooltip="Lùi về bước demo trước đó (phím mũi tên trái)"
+                variant="secondary"
+                size="sm"
+                isDisabled={activeStepIndex === 0}
+                onClick={() => setActiveStepIndex((i) => Math.max(0, i - 1))}
+              />
+              <AstryxButton
+                label="Tiếp →"
+                tooltip="Qua bước demo kế tiếp (phím mũi tên phải)"
+                variant="secondary"
+                size="sm"
+                isDisabled={activeStepIndex === DEMO_STEPS.length - 1}
+                onClick={() => setActiveStepIndex((i) => Math.min(DEMO_STEPS.length - 1, i + 1))}
+              />
+            </div>
+          </div>
 
+          {/* Hàng 2: NÚT DẪN THUYẾT TRÌNH 1 CHẠM (SPACE) */}
+          <div className="p-3 rounded-none bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="text-[11px] font-bold uppercase text-slate-600 flex items-center gap-1.5">
+                <Sparkles className="size-3.5 text-[#ea6c3b] shrink-0" />
+                <span>Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)</span>
+              </div>
+              <div className="text-sm font-bold text-slate-900 mt-0.5 truncate">
+                {nextPendingAction
+                  ? `Sẵn sàng chạy: [${
+                      currentStep.actions.findIndex((a) => a.id === nextPendingAction.id) + 1
+                    }/${currentStep.actions.length}] ${nextPendingAction.label}`
+                  : activeStepIndex < DEMO_STEPS.length - 1
+                  ? `Đã chạy đủ thao tác ${currentStep.code}! Nhấn để chuyển sang ${
+                      DEMO_STEPS[activeStepIndex + 1].code
+                    }: ${DEMO_STEPS[activeStepIndex + 1].shortTitle}`
+                  : 'Đã hoàn thành trọn vẹn cả 15 bước thuyết trình!'}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {busyAction !== null && (
+                <button
+                  type="button"
+                  onClick={handleCancelBusy}
+                  title="Xử lý sự cố: Hủy ngay lập tức trạng thái chờ nếu thao tác bị treo hoặc lag mạng"
+                  className="px-3 py-2 rounded-none bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs cursor-pointer transition-colors"
+                >
+                  Hủy kẹt (Esc)
+                </button>
+              )}
               <button
                 type="button"
                 disabled={
@@ -2249,272 +2152,243 @@ export const DemoMonitorPage: React.FC = () => {
                   (!nextPendingAction && activeStepIndex === DEMO_STEPS.length - 1)
                 }
                 onClick={handleSmartAdvance}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-xs cursor-pointer disabled:opacity-50 shrink-0"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-none bg-[#ea6c3b] hover:bg-[#d95d2c] text-white font-bold text-xs sm:text-sm border border-[#ea6c3b] shadow-xs cursor-pointer transition-colors disabled:opacity-50"
               >
-                {busyAction !== null ? (
-                  <RefreshCw className="size-4 animate-spin" />
-                ) : nextPendingAction ? (
-                  <Play className="size-4" />
-                ) : (
-                  <ArrowRight className="size-4" />
-                )}
-                <span>
-                  {nextPendingAction
-                    ? `Thực thi ngay (${
-                        currentStep.actions.findIndex((a) => a.id === nextPendingAction.id) + 1
-                      }/${currentStep.actions.length})`
-                    : activeStepIndex < DEMO_STEPS.length - 1
-                    ? `Sang bước ${DEMO_STEPS[activeStepIndex + 1].code} →`
-                    : 'Đã hoàn tất 15/15'}
-                </span>
-                <span className="bg-white/20 text-white px-1.5 py-0.5 rounded text-[11px] font-mono">
-                  Space
-                </span>
-              </button>
-            </div>
+              {busyAction !== null ? (
+                <RefreshCw className="size-4 animate-spin" />
+              ) : nextPendingAction ? (
+                <Play className="size-4" />
+              ) : (
+                <ArrowRight className="size-4" />
+              )}
+              <span>
+                {nextPendingAction
+                  ? `Thực thi ngay (${
+                      currentStep.actions.findIndex((a) => a.id === nextPendingAction.id) + 1
+                    }/${currentStep.actions.length})`
+                  : activeStepIndex < DEMO_STEPS.length - 1
+                  ? `Sang bước ${DEMO_STEPS[activeStepIndex + 1].code} →`
+                  : 'Đã hoàn tất 15/15'}
+              </span>
+              <span className="bg-white/20 text-white px-1.5 py-0.5 rounded-none text-[11px] font-mono">
+                Space
+              </span>
+            </button>
+          </div>
+          </div>
 
-            {/* Hàng 3: Các nút con đánh số rõ [1] [2] [3] [4] kèm trạng thái Đã chạy */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-              {currentStep.actions.map((act, idx) => {
-                const isRunning = busyAction === act.id;
-                const isDone = Boolean(doneActions[act.id]);
-                const isNextRecommended = nextPendingAction?.id === act.id;
-                const numKey = String(idx + 1);
+          {/* Hàng 3: Các nút con đánh số rõ [1] [2] [3] [4] kèm trạng thái Đã chạy */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+            {currentStep.actions.map((act, idx) => {
+              const isRunning = busyAction === act.id;
+              const isDone = Boolean(doneActions[act.id]);
+              const isNextRecommended = nextPendingAction?.id === act.id;
+              const numKey = String(idx + 1);
 
-                return (
-                  <button
-                    key={act.id}
-                    type="button"
-                    onClick={() => triggerStepAction(act.id)}
-                    disabled={busyAction !== null}
-                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3 cursor-pointer disabled:opacity-50 ${
+              return (
+                <button
+                  key={act.id}
+                  type="button"
+                  onClick={() => triggerStepAction(act.id)}
+                  disabled={busyAction !== null}
+                  className={`p-3.5 rounded-none border text-left flex items-start gap-3 cursor-pointer transition-colors ${
+                    isNextRecommended
+                      ? 'bg-orange-50/60 text-slate-900 border-orange-400 hover:bg-orange-50 shadow-xs'
+                      : isDone
+                      ? 'bg-slate-50 text-slate-600 border-slate-200'
+                      : 'bg-white text-slate-900 border-slate-200 hover:border-orange-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div
+                    className={`size-8 rounded-none shrink-0 flex items-center justify-center font-extrabold text-sm ${
                       isNextRecommended
-                        ? 'bg-orange-600 text-white border-orange-600 hover:bg-orange-700 shadow-xs ring-2 ring-orange-500/25'
+                        ? 'bg-[#ea6c3b] text-white'
                         : isDone
-                        ? 'bg-orange-50/50 text-slate-900 border-orange-300 hover:bg-orange-100/60'
-                        : 'bg-white text-slate-900 border-slate-200 hover:border-orange-300 hover:bg-orange-50/30'
+                        ? 'bg-slate-200 text-slate-700'
+                        : 'bg-slate-100 text-slate-700 border border-slate-200'
                     }`}
                   >
-                    <div
-                      className={`size-8 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-xs tabular-nums ${
-                        isNextRecommended
-                          ? 'bg-white text-orange-700'
-                          : isDone
-                          ? 'bg-orange-600 text-white'
-                          : 'bg-orange-100 text-orange-700'
-                      }`}
-                    >
-                      {isRunning ? (
-                        <RefreshCw className="size-4 animate-spin" />
-                      ) : isDone ? (
-                        <CheckCheck className="size-4" />
-                      ) : (
-                        numKey
-                      )}
-                    </div>
+                    {isRunning ? (
+                      <RefreshCw className="size-4 animate-spin" />
+                    ) : isDone ? (
+                      <CheckCheck className="size-4" />
+                    ) : (
+                      numKey
+                    )}
+                  </div>
 
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-2.5">
-                        <span className="text-xs sm:text-sm font-bold leading-snug text-pretty">
-                          {idx + 1}. {act.label}
-                        </span>
-                        <span
-                          className={`px-2 py-0.5 rounded-md text-[10px] font-bold shrink-0 whitespace-nowrap mt-0.5 ${
-                            isNextRecommended
-                              ? 'bg-white/20 text-white'
-                              : isDone
-                              ? 'bg-orange-100 text-orange-800'
-                              : 'bg-slate-100 text-slate-600'
-                          }`}
-                        >
-                          {isNextRecommended ? `Phím ${numKey} · Tiếp theo` : isDone ? 'Đã chạy' : `Phím ${numKey}`}
-                        </span>
-                      </div>
-                      <div
-                        className={`text-xs mt-1 leading-relaxed ${
-                          isNextRecommended ? 'text-orange-100' : 'text-slate-600'
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-2.5">
+                      <span className="text-xs sm:text-sm font-bold leading-snug text-pretty">
+                        {idx + 1}. {act.label}
+                      </span>
+                      <span
+                        className={`px-2 py-0.5 rounded-none text-[10px] font-bold shrink-0 whitespace-nowrap ${
+                          isNextRecommended
+                            ? 'bg-orange-100 text-orange-900 border border-orange-200'
+                            : isDone
+                            ? 'bg-slate-200 text-slate-700'
+                            : 'bg-slate-100 text-slate-600'
                         }`}
                       >
-                        {formatReadableDescription(act.description)}
-                      </div>
+                        {isNextRecommended ? `Phím ${numKey} · Tiếp theo` : isDone ? 'Đã chạy' : `Phím ${numKey}`}
+                      </span>
                     </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Hàng 4: Chỉ dẫn thao tác tay trên Chrome (giúp người đứng sân khấu biết rõ có cần bấm thêm nút nào không) */}
-            <div className="px-3.5 py-2.5 rounded-xl bg-amber-50/70 border border-orange-200 flex items-start gap-2.5">
-              <MousePointerClick className="size-4 text-orange-600 shrink-0 mt-0.5" />
-              <div className="text-xs sm:text-sm text-slate-800 leading-relaxed text-pretty">
-                <strong className="text-orange-800">Thao tác kết hợp trên Chrome: </strong>
-                {currentStep.manualBrowserCue}
-              </div>
-            </div>
-
-            <AstryxDivider variant="subtle" />
-
-            {/* Hàng 5: Máy nhắc chữ sân khấu (Teleprompter) dễ đọc từ xa */}
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="text-xs font-bold uppercase text-orange-800 flex items-center gap-1.5">
-                  <Eye className="size-4 text-orange-600" />
-                  <span>Ý chính trình bày trước Hội đồng ({currentStep.code})</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  {Object.keys(doneActions).length > 0 && (
-                    <button
-                      type="button"
-                      title="Bỏ hết dấu tích 'đã chạy' trên các thao tác, không ảnh hưởng dữ liệu thật — chỉ reset trạng thái hiển thị"
-                      onClick={() => setDoneActions({})}
-                      className="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer"
+                    <div
+                      className={`text-xs mt-1 leading-relaxed ${
+                        isNextRecommended ? 'text-slate-700' : 'text-slate-600'
+                      }`}
                     >
-                      Xóa dấu tích đã chạy
-                    </button>
-                  )}
-                  <div title="Phóng to cỡ chữ phần Ý chính và Lời dẫn gợi ý, dễ đọc hơn khi đứng xa máy chiếu">
-                    <AstryxSwitch
-                      label="Chữ lớn dễ đọc"
-                      value={largeScript}
-                      onChange={setLargeScript}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 3 gạch đầu dòng ngắn gọn để liếc mắt 1 giây nắm ý */}
-              <div className="grid grid-cols-1 gap-2">
-                {currentStep.talkingPoints.map((pt, i) => (
-                  <div
-                    key={i}
-                    className={`px-3.5 py-2.5 rounded-xl bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${
-                      largeScript ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed'
-                    }`}
-                  >
-                    <span className="size-5 rounded-full bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">
-                      {i + 1}
-                    </span>
-                    <span className="text-pretty font-medium">{pt}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Lời dẫn nguyên văn đầy đủ & Kết quả màn hình */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-                <div className="md:col-span-2 p-3.5 rounded-xl bg-white border border-slate-200 space-y-1">
-                  <div className="text-[11px] font-bold text-slate-500 uppercase">
-                    Lời dẫn gợi ý đầy đủ
-                  </div>
-                  <p
-                    className={`text-slate-700 leading-relaxed text-pretty ${
-                      largeScript ? 'text-sm' : 'text-xs'
-                    }`}
-                  >
-                    {currentStep.presenterScript}
-                  </p>
-                </div>
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-                  <div className="text-[11px] font-bold text-slate-600 uppercase">
-                    Kết quả trên màn hình
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed text-pretty">
-                    {currentStep.expectedOutcome}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </AstryxCard>
-
-          {/* Bảng Dữ liệu Quick-Fill & Copy dự phòng: Thu gọn sẵn ở Chế độ Sân khấu để màn hình luôn thoáng */}
-          {viewMode === 'stage' ? (
-            <AstryxCard padding={4} className="rounded-2xl bg-white border border-slate-200 shadow-xs">
-              <AstryxCollapsible
-                defaultIsOpen={false}
-                trigger={
-                  <div className="flex flex-wrap items-center justify-between gap-2 pr-2">
-                    <span className="text-xs sm:text-sm font-bold text-slate-800">
-                      Dữ liệu điền tự động &amp; Sao chép thủ công dự phòng ({currentStep.fields.length} mục)
-                    </span>
-                    <AstryxBadge label="Bấm để mở khi cần sửa tay" variant="neutral" />
-                  </div>
-                }
-              >
-                <div className="pt-3">{renderFieldsTable()}</div>
-              </AstryxCollapsible>
-            </AstryxCard>
-          ) : (
-            <AstryxCard padding={5} className="rounded-2xl bg-white border border-slate-200 shadow-xs space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <AstryxHeading level={3} className="text-sm font-bold text-slate-900">
-                  Bảng Dữ liệu Chuẩn &amp; Nội dung Điền Nhanh tại Bước {currentStep.code}
-                </AstryxHeading>
-                <AstryxBadge
-                  label="Văn phong tự nhiên (Humanized Vietnamese)"
-                  variant="orange"
-                />
-              </div>
-              {renderFieldsTable()}
-            </AstryxCard>
-          )}
-
-          {/* Ngăn Truy cập nhanh Q&A Hội đồng: Phủ kín 14 màn hình tính năng chuyên sâu đã nạp sẵn dữ liệu ĐH FPT 2027 */}
-          <AstryxCard padding={4} className="rounded-2xl bg-white border border-orange-200 shadow-xs">
-            <AstryxCollapsible
-              defaultIsOpen={false}
-              trigger={
-                <div className="flex flex-wrap items-center justify-between gap-2 pr-2">
-                  <span className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
-                    <Sparkles className="size-4 text-orange-600 shrink-0" />
-                    <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
-                  </span>
-                  <AstryxBadge label="1 chạm mở đúng vai trò" variant="orange" />
-                </div>
-              }
-            >
-              <div className="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                {QA_QUICK_LINKS.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    disabled={busyAction !== null}
-                    title={`${item.label} (vai trò ${item.role}) — bấm để tự mở đúng trang và vai trò này`}
-                    onClick={() => triggerStepAction(item.id)}
-                    className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-orange-400 hover:bg-orange-50/40 text-left flex items-start justify-between gap-2 cursor-pointer disabled:opacity-50"
-                  >
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-slate-900 truncate">{item.label}</div>
-                      <div className="text-[11px] text-slate-600 truncate mt-0.5">{item.desc}</div>
+                      {formatReadableDescription(act.description)}
                     </div>
-                    <span className="px-1.5 py-0.5 rounded bg-orange-50 text-orange-700 border border-orange-200 text-[10px] font-bold shrink-0">
-                      {item.role}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </AstryxCollapsible>
-          </AstryxCard>
-
-          {/* Chân trang lệnh chạy nhanh */}
-          <div className="px-4 py-3 rounded-xl bg-orange-50/40 border border-orange-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-700">
-            <div className="flex items-center gap-2">
-              <Terminal className="size-4 text-orange-600 shrink-0" />
-              <span>
-                Khởi động Selenium Bridge:{' '}
-                <AstryxCode>python brandhub-docs-portal/scripts/demo/selenium_demo_monitor.py</AstryxCode>
-              </span>
-            </div>
-            <a
-              href="http://localhost:3999"
-              target="_blank"
-              rel="noreferrer"
-              title="Mở trực tiếp giao diện Bàn điều khiển HTML tĩnh phục vụ từ cổng 3999 (bản dự phòng, không cần qua Docs Portal)"
-              className="font-semibold text-orange-700 hover:underline inline-flex items-center gap-1"
-            >
-              <span>Mở bản HTML độc lập (:3999)</span>
-              <ExternalLink className="size-3.5" />
-            </a>
+                  </div>
+                </button>
+              );
+            })}
           </div>
-        </section>
+
+          {/* Hàng 4: Chỉ dẫn thao tác tay trên Chrome */}
+          <div className="px-3.5 py-2.5 rounded-none bg-slate-50 border-l-4 border-l-[#ea6c3b] border border-slate-200 flex items-start gap-2.5">
+            <MousePointerClick className="size-4 text-[#ea6c3b] shrink-0 mt-0.5" />
+            <div className="text-xs sm:text-sm text-slate-800 leading-relaxed text-pretty">
+              <strong className="text-slate-900 font-bold">Thao tác kết hợp trên Chrome: </strong>
+              <span className="text-slate-700">{currentStep.manualBrowserCue}</span>
+            </div>
+          </div>
+
+          <AstryxDivider variant="subtle" />
+
+          {/* Hàng 5: Máy nhắc chữ sân khấu (Teleprompter) sắc nét, dễ đọc */}
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="text-xs font-bold uppercase text-slate-700 flex items-center gap-1.5">
+                <span>Ý chính trình bày trước Hội đồng ({currentStep.code})</span>
+              </div>
+              {Object.keys(doneActions).length > 0 && (
+                <button
+                  type="button"
+                  title="Bỏ hết dấu tích 'đã chạy' trên các thao tác, không ảnh hưởng dữ liệu thật"
+                  onClick={() => setDoneActions({})}
+                  className="text-xs text-slate-500 hover:text-orange-700 underline cursor-pointer"
+                >
+                  Xóa dấu tích đã chạy
+                </button>
+              )}
+            </div>
+
+            {/* 3 gạch đầu dòng ngắn gọn để liếc mắt 1 giây nắm ý */}
+            <div className="grid grid-cols-1 gap-2">
+              {currentStep.talkingPoints.map((pt, i) => (
+                <div
+                  key={i}
+                  className="px-3.5 py-2.5 rounded-none bg-slate-50 border border-slate-200 text-sm leading-relaxed flex items-start gap-2.5"
+                >
+                  <span className="size-5 rounded-none bg-orange-100 text-orange-900 border border-orange-200 text-xs font-bold shrink-0 mt-0.5 flex items-center justify-center">
+                    {i + 1}
+                  </span>
+                  <span className="text-pretty font-medium text-slate-800">{pt}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Lời dẫn nguyên văn đầy đủ & Kết quả màn hình */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+              <div className="md:col-span-2 p-3.5 rounded-none bg-white border border-slate-200 space-y-1">
+                <div className="text-[11px] font-bold text-slate-500 uppercase">
+                  Lời dẫn gợi ý đầy đủ
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed text-pretty">
+                  {currentStep.presenterScript}
+                </p>
+              </div>
+              <div className="p-3.5 rounded-none bg-slate-50 border border-slate-200 space-y-1">
+                <div className="text-[11px] font-bold text-slate-600 uppercase">
+                  Kết quả trên màn hình
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed text-pretty">
+                  {currentStep.expectedOutcome}
+                </p>
+              </div>
+            </div>
+          </div>
+        </AstryxCard>
+
+        {/* Bảng Dữ liệu Quick-Fill & Copy dự phòng (Thu gọn sẵn) */}
+        <AstryxCard padding={4} className="rounded-none bg-white border border-slate-200 shadow-xs">
+          <AstryxCollapsible
+            defaultIsOpen={false}
+            trigger={
+              <div className="flex flex-wrap items-center justify-between gap-2 pr-2">
+                <span className="text-xs sm:text-sm font-bold text-slate-800">
+                  Dữ liệu điền tự động &amp; Sao chép thủ công dự phòng ({currentStep.fields.length} trường)
+                </span>
+                <span className="px-2 py-0.5 text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded-none">
+                  Bấm để mở khi cần sửa tay
+                </span>
+              </div>
+            }
+          >
+            <div className="pt-3">{renderFieldsTable()}</div>
+          </AstryxCollapsible>
+        </AstryxCard>
+
+        {/* Ngăn Truy cập nhanh Q&A Hội đồng: Phủ kín 14 màn hình tính năng chuyên sâu */}
+        <AstryxCard padding={4} className="rounded-none bg-white border border-slate-200 shadow-xs">
+          <AstryxCollapsible
+            defaultIsOpen={false}
+            trigger={
+              <div className="flex flex-wrap items-center justify-between gap-2 pr-2">
+                <span className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <Sparkles className="size-4 text-[#ea6c3b] shrink-0" />
+                  <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, Báo chí, KOL...)</span>
+                </span>
+                <span className="px-2 py-0.5 text-[11px] font-medium bg-orange-50 text-orange-800 border border-orange-200 rounded-none">
+                  1 chạm mở đúng vai trò
+                </span>
+              </div>
+            }
+          >
+            <div className="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {QA_QUICK_LINKS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  disabled={busyAction !== null}
+                  title={`${item.label} (vai trò ${item.role}) — bấm để tự mở đúng trang và vai trò`}
+                  onClick={() => triggerStepAction(item.id)}
+                  className="p-2.5 rounded-none border border-slate-200 bg-white hover:border-orange-300 hover:bg-slate-50 text-left flex items-start justify-between gap-2 cursor-pointer transition-colors"
+                >
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-slate-900 truncate">{item.label}</div>
+                    <div className="text-[11px] text-slate-600 truncate mt-0.5">{item.desc}</div>
+                  </div>
+                  <span className="px-1.5 py-0.5 rounded-none bg-orange-50 text-orange-800 border border-orange-200 font-mono text-[10px] font-bold shrink-0">
+                    {item.role}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </AstryxCollapsible>
+        </AstryxCard>
+
+        {/* Chân trang thanh lịch */}
+        <div className="px-4 py-3 rounded-none bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-slate-700">Selenium Bridge (:3999)</span>
+            <span>•</span>
+            <span>Bàn điều khiển thuyết trình tự động BrandHub SE08</span>
+          </div>
+          <a
+            href="http://localhost:3999"
+            target="_blank"
+            rel="noreferrer"
+            title="Mở trực tiếp giao diện Bàn điều khiển HTML tĩnh phục vụ từ cổng 3999 (bản dự phòng)"
+            className="font-semibold text-[#ea6c3b] hover:underline inline-flex items-center gap-1"
+          >
+            <span>Mở bản HTML độc lập (:3999)</span>
+            <ExternalLink className="size-3.5" />
+          </a>
+        </div>
       </main>
     </div>
   );
