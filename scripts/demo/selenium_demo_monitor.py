@@ -67,6 +67,7 @@ DEFAULT_IDS = {
     "press_task_id": "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",
     "kol_task_id": "3f1ae3a9-6518-35df-a596-1013c055e279",
     "newsletter_task_id": "b6a13469-05c4-3af0-88b1-ba2ca510d18f",
+    "video_task_id": "31a69211-9cec-30f0-b3f0-4e01ac3315a1",
 }
 
 ROLE_PROFILES: dict[str, dict[str, str]] = {
@@ -664,6 +665,7 @@ class DemoBrowserController:
         press_task_id = self.ids.get("press_task_id", "b8585f25-6a26-3a5e-9199-19c2e9fb3f06")
         kol_task_id = self.ids.get("kol_task_id", "3f1ae3a9-6518-35df-a596-1013c055e279")
         newsletter_task_id = self.ids.get("newsletter_task_id", "b6a13469-05c4-3af0-88b1-ba2ca510d18f")
+        video_task_id = self.ids.get("video_task_id", "31a69211-9cec-30f0-b3f0-4e01ac3315a1")
 
         # ----------------------------------------------------------------------
         # B1: Owner trình bày Danh mục 7 Gói truyền thông đa lĩnh vực của SE08 Digital Agency
@@ -983,7 +985,7 @@ class DemoBrowserController:
 
         if action_id == "B4_NAV_SURVEYS":
             res = self.login_role(
-                "Manager",
+                "Creator",
                 f"/workspaces/{ws_id}/tasks/{survey_task_id}/survey",
                 "B4.3 - Khảo sát Nguyện vọng Học sinh Lớp 12 (8 phản hồi thực tế)",
             )
@@ -1712,13 +1714,13 @@ class DemoBrowserController:
         # ----------------------------------------------------------------------
         qa_routes: dict[str, tuple[str, str, str, str]] = {
             "QA_EVENT_EDITOR": (
-                "Manager",
+                "Creator",
                 f"/workspaces/{ws_id}/tasks/{event_task_id}/event",
                 "Q&A - Kế hoạch Sự kiện Ngày hội FPTU Open Day 2027",
                 "Đã mở Trình điều phối Sự kiện Ngày hội FPTU Open Day 2027 (5 phân khu chuyên sâu).",
             ),
             "QA_WORKSHOP_EDITOR": (
-                "Manager",
+                "Creator",
                 f"/workspaces/{ws_id}/tasks/{workshop_task_id}/workshop",
                 "Q&A - Điều phối Chuỗi Workshop Trải nghiệm THPT",
                 "Đã mở Trình điều phối Workshop THPT (Diễn giả, Chương trình, Hậu cần & Biểu mẫu đăng ký).",
@@ -1730,7 +1732,7 @@ class DemoBrowserController:
                 "Đã mở Trình biên tập Thông cáo Báo chí VnExpress, Danh sách phóng viên & Links tin bài.",
             ),
             "QA_KOL_EDITOR": (
-                "Manager",
+                "Creator",
                 f"/workspaces/{ws_id}/tasks/{kol_task_id}/kol",
                 "Q&A - Booking KOL Duy Luân & Schannel Network",
                 "Đã mở Trình quản lý Hợp tác KOL (Shortlist, Thỏa thuận chi phí, Bản nháp & Nghiệm thu số liệu).",
@@ -1740,6 +1742,12 @@ class DemoBrowserController:
                 f"/workspaces/{ws_id}/tasks/{newsletter_task_id}/newsletter",
                 "Q&A - Thiết kế Bản tin Email Khối Kéo-Thả",
                 "Đã mở Trình thiết kế Bản tin Email Cẩm nang ngành học 2027 & Vé mời Workshop.",
+            ),
+            "QA_VIDEO_EDITOR": (
+                "Creator",
+                f"/workspaces/{ws_id}/editor?taskId={video_task_id}",
+                "Q&A - Video ngắn Reels/TikTok Recap học sinh",
+                "Đã mở Trình soạn Video ngắn (Kịch bản, Quay, Dựng, Caption & Kênh đăng).",
             ),
             "QA_AI_TRENDS": (
                 "Manager",
@@ -1796,6 +1804,15 @@ class DemoBrowserController:
                 "Đã mở trang Quản trị Bảng giá AI Credit (/admin/credit-prices) với đủ 7 nghiệp vụ AI.",
             ),
         }
+        step_editor_aliases = {
+            "B4_NAV_EVENT": "QA_EVENT_EDITOR",
+            "B4_NAV_WORKSHOP": "QA_WORKSHOP_EDITOR",
+            "B5_NAV_VIDEO": "QA_VIDEO_EDITOR",
+            "B5_NAV_KOL": "QA_KOL_EDITOR",
+            "B12_NAV_NEWSLETTER": "QA_NEWSLETTER_EDITOR",
+            "B13_NAV_PRESS": "QA_PRESS_EDITOR",
+        }
+        action_id = step_editor_aliases.get(action_id, action_id)
         if action_id in qa_routes:
             qa_role, qa_path, qa_hud, qa_msg = qa_routes[action_id]
             res = self.login_role(qa_role, qa_path, qa_hud)

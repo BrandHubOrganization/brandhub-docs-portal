@@ -329,6 +329,8 @@
           { id: 'B4_NAV', label: 'Mở 20 Công việc 4 tuần & Xem 5 Subtask Tuần 3', desc: 'Mở trang Công việc và bật chi tiết [Tuần 3 - Bài trọng điểm]' },
           { id: 'B4_FILL_SUBTASK', label: 'Điền mẫu Mô tả & Tiêu chí Subtask', desc: 'Gõ tự động mô tả và tiêu chí vào form Subtask' },
           { id: 'B4_NAV_SURVEYS', label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)', desc: 'Xem 8 câu trả lời thực tế của học sinh lớp 12' },
+          { id: 'B4_NAV_EVENT', label: 'Mở Kế hoạch Sự kiện FPTU Open Day 2027 (/event)', desc: 'Creator Phước điều phối 5 phân khu sự kiện' },
+          { id: 'B4_NAV_WORKSHOP', label: 'Mở Chuỗi Workshop THPT (/workshop)', desc: 'Diễn giả, chương trình, hậu cần & phiếu đăng ký' },
           { id: 'B4_NAV_REQUESTS', label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)', desc: 'Xem 2 yêu cầu bổ sung bài truyền thông từ ĐH FPT' },
         ],
         fields: [
@@ -355,6 +357,8 @@
         outcome: 'Creator xem chi tiết công việc [Tuần 3 - Bài trọng điểm] và mở Trình soạn thảo hợp nhất (/editor).',
         actions: [
           { id: 'B5_NAV', label: 'Mở việc của Creator & Chọn [Tuần 3 - Bài trọng điểm]', desc: 'Điều hướng tới /workspaces/{workspace_id}/tasks' },
+          { id: 'B5_NAV_VIDEO', label: 'Mở Video ngắn Reels/TikTok #3 Tuần 3 (/editor)', desc: 'Kịch bản, quay, dựng, caption & kênh đăng' },
+          { id: 'B5_NAV_KOL', label: 'Mở Booking KOL Duy Luân & Schannel (/kol)', desc: 'Shortlist, chi phí, brief, bản nháp & nghiệm thu' },
         ],
         fields: [
           { name: 'Subtask đang thực hiện', type: 'Tự động điền sẵn', value: 'Soạn nội dung bài viết (POST_CONTENT -> POST.CAPTION)' },
@@ -536,6 +540,7 @@
           { id: 'B12_NAV_HASHTAGS', label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh', desc: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng' },
           { id: 'B12_NAV_MAIL_TEMPLATES', label: 'Mở Mẫu Email mời dự Workshop THPT (/mail-templates)', desc: 'Xem mẫu Email gửi cho danh sách học sinh lớp 12' },
           { id: 'B12_NAV_MAIL_BATCHES', label: 'Mở Lịch sử Lô gửi Email (/mail-templates/batches)', desc: 'Xem 2 đợt gửi vé mời Workshop & báo cáo tuần' },
+          { id: 'B12_NAV_NEWSLETTER', label: 'Mở Bản tin Email Cẩm nang ngành học 2027 (/newsletter)', desc: 'Trình thiết kế email kéo-thả' },
         ],
         fields: [
           { name: '4 nền tảng hỗ trợ', type: 'Tự động điền sẵn', value: 'Facebook, Instagram, TikTok, Threads' },
@@ -562,6 +567,7 @@
           { id: 'B13_NAV_PUBLISH', label: 'Mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard)', desc: 'Điều hướng tới /posts/dashboard' },
           { id: 'B13_NAV_CALENDAR', label: 'Mở Lịch xuất bản Chiến dịch 4 tuần (/calendar)', desc: 'Xem lịch phân bổ bài viết từ Tuần 1 đến Tuần 4' },
           { id: 'B13_NAV_DASHBOARD', label: 'Mở Bảng điều khiển Phân tích (/dashboard)', desc: 'Điều hướng tới /dashboard' },
+          { id: 'B13_NAV_PRESS', label: 'Mở Tuyến bài Báo chí VnExpress Tuần 4 (/press)', desc: 'Thông cáo, phóng viên, nhật ký liên hệ & link tin bài' },
         ],
         fields: [
           { name: 'Chỉ số theo dõi 4 nền tảng', type: 'Tự động điền sẵn', value: 'Reach, Impressions, Reactions, Comments, Shares, Clicks (22 bản ghi publish_logs thực tế)' },
@@ -620,10 +626,11 @@
     ];
 
     const QA_LINKS = [
-      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
-      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+      { id: 'QA_VIDEO_EDITOR', label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', desc: 'Kịch bản, Quay, Dựng & Caption' },
+      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', desc: '5 phân khu sự kiện lớn + Runsheet' },
+      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
       { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
-      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Creator', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
       { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
       { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
       { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },

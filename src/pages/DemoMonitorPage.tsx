@@ -39,6 +39,10 @@ import {
   Trash2,
   HelpCircle,
   ArrowLeft,
+  Video,
+  Megaphone,
+  Newspaper,
+  Presentation,
 } from 'lucide-react';
 import {
   AstryxBadge,
@@ -534,6 +538,20 @@ const DEMO_STEPS: DemoStep[] = [
         icon: <ClipboardList className="size-4" />,
       },
       {
+        id: 'B4_NAV_EVENT',
+        label: 'Mở Kế hoạch Sự kiện FPTU Open Day 2027 (/event)',
+        description: 'Creator Phước điều phối 5 phân khu: concept, runsheet, hậu cần, nhân sự & báo cáo',
+        variant: 'outline',
+        icon: <Calendar className="size-4" />,
+      },
+      {
+        id: 'B4_NAV_WORKSHOP',
+        label: 'Mở Chuỗi Workshop THPT (/workshop)',
+        description: 'Diễn giả, chương trình, hậu cần & phiếu đăng ký học sinh',
+        variant: 'outline',
+        icon: <Presentation className="size-4" />,
+      },
+      {
         id: 'B4_NAV_REQUESTS',
         label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)',
         description: 'Xem 2 yêu cầu bổ sung bài truyền thông từ phía Đại học FPT',
@@ -585,6 +603,20 @@ const DEMO_STEPS: DemoStep[] = [
         description: 'Điều hướng trình duyệt Creator tới /workspaces/{workspace_id}/tasks',
         variant: 'primary',
         icon: <Play className="size-4" />,
+      },
+      {
+        id: 'B5_NAV_VIDEO',
+        label: 'Mở Video ngắn Reels/TikTok #3 Tuần 3 (/editor)',
+        description: 'Kịch bản, quay, dựng, caption & kênh đăng của video recap',
+        variant: 'outline',
+        icon: <Video className="size-4" />,
+      },
+      {
+        id: 'B5_NAV_KOL',
+        label: 'Mở Booking KOL Duy Luân & Schannel (/kol)',
+        description: 'Shortlist, thỏa thuận chi phí, brief, bản nháp & nghiệm thu số liệu',
+        variant: 'outline',
+        icon: <Megaphone className="size-4" />,
       },
     ],
   },
@@ -990,6 +1022,13 @@ const DEMO_STEPS: DemoStep[] = [
         variant: 'outline',
         icon: <Send className="size-4" />,
       },
+      {
+        id: 'B12_NAV_NEWSLETTER',
+        label: 'Mở Bản tin Email Cẩm nang ngành học 2027 (/newsletter)',
+        description: 'Trình thiết kế email kéo-thả: nội dung, thiết kế, danh sách nhận & lịch gửi',
+        variant: 'outline',
+        icon: <Mail className="size-4" />,
+      },
     ],
   },
   {
@@ -1045,6 +1084,13 @@ const DEMO_STEPS: DemoStep[] = [
         description: 'Xem thống kê Reach, Impressions, Reactions & tiến độ chiến dịch',
         variant: 'outline',
         icon: <Play className="size-4" />,
+      },
+      {
+        id: 'B13_NAV_PRESS',
+        label: 'Mở Tuyến bài Báo chí VnExpress Giáo dục Tuần 4 (/press)',
+        description: 'Thông cáo báo chí, danh sách phóng viên, nhật ký liên hệ & link tin bài đã lên',
+        variant: 'outline',
+        icon: <Newspaper className="size-4" />,
       },
     ],
   },
@@ -1153,10 +1199,11 @@ const QA_QUICK_LINKS: Array<{
   role: string;
   desc: string;
 }> = [
-  { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
-  { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+  { id: 'QA_VIDEO_EDITOR', label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', desc: 'Kịch bản, Quay, Dựng & Caption' },
+  { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', desc: '5 phân khu sự kiện lớn + Runsheet' },
+  { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
   { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
-  { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+  { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Creator', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
   { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
   { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
   { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
