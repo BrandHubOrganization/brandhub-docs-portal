@@ -44,6 +44,27 @@
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-4 right-4 z-50 hidden max-w-md px-4 py-3 border bg-orange-600 border-orange-700 text-white text-sm font-medium"></div>
 
+  <!-- DB Job Progress Dialog (Khôi phục / Xóa DB chạy nền) -->
+  <dialog id="db-progress-dialog" class="border border-slate-200 bg-white p-5 max-w-xl w-full text-slate-900">
+    <div class="space-y-3">
+      <div class="flex items-center justify-between gap-3">
+        <h3 id="db-progress-title" class="text-base font-bold text-slate-900">Đang khôi phục DB...</h3>
+        <span id="db-progress-pct" class="text-xs font-bold text-orange-700">0%</span>
+      </div>
+      <div class="h-2 w-full bg-slate-100 border border-slate-200">
+        <div id="db-progress-bar" class="h-full bg-orange-600 transition-all duration-500" style="width:0%"></div>
+      </div>
+      <p id="db-progress-label" class="text-xs font-semibold text-slate-700">Đang khởi động...</p>
+      <pre id="db-progress-log" class="max-h-56 overflow-y-auto bg-slate-900 text-slate-100 text-[11px] leading-relaxed p-3 whitespace-pre-wrap"></pre>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-[11px] text-slate-500">Chạy nền: đóng hộp này hoặc F5 vẫn không dừng tiến trình.</span>
+        <button onclick="document.getElementById('db-progress-dialog').close()" class="px-3.5 py-1.5 text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:border-orange-300 cursor-pointer">
+          Ẩn
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Safe Reset Confirmation Dialog -->
   <dialog id="reset-dialog" class="border border-slate-200 bg-white p-5 max-w-md w-full text-slate-900">
     <div class="space-y-4">
@@ -129,6 +150,10 @@
           Mở 6 Vai trò
         </button>
 
+        <button onclick="killAllChrome()" title="Tắt sạch MỌI cửa sổ Chrome trên máy (cả Chrome cá nhân) + chromedriver kẹt. Dùng khi Chrome demo đơ, sau đó bấm Mở 6 Vai trò" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-red-700 border border-red-200 hover:border-red-400 hover:bg-red-50/80 cursor-pointer">
+          Tắt hết Chrome
+        </button>
+
         <button onclick="document.getElementById('reset-dialog').showModal()" title="Nạp lại dữ liệu mẫu chuẩn Bước B1 (xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên). Dùng trước mỗi lần tập dượt" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
           Khôi phục DB
         </button>
@@ -203,10 +228,12 @@
         'Nêu rõ trải nghiệm kính VR và Robotics tại buổi Workshop, 3 mức học bổng 50%, 70%, 100% học phí, lộ trình thực tập doanh nghiệp OJT từ học kỳ 6 và đường dẫn https://tuyensinh.fpt.edu.vn.',
       ai_topic:
         'Tổng hợp điểm nhấn chuỗi Workshop trải nghiệm tiện ích học đường Đại học FPT dành cho học sinh THPT (đeo kính VR tham quan phòng Lab bán dẫn, điều khiển Robotics, tìm hiểu thư viện xanh, sân Vovinam và 40 CLB) kết hợp thông báo mở đăng ký xét Học bổng Nguyễn Văn Đạo năm 2027 tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM, Cần Thơ.',
+      pkg_name: 'Gói Tuyển sinh Thạc sĩ FPT 2027',
+      pkg_desc: 'Chiến dịch 4 tuần tuyển sinh chương trình Thạc sĩ FPT 2027: bài đăng mạng xã hội, Reels, Workshop online, PR báo điện tử và bản tin Email.',
       violation_sample:
-        '\n\n[Đoạn văn kiểm thử bộ lọc an toàn]: Cam kết 100% việc làm lương ngàn đô ngay khi nhập học, tuyển thẳng không cần điều kiện, các nơi khác đều là bằng cấp vô giá trị!',
+        'Học sinh trường khác toàn lũ ngu, đáng bị đánh cho chết hết.',
       caption_v1_clean:
-        'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn\n#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
+        'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
       client_reject_note:
         'Nội dung bản thảo v1 đã truyền tải rất tốt không khí thực tế của chuỗi Workshop tại các trường THPT. Tuy nhiên, Ban Tuyển sinh đề nghị bổ sung rõ 3 mức Học bổng Nguyễn Văn Đạo năm 2027 cụ thể (50%, 70% và 100% học phí toàn khóa) cùng thông tin học kỳ thực tập doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6 tại FPT Software và FPT Smart Cloud để phụ huynh và học sinh lớp 12 nắm đầy đủ quyền lợi trước khi duyệt xuất bản.',
       caption_v2_addition:
@@ -215,401 +242,323 @@
 
     const STEPS = [
       {
-        code: 'B1',
-        time: '00:00 - 01:15',
-        shortTitle: '7 Gói đa ngành & Gói ĐH FPT',
-        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
-        title: 'Danh mục 7 Gói truyền thông Đa lĩnh vực & Gói Tuyển sinh ĐH FPT 2027',
-        fr: 'FR 3.5.1 - 3.5.4',
-        role: 'Owner',
-        actor: 'Lê Trí Trung',
-        route: '/agency/359a1839-18c7-48e2-8a68-f5f68c3375b6/media-packages',
-        cue: 'Bấm [1] cuộn lướt qua 7 thẻ gói đa ngành rồi bấm [2] mở gói Tuyển sinh ĐH FPT 2027 (185 triệu VNĐ, 19 hạng mục) đã chốt trong Workspace.',
+        code: "B1",
+        time: "00:00 - 02:30",
+        shortTitle: "Gói dịch vụ & Tạo gói mới",
+        stage: "Giai đoạn 1: Gói dịch vụ, Chiến dịch 4 tuần & Công việc",
+        title: "Danh mục 7 Gói đa ngành & Tạo gói Tuyển sinh Thạc sĩ FPT 2027",
+        fr: "FR 3.5.1 - 3.5.4",
+        role: "Owner",
+        actor: "Lê Trí Trung",
+        route: "/agency/359a1839-18c7-48e2-8a68-f5f68c3375b6/media-packages",
+        cue: "Bấm Tiếp lần lượt: [1] Mở Danh mục 7 Gói truyền thông → [2] Điền gói Tuyển sinh Thạc sĩ FPT 2027 → [3] Lưu gói mới → [4] Mở Gói ĐH FPT 2027 trong Workspace. Không cần thao tác tay.",
         points: [
-          'SE08 Digital Agency chuẩn hóa sẵn 7 gói truyền thông chuyên biệt cho Giáo dục, SaaS, F&B, BĐS, Mỹ phẩm, TMĐT và Du lịch.',
-          'Gói Tuyển sinh Đại học FPT 2027 kéo dài 4 tuần (185 triệu VNĐ) gồm 19 hạng mục trải đủ 7 loại dịch vụ chuẩn.',
+          "SE08 Digital chuẩn hóa 7 gói truyền thông cho 7 ngành.",
+          "Owner tạo trực tiếp gói mới: tên, ngân sách 85 triệu, 4 tuần, 5 hạng mục có số lượng.",
         ],
-        script: 'Trong vai trò Owner Lê Trí Trung của SE08 Digital Agency, chúng em xây dựng danh mục 7 gói truyền thông chuyên biệt trên nhiều ngành nghề. Riêng gói Tuyển sinh Đại học FPT 2027 trị giá 185.000.000 VNĐ kéo dài 4 tuần gồm 19 hạng mục thuộc đủ 7 loại dịch vụ chuẩn.',
-        outcome: 'Hiển thị đầy đủ 7 thẻ gói truyền thông đa lĩnh vực ở trạng thái ACTIVE và gói ĐH FPT 2027 đã phê duyệt.',
+        script: "Owner Lê Trí Trung quản lý danh mục 7 gói đa ngành và tạo ngay một gói mới cho chương trình Thạc sĩ FPT 2027, gồm 5 hạng mục có số lượng cụ thể.",
+        outcome: "Gói Tuyển sinh Thạc sĩ FPT 2027 xuất hiện trong danh mục; mở gói ĐH FPT 2027 đã chốt trong Workspace.",
         actions: [
-          { id: 'B1_NAV', label: 'Mở Danh mục 7 Gói truyền thông đa lĩnh vực', desc: 'Điều hướng tới /agency/{agency_id}/media-packages' },
-          { id: 'B1_NAV_WS_PACKAGE', label: 'Mở Gói ĐH FPT 2027 đã thương thảo trong Workspace', desc: 'Điều hướng tới /workspaces/.../media-package' },
+          { id: "B1_NAV", label: "Mở Danh mục 7 Gói truyền thông", desc: "Lướt 7 thẻ gói đa ngành" },
+          { id: "PKG_FILL", label: "Điền gói Tuyển sinh Thạc sĩ FPT 2027", desc: "Tự gõ tên, 85 triệu, 4 tuần, mô tả & 5 hạng mục" },
+          { id: "PKG_SAVE", label: "Lưu gói mới", desc: "Tự bấm 'Lưu gói' và tô sáng gói vừa tạo" },
+          { id: "B1_NAV_WS_PACKAGE", label: "Mở Gói ĐH FPT 2027 trong Workspace", desc: "Gói 185 triệu, 19 hạng mục đã chốt" },
         ],
         fields: [
-          { name: 'Gói trọng tâm gắn cho Đại học FPT', type: 'Tự động điền sẵn', value: 'Gói Tuyển sinh Đại học FPT 2027: Chiến dịch Đa kênh & Chuỗi Workshop 4 Tuần (185.000.000 VNĐ - 19 hạng mục)' },
-          { name: '6 Gói đa lĩnh vực khác của SE08', type: 'Tự động điền sẵn', value: 'Công nghệ B2B SaaS | F&B Đồ uống | Bất động sản | Dược mỹ phẩm | Thương mại điện tử Mega Sale | Du lịch Nghỉ dưỡng' },
+          { name: "Tên gói", type: 'Tự điền', key: "pkg_name" },
+          { name: "Mô tả gói", type: 'Tự điền', key: "pkg_desc" },
+          { name: "Hạng mục", type: 'Tự điền', value: "12 bài MXH · 2 bài báo · 2 Workshop · 4 video ngắn · 2 Email" },
         ],
       },
       {
-        code: 'B2',
-        time: '01:15 - 02:30',
-        shortTitle: 'Workspace, Thư viện KV & Chat',
-        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
-        title: 'Workspace ĐH FPT 2027, Thư viện 7 Key Visual Gemini & Chat nhóm',
-        fr: 'FR 3.4.9, 3.4.21, 3.5.5, 3.6.25',
-        role: 'Owner',
-        actor: 'Lê Trí Trung',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/members',
-        cue: 'Nhấn Space lần lượt qua [1] -> [2] -> [3] -> [4] để lướt đội ngũ 5 thành viên SE08, Brand Profile ĐH FPT, 7 ảnh Key Visual Gemini trong /library và /chat.',
+        code: "B2",
+        time: "02:30 - 04:00",
+        shortTitle: "Chiến dịch 4 tuần",
+        stage: "Giai đoạn 1: Gói dịch vụ, Chiến dịch 4 tuần & Công việc",
+        title: "Điều phối Chiến dịch Tuyển sinh 4 Tuần (Brief, Timeline, 6 Đối tác)",
+        fr: "FR 3.5.6 - 3.5.13",
+        role: "Manager",
+        actor: "Nguyễn Thành Lộc",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/campaigns",
+        cue: "Bấm Tiếp lần lượt: [1] Bước 1: Lộ trình 4 tuần & Master Brief → [2] Bước 2: Timeline 19 hạng mục → [3] Bước 3: 6 Đối tác Báo chí / KOL. Không cần thao tác tay.",
         points: [
-          'Workspace quy tụ đủ 5 thành viên nhóm SE08 (Trung, Lộc, Phước, Tuấn, Ân) cùng Ban Tuyển sinh Đại học FPT.',
-          'Thư viện /library chia sẵn 4 thư mục tuần chứa 7 bộ Key Visual tạo bằng Gemini Nano Banana, 4 ảnh khuôn viên trường và 5 mẫu bài viết.',
+          "Master Brief 6 khối vạch rõ 4 tuần: Coming Soon → Ngành học → Workshop & Open Day → Báo chí.",
+          "Timeline 19 hạng mục gói và 6 đối tác báo chí, truyền hình, KOL, LED THPT.",
         ],
-        script: 'Không gian làm việc quy tụ đủ 5 thành viên nhóm SE08 cùng Ban Tuyển sinh Đại học FPT. Thư viện tài nguyên lưu sẵn 4 thư mục tuần với 7 bộ Key Visual tạo bằng Gemini Nano Banana cùng ảnh khuôn viên trường thực tế.',
-        outcome: 'Hiển thị thành viên SE08 trong Workspace, Hồ sơ thương hiệu ĐH FPT, 11 ấn phẩm hình ảnh trong /library và trao đổi trong /chat.',
+        script: "Manager Nguyễn Thành Lộc điều phối chiến dịch 4 tuần: Master Brief, timeline 19 hạng mục và 6 đối tác truyền thông.",
+        outcome: "Trình diễn đủ 3 bước của Chiến dịch 4 tuần.",
         actions: [
-          { id: 'B2_NAV', label: 'Mở Đội ngũ 5 Thành viên SE08 & Khách hàng (/members)', desc: 'Xem thành viên SE08 & Ban Tuyển sinh ĐH FPT' },
-          { id: 'B2_NAV_CLIENT_PROFILE', label: 'Mở Hồ sơ Thương hiệu Đại học FPT (/client-profile)', desc: 'Xem 5 cơ sở, học kỳ OJT & từ khóa hạn chế' },
-          { id: 'B2_NAV_LIBRARY', label: 'Mở Thư viện 7 ảnh Key Visual Gemini (/library)', desc: 'Xem 4 thư mục tuần và bộ ảnh Gemini Nano Banana + Unsplash' },
-          { id: 'B2_NAV_CHAT', label: 'Mở Kênh Trò chuyện nhóm SE08 & ĐH FPT (/chat)', desc: 'Xem trao đổi giữa team SE08 và Ban Tuyển sinh ĐH FPT' },
+          { id: "B3_STEP_INFO", label: "Bước 1: Lộ trình 4 tuần & Master Brief", desc: "6/6 khối Brief" },
+          { id: "B3_STEP_TASKS", label: "Bước 2: Timeline 19 hạng mục", desc: "Lịch trình 4 tuần" },
+          { id: "B3_STEP_PARTNERS", label: "Bước 3: 6 Đối tác Báo chí / KOL", desc: "VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel, LED" },
         ],
         fields: [
-          { name: 'Đội ngũ SE08 & Khách hàng', type: 'Tự động điền sẵn', value: 'Lê Trí Trung (Owner), Nguyễn Thành Lộc (Manager), Phước - Tuấn - Ân (Creator), Ban Tuyển sinh Đại học FPT (Client)' },
-          { name: 'Từ khóa hạn chế (Brand Profile)', type: 'Tự động điền sẵn', value: 'cam kết 100% việc làm lương ngàn đô, học bổng ảo, tuyển thẳng không cần điều kiện, bằng cấp vô giá trị' },
+
         ],
       },
       {
-        code: 'B3',
-        time: '02:30 - 04:15',
-        shortTitle: 'Chiến dịch 4 Tuần (3 bước)',
-        stage: 'Giai đoạn 1: Gói truyền thông Đa lĩnh vực & Chiến dịch 4 tuần',
-        title: 'Điều phối Chiến dịch Tuyển sinh 4 Tuần (Brief, 20 Công việc, 6 Đối tác)',
-        fr: 'FR 3.5.6 - 3.5.13',
-        role: 'Manager',
-        actor: 'Nguyễn Thành Lộc',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/campaigns',
-        cue: 'Bấm [1] -> [2] -> [3] (tự điền việc phát sinh lịch xe Open Day) -> Bấm [4] xem 6 đối tác VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel.',
+        code: "B3",
+        time: "04:00 - 05:00",
+        shortTitle: "20 Công việc & 5 Subtask",
+        stage: "Giai đoạn 1: Gói dịch vụ, Chiến dịch 4 tuần & Công việc",
+        title: "Phân bổ 20 Công việc cho 3 Creator & 5 Subtask bài Tuần 3",
+        fr: "FR 3.6.1 - 3.6.10",
+        role: "Manager",
+        actor: "Nguyễn Thành Lộc",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks",
+        cue: "Bấm Tiếp lần lượt: [1] Mở 20 Công việc & 5 Subtask Tuần 3. Không cần thao tác tay.",
         points: [
-          'Master Brief 6 khối vạch rõ 4 tuần: Tuần 1 Coming Soon -> Tuần 2 Ngành học & Tiện ích -> Tuần 3 Workshop THPT & Open Day -> Tuần 4 Báo chí.',
-          'Quản lý 19 hạng mục gói + thêm việc phát sinh ngoài gói + điều phối 6 đối tác báo chí, truyền hình, KOL & LED THPT.',
+          "20 công việc chia theo thế mạnh của Phước, Tuấn, Ân.",
+          "Bài trọng điểm Tuần 3 có 5 Subtask phối hợp chéo; Nghiên cứu và Key Visual đã xong.",
         ],
-        script: 'Chiến dịch 4 tuần đi từ Tuần 1 Coming Soon & Học bổng, sang Tuần 2 giới thiệu ngành học & phổ biến tiện ích học đường, Tuần 3 tổ chức chuỗi Workshop THPT & Ngày hội Open Day, đến Tuần 4 lên bài báo chí VnExpress/Thanh Niên/Dân Trí và nhắc chốt hồ sơ đa kênh.',
-        outcome: 'Trình diễn 3 bước của Chiến dịch 4 tuần, điền hộp thoại Công việc phát sinh và kiểm tra 6 đối tác truyền thông.',
+        script: "20 công việc trong 4 tuần được giao theo chuyên môn; bài trọng điểm Tuần 3 có 5 Subtask liên kết giữa 3 thành viên.",
+        outcome: "Hiển thị 20 công việc và 5 Subtask của bài Tuần 3.",
         actions: [
-          { id: 'B3_STEP_INFO', label: 'Mở Bước 1: Lộ trình 4 Tuần & Master Brief', desc: 'Hiển thị 6/6 khối Brief và bản Master Brief tổng hợp' },
-          { id: 'B3_STEP_TASKS', label: 'Mở Bước 2: Timeline 19 Hạng mục trong gói', desc: 'Hiển thị lịch trình 4 tuần và nút Thêm công việc phát sinh' },
-          { id: 'B3_FILL_OUT_OF_SCOPE', label: 'Điền thử Công việc phát sinh (Lịch xe Open Day)', desc: 'Tự động gõ Tên, Hạn xuất bản, Mô tả & Tiêu chí nghiệm thu' },
-          { id: 'B3_STEP_PARTNERS', label: 'Mở Bước 3: 6 Đối tác Báo chí / KOL & Triển khai', desc: 'Hiển thị VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel & LED THPT' },
+          { id: "B4_NAV", label: "Mở 20 Công việc & 5 Subtask Tuần 3", desc: "Chi tiết [Tuần 3 - Bài trọng điểm]" },
         ],
         fields: [
-          { name: 'Tên công việc phát sinh ngoài gói', type: 'Nhập text', key: 'out_of_scope_title' },
-          { name: 'Mô tả công việc phát sinh', type: 'Nhập text', key: 'out_of_scope_desc' },
-          { name: 'Tiêu chí nghiệm thu', type: 'Nhập text', key: 'out_of_scope_criteria' },
+
         ],
       },
       {
-        code: 'B4',
-        time: '04:15 - 05:45',
-        shortTitle: '20 Công việc, Khảo sát & Yêu cầu',
-        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
-        title: 'Phân bổ 20 Công việc cho 3 Creator SE08, Khảo sát THPT & Yêu cầu Client',
-        fr: 'FR 3.6.1 - 3.6.10, 3.6.28 - 3.6.32',
-        role: 'Manager',
-        actor: 'Nguyễn Thành Lộc',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
-        cue: 'Bấm [1] xem 20 công việc & 5 Subtask bài Tuần 3, sau đó bấm [3] xem 8 phản hồi Khảo sát lớp 12 và [4] xem Yêu cầu từ ĐH FPT.',
+        code: "B4",
+        time: "05:00 - 08:00",
+        shortTitle: "Soạn bài & AI caption",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Creator nhận bài Tuần 3, mở /editor & gọi Gemini tạo caption",
+        fr: "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2",
+        role: "Creator",
+        actor: "Nguyễn Chơn Phước",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Mở việc [Tuần 3 - Bài trọng điểm] → [2] Mở Trình soạn thảo /editor → [3] Xem Key Visual Gemini trong Kho tài nguyên → [4] Điền form AI tạo caption → [5] Tạo caption & Chèn vào bài. Không cần thao tác tay.",
         points: [
-          '20 công việc chia theo chuyên môn 3 Creator SE08: Phước (Social), Tuấn (Key Visual, Reels & Workshop), Ân (Báo chí, Email & Khảo sát).',
-          'Bài trọng điểm Tuần 3 có 5 Role Subtasks phối hợp chéo, kèm trang Khảo sát lớp 12 (/tasks/.../survey) và Yêu cầu khách hàng (/requests).',
+          "/editor tách bài thành 4 phần độc lập: Brief, Hình ảnh, Kênh đăng, Nội dung.",
+          "Gemini tạo 3 phương án caption theo Mục tiêu, Giọng điệu, Nền tảng, Độ dài; chèn phương án 1 vào bài.",
         ],
-        script: '20 công việc trong 4 tuần được chia đều theo thế mạnh của Nguyễn Chơn Phước, Nguyễn Minh Tuấn và Hà Văn Ân. Tại bài trọng điểm Tuần 3, cả 5 Subtask con đều liên kết chặt chẽ giữa 3 thành viên.',
-        outcome: 'Hiển thị 20 công việc 4 tuần, 5 Subtask của bài Tuần 3, 8 phản hồi khảo sát học sinh THPT và 2 yêu cầu từ ĐH FPT.',
+        script: "Creator Nguyễn Chơn Phước mở bài Tuần 3, xem Key Visual Gemini trong Kho tài nguyên và gọi AI tạo 3 phương án caption.",
+        outcome: "Phần Nội dung bài viết có caption do AI tạo (hoặc caption dự phòng nếu AI chậm).",
         actions: [
-          { id: 'B4_NAV', label: 'Mở 20 Công việc 4 tuần & Xem 5 Subtask Tuần 3', desc: 'Mở trang Công việc và bật chi tiết [Tuần 3 - Bài trọng điểm]' },
-          { id: 'B4_FILL_SUBTASK', label: 'Điền mẫu Mô tả & Tiêu chí Subtask', desc: 'Gõ tự động mô tả và tiêu chí vào form Subtask' },
-          { id: 'B4_NAV_SURVEYS', label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)', desc: 'Xem 8 câu trả lời thực tế của học sinh lớp 12' },
-          { id: 'B4_NAV_EVENT', label: 'Mở Kế hoạch Sự kiện FPTU Open Day 2027 (/event)', desc: 'Creator Phước điều phối 5 phân khu sự kiện' },
-          { id: 'B4_NAV_WORKSHOP', label: 'Mở Chuỗi Workshop THPT (/workshop)', desc: 'Diễn giả, chương trình, hậu cần & phiếu đăng ký' },
-          { id: 'B4_NAV_REQUESTS', label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)', desc: 'Xem 2 yêu cầu bổ sung bài truyền thông từ ĐH FPT' },
+          { id: "B5_NAV", label: "Mở việc [Tuần 3 - Bài trọng điểm]", desc: "Nghiên cứu & Key Visual đã xong" },
+          { id: "B6_NAV_EDITOR", label: "Mở Trình soạn thảo /editor", desc: "4 phần độc lập" },
+          { id: "B6_PUSH_KEY_VISUAL", label: "Xem Key Visual Gemini trong Kho tài nguyên", desc: "Ảnh đã Client duyệt, không thay" },
+          { id: "AI_FILL", label: "Điền form AI tạo caption", desc: "Chủ đề, Thông báo, Chuyên nghiệp, Facebook, Vừa" },
+          { id: "AI_GENERATE", label: "Tạo caption & Chèn vào bài", desc: "Gemini tạo 3 phương án, tự chèn phương án 1" },
         ],
         fields: [
-          { name: 'Mô tả Subtask', type: 'Nhập text', key: 'subtask_desc' },
-          { name: 'Tiêu chí nghiệm thu Subtask', type: 'Nhập text', key: 'subtask_criteria' },
+          { name: "Chủ đề AI", type: 'Tự điền', key: "ai_topic" },
+          { name: "Tham số AI", type: 'Tự điền', value: "Thông báo · Chuyên nghiệp · Facebook · Vừa" },
         ],
       },
       {
-        code: 'B5',
-        time: '05:45 - 06:30',
-        shortTitle: 'Creator nhận bài Tuần 3',
-        stage: 'Giai đoạn 2: Điều phối 20 Công việc, Subtask, Khảo sát & Yêu cầu',
-        title: 'Creator Nguyễn Chơn Phước nhận việc Tuần 3 & Kiểm tra tiến độ Subtask',
-        fr: 'FR 3.6.3, 3.6.4',
-        role: 'Creator',
-        actor: 'Nguyễn Chơn Phước',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/tasks',
-        cue: 'Chỉ vào các Subtask Nghiên cứu (Ân) và Key Visual (Tuấn) đã hoàn tất trên ngăn chi tiết công việc.',
+        code: "B5",
+        time: "08:00 - 09:30",
+        shortTitle: "Kiểm duyệt & Nộp v1",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Kiểm tra an toàn nội dung (3.6.33) & Nộp phần Nội dung v1",
+        fr: "FR 3.6.33, 3.6.18",
+        role: "Creator",
+        actor: "Nguyễn Chơn Phước",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Chèn câu vi phạm & xem cảnh báo → [2] Điền bản sạch v1 → [3] Định dạng chữ → [4] Nhập bộ hashtag → [5] Nộp phần Nội dung (v1). Không cần thao tác tay.",
         points: [
-          'Cửa sổ chuyển sang Creator Nguyễn Chơn Phước; các bài Tuần 1-2 đã xuất bản, hiện tập trung vào [Tuần 3 - Bài trọng điểm].',
-          'Phần Nghiên cứu của Hà Văn Ân và Key Visual của Nguyễn Minh Tuấn đã duyệt sẵn.',
+          "Chèn câu bắt nạt/bạo lực: hệ thống tự kiểm tra sau 3 giây và gắn cảnh báo.",
+          "Thay bằng bản sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT).",
+          "Trình soạn thảo: in đậm tiêu đề + font Sans Đậm Unicode, in nghiêng câu dẫn, danh sách gạch đầu dòng; khi đăng tự chuyển sang ký tự Unicode cho Facebook / Instagram / TikTok / Threads.",
+          "Hashtag tách khỏi caption, nhập vào Bộ Hashtags bài viết; khi xuất bản hệ thống tự nối vào cuối bài.",
         ],
-        script: 'Creator Nguyễn Chơn Phước mở [Tuần 3 - Bài trọng điểm], thấy phần Nghiên cứu của Hà Văn Ân và bộ Key Visual của Nguyễn Minh Tuấn đã duyệt xong, sẵn sàng vào /editor hoàn thiện bài viết.',
-        outcome: 'Creator xem chi tiết công việc [Tuần 3 - Bài trọng điểm] và mở Trình soạn thảo hợp nhất (/editor).',
+        script: "Creator chèn thử một câu bạo lực để thấy bộ kiểm tra an toàn tự cảnh báo, sau đó điền bản sạch v1 và nộp phần Nội dung.",
+        outcome: "Phần Nội dung bài viết chuyển sang Đã nộp (v1).",
         actions: [
-          { id: 'B5_NAV', label: 'Mở việc của Creator & Chọn [Tuần 3 - Bài trọng điểm]', desc: 'Điều hướng tới /workspaces/{workspace_id}/tasks' },
-          { id: 'B5_NAV_VIDEO', label: 'Mở Video ngắn Reels/TikTok #3 Tuần 3 (/editor)', desc: 'Kịch bản, quay, dựng, caption & kênh đăng' },
-          { id: 'B5_NAV_KOL', label: 'Mở Booking KOL Duy Luân & Schannel (/kol)', desc: 'Shortlist, chi phí, brief, bản nháp & nghiệm thu' },
+          { id: "B7_FILL_VIOLATION", label: "Chèn câu vi phạm & xem cảnh báo", desc: "Tự chờ kết quả kiểm tra an toàn" },
+          { id: "V1_FILL", label: "Điền bản sạch v1", desc: "Thay toàn bộ caption bằng bản v1" },
+          { id: "V1_FORMAT", label: "Định dạng chữ (đậm, nghiêng, font, danh sách)", desc: "Bôi đen rồi bấm B / I / font Sans Đậm / danh sách" },
+          { id: "V1_HASHTAGS", label: "Nhập bộ hashtag", desc: "Xoá bộ cũ, gõ 6 hashtag + Enter" },
+          { id: "V1_SUBMIT", label: "Nộp phần Nội dung (v1)", desc: "Tự bấm 'Nộp phần'" },
         ],
         fields: [
-          { name: 'Subtask đang thực hiện', type: 'Tự động điền sẵn', value: 'Soạn nội dung bài viết (POST_CONTENT -> POST.CAPTION)' },
+          { name: "Câu thử bộ lọc", type: 'Tự điền', key: "violation_sample" },
+          { name: "Bản sạch v1", type: 'Tự điền', key: "caption_v1_clean" },
+          { name: "Bộ hashtag", type: 'Tự điền', value: "#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT2027 #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity" },
         ],
       },
       {
-        code: 'B6',
-        time: '06:30 - 08:30',
-        shortTitle: 'Bắn ảnh Gemini & Gọi AI',
-        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
-        title: 'Bắn trực tiếp ảnh Key Visual Gemini lên bài viết & Gọi AI tạo Caption',
-        fr: 'FR 3.6.11, 3.6.25, 3.7.1, 3.7.2',
-        role: 'Creator',
-        actor: 'Nguyễn Chơn Phước',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Bấm [1] mở /editor -> Bấm [2] bắn ngay ảnh Key Visual Gemini lên bài -> Bấm [3] đổi chế độ -> Bấm [4] tự điền 5 ô AI.',
+        code: "B6",
+        time: "09:30 - 10:30",
+        shortTitle: "Manager duyệt v1",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Manager Nguyễn Thành Lộc duyệt nội bộ phần Nội dung (v1)",
+        fr: "FR 3.6.19",
+        role: "Manager",
+        actor: "Nguyễn Thành Lộc",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Mở màn Duyệt bài của Manager → [2] Duyệt phần Nội dung (v1). Không cần thao tác tay.",
         points: [
-          'Trình soạn thảo /editor tách bài đăng thành 4 phần độc lập (BRIEF, MEDIA, CHANNELS, CAPTION).',
-          'Bấm [2] đẩy thẳng ảnh Key Visual tạo bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng.',
+          "Manager chỉ duyệt riêng phần vừa nộp; các phần khác đã duyệt từ trước.",
         ],
-        script: 'Trên /editor, bấm "Bắn ảnh Key Visual Gemini lên bài viết" để đẩy trực tiếp ấn phẩm tạo sẵn bằng Gemini Nano Banana từ Kho tài nguyên lên khung xem trước 4 nền tảng, chuyển đổi Quick/Docs Mode và gọi AI sinh bản thảo.',
-        outcome: 'Ảnh Key Visual Gemini hiển thị ngay trên bài viết & khung điện thoại 4 nền tảng; điền tuần tự 5 tham số vào modal AI.',
+        script: "Manager mở màn Duyệt bài, rà phần Nội dung v1 và duyệt để chuyển sang Ban Tuyển sinh ĐH FPT.",
+        outcome: "Phần Nội dung chuyển sang Đã duyệt nội bộ.",
         actions: [
-          { id: 'B6_NAV_EDITOR', label: 'Mở Trình soạn thảo hợp nhất (/editor)', desc: 'Điều hướng tới /editor?taskId={task_id}' },
-          { id: 'B6_PUSH_KEY_VISUAL', label: 'Bắn ảnh Key Visual Gemini lên bài viết', desc: 'Gắn ngay ảnh KV_Tuan3_FPTU_OpenDay_2027 từ Kho tài nguyên' },
-          { id: 'B6_TOGGLE_DOCS_MODE', label: 'Chuyển đổi Chế độ Nhanh / Tài liệu', desc: 'Chuyển đổi giữa Quick Mode và Docs Mode' },
-          { id: 'B6_SEQ_FILL_AI', label: 'Điền tuần tự 5 trường AI Tạo Caption', desc: 'Tự động điền Topic, Tone, Platform, Ngôn ngữ, Số hashtag' },
+          { id: "B8_NAV_MANAGER_APPROVAL", label: "Mở màn Duyệt bài của Manager", desc: "/task-approvals" },
+          { id: "MGR_APPROVE_V1", label: "Duyệt phần Nội dung (v1)", desc: "Tự bấm 'Duyệt'" },
         ],
         fields: [
-          { name: 'Chủ đề bài viết (AI Topic)', type: 'Nhập text', key: 'ai_topic' },
-          { name: 'Tham số AI', type: 'Chọn dropdown', value: 'Giọng điệu: Chuyên nghiệp | Nền tảng: Facebook | Ngôn ngữ: Tiếng Việt | Số hashtag: 6' },
+
         ],
       },
       {
-        code: 'B7',
-        time: '08:30 - 10:00',
-        shortTitle: 'Kiểm tra vi phạm & Gửi v1',
-        stage: 'Giai đoạn 3: Trình soạn thảo (/editor), Bắn ảnh Gemini & Gọi AI',
-        title: 'Kiểm duyệt an toàn nội dung (3.6.33) & Gửi duyệt phần POST.CAPTION (v1)',
-        fr: 'FR 3.6.33, 3.6.18',
-        role: 'Creator',
-        actor: 'Nguyễn Chơn Phước',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Bấm [1] rồi nhấn "Kiểm tra vi phạm" trên Chrome -> Bấm [2] khôi phục bản sạch v1 rồi nhấn "Lưu thay đổi" và "Gửi duyệt" trên khung POST.CAPTION.',
+        code: "B7",
+        time: "10:30 - 12:00",
+        shortTitle: "Client trả lại v1",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Ban Tuyển sinh ĐH FPT trả lại v1, yêu cầu bổ sung Học bổng + OJT",
+        fr: "FR 3.6.20, 3.6.21",
+        role: "Client",
+        actor: "Ban Tuyển sinh Đại học FPT",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Mở màn Nghiệm thu của Client → [2] Điền góp ý Học bổng 2027 + OJT → [3] Xác nhận Trả lại cho Creator. Không cần thao tác tay.",
         points: [
-          'Chèn thử câu quảng cáo quá mức để kiểm chứng tính năng Kiểm tra vi phạm (FR 3.6.33) phát hiện từ cấm của ĐH FPT.',
-          'Khôi phục bản thảo sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT), bấm Lưu và Gửi duyệt phần POST.CAPTION.',
+          "Client chỉ thấy phần đầu ra, không thấy Brief nội bộ.",
+          "Trả lại riêng phần Nội dung kèm góp ý; Hình ảnh và Kênh đăng giữ nguyên đã duyệt.",
         ],
-        script: 'Creator thử chèn một câu chứa từ khóa hạn chế để kiểm chứng tính năng Kiểm tra vi phạm (3.6.33). Sau đó khôi phục bản thảo sạch v1 tổng hợp chuỗi Workshop THPT, bấm Lưu và Gửi duyệt phần Nội dung bài đăng.',
-        outcome: 'Phần POST.CAPTION chuyển sang trạng thái SUBMITTED (v1).',
+        script: "Ban Tuyển sinh ĐH FPT trả lại phần Nội dung, đề nghị bổ sung 3 mức Học bổng 2027 và kỳ OJT từ học kỳ 6.",
+        outcome: "Phần Nội dung quay về Bị trả lại kèm góp ý.",
         actions: [
-          { id: 'B7_FILL_VIOLATION', label: 'Chèn câu vi phạm để test Kiểm duyệt (3.6.33)', desc: 'Gõ câu chứa từ cấm và chỉ vào nút Kiểm tra vi phạm' },
-          { id: 'B7_CLEAN_AND_RESTORE', label: 'Khôi phục bản thảo sạch v1 & Chỉ nút Gửi duyệt', desc: 'Điền lại bản v1 chuẩn 2027 và chỉ vào nút Lưu / Gửi duyệt' },
+          { id: "B9_NAV_CLIENT_APPROVAL", label: "Mở màn Nghiệm thu của Client", desc: "Chỉ thấy phần OUTPUT" },
+          { id: "CLIENT_FILL_NOTE", label: "Điền góp ý Học bổng 2027 + OJT", desc: "Tự mở hộp Trả lại và gõ góp ý" },
+          { id: "CLIENT_RETURN", label: "Xác nhận Trả lại cho Creator", desc: "Tự bấm 'Trả lại'" },
         ],
         fields: [
-          { name: 'Câu mẫu thử nghiệm bộ lọc vi phạm', type: 'Nhập text', key: 'violation_sample' },
-          { name: 'Nội dung bản thảo sạch v1', type: 'Nhập text', key: 'caption_v1_clean' },
+          { name: "Góp ý của Ban Tuyển sinh", type: 'Tự điền', key: "client_reject_note" },
         ],
       },
       {
-        code: 'B8',
-        time: '10:00 - 11:00',
-        shortTitle: 'Manager duyệt nội bộ v1',
-        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
-        title: 'Manager Nguyễn Thành Lộc duyệt nội bộ phần Nội dung bài đăng (v1)',
-        fr: 'FR 3.6.19',
-        role: 'Manager',
-        actor: 'Nguyễn Thành Lộc',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Sau khi bấm [1], trên Chrome của Manager hãy bấm nút "Duyệt" tại thẻ Nội dung bài đăng (POST.CAPTION).',
+        code: "B8",
+        time: "12:00 - 14:00",
+        shortTitle: "Sửa v2, Nộp & Diff",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Creator bổ sung v2, nộp lại & đối chiếu Diff v1 / v2",
+        fr: "FR 3.6.11, 3.6.18",
+        role: "Creator",
+        actor: "Nguyễn Chơn Phước",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Mở /editor xem góp ý → [2] Bổ sung Học bổng 50%-100% & OJT (v2) → [3] Nộp lại phần Nội dung (v2) → [4] Mở Diff v1 / v2. Không cần thao tác tay.",
         points: [
-          'Cửa sổ chuyển sang Manager Nguyễn Thành Lộc duyệt tầng nội bộ cho riêng phần POST.CAPTION.',
-          'Các phần khác đã duyệt xong từ trước nên không cần duyệt lại.',
+          "Góp ý hiện ngay trên phần Nội dung.",
+          "Lịch sử phiên bản đối chiếu từng dòng thêm mới giữa v1 và v2.",
         ],
-        script: 'Manager Nguyễn Thành Lộc mở màn hình Phê duyệt, rà soát phần Nội dung bài đăng (POST.CAPTION) và bấm Duyệt để chuyển sang Ban Tuyển sinh Đại học FPT.',
-        outcome: 'Phần POST.CAPTION chuyển sang trạng thái INTERNAL_APPROVED.',
+        script: "Creator đọc góp ý, bổ sung 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ OJT, nộp lại v2 rồi mở bảng Diff.",
+        outcome: "Phần Nội dung Đã nộp (v2); ngăn Lịch sử phiên bản hiện dòng mới thêm.",
         actions: [
-          { id: 'B8_NAV_MANAGER_APPROVAL', label: 'Mở màn hình Duyệt của Manager & Chỉ nút Duyệt', desc: 'Điều hướng Manager tới /task-approvals' },
+          { id: "B10_NAV_CREATOR_FIX", label: "Mở /editor xem góp ý", desc: "Phần Nội dung bị trả lại" },
+          { id: "V2_FILL", label: "Bổ sung Học bổng 50%-100% & OJT (v2)", desc: "Tự gõ nối tiếp đoạn v2, in đậm tiêu đề mục & tạo danh sách" },
+          { id: "V2_SUBMIT", label: "Nộp lại phần Nội dung (v2)", desc: "Tự bấm 'Nộp phần'" },
+          { id: "B10_OPEN_VERSION_DIFF", label: "Mở Diff v1 / v2", desc: "Lịch sử phiên bản" },
         ],
         fields: [
-          { name: 'Phần công việc cần duyệt', type: 'Bấm nút', value: 'Nội dung bài đăng (POST.CAPTION) - Phiên bản v1' },
+          { name: "Đoạn bổ sung v2", type: 'Tự điền', key: "caption_v2_addition" },
         ],
       },
       {
-        code: 'B9',
-        time: '11:00 - 12:15',
-        shortTitle: 'Client yêu cầu bổ sung v1',
-        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
-        title: 'Ban Tuyển sinh ĐH FPT nghiệm thu v1 & Yêu cầu bổ sung Học bổng + OJT',
-        fr: 'FR 3.6.20, 3.6.21',
-        role: 'Client',
-        actor: 'Ban Tuyển sinh Đại học FPT',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Bấm [1] mở màn hình Client -> Bấm [2] tự điền nhận xét -> Trên Chrome của Client bấm nút "Yêu cầu chỉnh sửa / Xác nhận".',
+        code: "B9",
+        time: "14:00 - 15:00",
+        shortTitle: "Duyệt v2 → FINISHED",
+        stage: "Giai đoạn 2: Soạn bài, AI, Kiểm duyệt & Duyệt 2 tầng v1 → v2",
+        title: "Manager & Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2",
+        fr: "FR 3.6.19, 3.6.20",
+        role: "Client",
+        actor: "Ban Tuyển sinh Đại học FPT",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228",
+        cue: "Bấm Tiếp lần lượt: [1] Manager duyệt v2 → [2] Client duyệt v2 → Task FINISHED. Không cần thao tác tay.",
         points: [
-          'Client chỉ thấy phần đầu ra (OUTPUT), không thấy tài liệu nháp nội bộ POST.BRIEF của Agency.',
-          'Ban Tuyển sinh bấm Yêu cầu chỉnh sửa phần POST.CAPTION để bổ sung rõ 3 mức học bổng 50%, 70%, 100% và kỳ thực tập OJT.',
+          "Manager duyệt nội bộ v2, Client duyệt chính thức.",
+          "Đủ phần được duyệt: Task tự chuyển FINISHED, bài đăng sang APPROVED.",
         ],
-        script: 'Ban Tuyển sinh Đại học FPT chỉ nhìn thấy các phần đầu ra (OUTPUT). Client bấm Yêu cầu chỉnh sửa phần POST.CAPTION, đề nghị bổ sung rõ 3 mức học bổng 50%, 70%, 100% năm 2027 và kỳ thực tập OJT từ học kỳ 6.',
-        outcome: 'Chỉ riêng phần POST.CAPTION quay về trạng thái RETURNED, còn Hình ảnh và Kênh đăng giữ nguyên trạng thái đã duyệt.',
+        script: "Manager duyệt v2, Ban Tuyển sinh ĐH FPT duyệt chính thức; Task hoàn tất và bài đăng sẵn sàng xuất bản.",
+        outcome: "Task FINISHED, bài đăng APPROVED.",
         actions: [
-          { id: 'B9_NAV_CLIENT_APPROVAL', label: 'Mở màn hình Nghiệm thu của Ban Tuyển sinh ĐH FPT', desc: 'Điều hướng Client tới /task-approvals' },
-          { id: 'B9_SEQ_FILL_REJECT_REASON', label: 'Điền nhận xét yêu cầu bổ sung Học bổng 2027 + OJT', desc: 'Tự động mở hộp thoại và gõ góp ý của nhà trường' },
+          { id: "B11_NAV_MANAGER_V2", label: "Manager duyệt v2", desc: "Tự mở & bấm 'Duyệt'" },
+          { id: "B11_NAV_CLIENT_V2", label: "Client duyệt v2 → Task FINISHED", desc: "Tự bấm 'Duyệt' & hoàn tất Task" },
         ],
         fields: [
-          { name: 'Ghi chú yêu cầu chỉnh sửa của Ban Tuyển sinh ĐH FPT', type: 'Nhập text', key: 'client_reject_note' },
+
         ],
       },
       {
-        code: 'B10',
-        time: '12:15 - 13:45',
-        shortTitle: 'Creator sửa v2 & Xem Diff',
-        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
-        title: 'Creator cập nhật bản v2, Gửi duyệt lại & Mở đối chiếu Diff v1 vs v2',
-        fr: 'FR 3.6.11, 3.6.18',
-        role: 'Creator',
-        actor: 'Nguyễn Chơn Phước',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Bấm [1] mở /editor -> Bấm [2] tự gõ thêm đoạn v2 rồi nhấn "Lưu thay đổi" & "Gửi duyệt" trên Chrome -> Bấm [3] mở bảng Diff v1/v2.',
+        code: "B10",
+        time: "15:00 - 17:00",
+        shortTitle: "Xuất bản, Lịch & Dashboard",
+        stage: "Giai đoạn 3: Xuất bản 4 nền tảng, Lịch & Dashboard",
+        title: "Đăng ngay lên Facebook, Instagram, TikTok, Threads · Lịch 4 tuần · Dashboard",
+        fr: "FR 3.8.1 - 3.8.15",
+        role: "Creator",
+        actor: "Nguyễn Chơn Phước",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/social-accounts",
+        cue: "Bấm Tiếp lần lượt: [1] Mở Kết nối 4 nền tảng MXH → [2] Mở bài [Tuần 3] đã duyệt → [3] Đăng ngay lên 4 nền tảng → [4] Mở Lịch xuất bản 4 tuần → [5] Mở Dashboard tương tác. Không cần thao tác tay.",
         points: [
-          'Creator đọc góp ý gắn ngay trên khung POST.CAPTION, bổ sung 3 mức Học bổng 2027 & kỳ OJT vào bản v2 và gửi duyệt lại.',
-          'Mở ngăn Lịch sử phiên bản đối chiếu trực quan từng dòng thay đổi giữa v1 và v2.',
+          "4 tài khoản chính thức kết nối OAuth.",
+          "Đăng ngay bài vừa duyệt; kết quả từng nền tảng hiện trực tiếp (kể cả lỗi thật nếu có).",
         ],
-        script: 'Creator đọc phản hồi của Ban Tuyển sinh ngay trên phần POST.CAPTION, bổ sung đoạn thông tin 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ thực tập OJT vào bản v2, gửi duyệt lại và mở bảng so sánh Diff từng dòng giữa v1 và v2.',
-        outcome: 'Ngăn Lịch sử phiên bản hiển thị rõ các dòng văn bản mới thêm giữa v1 và v2.',
+        script: "Manager kiểm tra 4 kết nối mạng xã hội, Creator đăng ngay bài Tuần 3, rồi xem lịch 4 tuần và dashboard tương tác.",
+        outcome: "Bài Tuần 3 có trạng thái từng nền tảng; lịch và dashboard hiển thị đủ 4 tuần.",
         actions: [
-          { id: 'B10_NAV_CREATOR_FIX', label: 'Mở lại Trình soạn thảo (/editor) của Creator', desc: 'Làm nổi bật phần POST.CAPTION bị trả về' },
-          { id: 'B10_SEQ_FILL_V2', label: 'Bổ sung đoạn Học bổng 50%-100% & OJT (v2)', desc: 'Gõ nối tiếp đoạn thông tin mới vào bài viết' },
-          { id: 'B10_OPEN_VERSION_DIFF', label: 'Mở Lịch sử phiên bản (So sánh Diff v1 vs v2)', desc: 'Mở ngăn đối chiếu trực quan v1 và v2' },
+          { id: "B12_NAV_SOCIAL", label: "Mở Kết nối 4 nền tảng MXH", desc: "/social-accounts" },
+          { id: "PUBLISH_OPEN", label: "Mở bài [Tuần 3] đã duyệt", desc: "Chi tiết bài đăng" },
+          { id: "PUBLISH_NOW", label: "Đăng ngay lên 4 nền tảng", desc: "Gửi lệnh đăng & chờ kết quả" },
+          { id: "B13_NAV_CALENDAR", label: "Mở Lịch xuất bản 4 tuần", desc: "/calendar" },
+          { id: "B13_NAV_DASHBOARD", label: "Mở Dashboard tương tác", desc: "/dashboard" },
         ],
         fields: [
-          { name: 'Đoạn nội dung bổ sung vào bản v2', type: 'Nhập text', key: 'caption_v2_addition' },
+
         ],
       },
       {
-        code: 'B11',
-        time: '13:45 - 15:00',
-        shortTitle: 'Duyệt hoàn tất v2 -> FINISHED',
-        stage: 'Giai đoạn 4: Duyệt từng phần 2 tầng & Đối chiếu phiên bản v1/v2',
-        title: 'Manager & Ban Tuyển sinh ĐH FPT phê duyệt hoàn tất bản v2',
-        fr: 'FR 3.6.19, 3.6.20',
-        role: 'Client',
-        actor: 'Nguyễn Thành Lộc -> Ban Tuyển sinh ĐH FPT',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/task-approvals?task=c6453698-cf56-38c1-96d2-90ccdd985228',
-        cue: 'Bấm [1] rồi nhấn "Duyệt" trên Chrome Manager -> Bấm [2] rồi nhấn "Duyệt" trên Chrome Client để thấy Task tự chuyển sang FINISHED.',
+        code: "B11",
+        time: "17:00 - 18:30",
+        shortTitle: "SePay VietQR",
+        stage: "Giai đoạn 4: Thanh toán SePay (VietQR) & Quản trị",
+        title: "Owner thanh toán Agency Plus · 1 tháng qua SePay (VietQR)",
+        fr: "FR 3.9.1 - 3.9.4",
+        role: "Owner",
+        actor: "Lê Trí Trung",
+        route: "/subscription/plans",
+        cue: "Bấm Tiếp lần lượt: [1] Chọn Plus · 1 tháng → VietQR → [2] SePay xác nhận thanh toán. Không cần thao tác tay.",
         points: [
-          'Manager duyệt nội bộ bản v2, tiếp theo Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu chính thức.',
-          'Hệ thống tự động hoàn tất Công việc (FINISHED), đóng toàn bộ 5 Subtask và chuyển Bài đăng sang APPROVED.',
+          "Chọn chu kỳ 1 tháng, hệ thống sinh mã VietQR động qua SePay.",
+          "SePay gửi webhook xác nhận, gói được ghi nhận tự động.",
         ],
-        script: 'Manager duyệt nội bộ bản v2 và Ban Tuyển sinh ĐH FPT bấm Duyệt nghiệm thu. Khi mọi phần đầu ra đều đạt CLIENT_APPROVED, hệ thống tự động hoàn tất Công việc (FINISHED) và chuyển Bài đăng sang APPROVED.',
-        outcome: '[Tuần 3 - Bài trọng điểm] chuyển sang FINISHED, cả 5 Subtask hoàn tất và bài đăng chuyển sang APPROVED.',
+        script: "Owner chọn Agency Plus 1 tháng, hệ thống sinh mã VietQR; khi SePay xác nhận chuyển khoản, gói được kích hoạt tự động.",
+        outcome: "Popup thanh toán chuyển trạng thái Đã ghi nhận.",
         actions: [
-          { id: 'B11_NAV_MANAGER_V2', label: 'Mở màn hình Manager duyệt bản v2', desc: 'Điều hướng Manager tới /task-approvals' },
-          { id: 'B11_NAV_CLIENT_V2', label: 'Mở màn hình Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2', desc: 'Điều hướng Client tới /task-approvals' },
+          { id: "PLAN_CHECKOUT", label: "Chọn Plus · 1 tháng → VietQR", desc: "Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn" },
+          { id: "SEPAY_PAY", label: "SePay xác nhận thanh toán", desc: "Gửi webhook SePay, chờ trang cập nhật" },
         ],
         fields: [
-          { name: 'Kết quả tự động khi đủ phần được duyệt', type: 'Tự động điền sẵn', value: 'Task -> FINISHED | Tất cả Subtask -> FINISHED | Post -> APPROVED' },
+          { name: "Gói", type: 'Tự điền', value: "Agency Plus · 1 tháng · 990.000 VND · SePay (VietQR)" },
         ],
       },
       {
-        code: 'B12',
-        time: '15:00 - 16:15',
-        shortTitle: '4 Kênh MXH, Hashtag & Email',
-        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
-        title: 'Kết nối 4 Nền tảng MXH, Bộ Hashtag Tuyển sinh & Mẫu Email Workshop',
-        fr: 'FR 3.4.23, 3.6.34, 3.8.1 - 3.8.5',
-        role: 'Manager',
-        actor: 'Nguyễn Thành Lộc',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/social-accounts',
-        cue: 'Nhấn Space qua [1] -> [2] -> [3] -> [4] để trình bày 4 kết nối OAuth MXH, 8 Hashtag tuyển sinh, Mẫu Email và Lịch sử Lô gửi Email.',
+        code: "B12",
+        time: "18:30 - 20:00",
+        shortTitle: "Admin Doanh thu & Kiểm duyệt",
+        stage: "Giai đoạn 4: Thanh toán SePay (VietQR) & Quản trị",
+        title: "Admin giám sát doanh thu & Hàng đợi kiểm duyệt (3.10.4)",
+        fr: "FR 3.10.1 - 3.10.4",
+        role: "Admin",
+        actor: "Quản trị viên BrandHub",
+        route: "/admin?view=revenue",
+        cue: "Bấm Tiếp lần lượt: [1] Mở Doanh thu toàn hệ thống → [2] Mở Hàng đợi kiểm duyệt (3.10.4). Không cần thao tác tay.",
         points: [
-          'Cả 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads) đều đã kết nối OAuth hoạt động tốt.',
-          'Đi kèm bộ 8 Hashtag chuẩn mùa tuyển sinh 2027, 2 mẫu Email và lịch sử 2 lô gửi Email hoàn tất.',
+          "Admin theo dõi doanh thu gói SaaS toàn nền tảng, gồm giao dịch SePay vừa xong.",
+          "Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) khép lại demo.",
         ],
-        script: 'Manager kiểm tra kết nối OAuth với 4 nền tảng chính thức (Facebook, Instagram, TikTok, Threads), bộ 8 Hashtag chuẩn mùa tuyển sinh 2027 cùng mẫu Email và lịch sử gửi vé mời tham dự Workshop cho học sinh THPT.',
-        outcome: 'Hiển thị kết nối 4 nền tảng hoạt động tốt cùng bộ Hashtag, mẫu Email và lịch sử gửi Email.',
+        script: "Quản trị viên BrandHub giám sát doanh thu toàn hệ thống và rà soát hàng đợi kiểm duyệt nội dung.",
+        outcome: "Dashboard doanh thu và hàng đợi kiểm duyệt hiển thị.",
         actions: [
-          { id: 'B12_NAV_SOCIAL', label: 'Mở Kết nối 4 Nền tảng Mạng xã hội (/social-accounts)', desc: 'Điều hướng tới /social-accounts' },
-          { id: 'B12_NAV_HASHTAGS', label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh', desc: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng' },
-          { id: 'B12_NAV_MAIL_TEMPLATES', label: 'Mở Mẫu Email mời dự Workshop THPT (/mail-templates)', desc: 'Xem mẫu Email gửi cho danh sách học sinh lớp 12' },
-          { id: 'B12_NAV_MAIL_BATCHES', label: 'Mở Lịch sử Lô gửi Email (/mail-templates/batches)', desc: 'Xem 2 đợt gửi vé mời Workshop & báo cáo tuần' },
-          { id: 'B12_NAV_NEWSLETTER', label: 'Mở Bản tin Email Cẩm nang ngành học 2027 (/newsletter)', desc: 'Trình thiết kế email kéo-thả' },
+          { id: "B15_NAV_ADMIN_REVENUE", label: "Mở Doanh thu toàn hệ thống", desc: "/admin?view=revenue" },
+          { id: "B15_NAV_ADMIN_MODERATION", label: "Mở Hàng đợi kiểm duyệt (3.10.4)", desc: "/admin?view=moderation" },
         ],
         fields: [
-          { name: '4 nền tảng hỗ trợ', type: 'Tự động điền sẵn', value: 'Facebook, Instagram, TikTok, Threads' },
-        ],
-      },
-      {
-        code: 'B13',
-        time: '16:15 - 17:45',
-        shortTitle: 'Xuất bản, Lịch 4 tuần & Analytics',
-        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
-        title: 'Xuất bản Đa nền tảng, Lịch đăng bài 4 tuần (/calendar) & Dashboard',
-        fr: 'FR 3.8.8 - 3.8.15',
-        role: 'Creator',
-        actor: 'Nguyễn Chơn Phước',
-        route: '/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/posts/dashboard',
-        cue: 'Bấm [1] mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard) -> Bấm [2] xem Lịch 4 tuần (/calendar) -> Bấm [3] mở Dashboard thống kê tương tác.',
-        points: [
-          'Theo dõi danh sách bài viết đa nền tảng và kiểm tra Lịch xuất bản trực quan xuyên suốt 4 tuần (/calendar).',
-          'Toàn bộ chỉ số Reach, Impressions, Reactions từ 4 nền tảng đồng bộ trực tiếp về /dashboard.',
-        ],
-        script: 'Creator mở Bảng điều phối bài đăng đa nền tảng, kiểm tra Lịch đăng bài xuyên suốt 4 tuần (/calendar) và mở Dashboard phân tích tương tác thực tế.',
-        outcome: 'Danh sách bài viết hiển thị rõ trên /posts/dashboard, lịch 4 tuần hiển thị trên /calendar và đồng bộ số liệu về /dashboard.',
-        actions: [
-          { id: 'B13_NAV_PUBLISH', label: 'Mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard)', desc: 'Điều hướng tới /posts/dashboard' },
-          { id: 'B13_NAV_CALENDAR', label: 'Mở Lịch xuất bản Chiến dịch 4 tuần (/calendar)', desc: 'Xem lịch phân bổ bài viết từ Tuần 1 đến Tuần 4' },
-          { id: 'B13_NAV_DASHBOARD', label: 'Mở Bảng điều khiển Phân tích (/dashboard)', desc: 'Điều hướng tới /dashboard' },
-          { id: 'B13_NAV_PRESS', label: 'Mở Tuyến bài Báo chí VnExpress Tuần 4 (/press)', desc: 'Thông cáo, phóng viên, nhật ký liên hệ & link tin bài' },
-        ],
-        fields: [
-          { name: 'Chỉ số theo dõi 4 nền tảng', type: 'Tự động điền sẵn', value: 'Reach, Impressions, Reactions, Comments, Shares, Clicks (22 bản ghi publish_logs thực tế)' },
-        ],
-      },
-      {
-        code: 'B14',
-        time: '17:45 - 18:45',
-        shortTitle: 'Nâng cấp gói VietQR & Ví AI',
-        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
-        title: 'Owner nâng cấp gói cước SE08 Digital qua SePay (VietQR) & Ví AI Credit',
-        fr: 'FR 3.9.1 - 3.9.6',
-        role: 'Owner',
-        actor: 'Lê Trí Trung',
-        route: '/subscription/plans',
-        cue: 'Bấm [1] mở bảng gói cước (bấm "Nâng cấp" để tạo mã VietQR SePay) -> Bấm [2] xem Ví AI Credit 8.500 điểm của SE08 Digital.',
-        points: [
-          'Owner Lê Trí Trung kiểm tra ví AI (8.500 credits) và nâng cấp gói dịch vụ SaaS cho SE08 Digital Agency.',
-          'Tích hợp cổng SePay sinh mã VietQR động và đối soát giao dịch tự động.',
-        ],
-        script: 'Owner Lê Trí Trung nâng cấp gói dịch vụ của SE08 Digital Agency qua cổng SePay (VietQR) và kiểm tra Ví AI Credit 8.500 điểm.',
-        outcome: 'Hiển thị bảng gói cước, trang Ví AI 8.500 credits và mã thanh toán VietQR.',
-        actions: [
-          { id: 'B14_NAV_PLANS', label: 'Mở trang Nâng cấp gói dịch vụ (/subscription/plans)', desc: 'Điều hướng tới /subscription/plans' },
-          { id: 'B14_NAV_CREDITS', label: 'Mở Ví AI Credit SE08 Digital (/credit)', desc: 'Xem 8.500 AI credits & hạn mức Workspace ĐH FPT' },
-        ],
-        fields: [
-          { name: 'Cổng thanh toán', type: 'Tự động điền sẵn', value: 'SePay (VietQR) | Ví AI: 8.500 credits (hạn mức ĐH FPT: 5.000 credits)' },
-        ],
-      },
-      {
-        code: 'B15',
-        time: '18:45 - 20:00',
-        shortTitle: 'Admin Doanh thu & Kiểm duyệt',
-        stage: 'Giai đoạn 5: Đa nền tảng, Lịch đăng, Analytics, SePay & Admin',
-        title: 'Admin giám sát doanh thu nền tảng & Hàng đợi kiểm duyệt (3.10.4)',
-        fr: 'FR 3.10.1 - 3.10.14',
-        role: 'Admin',
-        actor: 'Quản trị viên BrandHub',
-        route: '/admin?view=revenue',
-        cue: 'Bấm [1] xem biểu đồ doanh thu toàn hệ thống -> Bấm [2] mở Hàng đợi kiểm duyệt nội dung (FR 3.10.4) kết thúc demo.',
-        points: [
-          'Quản trị viên BrandHub (Admin) theo dõi doanh thu gói đăng ký SaaS của toàn bộ các Agency.',
-          'Rà soát 3 bản ghi cảnh báo trong Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
-        ],
-        script: 'Quản trị viên BrandHub (Admin) giám sát doanh thu gói cước toàn hệ thống và rà soát Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4).',
-        outcome: 'Hiển thị Dashboard doanh thu Admin và 3 bản ghi thực tế trong Hàng đợi kiểm duyệt nội dung.',
-        actions: [
-          { id: 'B15_NAV_ADMIN_REVENUE', label: 'Mở Dashboard Doanh thu hệ thống (Admin)', desc: 'Điều hướng tới /admin?view=revenue' },
-          { id: 'B15_NAV_ADMIN_MODERATION', label: 'Mở Hàng đợi Kiểm duyệt Nội dung (3.10.4)', desc: 'Điều hướng tới /admin?view=moderation' },
-        ],
-        fields: [
-          { name: 'Quyền hạn Admin', type: 'Tự động điền sẵn', value: 'Quản trị doanh thu SaaS, gói cước, bảng giá AI Credit & Hàng đợi kiểm duyệt nội dung' },
+
         ],
       },
     ];
@@ -791,7 +740,7 @@
                   : ''
               }
             </div>
-            <h2 class="text-lg sm:text-xl font-bold text-slate-900">${s.title}</h2>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">${s.title}</h2>
             <div class="text-xs text-slate-500 font-mono break-all">Trang đích: <span class="text-orange-600 font-semibold">${s.route}</span></div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -809,7 +758,7 @@
         </div>
 
         <!-- Giant 1-Touch Smart Advance Hero Bar -->
-        <div class="p-3 bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div class="p-3 bg-slate-50 flex flex-wrap items-center justify-between gap-3">
           <div class="min-w-0 flex-1">
             <div class="text-[11px] font-bold uppercase text-slate-600">
               Điều khiển 1 chạm (nhấn phím Space hoặc bút trình chiếu)
@@ -869,7 +818,7 @@
         </div>
 
         <!-- On-Screen Browser Cue chuẩn Craft Floor (1px border thanh lịch) -->
-        <div class="px-3.5 py-2.5 bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 flex items-start gap-2.5">
+        <div class="px-3.5 py-2.5 bg-slate-50 text-xs sm:text-sm text-slate-800 flex items-start gap-2.5">
           <span class="px-1.5 py-0.5 text-[10px] font-bold bg-orange-100 text-orange-900 border border-orange-200 shrink-0 mt-0.5 font-mono">
             CHROME CUE
           </span>
@@ -899,7 +848,7 @@
             ${s.points
               .map(
                 (pt, i) => `
-              <div class="px-3.5 py-2.5 bg-orange-50/40 border border-orange-100 text-slate-900 flex items-start gap-2.5 ${ largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed' }">
+              <div class="px-3.5 py-2.5 border-l-2 border-orange-300 text-slate-900 flex items-start gap-2.5 ${ largeFont ? 'text-sm sm:text-base leading-relaxed' : 'text-xs sm:text-sm leading-relaxed' }">
                 <span class="w-5 h-5 bg-orange-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 tabular-nums">${i + 1}</span>
                 <span class="font-medium">${pt}</span>
               </div>
@@ -909,11 +858,11 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-            <div class="md:col-span-2 p-3.5 bg-white border border-slate-200 space-y-1">
+            <div class="md:col-span-2 py-1 pl-3.5 border-l-2 border-slate-200 space-y-1">
               <div class="text-[11px] font-bold text-slate-500 uppercase">Lời dẫn gợi ý đầy đủ</div>
               <p class="${largeFont ? 'text-sm' : 'text-xs'} text-slate-700 leading-relaxed">${s.script}</p>
             </div>
-            <div class="p-3.5 bg-slate-50 border border-slate-200 space-y-1">
+            <div class="p-3.5 bg-slate-50 space-y-1">
               <div class="text-[11px] font-bold text-slate-600 uppercase">Kết quả trên màn hình</div>
               <p class="text-xs text-slate-600 leading-relaxed">${s.outcome}</p>
             </div>
@@ -1121,38 +1070,94 @@
       }
     }
 
-    async function confirmResetDemoData() {
-      document.getElementById('reset-dialog').close();
-      showToast('Đang khôi phục dữ liệu mẫu PostgreSQL, MongoDB & Redis...');
+    async function killAllChrome() {
+      if (!confirm('Tắt sạch TOÀN BỘ Chrome trên máy (kể cả Chrome cá nhân, mất tab đang mở)?\nĐăng nhập 6 vai trò vẫn được giữ, bấm "Mở 6 Vai trò" để mở lại.')) return;
+      showToast('Đang tắt toàn bộ Chrome...');
       try {
-        const res = await fetch(`${API_BASE}/api/reset-data`, { method: 'POST' });
+        const res = await fetch(`${API_BASE}/api/kill-chrome`, { method: 'POST' });
         const data = await res.json();
-        if (data.ok) {
-          doneActions = {};
-          activeIdx = 0;
-          renderAll();
-        }
         showToast(data.ok ? data.message : data.error, !data.ok);
+        pollStatus();
       } catch (e) {
         showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
       }
     }
 
-    async function confirmCleanDemoData() {
-      document.getElementById('clean-dialog').close();
-      showToast('Đang xóa sạch toàn bộ dữ liệu mẫu và dữ liệu vừa demo...');
+    // Khôi phục / Xóa DB chạy nền + hộp tiến trình (poll GET /api/db-job mỗi giây)
+    let dbJobTimer = null;
+
+    function renderDbJob(job) {
+      const dlg = document.getElementById('db-progress-dialog');
+      const isReset = job.kind !== 'clean';
+      const pct = job.running
+        ? (job.total ? Math.min(95, Math.round(((job.stage - 1) / job.total) * 100 + 100 / job.total / 2)) : 3)
+        : 100;
+      document.getElementById('db-progress-title').textContent = job.running
+        ? (isReset ? 'Đang khôi phục DB...' : 'Đang xóa dữ liệu Demo...')
+        : (job.ok ? (isReset ? 'Khôi phục DB xong' : 'Xóa dữ liệu Demo xong') : 'Lỗi khi chạy');
+      document.getElementById('db-progress-pct').textContent = pct + '%';
+      const bar = document.getElementById('db-progress-bar');
+      bar.style.width = pct + '%';
+      bar.className = 'h-full transition-all duration-500 ' + (!job.running && !job.ok ? 'bg-red-600' : (job.running ? 'bg-orange-600' : 'bg-emerald-600'));
+      document.getElementById('db-progress-label').textContent = job.running
+        ? (job.total ? `Bước ${job.stage}/${job.total}: ${job.label}` : (job.label || 'Đang khởi động...'))
+        : (job.ok ? job.message : job.error);
+      const log = document.getElementById('db-progress-log');
+      log.textContent = (job.lines || []).join('\n');
+      log.scrollTop = log.scrollHeight;
+      if (!dlg.open && job.running) dlg.showModal();
+    }
+
+    async function pollDbJob() {
       try {
-        const res = await fetch(`${API_BASE}/api/clean-data`, { method: 'POST' });
+        const res = await fetch(`${API_BASE}/api/db-job`);
         const data = await res.json();
-        if (data.ok) {
-          doneActions = {};
-          activeIdx = 0;
-          renderAll();
+        const job = data.job || {};
+        if (!job.kind) return;
+        renderDbJob(job);
+        if (job.running) {
+          clearTimeout(dbJobTimer);
+          dbJobTimer = setTimeout(pollDbJob, 1000);
+        } else if (dbJobTimer) {
+          dbJobTimer = null;
+          if (job.ok) {
+            doneActions = {};
+            activeIdx = 0;
+            renderAll();
+          }
+          showToast(job.ok ? job.message : job.error, !job.ok);
+          pollStatus();
         }
-        showToast(data.ok ? data.message : data.error, !data.ok);
+      } catch (e) {
+        clearTimeout(dbJobTimer);
+        dbJobTimer = setTimeout(pollDbJob, 2000);
+      }
+    }
+
+    async function startDbJob(kind) {
+      const path = kind === 'reset' ? 'reset-data' : 'clean-data';
+      try {
+        const res = await fetch(`${API_BASE}/api/${path}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ async: true })
+        });
+        const data = await res.json();
+        if (!data.ok) showToast(data.error, true);
+        dbJobTimer = setTimeout(pollDbJob, 300);
       } catch (e) {
         showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
       }
+    }
+
+    function confirmResetDemoData() {
+      document.getElementById('reset-dialog').close();
+      startDbJob('reset');
+    }
+
+    function confirmCleanDemoData() {
+      document.getElementById('clean-dialog').close();
+      startDbJob('clean');
     }
 
     async function pollStatus() {
@@ -1273,6 +1278,10 @@
 
     renderAll();
     pollStatus();
+    // F5 giữa lúc đang Khôi phục DB: mở lại hộp tiến trình
+    fetch(`${API_BASE}/api/db-job`).then(r => r.json()).then(d => {
+      if (d.job && d.job.running) { renderDbJob(d.job); dbJobTimer = setTimeout(pollDbJob, 1000); }
+    }).catch(() => {});
     connectMonitorSocket();
     setInterval(pollStatus, 4000);
   </script>

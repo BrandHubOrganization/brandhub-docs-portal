@@ -32,6 +32,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import runpy
 import socket
 import struct
@@ -178,10 +179,14 @@ DEMO_TEXTS = {
     "ai_platform_label": "Facebook",
     "ai_language_label": "Tiếng Việt",
     "ai_hashtag_count": "6",
-    "violation_sample": (
-        "\n\n[Đoạn văn kiểm thử bộ lọc an toàn]: Cam kết 100% việc làm lương ngàn đô ngay khi nhập học, "
-        "tuyển thẳng không cần điều kiện, các nơi khác đều là bằng cấp vô giá trị!"
+    "pkg_name": "Gói Tuyển sinh Thạc sĩ FPT 2027",
+    "pkg_budget": "85000000",
+    "pkg_weeks": "4",
+    "pkg_desc": (
+        "Chiến dịch 4 tuần tuyển sinh chương trình Thạc sĩ FPT 2027: bài đăng mạng xã hội, Reels, "
+        "Workshop online, PR báo điện tử và bản tin Email."
     ),
+    "violation_sample": "Học sinh trường khác toàn lũ ngu, đáng bị đánh cho chết hết.",
     "caption_v1_clean": (
         "TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\n"
         "Sau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 "
@@ -191,8 +196,7 @@ DEMO_TEXTS = {
         "- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n"
         "- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n"
         "- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\n"
-        "Đăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn\n"
-        "#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity"
+        "Đăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn"
     ),
     "client_reject_note": (
         "Nội dung bản thảo v1 đã truyền tải rất tốt không khí thực tế của chuỗi Workshop tại các trường THPT. "
@@ -211,54 +215,49 @@ DEMO_TEXTS = {
 # ==============================================================================
 # 1.5. LỘ TRÌNH THUYẾT TRÌNH ĐỒNG BỘ (B0 -> B15 + Q&A) & WEBSOCKET HUB
 # ==============================================================================
+DEMO_HASHTAGS = ["DaiHocFPT", "TuyenSinhFPTU2027", "WorkshopTHPT2027", "HocBongNguyenVanDao", "ViMachBanDan", "FPTUniversity"]
+DEMO_PACKAGE_ITEMS = [("Bài đăng mạng xã hội", 12), ("Bài báo điện tử", 2), ("Workshop", 2), ("Video ngắn", 4), ("Email/Bản tin", 2)]
+
 DEMO_TIMELINE: list[dict[str, Any]] = [
     {"step_code": "B0", "sub_code": "B0", "action_id": "B0_GUEST_LANDING", "role": "Guest", "title": "Trang chủ BrandHub (Khách truy cập công khai)", "stage": "Mở đầu", "fr_code": "FR 3.2", "kind": "nav", "hint": "Bấm Tiếp để bắt đầu Bước B1 với vai trò Owner."},
-    {"step_code": "B1", "sub_code": "B1.1", "action_id": "B1_NAV", "role": "Owner", "title": "Danh mục 7 Gói truyền thông đa lĩnh vực", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "nav", "hint": "Lướt qua 7 thẻ gói đa ngành của SE08 Digital Agency."},
-    {"step_code": "B1", "sub_code": "B1.2", "action_id": "B1_NAV_WS_PACKAGE", "role": "Owner", "title": "Gói Tuyển sinh ĐH FPT 2027 (185tr, 19 hạng mục)", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "nav", "hint": "Xem gói 185 triệu VNĐ đã thương thảo & chốt trong Workspace."},
-    {"step_code": "B2", "sub_code": "B2.1", "action_id": "B2_NAV", "role": "Owner", "title": "Đội ngũ 5 Thành viên SE08 & Ban Tuyển sinh ĐH FPT", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.4.9", "kind": "nav", "hint": "Xem phân quyền nhóm SE08 & Ban Tuyển sinh trong Workspace."},
-    {"step_code": "B2", "sub_code": "B2.2", "action_id": "B2_NAV_CLIENT_PROFILE", "role": "Owner", "title": "Hồ sơ Thương hiệu (Brand Profile) Trường Đại học FPT", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.4.21", "kind": "nav", "hint": "Xem thông tin 5 cơ sở, OJT và danh sách từ khóa hạn chế."},
-    {"step_code": "B2", "sub_code": "B2.3", "action_id": "B2_NAV_LIBRARY", "role": "Creator", "title": "Thư viện 4 Thư mục Tuần & Key Visual Gemini", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.6.25", "kind": "nav", "hint": "Xem 4 thư mục tuần, 7 ảnh Key Visual Gemini & Mẫu bài viết."},
-    {"step_code": "B2", "sub_code": "B2.4", "action_id": "B2_NAV_CHAT", "role": "Manager", "title": "Kênh Trò chuyện nhóm SE08 Digital & ĐH FPT", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.5", "kind": "nav", "hint": "Xem trao đổi trực tiếp giữa team SE08 và Ban Tuyển sinh ĐH FPT."},
-    {"step_code": "B3", "sub_code": "B3.1", "action_id": "B3_STEP_INFO", "role": "Manager", "title": "Chiến dịch 4 Tuần: Lộ trình & Master Brief", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.6 - 3.5.13", "kind": "nav", "hint": "Xem 6/6 khối Master Brief cho 4 tuần chiến dịch tuyển sinh."},
-    {"step_code": "B3", "sub_code": "B3.2", "action_id": "B3_STEP_TASKS", "role": "Manager", "title": "Chiến dịch 4 Tuần: Timeline 19 Hạng mục gói", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.6 - 3.5.13", "kind": "nav", "hint": "Xem timeline 4 tuần & nút Thêm công việc phát sinh."},
-    {"step_code": "B3", "sub_code": "B3.3", "action_id": "B3_FILL_OUT_OF_SCOPE", "role": "Manager", "title": "Điền thử Công việc phát sinh (Lịch xe Open Day)", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.10", "kind": "fill", "hint": "Tự điền hộp thoại phát sinh; có thể bấm Tạo hoặc Đóng trên Chrome."},
-    {"step_code": "B3", "sub_code": "B3.4", "action_id": "B3_STEP_PARTNERS", "role": "Manager", "title": "Chiến dịch 4 Tuần: 6 Đối tác Báo chí, KOL & OOH", "stage": "GĐ 1: Gói & Chiến dịch", "fr_code": "FR 3.5.12", "kind": "nav", "hint": "Xem VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel & LED THPT."},
-    {"step_code": "B4", "sub_code": "B4.1", "action_id": "B4_NAV", "role": "Manager", "title": "20 Công việc 4 tuần & 5 Subtask bài Tuần 3", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.1 - 3.6.10", "kind": "nav", "hint": "Xem phân công 3 Creator SE08 & 5 Subtask bài trọng điểm Tuần 3."},
-    {"step_code": "B4", "sub_code": "B4.2", "action_id": "B4_FILL_SUBTASK", "role": "Manager", "title": "Điền mẫu Mô tả & Tiêu chí nghiệm thu Subtask", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.5", "kind": "fill", "hint": "Tự điền mô tả & tiêu chí nghiệm thu vào form Subtask đang mở."},
-    {"step_code": "B4", "sub_code": "B4.3", "action_id": "B4_NAV_SURVEYS", "role": "Creator", "title": "Khảo sát Nguyện vọng Học sinh THPT (/survey)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.28", "kind": "nav", "hint": "Xem khảo sát 4 câu hỏi và phản hồi thực tế của học sinh lớp 12."},
-    {"step_code": "B4", "sub_code": "B4.4", "action_id": "B4_NAV_EVENT", "role": "Creator", "title": "Kế hoạch Sự kiện FPTU Open Day 2027 (/event)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.29", "kind": "nav", "hint": "Xem 5 phân khu sự kiện lớn + runsheet Ngày hội FPTU Open Day."},
-    {"step_code": "B4", "sub_code": "B4.5", "action_id": "B4_NAV_WORKSHOP", "role": "Creator", "title": "Chuỗi Workshop Trải nghiệm THPT (/workshop)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.30", "kind": "nav", "hint": "Xem diễn giả, lịch trình, hậu cần & phiếu đăng ký học sinh."},
-    {"step_code": "B4", "sub_code": "B4.6", "action_id": "B4_NAV_REQUESTS", "role": "Manager", "title": "Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.32", "kind": "nav", "hint": "Xem yêu cầu bổ sung bài truyền thông từ phía Đại học FPT."},
-    {"step_code": "B5", "sub_code": "B5.1", "action_id": "B5_NAV", "role": "Creator", "title": "Creator nhận việc [Tuần 3 - Bài trọng điểm]", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.3 - 3.6.4", "kind": "nav", "hint": "Xem tiến độ Subtask Nghiên cứu & Key Visual đã hoàn tất sẵn."},
-    {"step_code": "B5", "sub_code": "B5.2", "action_id": "B5_NAV_VIDEO", "role": "Creator", "title": "Video ngắn Reels/TikTok #3 Tuần 3 (/editor)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.11", "kind": "nav", "hint": "Xem kịch bản, quay, dựng, caption & kênh đăng video recap."},
-    {"step_code": "B5", "sub_code": "B5.3", "action_id": "B5_NAV_KOL", "role": "Creator", "title": "Booking KOL Duy Luân & Schannel (/kol)", "stage": "GĐ 2: Công việc & Subtask", "fr_code": "FR 3.6.31", "kind": "nav", "hint": "Xem shortlist, chi phí, brief & nghiệm thu số liệu KOL."},
-    {"step_code": "B6", "sub_code": "B6.1", "action_id": "B6_NAV_EDITOR", "role": "Creator", "title": "Trình soạn thảo hợp nhất (/editor) — 4 khối độc lập", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.6.11", "kind": "nav", "hint": "Giới thiệu 4 phần độc lập: BRIEF, MEDIA, CHANNELS, CAPTION."},
-    {"step_code": "B6", "sub_code": "B6.2", "action_id": "B6_PUSH_KEY_VISUAL", "role": "Creator", "title": "Bắn ảnh Key Visual Gemini lên bài viết & Preview", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.6.25", "kind": "fill", "hint": "Gắn trực tiếp ảnh Key Visual Gemini vào bài & xem preview 4 kênh."},
-    {"step_code": "B6", "sub_code": "B6.3", "action_id": "B6_TOGGLE_DOCS_MODE", "role": "Creator", "title": "Chuyển đổi Chế độ Nhanh / Chế độ Tài liệu", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.6.11", "kind": "toggle", "hint": "Chuyển qua lại giữa Quick Mode và Docs Mode trên thanh công cụ."},
-    {"step_code": "B6", "sub_code": "B6.4", "action_id": "B6_SEQ_FILL_AI", "role": "Creator", "title": "Điền tuần tự 5 trường AI Tạo Caption (Gemini)", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.7.1 - 3.7.2", "kind": "fill", "hint": "Bấm 'Tạo gợi ý' trên hộp thoại AI để gọi Gemini sinh nội dung."},
-    {"step_code": "B7", "sub_code": "B7.1", "action_id": "B7_FILL_VIOLATION", "role": "Creator", "title": "Kiểm thử Bộ lọc Kiểm tra vi phạm (FR 3.6.33)", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.6.33", "kind": "fill", "hint": "Nhấn nút 'Kiểm tra vi phạm' trên Chrome để thấy cảnh báo từ cấm."},
-    {"step_code": "B7", "sub_code": "B7.2", "action_id": "B7_CLEAN_AND_RESTORE", "role": "Creator", "title": "Khôi phục bản thảo sạch v1 & Gửi duyệt CAPTION", "stage": "GĐ 3: /editor, Ảnh & AI", "fr_code": "FR 3.6.18", "kind": "fill", "hint": "Nhấn 'Lưu thay đổi' rồi 'Gửi duyệt' trên khung POST.CAPTION."},
-    {"step_code": "B8", "sub_code": "B8", "action_id": "B8_NAV_MANAGER_APPROVAL", "role": "Manager", "title": "Manager duyệt nội bộ phần Nội dung bài đăng (v1)", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.19", "kind": "nav", "hint": "Trên Chrome Manager, bấm 'Duyệt' ở thẻ POST.CAPTION để đẩy sang Client."},
-    {"step_code": "B9", "sub_code": "B9.1", "action_id": "B9_NAV_CLIENT_APPROVAL", "role": "Client", "title": "Ban Tuyển sinh ĐH FPT nghiệm thu bản thảo v1", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.20", "kind": "nav", "hint": "Client chỉ thấy phần đầu ra OUTPUT, ẩn ghi chú nội bộ BRIEF."},
-    {"step_code": "B9", "sub_code": "B9.2", "action_id": "B9_SEQ_FILL_REJECT_REASON", "role": "Client", "title": "Client yêu cầu bổ sung Học bổng 2027 & OJT", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.21", "kind": "fill", "hint": "Bấm xác nhận 'Yêu cầu chỉnh sửa' để trả riêng phần CAPTION về Creator."},
-    {"step_code": "B10", "sub_code": "B10.1", "action_id": "B10_NAV_CREATOR_FIX", "role": "Creator", "title": "Creator xem góp ý & mở lại /editor sửa bản v2", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.11", "kind": "nav", "hint": "Xem góp ý của nhà trường hiển thị trực tiếp trên khung CAPTION."},
-    {"step_code": "B10", "sub_code": "B10.2", "action_id": "B10_SEQ_FILL_V2", "role": "Creator", "title": "Bổ sung Học bổng 50%-100% & OJT (Bản thảo v2)", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.18", "kind": "fill", "hint": "Nhấn 'Lưu thay đổi' rồi 'Gửi duyệt' bản thảo v2 trên Chrome."},
-    {"step_code": "B10", "sub_code": "B10.3", "action_id": "B10_OPEN_VERSION_DIFF", "role": "Creator", "title": "Mở Lịch sử phiên bản (Đối chiếu Diff v1 vs v2)", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.11", "kind": "toggle", "hint": "Đối chiếu từng dòng nội dung vừa thêm mới giữa bản v1 và v2."},
-    {"step_code": "B11", "sub_code": "B11.1", "action_id": "B11_NAV_MANAGER_V2", "role": "Manager", "title": "Manager duyệt nội bộ bản cập nhật v2", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.19", "kind": "nav", "hint": "Trên Chrome Manager, bấm 'Duyệt' bản cập nhật v2."},
-    {"step_code": "B11", "sub_code": "B11.2", "action_id": "B11_NAV_CLIENT_V2", "role": "Client", "title": "Ban Tuyển sinh ĐH FPT duyệt xuất bản chính thức (v2)", "stage": "GĐ 4: Duyệt 2 tầng & Diff", "fr_code": "FR 3.6.20", "kind": "nav", "hint": "Bấm 'Duyệt' trên Chrome Client -> Task tự đóng FINISHED, Post mở APPROVED."},
-    {"step_code": "B12", "sub_code": "B12.1", "action_id": "B12_NAV_SOCIAL", "role": "Manager", "title": "Kết nối 4 Nền tảng: Facebook, Instagram, TikTok, Threads", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.8.1 - 3.8.5", "kind": "nav", "hint": "Xem 4 kết nối OAuth chính thức của chiến dịch Đại học FPT 2027."},
-    {"step_code": "B12", "sub_code": "B12.2", "action_id": "B12_NAV_HASHTAGS", "role": "Manager", "title": "Bộ 12 Hashtag Chiến dịch Tuyển sinh 2027", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.6.34", "kind": "nav", "hint": "Xem bộ Hashtag chuẩn tái sử dụng nhất quán trên 4 nền tảng."},
-    {"step_code": "B12", "sub_code": "B12.3", "action_id": "B12_NAV_MAIL_TEMPLATES", "role": "Manager", "title": "Mẫu Email mời học sinh lớp 12 dự Workshop THPT", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.4.23", "kind": "nav", "hint": "Xem mẫu Email Block-Builder gửi vé mời Workshop THPT."},
-    {"step_code": "B12", "sub_code": "B12.4", "action_id": "B12_NAV_MAIL_BATCHES", "role": "Manager", "title": "Lịch sử Lô gửi Email Workshop & Báo cáo Tuần", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.4.23", "kind": "nav", "hint": "Xem 2 đợt gửi email hoàn tất trong chiến dịch."},
-    {"step_code": "B12", "sub_code": "B12.5", "action_id": "B12_NAV_NEWSLETTER", "role": "Creator", "title": "Bản tin Email Cẩm nang ngành học 2027 (/newsletter)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.6.35", "kind": "nav", "hint": "Xem trình thiết kế bản tin email kéo-thả & lịch gửi."},
-    {"step_code": "B13", "sub_code": "B13.1", "action_id": "B13_NAV_PUBLISH", "role": "Creator", "title": "Bảng điều phối Xuất bản Đa nền tảng (4 Tuần)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.8.8 - 3.8.12", "kind": "nav", "hint": "Xem danh sách bài đã đăng, vừa duyệt và bài hẹn giờ Tuần 4."},
-    {"step_code": "B13", "sub_code": "B13.2", "action_id": "B13_NAV_CALENDAR", "role": "Creator", "title": "Lịch xuất bản Chiến dịch 4 Tuần (/calendar)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.8.13", "kind": "nav", "hint": "Xem mật độ phủ sóng 4 tuần trên Facebook, Instagram, TikTok, Threads."},
-    {"step_code": "B13", "sub_code": "B13.3", "action_id": "B13_NAV_DASHBOARD", "role": "Creator", "title": "Dashboard Phân tích Tương tác (/dashboard)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.8.14 - 3.8.15", "kind": "nav", "hint": "Xem biểu đồ Reach, Impressions và Reactions đổ về thời gian thực."},
-    {"step_code": "B13", "sub_code": "B13.4", "action_id": "B13_NAV_PRESS", "role": "Creator", "title": "Tuyến bài Báo chí VnExpress Giáo dục (/press)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.6.31", "kind": "nav", "hint": "Xem thông cáo báo chí, danh sách phóng viên & link tin bài."},
-    {"step_code": "B14", "sub_code": "B14.1", "action_id": "B14_NAV_PLANS", "role": "Owner", "title": "Nâng cấp gói cước Agency qua SePay (VietQR)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.9.1 - 3.9.4", "kind": "nav", "hint": "Bấm 'Nâng cấp' trên Chrome Owner để sinh mã VietQR động qua SePay."},
-    {"step_code": "B14", "sub_code": "B14.2", "action_id": "B14_NAV_CREDITS", "role": "Owner", "title": "Ví AI Credit SE08 Digital Agency (8.500 điểm)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.9.5 - 3.9.6", "kind": "nav", "hint": "Xem số dư 8.500 credits và hạn mức cấp cho Workspace ĐH FPT."},
-    {"step_code": "B15", "sub_code": "B15.1", "action_id": "B15_NAV_ADMIN_REVENUE", "role": "Admin", "title": "Admin giám sát Doanh thu & Gói cước toàn nền tảng", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.10.1 - 3.10.3", "kind": "nav", "hint": "Xem biểu đồ doanh thu gói SaaS & giao dịch đối soát SePay."},
-    {"step_code": "B15", "sub_code": "B15.2", "action_id": "B15_NAV_ADMIN_MODERATION", "role": "Admin", "title": "Admin Hàng đợi kiểm duyệt nội dung (FR 3.10.4)", "stage": "GĐ 5: Xuất bản, SePay & Admin", "fr_code": "FR 3.10.4", "kind": "nav", "hint": "Xem 3 bản ghi cảnh báo kiểm duyệt cộng đồng — khép lại demo."},
+    {"step_code": "B1", "sub_code": "B1.1", "action_id": "B1_NAV", "role": "Owner", "title": "Mở Danh mục 7 Gói truyền thông", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "nav", "hint": "Lướt 7 thẻ gói đa ngành"},
+    {"step_code": "B1", "sub_code": "B1.2", "action_id": "PKG_FILL", "role": "Owner", "title": "Điền gói Tuyển sinh Thạc sĩ FPT 2027", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "fill", "hint": "Tự gõ tên, 85 triệu, 4 tuần, mô tả & 5 hạng mục"},
+    {"step_code": "B1", "sub_code": "B1.3", "action_id": "PKG_SAVE", "role": "Owner", "title": "Lưu gói mới", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "submit", "hint": "Tự bấm 'Lưu gói' và tô sáng gói vừa tạo"},
+    {"step_code": "B1", "sub_code": "B1.4", "action_id": "B1_NAV_WS_PACKAGE", "role": "Owner", "title": "Mở Gói ĐH FPT 2027 trong Workspace", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.1 - 3.5.4", "kind": "nav", "hint": "Gói 185 triệu, 19 hạng mục đã chốt"},
+    {"step_code": "B2", "sub_code": "B2.1", "action_id": "B3_STEP_INFO", "role": "Manager", "title": "Bước 1: Lộ trình 4 tuần & Master Brief", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.6 - 3.5.13", "kind": "nav", "hint": "6/6 khối Brief"},
+    {"step_code": "B2", "sub_code": "B2.2", "action_id": "B3_STEP_TASKS", "role": "Manager", "title": "Bước 2: Timeline 19 hạng mục", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.6 - 3.5.13", "kind": "nav", "hint": "Lịch trình 4 tuần"},
+    {"step_code": "B2", "sub_code": "B2.3", "action_id": "B3_STEP_PARTNERS", "role": "Manager", "title": "Bước 3: 6 Đối tác Báo chí / KOL", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.5.6 - 3.5.13", "kind": "nav", "hint": "VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel, LED"},
+    {"step_code": "B3", "sub_code": "B3", "action_id": "B4_NAV", "role": "Manager", "title": "Mở 20 Công việc & 5 Subtask Tuần 3", "stage": "GĐ 1: Gói, Chiến dịch & Công việc", "fr_code": "FR 3.6.1 - 3.6.10", "kind": "nav", "hint": "Chi tiết [Tuần 3 - Bài trọng điểm]"},
+    {"step_code": "B4", "sub_code": "B4.1", "action_id": "B5_NAV", "role": "Creator", "title": "Mở việc [Tuần 3 - Bài trọng điểm]", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2", "kind": "nav", "hint": "Nghiên cứu & Key Visual đã xong"},
+    {"step_code": "B4", "sub_code": "B4.2", "action_id": "B6_NAV_EDITOR", "role": "Creator", "title": "Mở Trình soạn thảo /editor", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2", "kind": "nav", "hint": "4 phần độc lập"},
+    {"step_code": "B4", "sub_code": "B4.3", "action_id": "B6_PUSH_KEY_VISUAL", "role": "Creator", "title": "Xem Key Visual Gemini trong Kho tài nguyên", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2", "kind": "nav", "hint": "Ảnh đã Client duyệt, không thay"},
+    {"step_code": "B4", "sub_code": "B4.4", "action_id": "AI_FILL", "role": "Creator", "title": "Điền form AI tạo caption", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2", "kind": "fill", "hint": "Chủ đề, Thông báo, Chuyên nghiệp, Facebook, Vừa"},
+    {"step_code": "B4", "sub_code": "B4.5", "action_id": "AI_GENERATE", "role": "Creator", "title": "Tạo caption & Chèn vào bài", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2", "kind": "submit", "hint": "Gemini tạo 3 phương án, tự chèn phương án 1"},
+    {"step_code": "B5", "sub_code": "B5.1", "action_id": "B7_FILL_VIOLATION", "role": "Creator", "title": "Chèn câu vi phạm & xem cảnh báo", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.33, 3.6.18", "kind": "fill", "hint": "Tự chờ kết quả kiểm tra an toàn"},
+    {"step_code": "B5", "sub_code": "B5.2", "action_id": "V1_FILL", "role": "Creator", "title": "Điền bản sạch v1", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.33, 3.6.18", "kind": "fill", "hint": "Thay toàn bộ caption bằng bản v1"},
+    {"step_code": "B5", "sub_code": "B5.3", "action_id": "V1_FORMAT", "role": "Creator", "title": "Định dạng chữ (đậm, nghiêng, font, danh sách)", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.18", "kind": "fill", "hint": "Bôi đen rồi bấm B / I / font Sans Đậm / danh sách"},
+    {"step_code": "B5", "sub_code": "B5.4", "action_id": "V1_HASHTAGS", "role": "Creator", "title": "Nhập bộ hashtag", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.18", "kind": "fill", "hint": "Xoá bộ cũ, gõ 6 hashtag + Enter"},
+    {"step_code": "B5", "sub_code": "B5.5", "action_id": "V1_SUBMIT", "role": "Creator", "title": "Nộp phần Nội dung (v1)", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.33, 3.6.18", "kind": "submit", "hint": "Tự bấm 'Nộp phần'"},
+    {"step_code": "B6", "sub_code": "B6.1", "action_id": "B8_NAV_MANAGER_APPROVAL", "role": "Manager", "title": "Mở màn Duyệt bài của Manager", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.19", "kind": "nav", "hint": "/task-approvals"},
+    {"step_code": "B6", "sub_code": "B6.2", "action_id": "MGR_APPROVE_V1", "role": "Manager", "title": "Duyệt phần Nội dung (v1)", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.19", "kind": "submit", "hint": "Tự bấm 'Duyệt'"},
+    {"step_code": "B7", "sub_code": "B7.1", "action_id": "B9_NAV_CLIENT_APPROVAL", "role": "Client", "title": "Mở màn Nghiệm thu của Client", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.20, 3.6.21", "kind": "nav", "hint": "Chỉ thấy phần OUTPUT"},
+    {"step_code": "B7", "sub_code": "B7.2", "action_id": "CLIENT_FILL_NOTE", "role": "Client", "title": "Điền góp ý Học bổng 2027 + OJT", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.20, 3.6.21", "kind": "fill", "hint": "Tự mở hộp Trả lại và gõ góp ý"},
+    {"step_code": "B7", "sub_code": "B7.3", "action_id": "CLIENT_RETURN", "role": "Client", "title": "Xác nhận Trả lại cho Creator", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.20, 3.6.21", "kind": "submit", "hint": "Tự bấm 'Trả lại'"},
+    {"step_code": "B8", "sub_code": "B8.1", "action_id": "B10_NAV_CREATOR_FIX", "role": "Creator", "title": "Mở /editor xem góp ý", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.11, 3.6.18", "kind": "nav", "hint": "Phần Nội dung bị trả lại"},
+    {"step_code": "B8", "sub_code": "B8.2", "action_id": "V2_FILL", "role": "Creator", "title": "Bổ sung Học bổng 50%-100% & OJT (v2)", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.11, 3.6.18", "kind": "fill", "hint": "Tự gõ nối tiếp đoạn v2"},
+    {"step_code": "B8", "sub_code": "B8.3", "action_id": "V2_SUBMIT", "role": "Creator", "title": "Nộp lại phần Nội dung (v2)", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.11, 3.6.18", "kind": "submit", "hint": "Tự bấm 'Nộp phần'"},
+    {"step_code": "B8", "sub_code": "B8.4", "action_id": "B10_OPEN_VERSION_DIFF", "role": "Creator", "title": "Mở Diff v1 / v2", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.11, 3.6.18", "kind": "nav", "hint": "Lịch sử phiên bản"},
+    {"step_code": "B9", "sub_code": "B9.1", "action_id": "B11_NAV_MANAGER_V2", "role": "Manager", "title": "Manager duyệt v2", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.19, 3.6.20", "kind": "submit", "hint": "Tự mở & bấm 'Duyệt'"},
+    {"step_code": "B9", "sub_code": "B9.2", "action_id": "B11_NAV_CLIENT_V2", "role": "Client", "title": "Client duyệt v2 → Task FINISHED", "stage": "GĐ 2: Soạn bài, AI & Duyệt 2 tầng", "fr_code": "FR 3.6.19, 3.6.20", "kind": "submit", "hint": "Tự bấm 'Duyệt' & hoàn tất Task"},
+    {"step_code": "B10", "sub_code": "B10.1", "action_id": "B12_NAV_SOCIAL", "role": "Manager", "title": "Mở Kết nối 4 nền tảng MXH", "stage": "GĐ 3: Xuất bản đa nền tảng", "fr_code": "FR 3.8.1 - 3.8.15", "kind": "nav", "hint": "/social-accounts"},
+    {"step_code": "B10", "sub_code": "B10.2", "action_id": "PUBLISH_OPEN", "role": "Creator", "title": "Mở bài [Tuần 3] đã duyệt", "stage": "GĐ 3: Xuất bản đa nền tảng", "fr_code": "FR 3.8.1 - 3.8.15", "kind": "nav", "hint": "Chi tiết bài đăng"},
+    {"step_code": "B10", "sub_code": "B10.3", "action_id": "PUBLISH_NOW", "role": "Creator", "title": "Đăng ngay lên 4 nền tảng", "stage": "GĐ 3: Xuất bản đa nền tảng", "fr_code": "FR 3.8.1 - 3.8.15", "kind": "submit", "hint": "Gửi lệnh đăng & chờ kết quả"},
+    {"step_code": "B10", "sub_code": "B10.4", "action_id": "B13_NAV_CALENDAR", "role": "Creator", "title": "Mở Lịch xuất bản 4 tuần", "stage": "GĐ 3: Xuất bản đa nền tảng", "fr_code": "FR 3.8.1 - 3.8.15", "kind": "nav", "hint": "/calendar"},
+    {"step_code": "B10", "sub_code": "B10.5", "action_id": "B13_NAV_DASHBOARD", "role": "Creator", "title": "Mở Dashboard tương tác", "stage": "GĐ 3: Xuất bản đa nền tảng", "fr_code": "FR 3.8.1 - 3.8.15", "kind": "nav", "hint": "/dashboard"},
+    {"step_code": "B11", "sub_code": "B11.1", "action_id": "PLAN_CHECKOUT", "role": "Owner", "title": "Chọn Plus · 1 tháng → VietQR", "stage": "GĐ 4: SePay & Admin", "fr_code": "FR 3.9.1 - 3.9.4", "kind": "fill", "hint": "Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn"},
+    {"step_code": "B11", "sub_code": "B11.2", "action_id": "SEPAY_PAY", "role": "Owner", "title": "SePay xác nhận thanh toán", "stage": "GĐ 4: SePay & Admin", "fr_code": "FR 3.9.1 - 3.9.4", "kind": "submit", "hint": "Gửi webhook SePay, chờ trang cập nhật"},
+    {"step_code": "B12", "sub_code": "B12.1", "action_id": "B15_NAV_ADMIN_REVENUE", "role": "Admin", "title": "Mở Doanh thu toàn hệ thống", "stage": "GĐ 4: SePay & Admin", "fr_code": "FR 3.10.1 - 3.10.4", "kind": "nav", "hint": "/admin?view=revenue"},
+    {"step_code": "B12", "sub_code": "B12.2", "action_id": "B15_NAV_ADMIN_MODERATION", "role": "Admin", "title": "Mở Hàng đợi kiểm duyệt (3.10.4)", "stage": "GĐ 4: SePay & Admin", "fr_code": "FR 3.10.1 - 3.10.4", "kind": "nav", "hint": "/admin?view=moderation"},
 ]
 
 QA_TIMELINE: list[dict[str, str]] = [
@@ -390,7 +389,10 @@ class WSClient:
                 self.sock.sendall(frame)
                 return True
             except OSError:
+                # Gửi lỗi/quá hạn: đóng hẳn socket để luồng đọc thoát và HUD tự kết nối lại.
                 self.closed = True
+                with contextlib.suppress(OSError):
+                    self.sock.close()
                 return False
 
     def send_json(self, data: dict[str, Any]) -> bool:
@@ -405,6 +407,10 @@ class WebSocketHub:
 
     def register(self, sock: socket.socket) -> WSClient:
         cid = uuid.uuid4().hex[:10]
+        # Tab bị đóng băng không đọc dữ liệu -> sendall chờ vô hạn và kẹt cả lệnh Tiếp/Trước.
+        # Giới hạn 3s cho mỗi lần gửi (chỉ ảnh hưởng gửi, luồng đọc vẫn chờ bình thường).
+        with contextlib.suppress(OSError, ValueError):
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDTIMEO, 3000 if sys.platform == "win32" else struct.pack("ll", 3, 0))
         client = WSClient(sock, cid)
         with self._lock:
             self._clients[cid] = client
@@ -876,7 +882,7 @@ _HUD_JS_TEMPLATE = r"""
           + '<div class="hud-roles-grid">' + rolesHtml + '</div>'
           + '<div class="hud-drawer-controls">'
           + '<div class="hud-tabs">'
-          + '<button type="button" class="hud-tab' + (state.drawerTab === 'steps' ? ' active' : '') + '" data-tab="steps">Kịch bản (B0–B15)</button>'
+          + '<button type="button" class="hud-tab' + (state.drawerTab === 'steps' ? ' active' : '') + '" data-tab="steps">Kịch bản (B0–B12)</button>'
           + '<button type="button" class="hud-tab' + (state.drawerTab === 'qa' ? ' active' : '') + '" data-tab="qa">Q&amp;A Hội đồng</button>'
           + '</div>'
           + '<div class="hud-actions">'
@@ -931,7 +937,8 @@ _HUD_JS_TEMPLATE = r"""
           + '<button type="button" class="hud-btn" data-cmd="prev" ' + (idx <= 0 ? 'disabled' : '') + ' title="' + esc(prevTitle) + '">&#9664; Trước</button>'
           + '<button type="button" class="hud-btn hud-btn-primary" data-cmd="next" ' + (idx >= total - 1 ? 'disabled' : '') + ' title="' + esc(nextTitle) + '">' + nextLabel + '</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="rerun" title="Chạy lại bước hiện tại trên Chrome (Alt+R)">&#8635;</button>'
-          + '<button type="button" class="hud-btn hud-btn-icon' + (state.drawerOpen ? ' hud-btn-active' : '') + '" data-cmd="toggle_drawer" title="Mở danh sách 6 vai trò & các bước B0–B15 (Alt+M)">&#9776;</button>'
+          + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="skip_step" title="Bỏ qua bước đang chạy (thao tác tay thay thế)">&#9197;</button>'
+          + '<button type="button" class="hud-btn hud-btn-icon' + (state.drawerOpen ? ' hud-btn-active' : '') + '" data-cmd="toggle_drawer" title="Mở danh sách 6 vai trò & các bước B0–B12 (Alt+M)">&#9776;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="toggle_collapse" title="Thu gọn thanh banner">&#8211;</button>'
           + '</div>';
       }
@@ -998,6 +1005,10 @@ _HUD_JS_TEMPLATE = r"""
         state.localBusy = true;
         render();
         sendCommand({ type: 'prev' });
+        return;
+      }
+      if (cmd === 'skip_step') {
+        sendCommand({ type: 'skip_step' });
         return;
       }
       if (cmd === 'rerun') {
@@ -1122,7 +1133,7 @@ _HUD_JS_TEMPLATE = r"""
         }
         if ((state.sync && state.sync.busy) || state.localBusy) {
           state.localBusy = false;
-          sendCommand({ type: 'cancel_busy' });
+          sendCommand({ type: 'skip_step' });
           render();
           return;
         }
@@ -1241,6 +1252,37 @@ def build_hud_script(role: str, monitor_port: int) -> str:
     )
 
 
+class _LiveLog(io.StringIO):
+    """Gom stdout của script nạp DB, đồng thời đẩy từng dòng vào controller.db_job để theo dõi trực tiếp."""
+
+    def __init__(self, controller: Any) -> None:
+        super().__init__()
+        self._ctl = controller
+        self._pending = ""
+
+    def write(self, text: str) -> int:
+        n = super().write(text)
+        self._pending += text
+        *done, self._pending = self._pending.split("\n")
+        for line in done:
+            self._ctl._db_job_line(line)
+        return n
+
+
+class StepCancelled(BaseException):
+    """Nút ⏭ Bỏ qua: BaseException để không bị các khối `except Exception` trong bước nuốt mất."""
+
+
+STEP_CANCEL = threading.Event()
+
+
+def _demo_sleep(seconds: float) -> None:
+    """time.sleep có thể ngắt bằng nút ⏭ Bỏ qua."""
+    # ponytail: chỉ ngắt tại các điểm chờ; lệnh Selenium đang chạy (tải trang ≤30s, chờ phần tử ≤10s) phải tự hết.
+    if STEP_CANCEL.wait(seconds):
+        raise StepCancelled()
+
+
 # ==============================================================================
 # 2. SELENIUM BROWSER CONTROLLER + STATE SYNC ENGINE
 # ==============================================================================
@@ -1259,6 +1301,8 @@ class DemoBrowserController:
         self.repo_root = Path(__file__).resolve().parents[2]
         self.prep_script_path = Path(__file__).resolve().parent / "prepare_demo_data_template.py"
         self._prep_lock = threading.Lock()
+        # Tiến trình Khôi phục/Xóa DB cho Bàn điều khiển 3999 theo dõi (GET /api/db-job).
+        self.db_job: dict[str, Any] = {"kind": "", "running": False, "stage": 0, "total": 0, "label": "", "lines": [], "ok": None, "message": "", "error": ""}
         self._hud_script_ids: dict[int, str] = {}
 
         # Trạng thái đồng bộ thời gian thực qua WebSocket trên toàn bộ 6 cửa sổ Chrome
@@ -1269,6 +1313,9 @@ class DemoBrowserController:
         self.active_qa: dict[str, str] | None = None
         self.auto_execute: bool = True
         self.busy: bool = False
+        # Bấm Tiếp liên tục: chạy lần lượt, bước đã bị lần bấm mới hơn vượt qua thì bỏ qua.
+        self._timeline_run_lock = threading.Lock()
+        self._timeline_seq = 0
         self.busy_label: str = ""
         self.done_actions: set[str] = set()
         self.last_message: str = "Sẵn sàng thuyết trình 6 vai trò BrandHub."
@@ -1535,8 +1582,38 @@ class DemoBrowserController:
         self.ws_hub.broadcast(snap)
         return snap
 
+    def kill_all_chrome(self) -> dict[str, Any]:
+        """Tắt sạch mọi chrome.exe + chromedriver.exe trên máy (kể cả Chrome cá nhân)."""
+        # Huỷ bước đang chạy/xếp hàng trước; không giữ self.lock (bước kẹt đang giữ nó, Chrome chết thì nó tự nhả).
+        with self.state_lock:
+            self._timeline_seq += 1
+        STEP_CANCEL.set()
+        killed: list[str] = []
+        for image in ("chromedriver.exe", "chrome.exe"):
+            out = subprocess.run(
+                ["taskkill", "/F", "/T", "/IM", image],
+                capture_output=True, text=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+            )
+            if out.returncode == 0:
+                killed.append(image)
+        self.drivers.clear()
+        self.hwnds.clear()
+        msg = "Đã tắt toàn bộ Chrome. Bấm \"Mở 6 Vai trò\" để mở lại." if killed else "Không có Chrome nào đang chạy."
+        self.broadcast_state(busy=False, busy_label="", last_message=msg, last_error="")
+        return {"ok": True, "message": msg}
+
     def _run_timeline_item_async(self, item: dict[str, Any], direction: str) -> None:
+        with self.state_lock:
+            self._timeline_seq += 1
+            my_seq = self._timeline_seq
+
         def worker() -> None:
+            with self._timeline_run_lock:
+                if my_seq != self._timeline_seq:
+                    return  # Đã có lần bấm mới hơn -> bỏ bước cũ, tránh chạy sai thứ tự/dồn hàng.
+                run()
+
+        def run() -> None:
             action_id = item["action_id"]
             role = item["role"]
             kind = item.get("kind", "nav")
@@ -1574,6 +1651,18 @@ class DemoBrowserController:
 
     def handle_hud_command(self, cmd: dict[str, Any]) -> dict[str, Any]:
         ctype = str(cmd.get("type", "")).strip()
+
+        if ctype == "skip_step":
+            with self.state_lock:
+                self._timeline_seq += 1  # huỷ các bước đang xếp hàng
+            STEP_CANCEL.set()  # bước đang chạy dừng ở điểm chờ kế tiếp
+            snap = self.broadcast_state(
+                busy=False,
+                busy_label="",
+                last_message="Đã bỏ qua bước đang chạy. Thao tác tay hoặc bấm Tiếp.",
+                last_error="",
+            )
+            return {"ok": True, "state": snap}
 
         if ctype == "cancel_busy":
             snap = self.broadcast_state(busy=False, busy_label="", last_message="Đã hủy trạng thái chờ khẩn cấp.")
@@ -1683,8 +1772,10 @@ class DemoBrowserController:
                 self.timeline_index = new_idx
                 self.active_qa = None
                 item = DEMO_TIMELINE[new_idx]
-                # Trước/Tiếp chỉ đổi bước; chỉ ↻ (rerun) mới tự chạy Selenium. Không khóa banner ("Đang chạy...").
-                should_exec = ctype == "rerun"
+                # Tiếp/↻ tự chạy bước; Trước chỉ đưa cửa sổ/trang lên, không gõ lại (xử lý trong worker).
+                # Không khóa banner ("Đang chạy...") trong lúc chạy.
+                explicit_exec = cmd.get("execute")
+                should_exec = ctype == "rerun" or (self.auto_execute if explicit_exec is None else bool(explicit_exec))
 
             snap = self.broadcast_state(
                 busy=False,
@@ -1788,7 +1879,7 @@ class DemoBrowserController:
             for i in range(0, len(value), chunk_size):
                 piece = value[i : i + chunk_size]
                 driver.execute_script(current_js, element, piece)
-                time.sleep(0.015)
+                _demo_sleep(0.015)
             driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", element)
             return
 
@@ -1811,11 +1902,247 @@ class DemoBrowserController:
         """
         driver.execute_script(js, element, value, append)
 
+    CAPTION_SEC = "section[aria-labelledby='section-POST.CAPTION']"
+
+    def write_caption(self, driver: webdriver.Chrome, text: str, append: bool = False) -> bool:
+        """Ghi caption vào trình soạn TipTap của phần POST.CAPTION (từng đoạn để khán giả thấy chữ chạy)."""
+        end = time.time() + 12
+        while time.time() < end and not driver.execute_script(
+            "const pm=document.querySelector(arguments[0]+' .ProseMirror'); return !!(pm && pm.editor && pm.getAttribute('contenteditable')==='true');",
+            self.CAPTION_SEC,
+        ):
+            _demo_sleep(0.5)
+        ok = driver.execute_script(
+            """
+            const pm = document.querySelector(arguments[0] + ' .ProseMirror');
+            if (!pm || !pm.editor) return false;
+            pm.scrollIntoView({block: 'center'});
+            if (!arguments[1]) pm.editor.commands.clearContent(true);
+            return true;
+            """,
+            self.CAPTION_SEC,
+            append,
+        )
+        if not ok:
+            return False
+        paras = text.strip("\n").split("\n")
+        if append:
+            paras = [""] + paras
+        add_js = """
+            const ed = document.querySelector(arguments[0] + ' .ProseMirror').editor;
+            const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            ed.chain().focus('end').insertContent(arguments[1].map((t) => '<p>' + esc(t) + '</p>').join('')).run();
+        """
+        for i in range(0, len(paras), 2):
+            driver.execute_script(add_js, self.CAPTION_SEC, paras[i : i + 2])
+            _demo_sleep(0.18)
+        return True
+
+    def caption_header(self, driver: webdriver.Chrome) -> str:
+        return driver.execute_script(
+            "const s=document.querySelector(arguments[0]); return s ? s.querySelector('header').innerText.replace(/\\n/g,' | ') : '';",
+            self.CAPTION_SEC,
+        ) or ""
+
+    def click_button_text(self, driver: webdriver.Chrome, text: str, scope_css: str = "", label: str = "", timeout: float = 8.0, exact: bool = True) -> bool:
+        """Chờ nút có nhãn `text` (trong scope_css nếu có), tô sáng rồi bấm. Trả về True nếu đã bấm."""
+        end = time.time() + timeout
+        while time.time() < end:
+            btn = driver.execute_script(
+                """
+                const root = arguments[0] ? document.querySelector(arguments[0]) : document;
+                if (!root) return null;
+                return [...root.querySelectorAll('button')].find((b) => {
+                    const t = (b.innerText || '').trim();
+                    return !b.disabled && (arguments[2] ? t === arguments[1] : t.includes(arguments[1]));
+                }) || null;
+                """,
+                scope_css,
+                text,
+                exact,
+            )
+            if btn:
+                if label:
+                    self.highlight_element(driver, btn, label)
+                    _demo_sleep(0.5)
+                driver.execute_script("arguments[0].click();", btn)
+                return True
+            _demo_sleep(0.4)
+        return False
+
+    def submit_caption(self, driver: webdriver.Chrome, label: str) -> tuple[bool, str]:
+        """Bấm 'Nộp phần' của POST.CAPTION (tự lưu trước khi nộp) và chờ trạng thái phần đổi."""
+        if not self.click_button_text(driver, "Nộp phần", self.CAPTION_SEC, label):
+            return False, self.caption_header(driver)
+        end = time.time() + 15
+        while time.time() < end:
+            _demo_sleep(0.6)
+            head = self.caption_header(driver)
+            if "Nộp phần" not in head:
+                return True, head
+        return False, self.caption_header(driver)
+
+    # --- Định dạng caption trực quan (bôi đen -> bấm nút toolbar) ----------------
+    _FIND_RANGE_JS = """
+        const ed = document.querySelector(arguments[0] + ' .ProseMirror').editor;
+        let r = null;
+        ed.state.doc.descendants((node, pos) => {
+            if (r) return false;
+            if (node.isText) {
+                const i = node.text.indexOf(arguments[1]);
+                if (i >= 0) r = {from: pos + i, to: pos + i + arguments[1].length};
+            }
+        });
+        if (!r) return false;
+        ed.chain().focus().setTextSelection(r).run();
+        const sel = window.getSelection();
+        if (sel && sel.rangeCount) sel.getRangeAt(0).startContainer.parentElement?.scrollIntoView({block: 'center'});
+        return true;
+    """
+
+    def caption_select(self, driver: webdriver.Chrome, needle: str) -> bool:
+        ok = bool(driver.execute_script(self._FIND_RANGE_JS, self.CAPTION_SEC, needle))
+        _demo_sleep(0.6)
+        return ok
+
+    def caption_tool(self, driver: webdriver.Chrome, title: str, label: str) -> bool:
+        btn = driver.execute_script(
+            "return document.querySelector(arguments[0] + ' button[title=\"' + arguments[1] + '\"]');", self.CAPTION_SEC, title)
+        if not btn:
+            return False
+        self.highlight_element(driver, btn, label)
+        _demo_sleep(0.7)
+        driver.execute_script("arguments[0].click();", btn)
+        _demo_sleep(0.6)
+        return True
+
+    def caption_bulletize(self, driver: webdriver.Chrome, starts: list[str], label: str) -> bool:
+        """Bỏ '- ' gõ tay ở các dòng bắt đầu bằng `starts`, bôi đen cả khối rồi bấm nút danh sách gạch đầu dòng."""
+        ok = driver.execute_script(
+            """
+            const ed = document.querySelector(arguments[0] + ' .ProseMirror').editor;
+            const find = (s) => { let r = null; ed.state.doc.descendants((n, p) => {
+                if (r) return false;
+                if (n.type.name === 'paragraph') { const t = n.textContent.replace(/^- /, ''); if (t.startsWith(s)) r = {n, p}; return false; }
+            }); return r; };
+            for (const s of arguments[1]) {
+                const f = find(s); if (!f) return false;
+                if (f.n.textContent.startsWith('- ')) ed.chain().deleteRange({from: f.p + 1, to: f.p + 3}).run();
+            }
+            const a = find(arguments[1][0]), b = find(arguments[1][arguments[1].length - 1]);
+            ed.chain().focus().setTextSelection({from: a.p + 1, to: b.p + b.n.nodeSize - 1}).run();
+            return true;
+            """,
+            self.CAPTION_SEC, starts,
+        )
+        _demo_sleep(0.6)
+        return bool(ok) and self.caption_tool(driver, "Danh sách gạch đầu dòng", label)
+
+    def caption_font(self, driver: webdriver.Chrome, option_text: str) -> bool:
+        trigger = driver.execute_script(
+            "return document.querySelector(arguments[0] + ' [aria-label=\"Font chữ bài đăng\"]');", self.CAPTION_SEC)
+        return bool(trigger) and self.select_radix_combobox_by_label(driver, trigger, option_text)
+
+    def format_caption_v1(self, driver: webdriver.Chrome) -> list[str]:
+        done = []
+        title = "TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027"
+        if self.caption_select(driver, title) and self.caption_tool(driver, "In đậm (Bold)", "IN ĐẬM TIÊU ĐỀ"):
+            done.append("tiêu đề in đậm")
+            # Bộ Font Zantext đổi cả bài: chỉ mở cho khán giả xem 36 kiểu rồi đóng,
+            # áp kiểu Sans Đậm cho riêng tiêu đề qua ô Font chữ bài đăng.
+            if self.click_button_text(driver, "Font Zantext", self.CAPTION_SEC, "BỘ 36 FONT MXH (ZANTEXT)", 3, exact=False):
+                _demo_sleep(2.5)
+                self.click_button_text(driver, "Đóng", self.CAPTION_SEC, "", 2)
+                _demo_sleep(0.4)
+            if self.caption_select(driver, title) and self.caption_font(driver, "Montserrat (Sans Đậm)"):
+                done.append("font Sans Đậm Unicode cho tiêu đề")
+        if self.caption_select(driver, "Sau chuỗi Workshop phổ biến tiện ích học đường") and self.caption_tool(driver, "In nghiêng (Italic)", "IN NGHIÊNG CÂU DẪN"):
+            done.append("câu dẫn in nghiêng")
+        if self.caption_select(driver, "Học bổng Nguyễn Văn Đạo") and self.caption_tool(driver, "In đậm (Bold)", "IN ĐẬM Ý CHÍNH"):
+            done.append("in đậm 'Học bổng Nguyễn Văn Đạo'")
+        if self.caption_bulletize(driver, ["Môi trường học tập hiện đại", "Giáo trình chuẩn quốc tế", "Cổng nhận hồ sơ"], "DANH SÁCH GẠCH ĐẦU DÒNG"):
+            done.append("3 ý thành danh sách")
+        return done
+
+    def format_caption_v2(self, driver: webdriver.Chrome) -> list[str]:
+        done = []
+        if self.caption_select(driver, "Quyền lợi học bổng và lộ trình thực tập doanh nghiệp dành cho khóa K23 (2027):") \
+                and self.caption_tool(driver, "In đậm (Bold)", "IN ĐẬM TIÊU ĐỀ MỤC MỚI"):
+            done.append("tiêu đề mục in đậm")
+        if self.caption_bulletize(driver, ["Chương trình Học bổng Nguyễn Văn Đạo năm 2027", "Học kỳ doanh nghiệp"], "DANH SÁCH GẠCH ĐẦU DÒNG"):
+            done.append("2 ý thành danh sách")
+        return done
+
+    def fill_hashtags(self, driver: webdriver.Chrome, tags: list[str]) -> int:
+        """Xoá bộ hashtag cũ rồi gõ từng tag + Enter vào ô 'Nhập hashtag và nhấn Enter...'."""
+        self.click_button_text(driver, "Xoá tất cả", self.CAPTION_SEC, "XOÁ BỘ HASHTAG CŨ", 2)
+        _demo_sleep(0.6)
+        inp = driver.execute_script(
+            "return document.querySelector(arguments[0] + ' input[placeholder^=\"Nhập hashtag\"]');", self.CAPTION_SEC)
+        if not inp:
+            return 0
+        self.highlight_element(driver, inp, "NHẬP HASHTAG + ENTER")
+        for tag in tags:
+            # Không dùng click(): nhãn tô sáng của HUD nằm đè lên ô nhập
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center'}); arguments[0].focus();", inp)
+            for ch in tag:
+                inp.send_keys(ch)
+                time.sleep(0.03)
+            inp.send_keys(Keys.ENTER)
+            _demo_sleep(0.35)
+        return int(driver.execute_script(
+            "const s=document.querySelector(arguments[0]); const m=s && s.innerText.match(/Bộ Hashtags bài viết \\((\\d+)\\)/); return m ? +m[1] : 0;",
+            self.CAPTION_SEC) or 0)
+
+    API_BASE =os.environ.get("BRANDHUB_API_URL", "http://localhost:8080")
+
+    def api_call(self, method: str, path: str, body: Any = None, token: str = "", headers: dict | None = None) -> tuple[int, Any]:
+        """Gọi REST API của BrandHub từ phía tool (dùng cho bước hệ thống không có nút trên UI)."""
+        import urllib.error
+        import urllib.request
+        hdrs = {"Content-Type": "application/json", **(headers or {})}
+        if token:
+            hdrs["Authorization"] = "Bearer " + token
+        req = urllib.request.Request(
+            self.API_BASE + path, method=method,
+            data=json.dumps(body).encode() if body is not None else None, headers=hdrs,
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                raw = r.read()
+                return r.status, (json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raw = e.read()
+            try:
+                return e.code, json.loads(raw)
+            except Exception:
+                return e.code, raw[:300].decode("utf-8", "replace")
+
+    def api_token(self, role: str) -> str:
+        code, res = self.api_call("POST", "/api/v1/auth/login",
+                                  {"identifier": ROLE_PROFILES[role]["email"], "password": DEFAULT_PASSWORD})
+        return res["data"]["accessToken"] if code == 200 else ""
+
+    def sepay_api_key(self) -> str:
+        env = self.repo_root.parent / "brandhub-business-service" / ".env"
+        for line in env.read_text(encoding="utf-8").splitlines():
+            if line.startswith("SEPAY_WEBHOOK_API_KEY="):
+                return line.split("=", 1)[1].strip().strip('"')
+        return os.environ.get("SEPAY_WEBHOOK_API_KEY", "")
+
+    def set_input(self, driver: webdriver.Chrome, css: str, value: str) -> bool:
+        el = driver.find_elements(By.CSS_SELECTOR, css)
+        if not el:
+            return False
+        self.highlight_element(driver, el[0], "")
+        self.react_set_value(driver, el[0], value, append=False, human_typing=True)
+        return True
+
     def select_radix_combobox_by_label(self, driver: webdriver.Chrome, combobox_el, option_text: str) -> bool:
         try:
             self.highlight_element(driver, combobox_el, f"Chọn: {option_text}")
-            driver.execute_script("arguments[0].click();", combobox_el)
-            time.sleep(0.28)
+            driver.execute_script("arguments[0].dispatchEvent(new PointerEvent('pointerdown', {bubbles: true, button: 0, pointerType: 'mouse'}));", combobox_el)
+            _demo_sleep(0.35)
             opt_xpath = (
                 f"//*[@role='option' and (contains(normalize-space(.), '{option_text}') "
                 f"or .//*[contains(normalize-space(.), '{option_text}')])]"
@@ -1823,9 +2150,10 @@ class DemoBrowserController:
             options = driver.find_elements(By.XPATH, opt_xpath)
             if options:
                 driver.execute_script("arguments[0].click();", options[0])
-                time.sleep(0.22)
+                _demo_sleep(0.22)
                 return True
-            driver.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
+            # Đóng listbox bằng Escape không bubble (HUD bắt Escape ở window để bỏ qua bước)
+            driver.execute_script("const l=document.querySelector('[role=listbox]'); if (l) l.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: false}));")
         except Exception:
             pass
         return False
@@ -1991,7 +2319,7 @@ class DemoBrowserController:
         Không spawn python con: khi monitor được Repo Runner chạy nền, tiến trình con
         (Python bản Microsoft Store) chết lúc khởi tạo với 0xC0000142 (3221225794).
         """
-        buf = io.StringIO()
+        buf = _LiveLog(self)
         old_argv = sys.argv
         code = 0
         with self._prep_lock:
@@ -2009,12 +2337,48 @@ class DemoBrowserController:
         out = buf.getvalue()
         return subprocess.CompletedProcess([flag], code, stdout=out, stderr=out if code else "")
 
+    def _db_job_line(self, line: str) -> None:
+        line = line.rstrip()
+        if not line:
+            return
+        with self.state_lock:
+            job = self.db_job
+            job["lines"] = (job["lines"] + [line])[-200:]
+            if line.startswith("[STEP ") and "]" in line:
+                with contextlib.suppress(ValueError):
+                    i, n = line[6:line.index("]")].split("/")
+                    job["stage"], job["total"] = int(i), int(n)
+                    job["label"] = line[line.index("]") + 1:].strip()
+
+    def get_db_job(self) -> dict[str, Any]:
+        with self.state_lock:
+            return dict(self.db_job, lines=list(self.db_job["lines"]))
+
+    def start_db_job(self, kind: str) -> bool:
+        """Chạy Khôi phục ('reset') hoặc Xóa ('clean') ở luồng nền. False nếu đang có job chạy."""
+        with self.state_lock:
+            if self.db_job["running"]:
+                return False
+            self.db_job = {"kind": kind, "running": True, "stage": 0, "total": 0, "label": "Đang khởi động...", "lines": [], "ok": None, "message": "", "error": ""}
+
+        def work() -> None:
+            try:
+                res = self.reset_demo_database_data() if kind == "reset" else self.clean_demo_database_data()
+            except Exception as exc:
+                res = {"ok": False, "error": str(exc)}
+            with self.state_lock:
+                self.db_job.update(running=False, ok=bool(res.get("ok")), message=str(res.get("message", "")), error=str(res.get("error", "")))
+
+        threading.Thread(target=work, daemon=True).start()
+        return True
+
     def reset_demo_database_data(self) -> dict[str, Any]:
         if not self.prep_script_path.exists():
             return {"ok": False, "error": f"Không tìm thấy script: {self.prep_script_path}"}
         try:
             proc = self._run_prep_script("--apply")
             if proc.returncode == 0:
+                self._db_job_line("[INFO] Làm mới các cửa sổ Chrome đang mở...")
                 refreshed = self._sync_open_browsers_storage("reset")
                 extra = f" (đã làm mới {refreshed} cửa sổ Chrome)" if refreshed > 0 else ""
                 with self.state_lock:
@@ -2044,6 +2408,7 @@ class DemoBrowserController:
         try:
             proc = self._run_prep_script("--clean")
             if proc.returncode == 0:
+                self._db_job_line("[INFO] Làm mới các cửa sổ Chrome đang mở...")
                 refreshed = self._sync_open_browsers_storage("clean")
                 extra = f" và làm mới {refreshed} cửa sổ Chrome" if refreshed > 0 else ""
                 with self.state_lock:
@@ -2085,8 +2450,11 @@ class DemoBrowserController:
                     self.active_qa = QA_ITEM_BY_ACTION[action_id]
             self.broadcast_state(busy=True, busy_label=f"Đang chạy {action_id}...", last_error="")
 
+        STEP_CANCEL.clear()
         try:
             res = self._execute_step_action_impl(action_id, custom_payload)
+        except StepCancelled:
+            res = {"ok": False, "error": "", "skipped": True}
         except Exception as exc:
             # Lỗi bất ngờ không được để banner kẹt ở "Đang chạy..."
             res = {"ok": False, "error": f"Lỗi khi chạy {action_id}: {exc}"}
@@ -2133,6 +2501,312 @@ class DemoBrowserController:
         # ----------------------------------------------------------------------
         # B1: Owner trình bày Danh mục 7 Gói truyền thông đa lĩnh vực của SE08 Digital Agency
         # ----------------------------------------------------------------------
+        post_id = self.ids.get("post_id", "d7e00000-0000-4000-8000-000000000401")
+
+        # ----------------------------------------------------------------------
+        # M1: Owner tạo gói truyền thông mới (Tiếp: Điền -> Lưu)
+        # ----------------------------------------------------------------------
+        if action_id == "PKG_FILL":
+            res = self.login_role("Owner", f"/agency/{agency_id}/media-packages", "B1 - Tạo gói Tuyển sinh Thạc sĩ FPT 2027")
+            drv = self.drivers.get("Owner")
+            if not drv:
+                return {"ok": False, "role": "Owner", "error": "Chưa mở được cửa sổ Owner."}
+            try:
+                _demo_sleep(0.8)
+                if not drv.find_elements(By.ID, "package-field-name"):
+                    btn = drv.find_elements(By.CSS_SELECTOR, "[data-package-create]")
+                    if btn:
+                        self.highlight_element(drv, btn[0], "TẠO GÓI MỚI")
+                        _demo_sleep(0.4)
+                        drv.execute_script("arguments[0].click();", btn[0])
+                    _demo_sleep(1.0)
+                if not drv.find_elements(By.ID, "package-field-name"):
+                    return {"ok": False, "role": "Owner", "error": "Không mở được form Tạo gói."}
+                self.set_input(drv, "#package-field-name", payload.get("pkg_name", DEMO_TEXTS["pkg_name"]))
+                self.set_input(drv, "#package-field-budgetAmount", payload.get("pkg_budget", DEMO_TEXTS["pkg_budget"]))
+                self.set_input(drv, "#package-field-durationWeeks", payload.get("pkg_weeks", DEMO_TEXTS["pkg_weeks"]))
+                drv.execute_script(
+                    "const pm=document.querySelector('form .ProseMirror'); if (pm && pm.editor) { pm.scrollIntoView({block:'center'}); pm.editor.commands.setContent('<p>' + arguments[0] + '</p>'); }",
+                    payload.get("pkg_desc", DEMO_TEXTS["pkg_desc"]),
+                )
+                _demo_sleep(0.5)
+                for name, _qty in DEMO_PACKAGE_ITEMS:
+                    box = drv.execute_script(
+                        "return [...document.querySelectorAll('input[type=checkbox]')].find(x => (x.getAttribute('aria-label')||'').includes(arguments[0])) || null;",
+                        name,
+                    )
+                    if box and not box.is_selected():
+                        self.highlight_element(drv, box, "Hạng mục: " + name)
+                        drv.execute_script("arguments[0].click();", box)
+                        _demo_sleep(0.35)
+                drv.execute_script(
+                    """
+                    const q = Object.fromEntries(arguments[0]);
+                    const setv = (el, v) => { Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(el, v);
+                        el.dispatchEvent(new Event('input', {bubbles: true})); el.dispatchEvent(new Event('change', {bubbles: true})); };
+                    const ins = [...document.querySelectorAll('form input')];
+                    ins.forEach((e, i) => { if (e.type === 'text' && q[e.value] !== undefined) {
+                        const n = ins.slice(i + 1).find(x => x.type === 'number'); if (n) setv(n, String(q[e.value])); } });
+                    """,
+                    [[n, q] for n, q in DEMO_PACKAGE_ITEMS],
+                )
+                save = drv.execute_script("return [...document.querySelectorAll('button[type=submit]')].find(b => b.innerText.includes('Lưu gói')) || null;")
+                if save:
+                    self.highlight_element(drv, save, "ĐÃ ĐIỀN ĐỦ - BẤM TIẾP ĐỂ LƯU GÓI")
+                return {"ok": True, "role": "Owner", "message": "Đã điền gói Tuyển sinh Thạc sĩ FPT 2027 (85 triệu, 4 tuần, 5 hạng mục). Bấm Tiếp để lưu."}
+            except Exception as exc:
+                return {"ok": False, "role": "Owner", "error": f"Lỗi khi điền form gói: {exc}"}
+
+        if action_id == "PKG_SAVE":
+            drv = self.ensure_driver("Owner")
+            self.inject_role_Hud_badge(drv, "Owner", "B1 - Lưu gói mới")
+            if not self.click_button_text(drv, "Lưu gói", "", "LƯU GÓI", 5, exact=False):
+                return {"ok": False, "role": "Owner", "error": "Không thấy nút 'Lưu gói' (form chưa mở? bấm lại bước Điền gói)."}
+            end = time.time() + 12
+            while time.time() < end:
+                _demo_sleep(0.6)
+                if not drv.find_elements(By.ID, "package-field-name"):
+                    card = drv.execute_script(
+                        "return [...document.querySelectorAll('main *')].find(e => e.childElementCount === 0 && (e.innerText||'').includes(arguments[0])) || null;",
+                        DEMO_TEXTS["pkg_name"],
+                    )
+                    if card:
+                        self.highlight_element(drv, card, "GÓI MỚI ĐÃ TẠO")
+                    return {"ok": True, "role": "Owner", "message": "Đã tạo gói Tuyển sinh Thạc sĩ FPT 2027 trong danh mục của SE08 Digital."}
+            err = drv.execute_script("return [...document.querySelectorAll('[role=alert]')].map(e => e.innerText).join(' | ')") or ""
+            return {"ok": False, "role": "Owner", "error": "Chưa lưu được gói: " + err[:200]}
+
+        # ----------------------------------------------------------------------
+        # M2: AI caption (Tiếp: Điền form AI -> Tạo + Chèn)
+        # ----------------------------------------------------------------------
+        if action_id == "AI_FILL":
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "B4 - Điền form AI tạo caption")
+            dlg_css = "[role='dialog']"
+            try:
+                if not drv.find_elements(By.CSS_SELECTOR, dlg_css):
+                    if not self.click_button_text(drv, "AI tạo 3 phương án caption", "", "MỞ AI TẠO CAPTION", 3):
+                        btn = drv.find_elements(By.CSS_SELECTOR, "button[aria-label='Mở AI Generation Panel']")
+                        if btn:
+                            drv.execute_script("arguments[0].click();", btn[0])
+                            _demo_sleep(0.6)
+                        self.click_button_text(drv, "AI tạo 3 phương án caption", "", "MỞ AI TẠO CAPTION", 4)
+                    _demo_sleep(0.8)
+                if not drv.find_elements(By.CSS_SELECTOR, dlg_css):
+                    return {"ok": False, "role": "Creator", "error": "Không mở được hộp AI tạo caption (đang ở /editor chưa?)."}
+                dlg = drv.find_elements(By.CSS_SELECTOR, dlg_css)[-1]
+                areas = dlg.find_elements(By.TAG_NAME, "textarea")
+                if areas:
+                    self.highlight_element(drv, areas[0], "1/5: Chủ đề bài viết")
+                    self.react_set_value(drv, areas[0], payload.get("ai_topic", DEMO_TEXTS["ai_topic"])[:1000], append=False, human_typing=True)
+                self.click_button_text(drv, "Thông báo", dlg_css, "2/5: Mục tiêu: Thông báo", 2)
+                combos = dlg.find_elements(By.CSS_SELECTOR, "[role='combobox']")
+                if len(combos) >= 1:
+                    self.select_radix_combobox_by_label(drv, combos[0], "Chuyên nghiệp")
+                if len(combos) >= 2:
+                    self.select_radix_combobox_by_label(drv, combos[1], "Facebook")
+                self.click_button_text(drv, "Vừa", dlg_css, "5/5: Độ dài: Vừa", 2)
+                gen = drv.execute_script("return [...document.querySelectorAll(\"[role='dialog'] button\")].find(b => b.innerText.trim() === 'Tạo caption') || null;")
+                if gen:
+                    self.highlight_element(drv, gen, "BẤM TIẾP ĐỂ GỌI GEMINI")
+                return {"ok": True, "role": "Creator", "message": "Đã điền 5 trường AI: Chủ đề, Thông báo, Chuyên nghiệp, Facebook, Vừa. Bấm Tiếp để tạo caption."}
+            except Exception as exc:
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi điền form AI: {exc}"}
+
+        if action_id == "AI_GENERATE":
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "B4 - Gemini tạo 3 phương án & chèn vào bài")
+            dlg_css = "[role='dialog']"
+            fallback = payload.get("caption_v1_clean", DEMO_TEXTS["caption_v1_clean"])
+            try:
+                inserted = False
+                if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
+                    inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 45, exact=False)
+                    _demo_sleep(1.0)
+                if not inserted:
+                    # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
+                    self.click_button_text(drv, "Close", dlg_css, "", 2)
+                    _demo_sleep(0.5)
+                    if not self.write_caption(drv, fallback, append=False):
+                        return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION)."}
+                    return {"ok": True, "role": "Creator", "message": "AI chưa phản hồi kịp, đã điền caption dự phòng để demo chạy tiếp."}
+                return {"ok": True, "role": "Creator", "message": "Gemini đã tạo 3 phương án caption; đã chèn phương án 1 vào phần Nội dung bài viết."}
+            except Exception as exc:
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi gọi AI tạo caption: {exc}"}
+
+        # ----------------------------------------------------------------------
+        # M2: Nộp v1 / v2 (Tiếp: Điền -> Nộp phần)
+        # ----------------------------------------------------------------------
+        if action_id in ("V1_FILL", "V2_FILL"):
+            drv = self.ensure_driver("Creator")
+            v1 = action_id == "V1_FILL"
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - Điền bản sạch v1" if v1 else "B8 - Bổ sung Học bổng 50%-100% & OJT (v2)")
+            key = "caption_v1_clean" if v1 else "caption_v2_addition"
+            text = payload.get(key, DEMO_TEXTS[key])
+            if not v1:
+                drv.refresh()
+                _demo_sleep(2.0)
+            if not self.write_caption(drv, text, append=not v1):
+                return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION) hoặc phần đang bị khóa."}
+            if v1:
+                return {"ok": True, "role": "Creator", "message": "Đã điền bản sạch v1. Bấm Tiếp để định dạng chữ."}
+            fmt = self.format_caption_v2(drv)
+            btn = drv.execute_script("return [...document.querySelectorAll(arguments[0] + ' button')].find(b => b.innerText.trim() === 'Nộp phần') || null;", self.CAPTION_SEC)
+            if btn:
+                self.highlight_element(drv, btn, "BẤM TIẾP ĐỂ NỘP PHẦN")
+            return {"ok": True, "role": "Creator", "message": "Đã bổ sung 3 mức Học bổng 2027 & kỳ OJT vào bản v2 (" + (", ".join(fmt) or "chưa định dạng được") + "). Bấm Tiếp để nộp."}
+
+        if action_id == "V1_FORMAT":
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - Định dạng chữ: in đậm, in nghiêng, font Unicode, danh sách")
+            fmt = self.format_caption_v1(drv)
+            if not fmt:
+                return {"ok": False, "role": "Creator", "error": "Không định dạng được caption (không tìm thấy đoạn chữ hoặc nút toolbar)."}
+            return {"ok": True, "role": "Creator", "message": "Đã định dạng: " + ", ".join(fmt) + ". Bấm Tiếp để nhập hashtag."}
+
+        if action_id == "V1_HASHTAGS":
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - Nhập bộ hashtag bài viết")
+            n = self.fill_hashtags(drv, DEMO_HASHTAGS)
+            btn = drv.execute_script("return [...document.querySelectorAll(arguments[0] + ' button')].find(b => b.innerText.trim() === 'Nộp phần') || null;", self.CAPTION_SEC)
+            if btn:
+                self.highlight_element(drv, btn, "BẤM TIẾP ĐỂ NỘP PHẦN")
+            if n < len(DEMO_HASHTAGS):
+                return {"ok": False, "role": "Creator", "error": f"Mới nhập được {n}/{len(DEMO_HASHTAGS)} hashtag."}
+            return {"ok": True, "role": "Creator", "message": f"Đã nhập {n} hashtag vào Bộ Hashtags bài viết. Bấm Tiếp để nộp."}
+
+        if action_id in ("V1_SUBMIT", "V2_SUBMIT"):
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "Nộp phần Nội dung bài viết")
+            ok, head = self.submit_caption(drv, "TỰ ĐỘNG NỘP PHẦN NỘI DUNG")
+            if not ok:
+                return {"ok": False, "role": "Creator", "error": f"Chưa nộp được phần Nội dung: {head}"}
+            return {"ok": True, "role": "Creator", "message": f"Đã nộp phần Nội dung bài viết ({head})."}
+
+        # ----------------------------------------------------------------------
+        # M2: Manager duyệt v1; Client trả lại (Tiếp: Điền góp ý -> Trả lại)
+        # ----------------------------------------------------------------------
+        if action_id == "MGR_APPROVE_V1":
+            drv = self.ensure_driver("Manager")
+            self.inject_role_Hud_badge(drv, "Manager", "B6 - Manager duyệt nội bộ v1")
+            card = "section[data-section-key='POST.CAPTION']"
+            if not self.click_button_text(drv, "Duyệt", card, "MANAGER: DUYỆT PHẦN NỘI DUNG (V1)", 8):
+                return {"ok": False, "role": "Manager", "error": "Không thấy nút 'Duyệt' ở phần Nội dung (Creator đã nộp v1 chưa?)."}
+            _demo_sleep(1.5)
+            return {"ok": True, "role": "Manager", "message": "Manager đã duyệt nội bộ phần Nội dung v1, chuyển sang Ban Tuyển sinh ĐH FPT."}
+
+        if action_id == "CLIENT_FILL_NOTE":
+            drv = self.ensure_driver("Client")
+            self.inject_role_Hud_badge(drv, "Client", "B7 - Điền góp ý Học bổng 2027 & OJT")
+            card = "section[data-section-key='POST.CAPTION']"
+            if not drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea"):
+                if not self.click_button_text(drv, "Trả lại", card, "CLIENT: TRẢ LẠI PHẦN NỘI DUNG", 8):
+                    return {"ok": False, "role": "Client", "error": "Không thấy nút 'Trả lại' ở phần Nội dung (Manager đã duyệt v1 chưa?)."}
+                _demo_sleep(0.7)
+            areas = drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea")
+            if not areas:
+                return {"ok": False, "role": "Client", "error": "Không mở được hộp ghi chú trả lại."}
+            self.highlight_element(drv, areas[0], "Góp ý của Ban Tuyển sinh ĐH FPT")
+            self.react_set_value(drv, areas[0], payload.get("client_reject_note", DEMO_TEXTS["client_reject_note"]), append=False, human_typing=True)
+            return {"ok": True, "role": "Client", "message": "Đã điền góp ý bổ sung 3 mức Học bổng 2027 & kỳ OJT. Bấm Tiếp để trả lại."}
+
+        if action_id == "CLIENT_RETURN":
+            drv = self.ensure_driver("Client")
+            self.inject_role_Hud_badge(drv, "Client", "B7 - Xác nhận Trả lại cho Creator")
+            if not self.click_button_text(drv, "Trả lại", "[role='dialog']", "XÁC NHẬN TRẢ LẠI CHO CREATOR", 4):
+                return {"ok": False, "role": "Client", "error": "Không thấy hộp xác nhận 'Trả lại' (bấm lại bước Điền góp ý)."}
+            _demo_sleep(1.5)
+            return {"ok": True, "role": "Client", "message": "Ban Tuyển sinh ĐH FPT đã trả lại riêng phần Nội dung; Hình ảnh và Kênh đăng giữ nguyên trạng thái đã duyệt."}
+
+        # ----------------------------------------------------------------------
+        # M3: Xuất bản bài vừa duyệt (Tiếp: Mở bài -> Đăng ngay)
+        # ----------------------------------------------------------------------
+        if action_id == "PUBLISH_OPEN":
+            res = self.login_role("Creator", f"/workspaces/{ws_id}/posts/{post_id}", "B10 - Bài [Tuần 3] đã duyệt, sẵn sàng xuất bản")
+            return {**res, "message": "Đã mở chi tiết bài [Tuần 3 - Bài trọng điểm] (đã duyệt) trên 4 nền tảng. Bấm Tiếp để đăng ngay."}
+
+        if action_id == "PUBLISH_NOW":
+            drv = self.ensure_driver("Creator")
+            self.inject_role_Hud_badge(drv, "Creator", "B10 - Đăng ngay lên Facebook, Instagram, TikTok, Threads")
+            token = self.api_token("Creator")
+            if not token:
+                return {"ok": False, "role": "Creator", "error": "Không đăng nhập API được cho Creator."}
+            code, res = self.api_call("POST", f"/api/v1/workspaces/{ws_id}/posts/{post_id}/publish", token=token)
+            if code >= 300:
+                err = res.get("error", {}).get("message") if isinstance(res, dict) else res
+                return {"ok": False, "role": "Creator", "error": f"Hệ thống từ chối đăng ({code}): {err}"}
+            statuses = ""
+            end = time.time() + 40
+            while time.time() < end:
+                _demo_sleep(3.0)
+                drv.refresh()
+                _demo_sleep(2.0)
+                statuses = drv.execute_script(
+                    "return [...document.querySelectorAll('main button')].map(b => b.innerText.replace(/\\n/g, ' ')).filter(t => /^(Facebook|Instagram|TikTok|Threads) /.test(t)).slice(0, 4).join(' · ');"
+                ) or ""
+                if statuses and "Đang xử lý" not in statuses:
+                    break
+            return {"ok": True, "role": "Creator", "message": "Đã gửi lệnh đăng ngay. Kết quả: " + (statuses or "đang xử lý")}
+
+        # ----------------------------------------------------------------------
+        # M4: SePay (Tiếp: Chọn gói -> VietQR; Tiếp: SePay xác nhận)
+        # ----------------------------------------------------------------------
+        if action_id == "PLAN_CHECKOUT":
+            res = self.login_role("Owner", "/subscription/plans", "B11 - Gói Agency Plus · 1 tháng qua SePay (VietQR)")
+            drv = self.drivers.get("Owner")
+            if not drv:
+                return {"ok": False, "role": "Owner", "error": "Chưa mở được cửa sổ Owner."}
+            _demo_sleep(1.0)
+            self.click_button_text(drv, "1 tháng", "main", "CHU KỲ: 1 THÁNG", 4)
+            _demo_sleep(0.5)
+            if not (self.click_button_text(drv, "Nâng cấp", "main", "OWNER: NÂNG CẤP AGENCY PLUS", 3, exact=False)
+                    or self.click_button_text(drv, "Gia hạn", "main", "OWNER: GIA HẠN AGENCY PLUS", 3, exact=False)):
+                return {"ok": False, "role": "Owner", "error": "Không thấy nút Nâng cấp/Gia hạn gói Plus."}
+            end = time.time() + 10
+            code, txt = "", ""
+            while time.time() < end and not code:
+                _demo_sleep(0.6)
+                txt = drv.execute_script("const d=[...document.querySelectorAll('[role=dialog]')].pop(); return d ? d.innerText : '';") or ""
+                m = re.search(r"BH[0-9A-F]{20}", txt)
+                code = m.group() if m else ""
+            if not code:
+                return {"ok": False, "role": "Owner", "error": "Chưa hiện mã VietQR thanh toán."}
+            amount = re.search(r"([\d.]+)\s*VND", txt)
+            self.sepay_order = {"code": code, "amount": int(amount.group(1).replace(".", "")) if amount else 990000}
+            qr = drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] img")
+            if qr:
+                self.highlight_element(drv, qr[0], "MÃ VIETQR SEPAY - BẤM TIẾP ĐỂ XÁC NHẬN THANH TOÁN")
+            return {"ok": True, "role": "Owner", "message": f"Đã tạo đơn Agency Plus 1 tháng, mã chuyển khoản {code}. Bấm Tiếp để SePay xác nhận."}
+
+        if action_id == "SEPAY_PAY":
+            drv = self.ensure_driver("Owner")
+            order = getattr(self, "sepay_order", None)
+            if not order:
+                return {"ok": False, "role": "Owner", "error": "Chưa có đơn thanh toán (chạy bước Chọn gói trước)."}
+            import datetime
+            import uuid
+            event = {
+                "id": "SIM-" + uuid.uuid4().hex[:12],
+                "transactionDate": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "code": order["code"], "content": order["code"] + " BrandHub Plus", "transferType": "in",
+                "transferAmount": order["amount"], "referenceCode": "SIMREF" + uuid.uuid4().hex[:8].upper(), "gateway": "LOCALSIM",
+            }
+            code, res = self.api_call("POST", "/api/v1/billing/webhooks/sepay", event, headers={"Authorization": "Apikey " + self.sepay_api_key()})
+            if code >= 300:
+                return {"ok": False, "role": "Owner", "error": f"Webhook SePay bị từ chối ({code}): {res}"}
+            status = ""
+            end = time.time() + 15
+            while time.time() < end:
+                _demo_sleep(1.0)
+                status = drv.execute_script("const d=[...document.querySelectorAll('[role=dialog]')].pop(); return d ? d.innerText : '';") or ""
+                if "Đang chờ" not in status:
+                    break
+            box = drv.find_elements(By.CSS_SELECTOR, "[role='dialog']")
+            if box:
+                self.highlight_element(drv, box[-1], "SEPAY ĐÃ XÁC NHẬN GIAO DỊCH")
+            line = next((l for l in status.splitlines() if "Đã ghi nhận" in l or "thành công" in l), "")
+            return {"ok": True, "role": "Owner", "message": "SePay đã xác nhận chuyển khoản. " + line}
+
         if action_id == "B1_NAV":
             res = self.login_role(
                 "Owner",
@@ -2224,7 +2898,7 @@ class DemoBrowserController:
             )
             drv = self.drivers.get("Manager")
             if drv:
-                time.sleep(0.8)
+                _demo_sleep(0.8)
                 try:
                     step1_btns = drv.find_elements(
                         By.XPATH,
@@ -2232,7 +2906,7 @@ class DemoBrowserController:
                     )
                     if step1_btns:
                         drv.execute_script("arguments[0].click();", step1_btns[0])
-                        time.sleep(0.4)
+                        _demo_sleep(0.4)
                     brief_cards = drv.find_elements(
                         By.XPATH,
                         "//*[contains(text(), 'Chiến lược') or contains(text(), 'Tuần 1') or contains(text(), 'Master Brief')]",
@@ -2254,7 +2928,7 @@ class DemoBrowserController:
             )
             drv = self.drivers.get("Manager")
             if drv:
-                time.sleep(0.8)
+                _demo_sleep(0.8)
                 try:
                     step2_btns = drv.find_elements(
                         By.XPATH,
@@ -2262,7 +2936,7 @@ class DemoBrowserController:
                     )
                     if step2_btns:
                         drv.execute_script("arguments[0].click();", step2_btns[0])
-                        time.sleep(0.5)
+                        _demo_sleep(0.5)
                     oos_btns = drv.find_elements(
                         By.XPATH,
                         "//button[contains(., 'phát sinh') or contains(., 'Thêm công việc')]",
@@ -2289,7 +2963,7 @@ class DemoBrowserController:
                     )
                     if oos_btns:
                         drv.execute_script("arguments[0].click();", oos_btns[0])
-                        time.sleep(0.6)
+                        _demo_sleep(0.6)
                         dialogs = drv.find_elements(By.CSS_SELECTOR, "[role='dialog']")
 
                 if dialogs:
@@ -2300,14 +2974,14 @@ class DemoBrowserController:
                         self.highlight_element(drv, text_inputs[0], "1. Tên công việc phát sinh")
                         self.react_set_value(drv, text_inputs[0], title_val, append=False, human_typing=True)
                         filled.append("Tên công việc phát sinh")
-                        time.sleep(0.25)
+                        _demo_sleep(0.25)
 
                     dt_inputs = dlg.find_elements(By.CSS_SELECTOR, "input[type='datetime-local']")
                     if dt_inputs:
                         self.highlight_element(drv, dt_inputs[0], "2. Hạn xuất bản dự kiến")
                         self.react_set_value(drv, dt_inputs[0], "2027-05-12T10:00", append=False, human_typing=False)
                         filled.append("Hạn xuất bản")
-                        time.sleep(0.2)
+                        _demo_sleep(0.2)
 
                     areas = dlg.find_elements(By.TAG_NAME, "textarea")
                     if len(areas) >= 1:
@@ -2315,7 +2989,7 @@ class DemoBrowserController:
                         self.highlight_element(drv, areas[0], "3. Mô tả công việc")
                         self.react_set_value(drv, areas[0], desc_val, append=False, human_typing=True)
                         filled.append("Mô tả công việc")
-                        time.sleep(0.25)
+                        _demo_sleep(0.25)
                     if len(areas) >= 2:
                         crit_val = payload.get("out_of_scope_criteria", DEMO_TEXTS["out_of_scope_criteria"])
                         self.highlight_element(drv, areas[1], "4. Tiêu chí nghiệm thu")
@@ -2345,7 +3019,7 @@ class DemoBrowserController:
             )
             drv = self.drivers.get("Manager")
             if drv:
-                time.sleep(0.8)
+                _demo_sleep(0.8)
                 try:
                     step3_btns = drv.find_elements(
                         By.XPATH,
@@ -2353,7 +3027,7 @@ class DemoBrowserController:
                     )
                     if step3_btns:
                         drv.execute_script("arguments[0].click();", step3_btns[0])
-                        time.sleep(0.5)
+                        _demo_sleep(0.5)
                     deploy_btns = drv.find_elements(
                         By.XPATH,
                         "//button[contains(., 'Triển khai') or contains(., 'Deploy')]",
@@ -2378,7 +3052,7 @@ class DemoBrowserController:
             )
             drv = self.drivers.get("Manager")
             if drv:
-                time.sleep(1.0)
+                _demo_sleep(1.0)
                 try:
                     rows = drv.find_elements(
                         By.XPATH,
@@ -2387,7 +3061,7 @@ class DemoBrowserController:
                     if rows:
                         self.highlight_element(drv, rows[0], "BẤM ĐỂ MỞ BÀI TRỌNG ĐIỂM TUẦN 3 & SUBTASKS")
                         drv.execute_script("arguments[0].click();", rows[0])
-                        time.sleep(0.7)
+                        _demo_sleep(0.7)
                         subtask_headings = drv.find_elements(
                             By.XPATH,
                             "//*[contains(text(), 'Công việc con') or contains(text(), 'Nghiên cứu') or contains(text(), 'Viết content')]",
@@ -2413,7 +3087,7 @@ class DemoBrowserController:
                 areas = drv.find_elements(By.TAG_NAME, "textarea")
                 if not areas and edit_btns:
                     drv.execute_script("arguments[0].click();", edit_btns[0])
-                    time.sleep(0.5)
+                    _demo_sleep(0.5)
                     areas = drv.find_elements(By.TAG_NAME, "textarea")
 
                 if len(areas) >= 1:
@@ -2426,7 +3100,7 @@ class DemoBrowserController:
                         human_typing=True,
                     )
                     filled.append("Mô tả công việc con")
-                    time.sleep(0.25)
+                    _demo_sleep(0.25)
                 if len(areas) >= 2:
                     self.highlight_element(drv, areas[1], "2. Tiêu chí nghiệm thu Subtask")
                     self.react_set_value(
@@ -2479,7 +3153,7 @@ class DemoBrowserController:
             )
             drv = self.drivers.get("Creator")
             if drv:
-                time.sleep(1.0)
+                _demo_sleep(1.0)
                 try:
                     cards = drv.find_elements(
                         By.XPATH,
@@ -2487,7 +3161,7 @@ class DemoBrowserController:
                     )
                     if cards:
                         drv.execute_script("arguments[0].click();", cards[0])
-                        time.sleep(0.7)
+                        _demo_sleep(0.7)
                     action_btns = drv.find_elements(
                         By.XPATH,
                         "//button[contains(., 'Bắt đầu làm') or contains(., 'Soạn bài viết') or contains(., 'Mở trình soạn thảo')]",
@@ -2508,11 +3182,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/editor?taskId={task_id}",
-                "B6.1 - Trình soạn thảo hợp nhất (/editor)",
+                "B5 - Trình soạn thảo hợp nhất (/editor)",
             )
             drv = self.drivers.get("Creator")
             if drv:
-                time.sleep(1.1)
+                _demo_sleep(1.1)
                 try:
                     caption_sec = drv.find_elements(
                         By.CSS_SELECTOR,
@@ -2531,13 +3205,13 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/editor?taskId={task_id}",
-                "B6.2 - Bắn trực tiếp ảnh Key Visual Gemini Nano Banana lên bài viết",
+                "B5 - Bắn trực tiếp ảnh Key Visual Gemini Nano Banana lên bài viết",
             )
             drv = self.drivers.get("Creator")
             if not drv:
                 return {"ok": False, "role": "Creator", "error": "Chưa khởi tạo được trình duyệt Creator."}
 
-            time.sleep(1.0)
+            _demo_sleep(1.0)
             try:
                 media_secs = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.MEDIA']")
                 media_scope = media_secs[0] if media_secs else drv
@@ -2555,7 +3229,7 @@ class DemoBrowserController:
                 if repo_tabs:
                     self.highlight_element(drv, repo_tabs[0], "1/2: MỞ KHO TÀI NGUYÊN KEY VISUAL GEMINI")
                     drv.execute_script("arguments[0].click();", repo_tabs[0])
-                    time.sleep(0.9)
+                    _demo_sleep(0.9)
 
                 # Chọn ảnh Key Visual Gemini Tuần 3 (Open Day hoặc Workshop THPT) trong Kho tài nguyên
                 kv_cards = media_scope.find_elements(
@@ -2573,54 +3247,31 @@ class DemoBrowserController:
 
                 if kv_cards:
                     target_card = kv_cards[0]
-                    self.highlight_element(drv, target_card, "2/2: ĐÃ BẮN ẢNH KEY VISUAL GEMINI LÊN KHUNG BÀI ĐĂNG!")
-                    drv.execute_script("arguments[0].click();", target_card)
-                    time.sleep(0.6)
-
-                    # Nếu phần POST.MEDIA có nút Lưu thay đổi, làm nổi bật để người thuyết trình thấy rõ
-                    save_media_btns = media_scope.find_elements(
-                        By.XPATH,
-                        ".//button[contains(., 'Lưu') or contains(., 'Save')]",
-                    )
-                    if save_media_btns:
-                        self.highlight_element(drv, save_media_btns[0], "ẢNH ĐÃ LÊN BÀI! (TÙY CHỌN BẤM LƯU NẾU MUỐN CẬP NHẬT MEDIA)")
-
+                    # Không thay ảnh: phần Hình ảnh đã Client duyệt, thay sẽ kéo về nháp
+                    self.highlight_element(drv, target_card, "KEY VISUAL GEMINI TRONG KHO TÀI NGUYÊN")
+                    _demo_sleep(0.6)
                     return {
                         "ok": True,
                         "role": "Creator",
-                        "message": "Đã bắn trực tiếp ảnh Key Visual Gemini (KV_Tuan3_FPTU_OpenDay_2027) từ Kho tài nguyên lên bài viết và khung xem trước 4 nền tảng!",
+                        "message": "Đã mở Kho tài nguyên và tô sáng bộ Key Visual Gemini Tuần 3 (ảnh trên bài đã được Client duyệt).",
                     }
 
-                # Dự phòng nếu đang ở chế độ input[type='file']
-                file_inputs = media_scope.find_elements(By.CSS_SELECTOR, "input[type='file']")
-                local_kv = (
-                    self.repo_root.parent
-                    / "brandhub-web"
-                    / "public"
-                    / "demo-assets"
-                    / "fptu-2027"
-                    / "fptu-week3-openday-kol.jpg"
-                )
-                if file_inputs and local_kv.exists():
-                    drv.execute_script("arguments[0].classList.remove('hidden'); arguments[0].style.display='block';", file_inputs[0])
-                    file_inputs[0].send_keys(str(local_kv))
-                    return {
-                        "ok": True,
-                        "role": "Creator",
-                        "message": f"Đã đẩy trực tiếp file ảnh {local_kv.name} vào khung tải ảnh bài viết.",
-                    }
+                # Không tải ảnh mới: phần Hình ảnh đã Client duyệt. Chỉ tô sáng ảnh KV đang gắn.
+                cur = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.MEDIA'] img")
+                if cur:
+                    self.highlight_element(drv, cur[0], "KEY VISUAL GEMINI ĐANG GẮN (CLIENT ĐÃ DUYỆT)")
 
                 return {
                     "ok": True,
                     "role": "Creator",
-                    "message": "Đã mở khu vực Hình ảnh (POST.MEDIA) trên Trình soạn thảo với bộ Key Visual Gemini sẵn sàng.",
+                    "message": "Đã mở phần Hình ảnh: Key Visual Gemini Tuần 3 đang gắn trên bài (Client đã duyệt).",
                 }
             except Exception as exc:
                 return {"ok": False, "role": "Creator", "error": f"Lỗi khi bắn ảnh Key Visual lên bài viết: {exc}"}
 
         if action_id == "B6_TOGGLE_DOCS_MODE":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B6.3 - Chuyển đổi Chế độ Nhanh / Chế độ Tài liệu")
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - Chuyển đổi Chế độ Nhanh / Chế độ Tài liệu")
             try:
                 mode_btns = drv.find_elements(
                     By.XPATH,
@@ -2645,7 +3296,7 @@ class DemoBrowserController:
 
         if action_id == "B6_FILL_BRIEF_SECTION":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B6 - Điền phần Nghiên cứu & Nguồn dẫn (POST.BRIEF)")
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - Điền phần Nghiên cứu & Nguồn dẫn (POST.BRIEF)")
             filled = []
             try:
                 brief_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.BRIEF']")
@@ -2656,7 +3307,7 @@ class DemoBrowserController:
                     self.highlight_element(drv, areas[0], "1. Ghi chú nghiên cứu (POST.BRIEF)")
                     self.react_set_value(drv, areas[0], notes_val, append=False, human_typing=True)
                     filled.append("Ghi chú nghiên cứu (POST.BRIEF)")
-                    time.sleep(0.25)
+                    _demo_sleep(0.25)
 
                 url_inputs = container.find_elements(By.CSS_SELECTOR, "input[type='url']")
                 if url_inputs:
@@ -2676,135 +3327,96 @@ class DemoBrowserController:
 
         if action_id == "B6_SEQ_FILL_AI":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B6.4 - Điền tuần tự 5 trường AI Tạo Caption")
-            topic_text = payload.get("ai_topic", DEMO_TEXTS["ai_topic"])
-            tone_label = payload.get("ai_tone_label", DEMO_TEXTS["ai_tone_label"])
-            platform_label = payload.get("ai_platform_label", DEMO_TEXTS["ai_platform_label"])
-            language_label = payload.get("ai_language_label", DEMO_TEXTS["ai_language_label"])
-            hashtag_count = str(payload.get("ai_hashtag_count", DEMO_TEXTS["ai_hashtag_count"]))
-
-            filled_steps: list[str] = []
+            self.inject_role_Hud_badge(drv, "Creator", "B5 - AI tạo caption (Gemini) & chèn vào bài")
+            topic_text = payload.get("ai_topic", DEMO_TEXTS["ai_topic"])[:1000]
+            fallback = payload.get("caption_v1_clean", DEMO_TEXTS["caption_v1_clean"])
+            dlg_css = "[role='dialog']"
             try:
-                dialogs = drv.find_elements(By.CSS_SELECTOR, "[role='dialog']")
-                if not dialogs:
-                    ai_btns = drv.find_elements(
-                        By.XPATH,
-                        "//button[contains(., 'Tạo bằng AI') or contains(., 'AI') or contains(., 'Gợi ý')]",
-                    )
-                    if ai_btns:
-                        drv.execute_script("arguments[0].click();", ai_btns[0])
-                        time.sleep(0.6)
-                        dialogs = drv.find_elements(By.CSS_SELECTOR, "[role='dialog']")
-
-                container = dialogs[-1] if dialogs else drv
-
-                topic_areas = container.find_elements(By.TAG_NAME, "textarea")
-                if topic_areas:
-                    self.highlight_element(drv, topic_areas[0], "1/5: Nhập Chủ đề bài viết (Topic)")
-                    self.react_set_value(drv, topic_areas[0], topic_text, append=False, human_typing=True)
-                    filled_steps.append("Chủ đề (Topic)")
-                    time.sleep(0.3)
-
-                combos = container.find_elements(By.CSS_SELECTOR, "button[role='combobox']")
-                if len(combos) >= 1:
-                    self.select_radix_combobox_by_label(drv, combos[0], tone_label)
-                    filled_steps.append(f"Giọng điệu ({tone_label})")
-                    time.sleep(0.22)
-                if len(combos) >= 2:
-                    self.select_radix_combobox_by_label(drv, combos[1], platform_label)
-                    filled_steps.append(f"Nền tảng ({platform_label})")
-                    time.sleep(0.22)
-                if len(combos) >= 3:
-                    self.select_radix_combobox_by_label(drv, combos[2], language_label)
-                    filled_steps.append(f"Ngôn ngữ ({language_label})")
-                    time.sleep(0.22)
-
-                num_inputs = container.find_elements(By.CSS_SELECTOR, "input[type='number']")
-                if num_inputs:
-                    self.highlight_element(drv, num_inputs[0], f"5/5: Số lượng Hashtag ({hashtag_count})")
-                    self.react_set_value(drv, num_inputs[0], hashtag_count, append=False, human_typing=False)
-                    filled_steps.append(f"Số lượng Hashtag ({hashtag_count})")
-                    time.sleep(0.25)
-
-                gen_btns = container.find_elements(
-                    By.XPATH,
-                    ".//button[contains(., 'Tạo gợi ý') or contains(., 'Tạo nội dung') or contains(., 'Generate')]",
-                )
-                if gen_btns:
-                    self.highlight_element(drv, gen_btns[0], "BẤM 'TẠO GỢI Ý' ĐỂ GỌI GEMINI AI")
-
-                return {
-                    "ok": True,
-                    "role": "Creator",
-                    "filled_fields": filled_steps,
-                    "message": f"Đã điền tuần tự {len(filled_steps)} trường trong hộp thoại AI: {', '.join(filled_steps)}.",
-                }
+                has_dlg = lambda: bool(drv.find_elements(By.CSS_SELECTOR, dlg_css))
+                if not has_dlg():
+                    if not self.click_button_text(drv, "AI tạo 3 phương án caption", "", "MỞ AI TẠO CAPTION", 3):
+                        btn = drv.find_elements(By.CSS_SELECTOR, "button[aria-label='Mở AI Generation Panel']")
+                        if btn:
+                            drv.execute_script("arguments[0].click();", btn[0])
+                            _demo_sleep(0.6)
+                        self.click_button_text(drv, "AI tạo 3 phương án caption", "", "MỞ AI TẠO CAPTION", 4)
+                    _demo_sleep(0.8)
+                inserted = False
+                if has_dlg():
+                    dlg = drv.find_elements(By.CSS_SELECTOR, dlg_css)[-1]
+                    areas = dlg.find_elements(By.TAG_NAME, "textarea")
+                    if areas:
+                        self.highlight_element(drv, areas[0], "1/5: Chủ đề bài viết")
+                        self.react_set_value(drv, areas[0], topic_text, append=False, human_typing=True)
+                    self.click_button_text(drv, "Thông báo", dlg_css, "2/5: Mục tiêu: Thông báo", 2)
+                    combos = dlg.find_elements(By.CSS_SELECTOR, "[role='combobox']")
+                    if len(combos) >= 1:
+                        self.select_radix_combobox_by_label(drv, combos[0], "Chuyên nghiệp")
+                    if len(combos) >= 2:
+                        self.select_radix_combobox_by_label(drv, combos[1], "Facebook")
+                    self.click_button_text(drv, "Vừa", dlg_css, "5/5: Độ dài: Vừa", 2)
+                    if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
+                        # Chờ AI trả 3 phương án rồi chèn phương án đầu tiên
+                        inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 45, exact=False)
+                        _demo_sleep(1.0)
+                    if not inserted:
+                        # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
+                        self.click_button_text(drv, "Close", dlg_css, "", 2)
+                        drv.execute_script("const d=document.querySelector(\"[role='dialog'] button[aria-label='Close'], [role='dialog'] button[aria-label='Đóng']\"); if (d) d.click();")
+                        _demo_sleep(0.5)
+                if inserted:
+                    return {"ok": True, "role": "Creator", "message": "Gemini đã tạo 3 phương án caption; đã chèn phương án 1 vào phần Nội dung bài viết."}
+                # Dự phòng: AI lỗi/chậm vẫn có caption để các bước sau chạy tiếp
+                if self.write_caption(drv, fallback, append=False):
+                    return {"ok": True, "role": "Creator", "message": "AI chưa phản hồi kịp, đã điền caption dự phòng (bản v1) để demo chạy tiếp."}
+                return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION) trên /editor."}
             except Exception as exc:
-                return {"ok": False, "role": "Creator", "error": f"Lỗi khi điền hộp thoại AI: {exc}"}
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi gọi AI tạo caption: {exc}"}
 
         # ----------------------------------------------------------------------
         # B7: Kiểm tra vi phạm nội dung (3.6.33) & Gửi duyệt phần POST.CAPTION (v1)
         # ----------------------------------------------------------------------
         if action_id == "B7_FILL_VIOLATION":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B7.1 - Chèn câu vi phạm để test Bộ lọc An toàn")
+            self.inject_role_Hud_badge(drv, "Creator", "B6 - Chèn câu vi phạm để test Kiểm tra an toàn nội dung")
             bad_text = payload.get("violation_sample", DEMO_TEXTS["violation_sample"])
             try:
-                caption_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.CAPTION']")
-                scope = caption_sec[0] if caption_sec else drv
-                areas = scope.find_elements(By.TAG_NAME, "textarea") or drv.find_elements(By.TAG_NAME, "textarea")
-                if not areas:
-                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô nội dung bài viết (textarea)."}
-                self.highlight_element(drv, areas[0], "CHÈN CÂU VI PHẠM ĐỂ KIỂM THỬ")
-                self.react_set_value(drv, areas[0], bad_text, append=True, human_typing=True)
-
-                check_btns = drv.find_elements(
-                    By.XPATH,
-                    "//button[contains(., 'Kiểm tra vi phạm') or contains(., 'Kiểm duyệt') or contains(., 'Compliance')]",
-                )
-                if check_btns:
-                    self.highlight_element(drv, check_btns[0], "BẤM 'KIỂM TRA VI PHẠM' (FR 3.6.33)")
-                return {
-                    "ok": True,
-                    "role": "Creator",
-                    "message": "Đã chèn đoạn văn chứa từ cấm vào bài viết. Hãy bấm 'Kiểm tra vi phạm' trên màn hình.",
-                }
+                status_js = "const s=document.querySelector(arguments[0]+' [role=status]'); return s ? s.innerText : '';"
+                before = drv.execute_script(status_js, self.CAPTION_SEC) or ""
+                # Thay toàn bộ caption: câu vi phạm đứng riêng thì bộ lọc bắt ổn định (nối vào bài dài bị loãng)
+                if not self.write_caption(drv, bad_text, append=False):
+                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION)."}
+                # Hệ thống tự kiểm tra sau 3 giây ngừng nhập; chờ kết quả rồi tô sáng
+                # Chờ lượt kiểm tra MỚI (tự chạy sau 3s ngừng nhập), không đọc nhầm kết quả của caption trước
+                status = ""
+                start = time.time()
+                while time.time() - start < 25:
+                    _demo_sleep(1.0)
+                    status = drv.execute_script(status_js, self.CAPTION_SEC) or ""
+                    pending = not status or "Sẽ tự kiểm tra" in status or "Đang kiểm tra" in status
+                    if not pending and time.time() - start > 4 and status != before:
+                        break
+                box = drv.find_elements(By.CSS_SELECTOR, self.CAPTION_SEC + " [role='status']")
+                if box:
+                    self.highlight_element(drv, box[0], "KẾT QUẢ KIỂM TRA AN TOÀN NỘI DUNG (FR 3.6.33)")
+                return {"ok": True, "role": "Creator", "message": "Đã chèn câu vi phạm; kết quả kiểm tra: " + status.replace("\n", " ")[:200]}
             except Exception as exc:
-                return {"ok": False, "role": "Creator", "error": str(exc)}
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi chèn câu vi phạm: {exc}"}
 
         if action_id == "B7_CLEAN_AND_RESTORE":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B7.2 - Khôi phục bản thảo sạch v1 & Gửi duyệt phần POST.CAPTION")
+            self.inject_role_Hud_badge(drv, "Creator", "B6 - Khôi phục bản sạch v1 & Nộp phần Nội dung")
             clean_v1 = payload.get("caption_v1_clean", DEMO_TEXTS["caption_v1_clean"])
             try:
-                caption_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.CAPTION']")
-                scope = caption_sec[0] if caption_sec else drv
-                areas = scope.find_elements(By.TAG_NAME, "textarea") or drv.find_elements(By.TAG_NAME, "textarea")
-                if not areas:
-                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô nội dung bài viết."}
-                self.highlight_element(drv, areas[0], "KHÔI PHỤC NỘI DUNG CHUẨN V1 (TUYỂN SINH 2027)")
-                self.react_set_value(drv, areas[0], clean_v1, append=False, human_typing=True)
-
-                sec_submit_btns = scope.find_elements(
-                    By.XPATH,
-                    ".//button[contains(., 'Gửi duyệt') or contains(., 'Lưu')]",
-                )
-                if sec_submit_btns:
-                    self.highlight_element(drv, sec_submit_btns[0], "BẤM 'LƯU' & 'GỬI DUYỆT' PHẦN NỘI DUNG (V1)")
-                else:
-                    submit_btns = drv.find_elements(
-                        By.XPATH,
-                        "//button[contains(., 'Gửi duyệt') or contains(., 'Lưu bản nháp')]",
-                    )
-                    if submit_btns:
-                        self.highlight_element(drv, submit_btns[0], "BẤM 'LƯU' & 'GỬI DUYỆT' (V1)")
-                return {
-                    "ok": True,
-                    "role": "Creator",
-                    "message": "Đã điền bản thảo v1 sạch. Hãy bấm 'Lưu thay đổi' rồi bấm 'Gửi duyệt' trên phần Nội dung bài đăng.",
-                }
+                if not self.write_caption(drv, clean_v1, append=False):
+                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION)."}
+                _demo_sleep(1.0)
+                ok, head = self.submit_caption(drv, "TỰ ĐỘNG NỘP PHẦN NỘI DUNG (V1)")
+                if not ok:
+                    return {"ok": False, "role": "Creator", "error": f"Chưa nộp được phần Nội dung: {head}"}
+                return {"ok": True, "role": "Creator", "message": f"Đã điền bản sạch v1 và nộp phần Nội dung bài viết ({head})."}
             except Exception as exc:
-                return {"ok": False, "role": "Creator", "error": str(exc)}
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi nộp bản v1: {exc}"}
 
         # ----------------------------------------------------------------------
         # B8: Manager duyệt nội bộ (v1) trên /task-approvals
@@ -2813,11 +3425,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Manager",
                 f"/workspaces/{ws_id}/task-approvals?task={task_id}",
-                "B8 - Manager Nguyễn Thành Lộc duyệt nội bộ (v1)",
+                "B7 - Manager Nguyễn Thành Lộc duyệt nội bộ (v1)",
             )
             drv = self.drivers.get("Manager")
             if drv:
-                time.sleep(1.0)
+                _demo_sleep(1.0)
                 try:
                     sec_cards = drv.find_elements(By.CSS_SELECTOR, "section[data-section-key='POST.CAPTION']")
                     scope = sec_cards[0] if sec_cards else drv
@@ -2831,7 +3443,7 @@ class DemoBrowserController:
                             "//button[normalize-space(.)='Duyệt' or contains(., 'Duyệt nội bộ') or contains(., 'Phê duyệt')]",
                         )
                     if approve_btns:
-                        self.highlight_element(drv, approve_btns[0], "MANAGER: BẤM 'DUYỆT' PHẦN NỘI DUNG (V1)")
+                        self.highlight_element(drv, approve_btns[0], "BẤM TIẾP ĐỂ MANAGER DUYỆT")
                 except Exception:
                     pass
             return {
@@ -2846,11 +3458,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Client",
                 f"/workspaces/{ws_id}/task-approvals?task={task_id}",
-                "B9 - Ban Tuyển sinh ĐH FPT nghiệm thu & Yêu cầu chỉnh sửa v1",
+                "B8 - Ban Tuyển sinh ĐH FPT nghiệm thu & Yêu cầu chỉnh sửa v1",
             )
             drv = self.drivers.get("Client")
             if drv:
-                time.sleep(1.0)
+                _demo_sleep(1.0)
                 try:
                     sec_cards = drv.find_elements(By.CSS_SELECTOR, "section[data-section-key='POST.CAPTION']")
                     scope = sec_cards[0] if sec_cards else drv
@@ -2874,53 +3486,26 @@ class DemoBrowserController:
 
         if action_id == "B9_SEQ_FILL_REJECT_REASON":
             drv = self.ensure_driver("Client")
-            self.inject_role_Hud_badge(drv, "Client", "B9 - Điền lý do yêu cầu bổ sung Học bổng 2027 & OJT")
+            self.inject_role_Hud_badge(drv, "Client", "B8 - Trả lại phần Nội dung kèm góp ý Học bổng 2027 & OJT")
             reject_note = payload.get("client_reject_note", DEMO_TEXTS["client_reject_note"])
+            card = "section[data-section-key='POST.CAPTION']"
             try:
-                note_inputs = drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea, #task-review-note")
-                if not note_inputs:
-                    sec_cards = drv.find_elements(By.CSS_SELECTOR, "section[data-section-key='POST.CAPTION']")
-                    scope = sec_cards[0] if sec_cards else drv
-                    ret_btns = scope.find_elements(
-                        By.XPATH,
-                        ".//button[contains(., 'Yêu cầu chỉnh sửa') or contains(., 'Trả về')]",
-                    )
-                    if not ret_btns:
-                        ret_btns = drv.find_elements(
-                            By.XPATH,
-                            "//button[contains(., 'Yêu cầu chỉnh sửa') or contains(., 'Trả về')]",
-                        )
-                    if ret_btns:
-                        drv.execute_script("arguments[0].click();", ret_btns[0])
-                        time.sleep(0.5)
-                        note_inputs = drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea, #task-review-note")
-
-                if not note_inputs:
-                    return {
-                        "ok": False,
-                        "role": "Client",
-                        "error": "Không tìm thấy ô nhập Lý do yêu cầu chỉnh sửa. Hãy bấm nút 'Yêu cầu chỉnh sửa' trước.",
-                    }
-
-                target_area = note_inputs[-1]
-                self.highlight_element(drv, target_area, "1/2: Nhập nhận xét của Ban Tuyển sinh Đại học FPT")
-                self.react_set_value(drv, target_area, reject_note, append=False, human_typing=True)
-                time.sleep(0.25)
-
-                confirm_btns = drv.find_elements(
-                    By.XPATH,
-                    "//div[@role='dialog']//button[contains(., 'Yêu cầu chỉnh sửa') or contains(., 'Gửi') or contains(., 'Xác nhận')]",
-                )
-                if confirm_btns:
-                    self.highlight_element(drv, confirm_btns[-1], "2/2: BẤM ĐỂ XÁC NHẬN TRẢ VỀ CHO CREATOR")
-
-                return {
-                    "ok": True,
-                    "role": "Client",
-                    "message": "Đã điền nhận xét của Ban Tuyển sinh ĐH FPT (bổ sung 3 mức học bổng 50%-70%-100% và kỳ thực tập OJT). Hãy bấm xác nhận.",
-                }
+                if not drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea"):
+                    if not self.click_button_text(drv, "Trả lại", card, "CLIENT: TRẢ LẠI PHẦN NỘI DUNG", 8):
+                        return {"ok": False, "role": "Client", "error": "Không thấy nút 'Trả lại' ở phần Nội dung bài viết (phần đã được Manager duyệt chưa?)."}
+                    _demo_sleep(0.7)
+                areas = drv.find_elements(By.CSS_SELECTOR, "[role='dialog'] textarea")
+                if not areas:
+                    return {"ok": False, "role": "Client", "error": "Không mở được hộp ghi chú trả lại."}
+                self.highlight_element(drv, areas[0], "1/2: Góp ý của Ban Tuyển sinh ĐH FPT")
+                self.react_set_value(drv, areas[0], reject_note, append=False, human_typing=True)
+                _demo_sleep(0.4)
+                if not self.click_button_text(drv, "Trả lại", "[role='dialog']", "2/2: XÁC NHẬN TRẢ LẠI CHO CREATOR", 4):
+                    return {"ok": False, "role": "Client", "error": "Không bấm được nút xác nhận 'Trả lại'."}
+                _demo_sleep(1.5)
+                return {"ok": True, "role": "Client", "message": "Ban Tuyển sinh ĐH FPT đã trả lại phần Nội dung kèm yêu cầu bổ sung 3 mức Học bổng 2027 và kỳ OJT."}
             except Exception as exc:
-                return {"ok": False, "role": "Client", "error": str(exc)}
+                return {"ok": False, "role": "Client", "error": f"Lỗi khi trả lại phần Nội dung: {exc}"}
 
         # ----------------------------------------------------------------------
         # B10: Creator cập nhật bản v2, gửi duyệt lại & mở Lịch sử phiên bản (Diff v1 vs v2)
@@ -2929,11 +3514,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/editor?taskId={task_id}",
-                "B10 - Creator xem phản hồi & cập nhật bản v2",
+                "B9 - Creator xem phản hồi & cập nhật bản v2",
             )
             drv = self.drivers.get("Creator")
             if drv:
-                time.sleep(1.0)
+                _demo_sleep(1.0)
                 try:
                     caption_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.CAPTION']")
                     if caption_sec:
@@ -2947,36 +3532,24 @@ class DemoBrowserController:
 
         if action_id == "B10_SEQ_FILL_V2":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B10 - Bổ sung Học bổng 50%-100% & OJT học kỳ 6 (v2)")
+            self.inject_role_Hud_badge(drv, "Creator", "B9 - Bổ sung Học bổng 50%-100% & OJT, Nộp lại bản v2")
             v2_addition = payload.get("caption_v2_addition", DEMO_TEXTS["caption_v2_addition"])
             try:
-                caption_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.CAPTION']")
-                scope = caption_sec[0] if caption_sec else drv
-                areas = scope.find_elements(By.TAG_NAME, "textarea") or drv.find_elements(By.TAG_NAME, "textarea")
-                if not areas:
-                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô soạn thảo bài viết."}
-
-                self.highlight_element(drv, areas[0], "1/2: Bổ sung 3 mức Học bổng 2027 & kỳ OJT vào bản v2")
-                self.react_set_value(drv, areas[0], v2_addition, append=True, human_typing=True)
-                time.sleep(0.3)
-
-                submit_btns = scope.find_elements(
-                    By.XPATH,
-                    ".//button[contains(., 'Gửi duyệt') or contains(., 'Lưu')]",
-                )
-                if submit_btns:
-                    self.highlight_element(drv, submit_btns[0], "2/2: BẤM 'LƯU' & 'GỬI DUYỆT' BẢN V2")
-                return {
-                    "ok": True,
-                    "role": "Creator",
-                    "message": "Đã bổ sung chi tiết Học bổng Nguyễn Văn Đạo 2027 (50%, 70%, 100%) và kỳ thực tập OJT vào bài viết (v2).",
-                }
+                drv.refresh()
+                _demo_sleep(2.0)
+                if not self.write_caption(drv, v2_addition, append=True):
+                    return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION)."}
+                _demo_sleep(1.0)
+                ok, head = self.submit_caption(drv, "TỰ ĐỘNG NỘP LẠI BẢN V2")
+                if not ok:
+                    return {"ok": False, "role": "Creator", "error": f"Chưa nộp được bản v2: {head}"}
+                return {"ok": True, "role": "Creator", "message": f"Đã bổ sung 3 mức Học bổng 2027 & kỳ OJT và nộp lại bản v2 ({head})."}
             except Exception as exc:
-                return {"ok": False, "role": "Creator", "error": str(exc)}
+                return {"ok": False, "role": "Creator", "error": f"Lỗi khi nộp bản v2: {exc}"}
 
         if action_id == "B10_OPEN_VERSION_DIFF":
             drv = self.ensure_driver("Creator")
-            self.inject_role_Hud_badge(drv, "Creator", "B10 - Mở Lịch sử phiên bản (So sánh Diff v1 vs v2)")
+            self.inject_role_Hud_badge(drv, "Creator", "B9 - Mở Lịch sử phiên bản (So sánh Diff v1 vs v2)")
             try:
                 caption_sec = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.CAPTION']")
                 scope = caption_sec[0] if caption_sec else drv
@@ -3009,44 +3582,38 @@ class DemoBrowserController:
         # B11: Manager & Client phê duyệt hoàn tất bản v2
         # ----------------------------------------------------------------------
         if action_id == "B11_NAV_MANAGER_V2":
-            res = self.login_role(
-                "Manager",
-                f"/workspaces/{ws_id}/task-approvals?task={task_id}",
-                "B11.1 - Manager Nguyễn Thành Lộc duyệt nội bộ bản v2",
-            )
+            res = self.login_role("Manager", f"/workspaces/{ws_id}/task-approvals?task={task_id}", "B9 - Manager duyệt nội bộ bản v2")
             drv = self.drivers.get("Manager")
-            if drv:
-                time.sleep(0.9)
-                try:
-                    approve_btns = drv.find_elements(
-                        By.XPATH,
-                        "//button[normalize-space(.)='Duyệt' or contains(., 'Duyệt nội bộ') or contains(., 'Phê duyệt')]",
-                    )
-                    if approve_btns:
-                        self.highlight_element(drv, approve_btns[0], "MANAGER: BẤM 'DUYỆT' BẢN V2")
-                except Exception:
-                    pass
-            return {**res, "message": "Đã mở màn hình Manager để duyệt bản cập nhật v2."}
+            card = "section[data-section-key='POST.CAPTION']"
+            if not drv or not self.click_button_text(drv, "Duyệt", card, "MANAGER: DUYỆT BẢN V2", 10):
+                return {**res, "ok": False, "error": "Không thấy nút 'Duyệt' ở phần Nội dung v2 (Creator đã nộp v2 chưa?)."}
+            _demo_sleep(1.5)
+            return {**res, "message": "Manager đã duyệt nội bộ bản v2, chuyển sang Ban Tuyển sinh ĐH FPT."}
 
         if action_id == "B11_NAV_CLIENT_V2":
             res = self.login_role(
                 "Client",
                 f"/workspaces/{ws_id}/task-approvals?task={task_id}",
-                "B11.2 - Ban Tuyển sinh ĐH FPT duyệt xuất bản chính thức (v2)",
+                "B10 - Ban Tuyển sinh ĐH FPT duyệt xuất bản chính thức (v2)",
             )
             drv = self.drivers.get("Client")
-            if drv:
-                time.sleep(0.9)
-                try:
-                    approve_btns = drv.find_elements(
-                        By.XPATH,
-                        "//button[normalize-space(.)='Duyệt' or contains(., 'Phê duyệt') or contains(., 'Đồng ý')]",
-                    )
-                    if approve_btns:
-                        self.highlight_element(drv, approve_btns[0], "CLIENT: BẤM 'DUYỆT' HOÀN TẤT BÀI VIẾT")
-                except Exception:
-                    pass
-            return {**res, "message": "Đã mở màn hình Client để phê duyệt chính thức bản v2 (Task chuyển sang FINISHED)."}
+            card = "section[data-section-key='POST.CAPTION']"
+            if not drv or not self.click_button_text(drv, "Duyệt", card, "CLIENT: DUYỆT HOÀN TẤT BẢN V2", 10):
+                return {**res, "ok": False, "error": "Không thấy nút 'Duyệt' ở phần Nội dung (Manager đã duyệt v2 chưa?)."}
+            # Đủ phần Client đã duyệt -> Creator bấm 'Gửi phê duyệt' trên /editor -> Task FINISHED, Post APPROVED
+            _demo_sleep(1.2)
+            self.login_role("Creator", f"/workspaces/{ws_id}/editor?taskId={task_id}", "B9 - Creator gửi phê duyệt: Task hoàn tất")
+            cdrv = self.drivers.get("Creator")
+            if not cdrv or not self.click_button_text(cdrv, "Gửi phê duyệt", "", "CREATOR: GỬI PHÊ DUYỆT - TASK HOÀN TẤT", 10):
+                return {**res, "ok": False, "error": "Client đã duyệt nhưng không bấm được 'Gửi phê duyệt' trên /editor của Creator."}
+            toast = ""
+            end = time.time() + 10
+            while time.time() < end and not toast:
+                _demo_sleep(0.6)
+                toast = cdrv.execute_script("return [...document.querySelectorAll('[data-sonner-toast]')].map(t => t.innerText).join(' | ');") or ""
+            if "thành công" not in toast:
+                return {**res, "ok": False, "error": "Gửi phê duyệt chưa thành công: " + toast[:200]}
+            return {**res, "message": "Ban Tuyển sinh ĐH FPT đã duyệt v2; Creator gửi phê duyệt, Task FINISHED và bài đăng sang APPROVED."}
 
         # ----------------------------------------------------------------------
         # B12: Manager kiểm tra 4 Nền tảng MXH, Bộ Hashtag & Mẫu Email Workshop THPT
@@ -3055,7 +3622,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Manager",
                 f"/workspaces/{ws_id}/social-accounts",
-                "B12.1 - Kết nối 4 nền tảng: Facebook, Instagram, TikTok, Threads",
+                "B11 - Kết nối 4 nền tảng: Facebook, Instagram, TikTok, Threads",
             )
             return {**res, "message": "Đã mở trang Quản lý Kết nối 4 Nền tảng Mạng xã hội (/social-accounts) của chiến dịch Đại học FPT 2027."}
 
@@ -3063,7 +3630,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Manager",
                 f"/workspaces/{ws_id}/library?tab=hashtags",
-                "B12.2 - Bộ Hashtag bắt buộc Chiến dịch Tuyển sinh 2027",
+                "B11 - Bộ Hashtag bắt buộc Chiến dịch Tuyển sinh 2027",
             )
             return {**res, "message": "Đã mở trang Quản lý Bộ Hashtag chiến dịch (#DaiHocFPT, #TuyenSinhFPTU2027...)."}
 
@@ -3071,7 +3638,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Manager",
                 f"/workspaces/{ws_id}/mail-templates",
-                "B12.3 - Mẫu Email mời học sinh lớp 12 tham dự Workshop THPT",
+                "B11 - Mẫu Email mời học sinh lớp 12 tham dự Workshop THPT",
             )
             return {**res, "message": "Đã mở trang Mẫu Email Block-Builder gửi vé mời dự chuỗi Workshop THPT 2027."}
 
@@ -3079,7 +3646,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Manager",
                 f"/workspaces/{ws_id}/mail-templates/batches",
-                "B12.4 - Lịch sử Lô gửi Email Vé mời Workshop THPT & Báo cáo Tuần",
+                "B11 - Lịch sử Lô gửi Email Vé mời Workshop THPT & Báo cáo Tuần",
             )
             return {**res, "message": "Đã mở trang Lịch sử Lô gửi Email (/mail-templates/batches) với 2 đợt gửi hoàn tất."}
 
@@ -3090,11 +3657,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/posts/dashboard",
-                "B13.1 - Bảng điều phối Xuất bản Đa nền tảng (4 Tuần)",
+                "B12 - Bảng điều phối Xuất bản Đa nền tảng (4 Tuần)",
             )
             drv = self.drivers.get("Creator")
             if drv:
-                time.sleep(0.9)
+                _demo_sleep(0.9)
                 try:
                     pub_btns = drv.find_elements(
                         By.XPATH,
@@ -3110,7 +3677,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/calendar",
-                "B13.2 - Lịch xuất bản Chiến dịch Tuyển sinh 4 Tuần (/calendar)",
+                "B12 - Lịch xuất bản Chiến dịch Tuyển sinh 4 Tuần (/calendar)",
             )
             return {**res, "message": "Đã mở Lịch xuất bản trực quan (/calendar) hiển thị các bài đã đăng và lịch hẹn Tuần 4."}
 
@@ -3118,7 +3685,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Creator",
                 f"/workspaces/{ws_id}/dashboard",
-                "B13.3 - Bảng điều khiển phân tích tương tác (Analytics)",
+                "B12 - Bảng điều khiển phân tích tương tác (Analytics)",
             )
             return {**res, "message": "Đã mở Dashboard phân tích số liệu Reach, Impressions và Reactions của chiến dịch."}
 
@@ -3129,11 +3696,11 @@ class DemoBrowserController:
             res = self.login_role(
                 "Owner",
                 "/subscription/plans",
-                "B14.1 - Nâng cấp gói cước Agency qua SePay (VietQR)",
+                "B13 - Nâng cấp gói cước Agency qua SePay (VietQR)",
             )
             drv = self.drivers.get("Owner")
             if drv:
-                time.sleep(0.9)
+                _demo_sleep(0.9)
                 try:
                     upg_btns = drv.find_elements(
                         By.XPATH,
@@ -3149,7 +3716,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Owner",
                 f"/agency/{agency_id}/credit",
-                "B14.2 - Ví AI Credit SE08 Digital Agency (8.500 điểm khả dụng)",
+                "B13 - Ví AI Credit SE08 Digital Agency (8.500 điểm khả dụng)",
             )
             return {**res, "message": "Đã mở trang Quản lý Ví AI Credit và hạn mức phân bổ cho Workspace Đại học FPT 2027."}
 
@@ -3160,7 +3727,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Admin",
                 "/admin?view=revenue",
-                "B15.1 - Admin giám sát doanh thu & gói cước toàn hệ thống",
+                "B14 - Admin giám sát doanh thu & gói cước toàn hệ thống",
             )
             return {**res, "message": "Đã mở Dashboard Doanh thu toàn nền tảng (/admin?view=revenue) của Quản trị viên BrandHub."}
 
@@ -3168,7 +3735,7 @@ class DemoBrowserController:
             res = self.login_role(
                 "Admin",
                 "/admin?view=moderation",
-                "B15.2 - Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4)",
+                "B14 - Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4)",
             )
             return {**res, "message": "Đã mở Hàng đợi Kiểm duyệt Nội dung Cộng đồng (/admin?view=moderation - FR 3.10.4)."}
 
@@ -3447,6 +4014,11 @@ class DemoMonitorRequestHandler(BaseHTTPRequestHandler):
             self._send_json(CONTROLLER.get_sync_state())
             return
 
+        if parsed.path == "/api/db-job":
+            assert CONTROLLER is not None
+            self._send_json({"ok": True, "job": CONTROLLER.get_db_job()})
+            return
+
         if parsed.path == "/api/hud.js":
             assert CONTROLLER is not None
             role_q = "Guest"
@@ -3514,13 +4086,20 @@ class DemoMonitorRequestHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": True, "results": results})
             return
 
-        if parsed.path == "/api/reset-data":
-            res = CONTROLLER.reset_demo_database_data()
-            self._send_json(res)
+        if parsed.path == "/api/kill-chrome":
+            self._send_json(CONTROLLER.kill_all_chrome())
             return
 
-        if parsed.path == "/api/clean-data":
-            res = CONTROLLER.clean_demo_database_data()
+        if parsed.path in ("/api/reset-data", "/api/clean-data"):
+            kind = "reset" if parsed.path == "/api/reset-data" else "clean"
+            if body.get("async"):
+                # Bàn điều khiển 3999: chạy nền, theo dõi qua GET /api/db-job
+                if CONTROLLER.start_db_job(kind):
+                    self._send_json({"ok": True, "started": True})
+                else:
+                    self._send_json({"ok": False, "error": "Đang có tiến trình Khôi phục/Xóa DB chạy, vui lòng đợi."}, 409)
+                return
+            res = CONTROLLER.reset_demo_database_data() if kind == "reset" else CONTROLLER.clean_demo_database_data()
             self._send_json(res)
             return
 
