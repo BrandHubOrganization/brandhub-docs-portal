@@ -6,5 +6,5 @@
 -- Agency       : 359a1839-18c7-48e2-8a68-f5f68c3375b6 (SE08 Digital Agency)
 -- Workspace    : b47477c4-13ad-44ff-8c49-f73f1837461b (Đại học FPT Tuyển sinh 2027 x SE08 Digital)
 -- MediaPackage : d7e00000-0000-4000-8000-000000000200 (4 tuần - 7 hạng mục dịch vụ - 185.000.000 VND)
--- Campaign     : d7e00000-0000-4000-8000-000000000301 (2026-11-03 -> 2026-12-01, 19 hạng mục gói)
+-- Campaign     : d7e00000-0000-4000-8000-000000000301 (2026-11-05 -> 2026-12-03, 19 hạng mục gói)
 -- Catalog Pkgs : 7 gói đa lĩnh vực

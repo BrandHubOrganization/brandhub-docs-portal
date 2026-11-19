@@ -129,16 +129,16 @@
         </div>
 
         <div class="inline-flex items-center border border-slate-200 bg-white">
-          <button id="win-split-btn" onclick="arrangeWindows('split')" title="1 Màn hình laptop: Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">
+          <button id="win-split-btn" onclick="arrangeWindows('split')" title="1 Màn hình laptop: Xếp 6 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">
             Chia màn hình (70/30)
           </button>
-          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="2 Màn hình HDMI: Phóng to toàn màn hình các cửa sổ Chrome ra máy chiếu ngoài" class="inline-flex items-center gap-1 px-2 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors border-l border-slate-200">
-            2 Màn hình
+          <button id="win-max-btn" onclick="arrangeWindows('maximize')" title="Chiếu song song TV / HDMI: Phóng to toàn màn hình cả 6 cửa sổ Chrome, điều khiển trực tiếp qua thanh HUD góc trái dưới" class="inline-flex items-center gap-1 px-2 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors border-l border-slate-200">
+            Toàn màn hình TV
           </button>
         </div>
 
-        <button onclick="loginAllRoles()" title="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin. Chạy trước giờ bảo vệ ~10 phút" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold bg-orange-600 text-white hover:bg-orange-700 cursor-pointer">
-          Đăng nhập 5 Vai trò
+        <button onclick="loginAllRoles()" title="Mở 6 cửa sổ Chrome kèm thanh HUD WebSocket góc trái dưới cho Guest, Owner, Manager, Creator, Client, Admin" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold bg-[#ea6c3b] text-white hover:bg-[#d95d2c] cursor-pointer">
+          Mở 6 Vai trò
         </button>
 
         <button onclick="document.getElementById('reset-dialog').showModal()" title="Nạp lại dữ liệu mẫu chuẩn Bước B1 (xóa dữ liệu cũ rồi ghi mới, 7 tài khoản đăng nhập giữ nguyên). Dùng trước mỗi lần tập dượt" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-slate-800 border border-slate-200 hover:border-orange-300 hover:bg-orange-50/60 cursor-pointer">
@@ -192,9 +192,10 @@
   </div>
 
   <script>
-    const API_BASE = window.location.port === '3999' ? '' : 'http://localhost:3999';
+    const API_BASE = window.location.port === '3999' ? '' : 'http://127.0.0.1:3999';
 
     const ROLES = [
+      { role: 'Guest', shortLabel: 'Khách', fullName: 'Khách truy cập công khai', email: 'Chưa đăng nhập' },
       { role: 'Owner', shortLabel: 'Trung', fullName: 'Lê Trí Trung', email: 'user177@demo.brandhub.test' },
       { role: 'Manager', shortLabel: 'Lộc', fullName: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test' },
       { role: 'Creator', shortLabel: 'Phước', fullName: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test' },
@@ -329,6 +330,8 @@
           { id: 'B4_NAV', label: 'Mở 20 Công việc 4 tuần & Xem 5 Subtask Tuần 3', desc: 'Mở trang Công việc và bật chi tiết [Tuần 3 - Bài trọng điểm]' },
           { id: 'B4_FILL_SUBTASK', label: 'Điền mẫu Mô tả & Tiêu chí Subtask', desc: 'Gõ tự động mô tả và tiêu chí vào form Subtask' },
           { id: 'B4_NAV_SURVEYS', label: 'Mở Khảo sát Nguyện vọng Học sinh THPT (/survey)', desc: 'Xem 8 câu trả lời thực tế của học sinh lớp 12' },
+          { id: 'B4_NAV_EVENT', label: 'Mở Kế hoạch Sự kiện FPTU Open Day 2027 (/event)', desc: 'Creator Phước điều phối 5 phân khu sự kiện' },
+          { id: 'B4_NAV_WORKSHOP', label: 'Mở Chuỗi Workshop THPT (/workshop)', desc: 'Diễn giả, chương trình, hậu cần & phiếu đăng ký' },
           { id: 'B4_NAV_REQUESTS', label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)', desc: 'Xem 2 yêu cầu bổ sung bài truyền thông từ ĐH FPT' },
         ],
         fields: [
@@ -355,6 +358,8 @@
         outcome: 'Creator xem chi tiết công việc [Tuần 3 - Bài trọng điểm] và mở Trình soạn thảo hợp nhất (/editor).',
         actions: [
           { id: 'B5_NAV', label: 'Mở việc của Creator & Chọn [Tuần 3 - Bài trọng điểm]', desc: 'Điều hướng tới /workspaces/{workspace_id}/tasks' },
+          { id: 'B5_NAV_VIDEO', label: 'Mở Video ngắn Reels/TikTok #3 Tuần 3 (/editor)', desc: 'Kịch bản, quay, dựng, caption & kênh đăng' },
+          { id: 'B5_NAV_KOL', label: 'Mở Booking KOL Duy Luân & Schannel (/kol)', desc: 'Shortlist, chi phí, brief, bản nháp & nghiệm thu' },
         ],
         fields: [
           { name: 'Subtask đang thực hiện', type: 'Tự động điền sẵn', value: 'Soạn nội dung bài viết (POST_CONTENT -> POST.CAPTION)' },
@@ -536,6 +541,7 @@
           { id: 'B12_NAV_HASHTAGS', label: 'Mở Bộ Hashtag Chiến dịch Tuyển sinh', desc: 'Xem 8 hashtag phân loại thương hiệu, ngành học và học bổng' },
           { id: 'B12_NAV_MAIL_TEMPLATES', label: 'Mở Mẫu Email mời dự Workshop THPT (/mail-templates)', desc: 'Xem mẫu Email gửi cho danh sách học sinh lớp 12' },
           { id: 'B12_NAV_MAIL_BATCHES', label: 'Mở Lịch sử Lô gửi Email (/mail-templates/batches)', desc: 'Xem 2 đợt gửi vé mời Workshop & báo cáo tuần' },
+          { id: 'B12_NAV_NEWSLETTER', label: 'Mở Bản tin Email Cẩm nang ngành học 2027 (/newsletter)', desc: 'Trình thiết kế email kéo-thả' },
         ],
         fields: [
           { name: '4 nền tảng hỗ trợ', type: 'Tự động điền sẵn', value: 'Facebook, Instagram, TikTok, Threads' },
@@ -562,6 +568,7 @@
           { id: 'B13_NAV_PUBLISH', label: 'Mở Bảng điều phối Bài đăng 4 tuần (/posts/dashboard)', desc: 'Điều hướng tới /posts/dashboard' },
           { id: 'B13_NAV_CALENDAR', label: 'Mở Lịch xuất bản Chiến dịch 4 tuần (/calendar)', desc: 'Xem lịch phân bổ bài viết từ Tuần 1 đến Tuần 4' },
           { id: 'B13_NAV_DASHBOARD', label: 'Mở Bảng điều khiển Phân tích (/dashboard)', desc: 'Điều hướng tới /dashboard' },
+          { id: 'B13_NAV_PRESS', label: 'Mở Tuyến bài Báo chí VnExpress Tuần 4 (/press)', desc: 'Thông cáo, phóng viên, nhật ký liên hệ & link tin bài' },
         ],
         fields: [
           { name: 'Chỉ số theo dõi 4 nền tảng', type: 'Tự động điền sẵn', value: 'Reach, Impressions, Reactions, Comments, Shares, Clicks (22 bản ghi publish_logs thực tế)' },
@@ -620,10 +627,11 @@
     ];
 
     const QA_LINKS = [
-      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
-      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+      { id: 'QA_VIDEO_EDITOR', label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', desc: 'Kịch bản, Quay, Dựng & Caption' },
+      { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', desc: '5 phân khu sự kiện lớn + Runsheet' },
+      { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
       { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
-      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+      { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Creator', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
       { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
       { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
       { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
@@ -631,8 +639,8 @@
       { id: 'QA_CLIENT_PORTAL', label: 'Cổng Khách hàng (/portal)', role: 'Client', desc: '2 hạng mục Open Day chờ ĐH FPT duyệt' },
       { id: 'QA_CLIENT_VAULT', label: 'Kho riêng Client Vault (/library)', role: 'Client', desc: 'Tư liệu gốc ĐH FPT chia sẻ sang SE08' },
       { id: 'QA_COLLABORATORS', label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', desc: '6 đối tác ĐH FPT + 4 đối tác đa ngành' },
-      { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Owner', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
-      { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Client', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Guest', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+      { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Guest', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
       { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
     ];
 
@@ -1012,8 +1020,69 @@
       renderQaGrid();
     }
 
+    let monitorWs = null;
+    let wsConnected = false;
+    let wsClientsCount = 0;
+
+    function sendWsCommand(payload) {
+      if (monitorWs && monitorWs.readyState === WebSocket.OPEN) {
+        try {
+          monitorWs.send(JSON.stringify(payload));
+        } catch (e) {}
+      }
+    }
+
+    function connectMonitorSocket() {
+      const wsBase = API_BASE ? API_BASE.replace(/^http/i, 'ws') : `ws://${window.location.host}`;
+      try {
+        monitorWs = new WebSocket(`${wsBase}/ws`);
+        monitorWs.onopen = () => {
+          wsConnected = true;
+          sendWsCommand({ type: 'hello', window_role: 'MonitorHTML' });
+        };
+        monitorWs.onmessage = (ev) => {
+          try {
+            const msg = JSON.parse(ev.data);
+            if (msg && msg.type === 'state') {
+              if (typeof msg.connected_clients === 'number') {
+                wsClientsCount = msg.connected_clients;
+                const labelEl = document.getElementById('conn-label');
+                if (labelEl) labelEl.textContent = `Socket · ${wsClientsCount}`;
+              }
+              if (Array.isArray(msg.done_actions)) {
+                msg.done_actions.forEach((aid) => { doneActions[aid] = true; });
+              }
+              if (msg.roles) {
+                Object.keys(msg.roles).forEach((rk) => {
+                  roleStates[rk] = { ...(roleStates[rk] || {}), alive: Boolean(msg.roles[rk].alive) };
+                });
+              }
+              if (msg.current?.step_code) {
+                const idx = STEPS.findIndex((s) => s.code === msg.current.step_code);
+                if (idx >= 0) activeIdx = idx;
+              }
+              renderAll();
+            }
+          } catch (e) {}
+        };
+        monitorWs.onclose = () => {
+          wsConnected = false;
+          setTimeout(connectMonitorSocket, 1500);
+        };
+        monitorWs.onerror = () => {
+          try { monitorWs.close(); } catch (e) {}
+        };
+      } catch (e) {
+        setTimeout(connectMonitorSocket, 2000);
+      }
+    }
+
     function selectStep(idx) {
-      activeIdx = Math.max(0, Math.min(STEPS.length - 1, idx));
+      const next = Math.max(0, Math.min(STEPS.length - 1, idx));
+      activeIdx = next;
+      if (STEPS[activeIdx]) {
+        sendWsCommand({ type: 'goto_step_code', step_code: STEPS[activeIdx].code, execute: false });
+      }
       renderAll();
     }
 
@@ -1095,11 +1164,11 @@
     }
 
     async function loginAllRoles() {
-      showToast('Đang khởi tạo và đăng nhập 5 cửa sổ Chrome...');
+      showToast('Đang mở & đồng bộ WebSocket đủ 6 cửa sổ Chrome (Guest, Owner, Manager, Creator, Client, Admin)...');
       try {
         const res = await fetch(`${API_BASE}/api/login-all`, { method: 'POST' });
         const data = await res.json();
-        showToast(data.ok ? 'Đã đăng nhập tự động cả 5 vai trò!' : data.error, !data.ok);
+        showToast(data.ok ? 'Đã mở và đồng bộ WebSocket cả 6 cửa sổ Chrome!' : data.error, !data.ok);
         pollStatus();
       } catch (e) {
         showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
@@ -1149,7 +1218,8 @@
         if (data.ok) {
           roleStates = data.roles || {};
           windowMode = data.window_mode || 'normal';
-          document.getElementById('conn-label').textContent = 'Đã kết nối';
+          const cnt = typeof data.ws_clients === 'number' ? data.ws_clients : wsClientsCount;
+          document.getElementById('conn-label').textContent = wsConnected ? `Socket · ${cnt}` : 'Đã kết nối';
           document.getElementById('conn-label').className = 'font-medium text-slate-700';
           document.getElementById('conn-dot').className = 'w-2.5 h-2.5 bg-[#ea6c3b] animate-pulse';
 
@@ -1259,6 +1329,7 @@
 
     renderAll();
     pollStatus();
+    connectMonitorSocket();
     setInterval(pollStatus, 4000);
   </script>
 </body>

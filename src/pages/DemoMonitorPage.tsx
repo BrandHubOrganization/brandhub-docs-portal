@@ -39,6 +39,10 @@ import {
   Trash2,
   HelpCircle,
   ArrowLeft,
+  Video,
+  Megaphone,
+  Newspaper,
+  Presentation,
 } from 'lucide-react';
 import {
   AstryxBadge,
@@ -105,7 +109,7 @@ interface DemoStep {
   title: string;
   shortTitle: string;
   frCode: string;
-  role: 'Owner' | 'Manager' | 'Creator' | 'Client' | 'Admin';
+  role: 'Guest' | 'Owner' | 'Manager' | 'Creator' | 'Client' | 'Admin';
   actorName: string;
   actorEmail: string;
   routeTemplate: string;
@@ -118,12 +122,19 @@ interface DemoStep {
 }
 
 const CANONICAL_ROLES: Array<{
-  role: 'Owner' | 'Manager' | 'Creator' | 'Client' | 'Admin';
+  role: 'Guest' | 'Owner' | 'Manager' | 'Creator' | 'Client' | 'Admin';
   shortLabel: string;
   fullName: string;
   email: string;
   desc: string;
 }> = [
+  {
+    role: 'Guest',
+    shortLabel: 'Khách',
+    fullName: 'Khách truy cập công khai',
+    email: 'Chưa đăng nhập',
+    desc: 'Khách truy cập công khai: Trang chủ giới thiệu BrandHub, link chia sẻ báo giá Gói truyền thông & biểu mẫu khảo sát THPT.',
+  },
   {
     role: 'Owner',
     shortLabel: 'Trung',
@@ -213,8 +224,8 @@ const DEMO_STEPS: DemoStep[] = [
     actions: [
       {
         id: 'B0_OPEN_5_CHROME',
-        label: 'Mở 5 cửa sổ Chrome & Đăng nhập 5 vai trò',
-        description: 'Dùng nút "Đăng nhập 5 Vai trò" trên thanh header, kiểm tra cả 5 cửa sổ đã đăng nhập đúng tài khoản',
+        label: 'Mở 6 cửa sổ Chrome & Đăng nhập đủ 6 vai trò (kèm Banner HUD Socket)',
+        description: 'Dùng nút "Mở 6 Vai trò" trên thanh header; kiểm tra thanh HUD góc trái dưới xuất hiện và đồng bộ WebSocket trên đủ 6 cửa sổ',
         variant: 'primary',
         icon: <Users className="size-4" />,
         localOnly: true,
@@ -534,6 +545,20 @@ const DEMO_STEPS: DemoStep[] = [
         icon: <ClipboardList className="size-4" />,
       },
       {
+        id: 'B4_NAV_EVENT',
+        label: 'Mở Kế hoạch Sự kiện FPTU Open Day 2027 (/event)',
+        description: 'Creator Phước điều phối 5 phân khu: concept, runsheet, hậu cần, nhân sự & báo cáo',
+        variant: 'outline',
+        icon: <Calendar className="size-4" />,
+      },
+      {
+        id: 'B4_NAV_WORKSHOP',
+        label: 'Mở Chuỗi Workshop THPT (/workshop)',
+        description: 'Diễn giả, chương trình, hậu cần & phiếu đăng ký học sinh',
+        variant: 'outline',
+        icon: <Presentation className="size-4" />,
+      },
+      {
         id: 'B4_NAV_REQUESTS',
         label: 'Mở Yêu cầu Nội dung từ Ban Tuyển sinh (/requests)',
         description: 'Xem 2 yêu cầu bổ sung bài truyền thông từ phía Đại học FPT',
@@ -585,6 +610,20 @@ const DEMO_STEPS: DemoStep[] = [
         description: 'Điều hướng trình duyệt Creator tới /workspaces/{workspace_id}/tasks',
         variant: 'primary',
         icon: <Play className="size-4" />,
+      },
+      {
+        id: 'B5_NAV_VIDEO',
+        label: 'Mở Video ngắn Reels/TikTok #3 Tuần 3 (/editor)',
+        description: 'Kịch bản, quay, dựng, caption & kênh đăng của video recap',
+        variant: 'outline',
+        icon: <Video className="size-4" />,
+      },
+      {
+        id: 'B5_NAV_KOL',
+        label: 'Mở Booking KOL Duy Luân & Schannel (/kol)',
+        description: 'Shortlist, thỏa thuận chi phí, brief, bản nháp & nghiệm thu số liệu',
+        variant: 'outline',
+        icon: <Megaphone className="size-4" />,
       },
     ],
   },
@@ -990,6 +1029,13 @@ const DEMO_STEPS: DemoStep[] = [
         variant: 'outline',
         icon: <Send className="size-4" />,
       },
+      {
+        id: 'B12_NAV_NEWSLETTER',
+        label: 'Mở Bản tin Email Cẩm nang ngành học 2027 (/newsletter)',
+        description: 'Trình thiết kế email kéo-thả: nội dung, thiết kế, danh sách nhận & lịch gửi',
+        variant: 'outline',
+        icon: <Mail className="size-4" />,
+      },
     ],
   },
   {
@@ -1045,6 +1091,13 @@ const DEMO_STEPS: DemoStep[] = [
         description: 'Xem thống kê Reach, Impressions, Reactions & tiến độ chiến dịch',
         variant: 'outline',
         icon: <Play className="size-4" />,
+      },
+      {
+        id: 'B13_NAV_PRESS',
+        label: 'Mở Tuyến bài Báo chí VnExpress Giáo dục Tuần 4 (/press)',
+        description: 'Thông cáo báo chí, danh sách phóng viên, nhật ký liên hệ & link tin bài đã lên',
+        variant: 'outline',
+        icon: <Newspaper className="size-4" />,
       },
     ],
   },
@@ -1153,10 +1206,11 @@ const QA_QUICK_LINKS: Array<{
   role: string;
   desc: string;
 }> = [
-  { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Manager', desc: '5 phân khu sự kiện lớn + Runsheet' },
-  { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Manager', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
+  { id: 'QA_VIDEO_EDITOR', label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', desc: 'Kịch bản, Quay, Dựng & Caption' },
+  { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', desc: '5 phân khu sự kiện lớn + Runsheet' },
+  { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
   { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
-  { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Manager', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
+  { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Creator', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
   { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
   { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
   { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
@@ -1164,8 +1218,8 @@ const QA_QUICK_LINKS: Array<{
   { id: 'QA_CLIENT_PORTAL', label: 'Cổng Khách hàng (/portal)', role: 'Client', desc: '2 hạng mục Open Day chờ ĐH FPT duyệt' },
   { id: 'QA_CLIENT_VAULT', label: 'Kho riêng Client Vault (/library)', role: 'Client', desc: 'Tư liệu gốc ĐH FPT chia sẻ sang SE08' },
   { id: 'QA_COLLABORATORS', label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', desc: '6 đối tác ĐH FPT + 4 đối tác đa ngành' },
-  { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Owner', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
-  { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Client', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+  { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Guest', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+  { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Guest', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
   { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
 ];
 
@@ -1176,9 +1230,11 @@ function formatStopwatch(totalSeconds: number): string {
 }
 
 export const DemoMonitorPage: React.FC = () => {
-  const [monitorUrl, setMonitorUrl] = useState<string>('http://localhost:3999');
+  const [monitorUrl] = useState<string>('http://127.0.0.1:3999');
   const [status, setStatus] = useState<MonitorStatus | null>(null);
   const [connected, setConnected] = useState<boolean>(false);
+  const [wsConnected, setWsConnected] = useState<boolean>(false);
+  const [wsClientsCount, setWsClientsCount] = useState<number>(0);
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
   const [busyAction, setBusyAction] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<{ text: string; isError?: boolean } | null>(null);
@@ -1202,6 +1258,33 @@ export const DemoMonitorPage: React.FC = () => {
   });
 
   const activePillRef = useRef<HTMLButtonElement | null>(null);
+  const wsRef = useRef<WebSocket | null>(null);
+
+  const sendWsCommand = useCallback((payload: Record<string, unknown>) => {
+    const ws = wsRef.current;
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      try {
+        ws.send(JSON.stringify(payload));
+      } catch {
+        // Bỏ qua lỗi tạm thời khi socket đang tái kết nối
+      }
+    }
+  }, []);
+
+  const selectStepWithSync = useCallback(
+    (nextIndexOrUpdater: number | ((prev: number) => number)) => {
+      setActiveStepIndex((prev) => {
+        const raw = typeof nextIndexOrUpdater === 'function' ? nextIndexOrUpdater(prev) : nextIndexOrUpdater;
+        const clamped = Math.max(0, Math.min(DEMO_STEPS.length - 1, raw));
+        const targetStep = DEMO_STEPS[clamped];
+        if (targetStep && clamped !== prev) {
+          sendWsCommand({ type: 'goto_step_code', step_code: targetStep.code, execute: false });
+        }
+        return clamped;
+      });
+    },
+    [sendWsCommand]
+  );
 
   const showToast = useCallback((text: string, isError = false) => {
     setToastMessage({ text, isError });
@@ -1236,6 +1319,132 @@ export const DemoMonitorPage: React.FC = () => {
     const timer = setInterval(fetchMonitorStatus, 4000);
     return () => clearInterval(timer);
   }, [fetchMonitorStatus]);
+
+  // Kết nối WebSocket thời gian thực với Selenium Demo Monitor (:3999/ws) để đồng bộ hai chiều với cả 6 cửa sổ Chrome
+  useEffect(() => {
+    let disposed = false;
+    let reconnectTimer: number | null = null;
+    let pingTimer: number | null = null;
+    const wsUrl = monitorUrl.replace(/^http/i, 'ws') + '/ws';
+
+    const connect = () => {
+      if (disposed) return;
+      try {
+        const ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+        ws.onopen = () => {
+          if (disposed) return;
+          setWsConnected(true);
+          setConnected(true);
+          try {
+            ws.send(JSON.stringify({ type: 'hello', window_role: 'Monitor' }));
+          } catch {
+            // ignore
+          }
+          if (pingTimer) window.clearInterval(pingTimer);
+          pingTimer = window.setInterval(() => {
+            if (ws.readyState === WebSocket.OPEN) {
+              try {
+                ws.send(JSON.stringify({ type: 'ping' }));
+              } catch {
+                // ignore
+              }
+            }
+          }, 15000);
+        };
+        ws.onmessage = (ev) => {
+          if (disposed) return;
+          try {
+            const msg = JSON.parse(ev.data);
+            if (msg?.type === 'state') {
+              if (typeof msg.connected_clients === 'number') {
+                setWsClientsCount(msg.connected_clients);
+              }
+              if (Array.isArray(msg.done_actions)) {
+                setDoneActions((prev) => {
+                  const next = { ...prev };
+                  msg.done_actions.forEach((aid: string) => {
+                    next[aid] = true;
+                  });
+                  return next;
+                });
+              }
+              if (msg.current?.step_code) {
+                const matchedIdx = DEMO_STEPS.findIndex((s) => s.code === msg.current.step_code);
+                if (matchedIdx >= 0) {
+                  setActiveStepIndex(matchedIdx);
+                }
+              }
+              if (msg.roles) {
+                setStatus((prev) =>
+                  prev
+                    ? {
+                        ...prev,
+                        window_mode: msg.window_mode ?? prev.window_mode,
+                        roles: Object.fromEntries(
+                          Object.entries(msg.roles).map(([rKey, rVal]) => {
+                            const typed = rVal as { alive?: boolean; full_name?: string; email?: string };
+                            const oldR = prev.roles?.[rKey];
+                            return [
+                              rKey,
+                              {
+                                alive: Boolean(typed.alive),
+                                email: typed.email || oldR?.email || '',
+                                full_name: typed.full_name || oldR?.full_name || rKey,
+                                badge_color: oldR?.badge_color || '#ea6c3b',
+                                current_url: oldR?.current_url || '',
+                              },
+                            ];
+                          })
+                        ),
+                      }
+                    : prev
+                );
+              }
+            }
+          } catch {
+            // ignore malformed frames
+          }
+        };
+        ws.onclose = () => {
+          setWsConnected(false);
+          if (pingTimer) {
+            window.clearInterval(pingTimer);
+            pingTimer = null;
+          }
+          if (!disposed) {
+            reconnectTimer = window.setTimeout(connect, 1500);
+          }
+        };
+        ws.onerror = () => {
+          try {
+            ws.close();
+          } catch {
+            // ignore
+          }
+        };
+      } catch {
+        if (!disposed) {
+          reconnectTimer = window.setTimeout(connect, 2000);
+        }
+      }
+    };
+
+    connect();
+    return () => {
+      disposed = true;
+      if (reconnectTimer) window.clearTimeout(reconnectTimer);
+      if (pingTimer) window.clearInterval(pingTimer);
+      if (wsRef.current) {
+        try {
+          wsRef.current.close();
+        } catch {
+          // ignore
+        }
+        wsRef.current = null;
+      }
+    };
+  }, [monitorUrl]);
 
   useEffect(() => {
     if (!timerRunning) return;
@@ -1306,9 +1515,9 @@ export const DemoMonitorPage: React.FC = () => {
     if (nextPendingAction) {
       triggerStepAction(nextPendingAction.id);
     } else if (activeStepIndex < DEMO_STEPS.length - 1) {
-      setActiveStepIndex((i) => Math.min(DEMO_STEPS.length - 1, i + 1));
+      selectStepWithSync((i) => Math.min(DEMO_STEPS.length - 1, i + 1));
     }
-  }, [activeStepIndex, busyAction, nextPendingAction, triggerStepAction]);
+  }, [activeStepIndex, busyAction, nextPendingAction, selectStepWithSync, triggerStepAction]);
 
   const handleLoginSingleRole = useCallback(
     async (role: string) => {
@@ -1373,12 +1582,12 @@ export const DemoMonitorPage: React.FC = () => {
       }
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         e.preventDefault();
-        setActiveStepIndex((i) => Math.min(DEMO_STEPS.length - 1, i + 1));
+        selectStepWithSync((i) => Math.min(DEMO_STEPS.length - 1, i + 1));
         return;
       }
       if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
-        setActiveStepIndex((i) => Math.max(0, i - 1));
+        selectStepWithSync((i) => Math.max(0, i - 1));
         return;
       }
       if (['1', '2', '3', '4'].includes(e.key)) {
@@ -1398,10 +1607,12 @@ export const DemoMonitorPage: React.FC = () => {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [
+    busyAction,
     currentStep,
     handleLoginSingleRole,
     handleSmartAdvance,
     handleCancelBusy,
+    selectStepWithSync,
     showResetConfirm,
     showCleanConfirm,
     showGuideModal,
@@ -1425,9 +1636,9 @@ export const DemoMonitorPage: React.FC = () => {
       const data = await res.json();
       if (data.ok) {
         setDoneActions((prev) => ({ ...prev, B0_OPEN_5_CHROME: true }));
-        showToast('Đã mở và đăng nhập tự động cả 5 cửa sổ Chrome cho 5 vai trò!');
+        showToast('Đã mở & đồng bộ WebSocket đủ 6 cửa sổ Chrome (Guest, Owner, Manager, Creator, Client, Admin)!');
       } else {
-        showToast(data.error || 'Có lỗi khi đăng nhập 5 vai trò.', true);
+        showToast(data.error || 'Có lỗi khi mở 6 cửa sổ vai trò.', true);
       }
       await fetchMonitorStatus();
     } catch {
@@ -1751,21 +1962,21 @@ export const DemoMonitorPage: React.FC = () => {
             <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
               <div className="font-bold text-slate-900">1. Chuẩn bị 2 phút trước giờ lên sân khấu</div>
               <p>
-                Đảm bảo đèn trạng thái hiện <strong>Đã kết nối</strong> (:3999). Nhấn <strong>Khôi phục DB</strong> để đảm bảo dữ liệu mới nhất, sau đó nhấn <strong>Đăng nhập 5 Vai trò</strong> để tự mở 5 tab Chrome. Bấm <strong>Chia màn hình (70/30)</strong> để Chrome chiếm 70% bên trái và Bàn điều khiển chiếm 30% bên phải.
+                Đảm bảo đèn trạng thái hiện <strong>Socket</strong> (:3999). Nhấn <strong>Khôi phục DB</strong> để nạp dữ liệu chuẩn, sau đó nhấn <strong>Mở 6 Vai trò</strong> để tự mở đủ 6 cửa sổ Chrome (Guest, Owner, Manager, Creator, Client, Admin) kèm thanh HUD đồng bộ ở góc trái bên dưới.
               </p>
             </div>
 
             <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
-              <div className="font-bold text-slate-900">2. Trong lúc thuyết trình (Chỉ cần 1 phím Space)</div>
+              <div className="font-bold text-slate-900">2. Chiếu song song Laptop &amp; TV (Thao tác thẳng trên Chrome)</div>
               <p>
-                Nhấn liên tục phím <strong>Space</strong> (hoặc nút cam <strong>Thực thi ngay</strong>). Hệ thống tự động chuyển đúng cửa sổ vai trò, chạy các thao tác con, và tự nhảy sang bước tiếp theo khi hoàn tất.
+                Bấm <strong>Toàn màn hình TV</strong> rồi ẩn Bàn điều khiển. Khi thuyết trình, bấm trực tiếp nút <strong>Tiếp ▶</strong> / <strong>◀ Trước</strong> (hoặc phím <strong>Alt + ←/→</strong>) ngay trên thanh HUD nhỏ góc trái dưới màn hình Chrome — cả 6 cửa sổ Chrome tự đồng bộ tức thì qua WebSocket và tự bật đúng cửa sổ vai trò lên trên cùng.
               </p>
             </div>
 
             <div className="p-3 rounded-none bg-slate-50 border border-slate-200 space-y-1">
               <div className="font-bold text-slate-900">3. Trả lời Hội đồng (Q&amp;A) &amp; Dọn dữ liệu sau buổi bảo vệ</div>
               <p>
-                Mở mục <strong>Truy cập nhanh Q&amp;A Hội đồng</strong> ở cuối trang để mở ngay 14 màn hình chuyên sâu. Khi thuyết trình xong, bấm <strong>Xóa dữ liệu Demo</strong> để dọn sạch hệ thống.
+                Nhấn nút <strong>☰</strong> ngay trên thanh HUD góc trái dưới (hoặc mục <strong>Q&amp;A Hội đồng</strong>) để mở nhanh 15 màn hình chuyên sâu và chuyển tức thì qua 6 vai trò. Khi bảo vệ xong, bấm <strong>Xóa dữ liệu Demo</strong> để làm sạch hệ thống.
               </p>
             </div>
           </div>
@@ -1855,14 +2066,27 @@ export const DemoMonitorPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Trạng thái Selenium */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-white border border-slate-200 text-xs">
+            {/* Trạng thái Selenium & WebSocket đồng bộ 6 cửa sổ Chrome */}
+            <div
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-white border border-slate-200 text-xs"
+              title={
+                wsConnected
+                  ? `WebSocket :3999/ws đang đồng bộ tức thì (${wsClientsCount} kết nối)`
+                  : 'Trạng thái kết nối tới Selenium Demo Monitor :3999'
+              }
+            >
               <AstryxStatusDot
                 variant={connected ? 'accent' : 'neutral'}
                 label={connected ? 'Selenium đã kết nối' : 'Selenium chưa bật'}
                 isPulsing={connected}
               />
-              <span className="text-slate-700 font-medium">{connected ? 'Đã kết nối' : 'Chưa bật :3999'}</span>
+              <span className="text-slate-700 font-medium">
+                {connected
+                  ? wsConnected
+                    ? `Socket · ${wsClientsCount}`
+                    : 'Đã kết nối'
+                  : 'Chưa bật :3999'}
+              </span>
             </div>
 
             {/* Xử lý sự cố 6: Tùy chọn hiển thị 1 Màn hình (70/30) vs 2 Màn hình (Chiếu ngoài) */}
@@ -1871,7 +2095,7 @@ export const DemoMonitorPage: React.FC = () => {
                 type="button"
                 onClick={() => handleArrangeWindows('split')}
                 disabled={busyAction !== null}
-                title="1 Màn hình laptop: Xếp 5 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển"
+                title="1 Màn hình laptop: Xếp 6 cửa sổ Chrome gọn bên trái 71%, chừa 29% bên phải cho Bàn điều khiển"
                 className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none text-xs font-semibold cursor-pointer transition-colors ${
                   status?.window_mode === 'split'
                     ? 'bg-orange-50 text-orange-950 font-bold'
@@ -1885,7 +2109,7 @@ export const DemoMonitorPage: React.FC = () => {
                 type="button"
                 onClick={() => handleArrangeWindows('maximize')}
                 disabled={busyAction !== null}
-                title="2 Màn hình HDMI: Phóng to toàn màn hình các cửa sổ Chrome ra máy chiếu ngoài, giữ Bàn điều khiển trên laptop"
+                title="Chiếu song song TV / HDMI: Phóng to toàn màn hình cả 6 cửa sổ Chrome, điều khiển trực tiếp qua thanh HUD góc trái dưới"
                 className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-none text-xs font-semibold cursor-pointer transition-colors border-l border-slate-200 ${
                   status?.window_mode === 'maximize'
                     ? 'bg-orange-50 text-orange-950 font-bold'
@@ -1893,16 +2117,16 @@ export const DemoMonitorPage: React.FC = () => {
                 }`}
               >
                 <Maximize2 className="size-3.5 text-slate-600" />
-                <span className="hidden xl:inline">2 Màn hình</span>
+                <span className="hidden xl:inline">Toàn màn hình TV</span>
               </button>
             </div>
 
-            {/* Nút Đăng nhập 5 Vai trò: Cam ấm dịu, góc vuông */}
+            {/* Nút Mở & Đăng nhập 6 Vai trò: Cam ấm dịu, góc vuông */}
             <button
               type="button"
               disabled={busyAction !== null}
               onClick={handleLoginAll}
-              title="Mở 5 cửa sổ Chrome và tự đăng nhập Owner, Manager, Creator, Client, Admin"
+              title="Mở 6 cửa sổ Chrome kèm thanh HUD Socket góc trái dưới cho Guest, Owner, Manager, Creator, Client, Admin"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-[#ea6c3b] hover:bg-[#d95d2c] text-white text-xs font-semibold border border-[#ea6c3b] cursor-pointer shadow-xs transition-colors disabled:opacity-50"
             >
               {busyAction === 'LOGIN_ALL' ? (
@@ -1910,7 +2134,7 @@ export const DemoMonitorPage: React.FC = () => {
               ) : (
                 <Users className="size-3.5" />
               )}
-              <span>Đăng nhập 5 Vai trò</span>
+              <span>Mở 6 Vai trò</span>
             </button>
 
             {/* Khôi phục DB */}
@@ -2039,7 +2263,7 @@ export const DemoMonitorPage: React.FC = () => {
                   key={step.code}
                   ref={isSelected ? activePillRef : null}
                   type="button"
-                  onClick={() => setActiveStepIndex(idx)}
+                  onClick={() => selectStepWithSync(idx)}
                   title={`Bước ${step.stepNumber}: ${step.title} (${step.role})`}
                   className={`w-full flex items-start gap-2.5 px-3.5 py-2.5 text-left cursor-pointer transition-colors border-l-2 ${
                     isSelected
@@ -2151,7 +2375,7 @@ export const DemoMonitorPage: React.FC = () => {
                 variant="secondary"
                 size="sm"
                 isDisabled={activeStepIndex === 0}
-                onClick={() => setActiveStepIndex((i) => Math.max(0, i - 1))}
+                onClick={() => selectStepWithSync((i) => Math.max(0, i - 1))}
               />
               <AstryxButton
                 label="Tiếp →"
@@ -2159,7 +2383,7 @@ export const DemoMonitorPage: React.FC = () => {
                 variant="secondary"
                 size="sm"
                 isDisabled={activeStepIndex === DEMO_STEPS.length - 1}
-                onClick={() => setActiveStepIndex((i) => Math.min(DEMO_STEPS.length - 1, i + 1))}
+                onClick={() => selectStepWithSync((i) => Math.min(DEMO_STEPS.length - 1, i + 1))}
               />
             </div>
           </div>

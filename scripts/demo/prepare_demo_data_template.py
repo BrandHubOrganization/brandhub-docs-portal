@@ -233,6 +233,7 @@ DEMO_ACCOUNTS = {
         "role": "Owner",
         "title": "Giám đốc Điều hành SE08 Digital (Owner)",
         "bio": "Phụ trách chiến lược tổng thể, xây dựng gói truyền thông đa ngành và quản lý đối tác báo chí tại SE08 Digital Agency.",
+        "avatar_file": "owner_trunglc.jpg",
     },
     "MANAGER": {
         "id": "48a55552-71bd-468c-ba02-fa849eeb7682",
@@ -241,6 +242,7 @@ DEMO_ACCOUNTS = {
         "role": "Manager",
         "title": "Quản lý Chiến dịch Truyền thông (Manager)",
         "bio": "Điều phối kế hoạch 4 tuần chiến dịch Tuyển sinh Đại học FPT 2027, quản lý tiến độ Subtask và kiểm duyệt nội dung nội bộ.",
+        "avatar_file": "manager_locnt.jpg",
     },
     "CREATOR": {
         "id": "56034372-e963-4717-8dfa-e68e34d34c7a",
@@ -249,6 +251,7 @@ DEMO_ACCOUNTS = {
         "role": "Creator",
         "title": "Chuyên viên Nội dung Đa nền tảng (Creator)",
         "bio": "Biên soạn nội dung tuyển sinh trên Facebook, Instagram, TikTok và Threads cho chiến dịch Đại học FPT 2027.",
+        "avatar_file": "creator_phuocnc.jpg",
     },
     "CREATOR_2": {
         "id": "38fcc012-0aff-426f-8466-05de1109ee13",
@@ -257,6 +260,7 @@ DEMO_ACCOUNTS = {
         "role": "Creator",
         "title": "Chuyên viên Thiết kế Visual, Video & Sự kiện Workshop",
         "bio": "Sản xuất Key Visual, Reels/TikTok thực tế tại Campus và điều phối chuỗi Workshop phổ biến tiện ích cho học sinh THPT.",
+        "avatar_file": "creator_tuannm.jpg",
     },
     "CREATOR_3": {
         "id": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
@@ -265,6 +269,7 @@ DEMO_ACCOUNTS = {
         "role": "Creator",
         "title": "Chuyên viên Quan hệ Báo chí (PR) & Email Marketing",
         "bio": "Phụ trách thông cáo báo chí trên VnExpress, Thanh Niên, Dân Trí, khảo sát học sinh lớp 12 và bản tin Email tư vấn tuyển sinh.",
+        "avatar_file": "creator_anhv.jpg",
     },
     "CLIENT": {
         "id": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
@@ -273,6 +278,7 @@ DEMO_ACCOUNTS = {
         "role": "Client",
         "title": "Đại diện Truyền thông & Tuyển sinh Trường Đại học FPT",
         "bio": "Đơn vị khách hàng phối hợp thẩm định thông tin quy chế tuyển sinh khóa K23 (2027), Học bổng Nguyễn Văn Đạo và kỳ thực tập OJT.",
+        "avatar_file": "client_fptu.jpg",
     },
     "ADMIN": {
         "id": "90d56307-940b-4bec-820d-0ba39850041c",
@@ -281,10 +287,68 @@ DEMO_ACCOUNTS = {
         "role": "Admin",
         "title": "Quản trị Vận hành Nền tảng BrandHub",
         "bio": "Giám sát doanh thu gói cước SePay (VietQR), vận hành hạ tầng và xử lý hàng đợi kiểm duyệt nội dung cộng đồng.",
+        "avatar_file": "admin_brandhub.jpg",
     },
 }
 
 PG_USER_IDS = {k: v["id"] for k, v in DEMO_ACCOUNTS.items()}
+
+# Creator phụ: đổi tên user faker sẵn có sang tên tiếng Việt để nhận các task không dùng trên màn hình demo
+EXTRA_CREATORS = {
+    "CREATOR_4": ("user6@demo.brandhub.test", "Trần Thị Mai Anh", "Chuyên viên Nội dung Mạng xã hội"),
+    "CREATOR_5": ("user7@demo.brandhub.test", "Lê Quốc Bảo", "Chuyên viên Nội dung Tuyển sinh"),
+    "CREATOR_6": ("user12@demo.brandhub.test", "Võ Thanh Hằng", "Chuyên viên Quan hệ Đối tác & KOL"),
+    "CREATOR_7": ("user18@demo.brandhub.test", "Phan Đức Khang", "Chuyên viên Thiết kế Hình ảnh"),
+    "CREATOR_8": ("user24@demo.brandhub.test", "Huỳnh Ngọc Trâm", "Chuyên viên Biên tập Nội dung"),
+    "CREATOR_9": ("user17@demo.brandhub.test", "Đặng Minh Khoa", "Chuyên viên Tổ chức Sự kiện"),
+}
+
+# 8 task mở trên màn hình demo: giao toàn bộ cho Phước (tài khoản Creator của Demo Monitor) và luôn IN_PROGRESS,
+# để chuyển bước demo không phải đăng nhập tài khoản khác.
+DEMO_SCREEN_TASK_IDS = {
+    TASK_1_ID,
+    SURVEY_TASK_ID,
+    "85a66c1c-b49b-3788-8bc3-a21336649041",  # Sự kiện FPTU Open Day
+    "c1176d26-249c-3d32-bbad-f720b3a518a4",  # Workshop #1
+    "b8585f25-6a26-3a5e-9199-19c2e9fb3f06",  # Báo chí #1 VnExpress
+    "3f1ae3a9-6518-35df-a596-1013c055e279",  # KOL #1 Duy Luân & Schannel
+    "b6a13469-05c4-3af0-88b1-ba2ca510d18f",  # Bản tin Email
+    "31a69211-9cec-30f0-b3f0-4e01ac3315a1",  # Video Reels/TikTok #3
+}
+# Task còn lại: chia đều cho nhiều thành viên (cả task cha lẫn subtask)
+OTHER_TASK_ASSIGNEES = {
+    "5398bc49-1d70-3b87-acea-84659f6ef3af": "CREATOR_4",
+    "21aa50d2-c690-373c-b332-5696527a7ad9": "CREATOR_2",
+    "7549501c-132b-39eb-a8bc-8609531c7ade": "CREATOR_5",
+    "e2186c6d-8bd7-3dce-ac21-37a8becd6cc6": "CREATOR_6",
+    "a8d477e1-2b44-345a-ac80-f683dccbb03d": "CREATOR_4",
+    "f12c8c2a-256a-3171-a0f5-2346974c5d35": "CREATOR_7",
+    "67158200-07ef-3a98-aaac-e8c408b5522c": "CREATOR_2",
+    "cc51eadf-d39e-3533-9dd4-9352094f128f": "CREATOR_8",
+    "7c566ff3-c720-3812-983e-d7f3450f4736": "CREATOR_5",
+    "b562ce80-52de-3112-a715-520ff867211d": "CREATOR_9",
+    "e22dcd90-6818-305b-82a9-451385013cfa": "CREATOR_6",
+    "eda0031d-455e-3d50-84a0-ab21e4cd7acd": "CREATOR_3",
+}
+
+
+def resolve_extra_creators(cur, resolved_ids: dict[str, str], rename: bool) -> None:
+    """Tìm id (và đổi tên sang tiếng Việt khi rename=True) cho các Creator phụ."""
+    for key, (email, full_name, title) in EXTRA_CREATORS.items():
+        if rename:
+            cur.execute(
+                """
+                UPDATE users SET full_name = %s, professional_title = %s, status = 'ACTIVE',
+                       is_active = TRUE, updated_at = NOW()
+                WHERE email = %s RETURNING id::text;
+                """,
+                (full_name, title, email),
+            )
+        else:
+            cur.execute("SELECT id::text FROM users WHERE email = %s LIMIT 1;", (email,))
+        row = cur.fetchone()
+        if row and row[0]:
+            resolved_ids[key] = str(row[0])
 
 # Đường dẫn ảnh Key Visual đã sinh sẵn bằng Gemini Nano Banana + ảnh Unsplash chọn lọc
 ASSET_BASE_URL = "/demo-assets/fptu-2027"
@@ -1471,13 +1535,16 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
         with conn:
             with conn.cursor() as cur:
                 # 1. Cập nhật thông tin chuẩn cho 7 tài khoản (5 thành viên SE_08 + Client ĐH FPT + Admin)
+                # avatar_url là varchar(255) nên dùng đường dẫn tĩnh /demo-assets/..., KHÔNG nhúng data URI base64 (sẽ vượt 255 ký tự).
                 for key, acc in DEMO_ACCOUNTS.items():
+                    avatar_url = f"{ASSET_BASE_URL}/avatars/{acc['avatar_file']}"
                     cur.execute(
                         """
                         UPDATE users
                         SET full_name = %s,
                             professional_title = %s,
                             bio = %s,
+                            avatar_url = %s,
                             location = 'Đà Nẵng & Hà Nội, Việt Nam',
                             working_language = 'vi,en',
                             status = 'ACTIVE',
@@ -1489,11 +1556,12 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         WHERE email = %s
                         RETURNING id;
                         """,
-                        (acc["full_name"], acc["title"], acc["bio"], acc["email"]),
+                        (acc["full_name"], acc["title"], acc["bio"], avatar_url, acc["email"]),
                     )
                     row = cur.fetchone()
                     if row and row[0]:
                         resolved_ids[key] = str(row[0])
+                resolve_extra_creators(cur, resolved_ids, rename=True)
 
                 owner_id = resolved_ids["OWNER"]
                 manager_id = resolved_ids["MANAGER"]
@@ -1502,8 +1570,9 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                 creator3_id = resolved_ids["CREATOR_3"]
                 client_id = resolved_ids["CLIENT"]
                 admin_id = resolved_ids["ADMIN"]
+                extra_creator_ids = [resolved_ids[k] for k in EXTRA_CREATORS if k in resolved_ids]
 
-                demo_user_ids_clean = [owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id, admin_id]
+                demo_user_ids_clean =[owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id, admin_id]
                 demo_ws_ids_clean = [
                     WORKSPACE_ID,
                     "d7e00000-0000-4000-8000-000000000091",
@@ -1669,6 +1738,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                     (creator_id, "MEMBER"),
                     (creator2_id, "MEMBER"),
                     (creator3_id, "MEMBER"),
+                    *[(uid, "MEMBER") for uid in extra_creator_ids],
                 ]:
                     cur.execute(
                         """
@@ -1815,6 +1885,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                     (creator2_id, None, "CREATOR"),
                     (creator3_id, None, "CREATOR"),
                     (client_id, CLIENT_PROFILE_ID, "CLIENT"),
+                    *[(uid, None, "CREATOR") for uid in extra_creator_ids],
                 ]
                 for uid, cp_id, w_role in ws_member_rows:
                     wm_id = java_name_uuid_from_bytes(f"ws-member:{WORKSPACE_ID}:{uid}")
@@ -3303,6 +3374,19 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                     )
 
                     usage_period_id = java_name_uuid_from_bytes(f"credit-usage-period:{se08_sub_period_id}")
+                    # p_start trôi theo NOW() mỗi ngày, còn id cố định: dời dòng cũ sang kỳ mới để rerun không đụng pkey.
+                    cur.execute(
+                        """
+                        UPDATE credit_usage_periods
+                        SET starts_at = %s, ends_at = %s, subscription_period_id = %s::uuid
+                        WHERE id = %s::uuid
+                          AND NOT EXISTS (
+                              SELECT 1 FROM credit_usage_periods o
+                              WHERE o.agency_id = %s::uuid AND o.starts_at = %s AND o.kind = 'PAID' AND o.id <> %s::uuid
+                          );
+                        """,
+                        (p_start, p_end, se08_sub_period_id, usage_period_id, AGENCY_ID, p_start, usage_period_id),
+                    )
                     cur.execute(
                         """
                         INSERT INTO credit_usage_periods (id, agency_id, starts_at, ends_at, kind, subscription_period_id)
@@ -3474,6 +3558,150 @@ ROLE_SUBTASK_DEFS: dict[str, list[tuple[str, str]]] = {
         ("SURVEY_DISTRIBUTE", "Phân phối & thu thập"),
         ("SURVEY_ANALYSIS", "Phân tích & báo cáo"),
     ],
+}
+
+# Mô tả + tiêu chí nghiệm thu cho từng vai trò subtask; {task} = tên công việc cha.
+ROLE_SUBTASK_BRIEFS: dict[str, tuple[str, str]] = {
+    "POST_RESEARCH": (
+        "Thu thập thông tin đầu vào cho bài \"{task}\": đối chiếu quy chế tuyển sinh K23 (2027) trên tuyensinh.fpt.edu.vn, phỏng vấn nhanh 2-3 sinh viên/giảng viên và chốt 3 thông điệp chính.",
+        "Có file brief gồm 3 thông điệp chính, nguồn số liệu được trích dẫn, ít nhất 2 trích dẫn phỏng vấn thực tế và được Manager xác nhận trước khi viết.",
+    ),
+    "POST_CONTENT": (
+        "Viết caption chính cho \"{task}\" theo giọng văn Brand Profile ĐH FPT, biến thể riêng cho Facebook (dài), Instagram/Threads (ngắn) và TikTok (hook 3 giây).",
+        "Caption không chứa từ khóa hạn chế, có CTA dẫn về https://tuyensinh.fpt.edu.vn, 5-6 hashtag chuẩn chiến dịch và đạt kiểm duyệt an toàn nội dung (FR 3.6.33).",
+    ),
+    "POST_MEDIA": (
+        "Chuẩn bị hình ảnh/Key Visual cho \"{task}\": dùng bộ KV Gemini trong /library, bổ sung ảnh thực tế campus và xuất đủ tỉ lệ 1:1, 4:5, 9:16.",
+        "Đủ 3 tỉ lệ ảnh, đúng màu cam FPTU 2027, logo rõ nét, không lỗi chính tả trên ảnh và đã gắn vào bài viết trong /editor.",
+    ),
+    "POST_EDITING": (
+        "Biên tập lại toàn bộ nội dung \"{task}\": soát chính tả, thống nhất thuật ngữ (OJT, Học bổng Nguyễn Văn Đạo), kiểm tra số liệu và độ dài theo nền tảng.",
+        "Không còn lỗi chính tả/ngữ pháp, số liệu khớp brief, bài được gửi duyệt nội bộ v1 cho Manager.",
+    ),
+    "POST_PUBLISHING": (
+        "Lên lịch đăng \"{task}\" đồng thời trên Facebook, Instagram, TikTok và Threads theo khung giờ vàng 11h30 hoặc 20h00.",
+        "Bài đã được Client duyệt, lịch đăng xác nhận trên cả 4 kênh, link bài sau khi đăng được ghi lại trong publish log.",
+    ),
+    "VIDEO_SCRIPT": (
+        "Lên ý tưởng và kịch bản phân cảnh cho video \"{task}\": hook 3 giây đầu, 4-6 cảnh quay tại campus, lời thoại và nhạc nền phù hợp xu hướng TikTok.",
+        "Kịch bản có storyboard từng cảnh, thời lượng 30-60 giây, danh sách đạo cụ/địa điểm và được Manager duyệt.",
+    ),
+    "VIDEO_SHOOT": (
+        "Quay footage cho \"{task}\" tại campus theo kịch bản đã duyệt, quay dọc 9:16, có dự phòng b-roll.",
+        "Đủ footage cho mọi phân cảnh, độ phân giải tối thiểu 1080p, âm thanh thu rõ và file được upload vào thư mục tuần trong /library.",
+    ),
+    "VIDEO_EDIT": (
+        "Dựng và hậu kỳ video \"{task}\": cắt nhịp nhanh, chèn phụ đề tiếng Việt, color grading tông cam FPTU và end-card CTA.",
+        "Video hoàn chỉnh 30-60 giây, phụ đề khớp lời thoại, không vi phạm bản quyền nhạc, xuất bản 9:16 và được duyệt nội bộ.",
+    ),
+    "VIDEO_PUBLISH": (
+        "Viết caption, chọn ảnh bìa và đăng video \"{task}\" lên TikTok, Instagram Reels và Facebook Reels.",
+        "Video được đăng đúng lịch trên 3 nền tảng, caption có hashtag chiến dịch và link đăng ký tư vấn.",
+    ),
+    "WORKSHOP_PROGRAM": (
+        "Xây dựng nội dung chương trình cho \"{task}\": timeline 90 phút gồm giới thiệu ngành, trải nghiệm VR/Robotics và tư vấn Học bổng 2027.",
+        "Có agenda chi tiết theo phút, slide trình chiếu và kịch bản MC được Ban Tuyển sinh xác nhận.",
+    ),
+    "WORKSHOP_SPEAKER": (
+        "Mời và brief diễn giả cho \"{task}\" (giảng viên ngành Vi mạch/AI và đại diện sinh viên OJT).",
+        "Ít nhất 2 diễn giả xác nhận tham gia, nhận đủ brief nội dung và lịch tổng duyệt.",
+    ),
+    "WORKSHOP_LOGISTICS": (
+        "Chuẩn bị hậu cần cho \"{task}\": thiết bị VR, cánh tay robot demo, backdrop, quà tặng và xe đưa đón học sinh.",
+        "Checklist hậu cần hoàn tất 100%, thiết bị chạy thử trước 1 ngày, có phương án dự phòng thiết bị.",
+    ),
+    "WORKSHOP_REGISTRATION": (
+        "Mở form đăng ký và truyền thông cho \"{task}\" qua fanpage, email và nhóm phụ huynh các trường THPT.",
+        "Form đăng ký hoạt động, đạt tối thiểu 80% chỉ tiêu người tham dự, gửi email vé mời QR trước 2 ngày.",
+    ),
+    "WORKSHOP_REPORT": (
+        "Tổng kết \"{task}\": số người tham dự, phản hồi khảo sát, ảnh hoạt động và đề xuất cho buổi tiếp theo.",
+        "Báo cáo có số liệu tham dự, tỉ lệ hài lòng, 10 ảnh tiêu biểu và được gửi Client trong 48 giờ.",
+    ),
+    "EVENT_AGENDA": (
+        "Lên concept và agenda cho \"{task}\": chủ đề, các khu trải nghiệm, khung giờ sân khấu và tuyến tham quan.",
+        "Agenda chi tiết theo giờ, sơ đồ khu vực và concept visual được Ban Tuyển sinh phê duyệt.",
+    ),
+    "EVENT_LOGISTICS": (
+        "Điều phối hậu cần và địa điểm cho \"{task}\": sân khấu, âm thanh ánh sáng, gian hàng ngành học và đón tiếp.",
+        "Hợp đồng nhà cung cấp đã ký, tổng duyệt kỹ thuật hoàn tất trước 1 ngày, có sơ đồ phân luồng khách.",
+    ),
+    "EVENT_PROMOTION": (
+        "Truyền thông trước sự kiện \"{task}\": countdown trên 4 nền tảng, email mời và phối hợp KOL.",
+        "Đủ chuỗi bài countdown theo lịch, lượt đăng ký đạt chỉ tiêu và thông tin sự kiện nhất quán mọi kênh.",
+    ),
+    "EVENT_ONSITE": (
+        "Điều phối tại chỗ trong ngày diễn ra \"{task}\": quản lý timeline sân khấu, đội tình nguyện viên và livestream bài đăng nhanh.",
+        "Chương trình chạy đúng timeline (lệch dưới 10 phút), không sự cố an toàn, có ít nhất 3 bài đăng cập nhật trong ngày.",
+    ),
+    "EVENT_REPORT": (
+        "Báo cáo sau sự kiện \"{task}\": lượt khách, lead đăng ký tư vấn, độ phủ truyền thông và bài học kinh nghiệm.",
+        "Báo cáo đầy đủ số liệu, so sánh với KPI ban đầu và được gửi Client trong 3 ngày làm việc.",
+    ),
+    "KOL_SOURCING": (
+        "Tìm và đề xuất KOL/KOC công nghệ, giáo dục phù hợp tệp học sinh 2k9 cho \"{task}\".",
+        "Danh sách tối thiểu 5 KOL kèm chỉ số follower, tương tác trung bình và báo giá; đã được Manager chọn shortlist.",
+    ),
+    "KOL_NEGOTIATION": (
+        "Đàm phán chi phí, quyền lợi và lịch đăng với KOL đã chọn cho \"{task}\".",
+        "Chi phí nằm trong ngân sách gói, điều khoản rõ ràng về số bài/quyền sử dụng nội dung và có xác nhận bằng văn bản.",
+    ),
+    "KOL_BRIEF": (
+        "Soạn brief cho KOL thực hiện \"{task}\": thông điệp chính, từ khóa cần tránh, hashtag và mốc thời gian.",
+        "Brief được KOL xác nhận đã đọc, có danh sách từ khóa hạn chế theo Brand Profile ĐH FPT.",
+    ),
+    "KOL_CONTENT_REVIEW": (
+        "Duyệt bản nháp nội dung KOL gửi cho \"{task}\" trước khi đăng.",
+        "Nội dung đúng brief, không chứa từ khóa hạn chế, có Client duyệt cuối trước giờ đăng.",
+    ),
+    "KOL_TRACKING": (
+        "Theo dõi hiệu quả bài đăng KOL cho \"{task}\": reach, tương tác, lượt click link đăng ký.",
+        "Báo cáo số liệu sau 72 giờ đăng, so sánh với cam kết và đề xuất KOL cho đợt sau.",
+    ),
+    "EMAIL_CONTENT": (
+        "Viết nội dung bản tin email \"{task}\": tiêu đề, preheader, thân bài về học bổng/OJT và CTA đăng ký.",
+        "Tiêu đề dưới 60 ký tự, nội dung không lỗi chính tả, có 1 CTA chính và được Manager duyệt.",
+    ),
+    "EMAIL_DESIGN": (
+        "Thiết kế template email cho \"{task}\" theo nhận diện FPTU, hiển thị tốt trên mobile và Gmail/Outlook.",
+        "Template responsive, ảnh có alt text, test hiển thị trên 3 client email không lỗi bố cục.",
+    ),
+    "EMAIL_SEND": (
+        "Chuẩn bị danh sách người nhận (học sinh, phụ huynh đã đăng ký) và lên lịch gửi \"{task}\".",
+        "Danh sách đã loại email hủy đăng ký, gửi thử thành công và lịch gửi được xác nhận.",
+    ),
+    "EMAIL_REPORT": (
+        "Báo cáo hiệu quả email \"{task}\": tỉ lệ mở, click, hủy đăng ký.",
+        "Có số liệu open rate, click rate sau 48 giờ và đề xuất tối ưu cho bản tin kế tiếp.",
+    ),
+    "PRESS_MEDIA_LIST": (
+        "Lập danh sách báo chí mục tiêu cho \"{task}\" (VnExpress, Thanh Niên, Dân Trí, Tuổi Trẻ) kèm đầu mối phóng viên giáo dục.",
+        "Danh sách tối thiểu 4 đầu báo, có tên và kênh liên hệ phóng viên, được Manager xác nhận.",
+    ),
+    "PRESS_RELEASE": (
+        "Viết thông cáo báo chí \"{task}\" theo chuẩn tin giáo dục: sự kiện, số liệu, trích dẫn đại diện nhà trường.",
+        "Thông cáo dưới 800 chữ, có trích dẫn được Ban Tuyển sinh duyệt, kèm 3 ảnh chất lượng cao.",
+    ),
+    "PRESS_PITCHING": (
+        "Gửi thông cáo và pitching phóng viên các báo đã chọn cho \"{task}\".",
+        "100% đầu báo trong danh sách đã được liên hệ, ghi nhận phản hồi và lịch dự kiến đăng.",
+    ),
+    "PRESS_TRACKING": (
+        "Theo dõi các bài báo đăng tải về \"{task}\" và tổng hợp link, độ phủ.",
+        "Bảng tổng hợp link bài đăng, tiêu đề, ngày đăng và được gửi Client cuối tuần.",
+    ),
+    "SURVEY_DESIGN": (
+        "Thiết kế bảng hỏi cho \"{task}\" khảo sát nhu cầu chọn ngành và mối quan tâm học bổng của học sinh lớp 12.",
+        "Bảng hỏi 8-12 câu, không câu hỏi dẫn dắt, đã chạy thử với 5 học sinh và được Manager duyệt.",
+    ),
+    "SURVEY_DISTRIBUTE": (
+        "Phân phối khảo sát \"{task}\" tại các buổi Workshop THPT và qua fanpage, thu thập phản hồi.",
+        "Thu về tối thiểu số phản hồi mục tiêu, dữ liệu sạch không trùng lặp.",
+    ),
+    "SURVEY_ANALYSIS": (
+        "Phân tích kết quả khảo sát \"{task}\" và rút ra insight cho nội dung tuần tiếp theo.",
+        "Báo cáo có biểu đồ, 3-5 insight chính và đề xuất áp dụng vào kế hoạch nội dung.",
+    ),
 }
 
 
@@ -3649,7 +3877,12 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
     for s in specs:
         w_item_id = s.get("work_item_id")
         t_id = s.get("task_id_override") or campaign_task_id(CAMPAIGN_ID, w_item_id)
-        assignee = resolved_ids[s["assignee_key"]]
+        is_demo_screen = t_id in DEMO_SCREEN_TASK_IDS
+        if is_demo_screen:
+            assignee = creator_id
+        else:
+            other_key = OTHER_TASK_ASSIGNEES.get(t_id, s["assignee_key"])
+            assignee = resolved_ids.get(other_key) or resolved_ids[s["assignee_key"]]
         due_dt: datetime = s["due"]
         planned_start = due_dt - timedelta(days=3)
         created_dt = now - timedelta(days=15)
@@ -3658,21 +3891,21 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
 
         sub_status_default = "FINISHED" if t_status == "FINISHED" else ("IN_PROGRESS" if t_status in ("IN_PROGRESS", "IN_REVIEW") else "TODO")
         subtasks = []
-        for r_idx, (role_code, role_label) in enumerate(ROLE_SUBTASK_DEFS[s["type"]]):
-            # Phân bổ hợp lý giữa Phước (Content), Tuấn (Media/Video/Workshop) và Ân (PR/Email/Survey)
-            if role_code in ("POST_MEDIA", "VIDEO_SHOOT", "VIDEO_EDIT", "WORKSHOP_LOGISTICS", "EVENT_LOGISTICS"):
-                sub_assignee = creator2_id
-            elif role_code.startswith("PRESS_") or role_code.startswith("EMAIL_") or role_code.startswith("SURVEY_"):
-                sub_assignee = creator3_id
-            else:
-                sub_assignee = assignee
+        role_defs = ROLE_SUBTASK_DEFS[s["type"]]
+        sub_slot = (due_dt - planned_start) / len(role_defs)
+        for r_idx, (role_code, role_label) in enumerate(role_defs):
+            # Mọi subtask theo người giữ task cha (task demo => Phước)
+            sub_assignee = assignee
 
             if t_id == TASK_1_ID:
                 # Task trình diễn sân khấu: Nghiên cứu, Media, Đăng bài đã chuẩn bị xong; Viết content & Biên tập đang thực hiện
                 this_sub_status = "FINISHED" if role_code in ("POST_RESEARCH", "POST_MEDIA", "POST_PUBLISHING") else "IN_PROGRESS"
+            elif is_demo_screen:
+                this_sub_status = "IN_PROGRESS"
             else:
                 this_sub_status = "FINISHED" if (t_status == "IN_REVIEW" and r_idx < len(ROLE_SUBTASK_DEFS[s["type"]]) - 1) else sub_status_default
 
+            brief_desc, brief_criteria = ROLE_SUBTASK_BRIEFS[role_code]
             subtasks.append(
                 {
                     "id": subtask_id(t_id, role_code),
@@ -3680,10 +3913,12 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
                     "name": role_label,
                     "assigneeId": sub_assignee,
                     "supervisorOverrideId": None,
-                    "dueDate": due_dt,
+                    "dueDate": planned_start + sub_slot * (r_idx + 1),
                     "status": this_sub_status,
-                    "plannedStartDate": planned_start,
+                    "plannedStartDate": planned_start + sub_slot * r_idx,
                     "subtaskRole": role_code,
+                    "description": brief_desc.format(task=s["name"]),
+                    "acceptanceCriteria": brief_criteria.format(task=s["name"]),
                 }
             )
 
@@ -3707,7 +3942,7 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
             "name": s["name"],
             "description": s["description"],
             "type": s["type"],
-            "status": t_status,
+            "status": "IN_PROGRESS" if is_demo_screen else t_status,
             "assigneeId": assignee,
             "assignedAt": created_dt + timedelta(hours=1),
             "assignedBy": manager_id,
@@ -3732,7 +3967,9 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
             "subtasks": subtasks,
             "typeMetadata": type_meta,
         }
-        if t_status == "IN_REVIEW":
+        if is_demo_screen:
+            pass  # task demo luôn IN_PROGRESS: không có lượt gửi duyệt đang mở
+        elif t_status == "IN_REVIEW":
             task_doc["reviewStep"] = "MANAGER"
             task_doc["lastSubmission"] = {
                 "round": 1,
@@ -5762,6 +5999,7 @@ def clean_postgres(pg_uri: str) -> dict[str, str]:
                     row = cur.fetchone()
                     if row and row[0]:
                         resolved_ids[key] = str(row[0])
+                resolve_extra_creators(cur, resolved_ids, rename=False)
 
                 owner_id = resolved_ids["OWNER"]
                 manager_id = resolved_ids["MANAGER"]

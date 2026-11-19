@@ -8,7 +8,7 @@
     "category": "UML Class Diagram",
     "title": "3.2 - Authentication & Authorization Class Diagram",
     "caption": "Class Diagram 3.2 - Authentication & Authorization",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374225/brandhub-docs-portal/report4/cd-3_2.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926338/brandhub-diagrams/r4-3-2-authentication-account-class-diagram.png",
     "imageWidth": 2576,
     "imageHeight": 1347,
     "actors": [
@@ -114,9 +114,9 @@
     "category": "UML Class Diagram",
     "title": "3.3 - User & Client Profile Class Diagram",
     "caption": "Class Diagram 3.3 - User & Client Profile",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_3.png",
-    "imageWidth": 2304,
-    "imageHeight": 934,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926360/brandhub-diagrams/r4-3-3-profile-management-class-diagram.png",
+    "imageWidth": 2504,
+    "imageHeight": 1044,
     "actors": [
       "Owner",
       "Manager",
@@ -230,9 +230,9 @@
     "category": "UML Class Diagram",
     "title": "3.4 - Agency & Workspace Class Diagram",
     "caption": "Class Diagram 3.4 - Agency & Workspace",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_4.png",
-    "imageWidth": 3744,
-    "imageHeight": 5174,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926373/brandhub-diagrams/r4-3-4-agency-workspace-class-diagram.png",
+    "imageWidth": 2824,
+    "imageHeight": 1459,
     "actors": [
       "Owner",
       "Manager",
@@ -346,7 +346,7 @@
     "category": "UML Class Diagram",
     "title": "3.5 - Media Package & Media Campaign Class Diagram",
     "caption": "Class Diagram 3.5 - Media Package & Media Campaign",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_5.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926435/brandhub-diagrams/r4-3-5-media-package-campaign-class-diagram.png",
     "imageWidth": 2826,
     "imageHeight": 1530,
     "actors": [
@@ -457,9 +457,9 @@
     "category": "UML Class Diagram",
     "title": "3.6 - Content & Workflow Class Diagram",
     "caption": "Class Diagram 3.6 - Content & Workflow",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_6.png",
-    "imageWidth": 2400,
-    "imageHeight": 1400,
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926470/brandhub-diagrams/r4-3-6-content-workflow-class-diagram.png",
+    "imageWidth": 3786,
+    "imageHeight": 1220,
     "actors": [
       "Owner",
       "Manager",
@@ -543,7 +543,7 @@
     "category": "UML Class Diagram",
     "title": "3.7 - AI Features Class Diagram",
     "caption": "Class Diagram 3.7 - AI Features",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374226/brandhub-docs-portal/report4/cd-3_7.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926552/brandhub-diagrams/r4-3-7-ai-features-class-diagram.png",
     "imageWidth": 3274,
     "imageHeight": 1553,
     "actors": [
@@ -659,7 +659,7 @@
     "category": "UML Class Diagram",
     "title": "3.8 - Publishing & Social Class Diagram",
     "caption": "Class Diagram 3.8 - Publishing & Social",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_8.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926592/brandhub-diagrams/r4-3-8-publishing-social-media-class-diagram.png",
     "imageWidth": 4936,
     "imageHeight": 1425,
     "actors": [
@@ -775,7 +775,7 @@
     "category": "UML Class Diagram",
     "title": "3.9 - Subscription & Billing Class Diagram",
     "caption": "Class Diagram 3.9 - Subscription & Billing",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_9.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926637/brandhub-diagrams/r4-3-9-subscription-billing-class-diagram.png",
     "imageWidth": 2126,
     "imageHeight": 1635,
     "actors": [
@@ -871,7 +871,7 @@
     "category": "UML Class Diagram",
     "title": "3.10 - Admin Functions Class Diagram",
     "caption": "Class Diagram 3.10 - Admin Functions",
-    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1793374227/brandhub-docs-portal/report4/cd-3_10.png",
+    "imageUrl": "https://res.cloudinary.com/dvwt6npcl/image/upload/v1794926300/brandhub-diagrams/r4-3-10-admin-management-class-diagram.png",
     "imageWidth": 3484,
     "imageHeight": 1659,
     "actors": [
