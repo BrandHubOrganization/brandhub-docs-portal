@@ -49,7 +49,7 @@ from urllib.parse import urlparse
 
 try:
     from selenium import webdriver
-    from selenium.common.exceptions import WebDriverException
+    from selenium.common.exceptions import StaleElementReferenceException, WebDriverException
     from selenium.webdriver.chrome.options import Options
     from selenium.webdriver.chrome.service import Service as ChromeService
     from selenium.webdriver.common.by import By
@@ -937,6 +937,7 @@ _HUD_JS_TEMPLATE = r"""
           + '<button type="button" class="hud-btn" data-cmd="prev" ' + (idx <= 0 ? 'disabled' : '') + ' title="' + esc(prevTitle) + '">&#9664; Trước</button>'
           + '<button type="button" class="hud-btn hud-btn-primary" data-cmd="next" ' + (idx >= total - 1 ? 'disabled' : '') + ' title="' + esc(nextTitle) + '">' + nextLabel + '</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="rerun" title="Chạy lại bước hiện tại trên Chrome (Alt+R)">&#8635;</button>'
+          + '<button type="button" class="hud-btn" data-cmd="cycle_pace" title="Đổi tốc độ gõ chữ & thao tác (Chậm / Vừa / Nhanh)">&#9201; ' + esc((sync && sync.pace_label) || 'Vừa') + '</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="skip_step" title="Bỏ qua bước đang chạy (thao tác tay thay thế)">&#9197;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon' + (state.drawerOpen ? ' hud-btn-active' : '') + '" data-cmd="toggle_drawer" title="Mở danh sách 6 vai trò & các bước B0–B12 (Alt+M)">&#9776;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="toggle_collapse" title="Thu gọn thanh banner">&#8211;</button>'
@@ -1009,6 +1010,10 @@ _HUD_JS_TEMPLATE = r"""
       }
       if (cmd === 'skip_step') {
         sendCommand({ type: 'skip_step' });
+        return;
+      }
+      if (cmd === 'cycle_pace') {
+        sendCommand({ type: 'cycle_pace' });
         return;
       }
       if (cmd === 'rerun') {
@@ -1283,6 +1288,22 @@ def _demo_sleep(seconds: float) -> None:
         raise StepCancelled()
 
 
+# Tốc độ demo: (ký tự/giây khi gõ, hệ số kéo dài các khoảng dừng để Hội đồng kịp theo dõi)
+DEMO_PACES = {"slow": (25, 3.5), "normal": (80, 2.5), "fast": (120, 1.0)}
+DEMO_PACE_LABELS = {"slow": "Chậm", "normal": "Vừa", "fast": "Nhanh"}
+DEMO_PACE_ORDER = ["slow", "normal", "fast"]
+_pace = [os.environ.get("DEMO_PACE", "normal") if os.environ.get("DEMO_PACE") in DEMO_PACES else "normal"]
+
+
+def _visual_pause(seconds: float) -> None:
+    """Khoảng dừng cho người xem (tô sáng, bôi đen, mở dropdown), kéo dài theo tốc độ demo."""
+    _demo_sleep(seconds * DEMO_PACES[_pace[0]][1])
+
+
+def _type_delay(chars: int) -> None:
+    _demo_sleep(chars / DEMO_PACES[_pace[0]][0])
+
+
 # ==============================================================================
 # 2. SELENIUM BROWSER CONTROLLER + STATE SYNC ENGINE
 # ==============================================================================
@@ -1527,6 +1548,8 @@ class DemoBrowserController:
                     if next_item else None
                 ),
                 "auto_execute": self.auto_execute,
+                "pace": _pace[0],
+                "pace_label": DEMO_PACE_LABELS[_pace[0]],
                 "busy": self.busy,
                 "busy_label": self.busy_label,
                 "done_actions": sorted(self.done_actions),
@@ -1662,6 +1685,11 @@ class DemoBrowserController:
                 last_message="Đã bỏ qua bước đang chạy. Thao tác tay hoặc bấm Tiếp.",
                 last_error="",
             )
+            return {"ok": True, "state": snap}
+
+        if ctype == "cycle_pace":
+            _pace[0] = DEMO_PACE_ORDER[(DEMO_PACE_ORDER.index(_pace[0]) + 1) % len(DEMO_PACE_ORDER)]
+            snap = self.broadcast_state(last_message=f"Tốc độ demo: {DEMO_PACE_LABELS[_pace[0]]}.")
             return {"ok": True, "state": snap}
 
         if ctype == "cancel_busy":
@@ -1836,6 +1864,7 @@ class DemoBrowserController:
             driver.execute_script(js, element, label, color)
         except Exception:
             pass
+        _visual_pause(0.6)
 
     def react_set_value(
         self,
@@ -1859,8 +1888,8 @@ class DemoBrowserController:
             except Exception:
                 pass
 
-        if human_typing and len(value) <= 980:
-            chunk_size = 5 if len(value) > 160 else 2
+        if human_typing and len(value) <= 3000:
+            chunk_size = 1 if DEMO_PACES[_pace[0]][0] <= 40 else 3
             current_js = """
             const el = arguments[0];
             const val = arguments[1];
@@ -1879,7 +1908,7 @@ class DemoBrowserController:
             for i in range(0, len(value), chunk_size):
                 piece = value[i : i + chunk_size]
                 driver.execute_script(current_js, element, piece)
-                _demo_sleep(0.015)
+                _type_delay(len(piece))
             driver.execute_script("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", element)
             return
 
@@ -1928,14 +1957,23 @@ class DemoBrowserController:
         paras = text.strip("\n").split("\n")
         if append:
             paras = [""] + paras
-        add_js = """
+        type_js = """
             const ed = document.querySelector(arguments[0] + ' .ProseMirror').editor;
-            const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            ed.chain().focus('end').insertContent(arguments[1].map((t) => '<p>' + esc(t) + '</p>').join('')).run();
+            const chain = ed.chain().focus('end');
+            if (arguments[2]) chain.splitBlock();
+            if (arguments[1]) chain.insertContent({type: 'text', text: arguments[1]});
+            chain.run();
         """
-        for i in range(0, len(paras), 2):
-            driver.execute_script(add_js, self.CAPTION_SEC, paras[i : i + 2])
-            _demo_sleep(0.18)
+        step = 2 if DEMO_PACES[_pace[0]][0] <= 40 else 6
+        for index, para in enumerate(paras):
+            # Đoạn đầu ghi vào đoạn trống sẵn có; các đoạn sau tách khối (đoạn rỗng = dòng trống).
+            new_block = index > 0 or append
+            if not para:
+                driver.execute_script(type_js, self.CAPTION_SEC, "", new_block)
+                continue
+            for k in range(0, len(para), step):
+                driver.execute_script(type_js, self.CAPTION_SEC, para[k : k + step], new_block and k == 0)
+                _type_delay(min(step, len(para) - k))
         return True
 
     def caption_header(self, driver: webdriver.Chrome) -> str:
@@ -1964,7 +2002,6 @@ class DemoBrowserController:
             if btn:
                 if label:
                     self.highlight_element(driver, btn, label)
-                    _demo_sleep(0.5)
                 driver.execute_script("arguments[0].click();", btn)
                 return True
             _demo_sleep(0.4)
@@ -2002,7 +2039,7 @@ class DemoBrowserController:
 
     def caption_select(self, driver: webdriver.Chrome, needle: str) -> bool:
         ok = bool(driver.execute_script(self._FIND_RANGE_JS, self.CAPTION_SEC, needle))
-        _demo_sleep(0.6)
+        _visual_pause(0.6)
         return ok
 
     def caption_tool(self, driver: webdriver.Chrome, title: str, label: str) -> bool:
@@ -2011,9 +2048,8 @@ class DemoBrowserController:
         if not btn:
             return False
         self.highlight_element(driver, btn, label)
-        _demo_sleep(0.7)
         driver.execute_script("arguments[0].click();", btn)
-        _demo_sleep(0.6)
+        _visual_pause(0.4)
         return True
 
     def caption_bulletize(self, driver: webdriver.Chrome, starts: list[str], label: str) -> bool:
@@ -2056,7 +2092,8 @@ class DemoBrowserController:
                 _demo_sleep(0.4)
             if self.caption_select(driver, title) and self.caption_font(driver, "Montserrat (Sans Đậm)"):
                 done.append("font Sans Đậm Unicode cho tiêu đề")
-        if self.caption_select(driver, "Sau chuỗi Workshop phổ biến tiện ích học đường") and self.caption_tool(driver, "In nghiêng (Italic)", "IN NGHIÊNG CÂU DẪN"):
+        intro = next((ln for ln in DEMO_TEXTS["caption_v1_clean"].split("\n") if ln.startswith("Sau chuỗi Workshop")), "Sau chuỗi Workshop")
+        if self.caption_select(driver, intro) and self.caption_tool(driver, "In nghiêng (Italic)", "IN NGHIÊNG CÂU DẪN"):
             done.append("câu dẫn in nghiêng")
         if self.caption_select(driver, "Học bổng Nguyễn Văn Đạo") and self.caption_tool(driver, "In đậm (Bold)", "IN ĐẬM Ý CHÍNH"):
             done.append("in đậm 'Học bổng Nguyễn Văn Đạo'")
@@ -2083,18 +2120,64 @@ class DemoBrowserController:
             return 0
         self.highlight_element(driver, inp, "NHẬP HASHTAG + ENTER")
         for tag in tags:
-            # Không dùng click(): nhãn tô sáng của HUD nằm đè lên ô nhập
-            driver.execute_script("arguments[0].scrollIntoView({block: 'center'}); arguments[0].focus();", inp)
-            for ch in tag:
-                inp.send_keys(ch)
-                time.sleep(0.03)
-            inp.send_keys(Keys.ENTER)
-            _demo_sleep(0.35)
+            # Thử lại 1 lần: tag đôi khi chưa vào kịp và hộp "Thêm hashtag" còn mở, chặn bước Nộp phần
+            for _attempt in range(2):
+                inp = self._type_hashtag(driver, inp, tag)
+                if self._hashtag_present(driver, tag):
+                    break
+                self._close_dialogs(driver)
+        self._close_dialogs(driver)
+        return self.hashtag_count(driver)
+
+    def _hashtag_present(self, driver: webdriver.Chrome, tag: str) -> bool:
+        return bool(driver.execute_script(
+            "const s=document.querySelector(arguments[0]); return !!s && s.innerText.toLowerCase().includes('#' + arguments[1].toLowerCase());",
+            self.CAPTION_SEC, tag))
+
+    def _close_dialogs(self, driver: webdriver.Chrome) -> None:
+        driver.execute_script(
+            "document.querySelectorAll('[role=dialog] form button[type=submit]').forEach((s) => s.previousElementSibling?.click());")
+        _demo_sleep(0.4)
+
+    def _type_hashtag(self, driver: webdriver.Chrome, inp, tag: str):
+        before = self.hashtag_count(driver)
+        # Không dùng click(): nhãn tô sáng của HUD nằm đè lên ô nhập
+        driver.execute_script("arguments[0].scrollIntoView({block: 'center'}); arguments[0].focus();", inp)
+        # Bàn phím Selenium báo "element not interactable" với ô này: gõ bằng native setter + sự kiện input
+        # (React nhận như người gõ), rồi keydown Enter để thêm tag.
+        for k in range(1, len(tag) + 1):
+            driver.execute_script(
+                "const el=arguments[0]; Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(el, arguments[1]);"
+                "el.dispatchEvent(new Event('input', {bubbles: true}));",
+                inp, tag[:k])
+            _type_delay(1)
+        driver.execute_script(
+            "arguments[0].dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter', code: 'Enter', bubbles: true, cancelable: true}));", inp)
+        # Chờ tag vào danh sách, hoặc hộp "Thêm hashtag" (tag chưa có trong kho workspace) hiện ra
+        save_css = "[role=dialog] form button[type=submit]"
+        end = time.time() + 4
+        save = None
+        while time.time() < end and self.hashtag_count(driver) < before + 1:
+            save = driver.execute_script("return document.querySelector(arguments[0]);", save_css)
+            if save:
+                break
+            _demo_sleep(0.3)
+        if save:
+            self.highlight_element(driver, save, "LƯU VÀO KHO HASHTAG")
+            driver.execute_script("arguments[0].click();", save)
+            end = time.time() + 8
+            while time.time() < end and self.hashtag_count(driver) < before + 1:
+                _demo_sleep(0.3)
+        _visual_pause(0.3)
+        return driver.execute_script(
+            "return document.querySelector(arguments[0] + ' input[placeholder^=\"Nhập hashtag\"]');", self.CAPTION_SEC) or inp
+
+    def hashtag_count(self, driver: webdriver.Chrome) -> int:
         return int(driver.execute_script(
             "const s=document.querySelector(arguments[0]); const m=s && s.innerText.match(/Bộ Hashtags bài viết \\((\\d+)\\)/); return m ? +m[1] : 0;",
             self.CAPTION_SEC) or 0)
 
-    API_BASE =os.environ.get("BRANDHUB_API_URL", "http://localhost:8080")
+    API_BASE = os.environ.get("BRANDHUB_API_URL", "http://localhost:8080")
 
     def api_call(self, method: str, path: str, body: Any = None, token: str = "", headers: dict | None = None) -> tuple[int, Any]:
         """Gọi REST API của BrandHub từ phía tool (dùng cho bước hệ thống không có nút trên UI)."""
@@ -2142,7 +2225,7 @@ class DemoBrowserController:
         try:
             self.highlight_element(driver, combobox_el, f"Chọn: {option_text}")
             driver.execute_script("arguments[0].dispatchEvent(new PointerEvent('pointerdown', {bubbles: true, button: 0, pointerType: 'mouse'}));", combobox_el)
-            _demo_sleep(0.35)
+            _visual_pause(0.4)
             opt_xpath = (
                 f"//*[@role='option' and (contains(normalize-space(.), '{option_text}') "
                 f"or .//*[contains(normalize-space(.), '{option_text}')])]"
@@ -2150,7 +2233,7 @@ class DemoBrowserController:
             options = driver.find_elements(By.XPATH, opt_xpath)
             if options:
                 driver.execute_script("arguments[0].click();", options[0])
-                _demo_sleep(0.22)
+                _visual_pause(0.3)
                 return True
             # Đóng listbox bằng Escape không bubble (HUD bắt Escape ở window để bỏ qua bước)
             driver.execute_script("const l=document.querySelector('[role=listbox]'); if (l) l.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: false}));")
@@ -2621,12 +2704,16 @@ class DemoBrowserController:
             try:
                 inserted = False
                 if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
-                    inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 45, exact=False)
+                    inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 55, exact=False)
                     _demo_sleep(1.0)
                 if not inserted:
                     # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
                     self.click_button_text(drv, "Close", dlg_css, "", 2)
-                    _demo_sleep(0.5)
+                    end = time.time() + 4
+                    while time.time() < end and drv.execute_script("return !!document.querySelector(\"[role='dialog']\");"):
+                        _demo_sleep(0.3)
+                    if drv.execute_script("return !!document.querySelector(\"[role='dialog']\");"):
+                        return {"ok": False, "role": "Creator", "error": "AI chưa phản hồi và không đóng được hộp AI tạo caption (cần tải lại web mới có bản sửa)."}
                     if not self.write_caption(drv, fallback, append=False):
                         return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION)."}
                     return {"ok": True, "role": "Creator", "message": "AI chưa phản hồi kịp, đã điền caption dự phòng để demo chạy tiếp."}
@@ -3231,6 +3318,9 @@ class DemoBrowserController:
                     drv.execute_script("arguments[0].click();", repo_tabs[0])
                     _demo_sleep(0.9)
 
+                # Bấm tab vẽ lại phần Hình ảnh: tìm lại khung để không giữ phần tử cũ (stale)
+                media_secs = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.MEDIA']")
+                media_scope = media_secs[0] if media_secs else drv
                 # Chọn ảnh Key Visual Gemini Tuần 3 (Open Day hoặc Workshop THPT) trong Kho tài nguyên
                 kv_cards = media_scope.find_elements(
                     By.XPATH,
@@ -3266,6 +3356,12 @@ class DemoBrowserController:
                     "role": "Creator",
                     "message": "Đã mở phần Hình ảnh: Key Visual Gemini Tuần 3 đang gắn trên bài (Client đã duyệt).",
                 }
+            except StaleElementReferenceException:
+                # Phần Hình ảnh vẽ lại giữa chừng: tô sáng ảnh KV đang gắn thay vì báo lỗi
+                cur = drv.find_elements(By.CSS_SELECTOR, "section[aria-labelledby='section-POST.MEDIA'] img")
+                if cur:
+                    self.highlight_element(drv, cur[0], "KEY VISUAL GEMINI ĐANG GẮN (CLIENT ĐÃ DUYỆT)")
+                return {"ok": True, "role": "Creator", "message": "Đã mở phần Hình ảnh: Key Visual Gemini Tuần 3 đang gắn trên bài (Client đã duyệt)."}
             except Exception as exc:
                 return {"ok": False, "role": "Creator", "error": f"Lỗi khi bắn ảnh Key Visual lên bài viết: {exc}"}
 
@@ -3357,7 +3453,7 @@ class DemoBrowserController:
                     self.click_button_text(drv, "Vừa", dlg_css, "5/5: Độ dài: Vừa", 2)
                     if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
                         # Chờ AI trả 3 phương án rồi chèn phương án đầu tiên
-                        inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 45, exact=False)
+                        inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 55, exact=False)
                         _demo_sleep(1.0)
                     if not inserted:
                         # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
