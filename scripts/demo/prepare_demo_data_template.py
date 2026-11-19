@@ -351,7 +351,8 @@ def resolve_extra_creators(cur, resolved_ids: dict[str, str], rename: bool) -> N
             resolved_ids[key] = str(row[0])
 
 # Đường dẫn ảnh Key Visual đã sinh sẵn bằng Gemini Nano Banana + ảnh Unsplash chọn lọc
-ASSET_BASE_URL = "/demo-assets/fptu-2027"
+# Backend chỉ nhận externalUrl http/https -> dùng URL tuyệt đối của web app
+ASSET_BASE_URL = os.environ.get("BRANDHUB_APP_URL", "http://localhost:3000").rstrip("/") + "/demo-assets/fptu-2027"
 FPTU_VISUALS = {
     "week1_coming_soon": {
         "id": "d7e00000-0000-4000-8000-000000000901",
@@ -5658,6 +5659,8 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
             db.task_section_versions.delete_many({"taskId": {"$in": all_clean_task_ids}})
             db.task_section_events.delete_many({"taskId": {"$in": all_clean_task_ids}})
             db.task_approvals.delete_many({"taskId": {"$in": all_clean_task_ids}})
+            # Outbox giữ eventKey duy nhất theo vòng submit; không xoá thì lần submit sau khi Khôi phục DB bị 409
+            db.task_notification_outbox.delete_many({"$or": [{"taskId": {"$in": all_clean_task_ids}}, {"task_id": {"$in": all_clean_task_ids}}]})
 
         db.tasks.delete_many({"workspaceId": WORKSPACE_ID})
         db.task_comments.delete_many({"workspaceId": WORKSPACE_ID})
@@ -5668,7 +5671,8 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
         db.materials.delete_many({"$or": [{"workspace_id": WORKSPACE_ID}, {"scope_type": "CLIENT_VAULT", "owner_user_id": client_user_id}]})
         db.material_folders.delete_many({"$or": [{"workspace_id": WORKSPACE_ID}, {"scope_type": "CLIENT_VAULT", "owner_user_id": client_user_id}]})
         db.client_vault_shares.delete_many({"$or": [{"workspace_id": WORKSPACE_ID}, {"owner_user_id": client_user_id}]})
-        db.social_accounts.delete_many({"workspace_id": WORKSPACE_ID})
+        # Giữ tài khoản MXH đã kết nối OAuth thật (token "v2:"), chỉ xóa tài khoản demo.
+        db.social_accounts.delete_many({"workspace_id": WORKSPACE_ID, "encrypted_token": {"$not": {"$regex": "^v2:"}}})
         db.surveys.delete_many({"workspaceId": WORKSPACE_ID})
         db.survey_responses.delete_many({"surveyId": SURVEY_DOC_ID})
         db.content_requests.delete_many({"workspaceId": WORKSPACE_ID})
@@ -5699,7 +5703,11 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
         upsert_many("material_folders", bundle["material_folders"])
         upsert_many("materials", bundle["materials"])
         upsert_many("client_vault_shares", bundle["client_vault_shares"])
-        upsert_many("social_accounts", bundle["social_accounts"])
+        real_platforms = {
+            str(a.get("platform", "")).upper()
+            for a in db.social_accounts.find({"workspace_id": WORKSPACE_ID, "encrypted_token": {"$regex": "^v2:"}}, {"platform": 1})
+        }
+        upsert_many("social_accounts", [a for a in bundle["social_accounts"] if a["platform"] not in real_platforms])
         upsert_many("tasks", bundle["tasks"])
         upsert_many("task_sections", bundle["task_sections"])
         upsert_many("task_section_versions", bundle["task_section_versions"])
@@ -6267,6 +6275,7 @@ def clean_mongo(mongo_uri: str, mongo_db_name: str, client_user_id: str) -> None
         db.task_section_versions.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
         db.task_section_events.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
         db.task_approvals.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]})
+        db.task_notification_outbox.delete_many({"$or": [{"taskId": {"$in": task_ids}}, {"task_id": {"$in": task_ids}}]})
         db.tasks.delete_many({"workspaceId": {"$in": demo_ws_ids}})
         db.task_comments.delete_many({"workspaceId": {"$in": demo_ws_ids}})
         db.posts.delete_many({"workspace_id": {"$in": demo_ws_ids}})
@@ -6283,7 +6292,7 @@ def clean_mongo(mongo_uri: str, mongo_db_name: str, client_user_id: str) -> None
         db.client_vault_shares.delete_many(
             {"$or": [{"workspace_id": {"$in": demo_ws_ids}}, {"owner_user_id": client_user_id}]}
         )
-        db.social_accounts.delete_many({"workspace_id": {"$in": demo_ws_ids}})
+        db.social_accounts.delete_many({"workspace_id": {"$in": demo_ws_ids}, "encrypted_token": {"$not": {"$regex": "^v2:"}}})
         db.survey_responses.delete_many(
             {"$or": [{"surveyId": {"$in": survey_ids}}, {"workspaceId": {"$in": demo_ws_ids}}]}
         )
@@ -6384,6 +6393,11 @@ def _try_secondary_local_env_targets(
         print(f"[WARN] Bỏ qua DB phụ local (brandhub_r6): {exc}")
 
 
+def _stage(i: int, n: int, label: str) -> None:
+    """Dòng tiến trình cho Bàn điều khiển 3999 (định dạng: [STEP i/n] nhãn)."""
+    print(f"[STEP {i}/{n}] {label}", flush=True)
+
+
 def main() -> None:
     default_pg_uri, default_mongo_uri, default_mongo_db = load_default_db_uris()
     default_redis_url = load_default_redis_url()
@@ -6397,15 +6411,21 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.clean:
+        _stage(1, 4, "Xóa dữ liệu PostgreSQL")
         resolved_ids = clean_postgres(args.pg_uri)
+        _stage(2, 4, "Xóa dữ liệu MongoDB")
         clean_mongo(args.mongo_uri, args.mongo_db, resolved_ids["CLIENT"])
+        _stage(3, 4, "Xóa DB phụ local (nếu có)")
         _try_secondary_local_env_targets(
             args.pg_uri, args.mongo_uri, args.mongo_db, None, None, clean_mode=True
         )
+        _stage(4, 4, "Xóa xu hướng Redis")
         clean_redis_trends(args.redis_url)
         return
 
     now = datetime.now(timezone.utc)
+    if args.apply:
+        _stage(1, 6, "Dựng bộ dữ liệu mẫu")
     pg_bundle = build_postgres_bundle(now)
 
     if not args.apply:
@@ -6428,12 +6448,17 @@ def main() -> None:
         print("\n[INFO] Thêm cờ `--apply` để nạp trực tiếp dữ liệu hoặc `--clean` để xóa sạch dữ liệu sau khi demo.")
         return
 
+    _stage(2, 6, "Nạp PostgreSQL (agency, gói, chiến dịch, công việc)")
     resolved_ids = apply_postgres(args.pg_uri, pg_bundle)
+    _stage(3, 6, "Dựng dữ liệu MongoDB (bài đăng, tài liệu, chat)")
     live_mongo_bundle = build_mongo_bundle(resolved_ids, now)
+    _stage(4, 6, "Nạp MongoDB")
     apply_mongo(args.mongo_uri, args.mongo_db, live_mongo_bundle, resolved_ids["CLIENT"])
+    _stage(5, 6, "Đồng bộ DB phụ local (nếu có)")
     _try_secondary_local_env_targets(
         args.pg_uri, args.mongo_uri, args.mongo_db, pg_bundle, now, clean_mode=False
     )
+    _stage(6, 6, "Nạp xu hướng Redis")
     apply_redis_trends(args.redis_url, now)
 
 
