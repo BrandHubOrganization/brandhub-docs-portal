@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Play,
-  Pause,
   RotateCcw,
   Users,
   Copy,
@@ -32,7 +31,6 @@ import {
   Maximize2,
   Compass,
   ClipboardCheck,
-    Clock,
   MousePointerClick,
   ArrowRight,
   CheckCheck,
@@ -1223,12 +1221,6 @@ const QA_QUICK_LINKS: Array<{
   { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
 ];
 
-function formatStopwatch(totalSeconds: number): string {
-  const mins = Math.floor(totalSeconds / 60);
-  const secs = totalSeconds % 60;
-  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-}
-
 export const DemoMonitorPage: React.FC = () => {
   const [monitorUrl] = useState<string>('http://127.0.0.1:3999');
   const [status, setStatus] = useState<MonitorStatus | null>(null);
@@ -1243,10 +1235,6 @@ export const DemoMonitorPage: React.FC = () => {
   const [showCleanConfirm, setShowCleanConfirm] = useState<boolean>(false);
   const [showGuideModal, setShowGuideModal] = useState<boolean>(false);
   const [doneActions, setDoneActions] = useState<Record<string, boolean>>({});
-
-  // Đồng hồ bấm giờ 20 phút bảo vệ đồ án
-  const [elapsedSeconds, setElapsedSeconds] = useState<number>(0);
-  const [timerRunning, setTimerRunning] = useState<boolean>(false);
 
   const [customTexts, setCustomTexts] = useState<Record<string, string>>(DEFAULT_DEMO_TEXTS);
   const [configIds, setConfigIds] = useState({
@@ -1447,14 +1435,6 @@ export const DemoMonitorPage: React.FC = () => {
   }, [monitorUrl]);
 
   useEffect(() => {
-    if (!timerRunning) return;
-    const id = setInterval(() => {
-      setElapsedSeconds((s) => s + 1);
-    }, 1000);
-    return () => clearInterval(id);
-  }, [timerRunning]);
-
-  useEffect(() => {
     activePillRef.current?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }, [activeStepIndex]);
 
@@ -1475,9 +1455,6 @@ export const DemoMonitorPage: React.FC = () => {
       if (actionDef?.localOnly) {
         setDoneActions((prev) => ({ ...prev, [actionId]: !prev[actionId] }));
         return;
-      }
-      if (!timerRunning && elapsedSeconds === 0) {
-        setTimerRunning(true);
       }
       setBusyAction(actionId);
       try {
@@ -1506,7 +1483,7 @@ export const DemoMonitorPage: React.FC = () => {
         setBusyAction(null);
       }
     },
-    [busyAction, customTexts, elapsedSeconds, fetchMonitorStatus, monitorUrl, showToast, timerRunning]
+    [busyAction, customTexts, fetchMonitorStatus, monitorUrl, showToast]
   );
 
   // Nút dẫn dắt thông minh 1 chạm (Phím Space): Chạy thao tác kế tiếp trong bước, nếu xong hết thì sang bước sau
@@ -1685,8 +1662,6 @@ export const DemoMonitorPage: React.FC = () => {
           B0_RESTORE_DB: true,
         }));
         setActiveStepIndex(0);
-        setElapsedSeconds(0);
-        setTimerRunning(false);
         showToast(data.message || 'Đã khôi phục dữ liệu PostgreSQL, MongoDB & Redis về trạng thái chuẩn B1.');
       } else {
         showToast(data.error || 'Lỗi khi nạp lại dữ liệu mẫu.', true);
@@ -1710,8 +1685,6 @@ export const DemoMonitorPage: React.FC = () => {
       if (data.ok) {
         setDoneActions({});
         setActiveStepIndex(0);
-        setElapsedSeconds(0);
-        setTimerRunning(false);
         showToast(
           data.message ||
             'Đã xóa sạch toàn bộ dữ liệu mẫu và các bản ghi phát sinh sau buổi demo.'
@@ -2034,38 +2007,8 @@ export const DemoMonitorPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Cụm Đồng hồ 20 phút + Chia màn hình + Đăng nhập 5 vai trò + Khôi phục / Xóa DB */}
+          {/* Cụm Chia màn hình + Đăng nhập 5 vai trò + Khôi phục / Xóa DB */}
           <div className="flex flex-wrap items-center gap-1.5">
-            {/* Đồng hồ bấm giờ 20 phút */}
-            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-none bg-slate-50 border border-slate-200 text-xs">
-              <Clock className="size-3.5 text-[#ea6c3b] shrink-0" />
-              <span className="font-bold text-slate-900 tabular-nums">
-                {formatStopwatch(elapsedSeconds)}
-              </span>
-              <span className="text-slate-600 dark:text-slate-400 tabular-nums font-medium">/ 20:00</span>
-              <button
-                type="button"
-                title={timerRunning ? 'Tạm dừng đồng hồ đếm 20 phút' : 'Bắt đầu bấm giờ đếm 20 phút (tự chạy khi bấm Thao tác 1)'}
-                aria-label={timerRunning ? 'Tạm dừng đồng hồ' : 'Bắt đầu bấm giờ'}
-                onClick={() => setTimerRunning((v) => !v)}
-                className="min-w-[28px] min-h-[28px] inline-flex items-center justify-center p-1 rounded-none hover:bg-slate-200/80 text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ea6c3b] cursor-pointer"
-              >
-                {timerRunning ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
-              </button>
-              <button
-                type="button"
-                title="Đặt lại đồng hồ về 00:00 và dừng đếm"
-                aria-label="Đặt lại đồng hồ về 00:00"
-                onClick={() => {
-                  setTimerRunning(false);
-                  setElapsedSeconds(0);
-                }}
-                className="min-w-[28px] min-h-[28px] inline-flex items-center justify-center p-1 rounded-none hover:bg-slate-200/80 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ea6c3b] cursor-pointer"
-              >
-                <RotateCcw className="size-3.5" />
-              </button>
-            </div>
-
             {/* Trạng thái Selenium & WebSocket đồng bộ 6 cửa sổ Chrome */}
             <div
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-white border border-slate-200 text-xs"

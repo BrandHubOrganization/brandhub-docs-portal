@@ -6346,6 +6346,44 @@ def json_default(obj: Any) -> Any:
     raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
 
+def _try_secondary_local_env_targets(
+    primary_pg_uri: str,
+    primary_mongo_uri: str,
+    mongo_db: str,
+    pg_bundle: dict[str, Any] | None,
+    now: datetime | None,
+    clean_mode: bool = False,
+) -> None:
+    """Đồng bộ thêm với DB local-env (brandhub_r6 + Mongo 27018) nếu đang chạy song song."""
+    alt_pg_uri = "postgresql://brandhub:root@localhost:5432/brandhub_r6"
+    alt_mongo_uri = "mongodb://localhost:27018/?directConnection=true"
+    if alt_pg_uri == primary_pg_uri and alt_mongo_uri == primary_mongo_uri:
+        return
+    try:
+        import psycopg2
+        conn = psycopg2.connect(alt_pg_uri, connect_timeout=2)
+        conn.close()
+    except Exception:
+        return
+
+    try:
+        if clean_mode:
+            alt_ids = clean_postgres(alt_pg_uri)
+            try:
+                clean_mongo(alt_mongo_uri, mongo_db, alt_ids["CLIENT"])
+            except Exception:
+                pass
+        elif pg_bundle is not None and now is not None:
+            alt_ids = apply_postgres(alt_pg_uri, pg_bundle)
+            try:
+                alt_mongo_bundle = build_mongo_bundle(alt_ids, now)
+                apply_mongo(alt_mongo_uri, mongo_db, alt_mongo_bundle, alt_ids["CLIENT"])
+            except Exception:
+                pass
+    except Exception as exc:
+        print(f"[WARN] Bỏ qua DB phụ local (brandhub_r6): {exc}")
+
+
 def main() -> None:
     default_pg_uri, default_mongo_uri, default_mongo_db = load_default_db_uris()
     default_redis_url = load_default_redis_url()
@@ -6361,36 +6399,42 @@ def main() -> None:
     if args.clean:
         resolved_ids = clean_postgres(args.pg_uri)
         clean_mongo(args.mongo_uri, args.mongo_db, resolved_ids["CLIENT"])
+        _try_secondary_local_env_targets(
+            args.pg_uri, args.mongo_uri, args.mongo_db, None, None, clean_mode=True
+        )
         clean_redis_trends(args.redis_url)
         return
 
     now = datetime.now(timezone.utc)
     pg_bundle = build_postgres_bundle(now)
-    preview_mongo = build_mongo_bundle(PG_USER_IDS, now)
 
-    # Trong file JSON preview, rút gọn chuỗi base64 ảnh để file nhẹ, dễ đọc
-    preview_copy = json.loads(json.dumps(preview_mongo, default=json_default, ensure_ascii=False))
-    for mat in preview_copy.get("materials", []):
-        if isinstance(mat.get("url"), str) and mat["url"].startswith("data:"):
-            mat["url"] = mat["url"][:64] + "...[base64-jpeg-preview]..."
+    if not args.apply:
+        preview_mongo = build_mongo_bundle(PG_USER_IDS, now)
+        # Trong file JSON preview, rút gọn chuỗi base64 ảnh để file nhẹ, dễ đọc
+        preview_copy = json.loads(json.dumps(preview_mongo, default=json_default, ensure_ascii=False))
+        for mat in preview_copy.get("materials", []):
+            if isinstance(mat.get("url"), str) and mat["url"].startswith("data:"):
+                mat["url"] = mat["url"][:64] + "...[base64-jpeg-preview]..."
 
-    out_dir = Path(__file__).resolve().parent
-    sql_path = out_dir / "prepare_demo_postgres_preview.sql"
-    mongo_path = out_dir / "prepare_demo_mongo_preview.json"
+        out_dir = Path(__file__).resolve().parent
+        sql_path = out_dir / "prepare_demo_postgres_preview.sql"
+        mongo_path = out_dir / "prepare_demo_mongo_preview.json"
 
-    sql_path.write_text(build_sql_preview_text(pg_bundle), encoding="utf-8")
-    mongo_path.write_text(json.dumps(preview_copy, ensure_ascii=False, indent=2), encoding="utf-8")
+        sql_path.write_text(build_sql_preview_text(pg_bundle), encoding="utf-8")
+        mongo_path.write_text(json.dumps(preview_copy, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print(f"[PREVIEW] Đã xuất tóm tắt SQL tại  : {sql_path}")
-    print(f"[PREVIEW] Đã xuất dữ liệu Mongo tại: {mongo_path}")
-
-    if args.apply:
-        resolved_ids = apply_postgres(args.pg_uri, pg_bundle)
-        live_mongo_bundle = build_mongo_bundle(resolved_ids, now)
-        apply_mongo(args.mongo_uri, args.mongo_db, live_mongo_bundle, resolved_ids["CLIENT"])
-        apply_redis_trends(args.redis_url, now)
-    else:
+        print(f"[PREVIEW] Đã xuất tóm tắt SQL tại  : {sql_path}")
+        print(f"[PREVIEW] Đã xuất dữ liệu Mongo tại: {mongo_path}")
         print("\n[INFO] Thêm cờ `--apply` để nạp trực tiếp dữ liệu hoặc `--clean` để xóa sạch dữ liệu sau khi demo.")
+        return
+
+    resolved_ids = apply_postgres(args.pg_uri, pg_bundle)
+    live_mongo_bundle = build_mongo_bundle(resolved_ids, now)
+    apply_mongo(args.mongo_uri, args.mongo_db, live_mongo_bundle, resolved_ids["CLIENT"])
+    _try_secondary_local_env_targets(
+        args.pg_uri, args.mongo_uri, args.mongo_db, pg_bundle, now, clean_mode=False
+    )
+    apply_redis_trends(args.redis_url, now)
 
 
 if __name__ == "__main__":

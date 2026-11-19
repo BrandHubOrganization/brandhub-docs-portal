@@ -7,6 +7,9 @@ export default defineConfig({
   server: {
     port: 5180,
     host: true,
+    watch: {
+      ignored: ['**/scripts/**', '**/.brandhub_demo_chrome_profiles/**'],
+    },
   },
   build: {
     chunkSizeWarningLimit: 1200,

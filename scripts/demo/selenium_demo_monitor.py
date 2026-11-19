@@ -50,6 +50,7 @@ try:
     from selenium import webdriver
     from selenium.common.exceptions import WebDriverException
     from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service as ChromeService
     from selenium.webdriver.common.by import By
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.support import expected_conditions as EC
@@ -814,7 +815,6 @@ _HUD_JS_TEMPLATE = r"""
       };
       var total = sync && sync.total ? sync.total : 1;
       var idx = typeof cur.index === 'number' ? cur.index : 0;
-      var isBusy = Boolean((sync && sync.busy) || state.localBusy);
       var autoExec = sync ? Boolean(sync.auto_execute) : true;
       var connectedCount = sync && typeof sync.connected_clients === 'number' ? sync.connected_clients : (state.connected ? 1 : 0);
       var pct = total > 1 ? Math.round((idx / (total - 1)) * 100) : 0;
@@ -903,14 +903,14 @@ _HUD_JS_TEMPLATE = r"""
           + '</div>'
           + '<span class="hud-code" title="' + esc(cur.title) + '">' + esc(cur.sub_code) + '</span>'
           + '<div class="hud-actions">'
-          + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="prev" ' + (idx <= 0 || isBusy ? 'disabled' : '') + ' title="Quay lại bước trước (Alt+←)">&#9664;</button>'
-          + '<button type="button" class="hud-btn hud-btn-primary hud-btn-icon" data-cmd="next" ' + (idx >= total - 1 || isBusy ? 'disabled' : '') + ' title="Bước tiếp theo (Alt+→)">&#9654;</button>'
+          + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="prev" ' + (idx <= 0 ? 'disabled' : '') + ' title="Quay lại bước trước (Alt+←)">&#9664;</button>'
+          + '<button type="button" class="hud-btn hud-btn-primary hud-btn-icon" data-cmd="next" ' + (idx >= total - 1 ? 'disabled' : '') + ' title="Bước tiếp theo (Alt+→)">&#9654;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="toggle_collapse" title="Mở rộng thanh điều khiển demo">&#43;</button>'
           + '</div>';
       } else {
         var prevTitle = (sync && sync.prev_preview) ? ('Quay lại: ' + sync.prev_preview.sub_code + ' (' + sync.prev_preview.role + ') - ' + sync.prev_preview.title + ' [Alt+←]') : 'Quay lại bước trước (Alt+←)';
         var nextTitle = (sync && sync.next_preview) ? ('Tiếp theo: ' + sync.next_preview.sub_code + ' (' + sync.next_preview.role + ') - ' + sync.next_preview.title + ' [Alt+→]') : 'Bước tiếp theo (Alt+→)';
-        var nextLabel = isBusy ? 'Đang chạy...' : 'Tiếp &#9654;';
+        var nextLabel = 'Tiếp &#9654;';
 
         barInner = '<div class="hud-progress"><div class="hud-progress-fill" style="width:' + pct + '%"></div></div>'
           + '<div class="hud-drag" id="hud-drag-handle" title="Cửa sổ ' + esc(state.windowRole) + ' (' + esc(state.windowEmail) + ') · Kéo để di chuyển · Nhấp đúp đặt lại vị trí">'
@@ -928,11 +928,9 @@ _HUD_JS_TEMPLATE = r"""
               : '')
           + '</div>'
           + '<div class="hud-actions">'
-          + '<button type="button" class="hud-btn" data-cmd="prev" ' + (idx <= 0 || isBusy ? 'disabled' : '') + ' title="' + esc(prevTitle) + '">&#9664; Trước</button>'
-          + '<button type="button" class="hud-btn hud-btn-primary" data-cmd="next" ' + (idx >= total - 1 || isBusy ? 'disabled' : '') + ' title="' + esc(nextTitle) + '">' + nextLabel + '</button>'
-          + (isBusy
-              ? '<button type="button" class="hud-btn hud-btn-icon" data-cmd="cancel_busy" title="Hủy chờ khẩn cấp (Esc)">&#10005;</button>'
-              : '<button type="button" class="hud-btn hud-btn-icon" data-cmd="rerun" title="Chạy lại bước hiện tại trên Chrome (Alt+R)">&#8635;</button>')
+          + '<button type="button" class="hud-btn" data-cmd="prev" ' + (idx <= 0 ? 'disabled' : '') + ' title="' + esc(prevTitle) + '">&#9664; Trước</button>'
+          + '<button type="button" class="hud-btn hud-btn-primary" data-cmd="next" ' + (idx >= total - 1 ? 'disabled' : '') + ' title="' + esc(nextTitle) + '">' + nextLabel + '</button>'
+          + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="rerun" title="Chạy lại bước hiện tại trên Chrome (Alt+R)">&#8635;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon' + (state.drawerOpen ? ' hud-btn-active' : '') + '" data-cmd="toggle_drawer" title="Mở danh sách 6 vai trò & các bước B0–B15 (Alt+M)">&#9776;</button>'
           + '<button type="button" class="hud-btn hud-btn-icon" data-cmd="toggle_collapse" title="Thu gọn thanh banner">&#8211;</button>'
           + '</div>';
@@ -1355,7 +1353,12 @@ class DemoBrowserController:
         opts.add_experimental_option("useAutomationExtension", False)
 
         before_hwnds = _win32_list_chrome_hwnds()
-        driver = webdriver.Chrome(options=opts)
+        # chromedriver mặc định dùng chung console của Python; nếu cmd của Runner đã chết thì nó crash 0xC0000142.
+        # CREATE_NO_WINDOW cấp cho chromedriver một console ẩn riêng.
+        service = ChromeService(popen_kw={"creation_flags": getattr(subprocess, "CREATE_NO_WINDOW", 0)})
+        driver = webdriver.Chrome(options=opts, service=service)
+        # Mặc định Selenium chờ tải trang tới 300s và giữ self.lock suốt thời gian đó -> mọi bước sau kẹt "Đang chạy..."
+        driver.set_page_load_timeout(30)
         self.drivers[role] = driver
         self._capture_hwnd_for_driver(role, driver, before_hwnds)
         # Đăng ký CDP HUD ngay khi Chrome vừa khởi tạo — TRƯỚC khi tải trang đầu tiên!
@@ -1667,8 +1670,6 @@ class DemoBrowserController:
 
         if ctype in ("next", "prev", "goto", "rerun"):
             with self.state_lock:
-                if self.busy and ctype != "goto":
-                    return {"ok": False, "error": "Đang thực thi bước trước, vui lòng đợi giây lát.", "state": self.get_sync_state()}
                 old_idx = self.timeline_index
                 if ctype == "next":
                     new_idx = min(len(DEMO_TIMELINE) - 1, old_idx + 1)
@@ -1682,12 +1683,12 @@ class DemoBrowserController:
                 self.timeline_index = new_idx
                 self.active_qa = None
                 item = DEMO_TIMELINE[new_idx]
-                explicit_exec = cmd.get("execute")
-                should_exec = self.auto_execute if explicit_exec is None else bool(explicit_exec)
+                # Trước/Tiếp chỉ đổi bước; chỉ ↻ (rerun) mới tự chạy Selenium. Không khóa banner ("Đang chạy...").
+                should_exec = ctype == "rerun"
 
             snap = self.broadcast_state(
-                busy=should_exec,
-                busy_label=f"Đang chuyển sang {item['sub_code']} ({item['role']})..." if should_exec else "",
+                busy=False,
+                busy_label="",
                 last_error="",
             )
             if should_exec:
@@ -2084,7 +2085,11 @@ class DemoBrowserController:
                     self.active_qa = QA_ITEM_BY_ACTION[action_id]
             self.broadcast_state(busy=True, busy_label=f"Đang chạy {action_id}...", last_error="")
 
-        res = self._execute_step_action_impl(action_id, custom_payload)
+        try:
+            res = self._execute_step_action_impl(action_id, custom_payload)
+        except Exception as exc:
+            # Lỗi bất ngờ không được để banner kẹt ở "Đang chạy..."
+            res = {"ok": False, "error": f"Lỗi khi chạy {action_id}: {exc}"}
 
         if res.get("ok"):
             with self.state_lock:
@@ -3473,6 +3478,15 @@ class DemoMonitorRequestHandler(BaseHTTPRequestHandler):
         except json.JSONDecodeError:
             body = {}
 
+        try:
+            self._handle_post(parsed, body)
+        except Exception as exc:
+            # Không để handler chết im lặng (trình duyệt chỉ thấy "Không kết nối được tới máy chủ Selenium")
+            first_line = (str(exc).strip().splitlines() or [type(exc).__name__])[0]
+            hint = " — Web localhost:3000 chưa chạy?" if "ERR_CONNECTION_REFUSED" in first_line else ""
+            self._send_json({"ok": False, "error": f"Lỗi máy chủ demo: {first_line}{hint}"}, 500)
+
+    def _handle_post(self, parsed: Any, body: dict[str, Any]) -> None:
         if parsed.path == "/api/hud/command":
             res = CONTROLLER.handle_hud_command(body)
             self._send_json(res)

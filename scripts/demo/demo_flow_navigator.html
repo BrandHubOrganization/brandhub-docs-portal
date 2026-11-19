@@ -110,18 +110,6 @@
         </div>
 
       <div class="flex flex-wrap items-center gap-2">
-        <!-- 20-Min Stopwatch -->
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 text-xs tabular-nums">
-          <span class="font-bold text-slate-900" id="timer-display">00:00</span>
-          <span class="text-slate-400">/ 20:00</span>
-          <button onclick="toggleTimer()" id="timer-btn" title="Bật/tạm dừng đồng hồ đếm 20 phút (tự chạy khi bấm thao tác đầu tiên)" aria-label="Bật hoặc tạm dừng đồng hồ" class="px-1.5 py-0.5 bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-pointer">
-            Chạy
-          </button>
-          <button onclick="resetTimer()" title="Đặt lại đồng hồ về 00:00 và dừng đếm" aria-label="Đặt lại đồng hồ" class="px-1.5 py-0.5 text-slate-500 hover:bg-orange-100 hover:text-orange-700 cursor-pointer">
-            00:00
-          </button>
-        </div>
-
         <!-- Connection Status -->
         <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white border border-slate-200 text-xs font-medium text-slate-700">
           <span id="conn-dot" class="w-2.5 h-2.5 bg-[#ea6c3b] animate-pulse"></span>
@@ -652,42 +640,6 @@
     let busy = false;
     let windowMode = 'normal';
 
-    let elapsedSec = 0;
-    let timerId = null;
-
-    function fmtTime(sec) {
-      const m = Math.floor(sec / 60);
-      const s = sec % 60;
-      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-    }
-
-    function updateTimerUI() {
-      document.getElementById('timer-display').textContent = fmtTime(elapsedSec);
-      document.getElementById('timer-btn').textContent = timerId ? 'Dừng' : 'Chạy';
-    }
-
-    function toggleTimer() {
-      if (timerId) {
-        clearInterval(timerId);
-        timerId = null;
-      } else {
-        timerId = setInterval(() => {
-          elapsedSec += 1;
-          updateTimerUI();
-        }, 1000);
-      }
-      updateTimerUI();
-    }
-
-    function resetTimer() {
-      if (timerId) {
-        clearInterval(timerId);
-        timerId = null;
-      }
-      elapsedSec = 0;
-      updateTimerUI();
-    }
-
     function setViewMode(mode) {
       viewMode = mode;
       const stageBtn = document.getElementById('mode-stage-btn');
@@ -829,9 +781,6 @@
               <span class="px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold">Bước ${activeIdx + 1}/15 · ${s.code}</span>
               <span class="px-2.5 py-0.5 bg-orange-50 text-orange-800 border border-orange-200 text-xs font-bold">
                 ${s.role}: ${s.actor}
-              </span>
-              <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium tabular-nums">
-                Khung giờ: ${s.time}
               </span>
               <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-xs font-medium">
                 ${s.fr}
@@ -1105,9 +1054,6 @@
 
     async function runStepAction(actionId) {
       if (busy) return;
-      if (!timerId && elapsedSec === 0) {
-        toggleTimer();
-      }
       busy = true;
       try {
         const res = await fetch(`${API_BASE}/api/step-action`, {
@@ -1184,7 +1130,6 @@
         if (data.ok) {
           doneActions = {};
           activeIdx = 0;
-          resetTimer();
           renderAll();
         }
         showToast(data.ok ? data.message : data.error, !data.ok);
@@ -1202,7 +1147,6 @@
         if (data.ok) {
           doneActions = {};
           activeIdx = 0;
-          resetTimer();
           renderAll();
         }
         showToast(data.ok ? data.message : data.error, !data.ok);
