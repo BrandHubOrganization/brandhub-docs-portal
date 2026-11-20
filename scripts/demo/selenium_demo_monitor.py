@@ -1935,7 +1935,7 @@ class DemoBrowserController:
 
     def write_caption(self, driver: webdriver.Chrome, text: str, append: bool = False) -> bool:
         """Ghi caption vào trình soạn TipTap của phần POST.CAPTION (từng đoạn để khán giả thấy chữ chạy)."""
-        end = time.time() + 12
+        end = time.time() + 25
         while time.time() < end and not driver.execute_script(
             "const pm=document.querySelector(arguments[0]+' .ProseMirror'); return !!(pm && pm.editor && pm.getAttribute('contenteditable')==='true');",
             self.CAPTION_SEC,
@@ -2009,14 +2009,28 @@ class DemoBrowserController:
 
     def submit_caption(self, driver: webdriver.Chrome, label: str) -> tuple[bool, str]:
         """Bấm 'Nộp phần' của POST.CAPTION (tự lưu trước khi nộp) và chờ trạng thái phần đổi."""
-        if not self.click_button_text(driver, "Nộp phần", self.CAPTION_SEC, label):
-            return False, self.caption_header(driver)
-        end = time.time() + 15
-        while time.time() < end:
-            _demo_sleep(0.6)
-            head = self.caption_header(driver)
-            if "Nộp phần" not in head:
-                return True, head
+        for attempt in range(3):
+            if attempt == 2:
+                # Web đôi khi giữ trạng thái "còn thay đổi" dù đã lưu và tự bỏ lượt nộp: tải lại rồi nộp
+                driver.refresh()
+                end = time.time() + 25
+                while time.time() < end and "Nộp phần" not in self.caption_header(driver):
+                    _demo_sleep(0.5)
+            elif attempt:
+                # Lần đầu hay vướng lượt tự lưu đang chạy: lưu hẳn rồi nộp lại
+                if "Chưa lưu" in self.caption_header(driver):
+                    self.click_button_text(driver, "Lưu", self.CAPTION_SEC, "LƯU TRƯỚC KHI NỘP", 3)
+                    end = time.time() + 10
+                    while time.time() < end and "Chưa lưu" in self.caption_header(driver):
+                        _demo_sleep(0.5)
+            if not self.click_button_text(driver, "Nộp phần", self.CAPTION_SEC, label):
+                return False, self.caption_header(driver)
+            end = time.time() + 10
+            while time.time() < end:
+                _demo_sleep(0.6)
+                head = self.caption_header(driver)
+                if "Nộp phần" not in head:
+                    return True, head
         return False, self.caption_header(driver)
 
     # --- Định dạng caption trực quan (bôi đen -> bấm nút toolbar) ----------------
@@ -2704,7 +2718,7 @@ class DemoBrowserController:
             try:
                 inserted = False
                 if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
-                    inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 55, exact=False)
+                    inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 65, exact=False)
                     _demo_sleep(1.0)
                 if not inserted:
                     # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
@@ -2733,7 +2747,13 @@ class DemoBrowserController:
             if not v1:
                 drv.refresh()
                 _demo_sleep(2.0)
-            if not self.write_caption(drv, text, append=not v1):
+            ok = self.write_caption(drv, text, append=not v1)
+            if not ok and not v1:
+                # Trang editor tải lại chậm: mở lại đúng trang rồi thử thêm một lần
+                drv.get(f"{self.app_url}/workspaces/{ws_id}/editor?taskId={task_id}")
+                _demo_sleep(3.0)
+                ok = self.write_caption(drv, text, append=True)
+            if not ok:
                 return {"ok": False, "role": "Creator", "error": "Không tìm thấy ô Nội dung bài viết (POST.CAPTION) hoặc phần đang bị khóa."}
             if v1:
                 return {"ok": True, "role": "Creator", "message": "Đã điền bản sạch v1. Bấm Tiếp để định dạng chữ."}
@@ -3453,7 +3473,7 @@ class DemoBrowserController:
                     self.click_button_text(drv, "Vừa", dlg_css, "5/5: Độ dài: Vừa", 2)
                     if self.click_button_text(drv, "Tạo caption", dlg_css, "GỌI GEMINI AI TẠO 3 PHƯƠNG ÁN", 3):
                         # Chờ AI trả 3 phương án rồi chèn phương án đầu tiên
-                        inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 55, exact=False)
+                        inserted = self.click_button_text(drv, "Chèn", dlg_css, "CHÈN PHƯƠNG ÁN 1 VÀO BÀI", 65, exact=False)
                         _demo_sleep(1.0)
                     if not inserted:
                         # Không dùng phím Escape: HUD hiểu Escape lúc đang chạy là "Bỏ qua bước"
