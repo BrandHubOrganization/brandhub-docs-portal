@@ -386,7 +386,7 @@ const DEMO_STEPS: DemoStep[] = [
     actorEmail: "user13@demo.brandhub.test",
     routeTemplate: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
     manualBrowserCue: "Bấm Tiếp lần lượt: [1] Chèn câu vi phạm & xem cảnh báo → [2] Điền bản sạch v1 → [3] Định dạng chữ → [4] Nhập bộ hashtag → [5] Nộp phần Nội dung (v1). Không cần thao tác tay.",
-    talkingPoints: ["Chèn câu bắt nạt/bạo lực: hệ thống tự kiểm tra sau 3 giây và gắn cảnh báo.","Thay bằng bản sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT).","Trình soạn thảo: in đậm tiêu đề + font Sans Đậm Unicode, in nghiêng câu dẫn, danh sách gạch đầu dòng; khi đăng tự chuyển sang ký tự Unicode cho Facebook / Instagram / TikTok / Threads.","Hashtag tách khỏi caption, nhập vào Bộ Hashtags bài viết; khi xuất bản hệ thống tự nối vào cuối bài."],
+    talkingPoints: ["Chèn câu bắt nạt/bạo lực: hệ thống tự kiểm tra sau 3 giây và gắn cảnh báo.","Thay bằng bản sạch v1 (chủ đích chưa ghi 3 mức học bổng & OJT).","Trình soạn thảo: in đậm tiêu đề bọc 【 】, in nghiêng câu dẫn, danh sách gạch đầu dòng; khi đăng, chữ tiếng Việt có dấu giữ nguyên để Facebook / Instagram / TikTok / Threads hiển thị đúng dấu.","Hashtag tách khỏi caption, nhập vào Bộ Hashtags bài viết; khi xuất bản hệ thống tự nối vào cuối bài."],
     presenterScript: "Creator chèn thử một câu bạo lực để thấy bộ kiểm tra an toàn tự cảnh báo, sau đó điền bản sạch v1 và nộp phần Nội dung.",
     expectedOutcome: "Phần Nội dung bài viết chuyển sang Đã nộp (v1).",
     fields: [
@@ -397,7 +397,7 @@ const DEMO_STEPS: DemoStep[] = [
     actions: [
       { id: "B7_FILL_VIOLATION", label: "Chèn câu vi phạm & xem cảnh báo", description: "Tự chờ kết quả kiểm tra an toàn", variant: 'primary', icon: <Play className="size-4" /> },
       { id: "V1_FILL", label: "Điền bản sạch v1", description: "Thay toàn bộ caption bằng bản v1", variant: 'outline', icon: <Play className="size-4" /> },
-      { id: "V1_FORMAT", label: "Định dạng chữ (đậm, nghiêng, font, danh sách)", description: "Bôi đen rồi bấm B / I / font Sans Đậm / danh sách", variant: 'outline', icon: <Play className="size-4" /> },
+      { id: "V1_FORMAT", label: "Định dạng chữ (đậm, nghiêng, 【 】, danh sách)", description: "Bôi đen rồi bấm B / I, bọc 【 】 tiêu đề, tạo danh sách", variant: 'outline', icon: <Play className="size-4" /> },
       { id: "V1_HASHTAGS", label: "Nhập bộ hashtag", description: "Xoá bộ cũ, gõ 6 hashtag + Enter", variant: 'outline', icon: <Play className="size-4" /> },
       { id: "V1_SUBMIT", label: "Nộp phần Nội dung (v1)", description: "Tự bấm 'Nộp phần'", variant: 'outline', icon: <Play className="size-4" /> },
     ],

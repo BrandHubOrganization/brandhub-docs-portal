@@ -2098,14 +2098,19 @@ class DemoBrowserController:
         title = "TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027"
         if self.caption_select(driver, title) and self.caption_tool(driver, "In đậm (Bold)", "IN ĐẬM TIÊU ĐỀ"):
             done.append("tiêu đề in đậm")
-            # Bộ Font Zantext đổi cả bài: chỉ mở cho khán giả xem 36 kiểu rồi đóng,
-            # áp kiểu Sans Đậm cho riêng tiêu đề qua ô Font chữ bài đăng.
-            if self.click_button_text(driver, "Font Zantext", self.CAPTION_SEC, "BỘ 36 FONT MXH (ZANTEXT)", 3, exact=False):
-                _demo_sleep(2.5)
-                self.click_button_text(driver, "Đóng", self.CAPTION_SEC, "", 2)
-                _demo_sleep(0.4)
-            if self.caption_select(driver, title) and self.caption_font(driver, "Montserrat (Sans Đậm)"):
-                done.append("font Sans Đậm Unicode cho tiêu đề")
+            # Font Unicode (Sans Đậm…) làm rơi dấu tiếng Việt trên Facebook: tiêu đề chỉ bọc 【 】,
+            # giữ nguyên chữ có dấu.
+            if self.caption_select(driver, title):
+                driver.execute_script(
+                    """
+                    const ed = document.querySelector(arguments[0] + ' .ProseMirror').editor;
+                    const {from, to} = ed.state.selection;
+                    ed.chain().focus().insertContentAt(to, '】').insertContentAt(from, '【').run();
+                    """,
+                    self.CAPTION_SEC,
+                )
+                _visual_pause(0.6)
+                done.append("tiêu đề bọc 【 】 (giữ dấu tiếng Việt khi đăng)")
         intro = next((ln for ln in DEMO_TEXTS["caption_v1_clean"].split("\n") if ln.startswith("Sau chuỗi Workshop")), "Sau chuỗi Workshop")
         if self.caption_select(driver, intro) and self.caption_tool(driver, "In nghiêng (Italic)", "IN NGHIÊNG CÂU DẪN"):
             done.append("câu dẫn in nghiêng")
