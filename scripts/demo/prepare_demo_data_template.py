@@ -5741,8 +5741,40 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
         client.close()
 
 
+def _trend_status(counts: list[int]) -> tuple[str, dict[str, Any]]:
+    """Same rule as the pipeline's T7 _status: trims idle edge days, then reads the curve's tail."""
+    active = [i for i, c in enumerate(counts) if c > 0]
+    if not active:
+        return "new", {"counts": [], "velocity": [], "acceleration": [], "start": 0}
+    counts = counts[active[0]:active[-1] + 1]
+    vel = [counts[k] - counts[k - 1] if k else counts[k] for k in range(len(counts))]
+    acc = [vel[k] - vel[k - 1] if k else vel[k] for k in range(len(vel))]
+    if len(counts) <= 1:
+        status = "new"
+    elif counts[-1] <= max(counts) * 0.5:
+        status = "declining"
+    elif acc[-1] < 0:
+        status = "peaking"
+    elif vel[-1] > 0:
+        status = "rising"
+    else:
+        status = "new"
+    return status, {"counts": counts, "velocity": vel, "acceleration": acc, "start": active[0]}
+
+
+DEMO_POST_URLS = {
+    "facebook": "https://www.facebook.com/university.fpt.edu.vn",
+    "tiktok": "https://www.tiktok.com/@fptu.official",
+    "threads": "https://www.threads.net/@fptuniversity",
+}
+
+
 def apply_redis_trends(redis_url: str, now: datetime) -> None:
-    """Nạp sẵn dữ liệu Xu hướng (Trends v2) vào Redis để /ai-studio/trends, /workspaces/:id/trends & /admin?view=trends hiển thị tức thì."""
+    """Nạp sẵn dữ liệu Xu hướng (Trends v2) vào Redis để /ai-studio/trends, /workspaces/:id/trends & /admin?view=trends hiển thị tức thì.
+
+    Mỗi trend có một đường số bài/ngày; snapshot từng ngày tính lại trạng thái, momentum, điểm và hạng từ đường đó,
+    theo đúng cấu trúc CandidateTrend của pipeline (momentum.days/counts/velocity/acceleration, nhãn cảm xúc PhoBERT).
+    """
     try:
         import redis as sync_redis
     except ImportError:
@@ -5756,199 +5788,229 @@ def apply_redis_trends(redis_url: str, now: datetime) -> None:
         print(f"[WARN] Không kết nối được Redis ({exc}); bỏ qua bước nạp Trends.")
         return
 
-    ttl = 7 * 86400
+    history_days = 14
+    window = 7
+    ttl = 30 * 86400
+    # curve: số bài mỗi ngày, cũ → mới (history_days phần tử). share: tỉ lệ facebook/tiktok/threads.
     base_trends = [
         {
             "slug": "hoc-bong-nguyen-van-dao-2027",
             "keyword": "Học bổng Nguyễn Văn Đạo & Tuyển sinh Đại học 2027",
-            "score": 94.6,
-            "virality": 91.2,
-            "engagement": 89.5,
-            "topic": "giáo_dục",
-            "status": "peaking",
-            "mood": "positive",
-            "emotion": "hào hứng",
-            "brand_risk": "low",
-            "cross_topic": True,
-            "keywords": ["học bổng nguyễn văn đạo", "tuyển sinh 2027", "xét tuyển sớm k23", "đại học fpt"],
+            "curve": [40, 55, 70, 90, 115, 140, 170, 200, 235, 270, 300, 325, 345, 355],
+            "virality": 91.2, "engagement": 89.5,
+            "topic": "giáo_dục", "mood": "positive", "brand_risk": "medium", "cross_topic": True,
+            "emotion_dist": {"vui": 0.48, "ngạc_nhiên": 0.27, "trung_lập": 0.17, "lo_sợ": 0.08},
+            "share": {"facebook": 0.35, "tiktok": 0.45, "threads": 0.20},
+            "keywords": ["học bổng nguyễn văn đạo", "tuyển sinh 2027", "xét tuyển sớm", "đại học fpt"],
             "hashtags": ["#TuyenSinhFPTU2027", "#HocBongNguyenVanDao", "#DaiHocFPT", "#2k9ChonNganh"],
-            "sources": {"facebook": 148, "tiktok": 195, "threads": 84},
-            "samples": [
-                "Tổng hợp điều kiện nộp hồ sơ xét Học bổng Nguyễn Văn Đạo mức 50%, 70%, 100% học phí cho teen 2k9.",
-                "Kinh nghiệm chuẩn bị hồ sơ thành tích học tập lớp 12 săn học bổng công nghệ đợt 1.",
+            "posts": [
+                ("facebook", "Cộng đồng Học sinh THPT 2k9", 2450, 380, 290,
+                 "Tổng hợp điều kiện nộp hồ sơ xét Học bổng Nguyễn Văn Đạo mức 50%, 70%, 100% học phí cho teen 2k9."),
+                ("tiktok", "Góc Hướng nghiệp Công nghệ", 6800, 910, 430,
+                 "Kinh nghiệm chuẩn bị hồ sơ thành tích học tập lớp 12 săn học bổng công nghệ đợt 1."),
+                ("threads", "Phụ huynh có con thi 2027", 920, 140, 210,
+                 "Có ai đã nộp hồ sơ học bổng đợt sớm chưa, chia sẻ giúp mình các mốc thời gian với."),
             ],
         },
         {
             "slug": "thiet-ke-vi-mach-ban-dan-ai",
             "keyword": "Ngành Thiết kế Vi mạch Bán dẫn & Trí tuệ Nhân tạo (AI)",
-            "score": 91.8,
-            "virality": 88.4,
-            "engagement": 86.0,
-            "topic": "công_nghệ",
-            "status": "rising",
-            "mood": "positive",
-            "emotion": "tò mò",
-            "brand_risk": "low",
-            "cross_topic": True,
+            "curve": [20, 22, 25, 30, 38, 48, 60, 75, 95, 120, 150, 185, 225, 270],
+            "virality": 88.4, "engagement": 86.0,
+            "topic": "công_nghệ", "mood": "positive", "brand_risk": "medium", "cross_topic": True,
+            "emotion_dist": {"ngạc_nhiên": 0.44, "vui": 0.31, "trung_lập": 0.25},
+            "share": {"facebook": 0.30, "tiktok": 0.45, "threads": 0.25},
             "keywords": ["vi mạch bán dẫn", "kỹ sư ai", "phòng lab bán dẫn", "nhân lực công nghệ cao"],
             "hashtags": ["#ViMachBanDan", "#TriTueNhanTao", "#FPTUniversity", "#CongNghe2027"],
-            "sources": {"facebook": 112, "tiktok": 164, "threads": 92},
-            "samples": [
-                "Bên trong phòng Lab Thiết kế Vi mạch bán dẫn và AI nơi sinh viên thực hành từ năm hai.",
-                "Vì sao khối ngành Vi mạch bán dẫn và Trí tuệ nhân tạo thu hút mạnh học sinh giỏi Toán - Lý - Tin 2k9?",
+            "posts": [
+                ("tiktok", "Tech Career VN", 5400, 820, 360,
+                 "Bên trong phòng Lab Thiết kế Vi mạch bán dẫn và AI nơi sinh viên thực hành từ năm hai."),
+                ("facebook", "Diễn đàn Tuyển sinh Khối A", 1980, 260, 340,
+                 "Vì sao khối ngành Vi mạch bán dẫn và Trí tuệ nhân tạo thu hút mạnh học sinh giỏi Toán - Lý - Tin 2k9?"),
+                ("threads", "Kỹ sư chip kể chuyện", 760, 95, 120,
+                 "Lương khởi điểm kỹ sư thiết kế vi mạch năm 2026 đang ở mức nào, mình chia sẻ số liệu thật."),
             ],
+            "format": {"top_video": DEMO_POST_URLS["tiktok"], "sound": "Âm thanh gốc - Tech Career VN",
+                       "sound_kind": "original", "shared_sound": None, "median_duration_s": 48,
+                       "opening_line": "Đây là con chip đầu tiên sinh viên năm hai tự thiết kế.", "cover_url": None},
         },
         {
             "slug": "hoc-ky-thuc-tap-doanh-nghiep-ojt",
             "keyword": "Học kỳ thực tập doanh nghiệp OJT từ năm thứ ba",
-            "score": 87.4,
-            "virality": 83.5,
-            "engagement": 84.2,
-            "topic": "giáo_dục",
-            "status": "rising",
-            "mood": "positive",
-            "emotion": "tin tưởng",
-            "brand_risk": "low",
-            "cross_topic": False,
+            "curve": [60, 65, 72, 80, 88, 95, 104, 112, 121, 130, 140, 150, 160, 171],
+            "virality": 83.5, "engagement": 84.2,
+            "topic": "giáo_dục", "mood": "neutral", "brand_risk": "medium", "cross_topic": False,
+            "emotion_dist": {"trung_lập": 0.46, "vui": 0.38, "lo_sợ": 0.16},
+            "share": {"facebook": 0.45, "tiktok": 0.30, "threads": 0.25},
             "keywords": ["học kỳ ojt", "thực tập fpt software", "kinh nghiệm thực tế", "việc làm sau tốt nghiệp"],
             "hashtags": ["#HocKyOJT", "#ThucTapDoanhNghiep", "#FPTSoftware", "#SinhVienCongNghe"],
-            "sources": {"facebook": 96, "tiktok": 142, "threads": 68},
-            "samples": [
-                "Nhật ký 4 tháng đi thực tập OJT học kỳ 6 tại FPT Software của sinh viên K19 ngành Kỹ thuật phần mềm.",
-                "Phụ huynh đánh giá cao mô hình đào tạo gắn liền kỳ thực tập dự án thật tại doanh nghiệp.",
+            "posts": [
+                ("facebook", "Sinh viên IT Hà Nội", 1650, 210, 380,
+                 "Nhật ký 4 tháng đi thực tập OJT học kỳ 6 tại FPT Software của sinh viên K19 ngành Kỹ thuật phần mềm."),
+                ("threads", "Hội phụ huynh học sinh 12", 540, 60, 150,
+                 "Phụ huynh đánh giá cao mô hình đào tạo gắn liền kỳ thực tập dự án thật tại doanh nghiệp."),
             ],
         },
         {
             "slug": "ngay-hoi-open-day-workshop-thpt",
             "keyword": "Ngày hội Open Day & Workshop trải nghiệm phòng Lab THPT",
-            "score": 84.9,
-            "virality": 85.0,
-            "engagement": 81.6,
-            "topic": "đời_sống_giới_trẻ",
-            "status": "new",
-            "mood": "positive",
-            "emotion": "vui vẻ",
-            "brand_risk": "low",
-            "cross_topic": False,
+            "curve": [0] * 13 + [240],
+            "virality": 85.0, "engagement": 81.6,
+            "topic": "đời_sống", "mood": "humor", "brand_risk": "low", "cross_topic": False,
+            "emotion_dist": {"vui": 0.62, "ngạc_nhiên": 0.30, "trung_lập": 0.08},
+            "share": {"facebook": 0.30, "tiktok": 0.55, "threads": 0.15},
             "keywords": ["open day 2027", "workshop thpt", "kính thực tế ảo vr", "cánh tay robotics"],
             "hashtags": ["#FPTUOpenDay", "#WorkshopTHPT", "#TraiNghiemCampus", "#2k9"],
-            "sources": {"facebook": 105, "tiktok": 178, "threads": 54},
-            "samples": [
-                "Hơn 400 bạn học sinh lớp 12 hào hứng thử kính VR và điều khiển robot tại buổi Workshop hướng nghiệp.",
-                "Lịch trình 08 tuyến xe buýt đón học sinh THPT tham gia Ngày hội FPTU Open Day cuối tuần này.",
+            "posts": [
+                ("tiktok", "Campus Vlog 2k9", 9200, 1300, 640,
+                 "Hơn 400 bạn học sinh lớp 12 hào hứng thử kính VR và điều khiển robot tại buổi Workshop hướng nghiệp."),
+                ("facebook", "Đoàn trường THPT", 1100, 240, 90,
+                 "Lịch trình 08 tuyến xe buýt đón học sinh THPT tham gia Ngày hội FPTU Open Day cuối tuần này."),
             ],
+            "format": {"top_video": DEMO_POST_URLS["tiktok"], "sound": "Chill Campus Beat",
+                       "sound_kind": "music", "shared_sound": "Chill Campus Beat", "median_duration_s": 27,
+                       "opening_line": "POV: lần đầu được điều khiển cánh tay robot ở đại học.", "cover_url": None},
         },
         {
             "slug": "doi-song-noi-tru-clb-vovinam",
             "keyword": "Review đời sống Ký túc xá xanh, Vovinam & 40+ CLB Đại học",
-            "score": 81.2,
-            "virality": 80.1,
-            "engagement": 79.4,
-            "topic": "đời_sống_giới_trẻ",
-            "status": "rising",
-            "mood": "positive",
-            "emotion": "yêu thích",
-            "brand_risk": "low",
-            "cross_topic": False,
+            "curve": [80, 100, 125, 150, 170, 185, 195, 200, 203, 204, 204, 203, 201, 198],
+            "virality": 80.1, "engagement": 79.4,
+            "topic": "đời_sống", "mood": "humor", "brand_risk": "low", "cross_topic": False,
+            "emotion_dist": {"vui": 0.71, "trung_lập": 0.19, "ngạc_nhiên": 0.10},
+            "share": {"facebook": 0.25, "tiktok": 0.55, "threads": 0.20},
             "keywords": ["ký túc xá đh fpt", "đồng diễn vovinam", "thư viện xanh", "clb sinh viên"],
             "hashtags": ["#CampusLife", "#VovinamFPTU", "#ThuVienXanh", "#KyTucXa"],
-            "sources": {"facebook": 78, "tiktok": 156, "threads": 61},
-            "samples": [
-                "Một ngày từ sáng tập Vovinam, trưa học nhóm ở thư viện xanh đến tối sinh hoạt CLB âm nhạc tại FPTU.",
+            "posts": [
+                ("tiktok", "Một ngày sinh viên", 7300, 980, 520,
+                 "Một ngày từ sáng tập Vovinam, trưa học nhóm ở thư viện xanh đến tối sinh hoạt CLB âm nhạc tại FPTU."),
+                ("threads", "Review KTX thật", 820, 70, 260,
+                 "Review thật lòng sau 1 năm ở ký túc xá: ưu điểm, nhược điểm và chi phí mỗi tháng."),
             ],
         },
         {
             "slug": "ngoai-ngu-anh-nhat-nganh-it",
             "keyword": "Lợi thế song ngữ Anh - Nhật cho kỹ sư Công nghệ thông tin",
-            "score": 77.5,
-            "virality": 74.8,
-            "engagement": 75.0,
-            "topic": "giáo_dục",
-            "status": "rising",
-            "mood": "positive",
-            "emotion": "quan tâm",
-            "brand_risk": "low",
-            "cross_topic": False,
+            "curve": [150, 170, 190, 200, 195, 185, 170, 160, 140, 120, 100, 80, 65, 55],
+            "virality": 74.8, "engagement": 75.0,
+            "topic": "giáo_dục", "mood": "neutral", "brand_risk": "medium", "cross_topic": False,
+            "emotion_dist": {"trung_lập": 0.55, "vui": 0.25, "lo_sợ": 0.20},
+            "share": {"facebook": 0.50, "tiktok": 0.25, "threads": 0.25},
             "keywords": ["tiếng nhật cntt", "học kỳ nước ngoài", "kỹ sư cầu nối brse", "song ngữ đại học"],
             "hashtags": ["#SongNguCNTT", "#KySuCauNoi", "#HocKyNuocNgoai"],
-            "sources": {"facebook": 64, "tiktok": 88, "threads": 49},
-            "samples": [
-                "Lộ trình rèn tiếng Anh và ngoại ngữ thứ hai giúp sinh viên CNTT tự tin tham gia dự án quốc tế.",
+            "posts": [
+                ("facebook", "Cộng đồng BrSE Việt Nam", 980, 150, 120,
+                 "Lộ trình rèn tiếng Anh và ngoại ngữ thứ hai giúp sinh viên CNTT tự tin tham gia dự án quốc tế."),
             ],
         },
+        {
+            "slug": "tranh-luan-hoc-phi-dai-hoc-2027",
+            "keyword": "Tranh luận học phí đại học tư thục tăng năm 2027",
+            "curve": [10, 12, 15, 20, 28, 40, 55, 72, 90, 110, 130, 150, 168, 190],
+            "virality": 86.7, "engagement": 90.3,
+            "topic": "thời_sự", "mood": "controversy", "brand_risk": "high", "cross_topic": True,
+            "emotion_dist": {"tức_giận": 0.41, "lo_sợ": 0.29, "buồn": 0.18, "trung_lập": 0.12},
+            "share": {"facebook": 0.55, "tiktok": 0.15, "threads": 0.30},
+            "keywords": ["học phí 2027", "đại học tư thục", "tăng học phí", "chi phí đại học"],
+            "hashtags": ["#HocPhi2027", "#TuyenSinh2027", "#ChiPhiDaiHoc"],
+            "posts": [
+                ("facebook", "Góc nhìn giáo dục", 3900, 1200, 2100,
+                 "Học phí đại học tư thục năm 2027 dự kiến tăng 8-12%: phụ huynh nên chuẩn bị tài chính thế nào?"),
+                ("threads", "Tiếng nói phụ huynh", 1400, 520, 980,
+                 "Mức tăng học phí như vậy có tương xứng chất lượng đào tạo không? Mọi người nghĩ sao?"),
+            ],
+        },
+        {
+            "slug": "minigame-laptop-tan-sinh-vien",
+            "keyword": "Minigame săn laptop cho tân sinh viên mùa tựu trường",
+            "curve": [0, 0, 0, 0, 0, 0, 30, 90, 180, 260, 300, 310, 295, 260],
+            "virality": 78.9, "engagement": 72.4,
+            "topic": "công_nghệ", "mood": "humor", "brand_risk": "low", "cross_topic": False, "is_campaign": True,
+            "emotion_dist": {"vui": 0.58, "ngạc_nhiên": 0.32, "trung_lập": 0.10},
+            "share": {"facebook": 0.20, "tiktok": 0.70, "threads": 0.10},
+            "keywords": ["minigame laptop", "tân sinh viên", "quà tựu trường", "laptop học tập"],
+            "hashtags": ["#hoptaccung", "#MinigameLaptop", "#TanSinhVien"],
+            "posts": [
+                ("tiktok", "Review đồ công nghệ", 11200, 2100, 3600,
+                 "Comment tên trường để có cơ hội nhận laptop cho năm nhất #hoptaccung"),
+                ("facebook", "Deal sinh viên", 2300, 640, 1800,
+                 "Minigame cuối tuần: tag 3 người bạn cùng nhập học để nhận quà tựu trường."),
+            ],
+            "format": {"top_video": DEMO_POST_URLS["tiktok"], "sound": "Back To School Remix",
+                       "sound_kind": "music", "shared_sound": "Back To School Remix", "median_duration_s": 19,
+                       "opening_line": "Tân sinh viên ơi, laptop này đang được tặng miễn phí!", "cover_url": None},
+        },
     ]
+    peak = max(max(t["curve"]) for t in base_trends)
+
+    def snapshot_row(item: dict[str, Any], day_index: int, day_dt: datetime) -> dict[str, Any] | None:
+        curve = item["curve"][: day_index + 1]
+        if curve[-1] <= 0:
+            return None
+        lo = max(0, len(curve) - window)
+        status, mom = _trend_status(curve[lo:])
+        start = lo + mom.pop("start")
+        mom["days"] = [
+            (day_dt - timedelta(days=day_index - (start + k))).strftime("%Y-%m-%d")
+            for k in range(len(mom["counts"]))
+        ]
+        last, prev = curve[-1], (curve[-2] if len(curve) > 1 else 0)
+        growth = (last - prev) / max(prev, 1)
+        anomaly = round(min(99.0, 30 + 55 * last / peak + 120 * max(0.0, min(growth, 0.4))), 2)
+        final = round(min(99.0, 0.45 * anomaly + 0.3 * item["virality"] + 0.25 * item["engagement"]), 2)
+        total = sum(mom["counts"])
+        sources = {p: max(1, round(total * s)) for p, s in item["share"].items()}
+        post_items = [
+            {"url": DEMO_POST_URLS[src], "author": author, "source": src,
+             "likes": likes, "shares": shares, "comments": comments,
+             "crawled_at": (day_dt - timedelta(hours=3 + 5 * n)).strftime("%Y-%m-%dT%H:%M:%SZ"), "text": text}
+            for n, (src, author, likes, shares, comments, text) in enumerate(item["posts"])
+        ]
+        return {
+            "keyword": item["keyword"],
+            "anomaly_score": anomaly,
+            "virality_score": item["virality"],
+            "engagement_score": item["engagement"],
+            "final_score": final,
+            "sample_posts": [p[5] for p in item["posts"]][:3],
+            "source_distribution": sources,
+            "metadata": {"observed_post_count": total, "workspace_fit": True},
+            "keywords": item["keywords"],
+            "hashtags": item["hashtags"],
+            "topic": item["topic"],
+            "mood": item["mood"],
+            "emotion": max(item["emotion_dist"], key=item["emotion_dist"].get),
+            "emotion_dist": item["emotion_dist"],
+            "brand_risk": item["brand_risk"],
+            "status": status,
+            "momentum": mom,
+            "cross_topic": item["cross_topic"],
+            "is_campaign": item.get("is_campaign", False),
+            "format": item.get("format", {}),
+            "post_items": post_items,
+        }
 
     run_id = now.strftime("%Y%m%d%H%M%S")
     pipe = r.pipeline(transaction=True)
-    for day_offset in range(7):
+    for day_offset in range(history_days):
         day_dt = now - timedelta(days=day_offset)
         date_str = day_dt.strftime("%Y-%m-%d")
         daily_key = f"trends:v2:{date_str}:all"
         pipe.delete(daily_key, daily_key + ":data")
         pipe.set(daily_key + ":published", "1", ex=ttl)
 
+        rows = [
+            (item["slug"], row)
+            for item in base_trends
+            if (row := snapshot_row(item, history_days - 1 - day_offset, day_dt)) is not None
+        ]
+        rows.sort(key=lambda pair: -pair[1]["final_score"])
         zmap: dict[str, float] = {}
         hmap: dict[str, str] = {}
-        for rank_idx, item in enumerate(base_trends, 1):
-            decay = max(0.76, 1.0 - day_offset * 0.035)
-            score = round(item["score"] * decay, 2)
-            tid = f"trend:{date_str}:all:{item['slug']}"
-            daily_counts = [
-                max(18, int(sum(item["sources"].values()) * (0.55 + 0.07 * d)))
-                for d in range(7)
-            ]
-            cand = {
-                "trend_id": tid,
-                "rank": rank_idx,
-                "keyword": item["keyword"],
-                "anomaly_score": round(score * 0.96, 2),
-                "virality_score": item["virality"],
-                "engagement_score": item["engagement"],
-                "final_score": score,
-                "sample_posts": item["samples"],
-                "source_distribution": item["sources"],
-                "metadata": {"daily_counts": daily_counts, "workspace_fit": True},
-                "keywords": item["keywords"],
-                "hashtags": item["hashtags"],
-                "topic": item["topic"],
-                "mood": item["mood"],
-                "emotion": item["emotion"],
-                "emotion_dist": {"hào hứng": 0.52, "tin tưởng": 0.33, "tò mò": 0.15},
-                "brand_risk": item["brand_risk"],
-                "status": item["status"],
-                "momentum": {
-                    "velocity": 1.38,
-                    "acceleration": 0.22,
-                    "active_days": 7,
-                    "daily_counts": daily_counts,
-                },
-                "cross_topic": item["cross_topic"],
-                "is_campaign": False,
-                "post_items": [
-                    {
-                        "url": "https://www.facebook.com/university.fpt.edu.vn",
-                        "author": "Cộng đồng Học sinh THPT 2k9",
-                        "source": "facebook",
-                        "likes": 2450,
-                        "shares": 380,
-                        "comments": 290,
-                        "postedAt": day_dt.strftime("%Y-%m-%dT09:00:00Z"),
-                        "text": item["samples"][0],
-                    },
-                    {
-                        "url": "https://www.tiktok.com/@fptu.official",
-                        "author": "Góc Hướng nghiệp Công nghệ",
-                        "source": "tiktok",
-                        "likes": 6800,
-                        "shares": 910,
-                        "comments": 430,
-                        "postedAt": day_dt.strftime("%Y-%m-%dT14:30:00Z"),
-                        "text": item["samples"][-1],
-                    },
-                ],
-            }
-            zmap[tid] = score
-            hmap[tid] = json.dumps(cand, ensure_ascii=False)
+        for rank_idx, (slug, row) in enumerate(rows, 1):
+            tid = f"trend:{date_str}:all:{slug}"
+            zmap[tid] = row["final_score"]
+            hmap[tid] = json.dumps({"trend_id": tid, "rank": rank_idx, **row}, ensure_ascii=False)
 
         pipe.zadd(daily_key, zmap)
         pipe.hset(daily_key + ":data", mapping=hmap)
@@ -5960,7 +6022,7 @@ def apply_redis_trends(redis_url: str, now: datetime) -> None:
                 "status": "completed",
                 "date": date_str,
                 "published_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "count": len(base_trends),
+                "count": len(rows),
             }
         )
         pipe.set(daily_key + ":status", status_doc, ex=ttl)
@@ -5978,7 +6040,7 @@ def apply_redis_trends(redis_url: str, now: datetime) -> None:
     for plat in ("FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"):
         plat_payload = {
             "trends": [
-                {"keyword": t["keyword"], "score": t["score"], "hashtags": t["hashtags"]}
+                {"keyword": t["keyword"], "score": t["virality"], "hashtags": t["hashtags"]}
                 for t in base_trends
             ],
             "cachedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -5987,7 +6049,7 @@ def apply_redis_trends(redis_url: str, now: datetime) -> None:
         pipe.set(f"trends:{plat}:VN", json.dumps(plat_payload, ensure_ascii=False), ex=ttl)
 
     pipe.execute()
-    print(f"[OK] Đã đồng bộ Redis Trends thành công ({len(base_trends)} xu hướng chủ đạo suốt 7 ngày cho AI Studio & Workspace).")
+    print(f"[OK] Đã đồng bộ Redis Trends thành công ({len(base_trends)} xu hướng, {history_days} ngày lịch sử cho AI Studio & Workspace).")
 
 
 def clean_postgres(pg_uri: str) -> dict[str, str]:
