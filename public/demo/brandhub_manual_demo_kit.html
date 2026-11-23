@@ -388,7 +388,14 @@
       task_id: 'c6453698-cf56-38c1-96d2-90ccdd985228',
       post_id: 'd7e00000-0000-4000-8000-000000000401'
     };
-    const PASSWORD = 'Password123';
+    function getPwd() {
+      let p = localStorage.getItem('bh_demo_kit_pwd');
+      if (!p) {
+        p = prompt('Nhập mật khẩu tài khoản demo (chỉ lưu trên máy này)') || '';
+        if (p) localStorage.setItem('bh_demo_kit_pwd', p);
+      }
+      return p;
+    }
     let appUrl = localStorage.getItem('bh_demo_kit_url') || 'https://brandhub.id.vn';
     document.getElementById('base-url-input').value = appUrl;
 
@@ -429,14 +436,14 @@
         route: '/agency/{agency_id}/media-packages',
         checklist: [
           'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Plus = 1.490.000 VNĐ).',
-          'Chạy open_clean_chrome_roles.bat để mở 6 cửa sổ Chrome gốc trên https://brandhub.id.vn (dự phòng rớt mạng: open_clean_chrome_roles_local.bat), đăng nhập sẵn bằng Password123.',
+          'Chạy open_clean_chrome_roles.bat để mở 6 cửa sổ Chrome gốc trên https://brandhub.id.vn (dự phòng rớt mạng: open_clean_chrome_roles_local.bat), đăng nhập sẵn bằng mật khẩu demo do trưởng nhóm cung cấp.',
           'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
           'Bật Lịch sử bộ nhớ tạm Windows (Win + V), chạy preload_clipboard_win_v.bat và đăng nhập sẵn app ngân hàng điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
           'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 12–14).'
         ],
         script: 'Em (Lê Trí Trung) cùng bạn Nguyễn Thành Lộc xin phép mở 6 cửa sổ trình duyệt trên https://brandhub.id.vn đại diện cho 6 vai trò chuẩn của hệ thống để bắt đầu luồng nghiệp vụ khép kín từ bước B1 đến B12 của Chiến dịch Tuyển sinh Đại học FPT 2027.',
         fields: [
-          { label: 'Mật khẩu chung toàn bộ tài khoản Demo', type: 'Dán Ctrl+V', value: 'Password123', note: 'Dùng chung cho Owner (user177), Manager (user1), Creator (user13), Client (user59) và Admin.' }
+          { label: 'Mật khẩu chung toàn bộ tài khoản Demo', type: 'Dán Ctrl+V', value: '', note: 'Dùng chung cho Owner (user177), Manager (user1), Creator (user13), Client (user59) và Admin. Dùng nút MK để nhập/sao chép.' }
         ]
       },
       {
@@ -875,7 +882,7 @@
         return `<button type="button" class="btn ${active ? 'btn-primary' : ''}" onclick="copyVal('${esc(val)}', 'role_${r.role}', '${r.role}')">
           <strong>${r.role}</strong><span>· ${esc(r.short)}</span>
         </button>`;
-      }).join('') + `<button type="button" class="btn mono" onclick="copyVal('${PASSWORD}', 'pwd_top', 'Mật khẩu Password123')">MK: ${PASSWORD}</button>`;
+      }).join('') + `<button type="button" class="btn mono" onclick="copyVal(getPwd(), 'pwd_top', 'Mật khẩu demo')">MK: ••••</button>`;
       document.getElementById('roles-bar').innerHTML = html;
     }
 
@@ -1030,8 +1037,8 @@
         <main class="wide-pane">
           <div class="card">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-              <strong>6 Tài khoản Canonical Roles (Mật khẩu chung: <span class="mono">${PASSWORD}</span>)</strong>
-              <button type="button" class="btn btn-primary mono" onclick="copyVal('${PASSWORD}', 'sheet_pwd', 'Mật khẩu Password123')">Copy mật khẩu: ${PASSWORD}</button>
+              <strong>6 Tài khoản Canonical Roles (Mật khẩu chung: <span class="mono">••••</span>)</strong>
+              <button type="button" class="btn btn-primary mono" onclick="copyVal(getPwd(), 'sheet_pwd', 'Mật khẩu demo')">Copy mật khẩu</button>
             </div>
             <div class="grid-6">
               ${ROLES.map((r) => {

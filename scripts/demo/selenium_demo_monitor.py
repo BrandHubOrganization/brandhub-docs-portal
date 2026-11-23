@@ -66,7 +66,7 @@ except ImportError:
 # ==============================================================================
 DEFAULT_APP_URL = os.environ.get("BRANDHUB_APP_URL", "http://localhost:3000")
 DEFAULT_MONITOR_PORT = int(os.environ.get("BRANDHUB_DEMO_PORT", "3999"))
-DEFAULT_PASSWORD = os.environ.get("BRANDHUB_DEMO_PASSWORD", "Password123")
+DEFAULT_PASSWORD = os.environ.get("BRANDHUB_DEMO_PASSWORD", "")
 
 DEFAULT_IDS = {
     "agency_id": "359a1839-18c7-48e2-8a68-f5f68c3375b6",
@@ -2295,9 +2295,6 @@ class DemoBrowserController:
                         try:
                             wait = WebDriverWait(driver, 10)
                             candidate_passwords = [self.password]
-                            for alt_pwd in ("Password123", "Password123!"):
-                                if alt_pwd not in candidate_passwords:
-                                    candidate_passwords.append(alt_pwd)
 
                             logged_in = False
                             last_err: Exception | None = None
@@ -4253,6 +4250,8 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=DEFAULT_MONITOR_PORT, help="Cổng của Bàn điều khiển Demo (mặc định: 3999)")
     parser.add_argument("--password", default=DEFAULT_PASSWORD, help="Mật khẩu chung của các tài khoản demo")
     args = parser.parse_args()
+    if not args.password:
+        parser.error("Set BRANDHUB_DEMO_PASSWORD or pass --password")
 
     CONTROLLER = DemoBrowserController(app_url=args.app_url, password=args.password, monitor_port=args.port)
     server = DemoMonitorHTTPServer(("127.0.0.1", args.port), DemoMonitorRequestHandler)
