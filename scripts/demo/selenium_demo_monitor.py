@@ -186,7 +186,10 @@ DEMO_TEXTS = {
         "Chiến dịch 4 tuần tuyển sinh chương trình Thạc sĩ FPT 2027: bài đăng mạng xã hội, Reels, "
         "Workshop online, PR báo điện tử và bản tin Email."
     ),
-    "violation_sample": "Học sinh trường khác toàn lũ ngu, đáng bị đánh cho chết hết.",
+    "violation_sample": (
+        "Bài đăng kích động kỳ thị, thù ghét vùng miền, kêu gọi đánh đập đối thủ "
+        "và dẫn dụ học sinh tham gia hội nhóm lừa đảo đa cấp trái phép, cá độ trực tuyến."
+    ),
     "caption_v1_clean": (
         "TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\n"
         "Sau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 "

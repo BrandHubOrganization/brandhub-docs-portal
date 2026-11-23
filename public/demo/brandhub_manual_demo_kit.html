@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hồ Sơ Dữ Liệu Thực Nghiệm &amp; Kịch Bản Báo Cáo — ĐH FPT 2027 (SE08)</title>
+  <style>
+    :root {
+      --bg-body: #fafafa;
+      --bg-card: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-orange-soft: #fffaf5;
+      --bg-orange-badge: #ffedd5;
+      --bg-amber-soft: #fffbeb;
+      --bg-emerald-soft: #ecfdf5;
+      --text-main: #0f172a;
+      --text-body: #334155;
+      --text-muted: #475569;
+      --text-orange: #9a3412;
+      --text-amber: #78350f;
+      --text-emerald: #065f46;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-orange: #fed7aa;
+      --border-amber: #fcd34d;
+      --border-emerald: #34d399;
+      --accent: #ea6c3b;
+      --accent-hover: #d95d2c;
+      --focus-bg: #ffffff;
+    }
+    html.dark {
+      --bg-body: #09090b;
+      --bg-card: #121215;
+      --bg-subtle: #18181b;
+      --bg-orange-soft: rgba(234, 108, 59, 0.14);
+      --bg-orange-badge: rgba(234, 108, 59, 0.22);
+      --bg-amber-soft: rgba(245, 158, 11, 0.16);
+      --bg-emerald-soft: rgba(16, 185, 129, 0.16);
+      --text-main: #f8fafc;
+      --text-body: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-orange: #fed7aa;
+      --text-amber: #fde68a;
+      --text-emerald: #a7f3d0;
+      --border: #27272a;
+      --border-strong: #3f3f46;
+      --border-orange: rgba(234, 108, 59, 0.45);
+      --border-amber: rgba(245, 158, 11, 0.45);
+      --border-emerald: rgba(16, 185, 129, 0.45);
+      --focus-bg: #09090b;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      border-radius: 0 !important;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      font-size: 13px;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    button, a, input, textarea {
+      font: inherit;
+      color: inherit;
+    }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: none !important;
+      box-shadow: 0 0 0 2px var(--focus-bg), 0 0 0 4px var(--accent) !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    .btn {
+      min-height: 30px;
+      padding: 5px 11px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover { border-color: var(--border-orange); background: var(--bg-orange-soft); }
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #ffffff; }
+    .btn-done {
+      background: var(--bg-emerald-soft);
+      border-color: var(--border-emerald);
+      color: var(--text-emerald);
+      font-weight: 700;
+    }
+    .btn-tab-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--text-body);
+    }
+    .badge-orange {
+      background: var(--bg-orange-soft);
+      border-color: var(--border-orange);
+      color: var(--text-orange);
+    }
+    .badge-amber {
+      background: var(--bg-amber-soft);
+      border-color: var(--border-amber);
+      color: var(--text-amber);
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-top {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .roles-strip {
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+    .roles-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 6px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .layout-step {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      align-items: start;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    @media (max-width: 980px) {
+      .layout-step { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+    }
+    .sidebar {
+      position: sticky;
+      top: 86px;
+      max-height: calc(100vh - 86px);
+      overflow-y: auto;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+    }
+    .step-btn {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .step-btn:hover { background: var(--bg-subtle); }
+    .step-btn.active { background: var(--bg-orange-soft); }
+    .main-pane {
+      padding: 16px;
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .wide-pane {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 16px;
+    }
+    .field-card {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .field-card.copied {
+      background: var(--bg-emerald-soft);
+      border-color: var(--border-emerald);
+    }
+    .field-box {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      font-size: 12px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      resize: vertical;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+    }
+    @media (max-width: 1200px) {
+      .grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .grid-2, .grid-3, .grid-6 { grid-template-columns: 1fr; }
+    }
+    .alert-amber {
+      padding: 11px 14px;
+      border: 1px solid var(--border-amber);
+      background: var(--bg-amber-soft);
+      color: var(--text-amber);
+      font-size: 12.5px;
+    }
+    .check-row {
+      width: 100%;
+      min-height: 36px;
+      padding: 9px 12px;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .check-row:last-child { border-bottom: 0; }
+    .check-row.done { background: var(--bg-subtle); color: var(--text-muted); text-decoration: line-through; }
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent-hover);
+      font-weight: 700;
+      font-size: 12.5px;
+      max-width: 420px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <header class="header">
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-mark">BH</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <strong style="font-size:15px;">Hồ Sơ Dữ Liệu Thực Nghiệm &amp; Kịch Bản — ĐH FPT 2027 (SE08)</strong>
+            <span class="badge badge-orange mono">12 Bước · 20:00 · Offline Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div class="badge mono" style="min-height:30px;gap:8px;padding:4px 10px;">
+          <strong id="clock-text">00:00</strong>
+          <span style="color:var(--text-muted);">/ 20:00</span>
+          <button type="button" class="btn" style="min-height:28px;padding:2px 8px;" onclick="toggleClock()" id="clock-btn">Đếm giờ</button>
+          <button type="button" class="btn" style="min-height:28px;padding:2px 6px;" onclick="resetClock()">00:00</button>
+        </div>
+
+        <div role="group" aria-label="Chế độ hiển thị" style="display:inline-flex;">
+          <button type="button" id="tab-step" class="btn btn-tab-active" onclick="setView('step')">Theo bước (B1–B12)</button>
+          <button type="button" id="tab-sheet" class="btn" onclick="setView('sheet')">Bảng phẳng 1 trang</button>
+          <button type="button" id="tab-create" class="btn" onclick="setView('create')">Tạo mới tại chỗ (4)</button>
+        </div>
+
+        <div role="group" aria-label="Môi trường chạy hệ thống" style="display:inline-flex;">
+          <button type="button" id="env-cloud" class="btn btn-tab-active mono" onclick="updateBaseUrl('https://brandhub.id.vn')" title="Môi trường chính thức trên Cloud">brandhub.id.vn</button>
+          <button type="button" id="env-local" class="btn mono" onclick="updateBaseUrl('http://localhost:3000')" title="Dự phòng tức thì khi mất mạng hội trường">localhost:3000</button>
+        </div>
+
+        <input
+          id="base-url-input"
+          type="url"
+          value="https://brandhub.id.vn"
+          onchange="updateBaseUrl(this.value)"
+          aria-label="Địa chỉ ứng dụng BrandHub"
+          class="mono"
+          style="min-height:30px;width:175px;padding:4px 8px;border:1px solid var(--border);background:var(--bg-subtle);font-size:11.5px;"
+          title="Mặc định: https://brandhub.id.vn (dự phòng: http://localhost:3000)"
+        />
+
+        <button type="button" class="btn" onclick="toggleTheme()" id="theme-btn">Nền Tối</button>
+      </div>
+    </div>
+
+    <div class="roles-strip">
+      <div class="roles-inner">
+        <div id="roles-bar" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"></div>
+        <div class="mono" style="font-size:11px;color:var(--text-muted);">
+          Phím nhanh: <strong>[C]</strong> chép ô tiếp · <strong>[1–5]</strong> chép ô 1–5 · <strong>[←/→]</strong> đổi bước
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="app-root"></div>
+
+  <script>
+    const IDS = {
+      agency_id: '359a1839-18c7-48e2-8a68-f5f68c3375b6',
+      workspace_id: 'b47477c4-13ad-44ff-8c49-f73f1837461b',
+      campaign_id: 'd7e00000-0000-4000-8000-000000000301',
+      task_id: 'c6453698-cf56-38c1-96d2-90ccdd985228',
+      post_id: 'd7e00000-0000-4000-8000-000000000401'
+    };
+    const PASSWORD = 'Password123';
+    let appUrl = localStorage.getItem('bh_demo_kit_url') || 'https://brandhub.id.vn';
+    document.getElementById('base-url-input').value = appUrl;
+
+    const ROLES = [
+      { role: 'Guest', short: 'Khách', name: 'Khách truy cập công khai', email: 'Chưa đăng nhập', route: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+      { role: 'Owner', short: 'Trung', name: 'Lê Trí Trung', email: 'user177@demo.brandhub.test', route: '/agency/{agency_id}/media-packages' },
+      { role: 'Manager', short: 'Lộc', name: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test', route: '/workspaces/{workspace_id}/campaigns' },
+      { role: 'Creator', short: 'Phước', name: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test', route: '/workspaces/{workspace_id}/tasks' },
+      { role: 'Client', short: 'ĐH FPT', name: 'Ban Tuyển sinh Đại học FPT', email: 'user59@demo.brandhub.test', route: '/workspaces/{workspace_id}/task-approvals?task={task_id}' },
+      { role: 'Admin', short: 'Admin', name: 'Quản trị viên BrandHub', email: 'admin@demo.brandhub.test', route: '/admin?view=revenue' }
+    ];
+
+    const TEXTS = {
+      pkg_name: 'Gói Tuyển sinh Thạc sĩ FPT 2027',
+      pkg_budget: '85000000',
+      pkg_weeks: '4',
+      pkg_desc: 'Chiến dịch 4 tuần tuyển sinh chương trình Thạc sĩ FPT 2027: bài đăng mạng xã hội, Reels, Workshop online, PR báo điện tử và bản tin Email.',
+      pkg_items_guide: 'Bài đăng mạng xã hội: 12 · Bài báo điện tử: 2 · Workshop: 2 · Video ngắn: 4 · Email/Bản tin: 2',
+      out_of_scope_title: '[Tuần 3 - Phát sinh] Tổng hợp lịch xe đưa đón học sinh THPT dự Ngày hội FPTU Open Day 2027',
+      out_of_scope_desc: 'Bài thông báo chi tiết 08 điểm đón xe buýt miễn phí dành cho học sinh lớp 12 và phụ huynh tham gia trải nghiệm phòng Lab Thiết kế Vi mạch bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo năm 2027.',
+      out_of_scope_criteria: 'Ghi rõ khung giờ đón tại từng trường THPT, đầu mối sinh viên tình nguyện phụ trách mỗi tuyến xe và đính kèm đường dẫn đăng ký https://tuyensinh.fpt.edu.vn.',
+      subtask_desc: 'Biên soạn nội dung bài đăng tổng hợp điểm nhấn chuỗi Workshop phổ biến tiện ích học đường ĐH FPT tại các trường THPT và thông báo mở cổng xét Học bổng Nguyễn Văn Đạo năm 2027 cho khóa K23.',
+      subtask_criteria: 'Nêu rõ trải nghiệm kính VR và Robotics tại buổi Workshop, 3 mức học bổng 50%, 70%, 100% học phí, lộ trình thực tập doanh nghiệp OJT từ học kỳ 6 và đường dẫn https://tuyensinh.fpt.edu.vn.',
+      ai_topic: 'Tổng hợp điểm nhấn chuỗi Workshop trải nghiệm tiện ích học đường Đại học FPT dành cho học sinh THPT (đeo kính VR tham quan phòng Lab bán dẫn, điều khiển Robotics, tìm hiểu thư viện xanh, sân Vovinam và 40 CLB) kết hợp thông báo mở đăng ký xét Học bổng Nguyễn Văn Đạo năm 2027 tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM, Cần Thơ.',
+      violation_sample: 'Bài đăng kích động kỳ thị, thù ghét vùng miền, kêu gọi đánh đập đối thủ và dẫn dụ học sinh tham gia hội nhóm lừa đảo đa cấp trái phép, cá độ trực tuyến.',
+      caption_v1_clean: '【TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027】\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
+      hashtags_line: '#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT2027 #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
+      client_reject_note: 'Nội dung bản thảo v1 đã truyền tải rất tốt không khí thực tế của chuỗi Workshop tại các trường THPT. Tuy nhiên, Ban Tuyển sinh đề nghị bổ sung rõ 3 mức Học bổng Nguyễn Văn Đạo năm 2027 cụ thể (50%, 70% và 100% học phí toàn khóa) cùng thông tin học kỳ thực tập doanh nghiệp (On-the-Job Training - OJT) từ học kỳ 6 tại FPT Software và FPT Smart Cloud để phụ huynh và học sinh lớp 12 nắm đầy đủ quyền lợi trước khi duyệt xuất bản.',
+      caption_v2_addition: '\n\nQuyền lợi học bổng và lộ trình thực tập doanh nghiệp dành cho khóa K23 (2027):\n- Chương trình Học bổng Nguyễn Văn Đạo năm 2027: Trao tặng các mức 50%, 70% và 100% học phí toàn khóa học cho học sinh THPT có thành tích học tập và năng lực nổi trội.\n- Học kỳ doanh nghiệp (On-the-Job Training - OJT): 100% sinh viên tham gia làm việc thực tế từ học kỳ 6 tại FPT Software, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác trong và ngoài nước.',
+      caption_v2_full: '【TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027】\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nQuyền lợi học bổng và lộ trình thực tập doanh nghiệp dành cho khóa K23 (2027):\n- Chương trình Học bổng Nguyễn Văn Đạo năm 2027: Trao tặng các mức 50%, 70% và 100% học phí toàn khóa học cho học sinh THPT có thành tích học tập và năng lực nổi trội.\n- Học kỳ doanh nghiệp (On-the-Job Training - OJT): 100% sinh viên tham gia làm việc thực tế từ học kỳ 6 tại FPT Software, FPT Smart Cloud và mạng lưới doanh nghiệp đối tác trong và ngoài nước.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn'
+    };
+
+    const STEPS = [
+      {
+        num: 0, code: 'B0', time: 'Trước 00:00', fr: '6 Roles', role: 'Owner', actor: 'Lê Trí Trung (nói) · Nguyễn Thành Lộc (bấm máy)',
+        short: 'Checklist chuẩn bị',
+        title: 'Checklist sẵn sàng hệ thống & 6 cửa sổ vai trò trên brandhub.id.vn',
+        route: '/agency/{agency_id}/media-packages',
+        checklist: [
+          'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Plus = 1.490.000 VNĐ).',
+          'Chạy open_clean_chrome_roles.bat để mở 6 cửa sổ Chrome gốc trên https://brandhub.id.vn (dự phòng rớt mạng: open_clean_chrome_roles_local.bat), đăng nhập sẵn bằng Password123.',
+          'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
+          'Bật Lịch sử bộ nhớ tạm Windows (Win + V), chạy preload_clipboard_win_v.bat và đăng nhập sẵn app ngân hàng điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
+          'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 12–14).'
+        ],
+        script: 'Em (Lê Trí Trung) cùng bạn Nguyễn Thành Lộc xin phép mở 6 cửa sổ trình duyệt trên https://brandhub.id.vn đại diện cho 6 vai trò chuẩn của hệ thống để bắt đầu luồng nghiệp vụ khép kín từ bước B1 đến B12 của Chiến dịch Tuyển sinh Đại học FPT 2027.',
+        fields: [
+          { label: 'Mật khẩu chung toàn bộ tài khoản Demo', type: 'Dán Ctrl+V', value: 'Password123', note: 'Dùng chung cho Owner (user177), Manager (user1), Creator (user13), Client (user59) và Admin.' }
+        ]
+      },
+      {
+        num: 1, code: 'B1', time: '00:00 - 02:30', fr: 'FR 3.5.1 - 3.5.4', role: 'Owner', actor: 'Lê Trí Trung',
+        short: 'Gói dịch vụ & Tạo gói mới',
+        title: 'Danh mục 7 Gói đa ngành & Tạo gói Tuyển sinh Thạc sĩ FPT 2027',
+        route: '/agency/{agency_id}/media-packages',
+        extraRoutes: [{ label: 'Gói ĐH FPT 2027 trong Workspace (185M)', route: '/workspaces/{workspace_id}/media-package' }],
+        checklist: [
+          'Tại /agency/.../media-packages (Owner), giới thiệu 7 gói đa ngành chuẩn hóa, bấm nút "Tạo gói".',
+          'Nhấn phím C (hoặc bấm từng thẻ dưới) để dán Tên gói, Ngân sách 85000000, Thời lượng 4 tuần và Mô tả gói.',
+          'Tích chọn 5 hạng mục: Bài đăng mạng xã hội (12), Bài báo điện tử (2), Workshop (2), Video ngắn (4), Email/Bản tin (2) rồi nhấn "Lưu gói".',
+          'Mở /workspaces/.../media-package để chỉ rõ Gói ĐH FPT 2027 (185.000.000 VNĐ, 19 hạng mục, khóa terms_version) đã chốt.'
+        ],
+        script: 'Trong vai trò Owner Lê Trí Trung, SE08 Digital quản lý 7 gói đa ngành và tạo trực tiếp gói mới cho chương trình Thạc sĩ FPT 2027 gồm 5 hạng mục định lượng, đồng thời đối chiếu gói ĐH FPT 2027 trị giá 185 triệu VNĐ đã phê duyệt trong Workspace.',
+        fields: [
+          { label: '1. Tên gói (Package Name)', type: 'Dán Ctrl+V', key: 'pkg_name' },
+          { label: '2. Ngân sách dự kiến (VNĐ)', type: 'Dán Ctrl+V', key: 'pkg_budget', note: '85.000.000 VNĐ (nhập số liền không dấu chấm)' },
+          { label: '3. Thời lượng (Tuần)', type: 'Dán Ctrl+V', key: 'pkg_weeks' },
+          { label: '4. Mô tả gói truyền thông', type: 'Dán Ctrl+V', key: 'pkg_desc' },
+          { label: '5. Năm hạng mục & Số lượng tích chọn', type: 'Chọn trên UI', key: 'pkg_items_guide' }
+        ]
+      },
+      {
+        num: 2, code: 'B2', time: '02:30 - 04:00', fr: 'FR 3.5.6 - 3.5.13', role: 'Manager', actor: 'Nguyễn Thành Lộc',
+        short: 'Chiến dịch 4 tuần',
+        title: 'Điều phối Chiến dịch Tuyển sinh 4 Tuần (Brief, Timeline, 6 Đối tác)',
+        route: '/workspaces/{workspace_id}/campaigns',
+        checklist: [
+          'Chuyển sang cửa sổ Manager (Nguyễn Thành Lộc) tại /workspaces/.../campaigns.',
+          'Bước 1 (Thông tin): Chỉ rõ lộ trình 4 tuần & Master Brief 6 khối.',
+          'Bước 2 (Công việc): Lướt Timeline 19 hạng mục sinh từ gói (có sẵn 3 thẻ Copy bên dưới nếu muốn thêm việc phát sinh).',
+          'Bước 3 (Đối tác): Điểm qua 6 đối tác VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel và Màn hình LED THPT.'
+        ],
+        script: 'Manager Nguyễn Thành Lộc điều phối chiến dịch 4 tuần: chuẩn hóa Master Brief 6 khối, rà soát timeline 19 hạng mục và 6 đối tác truyền thông.',
+        fields: [
+          { label: '(Tùy chọn) Tên công việc phát sinh ngoài gói', type: 'Dán Ctrl+V', key: 'out_of_scope_title' },
+          { label: '(Tùy chọn) Mô tả công việc phát sinh', type: 'Dán Ctrl+V', key: 'out_of_scope_desc' },
+          { label: '(Tùy chọn) Tiêu chí nghiệm thu phát sinh', type: 'Dán Ctrl+V', key: 'out_of_scope_criteria' }
+        ]
+      },
+      {
+        num: 3, code: 'B3', time: '04:00 - 05:00', fr: 'FR 3.6.1 - 3.6.10', role: 'Manager', actor: 'Nguyễn Thành Lộc',
+        short: '20 Công việc & 5 Subtask',
+        title: 'Phân bổ 20 Công việc cho 3 Creator & 5 Subtask bài Tuần 3',
+        route: '/workspaces/{workspace_id}/tasks',
+        checklist: [
+          'Tại /workspaces/.../tasks (Manager), giới thiệu 20 công việc phủ đủ 8 loại tác vụ chia cho Phước, Tuấn, Ân.',
+          'Nhấp vào dòng "[Tuần 3 - Bài trọng điểm]" để mở ngăn chi tiết hiển thị 5 Role Subtasks (Nghiên cứu & Key Visual đã hoàn tất).'
+        ],
+        script: '20 công việc trong 4 tuần được giao theo chuyên môn cho Phước, Tuấn và Ân; riêng bài trọng điểm Tuần 3 có 5 Subtask phối hợp chéo.',
+        fields: [
+          { label: '(Tùy chọn) Mô tả Subtask mẫu', type: 'Dán Ctrl+V', key: 'subtask_desc' },
+          { label: '(Tùy chọn) Tiêu chí nghiệm thu Subtask', type: 'Dán Ctrl+V', key: 'subtask_criteria' }
+        ]
+      },
+      {
+        num: 4, code: 'B4', time: '05:00 - 08:00', fr: 'FR 3.6.3, 3.6.11, 3.7.1 - 3.7.2', role: 'Creator', actor: 'Nguyễn Chơn Phước',
+        short: 'Soạn bài & AI caption',
+        title: 'Creator nhận bài Tuần 3, mở /editor & gọi Gemini tạo caption',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        trap: 'Nếu mạng hội trường phản hồi AI quá 15 giây, đóng hộp AI và chuyển ngay sang bước B5 dán trực tiếp Bản thảo sạch v1.',
+        checklist: [
+          'Cửa sổ Creator (Nguyễn Chơn Phước): mở /editor của [Tuần 3 - Bài trọng điểm], giới thiệu 4 khối độc lập (Brief, Hình ảnh Key Visual Gemini, Kênh đăng, Nội dung).',
+          'Bấm nút "AI tạo 3 phương án caption" -> Dán Chủ đề AI bên dưới.',
+          'Chọn Mục tiêu: Thông báo, Giọng điệu: Chuyên nghiệp, Nền tảng: Facebook, Độ dài: Vừa -> Bấm "Tạo caption" -> Bấm "Chèn" phương án 1.'
+        ],
+        script: 'Creator mở bài Tuần 3 trên /editor, kiểm tra Key Visual Gemini đã duyệt và gọi AI GraphRAG sinh 3 phương án caption sát ngữ cảnh tuyển sinh ĐH FPT.',
+        fields: [
+          { label: '1. Chủ đề bài viết (AI Topic)', type: 'Dán Ctrl+V', key: 'ai_topic' },
+          { label: '2. Bốn tham số chọn trên hộp AI', type: 'Chọn trên UI', value: 'Mục tiêu: Thông báo · Giọng điệu: Chuyên nghiệp · Nền tảng: Facebook · Độ dài: Vừa' }
+        ]
+      },
+      {
+        num: 5, code: 'B5', time: '08:00 - 09:30', fr: 'FR 3.6.33, 3.6.18', role: 'Creator', actor: 'Nguyễn Chơn Phước',
+        short: 'Kiểm duyệt & Nộp v1',
+        title: 'Kiểm tra an toàn nội dung (3.6.33) & Nộp phần Nội dung v1',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        checklist: [
+          'Chép [1. Câu kiểm thử vi phạm], Ctrl+A dán vào ô Nội dung, dừng tay 3 giây để cổng FR 3.6.33 tự quét và báo chặn.',
+          'Chép [2. Bản thảo sạch v1], Ctrl+A dán thay thế toàn bộ ô Nội dung (chủ đích chưa ghi 3 mức học bổng & OJT).',
+          'Chép [3. Bộ 6 Hashtags], dán vào ô "Bộ Hashtags bài viết" + nhấn Enter.',
+          'Chờ trạng thái báo An toàn (PASSED) rồi nhấn nút "Nộp phần" trên khung POST.CAPTION.'
+        ],
+        script: 'Creator thử dán câu chứa từ khóa kỳ thị & lừa đảo để chứng minh cổng FR 3.6.33 tự động chặn nộp; sau đó dán bản sạch v1, gắn 6 hashtag và bấm Nộp phần.',
+        fields: [
+          { label: '1. Câu mẫu kiểm thử an toàn (FR 3.6.33)', type: 'Dán Ctrl+V', key: 'violation_sample', note: 'Bắt nhạy 100% cả Hive AI và tập quy tắc dự phòng (hate, violence, spam).' },
+          { label: '2. Bản thảo sạch v1', type: 'Dán Ctrl+V', key: 'caption_v1_clean' },
+          { label: '3. Bộ 6 Hashtags bài viết', type: 'Dán Ctrl+V', key: 'hashtags_line', note: 'Dán vào ô Hashtag rồi nhấn Enter.' }
+        ]
+      },
+      {
+        num: 6, code: 'B6', time: '09:30 - 10:30', fr: 'FR 3.6.19', role: 'Manager', actor: 'Nguyễn Thành Lộc',
+        short: 'Manager duyệt v1',
+        title: 'Manager Nguyễn Thành Lộc duyệt nội bộ phần Nội dung (v1)',
+        route: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
+        checklist: [
+          'Chuyển sang cửa sổ Manager tại /task-approvals?task=... (nhấn F5 nếu cần).',
+          'Nhấn nút "Duyệt" ở thẻ Nội dung bài đăng (POST.CAPTION - v1) để đẩy sang hàng đợi Ban Tuyển sinh ĐH FPT.'
+        ],
+        script: 'Manager mở màn Duyệt bài, rà soát phần Nội dung v1 ở tầng nội bộ và bấm Duyệt để chuyển sang khách hàng.',
+        fields: [
+          { label: 'Thao tác của Manager', type: 'Bấm nút', value: 'Nhấn nút "Duyệt" tại thẻ Nội dung bài đăng (POST.CAPTION - v1)' }
+        ]
+      },
+      {
+        num: 7, code: 'B7', time: '10:30 - 12:00', fr: 'FR 3.6.20, 3.6.21', role: 'Client', actor: 'Ban Tuyển sinh Đại học FPT',
+        short: 'Client trả lại v1',
+        title: 'Ban Tuyển sinh ĐH FPT trả lại v1, yêu cầu bổ sung Học bổng + OJT',
+        route: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
+        checklist: [
+          'Chuyển sang cửa sổ Client tại /task-approvals?task=... (nhấn F5). Chỉ rõ Client chỉ thấy OUTPUT, ẩn Brief nội bộ.',
+          'Nhấn nút "Trả lại" trên thẻ POST.CAPTION -> Dán góp ý bên dưới -> Bấm xác nhận "Trả lại".'
+        ],
+        script: 'Ban Tuyển sinh ĐH FPT chỉ thấy các phần OUTPUT, bấm Trả lại phần Nội dung và đề nghị bổ sung 3 mức Học bổng 50%-70%-100% cùng kỳ OJT.',
+        fields: [
+          { label: 'Góp ý yêu cầu bổ sung của Ban Tuyển sinh ĐH FPT', type: 'Dán Ctrl+V', key: 'client_reject_note' }
+        ]
+      },
+      {
+        num: 8, code: 'B8', time: '12:00 - 14:00', fr: 'FR 3.6.11, 3.6.18', role: 'Creator', actor: 'Nguyễn Chơn Phước',
+        short: 'Sửa v2, Nộp & Diff',
+        title: 'Creator bổ sung v2, nộp lại & đối chiếu Diff v1 / v2',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        checklist: [
+          'Quay lại cửa sổ Creator trên /editor, nhấn F5 để thấy thẻ góp ý màu cam của nhà trường.',
+          'Đặt con trỏ cuối bài viết, dán [1. Đoạn bổ sung nối tiếp v2] (hoặc Ctrl+A dán [2. Trọn bộ bản v2] nếu lỡ xóa v1).',
+          'Chờ kiểm duyệt báo An toàn rồi bấm "Nộp phần".',
+          'Bấm biểu tượng đồng hồ "Lịch sử phiên bản" để mở bảng đối chiếu Word-Level Diff giữa v1 và v2.'
+        ],
+        script: 'Creator đọc góp ý, bổ sung 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ OJT vào bản v2, nộp lại rồi mở bảng đối chiếu Diff từng từ giữa v1 và v2.',
+        fields: [
+          { label: '1. Đoạn bổ sung nối tiếp vào cuối bài (v2)', type: 'Dán Ctrl+V', key: 'caption_v2_addition' },
+          { label: '2. (Dự phòng) Trọn bộ bài viết hoàn chỉnh v2', type: 'Dán Ctrl+V', key: 'caption_v2_full' }
+        ]
+      },
+      {
+        num: 9, code: 'B9', time: '14:00 - 15:00', fr: 'FR 3.6.19, 3.6.20', role: 'Client', actor: 'Manager -> Client -> Creator',
+        short: 'Duyệt v2 → FINISHED',
+        title: 'Manager & Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2',
+        route: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
+        extraRoutes: [{ label: '3. Creator bấm Gửi phê duyệt (/editor)', route: '/workspaces/{workspace_id}/editor?taskId={task_id}' }],
+        trap: 'BẮT BUỘC NHỚ BƯỚC 3: Sau khi Client bấm Duyệt v2, phải quay sang cửa sổ Creator trên /editor bấm nút cam "Gửi phê duyệt" góc trên bên phải thì Task mới sang FINISHED và Post mới sang APPROVED!',
+        checklist: [
+          'Bước 1 (Manager): Tại /task-approvals?task=..., nhấn F5 rồi bấm "Duyệt" phần Nội dung (v2).',
+          'Bước 2 (Client): Tại /task-approvals?task=..., nhấn F5 rồi bấm "Duyệt" nghiệm thu chính thức (v2).',
+          'Bước 3 (Creator): Quay lại /editor?taskId=..., nhấn F5 rồi bấm nút cam "Gửi phê duyệt" ở góc phải trên cùng -> Task FINISHED & Post APPROVED!'
+        ],
+        script: 'Manager duyệt v2, Ban Tuyển sinh ĐH FPT bấm duyệt chính thức và Creator hoàn tất gửi phê duyệt; Task lập tức sang FINISHED và bài đăng sang APPROVED.',
+        fields: [
+          { label: 'Chuỗi 3 cú click chốt hoàn tất', type: 'Bấm nút', value: '1. Manager bấm "Duyệt" -> 2. Client bấm "Duyệt" -> 3. Creator (/editor) bấm "Gửi phê duyệt"' }
+        ]
+      },
+      {
+        num: 10, code: 'B10', time: '15:00 - 17:00', fr: 'FR 3.8.1 - 3.8.15', role: 'Creator', actor: 'Nguyễn Chơn Phước',
+        short: 'Xuất bản thật, Lịch & Dashboard',
+        title: 'Đăng thật lên Fanpage Facebook / Threads · Lịch 4 tuần · Dashboard',
+        route: '/workspaces/{workspace_id}/posts/{post_id}',
+        extraRoutes: [
+          { label: '4 Kết nối MXH (/social-accounts)', route: '/workspaces/{workspace_id}/social-accounts' },
+          { label: 'Lịch 4 tuần (/calendar)', route: '/workspaces/{workspace_id}/calendar' },
+          { label: 'Dashboard (/dashboard)', route: '/workspaces/{workspace_id}/dashboard' }
+        ],
+        trap: 'Khi bấm Đăng ngay bằng tay trên giao diện, chỉ tích chọn đúng 1 kênh thật đã nối OAuth (Facebook Fanpage hoặc Threads) trong mỗi lần bấm để không vướng khóa chống trùng Redis SETNX theo postId (TTL 30 phút), sau đó mở tab mạng xã hội thật đối chiếu ngay.',
+        checklist: [
+          'Mở /social-accounts (Manager) giới thiệu 4 kết nối OAuth chuẩn (Facebook, Instagram, TikTok, Threads) và chỉ rõ kênh thật đang liên kết OAuth.',
+          'Mở chi tiết bài Tuần 3 (/posts/...401) trên Creator, tích chọn đúng 1 kênh thật vừa liên kết và bấm "Đăng ngay".',
+          'Mở ngay tab Facebook Fanpage / Threads thật cho Hội đồng thấy bài viết kèm Key Visual vừa xuất hiện ngoài đời thực.',
+          'Mở /calendar trình bày Lịch phủ sóng 4 tuần và mở /dashboard xem số liệu tương tác tổng hợp 4 kênh.'
+        ],
+        script: 'Manager kiểm tra 4 kết nối OAuth mạng xã hội, sau đó Creator bấm Đăng ngay bài trọng điểm Tuần 3 lên kênh Facebook Fanpage / Threads thật và mở trực tiếp trang mạng xã hội để Quý Thầy Cô đối chiếu bài đăng vừa lên sóng, kèm Lịch 4 tuần và Dashboard tương tác.',
+        fields: [
+          { label: '4 nền tảng chuẩn & Kênh OAuth đăng thật', type: 'Tham chiếu', value: '4 kênh chuẩn: Facebook · Instagram · TikTok · Threads | Tích đăng 1 kênh thật đã nối OAuth rồi mở tab thật đối chiếu' }
+        ]
+      },
+      {
+        num: 11, code: 'B11', time: '17:00 - 18:30', fr: 'FR 3.9.1 - 3.9.6', role: 'Owner', actor: 'Lê Trí Trung',
+        short: 'SePay (VietQR)',
+        title: 'Owner đối chiếu gói Plus (1.490.000đ) & quét VietQR SePay nạp AI Credit thật',
+        route: '/subscription/plans',
+        extraRoutes: [{ label: 'Nạp lẻ AI Credit & Ví 8.500 điểm (/credit)', route: '/agency/{agency_id}/credit' }],
+        checklist: [
+          'Cửa sổ Owner tại /subscription/plans: chỉ rõ gói Plus giá chuẩn 1.490.000 VNĐ/tháng (khớp 100% Slide 13) & mở xem mã VietQR động.',
+          'Chuyển sang /agency/.../credit: chỉ số dư 8.500 điểm, trần Workspace ĐH FPT 5.000 điểm, rồi bấm nút "Nạp thêm Credit".',
+          'Chọn ô "Số lượng tùy chỉnh" -> dán số 10 (10 Credits × 200đ = 2.000 VNĐ) -> bấm "Thanh toán 2.000 VND" để sinh mã VietQR động kèm nội dung BH...',
+          'Dùng app ngân hàng quét chuyển khoản thật 2.000 VNĐ ngay trên sân khấu -> Webhook SePay đối soát tự động và cộng +10 Credits tức thì!'
+        ],
+        script: 'Trên trang Gói thuê bao là mức giá thương mại chuẩn 1.490.000 VNĐ/tháng của gói Plus. Để quét chuyển khoản thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét trực tiếp để hệ thống cộng điểm tự động.',
+        fields: [
+          { label: '1. Số lượng AI Credit nạp lẻ tùy chỉnh (= 2.000 VNĐ quét thật)', type: 'Dán Ctrl+V', value: '10', note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn "Số lượng tùy chỉnh" -> Nhập 10 (10 × 200đ = 2.000 VNĐ).' },
+          { label: '2. Thông tin Gói Plus & Ví AI Credit chuẩn', type: 'Tham chiếu', value: 'Gói Plus: 1.490.000 VNĐ/tháng · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits (trần ĐH FPT: 5.000 credits)' }
+        ]
+      },
+      {
+        num: 12, code: 'B12', time: '18:30 - 20:00', fr: 'FR 3.10.1 - 3.10.14', role: 'Admin', actor: 'Quản trị viên BrandHub',
+        short: 'Admin Doanh thu & Kiểm duyệt',
+        title: 'Admin giám sát doanh thu & Hàng đợi kiểm duyệt (3.10.4)',
+        route: '/admin?view=revenue',
+        extraRoutes: [
+          { label: 'Hàng đợi kiểm duyệt (FR 3.10.4)', route: '/admin?view=moderation' },
+          { label: 'Bảng giá AI Credit (/admin/credit-prices)', route: '/admin/credit-prices' }
+        ],
+        checklist: [
+          'Cửa sổ Admin tại /admin?view=revenue: trình bày tổng quan doanh thu gói SaaS & giao dịch SePay vừa ghi nhận.',
+          'Chuyển sang /admin?view=moderation trình bày Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) — khép lại 12 bước Demo.'
+        ],
+        script: 'Quản trị viên BrandHub giám sát doanh thu toàn nền tảng và xử lý Hàng đợi kiểm duyệt nội dung FR 3.10.4 — khép lại 20 phút Live Demo.',
+        fields: [
+          { label: 'Phạm vi Admin', type: 'Tham chiếu', value: 'Doanh thu SaaS (/admin?view=revenue) · Kiểm duyệt nội dung (/admin?view=moderation) · Bảng giá AI Credit (/admin/credit-prices)' }
+        ]
+      }
+    ];
+
+    const CREATE_PACKS = [
+      {
+        title: '1. Tạo Chiến dịch Truyền thông Mới (CampaignForm)', role: 'Manager · Nguyễn Thành Lộc', route: '/workspaces/{workspace_id}/campaigns',
+        steps: ['Mở /campaigns -> bấm Tạo chiến dịch / Chỉnh sửa kế hoạch.', 'Dán Tên chiến dịch, chọn Ngày bắt đầu - kết thúc.', 'Dán Chiến lược tổng thể vào khung bên phải -> thêm hạng mục -> Lưu.'],
+        fields: [
+          { id: 'cp1', label: 'Tên chiến dịch', value: 'Chiến dịch Tuyển sinh Đợt 2 ĐH FPT 2027: Trải nghiệm Lab Bán dẫn & Ngày hội Open Day' },
+          { id: 'cp2', label: 'Chiến lược tổng thể (Strategy)', value: 'Triển khai truyền thông đa kênh 4 tuần trên Facebook, Instagram, TikTok và Threads tập trung vào 3 trụ cột: (1) Trải nghiệm thực tế phòng Lab Vi mạch bán dẫn & AI tại 5 cơ sở; (2) Chính sách Học bổng Nguyễn Văn Đạo 50%-70%-100%; (3) Kỳ thực tập doanh nghiệp OJT từ học kỳ 6 tại FPT Software.' },
+          { id: 'cp3', label: 'Tên hạng mục công việc mẫu', value: '[Đợt 2 - Tuần 1] Bài công bố lịch trải nghiệm phòng Lab Bán dẫn & Tư vấn học bổng K23' }
+        ]
+      },
+      {
+        title: '2. Tạo Nhanh Công việc & Subtask (QuickCreateTaskDialog)', role: 'Manager · Nguyễn Thành Lộc', route: '/workspaces/{workspace_id}/tasks',
+        steps: ['Tại /tasks, bấm "+ Tạo công việc".', 'Chọn loại POST, ưu tiên HIGH, tích 4 nền tảng Facebook, Instagram, TikTok, Threads.', 'Dán Tiêu đề, Mô tả rồi nhấn "Tạo & Mở trình soạn thảo".'],
+        fields: [
+          { id: 'tk1', label: 'Tiêu đề công việc', value: '[Tuần 3 - Phát sinh] Tổng hợp lịch xe đưa đón học sinh THPT dự Ngày hội FPTU Open Day 2027' },
+          { id: 'tk2', label: 'Mô tả công việc', value: 'Thông báo chi tiết 08 điểm đón xe buýt miễn phí dành cho học sinh lớp 12 và phụ huynh tham quan phòng Lab Thiết kế Vi mạch bán dẫn, thư viện xanh và tư vấn Học bổng Nguyễn Văn Đạo năm 2027.' },
+          { id: 'tk3', label: 'Tiêu chí nghiệm thu Subtask', value: 'Đảm bảo ghi đủ khung giờ đón tại 08 điểm trường THPT, thông tin đầu mối tình nguyện viên phụ trách và đường dẫn đăng ký https://tuyensinh.fpt.edu.vn.' }
+        ]
+      },
+      {
+        title: '3. Tạo Biểu mẫu Khảo sát Học sinh Mới (SURVEY)', role: 'Creator · Nguyễn Chơn Phước', route: '/workspaces/{workspace_id}/tasks',
+        steps: ['Tại /tasks, bấm "+ Tạo công việc" -> chọn loại "Khảo sát (SURVEY)" -> bấm "Tạo & Mở trình soạn thảo".', 'Dán Tiêu đề, Lời giới thiệu và 2 câu hỏi mẫu bên dưới -> Xuất bản lấy link Guest.'],
+        fields: [
+          { id: 'sv1', label: 'Tên biểu mẫu Khảo sát', value: 'Khảo sát nhu cầu tham quan Lab Vi mạch Bán dẫn & Tư vấn Học bổng ĐH FPT 2027' },
+          { id: 'sv2', label: 'Lời giới thiệu biểu mẫu', value: 'Phiếu đăng ký và khảo sát nguyện vọng dành cho học sinh lớp 12 tham dự chuỗi trải nghiệm thực tế công nghệ Bán dẫn, AI và xét Học bổng Nguyễn Văn Đạo năm 2027 tại Trường Đại học FPT.' },
+          { id: 'sv3', label: 'Câu hỏi 1 (Trắc nghiệm · 4 lựa chọn: Thiết kế Vi mạch bán dẫn | AI | Kỹ thuật phần mềm | Quản trị kinh doanh số)', value: 'Bạn quan tâm nhất đến nhóm ngành đào tạo nào tại Trường Đại học FPT năm 2027?' },
+          { id: 'sv4', label: 'Câu hỏi 2 (Tự luận ngắn)', value: 'Bạn muốn đặt câu hỏi nào cho giảng viên và sinh viên khóa trên về kỳ thực tập doanh nghiệp OJT học kỳ 6?' }
+        ]
+      },
+      {
+        title: '4. Thêm Đối tác Báo chí / KOL Mới (PartnerForm)', role: 'Owner · Lê Trí Trung', route: '/agency/{agency_id}/collaborators',
+        steps: ['Tại /agency/.../collaborators, bấm "Thêm đối tác".', 'Chọn loại "Báo điện tử (NEWSPAPER)", dán lần lượt 6 ô bên dưới -> Lưu.'],
+        fields: [
+          { id: 'pt1', label: 'Tên đối tác (Partner Name)', value: 'Chuyên trang Giáo dục - Báo Tuổi Trẻ Online' },
+          { id: 'pt2', label: 'Người liên hệ (Contact Name)', value: 'Nhà báo Trần Minh Hoàng' },
+          { id: 'pt3', label: 'Email liên hệ', value: 'giaoduc.hop-tac@tuoitre.com.vn' },
+          { id: 'pt4', label: 'Số điện thoại', value: '0903812689' },
+          { id: 'pt5', label: 'Website', value: 'https://tuoitre.vn/giao-duc.htm' },
+          { id: 'pt6', label: 'Ghi chú hợp tác (Notes)', value: 'Phụ trách đăng tải tuyến bài chuyên sâu về chương trình Học bổng Nguyễn Văn Đạo và mô hình thực tập doanh nghiệp OJT mùa tuyển sinh 2027 (SLA duyệt bài 24h).' }
+        ]
+      }
+    ];
+
+    const QA_LINKS = [
+      { label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', route: '/workspaces/{workspace_id}/editor?taskId=31a69211-9cec-30f0-b3f0-4e01ac3315a1' },
+      { label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/85a66c1c-b49b-3788-8bc3-a21336649041/event' },
+      { label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/c1176d26-249c-3d32-bbad-f720b3a518a4/workshop' },
+      { label: 'PR Báo chí VnExpress (/press)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/b8585f25-6a26-3a5e-9199-19c2e9fb3f06/press' },
+      { label: 'Booking KOL Schannel (/kol)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/3f1ae3a9-6518-35df-a596-1013c055e279/kol' },
+      { label: 'Bản tin Email (/newsletter)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/b6a13469-05c4-3af0-88b1-ba2ca510d18f/newsletter' },
+      { label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', route: '/ai-studio/trends' },
+      { label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', route: '/ai-studio/knowledge-base' },
+      { label: 'AI Đại sứ ảo (/ai-studio/ambassadors)', role: 'Creator', route: '/ai-studio/ambassadors' },
+      { label: 'Cổng Khách hàng (/portal)', role: 'Client', route: '/workspaces/{workspace_id}/portal' },
+      { label: 'Kho riêng Client Vault (/library)', role: 'Client', route: '/workspaces/{workspace_id}/library' },
+      { label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', route: '/agency/{agency_id}/collaborators' },
+      { label: 'Link Chào giá Gói (Guest)', role: 'Guest', route: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
+      { label: 'Link Khảo sát THPT (Guest)', role: 'Guest', route: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', route: '/admin/credit-prices' }
+    ];
+
+    let view = 'step';
+    let stepIdx = 1;
+    let copiedMap = {};
+    let checkMap = {};
+    let clockSec = 0;
+    let clockTimer = null;
+    const COPY_REG = {};
+
+    function regCopy(key, text, label) {
+      COPY_REG[key] = { text: String(text == null ? '' : text), label: String(label || '') };
+      return key;
+    }
+
+    function fallbackExecCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', 'true');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    function safeCopyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).catch(() => fallbackExecCopy(text));
+        return;
+      }
+      fallbackExecCopy(text);
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function resolvePath(tpl) {
+      return tpl
+        .replace('{agency_id}', IDS.agency_id)
+        .replace('{workspace_id}', IDS.workspace_id)
+        .replace('{campaign_id}', IDS.campaign_id)
+        .replace('{task_id}', IDS.task_id)
+        .replace('{post_id}', IDS.post_id);
+    }
+
+    function syncEnvButtons() {
+      const cBtn = document.getElementById('env-cloud');
+      const lBtn = document.getElementById('env-local');
+      const inp = document.getElementById('base-url-input');
+      if (inp) inp.value = appUrl;
+      if (cBtn) cBtn.className = appUrl === 'https://brandhub.id.vn' ? 'btn btn-tab-active mono' : 'btn mono';
+      if (lBtn) lBtn.className = appUrl === 'http://localhost:3000' ? 'btn btn-tab-active mono' : 'btn mono';
+    }
+
+    function updateBaseUrl(val) {
+      appUrl = (val || 'https://brandhub.id.vn').trim().replace(/\/+$/, '');
+      localStorage.setItem('bh_demo_kit_url', appUrl);
+      syncEnvButtons();
+      showToast(`Đã chuyển địa chỉ hệ thống sang: ${appUrl}`);
+      render();
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.style.display = 'block';
+      clearTimeout(window.__toastT);
+      window.__toastT = setTimeout(() => { el.style.display = 'none'; }, 3200);
+    }
+
+    function copyVal(text, key, label) {
+      if (!clockTimer && clockSec === 0) toggleClock();
+      safeCopyText(text);
+      copiedMap[key] = true;
+      showToast(label ? `Đã sao chép "${label}" — nhấn Ctrl+V để dán.` : 'Đã sao chép vào Clipboard.');
+      render();
+    }
+
+    function copyReg(key) {
+      const item = COPY_REG[key];
+      if (!item) return;
+      copyVal(item.text, key, item.label);
+    }
+
+    function copyById(key, textId, label) {
+      const el = document.getElementById(textId);
+      const val = el ? (el.value !== undefined ? el.value : el.innerText) : '';
+      copyVal(val, key, label);
+    }
+
+    function copyNextInStep() {
+      const s = STEPS[stepIdx];
+      if (!s.fields.length) return;
+      const idx = s.fields.findIndex((_, i) => !copiedMap[`${s.code}_${i}`]);
+      const pick = idx >= 0 ? idx : 0;
+      const f = s.fields[pick];
+      const val = f.key ? TEXTS[f.key] : f.value;
+      copyVal(val, `${s.code}_${pick}`, f.label);
+    }
+
+    function toggleClock() {
+      if (clockTimer) {
+        clearInterval(clockTimer);
+        clockTimer = null;
+      } else {
+        clockTimer = setInterval(() => {
+          clockSec += 1;
+          updateClockUI();
+        }, 1000);
+      }
+      updateClockUI();
+    }
+
+    function resetClock() {
+      if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
+      clockSec = 0;
+      updateClockUI();
+    }
+
+    function updateClockUI() {
+      const m = String(Math.floor(clockSec / 60)).padStart(2, '0');
+      const s = String(clockSec % 60).padStart(2, '0');
+      document.getElementById('clock-text').textContent = `${m}:${s}`;
+      document.getElementById('clock-btn').textContent = clockTimer ? 'Tạm dừng' : 'Đếm giờ';
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      document.getElementById('theme-btn').textContent = isDark ? 'Nền Sáng' : 'Nền Tối';
+    }
+
+    function setView(v) {
+      view = v;
+      ['step', 'sheet', 'create'].forEach((k) => {
+        document.getElementById(`tab-${k}`).className = k === v ? 'btn btn-tab-active' : 'btn';
+      });
+      render();
+    }
+
+    function selectStep(i) {
+      stepIdx = Math.max(0, Math.min(STEPS.length - 1, i));
+      render();
+    }
+
+    function toggleCheck(key) {
+      checkMap[key] = !checkMap[key];
+      render();
+    }
+
+    function renderRolesStrip() {
+      const curRole = STEPS[stepIdx].role;
+      const html = ROLES.map((r) => {
+        const active = view === 'step' && r.role === curRole;
+        const val = r.role === 'Guest' ? `${appUrl}${resolvePath(r.route)}` : r.email;
+        return `<button type="button" class="btn ${active ? 'btn-primary' : ''}" onclick="copyVal('${esc(val)}', 'role_${r.role}', '${r.role}')">
+          <strong>${r.role}</strong><span>· ${esc(r.short)}</span>
+        </button>`;
+      }).join('') + `<button type="button" class="btn mono" onclick="copyVal('${PASSWORD}', 'pwd_top', 'Mật khẩu Password123')">MK: ${PASSWORD}</button>`;
+      document.getElementById('roles-bar').innerHTML = html;
+    }
+
+    function renderQaCards() {
+      return `
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+            <strong>Truy cập nhanh Q&amp;A Hội đồng: 15 Màn hình Chuyên sâu</strong>
+            <span class="badge badge-orange mono">15 Deep-Links</span>
+          </div>
+          <div class="grid-3">
+            ${QA_LINKS.map((q, idx) => {
+              const full = `${appUrl}${resolvePath(q.route)}`;
+              const k = `qa_${idx}`;
+              return `
+                <div class="field-card ${copiedMap[k] ? 'copied' : ''}" style="justify-content:space-between;">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;">
+                    <strong style="font-size:12px;">${esc(q.label)}</strong>
+                    <span class="badge badge-orange mono">${q.role}</span>
+                  </div>
+                  <div style="display:flex;gap:6px;">
+                    <a href="${esc(full)}" target="_blank" rel="noreferrer" class="btn" style="flex:1;justify-content:center;">Mở trang ↗</a>
+                    <button type="button" class="btn ${copiedMap[k] ? 'btn-done' : ''}" onclick="copyVal('${esc(full)}', '${k}', '${esc(q.label)}')">Copy URL</button>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderStepView() {
+      const s = STEPS[stepIdx];
+      const fullRoute = `${appUrl}${resolvePath(s.route)}`;
+      const sidebarHtml = STEPS.map((item, idx) => {
+        const allChecked = item.checklist.every((_, ci) => checkMap[`${item.code}_c_${ci}`]);
+        return `
+          <button type="button" class="step-btn ${idx === stepIdx ? 'active' : ''}" onclick="selectStep(${idx})">
+            <span class="badge ${idx === stepIdx ? 'badge-orange' : ''} mono">${allChecked ? '✓' : item.code}</span>
+            <span style="min-width:0;flex:1;">
+              <strong style="display:block;font-size:12px;">${esc(item.short)}</strong>
+              <span class="mono" style="font-size:11px;color:var(--text-muted);">${item.role} · ${item.time}</span>
+            </span>
+          </button>
+        `;
+      }).join('');
+
+      const fieldsHtml = s.fields.map((f, i) => {
+        const k = `${s.code}_${i}`;
+        const val = f.key ? TEXTS[f.key] : f.value;
+        const areaId = `area_${k}`;
+        return `
+          <div class="field-card ${copiedMap[k] ? 'copied' : ''}">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+              <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                <span class="badge badge-orange mono">${i + 1}</span>
+                <strong>${esc(f.label)}</strong>
+                <span class="badge">${esc(f.type)}</span>
+                ${i < 5 ? `<span class="badge mono">Phím ${i + 1}</span>` : ''}
+              </div>
+              <button type="button" class="btn ${copiedMap[k] ? 'btn-done' : 'btn-primary'}" onclick="copyById('${k}', '${areaId}', '${esc(f.label)}')">
+                ${copiedMap[k] ? '✓ Đã sao chép · Chép lại' : 'Sao chép ngay'}
+              </button>
+            </div>
+            ${f.key
+              ? `<textarea id="${areaId}" rows="${Math.min(5, Math.max(2, Math.ceil(val.length / 105)))}" class="field-box mono" oninput="TEXTS['${f.key}']=this.value">${esc(val)}</textarea>`
+              : `<div id="${areaId}" class="field-box mono" onclick="copyById('${k}', '${areaId}', '${esc(f.label)}')" style="cursor:pointer;">${esc(val)}</div>`
+            }
+            ${f.note ? `<div style="font-size:11.5px;color:var(--text-muted);">${esc(f.note)}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="layout-step">
+          <aside class="sidebar">${sidebarHtml}</aside>
+          <main class="main-pane">
+            <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:240px;">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <span class="badge mono">${s.num === 0 ? `Chuẩn bị · ${s.code}` : `Bước ${s.num}/12 · ${s.code}`}</span>
+                    <span class="badge badge-orange">${s.role}: ${esc(s.actor)}</span>
+                    <span class="badge mono">${s.time}</span>
+                    <span class="badge mono">${s.fr}</span>
+                  </div>
+                  <h1 style="margin:0;font-size:18px;line-height:1.35;">${esc(s.title)}</h1>
+                  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                    <a href="${esc(fullRoute)}" target="_blank" rel="noreferrer" class="btn mono" style="font-size:11.5px;">${esc(resolvePath(s.route))} ↗</a>
+                    <button type="button" class="btn" onclick="copyVal('${esc(fullRoute)}', 'url_${s.code}', 'URL ${s.code}')">Copy URL</button>
+                    ${(s.extraRoutes || []).map((er, ei) => {
+                      const erFull = `${appUrl}${resolvePath(er.route)}`;
+                      return `<a href="${esc(erFull)}" target="_blank" rel="noreferrer" class="btn" style="background:var(--bg-orange-soft);border-color:var(--border-orange);color:var(--text-orange);">${esc(er.label)} ↗</a>`;
+                    }).join('')}
+                  </div>
+                </div>
+                <div style="display:flex;gap:6px;">
+                  <button type="button" class="btn" ${stepIdx === 0 ? 'disabled' : ''} onclick="selectStep(${stepIdx - 1})">← Trước</button>
+                  <button type="button" class="btn btn-primary" onclick="copyNextInStep()">Chép ô tiếp [C]</button>
+                  <button type="button" class="btn" ${stepIdx === STEPS.length - 1 ? 'disabled' : ''} onclick="selectStep(${stepIdx + 1})">Tiếp →</button>
+                </div>
+              </div>
+
+              ${s.trap ? `<div class="alert-amber"><strong>Lưu ý quan trọng:</strong> ${esc(s.trap)}</div>` : ''}
+
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <strong style="font-size:12px;text-transform:uppercase;color:var(--text-muted);">Dữ liệu mẫu bước ${s.code} (Bấm 1 chạm để sao chép)</strong>
+                ${fieldsHtml}
+              </div>
+
+              <div>
+                <strong style="display:block;font-size:12px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">Trình tự thao tác tay trên trình duyệt (Nhấp để đánh dấu xong)</strong>
+                <div style="border:1px solid var(--border);">
+                  ${s.checklist.map((line, ci) => {
+                    const ck = `${s.code}_c_${ci}`;
+                    return `<button type="button" class="check-row ${checkMap[ck] ? 'done' : ''}" onclick="toggleCheck('${ck}')">
+                      <span class="badge ${checkMap[ck] ? '' : 'badge-orange'} mono">${checkMap[ck] ? '✓' : ci + 1}</span>
+                      <span>${esc(line)}</span>
+                    </button>`;
+                  }).join('')}
+                </div>
+              </div>
+
+              <div style="padding:11px 13px;border:1px solid var(--border);background:var(--bg-subtle);">
+                <strong style="font-size:11px;text-transform:uppercase;color:var(--text-muted);">Lời dẫn gợi ý trước Hội đồng:</strong>
+                <div style="margin-top:4px;color:var(--text-body);">${esc(s.script)}</div>
+              </div>
+            </div>
+
+            ${renderQaCards()}
+          </main>
+        </div>
+      `;
+    }
+
+    function renderSheetView() {
+      const sheetItems = [
+        { step: 'B1', role: 'Owner', label: 'Tên gói mới (Thạc sĩ FPT 2027)', key: 'pkg_name', note: 'Ngân sách: 85000000 · Thời lượng: 4 tuần · 5 hạng mục (12, 2, 2, 4, 2)' },
+        { step: 'B1', role: 'Owner', label: 'Ngân sách dự kiến (85 triệu VNĐ)', key: 'pkg_budget', note: 'Nhập số liền không dấu chấm' },
+        { step: 'B1', role: 'Owner', label: 'Mô tả gói truyền thông', key: 'pkg_desc', note: 'Ô RichText Mô tả gói' },
+        { step: 'B4', role: 'Creator', label: 'Chủ đề gọi Gemini AI Tạo Caption', key: 'ai_topic', note: 'Chọn: Thông báo · Chuyên nghiệp · Facebook · Vừa' },
+        { step: 'B5', role: 'Creator', label: 'Câu kiểm thử vi phạm an toàn (FR 3.6.33)', key: 'violation_sample', note: 'Dán vào ô Nội dung -> chờ 3 giây hiện cảnh báo' },
+        { step: 'B5', role: 'Creator', label: 'Bản thảo sạch v1 (Thay câu vi phạm)', key: 'caption_v1_clean', note: 'Ctrl+A -> Ctrl+V đè toàn bộ ô Nội dung' },
+        { step: 'B5', role: 'Creator', label: 'Bộ 6 Hashtags bài viết', key: 'hashtags_line', note: 'Dán vào ô Bộ Hashtags + nhấn Enter -> Nộp phần' },
+        { step: 'B7', role: 'Client', label: 'Góp ý trả lại của Ban Tuyển sinh ĐH FPT', key: 'client_reject_note', note: 'Client bấm Trả lại ở POST.CAPTION -> Dán góp ý' },
+        { step: 'B8', role: 'Creator', label: 'Đoạn bổ sung Học bổng 50%-100% & OJT (v2)', key: 'caption_v2_addition', note: 'Đặt con trỏ cuối bài v1 -> Ctrl+V -> Nộp phần -> Xem Diff' },
+        { step: 'B8', role: 'Creator', label: '(Dự phòng) Trọn bộ bài viết hoàn chỉnh v2', key: 'caption_v2_full', note: 'Dùng nếu lỡ xóa mất nội dung v1' }
+      ];
+
+      return `
+        <main class="wide-pane">
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+              <strong>6 Tài khoản Canonical Roles (Mật khẩu chung: <span class="mono">${PASSWORD}</span>)</strong>
+              <button type="button" class="btn btn-primary mono" onclick="copyVal('${PASSWORD}', 'sheet_pwd', 'Mật khẩu Password123')">Copy mật khẩu: ${PASSWORD}</button>
+            </div>
+            <div class="grid-6">
+              ${ROLES.map((r) => {
+                const u = `${appUrl}${resolvePath(r.route)}`;
+                return `
+                  <div class="field-card" style="justify-content:space-between;">
+                    <div>
+                      <div style="display:flex;justify-content:space-between;gap:4px;">
+                        <span class="badge badge-orange mono">${r.role}</span>
+                        <span style="font-size:11px;color:var(--text-muted);">${esc(r.short)}</span>
+                      </div>
+                      <strong style="display:block;margin-top:6px;font-size:12px;">${esc(r.name)}</strong>
+                      <div class="mono" style="font-size:11px;color:var(--text-muted);word-break:break-all;">${esc(r.email)}</div>
+                    </div>
+                    <div style="display:flex;gap:4px;">
+                      ${r.role !== 'Guest' ? `<button type="button" class="btn" style="flex:1;justify-content:center;" onclick="copyVal('${esc(r.email)}', 'sh_em_${r.role}', 'Email ${r.role}')">Email</button>` : ''}
+                      <a href="${esc(u)}" target="_blank" rel="noreferrer" class="btn" style="flex:1;justify-content:center;">Mở ↗</a>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <strong style="display:block;margin-bottom:10px;">Bảng Phẳng Toàn Bộ 10 Ô Dữ Liệu Cần Dán Trong 20 Phút Demo (B1 → B12)</strong>
+            <div class="grid-2">
+              ${sheetItems.map((it, idx) => {
+                const k = `sh_${it.key}`;
+                const val = TEXTS[it.key];
+                return `
+                  <div class="field-card ${copiedMap[k] ? 'copied' : ''}">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;">
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <span class="badge mono">${idx + 1}. ${it.step}</span>
+                        <span class="badge badge-orange mono">${it.role}</span>
+                        <strong>${esc(it.label)}</strong>
+                      </div>
+                      <button type="button" class="btn ${copiedMap[k] ? 'btn-done' : 'btn-primary'}" onclick="copyVal(TEXTS['${it.key}'], '${k}', '${esc(it.label)}')">
+                        ${copiedMap[k] ? '✓ Đã chép' : 'Sao chép'}
+                      </button>
+                    </div>
+                    <div class="field-box mono" style="max-height:110px;overflow-y:auto;cursor:pointer;" onclick="copyVal(TEXTS['${it.key}'], '${k}', '${esc(it.label)}')">${esc(val)}</div>
+                    <div style="font-size:11px;color:var(--text-muted);">${esc(it.note)}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <div class="alert-amber">
+            <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong>
+            (1) <strong>Tại B9</strong>: Sau khi Client bấm Duyệt v2, chuyển sang cửa sổ Creator trên <span class="mono">/editor</span> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <span class="mono">Task FINISHED</span> &amp; <span class="mono">Post APPROVED</span>.
+            (2) <strong>Tại B10</strong>: Bấm Đăng ngay trên đúng <strong>1 kênh thật đã nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu.
+            (3) <strong>Tại B11</strong>: Giới thiệu gói <span class="mono">Plus = 1.490.000đ/tháng</span> rồi qua <span class="mono">/credit</span> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
+          </div>
+
+          ${renderQaCards()}
+        </main>
+      `;
+    }
+
+    function renderCreateView() {
+      return `
+        <main class="wide-pane">
+          <div class="grid-2">
+            ${CREATE_PACKS.map((p) => {
+              const u = `${appUrl}${resolvePath(p.route)}`;
+              return `
+                <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                    <div>
+                      <span class="badge badge-orange mono">${esc(p.role)}</span>
+                      <h2 style="margin:6px 0 0;font-size:15px;">${esc(p.title)}</h2>
+                    </div>
+                    <a href="${esc(u)}" target="_blank" rel="noreferrer" class="btn">Mở màn hình ↗</a>
+                  </div>
+                  <div style="padding:8px 10px;background:var(--bg-subtle);border:1px solid var(--border);font-size:12px;">
+                    ${p.steps.map((st, si) => `<div><strong class="mono" style="color:var(--accent);">${si + 1}.</strong> ${esc(st)}</div>`).join('')}
+                  </div>
+                  ${p.fields.map((f) => {
+                    const k = regCopy(`cr_${f.id}`, f.value, f.label);
+                    return `
+                      <div class="field-card ${copiedMap[k] ? 'copied' : ''}">
+                        <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+                          <strong style="font-size:12px;">${esc(f.label)}</strong>
+                          <button type="button" class="btn ${copiedMap[k] ? 'btn-done' : 'btn-primary'}" onclick="copyReg('${k}')">
+                            ${copiedMap[k] ? '✓ Đã chép' : 'Sao chép'}
+                          </button>
+                        </div>
+                        <div class="field-box mono" style="cursor:pointer;" onclick="copyReg('${k}')">${esc(f.value)}</div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </main>
+      `;
+    }
+
+    function render() {
+      syncEnvButtons();
+      renderRolesStrip();
+      const root = document.getElementById('app-root');
+      if (view === 'sheet') root.innerHTML = renderSheetView();
+      else if (view === 'create') root.innerHTML = renderCreateView();
+      else root.innerHTML = renderStepView();
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const t = e.target && e.target.tagName;
+      if (t === 'INPUT' || t === 'TEXTAREA') return;
+      if ((e.key === 'c' || e.key === 'C') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        copyNextInStep();
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (view === 'step') { e.preventDefault(); selectStep(stepIdx + 1); }
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (view === 'step') { e.preventDefault(); selectStep(stepIdx - 1); }
+      } else if (['1', '2', '3', '4', '5'].includes(e.key) && view === 'step') {
+        const idx = Number(e.key) - 1;
+        const s = STEPS[stepIdx];
+        const f = s.fields[idx];
+        if (f) {
+          e.preventDefault();
+          copyVal(f.key ? TEXTS[f.key] : f.value, `${s.code}_${idx}`, f.label);
+        }
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
