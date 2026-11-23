@@ -108,10 +108,45 @@
     background-color: rgba(234, 108, 59, 0.15) !important;
     color: #fed7aa !important;
   }
+  html.dark .demo-monitor-root .bg-orange-50\/60,
+  html.dark .demo-monitor-root .bg-orange-100 {
+    background-color: rgba(234, 108, 59, 0.2) !important;
+    color: #ffedd5 !important;
+  }
+  html.dark .demo-monitor-root .text-orange-950,
+  html.dark .demo-monitor-root .text-orange-900,
+  html.dark .demo-monitor-root .text-orange-800,
+  html.dark .demo-monitor-root .text-orange-700 {
+    color: #fed7aa !important;
+  }
   html.dark .demo-monitor-root .border-orange-200,
   html.dark .demo-monitor-root .border-orange-300,
   html.dark .demo-monitor-root .border-orange-400 {
     border-color: rgba(234, 108, 59, 0.45) !important;
+  }
+  html.dark .demo-monitor-root .bg-amber-50 {
+    background-color: rgba(245, 158, 11, 0.16) !important;
+    color: #fde68a !important;
+  }
+  html.dark .demo-monitor-root .text-amber-900 {
+    color: #fde68a !important;
+  }
+  html.dark .demo-monitor-root .border-amber-300 {
+    border-color: rgba(245, 158, 11, 0.45) !important;
+  }
+  html.dark .demo-monitor-root .bg-emerald-50,
+  html.dark .demo-monitor-root .bg-emerald-50\/60 {
+    background-color: rgba(16, 185, 129, 0.16) !important;
+    color: #a7f3d0 !important;
+  }
+  html.dark .demo-monitor-root .text-emerald-900,
+  html.dark .demo-monitor-root .text-emerald-800,
+  html.dark .demo-monitor-root .text-emerald-700 {
+    color: #a7f3d0 !important;
+  }
+  html.dark .demo-monitor-root .border-emerald-300,
+  html.dark .demo-monitor-root .border-emerald-400 {
+    border-color: rgba(16, 185, 129, 0.45) !important;
   }
 
   /* Motion Sensitivity: Reduced Motion Support */

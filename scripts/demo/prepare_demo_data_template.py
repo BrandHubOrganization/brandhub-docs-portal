@@ -2886,17 +2886,18 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                             (java_name_uuid_from_bytes(f"ws-member:{cw_id}:{m_uid}"), cw_id, m_uid, m_role, owner_id),
                         )
 
-                # 19. Đồng bộ Gói cước PLUS, Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                # 19. Đồng bộ Gói cước PLUS (1.490.000 VNĐ/tháng khớp Slide 13), Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
                 sepay_merchant = load_default_sepay_merchant()
                 for p_code, p_disp, p_price, p_ws, p_mem, p_cli, p_store, p_cred, p_conc, p_ver_ret, p_trash_ret, p_act_ret in [
-                    ("PLUS", "Plus Agency", 1990000, 10, 15, 50, 100000000000, 5000, 3, 90, 30, 180),
+                    ("PLUS", "Plus", 1490000, 10, 15, 50, 100000000000, 5000, 3, 90, 30, 180),
                     ("ENTERPRISE", "Enterprise Agency", 5990000, 50, 50, 200, 1000000000000, 25000, 10, 365, 90, 365),
                 ]:
                     cur.execute(
-                        "SELECT id FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
+                        "SELECT id, version, price_monthly, features FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
                         (p_code,),
                     )
-                    if not cur.fetchone():
+                    existing_pv = cur.fetchone()
+                    if not existing_pv:
                         cur.execute(
                             """
                             INSERT INTO billing_plan_versions (
@@ -2930,6 +2931,47 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                                 p_act_ret,
                             ),
                         )
+                    elif p_code == "PLUS" and int(existing_pv[2] or 0) != 1490000:
+                        # billing_plan_versions có trigger immutable: tạo version mới (1.490.000 VNĐ) rồi tắt is_sellable ở version cũ
+                        new_plus_vid = java_name_uuid_from_bytes("sellable-plan-ver:PLUS:1490000")
+                        cur.execute(
+                            """
+                            INSERT INTO billing_plan_versions (
+                                id, code, version, display_name, price_monthly, currency,
+                                max_active_workspaces, max_internal_members, max_clients,
+                                storage_limit_bytes, monthly_ai_credits, max_concurrent_ai_jobs,
+                                version_retention_days, trash_retention_days, activity_retention_days, features, is_sellable
+                            )
+                            SELECT %s::uuid, v.code,
+                                   (SELECT COALESCE(MAX(version), 0) + 1 FROM billing_plan_versions WHERE code = 'PLUS'),
+                                   'Plus', 1490000, v.currency,
+                                   v.max_active_workspaces, v.max_internal_members, v.max_clients,
+                                   v.storage_limit_bytes, v.monthly_ai_credits, v.max_concurrent_ai_jobs,
+                                   v.version_retention_days, v.trash_retention_days, v.activity_retention_days, v.features, TRUE
+                            FROM (SELECT * FROM billing_plan_versions WHERE code = 'PLUS' ORDER BY version DESC LIMIT 1) v
+                            ON CONFLICT (id) DO NOTHING;
+                            """,
+                            (new_plus_vid,),
+                        )
+                        cur.execute(
+                            """
+                            INSERT INTO billing_plan_cycle_prices (plan_version_id, period_months, price)
+                            VALUES
+                                (%s::uuid, 3, 4190000),
+                                (%s::uuid, 6, 7990000),
+                                (%s::uuid, 12, 14290000)
+                            ON CONFLICT (plan_version_id, period_months) DO NOTHING;
+                            """,
+                            (new_plus_vid, new_plus_vid, new_plus_vid),
+                        )
+                        cur.execute(
+                            """
+                            UPDATE billing_plan_versions
+                            SET is_sellable = FALSE
+                            WHERE code = 'PLUS' AND is_sellable = TRUE
+                              AND version < (SELECT MAX(version) FROM billing_plan_versions WHERE code = 'PLUS');
+                            """
+                        )
                 cur.execute(
                     "SELECT id, price_monthly, monthly_ai_credits FROM billing_plan_versions WHERE code = 'PLUS' AND is_sellable = TRUE ORDER BY version DESC LIMIT 1;"
                 )
@@ -2940,7 +2982,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                 ent_plan = cur.fetchone()
 
                 if plus_plan:
-                    plus_ver_id, plus_price, plus_credits = str(plus_plan[0]), int(plus_plan[1] or 1990000), int(plus_plan[2] or 5000)
+                    plus_ver_id, plus_price, plus_credits = str(plus_plan[0]), int(plus_plan[1] or 1490000), int(plus_plan[2] or 5000)
                     ent_ver_id = str(ent_plan[0]) if ent_plan else plus_ver_id
                     ent_price = int(ent_plan[1] or 5990000) if ent_plan else 5990000
 
@@ -3909,7 +3951,7 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
             brief_desc, brief_criteria = ROLE_SUBTASK_BRIEFS[role_code]
             subtasks.append(
                 {
-                    "id": subtask_id(t_id, role_code),
+                    "_id": subtask_id(t_id, role_code),
                     "parentTaskId": t_id,
                     "name": role_label,
                     "assigneeId": sub_assignee,
