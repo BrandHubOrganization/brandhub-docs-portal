@@ -1,4 +1,5 @@
 import React from 'react';
+import { EmptyArt, inferEmptyArtKind, type EmptyArtKind } from '../common/EmptyArt';
 import { Badge as AstryxBadge, type BadgeProps as AstryxBadgeProps, type BadgeVariant as AstryxBadgeVariant } from '@astryxdesign/core/Badge';
 import { Banner as AstryxBanner, type BannerProps as AstryxBannerProps, type BannerStatus as AstryxBannerStatus } from '@astryxdesign/core/Banner';
 import { Button as AstryxButton, type ButtonProps as AstryxButtonProps } from '@astryxdesign/core/Button';
@@ -116,20 +117,26 @@ export const BhEmptyState: React.FC<{
   title: string;
   description?: string;
   icon?: React.ReactNode;
+  kind?: EmptyArtKind;
   actions?: React.ReactNode;
   isCompact?: boolean;
   className?: string;
-}> = ({ title, description, icon, actions, isCompact = false, className = '' }) => (
+}> = ({ title, description, icon, kind, actions, isCompact = false, className = '' }) => (
   <div className={`rounded-xl border border-dashed border-orange-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 ${className}`}>
     <AstryxEmptyState
       title={title}
       description={description}
       icon={
         icon ? (
-          <span className="inline-flex w-10 h-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-orange-600">
+          <span className="inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-xl border border-orange-200 dark:border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400">
             {icon}
           </span>
-        ) : undefined
+        ) : (
+          <EmptyArt
+            kind={kind ?? inferEmptyArtKind(title)}
+            className={isCompact ? 'h-12 w-auto' : undefined}
+          />
+        )
       }
       actions={actions}
       isCompact={isCompact}

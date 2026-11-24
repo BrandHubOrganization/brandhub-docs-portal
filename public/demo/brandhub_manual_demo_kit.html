@@ -401,11 +401,11 @@
 
     const ROLES = [
       { role: 'Guest', short: 'Khách', name: 'Khách truy cập công khai', email: 'Chưa đăng nhập', route: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
-      { role: 'Owner', short: 'Trung', name: 'Lê Trí Trung', email: 'user177@demo.brandhub.test', route: '/agency/{agency_id}/media-packages' },
-      { role: 'Manager', short: 'Lộc', name: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test', route: '/workspaces/{workspace_id}/campaigns' },
-      { role: 'Creator', short: 'Phước', name: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test', route: '/workspaces/{workspace_id}/tasks' },
-      { role: 'Client', short: 'ĐH FPT', name: 'Ban Tuyển sinh Đại học FPT', email: 'user59@demo.brandhub.test', route: '/workspaces/{workspace_id}/task-approvals?task={task_id}' },
-      { role: 'Admin', short: 'Admin', name: 'Quản trị viên BrandHub', email: 'admin@demo.brandhub.test', route: '/admin?view=revenue' }
+      { role: 'Owner', short: 'Trung', name: 'Lê Trí Trung', email: 'letritrung2605@gmail.com', route: '/agency/{agency_id}/media-packages' },
+      { role: 'Manager', short: 'Lộc', name: 'Nguyễn Thành Lộc', email: 'nguyenthanhloc20092004@gmail.com', route: '/workspaces/{workspace_id}/campaigns' },
+      { role: 'Creator', short: 'Phước', name: 'Nguyễn Chơn Phước', email: 'chontem123@gmail.com', route: '/workspaces/{workspace_id}/tasks' },
+      { role: 'Client', short: 'ĐH FPT', name: 'Ban Tuyển sinh Đại học FPT', email: 'winhtuan@gmail.com', route: '/workspaces/{workspace_id}/task-approvals?task={task_id}' },
+      { role: 'Admin', short: 'Admin', name: 'Quản trị viên BrandHub', email: 'admin@brandhub.com', route: '/admin?view=revenue' }
     ];
 
     const TEXTS = {
@@ -435,11 +435,11 @@
         title: 'Checklist sẵn sàng hệ thống & 6 cửa sổ vai trò trên brandhub.id.vn',
         route: '/agency/{agency_id}/media-packages',
         checklist: [
-          'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Plus = 1.490.000 VNĐ).',
+          'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Agency Plus = 990.000 VNĐ/tháng).',
           'Chạy open_clean_chrome_roles.bat để mở 6 cửa sổ Chrome gốc trên https://brandhub.id.vn (dự phòng rớt mạng: open_clean_chrome_roles_local.bat), đăng nhập sẵn bằng mật khẩu demo do trưởng nhóm cung cấp.',
           'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
           'Bật Lịch sử bộ nhớ tạm Windows (Win + V), chạy preload_clipboard_win_v.bat và đăng nhập sẵn app ngân hàng điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
-          'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 12–14).'
+          'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 16–17).'
         ],
         script: 'Em (Lê Trí Trung) cùng bạn Nguyễn Thành Lộc xin phép mở 6 cửa sổ trình duyệt trên https://brandhub.id.vn đại diện cho 6 vai trò chuẩn của hệ thống để bắt đầu luồng nghiệp vụ khép kín từ bước B1 đến B12 của Chiến dịch Tuyển sinh Đại học FPT 2027.',
         fields: [
@@ -607,34 +607,33 @@
           { label: 'Lịch 4 tuần (/calendar)', route: '/workspaces/{workspace_id}/calendar' },
           { label: 'Dashboard (/dashboard)', route: '/workspaces/{workspace_id}/dashboard' }
         ],
-        trap: 'Khi bấm Đăng ngay bằng tay trên giao diện, chỉ tích chọn đúng 1 kênh thật đã nối OAuth (Facebook Fanpage hoặc Threads) trong mỗi lần bấm để không vướng khóa chống trùng Redis SETNX theo postId (TTL 30 phút), sau đó mở tab mạng xã hội thật đối chiếu ngay.',
         checklist: [
-          'Mở /social-accounts (Manager) giới thiệu 4 kết nối OAuth chuẩn (Facebook, Instagram, TikTok, Threads) và chỉ rõ kênh thật đang liên kết OAuth.',
-          'Mở chi tiết bài Tuần 3 (/posts/...401) trên Creator, tích chọn đúng 1 kênh thật vừa liên kết và bấm "Đăng ngay".',
+          'Mở /social-accounts (Manager) giới thiệu 4 kết nối OAuth chuẩn (Facebook, Instagram, TikTok, Threads — mã hóa AES-256-GCM) và chỉ rõ kênh thật đang liên kết OAuth.',
+          'Mở chi tiết bài Tuần 3 (/posts/...401) trên Creator, tích chọn kênh thật vừa liên kết và bấm "Đăng ngay" (khóa chống trùng Redis processingPostIds:{postId}:{platform}).',
           'Mở ngay tab Facebook Fanpage / Threads thật cho Hội đồng thấy bài viết kèm Key Visual vừa xuất hiện ngoài đời thực.',
           'Mở /calendar trình bày Lịch phủ sóng 4 tuần và mở /dashboard xem số liệu tương tác tổng hợp 4 kênh.'
         ],
         script: 'Manager kiểm tra 4 kết nối OAuth mạng xã hội, sau đó Creator bấm Đăng ngay bài trọng điểm Tuần 3 lên kênh Facebook Fanpage / Threads thật và mở trực tiếp trang mạng xã hội để Quý Thầy Cô đối chiếu bài đăng vừa lên sóng, kèm Lịch 4 tuần và Dashboard tương tác.',
         fields: [
-          { label: '4 nền tảng chuẩn & Kênh OAuth đăng thật', type: 'Tham chiếu', value: '4 kênh chuẩn: Facebook · Instagram · TikTok · Threads | Tích đăng 1 kênh thật đã nối OAuth rồi mở tab thật đối chiếu' }
+          { label: '4 nền tảng chuẩn & Kênh OAuth đăng thật', type: 'Tham chiếu', value: '4 kênh chuẩn: Facebook · Instagram · TikTok · Threads | Đăng ngay qua RabbitMQ (Redis SETNX theo postId:platform) rồi mở tab thật đối chiếu' }
         ]
       },
       {
         num: 11, code: 'B11', time: '17:00 - 18:30', fr: 'FR 3.9.1 - 3.9.6', role: 'Owner', actor: 'Lê Trí Trung',
         short: 'SePay (VietQR)',
-        title: 'Owner đối chiếu gói Plus (1.490.000đ) & quét VietQR SePay nạp AI Credit thật',
+        title: 'Owner đối chiếu gói Plus (990.000đ) & quét VietQR SePay nạp AI Credit thật',
         route: '/subscription/plans',
         extraRoutes: [{ label: 'Nạp lẻ AI Credit & Ví 8.500 điểm (/credit)', route: '/agency/{agency_id}/credit' }],
         checklist: [
-          'Cửa sổ Owner tại /subscription/plans: chỉ rõ gói Plus giá chuẩn 1.490.000 VNĐ/tháng (khớp 100% Slide 13) & mở xem mã VietQR động.',
+          'Cửa sổ Owner tại /subscription/plans: chỉ rõ gói Agency Plus giá chuẩn 990.000 VNĐ/tháng (khớp 100% Slide 16) & mở xem mã VietQR động.',
           'Chuyển sang /agency/.../credit: chỉ số dư 8.500 điểm, trần Workspace ĐH FPT 5.000 điểm, rồi bấm nút "Nạp thêm Credit".',
           'Chọn ô "Số lượng tùy chỉnh" -> dán số 10 (10 Credits × 200đ = 2.000 VNĐ) -> bấm "Thanh toán 2.000 VND" để sinh mã VietQR động kèm nội dung BH...',
           'Dùng app ngân hàng quét chuyển khoản thật 2.000 VNĐ ngay trên sân khấu -> Webhook SePay đối soát tự động và cộng +10 Credits tức thì!'
         ],
-        script: 'Trên trang Gói thuê bao là mức giá thương mại chuẩn 1.490.000 VNĐ/tháng của gói Plus. Để quét chuyển khoản thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét trực tiếp để hệ thống cộng điểm tự động.',
+        script: 'Trên trang Gói thuê bao là mức giá thương mại chuẩn 990.000 VNĐ/tháng của gói Agency Plus (cùng Enterprise 3.990.000đ và dòng Studio cá nhân 0đ / 99k / 299k). Để quét chuyển khoản thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét trực tiếp để hệ thống cộng điểm tự động.',
         fields: [
           { label: '1. Số lượng AI Credit nạp lẻ tùy chỉnh (= 2.000 VNĐ quét thật)', type: 'Dán Ctrl+V', value: '10', note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn "Số lượng tùy chỉnh" -> Nhập 10 (10 × 200đ = 2.000 VNĐ).' },
-          { label: '2. Thông tin Gói Plus & Ví AI Credit chuẩn', type: 'Tham chiếu', value: 'Gói Plus: 1.490.000 VNĐ/tháng · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits (trần ĐH FPT: 5.000 credits)' }
+          { label: '2. Thông tin 6 Gói cước & Ví AI Credit chuẩn', type: 'Tham chiếu', value: 'Agency Plus: 990.000 VNĐ/tháng (Enterprise 3.990.000đ, 500GB) · Studio: 0đ / 99k / 299k · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits' }
         ]
       },
       {
@@ -1093,7 +1092,7 @@
             <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong>
             (1) <strong>Tại B9</strong>: Sau khi Client bấm Duyệt v2, chuyển sang cửa sổ Creator trên <span class="mono">/editor</span> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <span class="mono">Task FINISHED</span> &amp; <span class="mono">Post APPROVED</span>.
             (2) <strong>Tại B10</strong>: Bấm Đăng ngay trên đúng <strong>1 kênh thật đã nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu.
-            (3) <strong>Tại B11</strong>: Giới thiệu gói <span class="mono">Plus = 1.490.000đ/tháng</span> rồi qua <span class="mono">/credit</span> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
+            (3) <strong>Tại B11</strong>: Giới thiệu gói <span class="mono">Agency Plus = 990.000đ/tháng</span> rồi qua <span class="mono">/credit</span> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
           </div>
 
           ${renderQaCards()}

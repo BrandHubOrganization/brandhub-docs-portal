@@ -13,7 +13,7 @@ import { SystemMatrixPage } from './pages/SystemMatrixPage';
 import { RulesAndMessagesPage } from './pages/RulesAndMessagesPage';
 import { WordLinkManagerPage } from './pages/WordLinkManagerPage';
 import { DemoMonitorPage } from './pages/DemoMonitorPage';
-import { AstryxCode } from './components/astryx';
+import { AstryxCode, BhEmptyState } from './components/astryx';
 
 const AppShell: React.FC<{
   searchOpen: boolean;
@@ -54,6 +54,29 @@ const AppShell: React.FC<{
           <Route path="/rules" element={<RulesAndMessagesPage data={portalData} />} />
           <Route path="/links" element={<WordLinkManagerPage data={portalData} />} />
           <Route path="/demo-monitor" element={<DemoMonitorPage />} />
+          <Route
+            path="*"
+            element={
+              <div className="max-w-3xl mx-auto px-4 py-16">
+                <BhEmptyState
+                  kind="not-found"
+                  title={tx('Không tìm thấy trang tài liệu (404)', 'Documentation page not found (404)')}
+                  description={tx(
+                    'Đường dẫn bạn truy cập không tồn tại hoặc đã được di chuyển trong cổng tài liệu BrandHub.',
+                    'The route you requested does not exist or has been moved within the BrandHub docs portal.'
+                  )}
+                  actions={
+                    <Link
+                      to="/"
+                      className="interactive-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-orange-600 text-white text-xs font-semibold hover:bg-orange-700"
+                    >
+                      {tx('Về danh mục Figures', 'Back to Figures')}
+                    </Link>
+                  }
+                />
+              </div>
+            }
+          />
         </Routes>
       </main>
 

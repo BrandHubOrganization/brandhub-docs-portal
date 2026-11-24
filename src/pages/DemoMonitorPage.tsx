@@ -170,7 +170,7 @@ const CANONICAL_ROLES: Array<{
     role: 'Owner',
     shortLabel: 'Trung',
     fullName: 'Lê Trí Trung',
-    email: 'user177@demo.brandhub.test',
+    email: 'letritrung2605@gmail.com',
     defaultRoute: '/agency/{agency_id}/media-packages',
     desc: 'Giám đốc SE08 Digital Agency: Quản lý 7 gói truyền thông đa ngành, tạo gói mới, gắn gói vào Workspace và thanh toán SePay (VietQR).',
   },
@@ -178,7 +178,7 @@ const CANONICAL_ROLES: Array<{
     role: 'Manager',
     shortLabel: 'Lộc',
     fullName: 'Nguyễn Thành Lộc',
-    email: 'user1@demo.brandhub.test',
+    email: 'nguyenthanhloc20092004@gmail.com',
     defaultRoute: '/workspaces/{workspace_id}/campaigns',
     desc: 'Quản lý chiến dịch SE08: Điều phối Chiến dịch 4 tuần (Brief, 19 hạng mục, 6 đối tác), phân 20 công việc và duyệt nội bộ.',
   },
@@ -186,7 +186,7 @@ const CANONICAL_ROLES: Array<{
     role: 'Creator',
     shortLabel: 'Phước',
     fullName: 'Nguyễn Chơn Phước',
-    email: 'user13@demo.brandhub.test',
+    email: 'chontem123@gmail.com',
     defaultRoute: '/workspaces/{workspace_id}/tasks',
     desc: 'Chuyên viên nội dung SE08 (phối hợp Nguyễn Minh Tuấn & Hà Văn Ân): Gọi Gemini AI soạn bài trên /editor, kiểm duyệt và xuất bản 4 nền tảng.',
   },
@@ -194,7 +194,7 @@ const CANONICAL_ROLES: Array<{
     role: 'Client',
     shortLabel: 'ĐH FPT',
     fullName: 'Ban Tuyển sinh Đại học FPT',
-    email: 'user59@demo.brandhub.test',
+    email: 'winhtuan@gmail.com',
     defaultRoute: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
     desc: 'Khách hàng Trường Đại học FPT: Nghiệm thu đầu ra OUTPUT, yêu cầu bổ sung 3 mức Học bổng 2027 cùng kỳ OJT và duyệt xuất bản.',
   },
@@ -202,7 +202,7 @@ const CANONICAL_ROLES: Array<{
     role: 'Admin',
     shortLabel: 'Admin',
     fullName: 'Quản trị viên BrandHub',
-    email: 'admin@demo.brandhub.test',
+    email: 'admin@brandhub.com',
     defaultRoute: '/admin?view=revenue',
     desc: 'Quản trị nền tảng BrandHub: Giám sát doanh thu gói SaaS, cấu hình bảng giá AI Credit và xử lý Hàng đợi kiểm duyệt (FR 3.10.4).',
   },
@@ -231,7 +231,7 @@ export const DEFAULT_DEMO_TEXTS: Record<string, string> = {
   violation_sample:
     'Bài đăng kích động kỳ thị, thù ghét vùng miền, kêu gọi đánh đập đối thủ và dẫn dụ học sinh tham gia hội nhóm lừa đảo đa cấp trái phép, cá độ trực tuyến.',
   caption_v1_clean:
-    '【TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027】\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
+    'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
   hashtags_line:
     '#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT2027 #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
   client_reject_note:
@@ -419,16 +419,16 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: '6 Roles',
     role: 'Owner',
     actorName: 'Lê Trí Trung',
-    actorEmail: 'user177@demo.brandhub.test',
+    actorEmail: 'letritrung2605@gmail.com',
     routeTemplate: '/agency/{agency_id}/media-packages',
     manualBrowserCue:
       'Nguyễn Thành Lộc chạy open_clean_chrome_roles.bat (mặc định trỏ https://brandhub.id.vn, dự phòng rớt mạng: open_clean_chrome_roles_local.bat) để mở 6 cửa sổ Chrome gốc (0% Selenium) và chạy preload_clipboard_win_v.bat nạp lịch sử Win + V; Lê Trí Trung đứng sân khấu thuyết trình xuyên suốt B1–B12.',
     manualChecklist: [
-      'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Plus = 1.490.000 VNĐ).',
+      'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Agency Plus = 990.000 VNĐ/tháng).',
       'Mở sẵn 6 cửa sổ Chrome tách biệt trên https://brandhub.id.vn (dự phòng localhost:3000) cho Guest, Owner, Manager, Creator, Client, Admin (mật khẩu chung do trưởng nhóm cung cấp riêng).',
       'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
       'Bật Lịch sử bộ nhớ tạm Windows (Win + V -> Bật) và chạy preload_clipboard_win_v.bat; đăng nhập sẵn ứng dụng ngân hàng trên điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
-      'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 12–14).',
+      'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 16–17).',
     ],
     talkingPoints: [
       'Kịch bản thực chiến 20 phút trên https://brandhub.id.vn: SE08 Digital Agency triển khai Chiến dịch Tuyển sinh Đại học FPT 2027 (Khóa K23 - 4 tuần).',
@@ -499,7 +499,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.5.1 - 3.5.4',
     role: 'Owner',
     actorName: 'Lê Trí Trung',
-    actorEmail: 'user177@demo.brandhub.test',
+    actorEmail: 'letritrung2605@gmail.com',
     routeTemplate: '/agency/{agency_id}/media-packages',
     extraRoutes: [
       {
@@ -574,7 +574,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.5.6 - 3.5.13',
     role: 'Manager',
     actorName: 'Nguyễn Thành Lộc',
-    actorEmail: 'user1@demo.brandhub.test',
+    actorEmail: 'nguyenthanhloc20092004@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/campaigns',
     manualBrowserCue:
       'Chuyển sang cửa sổ Manager tại /campaigns: bấm lần lượt tab [1. Thông tin] xem Master Brief 6 khối -> tab [2. Công việc] xem Timeline 19 hạng mục -> tab [3. Đối tác] xem 6 đối tác báo chí & KOL.',
@@ -629,7 +629,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.1 - 3.6.10',
     role: 'Manager',
     actorName: 'Nguyễn Thành Lộc',
-    actorEmail: 'user1@demo.brandhub.test',
+    actorEmail: 'nguyenthanhloc20092004@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/tasks',
     manualBrowserCue:
       'Trên cửa sổ Manager tại /tasks: lướt bảng 20 công việc chia cho Phước, Tuấn, Ân -> nhấp vào dòng "[Tuần 3 - Bài trọng điểm]" để mở ngăn chi tiết hiển thị 5 Subtask phối hợp chéo.',
@@ -674,7 +674,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2',
     role: 'Creator',
     actorName: 'Nguyễn Chơn Phước',
-    actorEmail: 'user13@demo.brandhub.test',
+    actorEmail: 'chontem123@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/editor?taskId={task_id}',
     extraRoutes: [
       {
@@ -732,7 +732,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.33, 3.6.18',
     role: 'Creator',
     actorName: 'Nguyễn Chơn Phước',
-    actorEmail: 'user13@demo.brandhub.test',
+    actorEmail: 'chontem123@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/editor?taskId={task_id}',
     manualBrowserCue:
       'Trên /editor của Creator: [1] Dán đè Câu kiểm thử vi phạm vào ô Nội dung, ngừng gõ 3 giây để hiện cảnh báo đỏ FR 3.6.33 -> [2] Ctrl+A dán đè Bản sạch v1 -> [3] Tô đậm tiêu đề / tạo danh sách -> [4] Dán 6 Hashtags vào ô Bộ Hashtags + Enter -> [5] Nhấn nút "Nộp phần" ở khung Nội dung.',
@@ -791,7 +791,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.19',
     role: 'Manager',
     actorName: 'Nguyễn Thành Lộc',
-    actorEmail: 'user1@demo.brandhub.test',
+    actorEmail: 'nguyenthanhloc20092004@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
     manualBrowserCue:
       'Chuyển sang cửa sổ Manager tại /task-approvals?task=... (F5 nếu cần) -> Tìm thẻ "Nội dung bài đăng (POST.CAPTION)" -> Nhấn nút "Duyệt".',
@@ -829,7 +829,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.20, 3.6.21',
     role: 'Client',
     actorName: 'Ban Tuyển sinh Đại học FPT',
-    actorEmail: 'user59@demo.brandhub.test',
+    actorEmail: 'winhtuan@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
     manualBrowserCue:
       'Chuyển sang cửa sổ Client tại /task-approvals?task=... -> Chỉ rõ Client chỉ thấy OUTPUT (ẩn Brief nội bộ) -> Bấm nút "Trả lại" trên thẻ POST.CAPTION -> Dán góp ý Học bổng 2027 + OJT -> Bấm xác nhận "Trả lại".',
@@ -870,7 +870,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.11, 3.6.18',
     role: 'Creator',
     actorName: 'Nguyễn Chơn Phước',
-    actorEmail: 'user13@demo.brandhub.test',
+    actorEmail: 'chontem123@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/editor?taskId={task_id}',
     manualBrowserCue:
       'Quay lại cửa sổ Creator trên /editor (nhấn F5 để tải trạng thái bị trả lại) -> Đặt con trỏ cuối bài viết dán nối tiếp Đoạn bổ sung v2 -> Chờ kiểm duyệt báo An toàn rồi bấm "Nộp phần" -> Bấm nút đồng hồ "Lịch sử phiên bản" để mở bảng so sánh Word-Level Diff v1 vs v2.',
@@ -921,7 +921,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.6.19, 3.6.20',
     role: 'Client',
     actorName: 'Ban Tuyển sinh Đại học FPT',
-    actorEmail: 'user59@demo.brandhub.test',
+    actorEmail: 'winhtuan@gmail.com',
     routeTemplate: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
     extraRoutes: [
       {
@@ -974,7 +974,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.8.1 - 3.8.15',
     role: 'Creator',
     actorName: 'Nguyễn Chơn Phước',
-    actorEmail: 'user13@demo.brandhub.test',
+    actorEmail: 'chontem123@gmail.com',
     routeTemplate: `/workspaces/{workspace_id}/posts/${DEFAULT_POST_ID}`,
     extraRoutes: [
       {
@@ -1001,10 +1001,8 @@ const DEMO_STEPS: DemoStep[] = [
       'Chuyển sang tab Facebook Fanpage / Threads thật mở sẵn để Hội đồng thấy bài viết kèm Key Visual và 6 hashtag vừa xuất hiện ngoài đời thực.',
       'Mở /workspaces/.../calendar xem Lịch phủ sóng 4 tuần và mở /workspaces/.../dashboard trình bày chỉ số Reach, Impressions, Reactions tổng hợp 4 kênh.',
     ],
-    trapWarning:
-      'Lưu ý khóa chống trùng Redis (Release 1.0): Khi bấm Đăng ngay bằng tay trên giao diện, chỉ tích chọn 1 kênh thật đã nối OAuth (Facebook Fanpage hoặc Threads) trong mỗi lần bấm để không vướng khóa Redis SETNX theo postId (TTL 30 phút), sau đó mở tab mạng xã hội thật đối chiếu ngay.',
     talkingPoints: [
-      'Đồng bộ 4 nền tảng mạng xã hội chuẩn (Facebook, Instagram, TikTok, Threads) qua hàng đợi RabbitMQ; đăng thật trực tiếp lên Fanpage Facebook / Threads qua OAuth.',
+      'Đồng bộ 4 nền tảng mạng xã hội chuẩn (Facebook, Instagram, TikTok, Threads) qua hàng đợi RabbitMQ với khóa chống trùng ghép processingPostIds:{postId}:{platform} trên Redis (TTL 30 phút); đăng thật trực tiếp lên Fanpage Facebook / Threads qua OAuth 2.0 (AES-256-GCM).',
       'Theo dõi trực quan mật độ phủ sóng trên Lịch 4 tuần (/calendar) và biểu đồ tương tác thực tế trên /dashboard.',
     ],
     presenterScript:
@@ -1031,12 +1029,12 @@ const DEMO_STEPS: DemoStep[] = [
     stage: 'Giai đoạn 4: Thanh toán SePay (VietQR) & Quản trị',
     stageShort: 'GĐ 4: SePay VietQR',
     timeBudget: '17:00 - 18:30',
-    title: 'Owner đối chiếu gói Plus (1.490.000đ) & quét VietQR SePay nạp AI Credit thật',
+    title: 'Owner đối chiếu gói Plus (990.000đ) & quét VietQR SePay nạp AI Credit thật',
     shortTitle: 'SePay (VietQR)',
     frCode: 'FR 3.9.1 - 3.9.6',
     role: 'Owner',
     actorName: 'Lê Trí Trung',
-    actorEmail: 'user177@demo.brandhub.test',
+    actorEmail: 'letritrung2605@gmail.com',
     routeTemplate: '/subscription/plans',
     extraRoutes: [
       {
@@ -1046,20 +1044,20 @@ const DEMO_STEPS: DemoStep[] = [
       },
     ],
     manualBrowserCue:
-      'Cửa sổ Owner: [1] Mở /subscription/plans chỉ rõ gói Plus giá chuẩn 1.490.000 VNĐ/tháng (khớp Slide 13) & bấm xem mã VietQR -> [2] Chuyển sang /agency/.../credit bấm "Nạp thêm Credit" -> chọn "Số lượng tùy chỉnh" -> nhập 10 (= 2.000 VNĐ) -> quét VietQR ngân hàng thật trên sân khấu để nhận webhook SePay cộng +10 Credits tức thì!',
+      'Cửa sổ Owner: [1] Mở /subscription/plans chỉ rõ gói Plus giá chuẩn 990.000 VNĐ/tháng (khớp Slide 16) & bấm xem mã VietQR -> [2] Chuyển sang /agency/.../credit bấm "Nạp thêm Credit" -> chọn "Số lượng tùy chỉnh" -> nhập 10 (= 2.000 VNĐ) -> quét VietQR ngân hàng thật trên sân khấu để nhận webhook SePay cộng +10 Credits tức thì!',
     manualChecklist: [
-      'Tại /subscription/plans (Owner), giới thiệu bảng giá thương mại chính thức: gói Plus 1.490.000 VNĐ/tháng (10 Workspaces, 15 thành viên, 5.000 AI Credits) khớp 100% với Slide 13.',
+      'Tại /subscription/plans (Owner), giới thiệu bảng giá thương mại chính thức: gói Agency Plus 990.000 VNĐ/tháng (10 Workspaces, 15 thành viên, 100 GB S3, 5.000 AI Credits) khớp 100% với Slide 16.',
       'Chuyển sang trang Ví AI Credit (/agency/.../credit), chỉ rõ số dư 8.500 điểm và hạn mức trần Workspace ĐH FPT 5.000 điểm (FR 3.9.6).',
       'Nhấn nút "Nạp thêm Credit" -> chọn ô "Số lượng tùy chỉnh" -> dán số 10 (10 Credits × 200đ = 2.000 VNĐ) -> nhấn "Thanh toán 2.000 VND" để sinh mã VietQR động kèm mã đối soát BH...',
       'Dùng ứng dụng ngân hàng quét chuyển khoản thật 2.000 VNĐ ngay trên sân khấu -> Webhook SePay đối soát tự động trong vài giây và cộng +10 Credits vào sổ cái!',
     ],
     talkingPoints: [
-      'Gói thương mại chủ lực BrandHub Plus niêm yết 1.490.000 VNĐ/tháng qua SePay (VietQR) 0% phí thẻ quốc tế, đồng nhất tuyệt đối với phân tích chi phí ở Slide 13.',
+      'Hệ thống có 2 dòng gói cước: Cá nhân Studio (Free 0đ / Plus 99k / Pro 299k) và Doanh nghiệp Agency (Basic 0đ / Plus 990.000đ / Enterprise 3.990.000đ) thanh toán qua SePay (VietQR) 0% phí thẻ quốc tế, khớp 100% với Slide 16.',
       'Quét chuyển khoản thật ngay trên sân khấu với gói nạp lẻ tùy chỉnh 10 AI Credits = 2.000 VNĐ (đơn giá 200đ/credit), đối soát tự động bằng Idempotency-Key và mã BH...',
     ],
     presenterScript:
-      'Trong vai trò Owner Lê Trí Trung, trên trang Gói thuê bao là mức giá thương mại chuẩn 1.490.000 VNĐ/tháng của gói Plus. Để chứng minh luồng đối soát ngân hàng thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét chuyển khoản trực tiếp để hệ thống tự động cộng điểm tức thì.',
-    expectedOutcome: 'Gói Plus hiển thị đúng 1.490.000 VNĐ/tháng; đơn nạp lẻ 10 Credits (2.000 VNĐ) chuyển sang FULFILLED và cộng +10 Credits ngay khi quét VietQR.',
+      'Trong vai trò Owner Lê Trí Trung, trên trang Gói thuê bao là mức giá thương mại chuẩn 990.000 VNĐ/tháng của gói Agency Plus (cùng gói Enterprise 3.990.000 VNĐ/tháng và dòng Studio cá nhân 0đ / 99k / 299k). Để chứng minh luồng đối soát ngân hàng thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét chuyển khoản trực tiếp để hệ thống tự động cộng điểm tức thì.',
+    expectedOutcome: 'Gói Plus hiển thị đúng 990.000 VNĐ/tháng; đơn nạp lẻ 10 Credits (2.000 VNĐ) chuyển sang FULFILLED và cộng +10 Credits ngay khi quét VietQR.',
     fields: [
       {
         field: '1. Số lượng AI Credit nạp lẻ tùy chỉnh (= 2.000 VNĐ quét thật)',
@@ -1068,14 +1066,15 @@ const DEMO_STEPS: DemoStep[] = [
         note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn "Số lượng tùy chỉnh" -> Nhập 10 (10 × 200đ = 2.000 VNĐ).',
       },
       {
-        field: '2. Thông tin Gói Plus & Ví AI Credit chuẩn',
+        field: '2. Thông tin 6 Gói cước & Ví AI Credit chuẩn',
         actionType: 'Tham chiếu',
-        value: 'Gói Plus: 1.490.000 VNĐ/tháng · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits (trần ĐH FPT: 5.000 credits)',
+        value: 'Agency Plus: 990.000 VNĐ/tháng (Enterprise 3.990.000đ, 500GB) · Studio: 0đ / 99k / 299k · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits',
       },
     ],
     actions: [
-      { id: 'PLAN_CHECKOUT', label: 'Chọn Plus · 1 tháng → VietQR', description: 'Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn', variant: 'primary', icon: <Play className="size-4" /> },
-      { id: 'SEPAY_PAY', label: 'SePay xác nhận thanh toán', description: 'Gửi webhook SePay, chờ trang cập nhật', variant: 'outline', icon: <Play className="size-4" /> },
+      { id: 'CREDIT_TOPUP_10', label: 'Nạp lẻ 10 Credits (2.000đ) → VietQR thật', description: 'Tự mở /credit, chọn tùy chỉnh 10 Credits & sinh VietQR 2.000đ', variant: 'primary', icon: <Play className="size-4" /> },
+      { id: 'PLAN_CHECKOUT', label: 'Chọn Agency Plus · 1 tháng (990k) → VietQR', description: 'Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn Agency Plus', variant: 'outline', icon: <Play className="size-4" /> },
+      { id: 'SEPAY_PAY', label: 'SePay xác nhận thanh toán', description: 'Đối soát Webhook SePay, cập nhật trạng thái thành công', variant: 'outline', icon: <Play className="size-4" /> },
     ],
   },
   {
@@ -1089,7 +1088,7 @@ const DEMO_STEPS: DemoStep[] = [
     frCode: 'FR 3.10.1 - 3.10.14',
     role: 'Admin',
     actorName: 'Quản trị viên BrandHub',
-    actorEmail: 'admin@demo.brandhub.test',
+    actorEmail: 'admin@brandhub.com',
     routeTemplate: '/admin?view=revenue',
     extraRoutes: [
       {
@@ -1107,7 +1106,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Chuyển sang cửa sổ Admin: mở /admin?view=revenue xem biểu đồ doanh thu gói SaaS & giao dịch SePay vừa phát sinh -> chuyển sang /admin?view=moderation xử lý Hàng đợi kiểm duyệt cộng đồng (FR 3.10.4) khép lại trọn vẹn 20 phút Demo.',
     manualChecklist: [
       'Chuyển sang cửa sổ Admin (Quản trị viên BrandHub) tại /admin?view=revenue xem tổng quan doanh thu toàn nền tảng.',
-      'Chuyển sang tab /admin?view=moderation trình bày Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) với 3 bản ghi cảnh báo thực tế — khép lại 12 bước Live Demo và chuyển về Slide 12.',
+      'Chuyển sang tab /admin?view=moderation trình bày Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) với 3 bản ghi cảnh báo thực tế — khép lại 12 bước Live Demo và chuyển sang Slide 16.',
     ],
     talkingPoints: [
       'Admin giám sát tập trung doanh thu các gói thuê bao SaaS và đối soát lịch sử giao dịch SePay toàn hệ thống.',
@@ -1220,6 +1219,7 @@ export const DemoMonitorPage: React.FC = () => {
   const [showCleanConfirm, setShowCleanConfirm] = useState<boolean>(false);
   const [showGuideModal, setShowGuideModal] = useState<boolean>(false);
   const [doneActions, setDoneActions] = useState<Record<string, boolean>>({});
+  const [paceLabel, setPaceLabel] = useState<string>('Vừa');
 
   // Đồng hồ đếm giờ 20 phút ngay trên thanh Header
   const [elapsedSec, setElapsedSec] = useState<number>(0);
@@ -1253,12 +1253,22 @@ export const DemoMonitorPage: React.FC = () => {
       if (typeof window !== 'undefined') {
         window.localStorage.setItem(APP_URL_STORAGE_KEY, cleaned);
       }
+      if (stageMode === 'auto') {
+        fetch(`${monitorUrl}/api/config`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ app_url: cleaned }),
+        }).catch(() => {
+          // ignore if :3999 not started yet
+        });
+      }
     },
-    []
+    [monitorUrl, stageMode]
   );
 
   const activePillRef = useRef<HTMLButtonElement | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
+  const lastWsErrVerRef = useRef<number>(0);
 
   const setStageMode = useCallback(
     (mode: StageMode) => {
@@ -1339,17 +1349,30 @@ export const DemoMonitorPage: React.FC = () => {
     try {
       const res = await fetch(`${monitorUrl}/api/status`);
       if (!res.ok) throw new Error('Status check failed');
-      const data: MonitorStatus = await res.json();
+      const data: MonitorStatus & { sync?: { pace_label?: string } } = await res.json();
       setStatus(data);
       setConnected(true);
+      if (data.sync?.pace_label) {
+        setPaceLabel(data.sync.pace_label);
+      }
       if (data.ids) {
-        setConfigIds((prev) => ({
-          app_url: data.app_url || prev.app_url || PROD_APP_URL,
-          agency_id: data.ids.agency_id || '359a1839-18c7-48e2-8a68-f5f68c3375b6',
-          workspace_id: data.ids.workspace_id || 'b47477c4-13ad-44ff-8c49-f73f1837461b',
-          campaign_id: data.ids.campaign_id || 'd7e00000-0000-4000-8000-000000000301',
-          task_id: data.ids.task_id || 'c6453698-cf56-38c1-96d2-90ccdd985228',
-        }));
+        setConfigIds((prev) => {
+          // Nếu máy chủ :3999 đang khác URL mà người điều khiển đã chọn trên giao diện, tự đồng bộ xuống :3999
+          if (data.app_url && prev.app_url && data.app_url !== prev.app_url) {
+            fetch(`${monitorUrl}/api/config`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ app_url: prev.app_url }),
+            }).catch(() => {});
+          }
+          return {
+            app_url: prev.app_url || data.app_url || PROD_APP_URL,
+            agency_id: data.ids.agency_id || '359a1839-18c7-48e2-8a68-f5f68c3375b6',
+            workspace_id: data.ids.workspace_id || 'b47477c4-13ad-44ff-8c49-f73f1837461b',
+            campaign_id: data.ids.campaign_id || 'd7e00000-0000-4000-8000-000000000301',
+            task_id: data.ids.task_id || 'c6453698-cf56-38c1-96d2-90ccdd985228',
+          };
+        });
       }
     } catch {
       setConnected(false);
@@ -1408,14 +1431,22 @@ export const DemoMonitorPage: React.FC = () => {
               if (typeof msg.connected_clients === 'number') {
                 setWsClientsCount(msg.connected_clients);
               }
+              if (typeof msg.pace_label === 'string' && msg.pace_label) {
+                setPaceLabel(msg.pace_label);
+              }
+              if (msg.last_error && typeof msg.version === 'number' && msg.version !== lastWsErrVerRef.current) {
+                lastWsErrVerRef.current = msg.version;
+                showToast(String(msg.last_error), true);
+              }
               if (Array.isArray(msg.done_actions)) {
-                setDoneActions((prev) => {
-                  const next = { ...prev };
-                  msg.done_actions.forEach((aid: string) => {
-                    next[aid] = true;
-                  });
-                  return next;
+                const next: Record<string, boolean> = {};
+                msg.done_actions.forEach((aid: string) => {
+                  next[aid] = true;
                 });
+                setDoneActions((prev) => ({
+                  ...Object.fromEntries(Object.entries(prev).filter(([k]) => k.startsWith('B0_'))),
+                  ...next,
+                }));
               }
               if (msg.current?.step_code) {
                 const matchedIdx = DEMO_STEPS.findIndex((s) => s.code === msg.current.step_code);
@@ -1538,11 +1569,79 @@ export const DemoMonitorPage: React.FC = () => {
     handleCopy(liveVal, target.key, target.f.field);
   }, [copiedHistory, currentStep.code, currentStep.fields, customTexts, handleCopy, showToast]);
 
+  const handleLoginAll = useCallback(async () => {
+    setBusyAction('LOGIN_ALL');
+    try {
+      await fetch(`${monitorUrl}/api/config`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ app_url: configIds.app_url }),
+      }).catch(() => {});
+      const res = await fetch(`${monitorUrl}/api/login-all`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setDoneActions((prev) => ({ ...prev, B0_OPEN_5_CHROME: true }));
+        showToast(`Đã mở & đồng bộ đủ 6 cửa sổ Chrome trên ${configIds.app_url}!`);
+      } else {
+        showToast(data.error || 'Có lỗi khi mở 6 cửa sổ vai trò.', true);
+      }
+      await fetchMonitorStatus();
+    } catch {
+      showToast('Không kết nối được dịch vụ điều khiển cổng 3999.', true);
+    } finally {
+      setBusyAction(null);
+    }
+  }, [configIds.app_url, fetchMonitorStatus, monitorUrl, showToast]);
+
+  const handleCyclePace = useCallback(async () => {
+    try {
+      const res = await fetch(`${monitorUrl}/api/hud/command`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'cycle_pace' }),
+      });
+      const data = await res.json();
+      if (data?.state?.pace_label) {
+        setPaceLabel(data.state.pace_label);
+        showToast(`Đã chuyển tốc độ tự động sang: ${data.state.pace_label}`);
+      }
+    } catch {
+      showToast('Không kết nối được cổng 3999 để đổi tốc độ.', true);
+    }
+  }, [monitorUrl, showToast]);
+
+  const handleKillChrome = useCallback(async () => {
+    setBusyAction(null);
+    try {
+      const res = await fetch(`${monitorUrl}/api/kill-chrome`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      showToast(data.message || 'Đã đóng toàn bộ Chrome để mở lại sạch sẽ.');
+      await fetchMonitorStatus();
+    } catch {
+      showToast('Không kết nối được cổng 3999.', true);
+    }
+  }, [fetchMonitorStatus, monitorUrl, showToast]);
+
   const triggerStepAction = useCallback(
     async (actionId: string) => {
       if (busyAction !== null) return;
       if (!timerRunning && elapsedSec === 0) {
         setTimerRunning(true);
+      }
+      // Trong chế độ Tự động, nút B0 mở thật 6 Chrome hoặc khôi phục DB thay vì chỉ đánh dấu tích
+      if (stageMode === 'auto' && actionId === 'B0_OPEN_5_CHROME') {
+        await handleLoginAll();
+        return;
+      }
+      if (stageMode === 'auto' && actionId === 'B0_RESTORE_DB') {
+        setShowResetConfirm(true);
+        return;
       }
       const actionDef = DEMO_STEPS.flatMap((s) => s.actions).find((a) => a.id === actionId);
       if (actionDef?.localOnly) {
@@ -1585,7 +1684,7 @@ export const DemoMonitorPage: React.FC = () => {
         setBusyAction(null);
       }
     },
-    [busyAction, configIds.app_url, customTexts, elapsedSec, fetchMonitorStatus, monitorUrl, resolveRoute, showToast, stageMode, timerRunning]
+    [busyAction, configIds.app_url, customTexts, elapsedSec, fetchMonitorStatus, handleLoginAll, monitorUrl, resolveRoute, showToast, stageMode, timerRunning]
   );
 
   const handleSmartAdvance = useCallback(() => {
@@ -1639,11 +1738,16 @@ export const DemoMonitorPage: React.FC = () => {
   );
 
   const handleCancelBusy = useCallback(() => {
+    fetch(`${monitorUrl}/api/hud/command`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'skip_step' }),
+    }).catch(() => {});
     if (busyAction !== null) {
       setBusyAction(null);
-      showToast('Đã hủy trạng thái chờ khẩn cấp. Bạn có thể tiếp tục điều khiển.');
     }
-  }, [busyAction, showToast]);
+    showToast('Đã bỏ qua bước đang chờ khẩn cấp. Bạn có thể tiếp tục điều khiển ngay.');
+  }, [busyAction, monitorUrl, showToast]);
 
   // Hỗ trợ phím tắt sân khấu (1-5 cho đủ 5 nút con, Space, C sao chép nhanh, ←/→/PageUp/PageDown)
   useEffect(() => {
@@ -1728,28 +1832,6 @@ export const DemoMonitorPage: React.FC = () => {
     stageMode,
     triggerStepAction,
   ]);
-
-  const handleLoginAll = async () => {
-    setBusyAction('LOGIN_ALL');
-    try {
-      const res = await fetch(`${monitorUrl}/api/login-all`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await res.json();
-      if (data.ok) {
-        setDoneActions((prev) => ({ ...prev, B0_OPEN_5_CHROME: true }));
-        showToast('Đã mở & đồng bộ đủ 6 cửa sổ Chrome (Guest, Owner, Manager, Creator, Client, Admin)!');
-      } else {
-        showToast(data.error || 'Có lỗi khi mở 6 cửa sổ vai trò.', true);
-      }
-      await fetchMonitorStatus();
-    } catch {
-      showToast('Không kết nối được dịch vụ điều khiển cổng 3999.', true);
-    } finally {
-      setBusyAction(null);
-    }
-  };
 
   const handleArrangeWindows = async (mode: 'split' | 'maximize' = 'split') => {
     setBusyAction(`ARRANGE_${mode}`);
@@ -2183,7 +2265,7 @@ export const DemoMonitorPage: React.FC = () => {
                 Phân công Sân khấu &amp; Môi trường (Đã chốt)
               </div>
               <p>
-                • <strong>Người đứng thuyết trình</strong>: <strong>Lê Trí Trung</strong> dẫn dắt xuyên suốt 20 phút Live Demo rồi nối thẳng sang <code className="font-mono">Slide 12–14</code>.
+                • <strong>Người đứng thuyết trình</strong>: <strong>Lê Trí Trung</strong> dẫn dắt xuyên suốt 20 phút Live Demo rồi nối thẳng sang <code className="font-mono">Slide 16–17</code>.
                 <br />• <strong>Người điều khiển máy</strong>: <strong>Nguyễn Thành Lộc</strong> ngồi laptop thao tác 6 cửa sổ trình duyệt (HDMI Duplicate).
                 <br />• <strong>Môi trường chính</strong>: <code className="font-mono">https://brandhub.id.vn</code> (1-click chuyển về <code className="font-mono">http://localhost:3000</code> ngay trên thanh tiêu đề nếu rớt mạng hội trường).
               </p>
@@ -2217,7 +2299,7 @@ export const DemoMonitorPage: React.FC = () => {
               <p>
                 • <strong>Tại B9</strong>: Sau khi Client bấm Duyệt bản v2, chuyển về cửa sổ Creator trên <code className="font-mono">/editor</code> bấm nút cam <strong>"Gửi phê duyệt"</strong> góc trên bên phải để chốt <code className="font-mono">Task FINISHED</code>.
                 <br />• <strong>Tại B10</strong>: Bấm <strong>Đăng ngay</strong> trên đúng <strong>1 kênh thật đã kết nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở ngay tab trang thật đối chiếu.
-                <br />• <strong>Tại B11</strong>: Chỉ rõ gói <code className="font-mono">Plus = 1.490.000 VNĐ/tháng</code>, sau đó qua <code className="font-mono">/credit</code> bấm <strong>Nạp thêm Credit → Số lượng tùy chỉnh: 10 (= 2.000 VNĐ)</strong> để quét VietQR ngân hàng thật!
+                <br />• <strong>Tại B11</strong>: Chỉ rõ gói <code className="font-mono">Agency Plus = 990.000 VNĐ/tháng</code>, sau đó qua <code className="font-mono">/credit</code> bấm <strong>Nạp thêm Credit → Số lượng tùy chỉnh: 10 (= 2.000 VNĐ)</strong> để quét VietQR ngân hàng thật!
               </p>
             </div>
           </div>
@@ -2433,6 +2515,37 @@ export const DemoMonitorPage: React.FC = () => {
                 >
                   {busyAction === 'LOGIN_ALL' ? <RefreshCw className="size-3.5 animate-spin" /> : <Users className="size-3.5" />}
                   <span>Mở 6 Vai trò</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleCyclePace}
+                  title="Đổi tốc độ gõ & dừng trực quan của Selenium (Chậm / Vừa / Nhanh)"
+                  className="min-h-7 inline-flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-orange-50 border border-slate-200 text-xs font-semibold text-slate-700 cursor-pointer transition-colors"
+                >
+                  <span>Tốc độ: {paceLabel}</span>
+                </button>
+
+                {busyAction !== null && (
+                  <button
+                    type="button"
+                    onClick={handleCancelBusy}
+                    title="Bỏ qua ngay bước đang chờ (Esc)"
+                    className="min-h-7 inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-xs font-bold text-amber-900 cursor-pointer transition-colors"
+                  >
+                    <RotateCcw className="size-3.5" />
+                    <span>Bỏ qua chờ</span>
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={handleKillChrome}
+                  title="Tắt toàn bộ Chrome để mở lại sạch sẽ nếu cửa sổ trình duyệt bị treo"
+                  className="min-h-7 inline-flex items-center gap-1 px-2 py-1 bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 cursor-pointer transition-colors"
+                >
+                  <span className="hidden 2xl:inline">Tắt Chrome</span>
+                  <span className="2xl:hidden">×Chrome</span>
                 </button>
 
                 <button
@@ -2752,7 +2865,7 @@ export const DemoMonitorPage: React.FC = () => {
           <div className="p-3.5 bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed flex items-start gap-2.5">
             <AlertTriangle className="size-4 shrink-0 mt-0.5" />
             <div>
-              <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong> (1) Tại <strong>B9</strong>: Sau khi <code className="font-mono">Client</code> bấm Duyệt v2, quay về cửa sổ <code className="font-mono">Creator</code> trên <code className="font-mono">/editor</code> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <code className="font-mono">Task FINISHED</code> &amp; <code className="font-mono">Post APPROVED</code>. (2) Tại <strong>B10</strong>: Bấm Đăng ngay trên đúng <strong>1 kênh thật đã nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu. (3) Tại <strong>B11</strong>: Giới thiệu <code className="font-mono">Plus = 1.490.000đ/tháng</code> rồi qua <code className="font-mono">/credit</code> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
+              <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong> (1) Tại <strong>B9</strong>: Sau khi <code className="font-mono">Client</code> bấm Duyệt v2, quay về cửa sổ <code className="font-mono">Creator</code> trên <code className="font-mono">/editor</code> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <code className="font-mono">Task FINISHED</code> &amp; <code className="font-mono">Post APPROVED</code>. (2) Tại <strong>B10</strong>: Bấm Đăng ngay trên kênh thật đã nối OAuth (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu. (3) Tại <strong>B11</strong>: Giới thiệu <code className="font-mono">Agency Plus = 990.000đ/tháng</code> rồi qua <code className="font-mono">/credit</code> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
             </div>
           </div>
 
@@ -2914,7 +3027,7 @@ export const DemoMonitorPage: React.FC = () => {
                           : 'bg-slate-100 text-slate-600 border-slate-200'
                       }`}
                     >
-                      {isDone ? '✓' : step.code}
+                      {isDone ? <Check className="size-3" aria-hidden="true" /> : step.code}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span
@@ -3161,7 +3274,7 @@ export const DemoMonitorPage: React.FC = () => {
                                   : 'bg-orange-50 text-orange-900 border-orange-200'
                               }`}
                             >
-                              {checked ? '✓' : cIdx + 1}
+                              {checked ? <Check className="size-3" aria-hidden="true" /> : cIdx + 1}
                             </span>
                             <span className={`text-xs sm:text-sm leading-relaxed ${checked ? 'line-through' : 'font-medium'}`}>
                               {line}

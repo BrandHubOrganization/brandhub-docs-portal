@@ -150,6 +150,14 @@
           Mở 6 Vai trò
         </button>
 
+        <button id="pace-btn" onclick="cyclePace()" title="Đổi tốc độ gõ chữ & dừng trực quan (Chậm / Vừa / Nhanh)" class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:border-orange-300 cursor-pointer">
+          Tốc độ: Vừa
+        </button>
+
+        <button id="skip-btn" onclick="cancelBusy()" title="Bỏ qua bước đang chờ khẩn cấp (Esc)" class="hidden items-center gap-1 px-2.5 py-1.5 text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100 cursor-pointer">
+          Bỏ qua chờ (Esc)
+        </button>
+
         <button onclick="killAllChrome()" title="Tắt sạch MỌI cửa sổ Chrome trên máy (cả Chrome cá nhân) + chromedriver kẹt. Dùng khi Chrome demo đơ, sau đó bấm Mở 6 Vai trò" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-red-700 border border-red-200 hover:border-red-400 hover:bg-red-50/80 cursor-pointer">
           Tắt hết Chrome
         </button>
@@ -161,6 +169,15 @@
         <button onclick="document.getElementById('clean-dialog').showModal()" title="Xóa sạch dữ liệu mẫu và mọi bản ghi phát sinh lúc demo, đưa về khung rỗng (không nạp lại gì). Dùng sau khi demo xong" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white text-orange-700 border border-orange-200 hover:border-orange-400 hover:bg-orange-50/80 cursor-pointer">
           Xóa dữ liệu Demo
         </button>
+
+        <div class="inline-flex items-center border border-slate-200 bg-white font-mono text-[11px]">
+          <button id="env-cloud-btn" onclick="switchTargetEnv('https://brandhub.id.vn')" title="Môi trường Cloud chính thức (https://brandhub.id.vn)" class="px-2.5 py-1.5 font-bold bg-orange-50 text-orange-950 cursor-pointer">
+            brandhub.id.vn
+          </button>
+          <button id="env-local-btn" onclick="switchTargetEnv('http://localhost:3000')" title="Dự phòng Local (http://localhost:3000)" class="px-2.5 py-1.5 text-slate-600 hover:bg-slate-50 border-l border-slate-200 cursor-pointer">
+            localhost:3000
+          </button>
+        </div>
       </div>
     </div>
 
@@ -209,11 +226,11 @@
 
     const ROLES = [
       { role: 'Guest', shortLabel: 'Khách', fullName: 'Khách truy cập công khai', email: 'Chưa đăng nhập' },
-      { role: 'Owner', shortLabel: 'Trung', fullName: 'Lê Trí Trung', email: 'user177@demo.brandhub.test' },
-      { role: 'Manager', shortLabel: 'Lộc', fullName: 'Nguyễn Thành Lộc', email: 'user1@demo.brandhub.test' },
-      { role: 'Creator', shortLabel: 'Phước', fullName: 'Nguyễn Chơn Phước', email: 'user13@demo.brandhub.test' },
-      { role: 'Client', shortLabel: 'ĐH FPT', fullName: 'Ban Tuyển sinh Đại học FPT', email: 'user59@demo.brandhub.test' },
-      { role: 'Admin', shortLabel: 'Admin', fullName: 'Quản trị viên BrandHub', email: 'admin@demo.brandhub.test' },
+      { role: 'Owner', shortLabel: 'Trung', fullName: 'Lê Trí Trung', email: 'letritrung2605@gmail.com' },
+      { role: 'Manager', shortLabel: 'Lộc', fullName: 'Nguyễn Thành Lộc', email: 'nguyenthanhloc20092004@gmail.com' },
+      { role: 'Creator', shortLabel: 'Phước', fullName: 'Nguyễn Chơn Phước', email: 'chontem123@gmail.com' },
+      { role: 'Client', shortLabel: 'ĐH FPT', fullName: 'Ban Tuyển sinh Đại học FPT', email: 'winhtuan@gmail.com' },
+      { role: 'Admin', shortLabel: 'Admin', fullName: 'Quản trị viên BrandHub', email: 'admin@brandhub.com' },
     ];
 
     const DEMO_TEXTS = {
@@ -529,11 +546,12 @@
         script: "Owner chọn Agency Plus 1 tháng, hệ thống sinh mã VietQR; khi SePay xác nhận chuyển khoản, gói được kích hoạt tự động.",
         outcome: "Popup thanh toán chuyển trạng thái Đã ghi nhận.",
         actions: [
-          { id: "PLAN_CHECKOUT", label: "Chọn Plus · 1 tháng → VietQR", desc: "Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn" },
-          { id: "SEPAY_PAY", label: "SePay xác nhận thanh toán", desc: "Gửi webhook SePay, chờ trang cập nhật" },
+          { id: "CREDIT_TOPUP_10", label: "Nạp lẻ 10 Credits (2.000đ) → VietQR thật", desc: "Tự mở /credit, nhập 10 Credits & sinh VietQR 2.000đ" },
+          { id: "PLAN_CHECKOUT", label: "Chọn Agency Plus · 1 tháng (990k) → VietQR", desc: "Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn Agency Plus" },
+          { id: "SEPAY_PAY", label: "SePay xác nhận thanh toán", desc: "Đối soát Webhook SePay, chờ trang cập nhật" },
         ],
         fields: [
-          { name: "Gói", type: 'Tự điền', value: "Agency Plus · 1 tháng · 990.000 VND · SePay (VietQR)" },
+          { name: "Bảng giá & Nạp lẻ", type: 'Tự điền', value: "Agency Plus: 990.000 VND/tháng (Enterprise 3.990.000đ) · Studio: 0đ/99k/299k · Nạp lẻ 10 Credits = 2.000 VND" },
         ],
       },
       {
@@ -948,8 +966,15 @@
                 if (labelEl) labelEl.textContent = `Socket · ${wsClientsCount}`;
               }
               if (Array.isArray(msg.done_actions)) {
+                doneActions = {};
                 msg.done_actions.forEach((aid) => { doneActions[aid] = true; });
               }
+              if (msg.pace_label) {
+                const pBtn = document.getElementById('pace-btn');
+                if (pBtn) pBtn.textContent = `Tốc độ: ${msg.pace_label}`;
+              }
+              const sBtn = document.getElementById('skip-btn');
+              if (sBtn) sBtn.className = (msg.busy || busy) ? 'inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100 cursor-pointer' : 'hidden';
               if (msg.roles) {
                 Object.keys(msg.roles).forEach((rk) => {
                   roleStates[rk] = { ...(roleStates[rk] || {}), alive: Boolean(msg.roles[rk].alive) };
@@ -1160,6 +1185,23 @@
       startDbJob('clean');
     }
 
+    async function switchTargetEnv(appUrl) {
+      try {
+        const res = await fetch(`${API_BASE}/api/config`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ app_url: appUrl })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast(`Đã chuyển môi trường điều khiển sang ${data.app_url}`);
+          pollStatus();
+        }
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium ở cổng 3999.', true);
+      }
+    }
+
     async function pollStatus() {
       try {
         const res = await fetch(`${API_BASE}/api/status`);
@@ -1167,6 +1209,13 @@
         if (data.ok) {
           roleStates = data.roles || {};
           windowMode = data.window_mode || 'normal';
+          const isCloud = (data.app_url || '').includes('brandhub.id.vn');
+          const cBtn = document.getElementById('env-cloud-btn');
+          const lBtn = document.getElementById('env-local-btn');
+          if (cBtn && lBtn) {
+            cBtn.className = `px-2.5 py-1.5 cursor-pointer ${isCloud ? 'font-bold bg-orange-50 text-orange-950' : 'text-slate-600 hover:bg-slate-50'}`;
+            lBtn.className = `px-2.5 py-1.5 border-l border-slate-200 cursor-pointer ${!isCloud ? 'font-bold bg-orange-50 text-orange-950' : 'text-slate-600 hover:bg-slate-50'}`;
+          }
           const cnt = typeof data.ws_clients === 'number' ? data.ws_clients : wsClientsCount;
           document.getElementById('conn-label').textContent = wsConnected ? `Socket · ${cnt}` : 'Đã kết nối';
           document.getElementById('conn-label').className = 'font-medium text-slate-700';
@@ -1192,9 +1241,32 @@
     }
 
     
+    async function cyclePace() {
+      try {
+        const res = await fetch(`${API_BASE}/api/hud/command`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'cycle_pace' })
+        });
+        const data = await res.json();
+        if (data?.state?.pace_label) {
+          const pBtn = document.getElementById('pace-btn');
+          if (pBtn) pBtn.textContent = `Tốc độ: ${data.state.pace_label}`;
+          showToast(`Đã chuyển tốc độ tự động sang: ${data.state.pace_label}`);
+        }
+      } catch (e) {
+        showToast('Không kết nối được tới máy chủ Selenium (:3999).', true);
+      }
+    }
+
     function cancelBusy() {
       busy = false;
-      showToast('Đã hủy trạng thái chờ khẩn cấp. Bạn có thể tiếp tục thao tác.');
+      fetch(`${API_BASE}/api/hud/command`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'skip_step' })
+      }).catch(() => {});
+      showToast('Đã bỏ qua bước đang chờ khẩn cấp. Bạn có thể tiếp tục thao tác.');
       renderActiveStep();
     }
 
@@ -1264,7 +1336,7 @@
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         selectStep(activeIdx - 1);
-      } else if (['1', '2', '3', '4'].includes(e.key)) {
+      } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
         const act = STEPS[activeIdx].actions[Number(e.key) - 1];
         if (act) {
           e.preventDefault();

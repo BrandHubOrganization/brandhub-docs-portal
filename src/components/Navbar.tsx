@@ -7,7 +7,6 @@ import {
   BookOpen,
   Link2,
   Search,
-  Layers,
   Sun,
   Moon,
   Monitor,
@@ -78,8 +77,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               to="/"
               className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-base tracking-tight shrink-0 interactive-btn"
             >
-              <div className="w-7 h-7 rounded-md bg-orange-600 text-white flex items-center justify-center shadow-xs">
-                <Layers className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-md bg-orange-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                  focusable="false"
+                  className="w-4 h-4 shrink-0"
+                >
+                  <path
+                    d="M7 5.5h5.2a3 3 0 0 1 0 6H7zm0 6h6a3.25 3.25 0 0 1 0 6.5H7z"
+                    stroke="currentColor"
+                    strokeWidth={2.2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <rect x="16.2" y="4.5" width="3" height="3" fill="currentColor" />
+                </svg>
               </div>
               <span>
                 <span className="text-orange-600 dark:text-orange-400">BrandHub</span>{' '}
