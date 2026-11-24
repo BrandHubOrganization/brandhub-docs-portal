@@ -94,6 +94,14 @@ const AppShell: React.FC<{
               </span>
             </div>
             <div className="flex items-center gap-4">
+              <a
+                href="https://brandhub.id.vn/"
+                target="_blank"
+                rel="noopener"
+                className="text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
+              >
+                BrandHub — brandhub.id.vn
+              </a>
               <Link
                 to="/rules"
                 className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"

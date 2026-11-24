@@ -134,7 +134,14 @@ interface CreateLivePack {
   }>;
 }
 
-const DEMO_PASSWORD = 'Password123';
+// This page is public; the demo password is typed once on the demo machine.
+function getDemoPassword(): string {
+  const saved = localStorage.getItem('bh_demo_pwd');
+  if (saved) return saved;
+  const entered = window.prompt('Nhập mật khẩu tài khoản demo (chỉ lưu trên máy này)') ?? '';
+  if (entered) localStorage.setItem('bh_demo_pwd', entered);
+  return entered;
+}
 const DEFAULT_POST_ID = 'd7e00000-0000-4000-8000-000000000401';
 const EVENT_TASK_ID = '85a66c1c-b49b-3788-8bc3-a21336649041';
 const WORKSHOP_TASK_ID = 'c1176d26-249c-3d32-bbad-f720b3a518a4';
@@ -418,7 +425,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Nguyễn Thành Lộc chạy open_clean_chrome_roles.bat (mặc định trỏ https://brandhub.id.vn, dự phòng rớt mạng: open_clean_chrome_roles_local.bat) để mở 6 cửa sổ Chrome gốc (0% Selenium) và chạy preload_clipboard_win_v.bat nạp lịch sử Win + V; Lê Trí Trung đứng sân khấu thuyết trình xuyên suốt B1–B12.',
     manualChecklist: [
       'Đảm bảo dữ liệu mẫu ĐH FPT 2027 đã nạp sạch về trạng thái khởi điểm B1 (python prepare_demo_data_template.py --apply, gói Agency Plus = 990.000 VNĐ/tháng).',
-      'Mở sẵn 6 cửa sổ Chrome tách biệt trên https://brandhub.id.vn (dự phòng localhost:3000) cho Guest, Owner, Manager, Creator, Client, Admin (mật khẩu chung: Password123).',
+      'Mở sẵn 6 cửa sổ Chrome tách biệt trên https://brandhub.id.vn (dự phòng localhost:3000) cho Guest, Owner, Manager, Creator, Client, Admin (mật khẩu chung do trưởng nhóm cung cấp riêng).',
       'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
       'Bật Lịch sử bộ nhớ tạm Windows (Win + V -> Bật) và chạy preload_clipboard_win_v.bat; đăng nhập sẵn ứng dụng ngân hàng trên điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
       'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 16–17).',
@@ -434,8 +441,8 @@ const DEMO_STEPS: DemoStep[] = [
       {
         field: 'Mật khẩu chung toàn bộ tài khoản Demo',
         actionType: 'Dán Ctrl+V',
-        value: DEMO_PASSWORD,
-        note: 'Áp dụng chung cho Owner (letritrung2605@gmail.com), Manager (nguyenthanhloc20092004@gmail.com), Creator (chontem123@gmail.com, van.an.webdev@gmail.com), Client (winhtuan@gmail.com) và Admin (admin@brandhub.com) trên cả Cloud lẫn Local.',
+        value: '',
+        note: 'Áp dụng cho Owner (user177), Manager (user1), Creator (user13, user14, user15), Client (user59) và Admin. Dùng nút MK để nhập/sao chép.',
       },
     ],
     actions: [
@@ -2678,12 +2685,12 @@ export const DemoMonitorPage: React.FC = () => {
               {stageMode === 'manual' && (
                 <button
                   type="button"
-                  onClick={() => handleCopy(DEMO_PASSWORD, 'header_pwd', 'Mật khẩu Password123')}
-                  title="Sao chép mật khẩu chung Password123"
+                  onClick={() => handleCopy(getDemoPassword(), 'header_pwd', 'Mật khẩu demo')}
+                  title="Sao chép mật khẩu chung"
                   className="min-h-7 inline-flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-orange-50 text-slate-700 border border-slate-200 text-xs font-mono font-semibold cursor-pointer shrink-0"
                 >
                   <KeyRound className="size-3 text-[#ea6c3b]" />
-                  <span>{copiedKey === 'header_pwd' ? 'Đã chép MK!' : 'MK: Password123'}</span>
+                  <span>{copiedKey === 'header_pwd' ? 'Đã chép MK!' : 'MK: ••••'}</span>
                 </button>
               )}
             </div>
@@ -2738,11 +2745,11 @@ export const DemoMonitorPage: React.FC = () => {
               </div>
               <button
                 type="button"
-                onClick={() => handleCopy(DEMO_PASSWORD, 'sheet_pwd', 'Mật khẩu Password123')}
+                onClick={() => handleCopy(getDemoPassword(), 'sheet_pwd', 'Mật khẩu demo')}
                 className="min-h-7 px-3 py-1 bg-[#ea6c3b] hover:bg-[#d95d2c] text-white text-xs font-mono font-bold inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <Copy className="size-3.5" />
-                <span>Copy mật khẩu chung: {DEMO_PASSWORD}</span>
+                <span>Copy mật khẩu chung</span>
               </button>
             </div>
 
