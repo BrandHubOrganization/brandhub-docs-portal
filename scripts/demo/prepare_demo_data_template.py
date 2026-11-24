@@ -225,10 +225,14 @@ SURVEY_TASK_ID = "2a100fd3-db57-3355-bef4-45dfbb4cf2f3"
 SURVEY_DOC_ID = "d7e00000-0000-4000-8000-000000000801"
 
 # Danh sách đầy đủ thành viên nhóm đồ án SE_08 (Agency) + Khách hàng ĐH FPT + Admin
+# Mật khẩu chuẩn chung Password123 (BCrypt cost 12)
+DEMO_BCRYPT_HASH = "$2a$12$ZlzANoUVoSv2wbrKAVOs3.gJxmIYxZwOHlTuHyt5hoLO3evsbag92"
+
 DEMO_ACCOUNTS = {
     "OWNER": {
         "id": "87e97722-97c1-47ff-9d5f-02894e30bed2",
         "email": "user177@demo.brandhub.test",
+        "alt_emails": ["letritrung2605@gmail.com"],
         "full_name": "Lê Trí Trung",
         "role": "Owner",
         "title": "Giám đốc Điều hành SE08 Digital (Owner)",
@@ -238,6 +242,7 @@ DEMO_ACCOUNTS = {
     "MANAGER": {
         "id": "48a55552-71bd-468c-ba02-fa849eeb7682",
         "email": "user1@demo.brandhub.test",
+        "alt_emails": ["nguyenthanhloc20092004@gmail.com"],
         "full_name": "Nguyễn Thành Lộc",
         "role": "Manager",
         "title": "Quản lý Chiến dịch Truyền thông (Manager)",
@@ -247,6 +252,7 @@ DEMO_ACCOUNTS = {
     "CREATOR": {
         "id": "56034372-e963-4717-8dfa-e68e34d34c7a",
         "email": "user13@demo.brandhub.test",
+        "alt_emails": ["chontem123@gmail.com"],
         "full_name": "Nguyễn Chơn Phước",
         "role": "Creator",
         "title": "Chuyên viên Nội dung Đa nền tảng (Creator)",
@@ -256,6 +262,7 @@ DEMO_ACCOUNTS = {
     "CREATOR_2": {
         "id": "38fcc012-0aff-426f-8466-05de1109ee13",
         "email": "user14@demo.brandhub.test",
+        "alt_emails": ["winhtuan@gmail.com"],
         "full_name": "Nguyễn Minh Tuấn",
         "role": "Creator",
         "title": "Chuyên viên Thiết kế Visual, Video & Sự kiện Workshop",
@@ -265,6 +272,7 @@ DEMO_ACCOUNTS = {
     "CREATOR_3": {
         "id": "12c1e6b1-f808-419c-ab84-b7fe3b64c148",
         "email": "user15@demo.brandhub.test",
+        "alt_emails": ["van.an.webdev@gmail.com"],
         "full_name": "Hà Văn Ân",
         "role": "Creator",
         "title": "Chuyên viên Quan hệ Báo chí (PR) & Email Marketing",
@@ -274,6 +282,7 @@ DEMO_ACCOUNTS = {
     "CLIENT": {
         "id": "b663ffe6-6693-41d3-8df5-27805e4dc8b6",
         "email": "user59@demo.brandhub.test",
+        "alt_emails": ["winhtuan@gmail.com"],
         "full_name": "Ban Tuyển sinh Đại học FPT",
         "role": "Client",
         "title": "Đại diện Truyền thông & Tuyển sinh Trường Đại học FPT",
@@ -283,6 +292,7 @@ DEMO_ACCOUNTS = {
     "ADMIN": {
         "id": "90d56307-940b-4bec-820d-0ba39850041c",
         "email": "admin@demo.brandhub.test",
+        "alt_emails": ["admin@brandhub.com"],
         "full_name": "Quản trị viên BrandHub",
         "role": "Admin",
         "title": "Quản trị Vận hành Nền tảng BrandHub",
@@ -1535,33 +1545,71 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
     try:
         with conn:
             with conn.cursor() as cur:
-                # 1. Cập nhật thông tin chuẩn cho 7 tài khoản (5 thành viên SE_08 + Client ĐH FPT + Admin)
+                # 1. Cập nhật thông tin chuẩn cho 7 tài khoản (hỗ trợ cả DB có sẵn Gmail thật lẫn DB @demo.brandhub.test hoặc DB mới hoàn toàn)
                 # avatar_url là varchar(255) nên dùng đường dẫn tĩnh /demo-assets/..., KHÔNG nhúng data URI base64 (sẽ vượt 255 ký tự).
                 for key, acc in DEMO_ACCOUNTS.items():
                     avatar_url = f"{ASSET_BASE_URL}/avatars/{acc['avatar_file']}"
+                    cand_emails = [acc["email"], *acc.get("alt_emails", [])]
                     cur.execute(
-                        """
-                        UPDATE users
-                        SET full_name = %s,
-                            professional_title = %s,
-                            bio = %s,
-                            avatar_url = %s,
-                            location = 'Đà Nẵng & Hà Nội, Việt Nam',
-                            working_language = 'vi,en',
-                            status = 'ACTIVE',
-                            is_active = TRUE,
-                            two_factor_enabled = FALSE,
-                            require_password_reset = FALSE,
-                            last_login_at = NOW() - INTERVAL '45 minutes',
-                            updated_at = NOW()
-                        WHERE email = %s
-                        RETURNING id;
-                        """,
-                        (acc["full_name"], acc["title"], acc["bio"], avatar_url, acc["email"]),
+                        "SELECT id::text, email FROM users WHERE email = ANY(%s) OR id = %s::uuid ORDER BY CASE WHEN email = %s THEN 0 ELSE 1 END LIMIT 1;",
+                        (cand_emails, acc["id"], acc["email"]),
                     )
-                    row = cur.fetchone()
-                    if row and row[0]:
-                        resolved_ids[key] = str(row[0])
+                    existing_u = cur.fetchone()
+                    if existing_u:
+                        u_id = str(existing_u[0])
+                        resolved_ids[key] = u_id
+                        # Không ghi đè full_name của tài khoản Nguyễn Minh Tuấn khi được dùng chung cho vai trò CLIENT
+                        should_update_profile = not (key == "CLIENT" and u_id == resolved_ids.get("CREATOR_2"))
+                        if should_update_profile:
+                            cur.execute(
+                                """
+                                UPDATE users
+                                SET full_name = %s,
+                                    professional_title = %s,
+                                    bio = %s,
+                                    avatar_url = %s,
+                                    location = 'Đà Nẵng & Hà Nội, Việt Nam',
+                                    working_language = 'vi,en',
+                                    status = 'ACTIVE',
+                                    is_active = TRUE,
+                                    two_factor_enabled = FALSE,
+                                    require_password_reset = FALSE,
+                                    email_verified_at = COALESCE(email_verified_at, NOW() - INTERVAL '90 days'),
+                                    last_login_at = NOW() - INTERVAL '45 minutes',
+                                    updated_at = NOW()
+                                WHERE id = %s::uuid;
+                                """,
+                                (acc["full_name"], acc["title"], acc["bio"], avatar_url, u_id),
+                            )
+                    else:
+                        u_id = acc["id"]
+                        resolved_ids[key] = u_id
+                        cur.execute(
+                            """
+                            INSERT INTO users (
+                                id, email, password_hash, full_name, avatar_url, professional_title, bio,
+                                portfolio_urls, working_language, skills, location, status, is_active,
+                                preferences, last_login_at, email_verified_at, two_factor_enabled,
+                                created_at, updated_at, row_version, session_version, require_password_reset
+                            ) VALUES (
+                                %s::uuid, %s, %s, %s, %s, %s, %s,
+                                '[]'::jsonb, 'vi,en', '[]'::jsonb, 'Đà Nẵng & Hà Nội, Việt Nam', 'ACTIVE', TRUE,
+                                '{}'::jsonb, NOW() - INTERVAL '45 minutes', NOW() - INTERVAL '90 days', FALSE,
+                                NOW() - INTERVAL '90 days', NOW(), 0, 0, FALSE
+                            )
+                            ON CONFLICT (id) DO NOTHING;
+                            """,
+                            (u_id, acc["email"], DEMO_BCRYPT_HASH, acc["full_name"], avatar_url, acc["title"], acc["bio"]),
+                        )
+                    if key == "ADMIN":
+                        cur.execute(
+                            """
+                            INSERT INTO user_system_roles (id, user_id, system_role, granted_by, granted_at)
+                            VALUES (%s::uuid, %s::uuid, 'ADMIN', %s::uuid, NOW() - INTERVAL '90 days')
+                            ON CONFLICT DO NOTHING;
+                            """,
+                            (java_name_uuid_from_bytes(f"sys-role-admin:{resolved_ids[key]}"), resolved_ids[key], resolved_ids[key]),
+                        )
                 resolve_extra_creators(cur, resolved_ids, rename=True)
 
                 owner_id = resolved_ids["OWNER"]
@@ -1883,12 +1931,16 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                 ws_member_rows = [
                     (manager_id, None, "MANAGER"),
                     (creator_id, None, "CREATOR"),
-                    (creator2_id, None, "CREATOR"),
+                    *([] if creator2_id == client_id else [(creator2_id, None, "CREATOR")]),
                     (creator3_id, None, "CREATOR"),
                     (client_id, CLIENT_PROFILE_ID, "CLIENT"),
                     *[(uid, None, "CREATOR") for uid in extra_creator_ids],
                 ]
+                seen_ws_uids: set[str] = set()
                 for uid, cp_id, w_role in ws_member_rows:
+                    if uid in seen_ws_uids:
+                        continue
+                    seen_ws_uids.add(uid)
                     wm_id = java_name_uuid_from_bytes(f"ws-member:{WORKSPACE_ID}:{uid}")
                     cur.execute(
                         """
@@ -1898,7 +1950,12 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         ) VALUES (
                             %s::uuid, %s::uuid, %s::uuid, %s::uuid, %s::workspace_member_role,
                             %s::uuid, NOW() - INTERVAL '45 days', TRUE, NOW() - INTERVAL '45 days', NOW()
-                        );
+                        )
+                        ON CONFLICT (id) DO UPDATE SET
+                            client_profile_id = EXCLUDED.client_profile_id,
+                            role = EXCLUDED.role,
+                            is_active = TRUE,
+                            updated_at = NOW();
                         """,
                         (wm_id, WORKSPACE_ID, uid, cp_id, w_role, owner_id),
                     )
@@ -2886,36 +2943,63 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                             (java_name_uuid_from_bytes(f"ws-member:{cw_id}:{m_uid}"), cw_id, m_uid, m_role, owner_id),
                         )
 
-                # 19. Đồng bộ Gói cước PLUS (1.490.000 VNĐ/tháng khớp Slide 13), Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                # 19. Đồng bộ Gói cước STUDIO (0đ / 99k / 299k) & AGENCY (BASIC 0đ / PLUS 990.000 VNĐ/tháng / ENTERPRISE 3.990.000 VNĐ/tháng khớp Migration SQL & Slide 16), Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                cur.execute("ALTER TABLE agencies ADD COLUMN IF NOT EXISTS company_type VARCHAR(20) NOT NULL DEFAULT 'AGENCY';")
+                cur.execute("ALTER TABLE agencies DROP CONSTRAINT IF EXISTS chk_agencies_company_type;")
+                cur.execute("ALTER TABLE agencies ADD CONSTRAINT chk_agencies_company_type CHECK (company_type IN ('AGENCY', 'PERSONAL'));")
+                cur.execute("ALTER TABLE billing_plan_versions DROP CONSTRAINT IF EXISTS billing_plan_versions_code_check;")
+                cur.execute(
+                    "ALTER TABLE billing_plan_versions ADD CONSTRAINT billing_plan_versions_code_check "
+                    "CHECK (code IN ('PERSONAL', 'BASIC', 'PLUS', 'ENTERPRISE', 'STUDIO_FREE', 'STUDIO_PLUS', 'STUDIO_PRO'));"
+                )
+                cur.execute(
+                    """
+                    INSERT INTO billing_plan_versions (
+                        id, code, version, display_name, price_monthly, currency,
+                        max_active_workspaces, max_internal_members, max_clients,
+                        storage_limit_bytes, monthly_ai_credits, max_concurrent_ai_jobs,
+                        version_retention_days, trash_retention_days, activity_retention_days, features, is_sellable
+                    ) VALUES (
+                        %s::uuid, 'STUDIO_FREE', 1, 'Studio Free', 0, 'VND',
+                        1, 1, 0, 2147483648, 100, 1, 7, 7, 30,
+                        '{"product_line":"STUDIO","newsletter_email_quota":0,"support_level":"STANDARD_TICKET","early_renewal":"NONE","downgrade_allowed":false}'::jsonb,
+                        TRUE
+                    ) ON CONFLICT (code, version) DO NOTHING;
+                    """,
+                    (java_name_uuid_from_bytes("sellable-plan-ver:STUDIO_FREE"),),
+                )
                 sepay_merchant = load_default_sepay_merchant()
-                for p_code, p_disp, p_price, p_ws, p_mem, p_cli, p_store, p_cred, p_conc, p_ver_ret, p_trash_ret, p_act_ret in [
-                    ("PLUS", "Plus", 1490000, 10, 15, 50, 100000000000, 5000, 3, 90, 30, 180),
-                    ("ENTERPRISE", "Enterprise Agency", 5990000, 50, 50, 200, 1000000000000, 25000, 10, 365, 90, 365),
+                for p_code, p_disp, p_price, p_ws, p_mem, p_cli, p_store, p_cred, p_conc, p_ver_ret, p_trash_ret, p_act_ret, p_feat, c3, c6, c12 in [
+                    ("STUDIO_PLUS", "Studio Plus", 99000, 3, 1, 0, 5368709120, 900, 1, 30, 30, 90, '{"product_line":"STUDIO","newsletter_email_quota":0,"support_level":"STANDARD_TICKET","early_renewal":"AGENCY_PLUS_RENEWAL","downgrade_allowed":false}', 279000, 529000, 949000),
+                    ("STUDIO_PRO", "Studio Pro", 299000, 10, 3, 0, 32212254720, 2400, 2, 90, 30, 180, '{"product_line":"STUDIO","newsletter_email_quota":0,"support_level":"STANDARD_TICKET","early_renewal":"AGENCY_PLUS_RENEWAL","downgrade_allowed":false}', 849000, 1599000, 2869000),
+                    ("PLUS", "Plus", 990000, 10, 15, 50, 100000000000, 5000, 3, 90, 30, 180, '{"product_line":"AGENCY","newsletter_email_quota":10000,"support_level":"PRIORITY","early_renewal":"AGENCY_PLUS_RENEWAL","downgrade_allowed":false}', 2790000, 5290000, 9490000),
+                    ("ENTERPRISE", "Enterprise Agency", 3990000, 50, 50, 200, 500000000000, 25000, 10, 365, 90, 365, '{"product_line":"AGENCY","newsletter_email_quota":100000,"support_level":"DEDICATED","early_renewal":"NONE","downgrade_allowed":false}', 11390000, 21490000, 38290000),
                 ]:
                     cur.execute(
-                        "SELECT id, version, price_monthly, features FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
+                        "SELECT id, version, price_monthly, storage_limit_bytes FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
                         (p_code,),
                     )
                     existing_pv = cur.fetchone()
                     if not existing_pv:
+                        new_vid = java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}")
                         cur.execute(
                             """
                             INSERT INTO billing_plan_versions (
                                 id, code, version, display_name, price_monthly, currency,
                                 max_active_workspaces, max_internal_members, max_clients,
                                 storage_limit_bytes, monthly_ai_credits, max_concurrent_ai_jobs,
-                                version_retention_days, trash_retention_days, activity_retention_days, is_sellable
+                                version_retention_days, trash_retention_days, activity_retention_days, features, is_sellable
                             ) VALUES (
                                 %s::uuid, %s,
                                 COALESCE((SELECT MAX(version) FROM billing_plan_versions WHERE code = %s), 0) + 1,
                                 %s, %s, 'VND',
                                 %s, %s, %s,
                                 %s, %s, %s,
-                                %s, %s, %s, TRUE
-                            );
+                                %s, %s, %s, %s::jsonb, TRUE
+                            ) ON CONFLICT (id) DO NOTHING;
                             """,
                             (
-                                java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}"),
+                                new_vid,
                                 p_code,
                                 p_code,
                                 p_disp,
@@ -2929,11 +3013,23 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                                 p_ver_ret,
                                 p_trash_ret,
                                 p_act_ret,
+                                p_feat,
                             ),
                         )
-                    elif p_code == "PLUS" and int(existing_pv[2] or 0) != 1490000:
-                        # billing_plan_versions có trigger immutable: tạo version mới (1.490.000 VNĐ) rồi tắt is_sellable ở version cũ
-                        new_plus_vid = java_name_uuid_from_bytes("sellable-plan-ver:PLUS:1490000")
+                        cur.execute(
+                            """
+                            INSERT INTO billing_plan_cycle_prices (plan_version_id, period_months, price)
+                            VALUES
+                                (%s::uuid, 3, %s),
+                                (%s::uuid, 6, %s),
+                                (%s::uuid, 12, %s)
+                            ON CONFLICT (plan_version_id, period_months) DO NOTHING;
+                            """,
+                            (new_vid, c3, new_vid, c6, new_vid, c12),
+                        )
+                    elif int(existing_pv[2] or 0) != p_price or int(existing_pv[3] or 0) != p_store:
+                        # billing_plan_versions có trigger immutable: tạo version mới theo giá/dung lượng mới rồi tắt is_sellable ở version cũ
+                        new_vid = java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}:{p_price}:{p_store}")
                         cur.execute(
                             """
                             INSERT INTO billing_plan_versions (
@@ -2943,34 +3039,41 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                                 version_retention_days, trash_retention_days, activity_retention_days, features, is_sellable
                             )
                             SELECT %s::uuid, v.code,
-                                   (SELECT COALESCE(MAX(version), 0) + 1 FROM billing_plan_versions WHERE code = 'PLUS'),
-                                   'Plus', 1490000, v.currency,
-                                   v.max_active_workspaces, v.max_internal_members, v.max_clients,
-                                   v.storage_limit_bytes, v.monthly_ai_credits, v.max_concurrent_ai_jobs,
-                                   v.version_retention_days, v.trash_retention_days, v.activity_retention_days, v.features, TRUE
-                            FROM (SELECT * FROM billing_plan_versions WHERE code = 'PLUS' ORDER BY version DESC LIMIT 1) v
+                                   (SELECT COALESCE(MAX(version), 0) + 1 FROM billing_plan_versions WHERE code = %s),
+                                   %s, %s, v.currency,
+                                   %s, %s, %s,
+                                   %s, %s, %s,
+                                   %s, %s, %s, COALESCE(v.features, %s::jsonb), TRUE
+                            FROM (SELECT * FROM billing_plan_versions WHERE code = %s ORDER BY version DESC LIMIT 1) v
                             ON CONFLICT (id) DO NOTHING;
                             """,
-                            (new_plus_vid,),
+                            (
+                                new_vid, p_code, p_disp, p_price,
+                                p_ws, p_mem, p_cli,
+                                p_store, p_cred, p_conc,
+                                p_ver_ret, p_trash_ret, p_act_ret, p_feat,
+                                p_code,
+                            ),
                         )
                         cur.execute(
                             """
                             INSERT INTO billing_plan_cycle_prices (plan_version_id, period_months, price)
                             VALUES
-                                (%s::uuid, 3, 4190000),
-                                (%s::uuid, 6, 7990000),
-                                (%s::uuid, 12, 14290000)
+                                (%s::uuid, 3, %s),
+                                (%s::uuid, 6, %s),
+                                (%s::uuid, 12, %s)
                             ON CONFLICT (plan_version_id, period_months) DO NOTHING;
                             """,
-                            (new_plus_vid, new_plus_vid, new_plus_vid),
+                            (new_vid, c3, new_vid, c6, new_vid, c12),
                         )
                         cur.execute(
                             """
                             UPDATE billing_plan_versions
                             SET is_sellable = FALSE
-                            WHERE code = 'PLUS' AND is_sellable = TRUE
-                              AND version < (SELECT MAX(version) FROM billing_plan_versions WHERE code = 'PLUS');
-                            """
+                            WHERE code = %s AND is_sellable = TRUE
+                              AND version < (SELECT MAX(version) FROM billing_plan_versions WHERE code = %s);
+                            """,
+                            (p_code, p_code),
                         )
                 cur.execute(
                     "SELECT id, price_monthly, monthly_ai_credits FROM billing_plan_versions WHERE code = 'PLUS' AND is_sellable = TRUE ORDER BY version DESC LIMIT 1;"
@@ -2982,9 +3085,9 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                 ent_plan = cur.fetchone()
 
                 if plus_plan:
-                    plus_ver_id, plus_price, plus_credits = str(plus_plan[0]), int(plus_plan[1] or 1490000), int(plus_plan[2] or 5000)
+                    plus_ver_id, plus_price, plus_credits = str(plus_plan[0]), int(plus_plan[1] or 990000), int(plus_plan[2] or 5000)
                     ent_ver_id = str(ent_plan[0]) if ent_plan else plus_ver_id
-                    ent_price = int(ent_plan[1] or 5990000) if ent_plan else 5990000
+                    ent_price = int(ent_plan[1] or 3990000) if ent_plan else 3990000
 
                     # Huỷ các đơn treo cũ trên SE08 để nút Gia hạn/Mua thêm trên /subscription/plans tạo mã VietQR mới ngay lập tức
                     cur.execute(
@@ -5356,8 +5459,8 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
 
     ch_workshop_id = java_name_uuid_from_bytes(f"{WORKSPACE_ID}:ch-workshop-openday-2027")
     ch_internal_id = java_name_uuid_from_bytes(f"{WORKSPACE_ID}:ch-se08-internal-2027")
-    all_chat_members = sorted([owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id])
-    agency_chat_members = sorted([owner_id, manager_id, creator_id, creator2_id, creator3_id])
+    all_chat_members = sorted(set([owner_id, manager_id, creator_id, creator2_id, creator3_id, client_id]))
+    agency_chat_members = sorted(set([u for u in [owner_id, manager_id, creator_id, creator2_id, creator3_id] if u != client_id]))
 
     chat_channels = [
         {
@@ -6107,7 +6210,11 @@ def clean_postgres(pg_uri: str) -> dict[str, str]:
         with conn:
             with conn.cursor() as cur:
                 for key, acc in DEMO_ACCOUNTS.items():
-                    cur.execute("SELECT id::text FROM users WHERE email = %s LIMIT 1;", (acc["email"],))
+                    cand_emails = [acc["email"], *acc.get("alt_emails", [])]
+                    cur.execute(
+                        "SELECT id::text FROM users WHERE email = ANY(%s) OR id = %s::uuid ORDER BY CASE WHEN email = %s THEN 0 ELSE 1 END LIMIT 1;",
+                        (cand_emails, acc["id"], acc["email"]),
+                    )
                     row = cur.fetchone()
                     if row and row[0]:
                         resolved_ids[key] = str(row[0])
