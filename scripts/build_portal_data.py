@@ -233,15 +233,15 @@ DOMAINS = [
     {"code": "3.6", "title": "Content & Workflow", "frCount": 35, "summary": "Task backlog & detail specification, 4 task views (List, Calendar, Gantt, Kanban), multi-stage approval sequence (Creator -> Manager -> Client), Unicode content editor, Material Repository with Google Drive sync & watermarking, Hashtags, Surveys, Mail Templates, and AI Compliance check."},
     {"code": "3.7", "title": "AI Features", "frCount": 19, "summary": "Trending topics & Neo4j Knowledge Graph virality scoring, ChromaDB Brand RAG documents, AI caption/image/video/Virtual Ambassador generation, hashtag trend suggestions, and third-party collaborator recommendations."},
     {"code": "3.8", "title": "Publishing & Social", "frCount": 15, "summary": "OAuth 2.0 / PKCE social account linking, post analytics dashboard, post preview & scheduling, and automated publishing across 4 platforms: Facebook, Instagram, TikTok, and Threads."},
-    {"code": "3.9", "title": "Subscription & Billing", "frCount": 6, "summary": "Subscription plan upgrade flow, SePay / PayOS (VietQR) automated webhook payment verification, invoice history, and workspace/creator AI Credit tracking & top-up."},
+    {"code": "3.9", "title": "Subscription & Billing", "frCount": 6, "summary": "Subscription plan upgrade flow, SePay (VietQR) automated webhook payment verification, invoice history, and workspace/creator AI Credit tracking & top-up."},
     {"code": "3.10", "title": "Admin Functions", "frCount": 14, "summary": "System-wide push notifications, platform KPI statistics, real-time server/service health monitoring, content moderation queue, user strike & status governance, AI Credit price catalog & CSV import, and revenue PDF reporting."},
 ]
 domain_title_map = {d["code"]: d["title"] for d in DOMAINS}
 
 # Fallback screenshot mapping for FRs that don't have an embedded blip inside report3_official.docx
 SCREENSHOT_FALLBACKS = {
-    "3.4.15": r"brandhub-infrastructure\docs\feature\agency-workspace\3-4-13-view-workspace-profile\screenshot.png",
-    "3.4.20": r"brandhub-infrastructure\docs\feature\agency-workspace\3-4-17-save-workspace-template\screenshot.png",
+    "3.4.15": r"brandhub-infrastructure\docs\archive\reports\srs-drafts\03-agency-workspace\3-4-15-view-workspace-profile\screenshot.png",
+    "3.4.20": r"brandhub-infrastructure\docs\archive\reports\srs-drafts\03-agency-workspace\3-4-19-save-workspace-template\screenshot.png",
     "3.5.6": r"brandhub-infrastructure\docs\screenshots\D16\DA-D16-19.png",
     "3.6.1": r"brandhub-infrastructure\docs\screenshots\D16\DA-D16-01.png",
     "3.6.2": r"brandhub-infrastructure\docs\screenshots\D16\DA-D16-02.png",
