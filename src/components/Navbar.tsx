@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, matchPath, useLocation } from 'react-router-dom';
 import {
   Image,
   FileText,
@@ -28,19 +28,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { theme, setTheme, lang, toggleLang, tx } = useAppPreferences();
 
+  const { pathname } = useLocation();
+
   const navItems = [
     {
       to: '/',
       label: tx(`Figures (${totalFigures})`, `Figures (${totalFigures})`),
       shortLabel: 'Figures',
       icon: Image,
-      end: true,
+      paths: ['/', '/figures', '/figures/:figureId', '/reports/:reportId'],
     },
     {
       to: '/frs',
       label: tx(`141 FRs`, `141 FRs`),
       shortLabel: '141 FRs',
       icon: FileText,
+      paths: ['/frs', '/frs/:frCode'],
     },
     {
       to: '/matrices',
@@ -67,13 +70,16 @@ export const Navbar: React.FC<NavbarProps> = ({
       icon: PlayCircle,
     },
   ];
+  const activeItem = navItems.find((item) =>
+    (item.paths ?? [item.to]).some((path) => matchPath(path, pathname))
+  );
 
   return (
     <>
       <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-orange-200/80 dark:border-slate-800 transition-colors">
         <div className="max-w-[1440px] mx-auto px-3 sm:px-4 h-14 flex items-center justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-3 lg:gap-4 min-w-0 flex-1">
-            <NavLink
+            <Link
               to="/"
               className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-base tracking-tight shrink-0 interactive-btn"
             >
@@ -101,28 +107,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Docs
                 </span>
               </span>
-            </NavLink>
+            </Link>
 
             <nav className="hidden md:flex items-center gap-1 min-w-0 overflow-x-auto no-scrollbar py-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
+                const isActive = item === activeItem;
                 return (
-                  <NavLink
+                  <Link
                     key={item.to}
                     to={item.to}
-                    end={item.end}
-                    className={({ isActive }) =>
-                      `interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium shrink-0 cursor-pointer ${
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`interactive-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium shrink-0 cursor-pointer ${
                         isActive
                           ? 'bg-orange-600 text-white shadow-xs'
                           : 'text-slate-600 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800 hover:text-orange-700 dark:hover:text-white'
-                      }`
-                    }
+                    }`}
                   >
-                    <Icon className="w-3.5 h-3.5 shrink-0" />
+                    <Icon className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                     <span className="whitespace-nowrap hidden xl:inline">{item.label}</span>
                     <span className="whitespace-nowrap xl:hidden">{item.shortLabel}</span>
-                  </NavLink>
+                  </Link>
                 );
               })}
             </nav>
@@ -189,26 +194,25 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Bottom Navigation Bar */}
       <nav
         aria-label={tx('Điều hướng di động', 'Mobile navigation')}
-        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-1 py-1 flex items-center justify-around shadow-lg"
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 grid grid-cols-6 pt-1 pb-[calc(0.25rem+env(safe-area-inset-bottom,0px))] pl-[max(0.25rem,env(safe-area-inset-left,0px))] pr-[max(0.25rem,env(safe-area-inset-right,0px))] shadow-lg"
       >
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isActive = item === activeItem;
           return (
-            <NavLink
+            <Link
               key={item.to}
               to={item.to}
-              end={item.end}
-              className={({ isActive }) =>
-                `interactive-btn flex flex-col items-center justify-center py-1.5 px-2 rounded-md text-[11px] font-medium min-w-[60px] ${
+              aria-current={isActive ? 'page' : undefined}
+              className={`interactive-btn flex min-w-0 min-h-11 flex-col items-center justify-center gap-0.5 px-0.5 py-1.5 rounded-md text-[11px] leading-3 text-center font-medium ${
                   isActive
                     ? 'text-orange-600 dark:text-orange-400 bg-orange-50/80 dark:bg-orange-950/50'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                }`
-              }
+              }`}
             >
-              <Icon className="w-4 h-4 mb-0.5" />
-              <span className="truncate">{item.shortLabel}</span>
-            </NavLink>
+              <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span className="max-w-full wrap-anywhere">{item.shortLabel}</span>
+            </Link>
           );
         })}
       </nav>
