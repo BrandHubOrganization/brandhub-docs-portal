@@ -28,7 +28,7 @@ const AppShell: React.FC<{
       {!isStageController && (
         <Navbar
           onOpenSearch={() => setSearchOpen(true)}
-          totalFigures={portalData.projectInfo.totalFigures}
+          totalFigures={portalData.figures.length}
           totalFrs={portalData.projectInfo.totalFrs}
         />
       )}
