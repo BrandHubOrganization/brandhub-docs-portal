@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -21,6 +21,7 @@ import { PortalData } from '../types/portal';
 import { InteractiveImageViewer } from '../components/InteractiveImageViewer';
 import { RoleBadge } from '../components/RoleBadge';
 import { getPortalBaseUrl } from '../components/CopyLinkBar';
+import { ClipboardFeedback, useLinkClipboard } from '../components/ClipboardFeedback';
 import { useAppPreferences } from '../context/AppPreferencesContext';
 import {
   AstryxBadge,
@@ -38,7 +39,7 @@ interface FigureDetailPageProps {
 
 export const FigureDetailPage: React.FC<FigureDetailPageProps> = ({ data }) => {
   const { figureId } = useParams<{ figureId: string }>();
-  const [copied, setCopied] = useState(false);
+  const { copyLink, isCopied, failedUrl } = useLinkClipboard();
   const { tx } = useAppPreferences();
 
   useEffect(() => {
@@ -97,11 +98,8 @@ export const FigureDetailPage: React.FC<FigureDetailPageProps> = ({ data }) => {
   }
 
   const pageUrl = `${getPortalBaseUrl()}/figures/${fig.id}`;
-  const handleCopy = () => {
-    navigator.clipboard.writeText(pageUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
+  const copied = isCopied(fig.id);
+  const manualUrl = failedUrl(fig.id);
 
   return (
     <div className="max-w-6xl mx-auto px-3 sm:px-4 py-5 sm:py-6 space-y-5 sm:space-y-6">
@@ -131,7 +129,7 @@ export const FigureDetailPage: React.FC<FigureDetailPageProps> = ({ data }) => {
             variant="primary"
             size="sm"
             icon={copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-            onClick={handleCopy}
+            onClick={() => copyLink(fig.id, pageUrl)}
           />
 
           {prevFig && (
@@ -155,6 +153,11 @@ export const FigureDetailPage: React.FC<FigureDetailPageProps> = ({ data }) => {
             </Link>
           )}
         </div>
+        {manualUrl && (
+          <div className="min-w-0 basis-full">
+            <ClipboardFeedback url={manualUrl} />
+          </div>
+        )}
       </div>
 
       {/* Title & Metadata */}

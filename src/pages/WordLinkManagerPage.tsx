@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { PortalData } from '../types/portal';
 import { getPortalBaseUrl, setPortalBaseUrl } from '../components/CopyLinkBar';
+import { ClipboardFeedback, useLinkClipboard } from '../components/ClipboardFeedback';
 import { useAppPreferences } from '../context/AppPreferencesContext';
 import {
   AstryxButton,
@@ -31,10 +32,12 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
   const [savedToast, setSavedToast] = useState(false);
   const [selectedReport, setSelectedReport] = useState<string>('all');
   const [query, setQuery] = useState<string>('');
-  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const { copyLink, isCopied, failedUrl } = useLinkClipboard();
   const { tx } = useAppPreferences();
 
   const activeBase = baseUrlInput.trim().replace(/\/+$/, '') || getPortalBaseUrl();
+  const reportScope = data.reports.find((report) => report.id === selectedReport)?.code
+    ?? tx('Tất cả báo cáo', 'All reports');
 
   const handleSaveBaseUrl = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,10 +59,30 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
     });
   }, [data.figures, selectedReport, query]);
 
-  const copyText = (key: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedKey(key);
-    setTimeout(() => setCopiedKey(null), 1500);
+  const reportCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const figure of data.figures) {
+      counts.set(figure.reportId, (counts.get(figure.reportId) ?? 0) + 1);
+    }
+    return counts;
+  }, [data.figures]);
+
+  const renderCopyButton = (key: string, url: string, label: string) => {
+    const copied = isCopied(key);
+    return (
+      <button
+        type="button"
+        onClick={() => copyLink(key, url)}
+        className="interactive-btn inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded border border-slate-200 px-2 py-1 text-xs text-slate-700 dark:border-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 cursor-pointer"
+      >
+        {copied ? (
+          <Check aria-hidden="true" className="w-3 h-3 text-emerald-600" />
+        ) : (
+          <Copy aria-hidden="true" className="w-3 h-3 text-orange-600 dark:text-orange-400" />
+        )}
+        <span>{copied ? tx('Đã copy', 'Copied') : label}</span>
+      </button>
+    );
   };
 
   const handleDownloadCsv = () => {
@@ -136,12 +159,12 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
           onSubmit={handleSaveBaseUrl}
           className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-orange-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
         >
-          <div className="inline-flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+          <div className="inline-flex min-w-0 items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
             <Globe className="w-4 h-4 text-orange-600 dark:text-orange-400 shrink-0" />
             <span>
-              <strong className="text-slate-900 dark:text-white">
+              <label htmlFor="portal-base-url" className="font-semibold text-slate-900 dark:text-white">
                 {tx('Tên miền gốc (Base URL):', 'Portal Base URL:')}
-              </strong>{' '}
+              </label>{' '}
               {tx(
                 'Nhập domain sau khi deploy (VD:',
                 'Enter your deployed domain (e.g.,'
@@ -153,18 +176,20 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
               )}
             </span>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-72 sm:shrink-0 sm:flex-nowrap">
             <input
+              id="portal-base-url"
               type="text"
               value={baseUrlInput}
               onChange={(e) => setBaseUrlInput(e.target.value)}
-              className="w-full sm:w-72 px-3 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-orange-600"
+              className="min-w-0 flex-[1_1_10rem] px-3 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-orange-600"
             />
             <AstryxButton
               type="submit"
               label={savedToast ? tx('Đã lưu', 'Saved') : tx('Lưu', 'Save')}
               variant="primary"
               size="sm"
+              className="shrink-0"
               icon={savedToast ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
             />
           </div>
@@ -187,7 +212,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
                 <AstryxTab
                   key={rep.id}
                   value={rep.id}
-                  label={`${rep.code} (${rep.figureCount})`}
+                  label={`${rep.code} (${reportCounts.get(rep.id) ?? 0})`}
                 />
               ))}
             </AstryxTabList>
@@ -197,6 +222,7 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
+              aria-label={tx('Tìm Figure', 'Search figures')}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={tx(
@@ -207,6 +233,12 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
             />
           </div>
         </div>
+        <p role="status" className="text-xs text-slate-600 dark:text-slate-300">
+          {tx(
+            `${reportScope} · ${filteredFigures.length} kết quả`,
+            `${reportScope} · ${filteredFigures.length} results`
+          )}
+        </p>
       </div>
 
       {/* Links Table */}
@@ -215,14 +247,17 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="bg-orange-50/40 dark:bg-slate-800/70 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
-                <th className="py-2.5 px-3 w-28">{tx('Mã Figure', 'Figure ID')}</th>
-                <th className="py-2.5 px-3">
+                <th scope="col" className="hidden w-28 px-3 py-2.5 sm:table-cell">{tx('Mã Figure', 'Figure ID')}</th>
+                <th scope="col" className="py-2.5 px-3">
                   {tx('Caption trong Word', 'Word Caption')}
                 </th>
-                <th className="py-2.5 px-3">
-                  {tx('Link Trang Web (Gắn vào Word)', 'Portal Deep-Link (For Word)')}
+                <th scope="col" className="py-2.5 px-3">
+                  <span className="sm:hidden">{tx('Link Word', 'Word Link')}</span>
+                  <span className="hidden sm:inline">
+                    {tx('Link Trang Web (Gắn vào Word)', 'Portal Deep-Link (For Word)')}
+                  </span>
                 </th>
-                <th className="py-2.5 px-3 w-36 text-right hidden sm:table-cell">
+                <th scope="col" className="py-2.5 px-3 w-36 text-right hidden sm:table-cell">
                   {tx('Ảnh Cloudinary', 'Cloudinary Image')}
                 </th>
               </tr>
@@ -230,75 +265,57 @@ export const WordLinkManagerPage: React.FC<WordLinkManagerPageProps> = ({ data }
             <tbody className="divide-y divide-slate-200 dark:divide-slate-800 tabular-nums">
               {filteredFigures.map((fig) => {
                 const portalUrl = `${activeBase}/figures/${fig.id}`;
+                const portalKey = `portal-${fig.id}`;
+                const cloudKey = `cloud-${fig.id}`;
+                const manualUrl = failedUrl(portalKey) ?? failedUrl(cloudKey);
                 return (
-                  <tr
-                    key={fig.id}
-                    className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
-                  >
-                    <td className="py-2.5 px-3 font-mono text-xs whitespace-nowrap">
-                      <AstryxCode>{fig.id}</AstryxCode>
-                    </td>
-                    <td className="py-2.5 px-3">
-                      <Link
-                        to={`/figures/${fig.id}`}
-                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
-                      >
-                        {fig.caption}
-                      </Link>
-                    </td>
-                    <td className="py-2.5 px-3">
-                      <div className="flex items-center gap-2">
-                        <code className="font-mono text-xs text-slate-600 dark:text-slate-400 truncate max-w-[160px] sm:max-w-[260px]">
-                          {portalUrl}
-                        </code>
-                        <button
-                          onClick={() => copyText(`portal-${fig.id}`, portalUrl)}
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs shrink-0 cursor-pointer"
+                  <React.Fragment key={fig.id}>
+                    <tr
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors"
+                    >
+                      <td className="hidden py-2.5 px-3 font-mono text-xs whitespace-nowrap sm:table-cell">
+                        <AstryxCode>{fig.id}</AstryxCode>
+                      </td>
+                      <td className="py-2.5 px-3">
+                        <div className="mb-1 sm:hidden"><AstryxCode>{fig.id}</AstryxCode></div>
+                        <Link
+                          to={`/figures/${fig.id}`}
+                          className="font-medium [overflow-wrap:anywhere] text-slate-900 dark:text-slate-100 hover:text-orange-600 dark:hover:text-orange-400 hover:underline"
                         >
-                          {copiedKey === `portal-${fig.id}` ? (
-                            <>
-                              <Check className="w-3 h-3 text-emerald-600" />
-                              <span>{tx('Đã copy', 'Copied')}</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
-                              <span>{tx('Copy link', 'Copy')}</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-3 text-right whitespace-nowrap hidden sm:table-cell">
-                      <div className="inline-flex items-center gap-1.5 text-xs">
-                        <a
-                          href={fig.imageUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
-                        >
-                          <ExternalLink className="w-3 h-3 text-slate-500 dark:text-slate-400" />
-                          <span>{tx('Mở ảnh', 'Open')}</span>
-                        </a>
-                        <button
-                          onClick={() => copyText(`cloud-${fig.id}`, fig.imageUrl)}
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer"
-                        >
-                          {copiedKey === `cloud-${fig.id}` ? (
-                            <>
-                              <Check className="w-3 h-3 text-emerald-600" />
-                              <span>{tx('Đã copy', 'Copied')}</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
-                              <span>Copy URL</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                          {fig.caption}
+                        </Link>
+                      </td>
+                      <td className="w-px py-2.5 px-3 sm:w-auto">
+                        <div className="flex items-center justify-end gap-2 sm:justify-start">
+                          <code className="hidden font-mono text-xs text-slate-600 dark:text-slate-400 truncate max-w-[260px] sm:block">
+                            {portalUrl}
+                          </code>
+                          {renderCopyButton(portalKey, portalUrl, 'Copy link')}
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-3 text-right whitespace-nowrap hidden sm:table-cell">
+                        <div className="inline-flex items-center gap-1.5 text-xs">
+                          <a
+                            href={fig.imageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
+                          >
+                            <ExternalLink className="w-3 h-3 text-slate-500 dark:text-slate-400" />
+                            <span>{tx('Mở ảnh', 'Open')}</span>
+                          </a>
+                          {renderCopyButton(cloudKey, fig.imageUrl, 'Copy URL')}
+                        </div>
+                      </td>
+                    </tr>
+                    {manualUrl && (
+                      <tr>
+                        <td colSpan={4} className="px-3 pb-3">
+                          <ClipboardFeedback url={manualUrl} />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 );
               })}
             </tbody>
