@@ -16,6 +16,7 @@ import {
 import type { PortalData, CanonicalRole } from '../types/portal';
 import { RoleBadge, CANONICAL_ROLES } from '../components/RoleBadge';
 import { getPortalBaseUrl } from '../components/CopyLinkBar';
+import { ClipboardFeedback, useLinkClipboard } from '../components/ClipboardFeedback';
 import { useAppPreferences } from '../context/AppPreferencesContext';
 import {
   AstryxBadge,
@@ -50,7 +51,7 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
   );
   const [query, setQuery] = useState<string>(searchParams.get('q') || '');
   const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { copyLink, isCopied, failedUrl } = useLinkClipboard();
   const [visibleCount, setVisibleCount] = useState<number>(60);
 
   useEffect(() => {
@@ -84,14 +85,8 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
     });
   }, [data.figures, selectedReport, selectedDomain, selectedRole, query]);
 
-  const handleCopyDeepLink = (e: React.MouseEvent, figId: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const url = `${getPortalBaseUrl()}/figures/${figId}`;
-    navigator.clipboard.writeText(url);
-    setCopiedId(figId);
-    setTimeout(() => setCopiedId(null), 1500);
-  };
+  const handleCopyDeepLink = (figId: string) =>
+    copyLink(figId, `${getPortalBaseUrl()}/figures/${figId}`);
 
   const resetFilters = () => {
     setSelectedReport(routeReportId || 'all');
@@ -284,71 +279,81 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
               </thead>
               <tbody className="divide-y divide-slate-200 dark:divide-slate-800 tabular-nums">
                 {filteredFigures.slice(0, visibleCount).map((fig) => (
-                  <tr
-                    key={fig.id}
-                    className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors group"
-                  >
-                    <td className="py-2.5 px-3 font-mono text-xs whitespace-nowrap align-top">
-                      <AstryxCode>{fig.id}</AstryxCode>
-                    </td>
-                    <td className="py-2.5 px-3 text-xs whitespace-nowrap align-top hidden sm:table-cell">
-                      <AstryxBadge label={fig.reportId.toUpperCase()} variant="orange" />
-                    </td>
-                    <td className="py-2.5 px-3 align-top">
-                      <Link
-                        to={`/figures/${fig.id}`}
-                        className="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 hover:underline block transition-colors"
-                      >
-                        {fig.caption}
-                      </Link>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5 text-pretty">
-                        {fig.viSummary || fig.summary}
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-1.5 md:hidden">
-                        {fig.actors?.map((actor) => (
-                          <RoleBadge key={actor} role={actor} size="sm" />
-                        ))}
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-3 align-top hidden md:table-cell">
-                      <div className="flex flex-wrap gap-1">
-                        {fig.actors?.map((actor) => (
-                          <RoleBadge key={actor} role={actor} size="sm" />
-                        ))}
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-3 text-right whitespace-nowrap align-top">
-                      <div className="inline-flex items-center gap-1.5">
-                        <button
-                          onClick={(e) => handleCopyDeepLink(e, fig.id)}
-                          className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs cursor-pointer"
-                        >
-                          {copiedId === fig.id ? (
-                            <>
-                              <Check className="w-3 h-3 text-emerald-600" />
-                              <span className="hidden sm:inline">
-                                {tx('Đã copy', 'Copied')}
-                              </span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
-                              <span className="hidden sm:inline">
-                                {tx('Copy link', 'Copy')}
-                              </span>
-                            </>
-                          )}
-                        </button>
+                  <React.Fragment key={fig.id}>
+                    <tr
+                      className="hover:bg-orange-50/30 dark:hover:bg-slate-800/50 transition-colors group"
+                    >
+                      <td className="py-2.5 px-3 font-mono text-xs whitespace-nowrap align-top">
+                        <AstryxCode>{fig.id}</AstryxCode>
+                      </td>
+                      <td className="py-2.5 px-3 text-xs whitespace-nowrap align-top hidden sm:table-cell">
+                        <AstryxBadge label={fig.reportId.toUpperCase()} variant="orange" />
+                      </td>
+                      <td className="py-2.5 px-3 align-top">
                         <Link
                           to={`/figures/${fig.id}`}
-                          className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded bg-orange-600 hover:bg-orange-700 text-white text-xs font-medium shadow-2xs"
+                          className="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 hover:underline block transition-colors"
                         >
-                          <span>{tx('Mở', 'Open')}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
+                          {fig.caption}
                         </Link>
-                      </div>
-                    </td>
-                  </tr>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5 text-pretty">
+                          {fig.viSummary || fig.summary}
+                        </p>
+                        <div className="flex flex-wrap gap-1 mt-1.5 md:hidden">
+                          {fig.actors?.map((actor) => (
+                            <RoleBadge key={actor} role={actor} size="sm" />
+                          ))}
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-3 align-top hidden md:table-cell">
+                        <div className="flex flex-wrap gap-1">
+                          {fig.actors?.map((actor) => (
+                            <RoleBadge key={actor} role={actor} size="sm" />
+                          ))}
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-3 text-right whitespace-nowrap align-top">
+                        <div className="inline-flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            aria-label={isCopied(fig.id) ? tx('Đã copy', 'Copied') : tx('Copy link', 'Copy')}
+                            onClick={() => handleCopyDeepLink(fig.id)}
+                            className="interactive-btn inline-flex items-center gap-1 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs cursor-pointer"
+                          >
+                            {isCopied(fig.id) ? (
+                              <>
+                                <Check className="w-3 h-3 text-emerald-600" />
+                                <span className="hidden sm:inline">
+                                  {tx('Đã copy', 'Copied')}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3 h-3 text-orange-600 dark:text-orange-400" />
+                                <span className="hidden sm:inline">
+                                  {tx('Copy link', 'Copy')}
+                                </span>
+                              </>
+                            )}
+                          </button>
+                          <Link
+                            to={`/figures/${fig.id}`}
+                            className="interactive-btn inline-flex items-center gap-1 px-2.5 py-1 rounded bg-orange-600 hover:bg-orange-700 text-white text-xs font-medium shadow-2xs"
+                          >
+                            <span>{tx('Mở', 'Open')}</span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                    {failedUrl(fig.id) && (
+                      <tr>
+                        <td colSpan={5} className="px-3 pb-3">
+                          <ClipboardFeedback url={failedUrl(fig.id)} />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>
@@ -357,10 +362,9 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredFigures.slice(0, visibleCount).map((fig) => (
-            <Link
+            <article
               key={fig.id}
-              to={`/figures/${fig.id}`}
-              className="interactive-card group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md flex flex-col"
+              className="interactive-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md flex flex-col"
             >
               <div className="aspect-[16/10] bg-white border-b border-slate-200 dark:border-slate-800 flex items-center justify-center p-2 relative">
                 <img
@@ -370,10 +374,11 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
                   className="max-h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 />
                 <button
-                  onClick={(e) => handleCopyDeepLink(e, fig.id)}
-                  className="interactive-btn absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-1 rounded bg-white/95 dark:bg-slate-900/95 hover:bg-orange-600 dark:hover:bg-orange-600 text-slate-700 dark:text-slate-200 hover:text-white border border-slate-200 dark:border-slate-700 text-[11px] font-medium cursor-pointer shadow-xs"
+                  type="button"
+                  onClick={() => handleCopyDeepLink(fig.id)}
+                  className="interactive-btn absolute top-2 right-2 z-10 inline-flex items-center gap-1 px-2 py-1 rounded bg-white/95 dark:bg-slate-900/95 hover:bg-orange-600 dark:hover:bg-orange-600 text-slate-700 dark:text-slate-200 hover:text-white border border-slate-200 dark:border-slate-700 text-[11px] font-medium cursor-pointer shadow-xs"
                 >
-                  {copiedId === fig.id ? (
+                  {isCopied(fig.id) ? (
                     <>
                       <Check className="w-3 h-3" />
                       <span>{tx('Đã copy', 'Copied')}</span>
@@ -394,7 +399,9 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
                     <AstryxCode>{fig.id}</AstryxCode>
                   </div>
                   <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 group-hover:underline line-clamp-2">
-                    {fig.caption}
+                    <Link to={`/figures/${fig.id}`} className="after:absolute after:inset-0">
+                      {fig.caption}
+                    </Link>
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 text-pretty">
                     {fig.viSummary || fig.summary}
@@ -413,7 +420,12 @@ export const FiguresCatalogPage: React.FC<FiguresCatalogPageProps> = ({ data }) 
                   </span>
                 </div>
               </div>
-            </Link>
+              {failedUrl(fig.id) && (
+                <div className="relative z-10 px-3.5 pb-3.5">
+                  <ClipboardFeedback url={failedUrl(fig.id)} />
+                </div>
+              )}
+            </article>
           ))}
         </div>
       )}

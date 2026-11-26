@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, Image, FileText, ArrowRight } from 'lucide-react';
 import { PortalData } from '../types/portal';
 import { useAppPreferences } from '../context/AppPreferencesContext';
-import { AstryxBadge, AstryxButton, AstryxCard, AstryxCode } from './astryx';
+import { AstryxBadge, AstryxButton, AstryxCard, AstryxCode, BhEmptyState } from './astryx';
 
 interface GlobalSearchModalProps {
   isOpen: boolean;
@@ -58,6 +58,9 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
 
   if (!isOpen) return null;
 
+  const hasNoResults =
+    query.trim().length > 0 && results.figures.length === 0 && results.frs.length === 0;
+
   const go = (path: string) => {
     navigate(path);
     onClose();
@@ -78,6 +81,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               <Search className="w-4 h-4 text-orange-600 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
+                aria-label={tx('Tìm kiếm tài liệu', 'Search documentation')}
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -97,6 +101,18 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
           </div>
 
           <div className="max-h-[65dvh] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 text-xs">
+            <div role="status" className={hasNoResults ? 'p-3' : 'sr-only'}>
+              {hasNoResults && (
+                <BhEmptyState
+                  isCompact
+                  title={tx('Không tìm thấy kết quả', 'No results found')}
+                  description={tx(
+                    'Thử nhập số Figure, mã FR hoặc tên chức năng khác.',
+                    'Try another Figure number, FR code, or function name.'
+                  )}
+                />
+              )}
+            </div>
             {results.figures.length > 0 && (
               <div className="p-3 space-y-1">
                 <div className="inline-flex items-center gap-1.5 font-semibold text-slate-500 dark:text-slate-400 px-2 pb-1">

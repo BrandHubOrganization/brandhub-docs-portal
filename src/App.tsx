@@ -28,14 +28,14 @@ const AppShell: React.FC<{
       {!isStageController && (
         <Navbar
           onOpenSearch={() => setSearchOpen(true)}
-          totalFigures={portalData.projectInfo.totalFigures}
+          totalFigures={portalData.figures.length}
           totalFrs={portalData.projectInfo.totalFrs}
         />
       )}
 
       <main
         key={location.pathname}
-        className={isStageController ? 'flex-1' : 'flex-1 animate-page-in pb-16 md:pb-0'}
+        className={isStageController ? 'flex-1' : 'flex-1 animate-page-in pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0'}
       >
         <Routes location={location}>
           <Route path="/" element={<FiguresCatalogPage data={portalData} />} />

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Copy, Check, Link2, ExternalLink } from 'lucide-react';
 import { AstryxButton, AstryxCard, AstryxCode } from './astryx';
+import { ClipboardFeedback, useLinkClipboard } from './ClipboardFeedback';
 
 interface CopyLinkBarProps {
   path: string;
@@ -23,23 +24,12 @@ export function setPortalBaseUrl(url: string): void {
 }
 
 export const CopyLinkBar: React.FC<CopyLinkBarProps> = ({ path, label, cloudinaryUrl }) => {
-  const [copiedPage, setCopiedPage] = useState(false);
-  const [copiedImg, setCopiedImg] = useState(false);
+  const { copyLink, isCopied, failedUrl } = useLinkClipboard();
+  const copiedPage = isCopied('page');
+  const copiedImg = isCopied('image');
 
   const fullUrl = `${getPortalBaseUrl()}${path.startsWith('/') ? path : '/' + path}`;
-
-  const handleCopyPage = () => {
-    navigator.clipboard.writeText(fullUrl);
-    setCopiedPage(true);
-    setTimeout(() => setCopiedPage(false), 2000);
-  };
-
-  const handleCopyImg = () => {
-    if (!cloudinaryUrl) return;
-    navigator.clipboard.writeText(cloudinaryUrl);
-    setCopiedImg(true);
-    setTimeout(() => setCopiedImg(false), 2000);
-  };
+  const manualUrl = failedUrl('page') ?? failedUrl('image');
 
   return (
     <AstryxCard
@@ -61,13 +51,13 @@ export const CopyLinkBar: React.FC<CopyLinkBarProps> = ({ path, label, cloudinar
         </div>
       </div>
 
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex flex-wrap items-center gap-2">
         <AstryxButton
           label={copiedPage ? 'Đã Copy Link Trang!' : 'Copy Link gắn Word'}
           variant="primary"
           size="sm"
           icon={copiedPage ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-          onClick={handleCopyPage}
+          onClick={() => copyLink('page', fullUrl)}
         />
 
         {cloudinaryUrl && (
@@ -82,10 +72,15 @@ export const CopyLinkBar: React.FC<CopyLinkBarProps> = ({ path, label, cloudinar
                 <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
               )
             }
-            onClick={handleCopyImg}
+            onClick={() => copyLink('image', cloudinaryUrl)}
           />
         )}
       </div>
+      {manualUrl && (
+        <div className="min-w-0 basis-full">
+          <ClipboardFeedback url={manualUrl} />
+        </div>
+      )}
     </AstryxCard>
   );
 };
