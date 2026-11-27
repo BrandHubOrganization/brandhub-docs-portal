@@ -71,7 +71,7 @@
       <div class="space-y-1.5">
         <h3 class="text-base font-bold text-slate-900">Khôi phục toàn bộ dữ liệu mẫu chuẩn Bước B1?</h3>
         <p class="text-xs text-slate-600 leading-relaxed">
-          Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 18 bài đăng) để sẵn sàng thuyết trình ngay.
+          Hệ thống sẽ dọn sạch các thao tác vừa chạy thử và nạp lại trọn bộ kịch bản Chiến dịch Tuyển sinh ĐH FPT 2027 (4 tuần, 7 gói đa ngành, 20 công việc, 13 bài đăng) để sẵn sàng thuyết trình ngay.
         </p>
       </div>
       <div class="flex items-center justify-end gap-2 pt-1">
@@ -181,7 +181,7 @@
       </div>
     </div>
 
-    <!-- Compact 5-Role Strip -->
+    <!-- Compact 6-Role Strip -->
     <div class="bg-slate-50 border-t border-slate-200">
       <div class="max-w-[1600px] mx-auto px-4 py-1.5 flex items-center justify-between gap-2 overflow-x-auto">
         <div id="roles-bar" class="flex items-center gap-1.5 min-w-0"></div>
@@ -199,9 +199,9 @@
 
   </header>
 
-  <!-- Main Layout: Sidebar dọc 15 bước bên trái + nội dung bước hiện tại bên phải -->
+  <!-- Main Layout: Sidebar dọc 12 bước bên trái + nội dung bước hiện tại bên phải -->
   <div class="flex items-start">
-    <nav id="stage-rail-wrap" aria-label="Danh sách 15 bước demo" class="hidden lg:block w-[280px] shrink-0 self-start sticky top-0 max-h-dvh overflow-y-auto border-r border-slate-200 bg-white">
+    <nav id="stage-rail-wrap" aria-label="Danh sách 12 bước demo" class="hidden lg:block w-[280px] shrink-0 self-start sticky top-0 max-h-dvh overflow-y-auto border-r border-slate-200 bg-white">
       <div id="stage-rail" class="divide-y divide-slate-100"></div>
     </nav>
 
@@ -212,7 +212,7 @@
         <div id="step-fields-wrap"></div>
         <details class="p-4 bg-white border border-slate-200 shadow-xs">
           <summary class="text-xs sm:text-sm font-bold text-slate-900 cursor-pointer flex items-center justify-between">
-            <span>Truy cập nhanh Q&amp;A Hội đồng: 14 Màn hình Chuyên sâu (Event, Workshop, PR, KOL, AI Studio, Client Vault)</span>
+            <span>Truy cập nhanh Q&amp;A Hội đồng: 20 Màn hình Chuyên sâu (TVC AI, Video Space, Event, Workshop, PR, KOL, Trends, Client Vault)</span>
             <span class="px-2 py-0.5 text-[11px] font-semibold bg-orange-50 text-orange-800 border border-orange-200">1 chạm mở đúng vai trò</span>
           </summary>
           <div id="qa-quick-grid" class="pt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"></div>
@@ -346,8 +346,8 @@
         fr: "FR 3.6.3, 3.6.11, 3.6.25, 3.7.1 - 3.7.2",
         role: "Creator",
         actor: "Nguyễn Chơn Phước",
-        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
-        cue: "Bấm Tiếp lần lượt: [1] Mở việc [Tuần 3 - Bài trọng điểm] → [2] Mở Trình soạn thảo /editor → [3] Xem Key Visual Gemini trong Kho tài nguyên → [4] Điền form AI tạo caption → [5] Tạo caption & Chèn vào bài. Không cần thao tác tay.",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228&step=caption",
+        cue: "Bấm Tiếp lần lượt: [1] Mở việc [Tuần 3 - Bài trọng điểm] → [2] Mở Trình soạn thảo /editor (4 bước) → [3] Xem Key Visual Gemini ở bước Sản xuất → [4] Điền form AI tạo caption → [5] Tạo caption & Chèn vào bài. Không cần thao tác tay.",
         points: [
           "/editor tách bài thành 4 phần độc lập: Brief, Hình ảnh, Kênh đăng, Nội dung.",
           "Gemini tạo 3 phương án caption theo Mục tiêu, Giọng điệu, Nền tảng, Độ dài; chèn phương án 1 vào bài.",
@@ -375,7 +375,7 @@
         fr: "FR 3.6.33, 3.6.18",
         role: "Creator",
         actor: "Nguyễn Chơn Phước",
-        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228&step=caption",
         cue: "Bấm Tiếp lần lượt: [1] Chèn câu vi phạm & xem cảnh báo → [2] Điền bản sạch v1 → [3] Định dạng chữ → [4] Nhập bộ hashtag → [5] Nộp phần Nội dung (v1). Không cần thao tác tay.",
         points: [
           "Chèn câu bắt nạt/bạo lực: hệ thống tự kiểm tra sau 3 giây và gắn cảnh báo.",
@@ -457,7 +457,7 @@
         fr: "FR 3.6.11, 3.6.18",
         role: "Creator",
         actor: "Nguyễn Chơn Phước",
-        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228",
+        route: "/workspaces/b47477c4-13ad-44ff-8c49-f73f1837461b/editor?taskId=c6453698-cf56-38c1-96d2-90ccdd985228&step=caption",
         cue: "Bấm Tiếp lần lượt: [1] Mở /editor xem góp ý → [2] Bổ sung Học bổng 50%-100% & OJT (v2) → [3] Nộp lại phần Nội dung (v2) → [4] Mở Diff v1 / v2. Không cần thao tác tay.",
         points: [
           "Góp ý hiện ngay trên phần Nội dung.",
@@ -533,25 +533,25 @@
         time: "17:00 - 18:30",
         shortTitle: "SePay VietQR",
         stage: "Giai đoạn 4: Thanh toán SePay (VietQR) & Quản trị",
-        title: "Owner thanh toán Agency Plus · 1 tháng qua SePay (VietQR)",
-        fr: "FR 3.9.1 - 3.9.4",
+        title: "Owner nạp lẻ 10 Credits (2.000đ) & đối soát gói Agency Plus (990k) qua SePay (VietQR)",
+        fr: "FR 3.9.1 - 3.9.6",
         role: "Owner",
         actor: "Lê Trí Trung",
         route: "/subscription/plans",
-        cue: "Bấm Tiếp lần lượt: [1] Chọn Plus · 1 tháng → VietQR → [2] SePay xác nhận thanh toán. Không cần thao tác tay.",
+        cue: "Bấm Tiếp lần lượt: [1] Nạp lẻ 10 Credits (2.000đ) sinh VietQR thật → [2] Chọn Agency Plus · 1 tháng (990k) → [3] SePay xác nhận thanh toán.",
         points: [
-          "Chọn chu kỳ 1 tháng, hệ thống sinh mã VietQR động qua SePay.",
-          "SePay gửi webhook xác nhận, gói được ghi nhận tự động.",
+          "6 gói cước chuẩn Slide 10: Studio (0đ / 99k / 299k tối đa 3 thành viên) & Agency (0đ / Plus 990k / Enterprise 3.990k).",
+          "Sinh mã VietQR động nạp lẻ 10 AI Credits = 2.000 VNĐ (quét thật được ngay) và đối soát tự động qua Webhook SePay.",
         ],
-        script: "Owner chọn Agency Plus 1 tháng, hệ thống sinh mã VietQR; khi SePay xác nhận chuyển khoản, gói được kích hoạt tự động.",
-        outcome: "Popup thanh toán chuyển trạng thái Đã ghi nhận.",
+        script: "Owner kiểm tra bảng giá 6 gói Studio & Agency chuẩn Slide 10, sinh mã VietQR nạp lẻ 10 AI Credits (2.000 VNĐ) và đối soát thanh toán tự động qua Webhook SePay.",
+        outcome: "Hệ thống ghi nhận thanh toán SePay và cộng hạn mức tự động.",
         actions: [
           { id: "CREDIT_TOPUP_10", label: "Nạp lẻ 10 Credits (2.000đ) → VietQR thật", desc: "Tự mở /credit, nhập 10 Credits & sinh VietQR 2.000đ" },
           { id: "PLAN_CHECKOUT", label: "Chọn Agency Plus · 1 tháng (990k) → VietQR", desc: "Tự chọn chu kỳ & bấm Nâng cấp/Gia hạn Agency Plus" },
           { id: "SEPAY_PAY", label: "SePay xác nhận thanh toán", desc: "Đối soát Webhook SePay, chờ trang cập nhật" },
         ],
         fields: [
-          { name: "Bảng giá & Nạp lẻ", type: 'Tự điền', value: "Agency Plus: 990.000 VND/tháng (Enterprise 3.990.000đ) · Studio: 0đ/99k/299k · Nạp lẻ 10 Credits = 2.000 VND" },
+          { name: "Bảng giá & Nạp lẻ", type: 'Tự điền', value: "Agency Plus: 990.000 VND/tháng (Enterprise 3.990.000đ) · Studio: 0đ/99k/299k (Pro 3 TV) · Nạp lẻ 10 Credits = 2.000 VND" },
         ],
       },
       {
@@ -583,12 +583,15 @@
 
     const QA_LINKS = [
       { id: 'QA_VIDEO_EDITOR', label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', desc: 'Kịch bản, Quay, Dựng & Caption' },
+      { id: 'QA_AI_PRODUCT_VIDEO', label: 'AI TVC Sản phẩm (/product-video)', role: 'Creator', desc: 'Wan 2.2 VACE + Qwen Image tạo TVC' },
+      { id: 'QA_VIDEO_SPACE', label: 'Trình dựng Video Space (/video-space)', role: 'Creator', desc: 'Timeline đa lớp âm thanh & phụ đề' },
       { id: 'QA_EVENT_EDITOR', label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', desc: '5 phân khu sự kiện lớn + Runsheet' },
       { id: 'QA_WORKSHOP_EDITOR', label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', desc: 'Diễn giả, Lịch trình & Phiếu đăng ký' },
       { id: 'QA_PRESS_EDITOR', label: 'PR Báo chí VnExpress (/press)', role: 'Creator', desc: 'Thông cáo báo chí & Liên hệ phóng viên' },
       { id: 'QA_KOL_EDITOR', label: 'Booking KOL Schannel (/kol)', role: 'Creator', desc: 'Shortlist, Chi phí & Báo cáo nghiệm thu' },
       { id: 'QA_NEWSLETTER_EDITOR', label: 'Bản tin Email (/newsletter)', role: 'Creator', desc: 'Thiết kế khối Email Cẩm nang 2027' },
       { id: 'QA_AI_TRENDS', label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', desc: '6 xu hướng tuyển sinh trực tiếp từ Redis' },
+      { id: 'QA_WORKSPACE_TRENDS', label: 'Xu hướng Brand DNA & KOL (/trends)', role: 'Manager', desc: 'Chấm điểm Trend Fit & Tìm kiếm KOL' },
       { id: 'QA_AI_RAG', label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', desc: 'Tài liệu quy chế & học bổng ĐH FPT' },
       { id: 'QA_AI_AMBASSADORS', label: 'AI Đại sứ ảo (/ai-studio/ambassadors)', role: 'Creator', desc: 'Nhân vật Minh Anh & Hoàng Khôi K23' },
       { id: 'QA_CLIENT_PORTAL', label: 'Cổng Khách hàng (/portal)', role: 'Client', desc: '2 hạng mục Open Day chờ ĐH FPT duyệt' },
@@ -596,43 +599,17 @@
       { id: 'QA_COLLABORATORS', label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', desc: '6 đối tác ĐH FPT + 4 đối tác đa ngành' },
       { id: 'QA_PUBLIC_PACKAGE', label: 'Link Chào giá Gói (Guest)', role: 'Guest', desc: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
       { id: 'QA_PUBLIC_SURVEY', label: 'Link Khảo sát THPT (Guest)', role: 'Guest', desc: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { id: 'QA_PUBLIC_ACADEMY', label: 'BrandHub Academy (Guest)', role: 'Guest', desc: 'Học viện & Trung tâm Tri thức SEO/GEO' },
+      { id: 'QA_ADMIN_PLANS', label: 'Quản trị 6 Gói cước (/admin?view=plans)', role: 'Admin', desc: 'Studio (0đ/99k/299k) & Agency (0đ/990k/3.99M)' },
       { id: 'QA_ADMIN_CREDIT_PRICES', label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', desc: 'Cấu hình đơn giá 7 nghiệp vụ AI' },
     ];
 
     let activeIdx = 0;
     let roleStates = {};
-    let viewMode = 'stage';
     let largeFont = true;
     let doneActions = {};
     let busy = false;
     let windowMode = 'normal';
-
-    function setViewMode(mode) {
-      viewMode = mode;
-      const stageBtn = document.getElementById('mode-stage-btn');
-      const detailBtn = document.getElementById('mode-detail-btn');
-      const mainEl = document.getElementById('main-layout');
-      const sidebarEl = document.getElementById('detail-sidebar');
-      const activeSecEl = document.getElementById('active-section');
-      const railWrap = document.getElementById('stage-rail-wrap');
-
-      if (mode === 'stage') {
-        stageBtn.className = 'px-2.5 py-1 bg-orange-600 text-white cursor-pointer';
-        detailBtn.className = 'px-2.5 py-1 text-slate-700 hover:bg-orange-100/70 cursor-pointer';
-        mainEl.className = 'max-w-[1040px] mx-auto px-4 py-4 space-y-4';
-        sidebarEl.className = 'hidden';
-        activeSecEl.className = 'space-y-4';
-        railWrap.className = 'bg-white border-t border-slate-100';
-      } else {
-        detailBtn.className = 'px-2.5 py-1 bg-orange-600 text-white cursor-pointer';
-        stageBtn.className = 'px-2.5 py-1 text-slate-700 hover:bg-orange-100/70 cursor-pointer';
-        mainEl.className = 'max-w-[1600px] mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6';
-        sidebarEl.className = 'lg:col-span-4 space-y-2';
-        activeSecEl.className = 'lg:col-span-8 space-y-4';
-        railWrap.className = 'hidden';
-      }
-      renderAll();
-    }
 
     function toggleLargeFont() {
       largeFont = !largeFont;
@@ -745,7 +722,7 @@
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div class="space-y-1.5 min-w-0 flex-1">
             <div class="flex flex-wrap items-center gap-1.5">
-              <span class="px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold">Bước ${activeIdx + 1}/15 · ${s.code}</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold">Bước ${activeIdx + 1}/${STEPS.length} · ${s.code}</span>
               <span class="px-2.5 py-0.5 bg-orange-50 text-orange-800 border border-orange-200 text-xs font-bold">
                 ${s.role}: ${s.actor}
               </span>
@@ -787,7 +764,7 @@
                   ? `Sẵn sàng chạy: [${nextActIdx + 1}/${s.actions.length}] ${nextAct.label}`
                   : activeIdx < STEPS.length - 1
                   ? `Đã chạy đủ thao tác ${s.code}! Nhấn để sang ${STEPS[activeIdx + 1].code}: ${STEPS[activeIdx + 1].shortTitle}`
-                  : 'Đã hoàn thành trọn vẹn cả 15 bước thuyết trình!'
+                  : `Đã hoàn thành trọn vẹn cả ${STEPS.length} bước thuyết trình!`
               }
             </div>
           </div>
@@ -802,7 +779,7 @@
                 ? `Thực thi ngay (${nextActIdx + 1}/${s.actions.length})`
                 : activeIdx < STEPS.length - 1
                 ? `Sang bước ${STEPS[activeIdx + 1].code} →`
-                : 'Đã hoàn tất 15/15'
+                : `Đã hoàn tất ${STEPS.length}/${STEPS.length}`
             }</span>
             <span class="bg-white/20 text-white px-1.5 py-0.5 text-[11px] font-mono">Space</span>
           </button>

@@ -439,7 +439,7 @@
           'Chạy open_clean_chrome_roles.bat để mở 6 cửa sổ Chrome gốc trên https://brandhub.id.vn (dự phòng rớt mạng: open_clean_chrome_roles_local.bat), đăng nhập sẵn bằng mật khẩu demo do trưởng nhóm cung cấp.',
           'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
           'Bật Lịch sử bộ nhớ tạm Windows (Win + V), chạy preload_clipboard_win_v.bat và đăng nhập sẵn app ngân hàng điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
-          'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 16–17).'
+          'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 10–11).'
         ],
         script: 'Em (Lê Trí Trung) cùng bạn Nguyễn Thành Lộc xin phép mở 6 cửa sổ trình duyệt trên https://brandhub.id.vn đại diện cho 6 vai trò chuẩn của hệ thống để bắt đầu luồng nghiệp vụ khép kín từ bước B1 đến B12 của Chiến dịch Tuyển sinh Đại học FPT 2027.',
         fields: [
@@ -475,7 +475,7 @@
         checklist: [
           'Chuyển sang cửa sổ Manager (Nguyễn Thành Lộc) tại /workspaces/.../campaigns.',
           'Bước 1 (Thông tin): Chỉ rõ lộ trình 4 tuần & Master Brief 6 khối.',
-          'Bước 2 (Công việc): Lướt Timeline 19 hạng mục sinh từ gói (có sẵn 3 thẻ Copy bên dưới nếu muốn thêm việc phát sinh).',
+          'Bước 2 (Công việc): Lướt Timeline 19 hạng mục sinh từ gói (nếu muốn thêm việc phát sinh: bấm "+ Thêm công việc lớn" -> "Có, tiếp tục" rồi dán 3 thẻ Copy bên dưới).',
           'Bước 3 (Đối tác): Điểm qua 6 đối tác VnExpress, Thanh Niên, Dân Trí, VTV1, Schannel và Màn hình LED THPT.'
         ],
         script: 'Manager Nguyễn Thành Lộc điều phối chiến dịch 4 tuần: chuẩn hóa Master Brief 6 khối, rà soát timeline 19 hạng mục và 6 đối tác truyền thông.',
@@ -504,11 +504,12 @@
         num: 4, code: 'B4', time: '05:00 - 08:00', fr: 'FR 3.6.3, 3.6.11, 3.7.1 - 3.7.2', role: 'Creator', actor: 'Nguyễn Chơn Phước',
         short: 'Soạn bài & AI caption',
         title: 'Creator nhận bài Tuần 3, mở /editor & gọi Gemini tạo caption',
-        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}&step=caption',
+        extraRoutes: [{ label: 'Bước 2: Sản xuất & Key Visual (&step=production)', route: '/workspaces/{workspace_id}/editor?taskId={task_id}&step=production' }],
         trap: 'Nếu mạng hội trường phản hồi AI quá 15 giây, đóng hộp AI và chuyển ngay sang bước B5 dán trực tiếp Bản thảo sạch v1.',
         checklist: [
-          'Cửa sổ Creator (Nguyễn Chơn Phước): mở /editor của [Tuần 3 - Bài trọng điểm], giới thiệu 4 khối độc lập (Brief, Hình ảnh Key Visual Gemini, Kênh đăng, Nội dung).',
-          'Bấm nút "AI tạo 3 phương án caption" -> Dán Chủ đề AI bên dưới.',
+          'Cửa sổ Creator (Nguyễn Chơn Phước): mở /editor của [Tuần 3 - Bài trọng điểm], giới thiệu thanh 4 bước (1. Brief · 2. Sản xuất có sẵn Key Visual Gemini đã duyệt · 3. Caption & xem trước · 4. Duyệt & đăng).',
+          'Tại bước 3 (Caption & xem trước), bấm tab "Trợ lý AI" ở khung bên phải -> Bấm nút "AI tạo 3 phương án caption" -> Dán Chủ đề AI bên dưới.',
           'Chọn Mục tiêu: Thông báo, Giọng điệu: Chuyên nghiệp, Nền tảng: Facebook, Độ dài: Vừa -> Bấm "Tạo caption" -> Bấm "Chèn" phương án 1.'
         ],
         script: 'Creator mở bài Tuần 3 trên /editor, kiểm tra Key Visual Gemini đã duyệt và gọi AI GraphRAG sinh 3 phương án caption sát ngữ cảnh tuyển sinh ĐH FPT.',
@@ -521,7 +522,7 @@
         num: 5, code: 'B5', time: '08:00 - 09:30', fr: 'FR 3.6.33, 3.6.18', role: 'Creator', actor: 'Nguyễn Chơn Phước',
         short: 'Kiểm duyệt & Nộp v1',
         title: 'Kiểm tra an toàn nội dung (3.6.33) & Nộp phần Nội dung v1',
-        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}&step=caption',
         checklist: [
           'Chép [1. Câu kiểm thử vi phạm], Ctrl+A dán vào ô Nội dung, dừng tay 3 giây để cổng FR 3.6.33 tự quét và báo chặn.',
           'Chép [2. Bản thảo sạch v1], Ctrl+A dán thay thế toàn bộ ô Nội dung (chủ đích chưa ghi 3 mức học bổng & OJT).',
@@ -567,12 +568,12 @@
         num: 8, code: 'B8', time: '12:00 - 14:00', fr: 'FR 3.6.11, 3.6.18', role: 'Creator', actor: 'Nguyễn Chơn Phước',
         short: 'Sửa v2, Nộp & Diff',
         title: 'Creator bổ sung v2, nộp lại & đối chiếu Diff v1 / v2',
-        route: '/workspaces/{workspace_id}/editor?taskId={task_id}',
+        route: '/workspaces/{workspace_id}/editor?taskId={task_id}&step=caption',
         checklist: [
           'Quay lại cửa sổ Creator trên /editor, nhấn F5 để thấy thẻ góp ý màu cam của nhà trường.',
           'Đặt con trỏ cuối bài viết, dán [1. Đoạn bổ sung nối tiếp v2] (hoặc Ctrl+A dán [2. Trọn bộ bản v2] nếu lỡ xóa v1).',
           'Chờ kiểm duyệt báo An toàn rồi bấm "Nộp phần".',
-          'Bấm biểu tượng đồng hồ "Lịch sử phiên bản" để mở bảng đối chiếu Word-Level Diff giữa v1 và v2.'
+          'Bấm biểu tượng đồng hồ "Lịch sử phiên bản" rồi chọn "#1" để mở bảng đối chiếu Diff giữa v1 và v2.'
         ],
         script: 'Creator đọc góp ý, bổ sung 3 mức Học bổng Nguyễn Văn Đạo 2027 và kỳ OJT vào bản v2, nộp lại rồi mở bảng đối chiếu Diff từng từ giữa v1 và v2.',
         fields: [
@@ -585,16 +586,16 @@
         short: 'Duyệt v2 → FINISHED',
         title: 'Manager & Ban Tuyển sinh ĐH FPT duyệt hoàn tất v2',
         route: '/workspaces/{workspace_id}/task-approvals?task={task_id}',
-        extraRoutes: [{ label: '3. Creator bấm Gửi phê duyệt (/editor)', route: '/workspaces/{workspace_id}/editor?taskId={task_id}' }],
-        trap: 'BẮT BUỘC NHỚ BƯỚC 3: Sau khi Client bấm Duyệt v2, phải quay sang cửa sổ Creator trên /editor bấm nút cam "Gửi phê duyệt" góc trên bên phải thì Task mới sang FINISHED và Post mới sang APPROVED!',
+        extraRoutes: [{ label: '3. Creator kiểm chứng FINISHED (/editor · bước 4)', route: '/workspaces/{workspace_id}/editor?taskId={task_id}&step=review' }],
+        trap: 'LƯU Ý AUTO-SETTLEMENT v4.0: Với Role Task chuẩn 5 Subtask, ngay khi Client bấm "Duyệt" phần cuối cùng ở Bước 2 là hệ thống tự động chốt Task FINISHED và mở khóa bài đăng luôn — sang cửa sổ Creator tab "4. Duyệt & đăng" chỉ cần F5 đối chiếu huy hiệu FINISHED (nút cam "Gửi phê duyệt" chỉ dùng khi task còn subtask tự do).',
         checklist: [
           'Bước 1 (Manager): Tại /task-approvals?task=..., nhấn F5 rồi bấm "Duyệt" phần Nội dung (v2).',
-          'Bước 2 (Client): Tại /task-approvals?task=..., nhấn F5 rồi bấm "Duyệt" nghiệm thu chính thức (v2).',
-          'Bước 3 (Creator): Quay lại /editor?taskId=..., nhấn F5 rồi bấm nút cam "Gửi phê duyệt" ở góc phải trên cùng -> Task FINISHED & Post APPROVED!'
+          'Bước 2 (Client): Tại /task-approvals?task=..., nhấn F5 rồi bấm "Duyệt" nghiệm thu chính thức (v2) -> Task tự động chốt FINISHED & bài đăng mở khóa sẵn sàng xuất bản!',
+          'Bước 3 (Creator): Quay lại /editor?taskId=...&step=review (tab "4. Duyệt & đăng"), nhấn F5 đối chiếu huy hiệu FINISHED & 5/5 Subtask hoàn tất.'
         ],
-        script: 'Manager duyệt v2, Ban Tuyển sinh ĐH FPT bấm duyệt chính thức và Creator hoàn tất gửi phê duyệt; Task lập tức sang FINISHED và bài đăng sang APPROVED.',
+        script: 'Manager duyệt v2 và Ban Tuyển sinh ĐH FPT bấm duyệt chính thức; cơ chế Auto-Settlement v4.0 lập tức chốt Task sang FINISHED và mở khóa bài đăng sẵn sàng xuất bản.',
         fields: [
-          { label: 'Chuỗi 3 cú click chốt hoàn tất', type: 'Bấm nút', value: '1. Manager bấm "Duyệt" -> 2. Client bấm "Duyệt" -> 3. Creator (/editor) bấm "Gửi phê duyệt"' }
+          { label: 'Chuỗi duyệt chốt hoàn tất v2 (Auto-Settlement v4.0)', type: 'Bấm nút', value: '1. Manager bấm "Duyệt" -> 2. Client bấm "Duyệt" (tự chốt FINISHED) -> 3. Creator tab 4 F5 kiểm chứng' }
         ]
       },
       {
@@ -625,15 +626,15 @@
         route: '/subscription/plans',
         extraRoutes: [{ label: 'Nạp lẻ AI Credit & Ví 8.500 điểm (/credit)', route: '/agency/{agency_id}/credit' }],
         checklist: [
-          'Cửa sổ Owner tại /subscription/plans: chỉ rõ gói Agency Plus giá chuẩn 990.000 VNĐ/tháng (khớp 100% Slide 16) & mở xem mã VietQR động.',
+          'Cửa sổ Owner tại /subscription/plans: chỉ rõ gói Agency Plus giá chuẩn 990.000 VNĐ/tháng (khớp 100% Slide 10) & mở xem mã VietQR động.',
           'Chuyển sang /agency/.../credit: chỉ số dư 8.500 điểm, trần Workspace ĐH FPT 5.000 điểm, rồi bấm nút "Nạp thêm Credit".',
           'Chọn ô "Số lượng tùy chỉnh" -> dán số 10 (10 Credits × 200đ = 2.000 VNĐ) -> bấm "Thanh toán 2.000 VND" để sinh mã VietQR động kèm nội dung BH...',
           'Dùng app ngân hàng quét chuyển khoản thật 2.000 VNĐ ngay trên sân khấu -> Webhook SePay đối soát tự động và cộng +10 Credits tức thì!'
         ],
-        script: 'Trên trang Gói thuê bao là mức giá thương mại chuẩn 990.000 VNĐ/tháng của gói Agency Plus (cùng Enterprise 3.990.000đ và dòng Studio cá nhân 0đ / 99k / 299k). Để quét chuyển khoản thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét trực tiếp để hệ thống cộng điểm tự động.',
+        script: 'Trên trang Gói thuê bao là mức giá thương mại chuẩn 990.000 VNĐ/tháng của gói Agency Plus (cùng Enterprise 3.990.000đ và dòng Studio cá nhân 0đ / 99k / 299k tối đa 3 thành viên). Để quét chuyển khoản thật qua SePay VietQR ngay trên sân khấu mà không cần sửa giả giá gói, em chuyển sang Ví AI Credit, chọn nạp tùy chỉnh 10 Credits tương ứng đúng 2.000 VNĐ theo đơn giá 200đ/credit và quét trực tiếp để hệ thống cộng điểm tự động.',
         fields: [
           { label: '1. Số lượng AI Credit nạp lẻ tùy chỉnh (= 2.000 VNĐ quét thật)', type: 'Dán Ctrl+V', value: '10', note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn "Số lượng tùy chỉnh" -> Nhập 10 (10 × 200đ = 2.000 VNĐ).' },
-          { label: '2. Thông tin 6 Gói cước & Ví AI Credit chuẩn', type: 'Tham chiếu', value: 'Agency Plus: 990.000 VNĐ/tháng (Enterprise 3.990.000đ, 500GB) · Studio: 0đ / 99k / 299k · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits' }
+          { label: '2. Thông tin 6 Gói cước & Ví AI Credit chuẩn', type: 'Tham chiếu', value: 'Agency Plus: 990.000 VNĐ/tháng (Enterprise 3.990.000đ, 500GB) · Studio: 0đ / 99k / 299k (Pro 3 TV) · Nạp lẻ: 200 VNĐ/credit · Ví SE08: 8.500 credits' }
         ]
       },
       {
@@ -701,12 +702,15 @@
 
     const QA_LINKS = [
       { label: 'Video ngắn Reels/TikTok (/editor)', role: 'Creator', route: '/workspaces/{workspace_id}/editor?taskId=31a69211-9cec-30f0-b3f0-4e01ac3315a1' },
+      { label: 'AI TVC Sản phẩm (/product-video)', role: 'Creator', route: '/workspaces/{workspace_id}/product-video' },
+      { label: 'Trình dựng Video Space (/video-space)', role: 'Creator', route: '/workspaces/{workspace_id}/video-space' },
       { label: 'Sự kiện FPTU Open Day (/event)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/85a66c1c-b49b-3788-8bc3-a21336649041/event' },
       { label: 'Chuỗi Workshop THPT (/workshop)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/c1176d26-249c-3d32-bbad-f720b3a518a4/workshop' },
       { label: 'PR Báo chí VnExpress (/press)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/b8585f25-6a26-3a5e-9199-19c2e9fb3f06/press' },
       { label: 'Booking KOL Schannel (/kol)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/3f1ae3a9-6518-35df-a596-1013c055e279/kol' },
       { label: 'Bản tin Email (/newsletter)', role: 'Creator', route: '/workspaces/{workspace_id}/tasks/b6a13469-05c4-3af0-88b1-ba2ca510d18f/newsletter' },
       { label: 'AI Xu hướng MXH (/ai-studio/trends)', role: 'Manager', route: '/ai-studio/trends' },
+      { label: 'Xu hướng Brand DNA & KOL (/trends)', role: 'Manager', route: '/workspaces/{workspace_id}/trends' },
       { label: 'AI Tri thức RAG (/ai-studio/knowledge-base)', role: 'Manager', route: '/ai-studio/knowledge-base' },
       { label: 'AI Đại sứ ảo (/ai-studio/ambassadors)', role: 'Creator', route: '/ai-studio/ambassadors' },
       { label: 'Cổng Khách hàng (/portal)', role: 'Client', route: '/workspaces/{workspace_id}/portal' },
@@ -714,6 +718,8 @@
       { label: 'Danh bạ 10 Đối tác (/collaborators)', role: 'Owner', route: '/agency/{agency_id}/collaborators' },
       { label: 'Link Chào giá Gói (Guest)', role: 'Guest', route: '/packages/share/goi-tuyen-sinh-dh-fpt-2027' },
       { label: 'Link Khảo sát THPT (Guest)', role: 'Guest', route: '/public/surveys/khao-sat-chon-nganh-fptu-2027' },
+      { label: 'BrandHub Academy (Guest)', role: 'Guest', route: '/academy' },
+      { label: 'Quản trị 6 Gói cước (/admin?view=plans)', role: 'Admin', route: '/admin?view=plans' },
       { label: 'Bảng giá AI Credit (/admin/credit-prices)', role: 'Admin', route: '/admin/credit-prices' }
     ];
 
@@ -889,8 +895,8 @@
       return `
         <div class="card">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-            <strong>Truy cập nhanh Q&amp;A Hội đồng: 15 Màn hình Chuyên sâu</strong>
-            <span class="badge badge-orange mono">15 Deep-Links</span>
+            <strong>Truy cập nhanh Q&amp;A Hội đồng: 20 Màn hình Chuyên sâu</strong>
+            <span class="badge badge-orange mono">20 Deep-Links</span>
           </div>
           <div class="grid-3">
             ${QA_LINKS.map((q, idx) => {
@@ -1090,7 +1096,7 @@
 
           <div class="alert-amber">
             <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong>
-            (1) <strong>Tại B9</strong>: Sau khi Client bấm Duyệt v2, chuyển sang cửa sổ Creator trên <span class="mono">/editor</span> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <span class="mono">Task FINISHED</span> &amp; <span class="mono">Post APPROVED</span>.
+            (1) <strong>Tại B9</strong>: Sau khi Client bấm Duyệt v2, chuyển sang cửa sổ Creator tại tab <strong>4. Duyệt &amp; đăng</strong> (<span class="mono">/editor?...&amp;step=review</span>) bấm nút biểu tượng Gửi màu cam (<strong>"Gửi phê duyệt"</strong>) để chốt <span class="mono">Task FINISHED</span> &amp; <span class="mono">Post APPROVED</span>.
             (2) <strong>Tại B10</strong>: Bấm Đăng ngay trên đúng <strong>1 kênh thật đã nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu.
             (3) <strong>Tại B11</strong>: Giới thiệu gói <span class="mono">Agency Plus = 990.000đ/tháng</span> rồi qua <span class="mono">/credit</span> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
           </div>
