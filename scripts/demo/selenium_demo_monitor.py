@@ -2194,8 +2194,12 @@ class DemoBrowserController:
 
     def ensure_editor_ai_rail(self, driver: webdriver.Chrome) -> bool:
         """Bảo đảm tab 'Trợ lý AI' ở khung bên phải /editor đang mở để thấy nút 'AI tạo 3 phương án caption' (cả màn rộng >=1280px và Chia 70/30 <1280px)."""
+        try:
+            driver.execute_script("localStorage.setItem('bh.postEditorRail.open', '1');")
+        except Exception:
+            pass
         self.ensure_editor_step(driver, "caption")
-        end = time.time() + 7.0
+        end = time.time() + 10.0
         while time.time() < end:
             state = driver.execute_script(
                 """
@@ -2211,18 +2215,24 @@ class DemoBrowserController:
                 const rails = [...document.querySelectorAll("[data-tour='postEditor.rail']")].filter(vis);
                 if (!rails.length) {
                     const toggle = document.querySelector("[data-tour='postEditor.railToggle']");
-                    if (vis(toggle)) {
+                    const isDesktop = window.matchMedia('(min-width: 1280px)').matches;
+                    if (vis(toggle) && (!isDesktop || toggle.getAttribute('aria-pressed') === 'false')) {
                         toggle.click();
                         return 'opened_drawer';
                     }
                     return 'waiting';
                 }
                 const rail = rails[rails.length - 1];
+                const radios = [...rail.querySelectorAll("[role='radio']")].filter(vis);
+                if (radios.length > 0 && radios[0].getAttribute('aria-checked') !== 'true') {
+                    radios[0].click();
+                    return 'clicked_ai_radio';
+                }
                 const aiTab = [...rail.querySelectorAll('button')].find(b => {
                     const t = (b.innerText || '').trim();
                     const a = (b.getAttribute('aria-label') || '').trim();
                     const ti = (b.getAttribute('title') || '').trim();
-                    return vis(b) && (
+                    return vis(b) && b.getAttribute('aria-checked') !== 'true' && (
                         t === 'Trợ lý AI' || t === 'AI Assist' || t.includes('Trợ lý AI') ||
                         a === 'Trợ lý AI' || a === 'AI Assist' || ti === 'Trợ lý AI'
                     );
@@ -3614,8 +3624,13 @@ class DemoBrowserController:
         # M2: AI caption (Tiếp: Điền form AI -> Tạo + Chèn)
         # ----------------------------------------------------------------------
         if action_id == "AI_FILL":
-            self.login_role("Creator", f"/workspaces/{ws_id}/editor?taskId={task_id}&step=caption", "B4 - Điền form AI tạo caption")
-            drv = self.drivers.get("Creator")
+            drv = self.drivers.get("Creator") if self._is_alive("Creator") else None
+            if drv and f"/workspaces/{ws_id}/editor" in (drv.current_url or "") and task_id in (drv.current_url or ""):
+                self.bring_to_front(drv, role="Creator")
+                self.inject_role_Hud_badge(drv, "Creator", "B4 - Điền form AI tạo caption")
+            else:
+                self.login_role("Creator", f"/workspaces/{ws_id}/editor?taskId={task_id}&step=caption", "B4 - Điền form AI tạo caption")
+                drv = self.drivers.get("Creator")
             if not drv:
                 return {"ok": False, "role": "Creator", "error": "Chưa mở được cửa sổ Creator."}
             self.ensure_caption_editable(drv)
@@ -3704,8 +3719,13 @@ class DemoBrowserController:
         if action_id in ("V1_FILL", "V2_FILL"):
             v1_flag = action_id == "V1_FILL"
             dest_q = f"/workspaces/{ws_id}/editor?taskId={task_id}&step=caption" + ("" if v1_flag else "&unlock=v2")
-            self.login_role("Creator", dest_q, "B5 - Điền bản sạch v1" if v1_flag else "B8 - Bổ sung Học bổng 50%-100% & OJT (v2)")
-            drv = self.drivers.get("Creator")
+            drv = self.drivers.get("Creator") if self._is_alive("Creator") else None
+            if v1_flag and drv and f"/workspaces/{ws_id}/editor" in (drv.current_url or "") and task_id in (drv.current_url or ""):
+                self.bring_to_front(drv, role="Creator")
+                self.inject_role_Hud_badge(drv, "Creator", "B5 - Điền bản sạch v1")
+            else:
+                self.login_role("Creator", dest_q, "B5 - Điền bản sạch v1" if v1_flag else "B8 - Bổ sung Học bổng 50%-100% & OJT (v2)")
+                drv = self.drivers.get("Creator")
             if not drv:
                 return {"ok": False, "role": "Creator", "error": "Chưa mở được cửa sổ Creator."}
             v1 = action_id == "V1_FILL"
