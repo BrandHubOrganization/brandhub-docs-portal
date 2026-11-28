@@ -961,7 +961,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(-13, 9),
             "visual_key": "week1_coming_soon",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "PUBLISHED",
             "description": "Bài mở màn chính thức mùa Tuyển sinh khóa K23 (2027) trên cả 4 nền tảng, giới thiệu thông điệp chủ đạo và hình ảnh không gian xanh tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ.",
             "criteria": "Đồng bộ nhận diện màu cam FPTU 2027, hiển thị rõ tên 5 cơ sở đào tạo và đường dẫn cổng thông tin tuyển sinh.",
@@ -1068,7 +1068,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(-6, 10),
             "visual_key": "week2_software_biz",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "PUBLISHED",
             "description": "Giới thiệu nhóm ngành công nghệ thông tin và kinh tế số gắn liền với mô hình làm dự án nhóm (Project-based Learning) tại Đại học FPT.",
             "criteria": "Nêu bật sự giao thoa giữa tư duy sản phẩm phần mềm, bảo mật hệ thống và phân tích dữ liệu kinh doanh số.",
@@ -1175,7 +1175,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "IN_PROGRESS",
             "due": dt(2, 9),
             "visual_key": "week3_thpt_workshop",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "DRAFT",
             "description": (
                 "Bài đăng đa nền tảng trọng điểm của Tuần 3: cập nhật hoạt động trải nghiệm tiện ích học đường tại chuỗi Workshop THPT "
@@ -1313,7 +1313,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(7, 9),
             "visual_key": "week3_openday_kol",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "SCHEDULED",
             "scheduled_offset_days": 6,
             "description": "Bài đăng đa nền tảng đã được duyệt sẵn và lên lịch xuất bản cho đầu Tuần 4: chia sẻ góc nhìn chân thực của học sinh THPT và phụ huynh sau khi tham quan phòng Lab, thư viện và ký túc xá.",
@@ -1338,7 +1338,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(12, 9),
             "visual_key": "week4_ojt_press",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "SCHEDULED",
             "scheduled_offset_days": 11,
             "description": "Bài tổng kết chặng cuối chiến dịch 4 tuần trên Facebook, Instagram, TikTok và Threads: tóm tắt checklist giấy tờ cần chuẩn bị và nhắc mốc đóng cổng nhận hồ sơ đợt 1 khóa K23.",
@@ -2814,13 +2814,13 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
 
                 # 17. Bảng giá AI Credit (/admin/credit-prices), Hạn mức Credit Workspace & Dung lượng Kho Client Vault
                 credit_ops = [
-                    ("CONTENT_GENERATE", 5),
-                    ("CAPTION_VARIANTS", 8),
-                    ("HASHTAG_GENERATE", 2),
-                    ("AMBASSADOR_GENERATE", 40),
-                    ("CHARACTER_SHEET", 30),
-                    ("COMMERCIAL_IMAGE", 20),
-                    ("VIDEO_GENERATE", 60),
+                    ("CONTENT_GENERATE", 1),
+                    ("CAPTION_VARIANTS", 1),
+                    ("HASHTAG_GENERATE", 1),
+                    ("AMBASSADOR_GENERATE", 10),
+                    ("CHARACTER_SHEET", 10),
+                    ("COMMERCIAL_IMAGE", 10),
+                    ("VIDEO_GENERATE", 500),
                 ]
                 for op_name, unit_cred in credit_ops:
                     cur.execute("SELECT COUNT(*) FROM ai_credit_operation_prices WHERE operation = %s;", (op_name,))
@@ -2943,7 +2943,8 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                             (java_name_uuid_from_bytes(f"ws-member:{cw_id}:{m_uid}"), cw_id, m_uid, m_role, owner_id),
                         )
 
-                # 19. Đồng bộ Gói cước STUDIO (0đ / 99k / 299k) & AGENCY (BASIC 0đ / PLUS 990.000 VNĐ/tháng / ENTERPRISE 3.990.000 VNĐ/tháng khớp Migration SQL & Slide 16), Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                # 19. Đồng bộ Gói cước STUDIO (0đ / 99k / 299k - tối đa 3 thành viên) & AGENCY (BASIC 0đ / PLUS 990.000 VNĐ/tháng / ENTERPRISE 3.990.000 VNĐ/tháng khớp Migration SQL & Slide 10), Doanh thu SePay (SEEPAY), Hóa đơn & Sổ cái AI Credit chuẩn xác 100%
+                cur.execute("ALTER TABLE IF EXISTS storage_addon_subscriptions ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT now();")
                 cur.execute("ALTER TABLE agencies ADD COLUMN IF NOT EXISTS company_type VARCHAR(20) NOT NULL DEFAULT 'AGENCY';")
                 cur.execute("ALTER TABLE agencies DROP CONSTRAINT IF EXISTS chk_agencies_company_type;")
                 cur.execute("ALTER TABLE agencies ADD CONSTRAINT chk_agencies_company_type CHECK (company_type IN ('AGENCY', 'PERSONAL'));")
@@ -2976,7 +2977,7 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                     ("ENTERPRISE", "Enterprise Agency", 3990000, 50, 50, 200, 500000000000, 25000, 10, 365, 90, 365, '{"product_line":"AGENCY","newsletter_email_quota":100000,"support_level":"DEDICATED","early_renewal":"NONE","downgrade_allowed":false}', 11390000, 21490000, 38290000),
                 ]:
                     cur.execute(
-                        "SELECT id, version, price_monthly, storage_limit_bytes FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
+                        "SELECT id, version, price_monthly, storage_limit_bytes, max_internal_members, monthly_ai_credits FROM billing_plan_versions WHERE code = %s AND is_sellable = TRUE AND price_monthly IS NOT NULL AND price_monthly > 0 ORDER BY version DESC LIMIT 1;",
                         (p_code,),
                     )
                     existing_pv = cur.fetchone()
@@ -3027,9 +3028,14 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                             """,
                             (new_vid, c3, new_vid, c6, new_vid, c12),
                         )
-                    elif int(existing_pv[2] or 0) != p_price or int(existing_pv[3] or 0) != p_store:
-                        # billing_plan_versions có trigger immutable: tạo version mới theo giá/dung lượng mới rồi tắt is_sellable ở version cũ
-                        new_vid = java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}:{p_price}:{p_store}")
+                    elif (
+                        int(existing_pv[2] or 0) != p_price
+                        or int(existing_pv[3] or 0) != p_store
+                        or int(existing_pv[4] or 0) != p_mem
+                        or int(existing_pv[5] or 0) != p_cred
+                    ):
+                        # billing_plan_versions có trigger immutable: tạo version mới theo giá/dung lượng/quota mới rồi tắt is_sellable ở version cũ
+                        new_vid = java_name_uuid_from_bytes(f"sellable-plan-ver:{p_code}:{p_price}:{p_store}:{p_mem}:{p_cred}")
                         cur.execute(
                             """
                             INSERT INTO billing_plan_versions (
@@ -3571,8 +3577,8 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         ("fptu2027-ai-phuoc-cap-w1", creator_id, "CONTENT_GENERATE", 8, 7),
                         ("fptu2027-ai-phuoc-var-w2", creator_id, "CAPTION_VARIANTS", 1, 5),
                         ("fptu2027-ai-phuoc-tag-w2", creator_id, "HASHTAG_GENERATE", 1, 4),
-                        ("fptu2027-ai-tuan-img-kv", creator2_id, "COMMERCIAL_IMAGE", 7, 6),
-                        ("fptu2027-ai-tuan-vid-reel", creator2_id, "VIDEO_GENERATE", 5, 3),
+                        ("fptu2027-ai-tuan-img-kv", creator2_id, "COMMERCIAL_IMAGE", 8, 6),
+                        ("fptu2027-ai-tuan-vid-reel", creator2_id, "VIDEO_GENERATE", 1, 3),
                         ("fptu2027-ai-an-pr-draft", creator3_id, "CONTENT_GENERATE", 6, 2),
                         ("fptu2027-ai-loc-brief", manager_id, "CONTENT_GENERATE", 6, 8),
                         ("fptu2027-ai-trung-amb", owner_id, "AMBASSADOR_GENERATE", 2, 4),
@@ -3987,6 +3993,7 @@ def build_mongo_bundle(resolved_ids: dict[str, str], now: datetime) -> dict[str,
             "encrypted_iv": "0123456789abcdef",
             "token_expires_at": now + timedelta(days=55),
             "token_status": "ACTIVE",
+            "status": "CONNECTED",
             "is_active": True,
             "created_at": now - timedelta(days=30),
             "updated_at": now - timedelta(days=1),
@@ -5793,6 +5800,18 @@ def apply_mongo(mongo_uri: str, mongo_db_name: str, bundle: dict[str, Any], clie
             db = default_db if default_db is not None else client[mongo_db_name]
         except Exception:
             db = client[mongo_db_name]
+
+        # 0. Bảo đảm validator của task_notification_outbox có đủ TASK_REVIEW_APPROVED (cơ chế Auto-Settlement v4.0)
+        try:
+            outbox_info = next(db.list_collections(filter={"name": "task_notification_outbox"}), None)
+            outbox_val = ((outbox_info or {}).get("options") or {}).get("validator")
+            if isinstance(outbox_val, dict) and "$jsonSchema" in outbox_val:
+                ev_enum = (((outbox_val["$jsonSchema"].get("properties") or {}).get("eventType") or {}).get("enum"))
+                if isinstance(ev_enum, list) and "TASK_REVIEW_APPROVED" not in ev_enum:
+                    ev_enum.append("TASK_REVIEW_APPROVED")
+                    db.command({"collMod": "task_notification_outbox", "validator": outbox_val, "validationLevel": "strict", "validationAction": "error"})
+        except Exception:
+            pass
 
         # 1. Dọn dẹp sạch toàn bộ dữ liệu cũ/rời rạc trong Workspace ĐH FPT trước khi nạp mới
         old_task_ids = [doc["_id"] for doc in db.tasks.find({"workspaceId": WORKSPACE_ID}, {"_id": 1})]
