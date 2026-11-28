@@ -4018,7 +4018,7 @@ class DemoBrowserController:
                 _, p_poll = self.api_call("GET", f"/api/v1/workspaces/{ws_id}/posts/{post_id}", token=token)
                 p_data = (p_poll.get("data") or {}) if isinstance(p_poll, dict) else {}
                 p_after_status = str(p_data.get("status") or "")
-                t_plats = p_data.get("targetPlatforms") or ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"]
+                t_plats = p_data.get("targetPlatforms") or ["FACEBOOK", "INSTAGRAM", "THREADS"]
                 done_plats = p_data.get("platformData") or {}
                 if p_after_status and p_after_status not in ("IN_PROGRESS", "APPROVED", "SCHEDULED") and len(done_plats) >= len(t_plats):
                     break
@@ -4047,10 +4047,11 @@ class DemoBrowserController:
                                 if str(a.get("encrypted_token") or "").startswith("demo-token-")
                             }
                             existing_post = mdb["posts"].find_one({"_id": post_id, "workspace_id": ws_id}) or {}
+                            target_plats = [str(p).upper() for p in (existing_post.get("target_platforms") or ["FACEBOOK", "INSTAGRAM", "THREADS"])]
                             existing_pdata = dict(existing_post.get("platform_data") or {})
                             now_dt = datetime.now(timezone.utc)
                             changed_any = False
-                            for plat in ("FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"):
+                            for plat in target_plats:
                                 cur_entry = existing_pdata.get(plat) or {}
                                 if cur_entry.get("status") == "PUBLISHED":
                                     continue
@@ -4071,7 +4072,7 @@ class DemoBrowserController:
                                         "engagementUpdatedAt": now_dt,
                                     }
                                     changed_any = True
-                            if changed_any and all((existing_pdata.get(p) or {}).get("status") == "PUBLISHED" for p in ("FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS")):
+                            if changed_any and all((existing_pdata.get(p) or {}).get("status") == "PUBLISHED" for p in target_plats):
                                 fb_entry = existing_pdata.get("FACEBOOK") or {}
                                 mdb["posts"].update_one(
                                     {"_id": post_id, "workspace_id": ws_id},

@@ -961,7 +961,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(-13, 9),
             "visual_key": "week1_coming_soon",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "PUBLISHED",
             "description": "Bài mở màn chính thức mùa Tuyển sinh khóa K23 (2027) trên cả 4 nền tảng, giới thiệu thông điệp chủ đạo và hình ảnh không gian xanh tại 5 cơ sở Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ.",
             "criteria": "Đồng bộ nhận diện màu cam FPTU 2027, hiển thị rõ tên 5 cơ sở đào tạo và đường dẫn cổng thông tin tuyển sinh.",
@@ -1068,7 +1068,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(-6, 10),
             "visual_key": "week2_software_biz",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "PUBLISHED",
             "description": "Giới thiệu nhóm ngành công nghệ thông tin và kinh tế số gắn liền với mô hình làm dự án nhóm (Project-based Learning) tại Đại học FPT.",
             "criteria": "Nêu bật sự giao thoa giữa tư duy sản phẩm phần mềm, bảo mật hệ thống và phân tích dữ liệu kinh doanh số.",
@@ -1175,7 +1175,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "IN_PROGRESS",
             "due": dt(2, 9),
             "visual_key": "week3_thpt_workshop",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "DRAFT",
             "description": (
                 "Bài đăng đa nền tảng trọng điểm của Tuần 3: cập nhật hoạt động trải nghiệm tiện ích học đường tại chuỗi Workshop THPT "
@@ -1313,7 +1313,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(7, 9),
             "visual_key": "week3_openday_kol",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "SCHEDULED",
             "scheduled_offset_days": 6,
             "description": "Bài đăng đa nền tảng đã được duyệt sẵn và lên lịch xuất bản cho đầu Tuần 4: chia sẻ góc nhìn chân thực của học sinh THPT và phụ huynh sau khi tham quan phòng Lab, thư viện và ký túc xá.",
@@ -1338,7 +1338,7 @@ def build_4week_plan_specs(now: datetime) -> list[dict[str, Any]]:
             "status": "FINISHED",
             "due": dt(12, 9),
             "visual_key": "week4_ojt_press",
-            "platforms": ["FACEBOOK", "INSTAGRAM", "TIKTOK", "THREADS"],
+            "platforms": ["FACEBOOK", "INSTAGRAM", "THREADS"],
             "post_status": "SCHEDULED",
             "scheduled_offset_days": 11,
             "description": "Bài tổng kết chặng cuối chiến dịch 4 tuần trên Facebook, Instagram, TikTok và Threads: tóm tắt checklist giấy tờ cần chuẩn bị và nhắc mốc đóng cổng nhận hồ sơ đợt 1 khóa K23.",
@@ -2814,13 +2814,13 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
 
                 # 17. Bảng giá AI Credit (/admin/credit-prices), Hạn mức Credit Workspace & Dung lượng Kho Client Vault
                 credit_ops = [
-                    ("CONTENT_GENERATE", 5),
-                    ("CAPTION_VARIANTS", 8),
-                    ("HASHTAG_GENERATE", 2),
-                    ("AMBASSADOR_GENERATE", 40),
-                    ("CHARACTER_SHEET", 30),
-                    ("COMMERCIAL_IMAGE", 20),
-                    ("VIDEO_GENERATE", 60),
+                    ("CONTENT_GENERATE", 1),
+                    ("CAPTION_VARIANTS", 1),
+                    ("HASHTAG_GENERATE", 1),
+                    ("AMBASSADOR_GENERATE", 10),
+                    ("CHARACTER_SHEET", 10),
+                    ("COMMERCIAL_IMAGE", 10),
+                    ("VIDEO_GENERATE", 500),
                 ]
                 for op_name, unit_cred in credit_ops:
                     cur.execute("SELECT COUNT(*) FROM ai_credit_operation_prices WHERE operation = %s;", (op_name,))
@@ -3577,8 +3577,8 @@ def apply_postgres(pg_uri: str, bundle: dict[str, Any]) -> dict[str, str]:
                         ("fptu2027-ai-phuoc-cap-w1", creator_id, "CONTENT_GENERATE", 8, 7),
                         ("fptu2027-ai-phuoc-var-w2", creator_id, "CAPTION_VARIANTS", 1, 5),
                         ("fptu2027-ai-phuoc-tag-w2", creator_id, "HASHTAG_GENERATE", 1, 4),
-                        ("fptu2027-ai-tuan-img-kv", creator2_id, "COMMERCIAL_IMAGE", 7, 6),
-                        ("fptu2027-ai-tuan-vid-reel", creator2_id, "VIDEO_GENERATE", 5, 3),
+                        ("fptu2027-ai-tuan-img-kv", creator2_id, "COMMERCIAL_IMAGE", 8, 6),
+                        ("fptu2027-ai-tuan-vid-reel", creator2_id, "VIDEO_GENERATE", 1, 3),
                         ("fptu2027-ai-an-pr-draft", creator3_id, "CONTENT_GENERATE", 6, 2),
                         ("fptu2027-ai-loc-brief", manager_id, "CONTENT_GENERATE", 6, 8),
                         ("fptu2027-ai-trung-amb", owner_id, "AMBASSADOR_GENERATE", 2, 4),

@@ -134,13 +134,13 @@ interface CreateLivePack {
   }>;
 }
 
-// This page is public; the demo password is typed once on the demo machine.
+// Mặc định sử dụng mật khẩu chuẩn của bộ tài khoản Demo (không bật hộp thoại prompt làm gián đoạn màn chiếu Duplicate).
 function getDemoPassword(): string {
-  const saved = localStorage.getItem('bh_demo_pwd');
-  if (saved) return saved;
-  const entered = window.prompt('Nhập mật khẩu tài khoản demo (chỉ lưu trên máy này)') ?? '';
-  if (entered) localStorage.setItem('bh_demo_pwd', entered);
-  return entered;
+  if (typeof window !== 'undefined') {
+    const saved = window.localStorage.getItem('bh_demo_pwd');
+    if (saved && saved.trim()) return saved.trim();
+  }
+  return 'Password123';
 }
 const DEFAULT_POST_ID = 'd7e00000-0000-4000-8000-000000000401';
 const EVENT_TASK_ID = '85a66c1c-b49b-3788-8bc3-a21336649041';
@@ -209,6 +209,7 @@ const CANONICAL_ROLES: Array<{
 ];
 
 export const DEFAULT_DEMO_TEXTS: Record<string, string> = {
+  demo_password: 'Password123',
   pkg_name: 'Gói Tuyển sinh Thạc sĩ FPT 2027',
   pkg_budget: '85000000',
   pkg_weeks: '4',
@@ -231,7 +232,7 @@ export const DEFAULT_DEMO_TEXTS: Record<string, string> = {
   violation_sample:
     'Bài đăng kích động kỳ thị, thù ghét vùng miền, kêu gọi đánh đập đối thủ và dẫn dụ học sinh tham gia hội nhóm lừa đảo đa cấp trái phép, cá độ trực tuyến.',
   caption_v1_clean:
-    'TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
+    '【TỪ SÂN TRƯỜNG THPT ĐẾN PHÒNG LAB CÔNG NGHỆ CAO: MỞ ĐĂNG KÝ XÉT HỌC BỔNG ĐẠI HỌC FPT 2027】\n\nSau chuỗi Workshop phổ biến tiện ích học đường sôi nổi tại các trường THPT, hàng trăm bạn học sinh lớp 12 đã trực tiếp đeo kính VR khám phá khuôn viên 5 cơ sở, điều khiển cánh tay Robotics và trò chuyện cùng giảng viên ngành Thiết kế Vi mạch bán dẫn, Trí tuệ nhân tạo (AI).\n\nHệ sinh thái học tập thực tiễn đang chờ đón tân sinh viên khóa K23 tại Trường Đại học FPT:\n- Môi trường học tập hiện đại tại Hà Nội, Đà Nẵng, Quy Nhơn, TP.HCM và Cần Thơ với thư viện xanh, ký túc xá tiện nghi, sân Vovinam và hơn 40 CLB sinh viên.\n- Giáo trình chuẩn quốc tế, chú trọng tiếng Anh và kỹ năng làm việc trong dự án công nghệ thực tế.\n- Cổng nhận hồ sơ đăng ký xét Học bổng Nguyễn Văn Đạo đợt 1 năm 2027 đã chính thức mở.\n\nĐăng ký tư vấn và nộp hồ sơ trực tuyến tại: https://tuyensinh.fpt.edu.vn',
   hashtags_line:
     '#DaiHocFPT #TuyenSinhFPTU2027 #WorkshopTHPT2027 #HocBongNguyenVanDao #ViMachBanDan #FPTUniversity',
   client_reject_note:
@@ -251,9 +252,9 @@ const CREATE_LIVE_PACKS: CreateLivePack[] = [
     routeTemplate: '/workspaces/{workspace_id}/campaigns',
     whenAsked: 'Khi Hội đồng yêu cầu tạo mới một Chiến dịch truyền thông hoặc chỉnh sửa kế hoạch chiến dịch ngay tại chỗ.',
     steps: [
-      'Trên cửa sổ Manager, mở trang Chiến dịch (/campaigns) và nhấn nút Tạo chiến dịch / Chỉnh sửa kế hoạch.',
-      'Dán Tên chiến dịch, chọn Ngày bắt đầu (01/06/2027) và Ngày kết thúc (28/06/2027).',
-      'Dán Chiến lược tổng thể (Strategy) vào khung bên phải, thêm hạng mục công việc rồi nhấn Lưu.',
+      'Trên cửa sổ Manager, mở trang Chiến dịch (/campaigns) và nhấn nút "Chỉnh sửa kế hoạch".',
+      'Dán Tên chiến dịch, chọn Ngày bắt đầu (01/06/2027) và Ngày kết thúc (28/06/2027) ở cột phải.',
+      'Dán Chiến lược tổng thể (Strategy) vào khung bên phải, thêm hạng mục công việc rồi nhấn "Lưu kế hoạch".',
     ],
     fields: [
       {
@@ -285,9 +286,9 @@ const CREATE_LIVE_PACKS: CreateLivePack[] = [
     routeTemplate: '/workspaces/{workspace_id}/tasks',
     whenAsked: 'Khi Hội đồng yêu cầu tạo mới 1 Task độc lập trên Kanban hoặc thêm công việc phát sinh ngoài gói.',
     steps: [
-      'Trên cửa sổ Manager tại /tasks, bấm nút "+ Tạo công việc" (hoặc tại Bước 2 Chiến dịch bấm "+ Thêm công việc lớn" → "Có, tiếp tục").',
-      'Chọn loại tác vụ "Bài đăng (POST)", mức ưu tiên "Cao (HIGH)", tích chọn 4 nền tảng Facebook, Instagram, TikTok, Threads.',
-      'Dán Tiêu đề, Mô tả chi tiết rồi nhấn "Tạo & Mở trình soạn thảo".',
+      'Trên cửa sổ Manager tại /tasks, bấm nút "Tạo nhanh công việc" (hoặc tại Bước 2 Chiến dịch bấm "+ Thêm công việc lớn" → "Có, tiếp tục").',
+      'Chọn ô "Bài đăng", định dạng "Ảnh" (POST), độ ưu tiên "Cao" và tích chọn 3 nền tảng hỗ trợ ảnh: Facebook, Instagram, Threads (Lưu ý: bỏ tích TikTok nếu đính kèm ảnh vì TikTok chỉ nhận đúng 1 file video ≤ 200MB; nếu chọn "Video ngắn (Reel)" thì tích TikTok, Instagram, Facebook).',
+      'Dán Tiêu đề công việc, Mô tả / Ghi chú ý tưởng rồi nhấn "Tạo & Mở trình soạn thảo".',
     ],
     fields: [
       {
@@ -320,9 +321,9 @@ const CREATE_LIVE_PACKS: CreateLivePack[] = [
     routeTemplate: '/workspaces/{workspace_id}/tasks',
     whenAsked: 'Khi Hội đồng yêu cầu tạo thử một biểu mẫu khảo sát mới và lấy đường dẫn công khai cho Guest điền.',
     steps: [
-      'Tại trang /tasks, bấm "+ Tạo công việc" -> chọn loại "Khảo sát (SURVEY)" -> dán tên rồi bấm "Tạo & Mở trình soạn thảo".',
-      'Trong trình thiết kế khảo sát (/survey), dán Tiêu đề, Mô tả và thêm 2 câu hỏi mẫu bên dưới.',
-      'Nhấn Xuất bản / Chia sẻ để mở đường dẫn công khai trên cửa sổ Guest.',
+      'Tại trang /tasks, bấm "Tạo nhanh công việc" -> chọn ô "Biểu mẫu Khảo sát" (SURVEY) -> dán tên rồi bấm "Tạo & Mở trình soạn thảo" (tự mở /tasks/.../survey).',
+      'Trong trình thiết kế khảo sát, dán Tiêu đề, Lời giới thiệu và thêm 2 câu hỏi mẫu bên dưới.',
+      'Nhấn nút cam "Xuất bản khảo sát" rồi bấm biểu tượng "Chia sẻ liên kết khảo sát" để mở đường dẫn công khai trên cửa sổ Guest.',
     ],
     fields: [
       {
@@ -363,7 +364,7 @@ const CREATE_LIVE_PACKS: CreateLivePack[] = [
     steps: [
       'Trên cửa sổ Owner, mở Danh bạ Đối tác (/agency/.../collaborators) và bấm nút "Thêm đối tác".',
       'Chọn phân loại "Báo điện tử (NEWSPAPER)", sau đó dán lần lượt Tên đơn vị, Người liên hệ, Email, SĐT, Website và Ghi chú.',
-      'Nhấn Lưu để hoàn tất.',
+      'Nhấn "Lưu thay đổi" để hoàn tất.',
     ],
     fields: [
       {
@@ -428,7 +429,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Mở sẵn 6 cửa sổ Chrome tách biệt trên https://brandhub.id.vn (dự phòng localhost:3000) cho Guest, Owner, Manager, Creator, Client, Admin (mật khẩu chung do trưởng nhóm cung cấp riêng).',
       'Kết nối sẵn 1 Fanpage Facebook thật (hoặc Threads thật) qua OAuth tại /workspaces/.../social-accounts trên https://brandhub.id.vn và mở sẵn tab trang MXH đó để đối chiếu trực tiếp ở B10.',
       'Bật Lịch sử bộ nhớ tạm Windows (Win + V -> Bật) và chạy preload_clipboard_win_v.bat; đăng nhập sẵn ứng dụng ngân hàng trên điện thoại để quét nạp lẻ 10 AI Credits (2.000 VNĐ) thật ở B11.',
-      'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 10–11).',
+      'Bật Do Not Disturb trên Windows trước khi cắm cáp HDMI Duplicate (Nguyễn Thành Lộc bấm máy · Lê Trí Trung đứng thuyết trình xuyên suốt sang Slide 11–12).',
     ],
     talkingPoints: [
       'Kịch bản thực chiến 20 phút trên https://brandhub.id.vn: SE08 Digital Agency triển khai Chiến dịch Tuyển sinh Đại học FPT 2027 (Khóa K23 - 4 tuần).',
@@ -441,8 +442,9 @@ const DEMO_STEPS: DemoStep[] = [
       {
         field: 'Mật khẩu chung toàn bộ tài khoản Demo',
         actionType: 'Dán Ctrl+V',
-        value: '',
-        note: 'Áp dụng cho Owner (user177), Manager (user1), Creator (user13, user14, user15), Client (user59) và Admin. Dùng nút MK để nhập/sao chép.',
+        value: DEFAULT_DEMO_TEXTS.demo_password,
+        copyKey: 'demo_password',
+        note: 'Dùng chung cho letritrung2605@gmail.com (Owner), nguyenthanhloc20092004@gmail.com (Manager), chontem123@gmail.com (Creator), winhtuan@gmail.com (Client) và admin@brandhub.com (Admin).',
       },
     ],
     actions: [
@@ -509,9 +511,9 @@ const DEMO_STEPS: DemoStep[] = [
       },
     ],
     manualBrowserCue:
-      'Cửa sổ Owner: lướt 7 gói đa ngành -> bấm "Tạo gói mới" -> dán Tên gói, Ngân sách (85000000), Thời lượng (4), Mô tả -> tích 5 hạng mục kèm số lượng (12, 2, 2, 4, 2) -> bấm "Lưu gói" -> chuyển sang xem Gói ĐH FPT 2027 (185 triệu) đã chốt trong Workspace.',
+      'Cửa sổ Owner: lướt 7 gói đa ngành -> bấm "Tạo gói tùy chỉnh" -> dán Tên gói, Ngân sách (85000000), Thời lượng (4), Mô tả -> tích 5 hạng mục kèm số lượng (12, 2, 2, 4, 2) -> bấm "Lưu gói" -> chuyển sang xem Gói ĐH FPT 2027 (185 triệu) đã chốt trong Workspace.',
     manualChecklist: [
-      'Tại /agency/.../media-packages (Owner), giới thiệu 7 gói chuẩn hóa đa lĩnh vực, nhấn nút "Tạo gói".',
+      'Tại /agency/.../media-packages (Owner), giới thiệu 7 gói chuẩn hóa đa lĩnh vực, nhấn nút "Tạo gói tùy chỉnh".',
       'Dán lần lượt Tên gói, Ngân sách 85000000, Thời lượng 4 tuần và Mô tả gói từ các thẻ bên dưới (nhấn phím C để chép nhanh từng ô).',
       'Tích chọn 5 hạng mục: Bài đăng mạng xã hội (12), Bài báo điện tử (2), Workshop (2), Video ngắn (4), Email/Bản tin (2) rồi bấm "Lưu gói".',
       'Mở trang /workspaces/.../media-package để chỉ rõ Gói ĐH FPT 2027 (185.000.000 VNĐ, 19 hạng mục, khóa terms_version) đã thương thảo & phê duyệt.',
@@ -999,10 +1001,10 @@ const DEMO_STEPS: DemoStep[] = [
       },
     ],
     manualBrowserCue:
-      'Mở /social-accounts (Manager) chỉ 4 kênh OAuth (trong đó đã liên kết thật 1 Fanpage Facebook / tài khoản Threads) -> Mở chi tiết bài Tuần 3 trên Creator (/posts/...401), tích chọn đúng 1 kênh thật vừa kết nối và bấm "Đăng ngay" -> Mở ngay tab Facebook Fanpage / Threads thật cho Hội đồng thấy bài vừa lên sóng -> Lướt Lịch 4 tuần (/calendar) & Dashboard (/dashboard).',
+      'Mở /social-accounts (Manager) chỉ 4 kênh OAuth (Facebook, Instagram, TikTok, Threads — đã nối thật Fanpage Facebook / Threads) -> Mở chi tiết bài ảnh Tuần 3 trên Creator (/posts/...401 — hướng 3 kênh ảnh Facebook, Instagram, Threads; riêng TikTok dành cho tác vụ SHORT_VIDEO video ≤ 200MB), nhấn nút cam "Đăng ngay" góc phải trên -> Mở ngay tab Facebook Fanpage / Threads thật cho Hội đồng thấy bài vừa lên sóng -> Lướt Lịch 4 tuần (/calendar) & Dashboard (/dashboard).',
     manualChecklist: [
-      'Trên cửa sổ Manager, mở /workspaces/.../social-accounts giới thiệu 4 kết nối OAuth chuẩn (Facebook, Instagram, TikTok, Threads) và chỉ rõ kênh Fanpage Facebook / Threads thật đang kết nối OAuth.',
-      'Chuyển sang cửa sổ Creator, mở chi tiết bài [Tuần 3 - Bài trọng điểm] đã APPROVED, tích chọn đúng 1 kênh MXH thật đó và bấm "Đăng ngay" (xử lý bất đồng bộ qua RabbitMQ & publisher-service).',
+      'Trên cửa sổ Manager, mở /workspaces/.../social-accounts giới thiệu đủ 4 kết nối OAuth chuẩn (Facebook, Instagram, TikTok, Threads — mã hóa AES-256-GCM) và chỉ rõ kênh Fanpage Facebook / Threads thật đang kết nối.',
+      'Chuyển sang cửa sổ Creator, mở chi tiết bài ảnh [Tuần 3 - Bài trọng điểm] (/posts/...401 — bài ảnh POST đã cấu hình 3 kênh Facebook, Instagram, Threads; còn tác vụ SHORT_VIDEO xuất bản sang TikTok), nhấn nút cam "Đăng ngay" góc phải trên để đẩy qua RabbitMQ & khóa Redis processingPostIds:{postId}:{platform} (Mẹo trên Cloud nếu chưa tải bản UI mới: tại B9 Client có thể bấm "Phê duyệt" -> chọn "⚡ Đăng ngay" ở cuối trang /task-approvals).',
       'Chuyển sang tab Facebook Fanpage / Threads thật mở sẵn để Hội đồng thấy bài viết kèm Key Visual và 6 hashtag vừa xuất hiện ngoài đời thực.',
       'Mở /workspaces/.../calendar xem Lịch phủ sóng 4 tuần và mở /workspaces/.../dashboard trình bày chỉ số Reach, Impressions, Reactions tổng hợp 4 kênh.',
     ],
@@ -1049,15 +1051,15 @@ const DEMO_STEPS: DemoStep[] = [
       },
     ],
     manualBrowserCue:
-      'Cửa sổ Owner: [1] Mở /subscription/plans chỉ rõ gói Plus giá chuẩn 990.000 VNĐ/tháng (khớp Slide 10) & bấm xem mã VietQR -> [2] Chuyển sang /agency/.../credit bấm "Nạp thêm Credit" -> chọn "Số lượng tùy chỉnh" -> nhập 10 (= 2.000 VNĐ) -> quét VietQR ngân hàng thật trên sân khấu để nhận webhook SePay cộng +10 Credits tức thì!',
+      'Cửa sổ Owner: [1] Mở /subscription/plans chỉ rõ gói Agency Plus giá chuẩn 990.000 VNĐ/tháng (khớp Slide 11) & bấm xem mã VietQR -> [2] Chuyển sang /agency/.../credit bấm "Nạp thêm Credit" -> chọn thẻ "Tùy chọn (Custom)" -> nhập 10 vào ô "Số lượng Credit cần nạp" (= 2.000 VND) -> nhấn "Thanh toán 2.000 VND" -> quét VietQR ngân hàng thật trên sân khấu để nhận webhook SePay cộng +10 Credits tức thì!',
     manualChecklist: [
-      'Tại /subscription/plans (Owner), giới thiệu bảng giá thương mại chính thức: gói Agency Plus 990.000 VNĐ/tháng (10 Workspaces, 15 thành viên, 100 GB S3, 5.000 AI Credits) khớp 100% với Slide 10.',
+      'Tại /subscription/plans (Owner), giới thiệu bảng giá thương mại chính thức: gói Agency Plus 990.000 VNĐ/tháng (10 Workspaces, 15 thành viên, 100 GB S3, 5.000 AI Credits) khớp 100% với Slide 11.',
       'Chuyển sang trang Ví AI Credit (/agency/.../credit), chỉ rõ số dư 8.500 điểm và hạn mức trần Workspace ĐH FPT 5.000 điểm (FR 3.9.6).',
-      'Nhấn nút "Nạp thêm Credit" -> chọn ô "Số lượng tùy chỉnh" -> dán số 10 (10 Credits × 200đ = 2.000 VNĐ) -> nhấn "Thanh toán 2.000 VND" để sinh mã VietQR động kèm mã đối soát BH...',
+      'Nhấn nút "Nạp thêm Credit" -> chọn thẻ "Tùy chọn (Custom)" -> dán số 10 vào ô "Số lượng Credit cần nạp" (10 Credits × 200đ = 2.000 VNĐ) -> nhấn "Thanh toán 2.000 VND" để sinh mã VietQR động kèm mã đối soát BH...',
       'Dùng ứng dụng ngân hàng quét chuyển khoản thật 2.000 VNĐ ngay trên sân khấu -> Webhook SePay đối soát tự động trong vài giây và cộng +10 Credits vào sổ cái!',
     ],
     talkingPoints: [
-      'Hệ thống có 2 dòng gói cước: Cá nhân Studio (Free 0đ / Plus 99k / Pro 299k - tối đa 3 thành viên) và Doanh nghiệp Agency (Basic 0đ / Plus 990.000đ / Enterprise 3.990.000đ) thanh toán qua SePay (VietQR) 0% phí thẻ quốc tế, khớp 100% với Slide 10.',
+      'Hệ thống có 2 dòng gói cước: Cá nhân Studio (Free 0đ / Plus 99k / Pro 299k - tối đa 3 thành viên) và Doanh nghiệp Agency (Basic 0đ / Plus 990.000đ / Enterprise 3.990.000đ) thanh toán qua SePay (VietQR) 0% phí thẻ quốc tế, khớp 100% với Slide 11.',
       'Quét chuyển khoản thật ngay trên sân khấu với gói nạp lẻ tùy chỉnh 10 AI Credits = 2.000 VNĐ (đơn giá 200đ/credit), đối soát tự động bằng Idempotency-Key và mã BH...',
     ],
     presenterScript:
@@ -1065,10 +1067,10 @@ const DEMO_STEPS: DemoStep[] = [
     expectedOutcome: 'Gói Plus hiển thị đúng 990.000 VNĐ/tháng; đơn nạp lẻ 10 Credits (2.000 VNĐ) chuyển sang FULFILLED và cộng +10 Credits ngay khi quét VietQR.',
     fields: [
       {
-        field: '1. Số lượng AI Credit nạp lẻ tùy chỉnh (= 2.000 VNĐ quét thật)',
+        field: '1. Số lượng Credit cần nạp — thẻ "Tùy chọn (Custom)" (= 2.000 VNĐ quét thật)',
         actionType: 'Dán Ctrl+V',
         value: '10',
-        note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn "Số lượng tùy chỉnh" -> Nhập 10 (10 × 200đ = 2.000 VNĐ).',
+        note: 'Tại /agency/.../credit -> Bấm "Nạp thêm Credit" -> Chọn thẻ "Tùy chọn (Custom)" -> Nhập 10 vào ô "Số lượng Credit cần nạp" (10 × 200đ = 2.000 VND).',
       },
       {
         field: '2. Thông tin 6 Gói cước & Ví AI Credit chuẩn',
@@ -1111,7 +1113,7 @@ const DEMO_STEPS: DemoStep[] = [
       'Chuyển sang cửa sổ Admin: mở /admin?view=revenue xem biểu đồ doanh thu gói SaaS & giao dịch SePay vừa phát sinh -> chuyển sang /admin?view=moderation xử lý Hàng đợi kiểm duyệt cộng đồng (FR 3.10.4) khép lại trọn vẹn 20 phút Demo.',
     manualChecklist: [
       'Chuyển sang cửa sổ Admin (Quản trị viên BrandHub) tại /admin?view=revenue xem tổng quan doanh thu toàn nền tảng.',
-      'Chuyển sang tab /admin?view=moderation trình bày Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) với 3 bản ghi cảnh báo thực tế — khép lại 12 bước Live Demo và chuyển sang Slide 10–11.',
+      'Chuyển sang tab /admin?view=moderation trình bày Hàng đợi kiểm duyệt nội dung cộng đồng (FR 3.10.4) với 3 bản ghi cảnh báo thực tế — khép lại 12 bước Live Demo và chuyển sang Slide 11–12.',
     ],
     talkingPoints: [
       'Admin giám sát tập trung doanh thu các gói thuê bao SaaS và đối soát lịch sử giao dịch SePay toàn hệ thống.',
@@ -1237,9 +1239,12 @@ export const DemoMonitorPage: React.FC = () => {
 
   const [customTexts, setCustomTexts] = useState<Record<string, string>>(DEFAULT_DEMO_TEXTS);
   const [configIds, setConfigIds] = useState(() => {
+    const qUrl = searchParams.get('url');
     const qEnv = searchParams.get('env');
     let initialUrl = PROD_APP_URL;
-    if (qEnv === 'local') {
+    if (qUrl && /^https?:\/\//i.test(qUrl.trim())) {
+      initialUrl = qUrl.trim().replace(/\/+$/, '');
+    } else if (qEnv === 'local') {
       initialUrl = LOCAL_APP_URL;
     } else if (qEnv === 'cloud' || qEnv === 'prod') {
       initialUrl = PROD_APP_URL;
@@ -2275,7 +2280,7 @@ export const DemoMonitorPage: React.FC = () => {
                 Phân công Sân khấu &amp; Môi trường (Đã chốt)
               </div>
               <p>
-                • <strong>Người đứng thuyết trình</strong>: <strong>Lê Trí Trung</strong> dẫn dắt xuyên suốt 20 phút Live Demo rồi nối thẳng sang <code className="font-mono">Slide 10–11</code>.
+                • <strong>Người đứng thuyết trình</strong>: <strong>Lê Trí Trung</strong> dẫn dắt xuyên suốt 20 phút Live Demo rồi nối thẳng sang <code className="font-mono">Slide 11–12</code>.
                 <br />• <strong>Người điều khiển máy</strong>: <strong>Nguyễn Thành Lộc</strong> ngồi laptop thao tác 6 cửa sổ trình duyệt (HDMI Duplicate).
                 <br />• <strong>Môi trường chính</strong>: <code className="font-mono">https://brandhub.id.vn</code> (1-click chuyển về <code className="font-mono">http://localhost:3000</code> ngay trên thanh tiêu đề nếu rớt mạng hội trường).
               </p>
@@ -2307,9 +2312,9 @@ export const DemoMonitorPage: React.FC = () => {
                 Ba điểm chốt ở B9, B10 &amp; B11
               </div>
               <p>
-                • <strong>Tại B9</strong>: Sau khi Client bấm Duyệt bản v2, chuyển về cửa sổ Creator trên <code className="font-mono">/editor?step=review</code> (tab <strong>4. Duyệt &amp; đăng</strong>) bấm nút biểu tượng Gửi màu cam (<strong>"Gửi phê duyệt"</strong>) góc trên bên phải để chốt <code className="font-mono">Task FINISHED</code>.
-                <br />• <strong>Tại B10</strong>: Bấm <strong>Đăng ngay</strong> trên đúng <strong>1 kênh thật đã kết nối OAuth</strong> (Facebook Fanpage / Threads) rồi mở ngay tab trang thật đối chiếu.
-                <br />• <strong>Tại B11</strong>: Chỉ rõ gói <code className="font-mono">Agency Plus = 990.000 VNĐ/tháng</code>, sau đó qua <code className="font-mono">/credit</code> bấm <strong>Nạp thêm Credit → Số lượng tùy chỉnh: 10 (= 2.000 VNĐ)</strong> để quét VietQR ngân hàng thật!
+                • <strong>Tại B9</strong>: Với Role Task chuẩn 5 Subtask, ngay khi <code className="font-mono">Client</code> bấm <strong>"Duyệt"</strong> bản v2 là cơ chế <strong>Auto-Settlement v4.0</strong> tự động chốt <code className="font-mono">Task FINISHED</code> và mở khóa bài đăng — sang cửa sổ <code className="font-mono">Creator</code> tab <strong>4. Duyệt &amp; đăng</strong> chỉ cần nhấn <code className="font-mono">F5</code> đối chiếu.
+                <br />• <strong>Tại B10</strong>: Trên <code className="font-mono">/posts/...401</code>, bấm nút cam <strong>"Đăng ngay"</strong> để xuất bản lên kênh thật đã kết nối OAuth (Facebook Fanpage / Threads) rồi mở ngay tab trang thật đối chiếu.
+                <br />• <strong>Tại B11</strong>: Chỉ rõ gói <code className="font-mono">Agency Plus = 990.000 VNĐ/tháng</code>, sau đó qua <code className="font-mono">/credit</code> bấm <strong>Nạp thêm Credit → Tùy chọn (Custom): 10 (= 2.000 VND)</strong> để quét VietQR ngân hàng thật!
               </p>
             </div>
           </div>
@@ -2818,7 +2823,7 @@ export const DemoMonitorPage: React.FC = () => {
                 </AstryxHeading>
               </div>
               <span className="text-xs text-slate-600">
-                Mẹo: Chạy <code className="font-mono">preload_clipboard_win_v.bat</code> trước buổi bảo vệ để nạp sẵn toàn bộ 10 ô này vào <strong>Win + V</strong>.
+                Mẹo: Chạy <code className="font-mono">preload_clipboard_win_v.bat</code> trước buổi bảo vệ để nạp sẵn 9 ô văn bản chính (B1 → B8) vào <strong>Win + V</strong>.
               </span>
             </div>
 
@@ -2875,7 +2880,7 @@ export const DemoMonitorPage: React.FC = () => {
           <div className="p-3.5 bg-amber-50 border border-amber-300 text-amber-900 text-xs leading-relaxed flex items-start gap-2.5">
             <AlertTriangle className="size-4 shrink-0 mt-0.5" />
             <div>
-              <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong> (1) Tại <strong>B9</strong>: Sau khi <code className="font-mono">Client</code> bấm Duyệt v2, quay về cửa sổ <code className="font-mono">Creator</code> trên <code className="font-mono">/editor</code> bấm nút cam <strong>"Gửi phê duyệt"</strong> để chốt <code className="font-mono">Task FINISHED</code> &amp; <code className="font-mono">Post APPROVED</code>. (2) Tại <strong>B10</strong>: Bấm Đăng ngay trên kênh thật đã nối OAuth (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu. (3) Tại <strong>B11</strong>: Giới thiệu <code className="font-mono">Agency Plus = 990.000đ/tháng</code> rồi qua <code className="font-mono">/credit</code> nạp lẻ tùy chỉnh <strong>10 Credits = 2.000đ</strong> để quét VietQR ngân hàng thật.
+              <strong>Ba điểm chốt trên sân khấu (Lộc bấm máy · Trung thuyết trình):</strong> (1) Tại <strong>B9</strong>: Ngay khi <code className="font-mono">Client</code> bấm <strong>"Duyệt"</strong> v2, cơ chế <strong>Auto-Settlement v4.0</strong> tự động chốt <code className="font-mono">Task FINISHED</code> &amp; mở khóa bài đăng; qua <code className="font-mono">Creator</code> tab 4 chỉ cần nhấn <code className="font-mono">F5</code> đối chiếu. (2) Tại <strong>B10</strong>: Mở <code className="font-mono">/posts/...401</code> bấm nút cam <strong>"Đăng ngay"</strong> lên kênh thật đã nối OAuth (Facebook Fanpage / Threads) rồi mở tab thật đối chiếu. (3) Tại <strong>B11</strong>: Giới thiệu <code className="font-mono">Agency Plus = 990.000đ/tháng</code> rồi qua <code className="font-mono">/credit</code> chọn <strong>Nạp thêm Credit → Tùy chọn (Custom): 10 = 2.000 VND</strong> để quét VietQR ngân hàng thật.
             </div>
           </div>
 
